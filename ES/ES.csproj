@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>ES</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Fyenet Inc.</Authors>
+    <Description>Easy .NET CORE Develop Frame.</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.7.12.362</Version>
+    <Company>Fyenet Inc.</Company>
+    <Copyright>Fyenet Inc.</Copyright>
+    <PackageId>EasySharpFrame</PackageId>
+    <PackageTags>C#,.Net CORE,Easy Develop,Server,Client</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\release\ES.xml</DocumentationFile>
+    <OutputPath>bin\release</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\debug\ES.xml</DocumentationFile>
+    <OutputPath>bin\debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.1.58" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Database\MySQL\" />
+  </ItemGroup>
+
+</Project>
