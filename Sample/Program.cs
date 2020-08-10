@@ -12,7 +12,10 @@ namespace Sample
             // new Test_ESBuffer().test();
             // new LogTest();
             // new Test_Redis();
-            new Test_EasyStorage();
+            // new Test_EasyStorage();
+            // new Test_Time();
+            // new Test_RandomCode();
+
             Console.ReadLine();
         }
     }

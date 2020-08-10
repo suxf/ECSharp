@@ -25,48 +25,11 @@ namespace ES.Network.Websocket
         /// <param name="url">监听地址</param>
         /// <param name="invoke">监听委托</param>
 
-        public WebsocketService(string url, WebsocketInvoke invoke)
+        public WebsocketService(string url, IWebsocketInvoke invoke)
         {
             websocketSvr = new WebSocketServer(url);
-            websocketSvr.Start(socket =>
-            {
-                socket.OnOpen = () =>
-                {
-                    if (!remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
-                    {
-                        conn = new RemoteConnection();
-                        conn.conn = socket;
-                        remoteConnections.TryAdd(socket.ConnectionInfo.Id, conn);
-                    }
-                    invoke.OnOpen(conn);
-                };
-                socket.OnClose = () =>
-                {
-                    if (remoteConnections.TryRemove(socket.ConnectionInfo.Id, out var conn))
-                    {
-                        invoke.OnClose(conn);
-                        conn.tag = null;
-                        conn.message = null;
-                        conn.conn = null;
-                    }
-                };
-                socket.OnMessage = message =>
-                {
-                    if (remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
-                    {
-                        conn.message = message;
-                        invoke.OnMessage(conn);
-                    }
-                };
-                socket.OnBinary = buffer =>
-                {
-                    if (remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
-                    {
-                        conn.buffer = buffer;
-                        invoke.OnBinary(conn);
-                    }
-                };
-            });
+
+            InitInvoke(invoke);
         }
 
         /// <summary>
@@ -75,11 +38,20 @@ namespace ES.Network.Websocket
         /// <param name="url">监听地址</param>
         /// <param name="certificateFile">ssl证书路径</param>
         /// <param name="invoke">监听委托</param>
-        public WebsocketService(string url, string certificateFile, WebsocketInvoke invoke)
+        public WebsocketService(string url, string certificateFile, IWebsocketInvoke invoke)
         {
             websocketSvr = new WebSocketServer(url);
             websocketSvr.Certificate = new X509Certificate2(certificateFile);
 
+            InitInvoke(invoke);
+        }
+
+        /// <summary>
+        /// 初始化委托
+        /// </summary>
+        /// <param name="invoke"></param>
+        private void InitInvoke(IWebsocketInvoke invoke)
+        {
             websocketSvr.Start(socket =>
             {
                 socket.OnOpen = () =>
@@ -87,7 +59,7 @@ namespace ES.Network.Websocket
                     if (!remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
                     {
                         conn = new RemoteConnection();
-                        conn.conn = socket;
+                        conn.socket = socket;
                         remoteConnections.TryAdd(socket.ConnectionInfo.Id, conn);
                     }
                     invoke.OnOpen(conn);
@@ -99,7 +71,7 @@ namespace ES.Network.Websocket
                         invoke.OnClose(conn);
                         conn.tag = null;
                         conn.message = null;
-                        conn.conn = null;
+                        conn.socket = null;
                     }
                 };
                 socket.OnMessage = message =>
@@ -116,6 +88,13 @@ namespace ES.Network.Websocket
                     {
                         conn.buffer = buffer;
                         invoke.OnBinary(conn);
+                    }
+                };
+                socket.OnError = exception =>
+                {
+                    if (remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
+                    {
+                        invoke.OnError(conn, exception);
                     }
                 };
             });

@@ -166,16 +166,19 @@ namespace ES.Network.Sockets
             catch (SocketException ex)
             {
                 Close();
-                Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (IOException ex)
             {
                 Close();
-                Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -208,16 +211,19 @@ namespace ES.Network.Sockets
             catch (SocketException ex)
             {
                 Close();
-                Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (IOException ex)
             {
                 Close();
-                Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "SyncClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 

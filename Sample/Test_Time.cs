@@ -69,14 +69,14 @@ namespace Sample
         /// 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因为我们有自动修正
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             /* 如果需要统计时间在处理就需要处理 */
             period1 += timeFlowPeriod;
 
             /* 在此处可以处理预期过了时间的一些判定或者内容 */
             // 这里我们每5秒执行一次
-            if(period1 >= 5000)
+            if (period1 >= 5000)
             {
                 period1 = 0;
                 Console.WriteLine("Hello TimeFlow");

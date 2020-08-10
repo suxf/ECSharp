@@ -1,4 +1,4 @@
-﻿using ES.Data.Json;
+﻿using ES.Common.Utils;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -19,7 +19,7 @@ namespace Sample
         public Test_Json()
         {
             // 先简单创建一个json数据
-            JObject jobj = new JObject() { { "id" , 100 }, { "content", "hello world"} };
+            JObject jobj = new JObject() { { "id", 100 }, { "content", "hello world" } };
             // 通过AsString可以快速转换对象为string类型
             var sobj = jobj.AsString();
             // 通过AsBytes可以快速转换对象为byte[]类型

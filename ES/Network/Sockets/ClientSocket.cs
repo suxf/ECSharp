@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -143,7 +142,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "ClientConnection", "ReceiveCallback", "Socket");
+                // Log.Exception(ex, "ClientConnection", "ReceiveCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -175,16 +175,19 @@ namespace ES.Network.Sockets
             catch (SocketException ex)
             {
                 Close();
-                Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (IOException ex)
             {
                 Close();
-                Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 

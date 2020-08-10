@@ -3,15 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>ES</AssemblyName>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>Fyenet Inc.</Authors>
     <Description>Easy .NET CORE Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.7.12.362</Version>
+    <Version>1.8.3.373</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
     <PackageTags>C#,.Net CORE,Easy Develop,Server,Client</PackageTags>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseFile></PackageLicenseFile>
+    <RepositoryUrl>https://github.com/suxf/EasySharpFrame</RepositoryUrl>
+    <Product>EasySharpFrame</Product>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

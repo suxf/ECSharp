@@ -39,7 +39,7 @@ namespace Sample
             byte[] eeee = null;
             // Console.WriteLine(e.ToString());
             for (int i = 0, len = 100000; i < len; i++) eeee = e.ToBytes();
-            for (int i = 0, len = 100000; i < len; i++)  _ = Easyeeeee.Parse(eeee);
+            for (int i = 0, len = 100000; i < len; i++) _ = Easyeeeee.Parse(eeee);
         }
 
         class Easyeeeee : EasyBuffer<Easyeeeee>

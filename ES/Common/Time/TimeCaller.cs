@@ -2,6 +2,8 @@
 {
     /// <summary>
     /// 时间执行器
+    /// 此执行器多线程分配
+    /// 需要统一线程调度请使用SyncTimeCaller
     /// </summary>
     public class TimeCaller : TimeFlow
     {
@@ -52,6 +54,24 @@
         }
 
         /// <summary>
+        /// 创建一个时间执行器
+        /// </summary>
+        /// <param name="delayTime">第一次开始延迟时间，单位ms</param>
+        /// <param name="periodTime">每次周期时间【第二次之后开始执行的延迟时间】，单位ms</param>
+        /// <param name="isRepeat">是否重复状态，不重复状态下周期时间无效, 默认不重复</param>
+        /// <param name="repeatNum">重复次数，值为 -1时 无限循环，默认 -1</param>
+        /// <param name="handle">需要被执行的函数</param>
+        /// <param name="timeFlowIndex">时间流线程索引</param>
+        protected TimeCaller(int delayTime, int periodTime, bool isRepeat, long repeatNum, MethodHandle handle, int timeFlowIndex) : base(timeFlowIndex)
+        {
+            this.delayTime = delayTime;
+            this.periodTime = periodTime;
+            this.isRepeat = isRepeat;
+            this.repeatNum = repeatNum;
+            this.handle = handle;
+        }
+
+        /// <summary>
         /// 需要被调用的函数
         /// </summary>
         /// <param name="handle"></param>
@@ -72,7 +92,7 @@
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             if (isFirstCall)
             {

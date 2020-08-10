@@ -88,7 +88,7 @@ namespace ES.Network.Sockets
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             periodNow += timeFlowPeriod;
             if (periodNow >= 1000)

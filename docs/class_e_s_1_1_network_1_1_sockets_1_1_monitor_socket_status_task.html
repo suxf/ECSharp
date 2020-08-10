@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Network.Sockets.MonitorSocketStatusTask类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.8.3.373</span>
+   </div>
+   <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Network.Sockets.MonitorSocketStatusTask类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>监控套接字状态任务 (服务器用) 监控原理：只要处于队列中的用户票据都会每秒递增1，达到设定超时秒数后移除。（只要收到任何对方消息都会重置该事件）  
+ <a href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#details">更多...</a></p>
+<div class="dynheader">
+类 ES.Network.Sockets.MonitorSocketStatusTask 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.png" usemap="#ES.Network.Sockets.MonitorSocketStatusTask_map" alt=""/>
+  <map id="ES.Network.Sockets.MonitorSocketStatusTask_map" name="ES.Network.Sockets.MonitorSocketStatusTask_map">
+<area href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html" title="时间流 [多线程处理逻辑] Update以10ms周期循环 继承此类可以实现Update实时更新功能 每次Update被调用都是Sleep过需要的时间，也就是说执行逻辑的时候已经等待了响应间隔周期了 继..." alt="ES.Common.Time.TimeFlow" shape="rect" coords="0,0,271,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acfce9b9898228e9aacddf599ddc461d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#acfce9b9898228e9aacddf599ddc461d6">MonitorSocketStatusTask</a> (int timeout)</td></tr>
+<tr class="memdesc:acfce9b9898228e9aacddf599ddc461d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#acfce9b9898228e9aacddf599ddc461d6">更多...</a><br /></td></tr>
+<tr class="separator:acfce9b9898228e9aacddf599ddc461d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0653ae9fd631ac179dbd48d7338c7450"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#a0653ae9fd631ac179dbd48d7338c7450">SetTimeout</a> (int timeout)</td></tr>
+<tr class="memdesc:a0653ae9fd631ac179dbd48d7338c7450"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置超时时间  <a href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#a0653ae9fd631ac179dbd48d7338c7450">更多...</a><br /></td></tr>
+<tr class="separator:a0653ae9fd631ac179dbd48d7338c7450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html">ES.Common.Time.TimeFlow</a></td></tr>
+<tr class="memitem:a31d5cf3f0ce483ef83e84d0ac1835d58 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a31d5cf3f0ce483ef83e84d0ac1835d58">TimeFlow</a> ()</td></tr>
+<tr class="memdesc:a31d5cf3f0ce483ef83e84d0ac1835d58 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 多线程处理逻辑 继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a31d5cf3f0ce483ef83e84d0ac1835d58">更多...</a><br /></td></tr>
+<tr class="separator:a31d5cf3f0ce483ef83e84d0ac1835d58 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a621200cdce185e42e3674029eb0329 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a6a621200cdce185e42e3674029eb0329">SetTimeFlowPause</a> (bool pause)</td></tr>
+<tr class="memdesc:a6a621200cdce185e42e3674029eb0329 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置时间流暂停  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a6a621200cdce185e42e3674029eb0329">更多...</a><br /></td></tr>
+<tr class="separator:a6a621200cdce185e42e3674029eb0329 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57906aedf96bbc6a9ebc3f388fa560e6 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a57906aedf96bbc6a9ebc3f388fa560e6">CloseTimeFlow</a> ()</td></tr>
+<tr class="memdesc:a57906aedf96bbc6a9ebc3f388fa560e6 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭时间流 关闭后无法在此对象唤醒  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a57906aedf96bbc6a9ebc3f388fa560e6">更多...</a><br /></td></tr>
+<tr class="separator:a57906aedf96bbc6a9ebc3f388fa560e6 inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ad18bf98d23d606a08ef50cf1da1a6b44"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#ad18bf98d23d606a08ef50cf1da1a6b44">Update</a> (int dt)</td></tr>
+<tr class="memdesc:ad18bf98d23d606a08ef50cf1da1a6b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统调用  <a href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html#ad18bf98d23d606a08ef50cf1da1a6b44">更多...</a><br /></td></tr>
+<tr class="separator:ad18bf98d23d606a08ef50cf1da1a6b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html">ES.Common.Time.TimeFlow</a></td></tr>
+<tr class="memitem:af7a2758b8664f0a10ad5723310220036 inherit pub_static_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#af7a2758b8664f0a10ad5723310220036">CloseAllTimeFlow</a> ()</td></tr>
+<tr class="memdesc:af7a2758b8664f0a10ad5723310220036 inherit pub_static_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭程序中所有时间流 调用此函数，在此次进程中无法再次启动  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#af7a2758b8664f0a10ad5723310220036">更多...</a><br /></td></tr>
+<tr class="separator:af7a2758b8664f0a10ad5723310220036 inherit pub_static_methods_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_time_flow')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html">ES.Common.Time.TimeFlow</a></td></tr>
+<tr class="memitem:a8a119739181c05519c43569ce53384f3 inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a8a119739181c05519c43569ce53384f3">timeFlowPeriod</a> = TimeFlowManager.timeFlowPeriod</td></tr>
+<tr class="memdesc:a8a119739181c05519c43569ce53384f3 inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取时间流固定周期 刷新固定时间：10ms  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a8a119739181c05519c43569ce53384f3">更多...</a><br /></td></tr>
+<tr class="separator:a8a119739181c05519c43569ce53384f3 inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td colspan="2" onclick="javascript:toggleInherit('properties_class_e_s_1_1_common_1_1_time_1_1_time_flow')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html">ES.Common.Time.TimeFlow</a></td></tr>
+<tr class="memitem:aa6aeaa9bafdd2deb627f49dbe2025979 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#aa6aeaa9bafdd2deb627f49dbe2025979">IsTimeFlowPause</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa6aeaa9bafdd2deb627f49dbe2025979 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">时间流暂停开关  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#aa6aeaa9bafdd2deb627f49dbe2025979">更多...</a><br /></td></tr>
+<tr class="separator:aa6aeaa9bafdd2deb627f49dbe2025979 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c8faf81779bda5bc4575137d9bd9039 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a5c8faf81779bda5bc4575137d9bd9039">IsTimeFlowStop</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5c8faf81779bda5bc4575137d9bd9039 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">时间流停止开关  <a href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a5c8faf81779bda5bc4575137d9bd9039">更多...</a><br /></td></tr>
+<tr class="separator:a5c8faf81779bda5bc4575137d9bd9039 inherit properties_class_e_s_1_1_common_1_1_time_1_1_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>监控套接字状态任务 (服务器用) 监控原理：只要处于队列中的用户票据都会每秒递增1，达到设定超时秒数后移除。（只要收到任何对方消息都会重置该事件） </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="acfce9b9898228e9aacddf599ddc461d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfce9b9898228e9aacddf599ddc461d6">&#9670;&nbsp;</a></span>MonitorSocketStatusTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Network.Sockets.MonitorSocketStatusTask.MonitorSocketStatusTask </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>(超时)断线时间，单位:s</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0653ae9fd631ac179dbd48d7338c7450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0653ae9fd631ac179dbd48d7338c7450">&#9670;&nbsp;</a></span>SetTimeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Network.Sockets.MonitorSocketStatusTask.SetTimeout </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置超时时间 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>(超时)断线时间，单位:s 小于0则不生效</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad18bf98d23d606a08ef50cf1da1a6b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18bf98d23d606a08ef50cf1da1a6b44">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ES.Network.Sockets.MonitorSocketStatusTask.Update </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>系统调用 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#aeacc135f1154613c81e0421976e682c0">ES.Common.Time.TimeFlow</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>MonitorSocketStatusTask.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html">Sockets</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_monitor_socket_status_task.html">MonitorSocketStatusTask</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

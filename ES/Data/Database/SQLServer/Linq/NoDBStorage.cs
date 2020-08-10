@@ -180,7 +180,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             syncPeriodNow += timeFlowPeriod;
             if (syncPeriodNow >= syncPeriod)

@@ -1,6 +1,7 @@
 ﻿using ES.Data.Database.SQLServer;
 using ES.Data.Database.SQLServer.Linq;
 using System;
+using System.Data;
 
 namespace Sample
 {
@@ -143,5 +144,50 @@ namespace Sample
             // 清空函数会把内存中的数据清空，然后后续操作全部会重新读取数据库最新数据
             nodb.Clear();
         }
+
+        #region 数据库表配置加载器测试样本
+        /// <summary>
+        /// 数据库表配置加载器
+        /// </summary>
+        public void ConfigLoaderDemo()
+        {
+            // 创建一个加载器
+            var loader = new ConfigLoader<TestConfig>(dbHelper, "SELECT * FROM tb_configs WITH(NOLOCK)");
+            // 遍历配置
+            for(int i = 0, len = loader.Configs.Length; i < len; i++)
+            {
+                // do something
+            }
+            // 根据主键查找某一个配置
+            var config = loader.Find(1);
+            Console.WriteLine("config name:" + config.name);
+            // 重新拉取所有配置
+            loader.Reload();
+        }
+
+        /// <summary>
+        /// 测试配置
+        /// 配置需要继承 ConfigLoaderItem 加载器子类
+        /// </summary>
+        class TestConfig : ConfigLoaderItem
+        {
+            public int id;
+            public string name;
+            public float ratio;
+
+            protected override void SetConfig(DataRow row)
+            {
+                id = (int)row["id"];
+                name = row["name"].ToString();
+                // 此处写法是为了避免编译器导致的无限小数问题 而没有直接强转
+                ratio = float.Parse(row["ratio"].ToString());
+            }
+
+            protected override object SetPrimaryKey(DataRow row)
+            {
+                return row["id"];
+            }
+        }
+        #endregion
     }
 }

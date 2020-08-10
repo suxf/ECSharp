@@ -10,7 +10,7 @@ namespace ES.Data.Database.SQLServer.Linq
     public class SQLBuilder
     {
 
-        SQLServerDBHelper dBHelper = null;
+        readonly SQLServerDBHelper dBHelper = null;
 
         int topCount = 0;
         string[] fields = null;
@@ -29,7 +29,7 @@ namespace ES.Data.Database.SQLServer.Linq
             if (dBHelper == null)
             {
                 Exception ex = new NullReferenceException("DBHelper Is Null");
-                throw (ex);
+                throw ex;
             }
             else
             {
@@ -108,10 +108,11 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 查询
         /// </summary>
+        /// <param name="isLock">是否锁（NOLOCK) 默认有锁</param>
         /// <returns></returns>
-        public CommandResult Select()
+        public CommandResult Select(bool isLock = true)
         {
-            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(',', fields)} FROM {tableName} WHERE {conditions};");
+            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(',', fields)} FROM {tableName} {(isLock ? "" : "WITH(NOLOCK)")} WHERE {conditions};");
         }
 
         /// <summary>

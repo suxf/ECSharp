@@ -1,9 +1,10 @@
 ﻿namespace ES.Common.Time
 {
     /// <summary>
-    /// 时间流 抽象类 Update以10ms周期循环
+    /// 时间流 [多线程处理逻辑] Update以10ms周期循环
     /// 继承此类可以实现Update实时更新功能
     /// 每次Update被调用都是Sleep过需要的时间，也就是说执行逻辑的时候已经等待了响应间隔周期了
+    /// 继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类
     /// </summary>
     public abstract class TimeFlow
     {
@@ -11,7 +12,8 @@
         /// 获取时间流固定周期
         /// 刷新固定时间：10ms
         /// </summary>
-        public const int timeFlowPeriod = TimeFlowManager.timeFlowPeriod;
+        public static readonly int timeFlowPeriod = TimeFlowManager.timeFlowPeriod;
+
         /// <summary>
         /// 时间流暂停开关
         /// </summary>
@@ -30,7 +32,8 @@
         public bool IsTimeFlowStop { get { return isTimeFlowStop; } }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数 多线程处理逻辑
+        /// 继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类
         /// </summary>
         public TimeFlow()
         {
@@ -74,9 +77,19 @@
         }
 
         /// <summary>
-        /// 抽象更新
+        /// 内部 更新
+        /// </summary>
+        /// <param name="dt"></param>
+        internal void UpdateES(int dt)
+        {
+            Update(dt);
+        }
+
+        /// <summary>
+        /// 更新 Update以10ms周期循环 可以通过此timeFlowPeriod对象直接获取
         /// </summary>
         /// <param name="dt">时间差，实际执行时间 减去 理论周期时间10ms 精度：ms</param>
-        public abstract void Update(int dt);
+        protected abstract void Update(int dt);
+
     }
 }

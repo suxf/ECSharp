@@ -73,8 +73,18 @@ namespace ES.Network.Visitor
             catch (Exception ex)
             {
                 if (catchReceivedException != null) catchReceivedException.CatchReceivedException(msg, ex);
-                else throw (ex);
+                else throw ex;
             }
+        }
+
+        /// <summary>
+        /// 套接字异常
+        /// </summary>
+        /// <param name="exception"></param>
+        public void SocketException(Exception exception)
+        {
+            if (catchReceivedException != null) catchReceivedException.CatchReceivedException(null, exception);
+            else throw exception;
         }
     }
 }

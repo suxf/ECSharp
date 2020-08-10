@@ -22,7 +22,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 数据库对象
         /// </summary>
-        public SQLServerDBHelper dBHelper = null;
+        public readonly SQLServerDBHelper dBHelper = null;
         /// <summary>
         /// 表名
         /// </summary>
@@ -211,7 +211,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 更新句柄【不需要操作】
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             period += TimeFlowManager.timeFlowPeriod;
             if (period >= realPeriod)

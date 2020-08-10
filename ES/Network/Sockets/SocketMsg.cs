@@ -1,4 +1,4 @@
-﻿using ES.Data.Json;
+﻿using ES.Common.Utils;
 using Newtonsoft.Json.Linq;
 using System.Text;
 
@@ -48,7 +48,7 @@ namespace ES.Network.Sockets
         /// <returns>json对象</returns>
         public JObject AsJObject()
         {
-            return JHelper.AsJObject(Encoding.UTF8.GetString(data));
+            return Encoding.UTF8.GetString(data).AsJObject();
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace ES.Network.Sockets
         /// <returns>json数组</returns>
         public JArray AsArray()
         {
-            return JHelper.AsJArray(Encoding.UTF8.GetString(data));
+            return Encoding.UTF8.GetString(data).AsJArray();
         }
     }
 }

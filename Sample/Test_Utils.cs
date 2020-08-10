@@ -19,10 +19,10 @@ namespace Sample
             // 注意此函数不支持读取其他文件 此demo已经创建了配置文件详见项目 Sample.config
             // 本类设计初只能读取两层 具体结构可以参照样例
             // 此处读取第一层配置数据
-            string test = AppConfig.Instance.Read("test");
+            string test = AppConfig.Read("test");
             Console.WriteLine($"test{test}");
             // 此处读取第二层配置数据
-            string test2 = AppConfig.Instance.Read("testgroup", "test2");
+            string test2 = AppConfig.Read("testgroup", "test2");
             Console.WriteLine($"test2{test2}");
 
             // 获取有效字节
@@ -34,7 +34,7 @@ namespace Sample
 
             // 随机生成指定位数的字符串
             // 字符串将有数字与大小写字母组成
-            string code = GenerateSignCode.Generate(32);
+            string code = RandomCode.Generate(32);
             Console.WriteLine($"code:{code}");
 
             // md5的封装

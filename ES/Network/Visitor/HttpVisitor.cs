@@ -36,18 +36,6 @@ namespace ES.Network.Visitor
         }
 
         /// <summary>
-        /// 添加访问函数并用函数名作为回调地址
-        /// </summary>
-        /// <param name="callback">访问函数</param>
-        public void Add(OnRequest callback)
-        {
-            lock (commandList)
-            {
-                commandList.Add(nameof(callback), callback);
-            }
-        }
-
-        /// <summary>
         /// 添加访问函数
         /// </summary>
         /// <param name="suffix">标记后缀</param>
@@ -92,12 +80,23 @@ namespace ES.Network.Visitor
                 catch (Exception ex)
                 {
                     if (catchReceivedException != null) catchReceivedException.CatchOnRequestException(conn, ex);
-                    else throw (ex);
+                    else throw ex;
                     conn.response.StatusCode = (int)HttpRequestState.NonExistent;
                 }
             }
             else
                 conn.response.StatusCode = (int)HttpRequestState.NonExistent;
+        }
+
+        /// <summary>
+        /// 异常捕捉回调
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <param name="conn"></param>
+        public void HttpException(Exception exception, HttpConnection conn)
+        {
+            if (catchReceivedException != null) catchReceivedException.CatchOnRequestException(conn, exception);
+            else throw exception;
         }
     }
 }

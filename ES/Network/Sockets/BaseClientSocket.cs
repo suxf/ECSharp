@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using System;
+﻿using System;
 using System.Net.Sockets;
 
 namespace ES.Network.Sockets
@@ -116,7 +115,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "SendBuffer", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "SendBuffer", "Socket");
+                socketInvoke.SocketException(ex);
                 return -1;
             }
         }
@@ -150,7 +150,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "SendBufferSync", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "SendBufferSync", "Socket");
+                socketInvoke.SocketException(ex);
                 return -1;
             }
         }
@@ -185,7 +186,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "SendBufferTo", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "SendBufferTo", "Socket");
+                socketInvoke.SocketException(ex);
                 return -1;
             }
         }
@@ -219,7 +221,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "SendBufferToSync", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "SendBufferToSync", "Socket");
+                socketInvoke.SocketException(ex);
                 return -1;
             }
         }
@@ -237,7 +240,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "BeginReceived", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "BeginReceived", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -255,7 +259,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "BaseClientConnection", "BeginReceivedFrom", "Socket");
+                // Log.Exception(ex, "BaseClientConnection", "BeginReceivedFrom", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 

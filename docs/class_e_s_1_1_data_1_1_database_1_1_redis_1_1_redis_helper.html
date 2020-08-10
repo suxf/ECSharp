@@ -1,0 +1,2813 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Data.Database.Redis.RedisHelper类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.8.3.373</span>
+   </div>
+   <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Data.Database.Redis.RedisHelper类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Redis内存缓存数据库助手 不可继承  
+ <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a98a85292a8e5ed3d8e7edce29690254f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a98a85292a8e5ed3d8e7edce29690254f">RedisHelper</a> (string readWriteHosts, int dbIndex=0, string <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde">prefixKey</a>=null)</td></tr>
+<tr class="memdesc:a98a85292a8e5ed3d8e7edce29690254f"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a98a85292a8e5ed3d8e7edce29690254f">更多...</a><br /></td></tr>
+<tr class="separator:a98a85292a8e5ed3d8e7edce29690254f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab45b9d69f586729c13acb2fe64f7122a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab45b9d69f586729c13acb2fe64f7122a">AddEventListener</a> (<a class="el" href="interface_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_event_listener.html">RedisEventListener</a> listener)</td></tr>
+<tr class="memdesc:ab45b9d69f586729c13acb2fe64f7122a"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加事件监听  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab45b9d69f586729c13acb2fe64f7122a">更多...</a><br /></td></tr>
+<tr class="separator:ab45b9d69f586729c13acb2fe64f7122a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff453425bc9ac3ec0cfd579e8247a02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acff453425bc9ac3ec0cfd579e8247a02">StringSet</a> (string key, string value, TimeSpan? expiry=default)</td></tr>
+<tr class="memdesc:acff453425bc9ac3ec0cfd579e8247a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存单个key value  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acff453425bc9ac3ec0cfd579e8247a02">更多...</a><br /></td></tr>
+<tr class="separator:acff453425bc9ac3ec0cfd579e8247a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b7bf4aea52138d94782611e1bbb6055"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a5b7bf4aea52138d94782611e1bbb6055">StringSet</a> (List&lt; KeyValuePair&lt; RedisKey, RedisValue &gt;&gt; keyValues)</td></tr>
+<tr class="memdesc:a5b7bf4aea52138d94782611e1bbb6055"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存多个key value  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a5b7bf4aea52138d94782611e1bbb6055">更多...</a><br /></td></tr>
+<tr class="separator:a5b7bf4aea52138d94782611e1bbb6055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a741a171d595aa2e740b2cbb631379a28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a741a171d595aa2e740b2cbb631379a28">Set&lt; T &gt;</a> (string key, T obj, TimeSpan? expiry=default)</td></tr>
+<tr class="memdesc:a741a171d595aa2e740b2cbb631379a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存一个对象  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a741a171d595aa2e740b2cbb631379a28">更多...</a><br /></td></tr>
+<tr class="separator:a741a171d595aa2e740b2cbb631379a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2edc0a16ef2b342df0a405a7b0ea1e2c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a2edc0a16ef2b342df0a405a7b0ea1e2c">StringGet</a> (string key)</td></tr>
+<tr class="memdesc:a2edc0a16ef2b342df0a405a7b0ea1e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取单个key的值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a2edc0a16ef2b342df0a405a7b0ea1e2c">更多...</a><br /></td></tr>
+<tr class="separator:a2edc0a16ef2b342df0a405a7b0ea1e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407d533577f45ba0017ebe902a7028cb"><td class="memItemLeft" align="right" valign="top">RedisValue[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a407d533577f45ba0017ebe902a7028cb">StringGet</a> (List&lt; string &gt; listKey)</td></tr>
+<tr class="memdesc:a407d533577f45ba0017ebe902a7028cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取多个Key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a407d533577f45ba0017ebe902a7028cb">更多...</a><br /></td></tr>
+<tr class="separator:a407d533577f45ba0017ebe902a7028cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af470bad645d95fdef867d7771464e903"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af470bad645d95fdef867d7771464e903">Get&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:af470bad645d95fdef867d7771464e903"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取一个key的对象  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af470bad645d95fdef867d7771464e903">更多...</a><br /></td></tr>
+<tr class="separator:af470bad645d95fdef867d7771464e903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a013b9ed70e1a3266ef7a8248867ee08a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a013b9ed70e1a3266ef7a8248867ee08a">StringIncrement</a> (string key, double val=1)</td></tr>
+<tr class="memdesc:a013b9ed70e1a3266ef7a8248867ee08a"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字增长val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a013b9ed70e1a3266ef7a8248867ee08a">更多...</a><br /></td></tr>
+<tr class="separator:a013b9ed70e1a3266ef7a8248867ee08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d52e465ace2ffe097a675533e53516f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8d52e465ace2ffe097a675533e53516f">StringDecrement</a> (string key, double val=1)</td></tr>
+<tr class="memdesc:a8d52e465ace2ffe097a675533e53516f"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字减少val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8d52e465ace2ffe097a675533e53516f">更多...</a><br /></td></tr>
+<tr class="separator:a8d52e465ace2ffe097a675533e53516f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4126249de7f8c538854b6408935b1f53"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4126249de7f8c538854b6408935b1f53">StringSetAsync</a> (string key, string value, TimeSpan? expiry=default)</td></tr>
+<tr class="memdesc:a4126249de7f8c538854b6408935b1f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存单个key value  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4126249de7f8c538854b6408935b1f53">更多...</a><br /></td></tr>
+<tr class="separator:a4126249de7f8c538854b6408935b1f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad088c82e197d7928895f66712d4ed98c"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ad088c82e197d7928895f66712d4ed98c">StringSetAsync</a> (List&lt; KeyValuePair&lt; RedisKey, RedisValue &gt;&gt; keyValues)</td></tr>
+<tr class="memdesc:ad088c82e197d7928895f66712d4ed98c"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存多个key value  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ad088c82e197d7928895f66712d4ed98c">更多...</a><br /></td></tr>
+<tr class="separator:ad088c82e197d7928895f66712d4ed98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5ce7dbd1ce6dad9dc50c471b2311ec"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#afe5ce7dbd1ce6dad9dc50c471b2311ec">StringSetAsync&lt; T &gt;</a> (string key, T obj, TimeSpan? expiry=default)</td></tr>
+<tr class="memdesc:afe5ce7dbd1ce6dad9dc50c471b2311ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存一个对象  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#afe5ce7dbd1ce6dad9dc50c471b2311ec">更多...</a><br /></td></tr>
+<tr class="separator:afe5ce7dbd1ce6dad9dc50c471b2311ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb6b72f259bf04c752421b48dc032bcf"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acb6b72f259bf04c752421b48dc032bcf">StringGetAsync</a> (string key)</td></tr>
+<tr class="memdesc:acb6b72f259bf04c752421b48dc032bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取单个key的值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acb6b72f259bf04c752421b48dc032bcf">更多...</a><br /></td></tr>
+<tr class="separator:acb6b72f259bf04c752421b48dc032bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bb79cd117dfcc07c176ad1ea601990"><td class="memItemLeft" align="right" valign="top">async Task&lt; RedisValue[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af9bb79cd117dfcc07c176ad1ea601990">StringGetAsync</a> (List&lt; string &gt; listKey)</td></tr>
+<tr class="memdesc:af9bb79cd117dfcc07c176ad1ea601990"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取多个Key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af9bb79cd117dfcc07c176ad1ea601990">更多...</a><br /></td></tr>
+<tr class="separator:af9bb79cd117dfcc07c176ad1ea601990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130422fffe3e261f1412ba8a8708962d"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a130422fffe3e261f1412ba8a8708962d">StringGetAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a130422fffe3e261f1412ba8a8708962d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取一个key的对象  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a130422fffe3e261f1412ba8a8708962d">更多...</a><br /></td></tr>
+<tr class="separator:a130422fffe3e261f1412ba8a8708962d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284a3e3d0b554057fd72eb663b33874d"><td class="memItemLeft" align="right" valign="top">async Task&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a284a3e3d0b554057fd72eb663b33874d">StringIncrementAsync</a> (string key, double val=1)</td></tr>
+<tr class="memdesc:a284a3e3d0b554057fd72eb663b33874d"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字增长val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a284a3e3d0b554057fd72eb663b33874d">更多...</a><br /></td></tr>
+<tr class="separator:a284a3e3d0b554057fd72eb663b33874d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc4ca185c950454fc6acadc5fb74f1b8"><td class="memItemLeft" align="right" valign="top">async Task&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#afc4ca185c950454fc6acadc5fb74f1b8">StringDecrementAsync</a> (string key, double val=1)</td></tr>
+<tr class="memdesc:afc4ca185c950454fc6acadc5fb74f1b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字减少val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#afc4ca185c950454fc6acadc5fb74f1b8">更多...</a><br /></td></tr>
+<tr class="separator:afc4ca185c950454fc6acadc5fb74f1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bf73aea0278fa1cee72fa2aad00c89b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7bf73aea0278fa1cee72fa2aad00c89b">HashExists</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:a7bf73aea0278fa1cee72fa2aad00c89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断某个数据是否已经被缓存  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7bf73aea0278fa1cee72fa2aad00c89b">更多...</a><br /></td></tr>
+<tr class="separator:a7bf73aea0278fa1cee72fa2aad00c89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e385aeafd9c016da119e63185669174"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4e385aeafd9c016da119e63185669174">HashSet&lt; T &gt;</a> (string key, string dataKey, T t)</td></tr>
+<tr class="memdesc:a4e385aeafd9c016da119e63185669174"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储数据到hash表  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4e385aeafd9c016da119e63185669174">更多...</a><br /></td></tr>
+<tr class="separator:a4e385aeafd9c016da119e63185669174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7073ec825fba330ff88dbb72520f2bf3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7073ec825fba330ff88dbb72520f2bf3">HashDelete</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:a7073ec825fba330ff88dbb72520f2bf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除hash中的某值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7073ec825fba330ff88dbb72520f2bf3">更多...</a><br /></td></tr>
+<tr class="separator:a7073ec825fba330ff88dbb72520f2bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6e202c689734d7236cc4be81b43193"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a9f6e202c689734d7236cc4be81b43193">HashDelete</a> (string key, List&lt; RedisValue &gt; dataKeys)</td></tr>
+<tr class="memdesc:a9f6e202c689734d7236cc4be81b43193"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除hash中的多个值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a9f6e202c689734d7236cc4be81b43193">更多...</a><br /></td></tr>
+<tr class="separator:a9f6e202c689734d7236cc4be81b43193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab694729167cb9349bc2792bf4682efa3"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab694729167cb9349bc2792bf4682efa3">HashGet&lt; T &gt;</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:ab694729167cb9349bc2792bf4682efa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">从hash表获取数据  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab694729167cb9349bc2792bf4682efa3">更多...</a><br /></td></tr>
+<tr class="separator:ab694729167cb9349bc2792bf4682efa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a381807d74749e7b0f537d1c218ac4856"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a381807d74749e7b0f537d1c218ac4856">HashIncrement</a> (string key, string dataKey, double val=1)</td></tr>
+<tr class="memdesc:a381807d74749e7b0f537d1c218ac4856"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字增长val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a381807d74749e7b0f537d1c218ac4856">更多...</a><br /></td></tr>
+<tr class="separator:a381807d74749e7b0f537d1c218ac4856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e4e302f4000cf13712126bc10a50d7b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a3e4e302f4000cf13712126bc10a50d7b">HashDecrement</a> (string key, string dataKey, double val=1)</td></tr>
+<tr class="memdesc:a3e4e302f4000cf13712126bc10a50d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字减少val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a3e4e302f4000cf13712126bc10a50d7b">更多...</a><br /></td></tr>
+<tr class="separator:a3e4e302f4000cf13712126bc10a50d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295adb71155c329f8e600205e17d1765"><td class="memItemLeft" align="right" valign="top">List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a295adb71155c329f8e600205e17d1765">HashKeys&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a295adb71155c329f8e600205e17d1765"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取hashkey所有Redis key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a295adb71155c329f8e600205e17d1765">更多...</a><br /></td></tr>
+<tr class="separator:a295adb71155c329f8e600205e17d1765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae595c06e4ca2d60f8879d1f9342301b1"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae595c06e4ca2d60f8879d1f9342301b1">HashExistsAsync</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:ae595c06e4ca2d60f8879d1f9342301b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断某个数据是否已经被缓存  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae595c06e4ca2d60f8879d1f9342301b1">更多...</a><br /></td></tr>
+<tr class="separator:ae595c06e4ca2d60f8879d1f9342301b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57f016b062735c96d2576a0720e1f36"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac57f016b062735c96d2576a0720e1f36">HashSetAsync&lt; T &gt;</a> (string key, string dataKey, T t)</td></tr>
+<tr class="memdesc:ac57f016b062735c96d2576a0720e1f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储数据到hash表  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac57f016b062735c96d2576a0720e1f36">更多...</a><br /></td></tr>
+<tr class="separator:ac57f016b062735c96d2576a0720e1f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31bed923b98b7d4b3280432fcb1e915"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af31bed923b98b7d4b3280432fcb1e915">HashDeleteAsync</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:af31bed923b98b7d4b3280432fcb1e915"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除hash中的某值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af31bed923b98b7d4b3280432fcb1e915">更多...</a><br /></td></tr>
+<tr class="separator:af31bed923b98b7d4b3280432fcb1e915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca53a1d0f79c6a8fc49b2d871145eb3"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a6ca53a1d0f79c6a8fc49b2d871145eb3">HashDeleteAsync</a> (string key, List&lt; RedisValue &gt; dataKeys)</td></tr>
+<tr class="memdesc:a6ca53a1d0f79c6a8fc49b2d871145eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除hash中的多个值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a6ca53a1d0f79c6a8fc49b2d871145eb3">更多...</a><br /></td></tr>
+<tr class="separator:a6ca53a1d0f79c6a8fc49b2d871145eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0d36c77424a678b15fe40ccd9916db"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aff0d36c77424a678b15fe40ccd9916db">HashGeAsync&lt; T &gt;</a> (string key, string dataKey)</td></tr>
+<tr class="memdesc:aff0d36c77424a678b15fe40ccd9916db"><td class="mdescLeft">&#160;</td><td class="mdescRight">从hash表获取数据  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aff0d36c77424a678b15fe40ccd9916db">更多...</a><br /></td></tr>
+<tr class="separator:aff0d36c77424a678b15fe40ccd9916db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9559d013578987aae4bf5b2948f55d0"><td class="memItemLeft" align="right" valign="top">async Task&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac9559d013578987aae4bf5b2948f55d0">HashIncrementAsync</a> (string key, string dataKey, double val=1)</td></tr>
+<tr class="memdesc:ac9559d013578987aae4bf5b2948f55d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字增长val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac9559d013578987aae4bf5b2948f55d0">更多...</a><br /></td></tr>
+<tr class="separator:ac9559d013578987aae4bf5b2948f55d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae074f15b3c405b8e04378f629573f40b"><td class="memItemLeft" align="right" valign="top">async Task&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae074f15b3c405b8e04378f629573f40b">HashDecrementAsync</a> (string key, string dataKey, double val=1)</td></tr>
+<tr class="memdesc:ae074f15b3c405b8e04378f629573f40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">为数字减少val  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae074f15b3c405b8e04378f629573f40b">更多...</a><br /></td></tr>
+<tr class="separator:ae074f15b3c405b8e04378f629573f40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4d38da37a97c1a02974b979e393110b"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aa4d38da37a97c1a02974b979e393110b">HashKeysAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:aa4d38da37a97c1a02974b979e393110b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取hashkey所有Redis key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aa4d38da37a97c1a02974b979e393110b">更多...</a><br /></td></tr>
+<tr class="separator:aa4d38da37a97c1a02974b979e393110b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e399f8f1946edfa98a8c733401efab6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8e399f8f1946edfa98a8c733401efab6">ListRemove&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:a8e399f8f1946edfa98a8c733401efab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定ListId的内部List的值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8e399f8f1946edfa98a8c733401efab6">更多...</a><br /></td></tr>
+<tr class="separator:a8e399f8f1946edfa98a8c733401efab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ddd185d30569421c10ff99867b48ccd"><td class="memItemLeft" align="right" valign="top">List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1ddd185d30569421c10ff99867b48ccd">ListRange&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a1ddd185d30569421c10ff99867b48ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定key的List  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1ddd185d30569421c10ff99867b48ccd">更多...</a><br /></td></tr>
+<tr class="separator:a1ddd185d30569421c10ff99867b48ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0b97e5573bf43b99471eec22fcf3cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aae0b97e5573bf43b99471eec22fcf3cc">ListRightPush&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:aae0b97e5573bf43b99471eec22fcf3cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">入队  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aae0b97e5573bf43b99471eec22fcf3cc">更多...</a><br /></td></tr>
+<tr class="separator:aae0b97e5573bf43b99471eec22fcf3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84a02bd611b658fa7896b6cc53d5e8f"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac84a02bd611b658fa7896b6cc53d5e8f">ListRightPop&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:ac84a02bd611b658fa7896b6cc53d5e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">出队  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac84a02bd611b658fa7896b6cc53d5e8f">更多...</a><br /></td></tr>
+<tr class="separator:ac84a02bd611b658fa7896b6cc53d5e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae05d394f612b77183e0acfd1893ec113"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae05d394f612b77183e0acfd1893ec113">ListLeftPush&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:ae05d394f612b77183e0acfd1893ec113"><td class="mdescLeft">&#160;</td><td class="mdescRight">入栈  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ae05d394f612b77183e0acfd1893ec113">更多...</a><br /></td></tr>
+<tr class="separator:ae05d394f612b77183e0acfd1893ec113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab941d1818a55173d2201718f08f0a5ee"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab941d1818a55173d2201718f08f0a5ee">ListLeftPop&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:ab941d1818a55173d2201718f08f0a5ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">出栈  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab941d1818a55173d2201718f08f0a5ee">更多...</a><br /></td></tr>
+<tr class="separator:ab941d1818a55173d2201718f08f0a5ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81daa59f15a85b6fb53f1cdf2e122e5b"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a81daa59f15a85b6fb53f1cdf2e122e5b">ListLength</a> (string key)</td></tr>
+<tr class="memdesc:a81daa59f15a85b6fb53f1cdf2e122e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取集合中的数量  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a81daa59f15a85b6fb53f1cdf2e122e5b">更多...</a><br /></td></tr>
+<tr class="separator:a81daa59f15a85b6fb53f1cdf2e122e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43cc583ef8d9119b23a2a4418389a9fc"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a43cc583ef8d9119b23a2a4418389a9fc">ListRemoveAsync&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:a43cc583ef8d9119b23a2a4418389a9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定ListId的内部List的值  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a43cc583ef8d9119b23a2a4418389a9fc">更多...</a><br /></td></tr>
+<tr class="separator:a43cc583ef8d9119b23a2a4418389a9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58cbd6eca6f1f72271a7280da664d09e"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a58cbd6eca6f1f72271a7280da664d09e">ListRangeAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a58cbd6eca6f1f72271a7280da664d09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定key的List  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a58cbd6eca6f1f72271a7280da664d09e">更多...</a><br /></td></tr>
+<tr class="separator:a58cbd6eca6f1f72271a7280da664d09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab560e2d86d40ba4d8003f8b3c7164c"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aeab560e2d86d40ba4d8003f8b3c7164c">ListRightPushAsync&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:aeab560e2d86d40ba4d8003f8b3c7164c"><td class="mdescLeft">&#160;</td><td class="mdescRight">入队  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aeab560e2d86d40ba4d8003f8b3c7164c">更多...</a><br /></td></tr>
+<tr class="separator:aeab560e2d86d40ba4d8003f8b3c7164c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1b68fe25cc31303fef5eb9319f3710"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aaa1b68fe25cc31303fef5eb9319f3710">ListRightPopAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:aaa1b68fe25cc31303fef5eb9319f3710"><td class="mdescLeft">&#160;</td><td class="mdescRight">出队  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aaa1b68fe25cc31303fef5eb9319f3710">更多...</a><br /></td></tr>
+<tr class="separator:aaa1b68fe25cc31303fef5eb9319f3710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5737ba933d5ef0e6f6f0e9da9795ed1c"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a5737ba933d5ef0e6f6f0e9da9795ed1c">ListLeftPushAsync&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:a5737ba933d5ef0e6f6f0e9da9795ed1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">入栈  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a5737ba933d5ef0e6f6f0e9da9795ed1c">更多...</a><br /></td></tr>
+<tr class="separator:a5737ba933d5ef0e6f6f0e9da9795ed1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7974ab4d5a10941fad2b0e1b6ff57f4d"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7974ab4d5a10941fad2b0e1b6ff57f4d">ListLeftPopAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a7974ab4d5a10941fad2b0e1b6ff57f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">出栈  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7974ab4d5a10941fad2b0e1b6ff57f4d">更多...</a><br /></td></tr>
+<tr class="separator:a7974ab4d5a10941fad2b0e1b6ff57f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233f89f94a750551cad73733f797ec7e"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a233f89f94a750551cad73733f797ec7e">ListLengthAsync</a> (string key)</td></tr>
+<tr class="memdesc:a233f89f94a750551cad73733f797ec7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取集合中的数量  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a233f89f94a750551cad73733f797ec7e">更多...</a><br /></td></tr>
+<tr class="separator:a233f89f94a750551cad73733f797ec7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e88b3689dba066d15c5af7b5d6bb85"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a73e88b3689dba066d15c5af7b5d6bb85">SortedSetAdd&lt; T &gt;</a> (string key, T value, double score)</td></tr>
+<tr class="memdesc:a73e88b3689dba066d15c5af7b5d6bb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a73e88b3689dba066d15c5af7b5d6bb85">更多...</a><br /></td></tr>
+<tr class="separator:a73e88b3689dba066d15c5af7b5d6bb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe61b01eab41e3590803a800dd14e27"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8fe61b01eab41e3590803a800dd14e27">SortedSetRemove&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:a8fe61b01eab41e3590803a800dd14e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8fe61b01eab41e3590803a800dd14e27">更多...</a><br /></td></tr>
+<tr class="separator:a8fe61b01eab41e3590803a800dd14e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba682d951cb7c9b52eaf60c0baa03fa"><td class="memItemLeft" align="right" valign="top">List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1ba682d951cb7c9b52eaf60c0baa03fa">SortedSetRangeByRank&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a1ba682d951cb7c9b52eaf60c0baa03fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取全部  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1ba682d951cb7c9b52eaf60c0baa03fa">更多...</a><br /></td></tr>
+<tr class="separator:a1ba682d951cb7c9b52eaf60c0baa03fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c66ef1bc447378c418551bbc3d4ea8"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a88c66ef1bc447378c418551bbc3d4ea8">SortedSetLength</a> (string key)</td></tr>
+<tr class="memdesc:a88c66ef1bc447378c418551bbc3d4ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取集合中的数量  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a88c66ef1bc447378c418551bbc3d4ea8">更多...</a><br /></td></tr>
+<tr class="separator:a88c66ef1bc447378c418551bbc3d4ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd91171cc31abb2c92c6d17eecc9cede"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#abd91171cc31abb2c92c6d17eecc9cede">SortedSetAddAsync&lt; T &gt;</a> (string key, T value, double score)</td></tr>
+<tr class="memdesc:abd91171cc31abb2c92c6d17eecc9cede"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#abd91171cc31abb2c92c6d17eecc9cede">更多...</a><br /></td></tr>
+<tr class="separator:abd91171cc31abb2c92c6d17eecc9cede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acffa0a14452bbc578bbcb27eeb356e54"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acffa0a14452bbc578bbcb27eeb356e54">SortedSetRemoveAsync&lt; T &gt;</a> (string key, T value)</td></tr>
+<tr class="memdesc:acffa0a14452bbc578bbcb27eeb356e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acffa0a14452bbc578bbcb27eeb356e54">更多...</a><br /></td></tr>
+<tr class="separator:acffa0a14452bbc578bbcb27eeb356e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a244749dc37afe99c9b62955b6beaf39a"><td class="memItemLeft" align="right" valign="top">async Task&lt; List&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a244749dc37afe99c9b62955b6beaf39a">SortedSetRangeByRankAsync&lt; T &gt;</a> (string key)</td></tr>
+<tr class="memdesc:a244749dc37afe99c9b62955b6beaf39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取全部  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a244749dc37afe99c9b62955b6beaf39a">更多...</a><br /></td></tr>
+<tr class="separator:a244749dc37afe99c9b62955b6beaf39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a8ab586bc3565923f0d26d2e8240484"><td class="memItemLeft" align="right" valign="top">async Task&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8a8ab586bc3565923f0d26d2e8240484">SortedSetLengthAsync</a> (string key)</td></tr>
+<tr class="memdesc:a8a8ab586bc3565923f0d26d2e8240484"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取集合中的数量  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a8a8ab586bc3565923f0d26d2e8240484">更多...</a><br /></td></tr>
+<tr class="separator:a8a8ab586bc3565923f0d26d2e8240484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24311b4928c24e692c84aeff6eb6fe22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a24311b4928c24e692c84aeff6eb6fe22">KeyDelete</a> (string key)</td></tr>
+<tr class="memdesc:a24311b4928c24e692c84aeff6eb6fe22"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除单个key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a24311b4928c24e692c84aeff6eb6fe22">更多...</a><br /></td></tr>
+<tr class="separator:a24311b4928c24e692c84aeff6eb6fe22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971ade7f1af15585e94075cdc728f145"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a971ade7f1af15585e94075cdc728f145">KeyDelete</a> (List&lt; string &gt; keys)</td></tr>
+<tr class="memdesc:a971ade7f1af15585e94075cdc728f145"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除多个key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a971ade7f1af15585e94075cdc728f145">更多...</a><br /></td></tr>
+<tr class="separator:a971ade7f1af15585e94075cdc728f145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2c41b3c066f6613420b10b52a7bb14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1a2c41b3c066f6613420b10b52a7bb14">KeyExists</a> (string key)</td></tr>
+<tr class="memdesc:a1a2c41b3c066f6613420b10b52a7bb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断key是否存储  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1a2c41b3c066f6613420b10b52a7bb14">更多...</a><br /></td></tr>
+<tr class="separator:a1a2c41b3c066f6613420b10b52a7bb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab31e9e62328c51a6f50409145ada5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aeab31e9e62328c51a6f50409145ada5d">KeyRename</a> (string key, string newKey)</td></tr>
+<tr class="memdesc:aeab31e9e62328c51a6f50409145ada5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">重新命名key  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aeab31e9e62328c51a6f50409145ada5d">更多...</a><br /></td></tr>
+<tr class="separator:aeab31e9e62328c51a6f50409145ada5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38080e48209cdc50f7797e04467b41ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a38080e48209cdc50f7797e04467b41ad">KeyExpire</a> (string key, TimeSpan? expiry=default(TimeSpan?))</td></tr>
+<tr class="memdesc:a38080e48209cdc50f7797e04467b41ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Key的时间  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a38080e48209cdc50f7797e04467b41ad">更多...</a><br /></td></tr>
+<tr class="separator:a38080e48209cdc50f7797e04467b41ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28920d39ee0310a9f80a6c17be37574c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a28920d39ee0310a9f80a6c17be37574c">Subscribe</a> (string subChannel, Action&lt; RedisChannel, RedisValue &gt; handler=null)</td></tr>
+<tr class="memdesc:a28920d39ee0310a9f80a6c17be37574c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redis发布订阅 订阅  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a28920d39ee0310a9f80a6c17be37574c">更多...</a><br /></td></tr>
+<tr class="separator:a28920d39ee0310a9f80a6c17be37574c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3e7bdbf41ea53f538e4ea51ceb3231f"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af3e7bdbf41ea53f538e4ea51ceb3231f">Publish&lt; T &gt;</a> (string channel, T msg)</td></tr>
+<tr class="memdesc:af3e7bdbf41ea53f538e4ea51ceb3231f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redis发布订阅 发布  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af3e7bdbf41ea53f538e4ea51ceb3231f">更多...</a><br /></td></tr>
+<tr class="separator:af3e7bdbf41ea53f538e4ea51ceb3231f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c8e5dd4bb40967615179fb810ad35e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a51c8e5dd4bb40967615179fb810ad35e">Unsubscribe</a> (string channel)</td></tr>
+<tr class="memdesc:a51c8e5dd4bb40967615179fb810ad35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redis发布订阅 取消订阅  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a51c8e5dd4bb40967615179fb810ad35e">更多...</a><br /></td></tr>
+<tr class="separator:a51c8e5dd4bb40967615179fb810ad35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a45a1b291361b4030b165cb70fcd629"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7a45a1b291361b4030b165cb70fcd629">UnsubscribeAll</a> ()</td></tr>
+<tr class="memdesc:a7a45a1b291361b4030b165cb70fcd629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redis发布订阅 取消全部订阅  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7a45a1b291361b4030b165cb70fcd629">更多...</a><br /></td></tr>
+<tr class="separator:a7a45a1b291361b4030b165cb70fcd629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa061b11877479996631484a790f5b62c"><td class="memItemLeft" align="right" valign="top">ITransaction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aa061b11877479996631484a790f5b62c">CreateTransaction</a> ()</td></tr>
+<tr class="memdesc:aa061b11877479996631484a790f5b62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建事务  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aa061b11877479996631484a790f5b62c">更多...</a><br /></td></tr>
+<tr class="separator:aa061b11877479996631484a790f5b62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37ad2035ab2b9b11a63303d7660620c"><td class="memItemLeft" align="right" valign="top">IDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af37ad2035ab2b9b11a63303d7660620c">GetDatabase</a> ()</td></tr>
+<tr class="memdesc:af37ad2035ab2b9b11a63303d7660620c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af37ad2035ab2b9b11a63303d7660620c">更多...</a><br /></td></tr>
+<tr class="separator:af37ad2035ab2b9b11a63303d7660620c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70fc05386f1fa65b9617fc884a85d5b"><td class="memItemLeft" align="right" valign="top">IServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab70fc05386f1fa65b9617fc884a85d5b">GetServer</a> (string hostAndPort)</td></tr>
+<tr class="memdesc:ab70fc05386f1fa65b9617fc884a85d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取服务器  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab70fc05386f1fa65b9617fc884a85d5b">更多...</a><br /></td></tr>
+<tr class="separator:ab70fc05386f1fa65b9617fc884a85d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41aadaed13416709c95fdd96966bc0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac41aadaed13416709c95fdd96966bc0b">SetPrefixKey</a> (string <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde">prefixKey</a>)</td></tr>
+<tr class="memdesc:ac41aadaed13416709c95fdd96966bc0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置前缀  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ac41aadaed13416709c95fdd96966bc0b">更多...</a><br /></td></tr>
+<tr class="separator:ac41aadaed13416709c95fdd96966bc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e3eb30bce191609ae51c642b7f34fad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a9e3eb30bce191609ae51c642b7f34fad">Close</a> (bool allowCommandsToComplete=true)</td></tr>
+<tr class="memdesc:a9e3eb30bce191609ae51c642b7f34fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭redis连接  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a9e3eb30bce191609ae51c642b7f34fad">更多...</a><br /></td></tr>
+<tr class="separator:a9e3eb30bce191609ae51c642b7f34fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a919bf363585068fcb17a2ecf8e320cde"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde">prefixKey</a><code> [get]</code></td></tr>
+<tr class="memdesc:a919bf363585068fcb17a2ecf8e320cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">前缀键  <a href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde">更多...</a><br /></td></tr>
+<tr class="separator:a919bf363585068fcb17a2ecf8e320cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Redis内存缓存数据库助手 不可继承 </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a98a85292a8e5ed3d8e7edce29690254f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98a85292a8e5ed3d8e7edce29690254f">&#9670;&nbsp;</a></span>RedisHelper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Data.Database.Redis.RedisHelper.RedisHelper </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>readWriteHosts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dbIndex</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>prefixKey</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">readWriteHosts</td><td>redis 连接地址 ip:port 也可根据需要追加一些配置</td></tr>
+    <tr><td class="paramname">dbIndex</td><td>数据库索引, 默认 索引位为0</td></tr>
+    <tr><td class="paramname">prefixKey</td><td>前缀键</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ab45b9d69f586729c13acb2fe64f7122a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab45b9d69f586729c13acb2fe64f7122a">&#9670;&nbsp;</a></span>AddEventListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.AddEventListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_event_listener.html">RedisEventListener</a>&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>增加事件监听 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listener</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9e3eb30bce191609ae51c642b7f34fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e3eb30bce191609ae51c642b7f34fad">&#9670;&nbsp;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.Close </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>allowCommandsToComplete</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>关闭redis连接 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">allowCommandsToComplete</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa061b11877479996631484a790f5b62c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa061b11877479996631484a790f5b62c">&#9670;&nbsp;</a></span>CreateTransaction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ITransaction ES.Data.Database.Redis.RedisHelper.CreateTransaction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建事务 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af470bad645d95fdef867d7771464e903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af470bad645d95fdef867d7771464e903">&#9670;&nbsp;</a></span>Get&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T ES.Data.Database.Redis.RedisHelper.Get&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取一个key的对象 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af37ad2035ab2b9b11a63303d7660620c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af37ad2035ab2b9b11a63303d7660620c">&#9670;&nbsp;</a></span>GetDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase ES.Data.Database.Redis.RedisHelper.GetDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取数据库 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab70fc05386f1fa65b9617fc884a85d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab70fc05386f1fa65b9617fc884a85d5b">&#9670;&nbsp;</a></span>GetServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IServer ES.Data.Database.Redis.RedisHelper.GetServer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hostAndPort</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取服务器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hostAndPort</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a3e4e302f4000cf13712126bc10a50d7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4e302f4000cf13712126bc10a50d7b">&#9670;&nbsp;</a></span>HashDecrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ES.Data.Database.Redis.RedisHelper.HashDecrement </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字减少val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>减少后的值</dd></dl>
+
+</div>
+</div>
+<a id="ae074f15b3c405b8e04378f629573f40b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae074f15b3c405b8e04378f629573f40b">&#9670;&nbsp;</a></span>HashDecrementAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;double&gt; ES.Data.Database.Redis.RedisHelper.HashDecrementAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字减少val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>减少后的值</dd></dl>
+
+</div>
+</div>
+<a id="a9f6e202c689734d7236cc4be81b43193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f6e202c689734d7236cc4be81b43193">&#9670;&nbsp;</a></span>HashDelete() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long ES.Data.Database.Redis.RedisHelper.HashDelete </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; RedisValue &gt;&#160;</td>
+          <td class="paramname"><em>dataKeys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除hash中的多个值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKeys</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7073ec825fba330ff88dbb72520f2bf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7073ec825fba330ff88dbb72520f2bf3">&#9670;&nbsp;</a></span>HashDelete() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.HashDelete </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除hash中的某值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a6ca53a1d0f79c6a8fc49b2d871145eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca53a1d0f79c6a8fc49b2d871145eb3">&#9670;&nbsp;</a></span>HashDeleteAsync() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.HashDeleteAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; RedisValue &gt;&#160;</td>
+          <td class="paramname"><em>dataKeys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除hash中的多个值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKeys</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af31bed923b98b7d4b3280432fcb1e915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af31bed923b98b7d4b3280432fcb1e915">&#9670;&nbsp;</a></span>HashDeleteAsync() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.HashDeleteAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除hash中的某值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7bf73aea0278fa1cee72fa2aad00c89b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bf73aea0278fa1cee72fa2aad00c89b">&#9670;&nbsp;</a></span>HashExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.HashExists </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断某个数据是否已经被缓存 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae595c06e4ca2d60f8879d1f9342301b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae595c06e4ca2d60f8879d1f9342301b1">&#9670;&nbsp;</a></span>HashExistsAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.HashExistsAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断某个数据是否已经被缓存 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aff0d36c77424a678b15fe40ccd9916db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0d36c77424a678b15fe40ccd9916db">&#9670;&nbsp;</a></span>HashGeAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;T&gt; ES.Data.Database.Redis.RedisHelper.HashGeAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从hash表获取数据 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab694729167cb9349bc2792bf4682efa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab694729167cb9349bc2792bf4682efa3">&#9670;&nbsp;</a></span>HashGet&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T ES.Data.Database.Redis.RedisHelper.HashGet&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从hash表获取数据 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a381807d74749e7b0f537d1c218ac4856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a381807d74749e7b0f537d1c218ac4856">&#9670;&nbsp;</a></span>HashIncrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ES.Data.Database.Redis.RedisHelper.HashIncrement </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字增长val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>增长后的值</dd></dl>
+
+</div>
+</div>
+<a id="ac9559d013578987aae4bf5b2948f55d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9559d013578987aae4bf5b2948f55d0">&#9670;&nbsp;</a></span>HashIncrementAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;double&gt; ES.Data.Database.Redis.RedisHelper.HashIncrementAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字增长val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>增长后的值</dd></dl>
+
+</div>
+</div>
+<a id="a295adb71155c329f8e600205e17d1765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295adb71155c329f8e600205e17d1765">&#9670;&nbsp;</a></span>HashKeys&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;T&gt; ES.Data.Database.Redis.RedisHelper.HashKeys&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取hashkey所有Redis key </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aa4d38da37a97c1a02974b979e393110b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4d38da37a97c1a02974b979e393110b">&#9670;&nbsp;</a></span>HashKeysAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;List&lt;T&gt; &gt; ES.Data.Database.Redis.RedisHelper.HashKeysAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取hashkey所有Redis key </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a4e385aeafd9c016da119e63185669174"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e385aeafd9c016da119e63185669174">&#9670;&nbsp;</a></span>HashSet&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.HashSet&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储数据到hash表 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ac57f016b062735c96d2576a0720e1f36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac57f016b062735c96d2576a0720e1f36">&#9670;&nbsp;</a></span>HashSetAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.HashSetAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dataKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储数据到hash表 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">dataKey</td><td></td></tr>
+    <tr><td class="paramname">t</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a971ade7f1af15585e94075cdc728f145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971ade7f1af15585e94075cdc728f145">&#9670;&nbsp;</a></span>KeyDelete() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long ES.Data.Database.Redis.RedisHelper.KeyDelete </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>keys</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>删除多个key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keys</td><td>rediskey</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>成功删除的个数</dd></dl>
+
+</div>
+</div>
+<a id="a24311b4928c24e692c84aeff6eb6fe22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24311b4928c24e692c84aeff6eb6fe22">&#9670;&nbsp;</a></span>KeyDelete() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.KeyDelete </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>删除单个key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>redis key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否删除成功</dd></dl>
+
+</div>
+</div>
+<a id="a1a2c41b3c066f6613420b10b52a7bb14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2c41b3c066f6613420b10b52a7bb14">&#9670;&nbsp;</a></span>KeyExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.KeyExists </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断key是否存储 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>redis key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a38080e48209cdc50f7797e04467b41ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38080e48209cdc50f7797e04467b41ad">&#9670;&nbsp;</a></span>KeyExpire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.KeyExpire </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>expiry</em> = <code>default(TimeSpan?)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置Key的时间 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>redis key</td></tr>
+    <tr><td class="paramname">expiry</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aeab31e9e62328c51a6f50409145ada5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeab31e9e62328c51a6f50409145ada5d">&#9670;&nbsp;</a></span>KeyRename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.KeyRename </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>newKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重新命名key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>就的redis key</td></tr>
+    <tr><td class="paramname">newKey</td><td>新的redis key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab941d1818a55173d2201718f08f0a5ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab941d1818a55173d2201718f08f0a5ee">&#9670;&nbsp;</a></span>ListLeftPop&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T ES.Data.Database.Redis.RedisHelper.ListLeftPop&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>出栈 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7974ab4d5a10941fad2b0e1b6ff57f4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7974ab4d5a10941fad2b0e1b6ff57f4d">&#9670;&nbsp;</a></span>ListLeftPopAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;T&gt; ES.Data.Database.Redis.RedisHelper.ListLeftPopAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>出栈 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae05d394f612b77183e0acfd1893ec113"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae05d394f612b77183e0acfd1893ec113">&#9670;&nbsp;</a></span>ListLeftPush&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.ListLeftPush&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>入栈 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5737ba933d5ef0e6f6f0e9da9795ed1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5737ba933d5ef0e6f6f0e9da9795ed1c">&#9670;&nbsp;</a></span>ListLeftPushAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.ListLeftPushAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>入栈 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a81daa59f15a85b6fb53f1cdf2e122e5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81daa59f15a85b6fb53f1cdf2e122e5b">&#9670;&nbsp;</a></span>ListLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long ES.Data.Database.Redis.RedisHelper.ListLength </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取集合中的数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a233f89f94a750551cad73733f797ec7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233f89f94a750551cad73733f797ec7e">&#9670;&nbsp;</a></span>ListLengthAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.ListLengthAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取集合中的数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a1ddd185d30569421c10ff99867b48ccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ddd185d30569421c10ff99867b48ccd">&#9670;&nbsp;</a></span>ListRange&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;T&gt; ES.Data.Database.Redis.RedisHelper.ListRange&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定key的List </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a58cbd6eca6f1f72271a7280da664d09e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58cbd6eca6f1f72271a7280da664d09e">&#9670;&nbsp;</a></span>ListRangeAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;List&lt;T&gt; &gt; ES.Data.Database.Redis.RedisHelper.ListRangeAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定key的List </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a8e399f8f1946edfa98a8c733401efab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e399f8f1946edfa98a8c733401efab6">&#9670;&nbsp;</a></span>ListRemove&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.ListRemove&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定ListId的内部List的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a43cc583ef8d9119b23a2a4418389a9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43cc583ef8d9119b23a2a4418389a9fc">&#9670;&nbsp;</a></span>ListRemoveAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.ListRemoveAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定ListId的内部List的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac84a02bd611b658fa7896b6cc53d5e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84a02bd611b658fa7896b6cc53d5e8f">&#9670;&nbsp;</a></span>ListRightPop&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T ES.Data.Database.Redis.RedisHelper.ListRightPop&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>出队 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aaa1b68fe25cc31303fef5eb9319f3710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1b68fe25cc31303fef5eb9319f3710">&#9670;&nbsp;</a></span>ListRightPopAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;T&gt; ES.Data.Database.Redis.RedisHelper.ListRightPopAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>出队 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aae0b97e5573bf43b99471eec22fcf3cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae0b97e5573bf43b99471eec22fcf3cc">&#9670;&nbsp;</a></span>ListRightPush&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.ListRightPush&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>入队 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeab560e2d86d40ba4d8003f8b3c7164c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeab560e2d86d40ba4d8003f8b3c7164c">&#9670;&nbsp;</a></span>ListRightPushAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.ListRightPushAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>入队 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af3e7bdbf41ea53f538e4ea51ceb3231f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e7bdbf41ea53f538e4ea51ceb3231f">&#9670;&nbsp;</a></span>Publish&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long ES.Data.Database.Redis.RedisHelper.Publish&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redis发布订阅 发布 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td></td></tr>
+    <tr><td class="paramname">msg</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a741a171d595aa2e740b2cbb631379a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741a171d595aa2e740b2cbb631379a28">&#9670;&nbsp;</a></span>Set&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.Set&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>expiry</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存一个对象 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">obj</td><td></td></tr>
+    <tr><td class="paramname">expiry</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ac41aadaed13416709c95fdd96966bc0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41aadaed13416709c95fdd96966bc0b">&#9670;&nbsp;</a></span>SetPrefixKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.SetPrefixKey </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>prefixKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置前缀 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefixKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73e88b3689dba066d15c5af7b5d6bb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e88b3689dba066d15c5af7b5d6bb85">&#9670;&nbsp;</a></span>SortedSetAdd&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.SortedSetAdd&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>score</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>添加 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">score</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd91171cc31abb2c92c6d17eecc9cede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd91171cc31abb2c92c6d17eecc9cede">&#9670;&nbsp;</a></span>SortedSetAddAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.SortedSetAddAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>score</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>添加 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">score</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a88c66ef1bc447378c418551bbc3d4ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c66ef1bc447378c418551bbc3d4ea8">&#9670;&nbsp;</a></span>SortedSetLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long ES.Data.Database.Redis.RedisHelper.SortedSetLength </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取集合中的数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a8a8ab586bc3565923f0d26d2e8240484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a8ab586bc3565923f0d26d2e8240484">&#9670;&nbsp;</a></span>SortedSetLengthAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;long&gt; ES.Data.Database.Redis.RedisHelper.SortedSetLengthAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取集合中的数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a1ba682d951cb7c9b52eaf60c0baa03fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ba682d951cb7c9b52eaf60c0baa03fa">&#9670;&nbsp;</a></span>SortedSetRangeByRank&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;T&gt; ES.Data.Database.Redis.RedisHelper.SortedSetRangeByRank&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取全部 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a244749dc37afe99c9b62955b6beaf39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a244749dc37afe99c9b62955b6beaf39a">&#9670;&nbsp;</a></span>SortedSetRangeByRankAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;List&lt;T&gt; &gt; ES.Data.Database.Redis.RedisHelper.SortedSetRangeByRankAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取全部 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a8fe61b01eab41e3590803a800dd14e27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe61b01eab41e3590803a800dd14e27">&#9670;&nbsp;</a></span>SortedSetRemove&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.SortedSetRemove&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>删除 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acffa0a14452bbc578bbcb27eeb356e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acffa0a14452bbc578bbcb27eeb356e54">&#9670;&nbsp;</a></span>SortedSetRemoveAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.SortedSetRemoveAsync&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>删除 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8d52e465ace2ffe097a675533e53516f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d52e465ace2ffe097a675533e53516f">&#9670;&nbsp;</a></span>StringDecrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ES.Data.Database.Redis.RedisHelper.StringDecrement </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字减少val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>减少后的值</dd></dl>
+
+</div>
+</div>
+<a id="afc4ca185c950454fc6acadc5fb74f1b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc4ca185c950454fc6acadc5fb74f1b8">&#9670;&nbsp;</a></span>StringDecrementAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;double&gt; ES.Data.Database.Redis.RedisHelper.StringDecrementAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字减少val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>减少后的值</dd></dl>
+
+</div>
+</div>
+<a id="a407d533577f45ba0017ebe902a7028cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a407d533577f45ba0017ebe902a7028cb">&#9670;&nbsp;</a></span>StringGet() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedisValue [] ES.Data.Database.Redis.RedisHelper.StringGet </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>listKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取多个Key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listKey</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key集合</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2edc0a16ef2b342df0a405a7b0ea1e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2edc0a16ef2b342df0a405a7b0ea1e2c">&#9670;&nbsp;</a></span>StringGet() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Data.Database.Redis.RedisHelper.StringGet </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取单个key的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af9bb79cd117dfcc07c176ad1ea601990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9bb79cd117dfcc07c176ad1ea601990">&#9670;&nbsp;</a></span>StringGetAsync() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;RedisValue[]&gt; ES.Data.Database.Redis.RedisHelper.StringGetAsync </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>listKey</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取多个Key </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listKey</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key集合</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="acb6b72f259bf04c752421b48dc032bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb6b72f259bf04c752421b48dc032bcf">&#9670;&nbsp;</a></span>StringGetAsync() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;string&gt; ES.Data.Database.Redis.RedisHelper.StringGetAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取单个key的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a130422fffe3e261f1412ba8a8708962d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130422fffe3e261f1412ba8a8708962d">&#9670;&nbsp;</a></span>StringGetAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;T&gt; <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acb6b72f259bf04c752421b48dc032bcf">ES.Data.Database.Redis.RedisHelper.StringGetAsync</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取一个key的对象 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a013b9ed70e1a3266ef7a8248867ee08a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a013b9ed70e1a3266ef7a8248867ee08a">&#9670;&nbsp;</a></span>StringIncrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ES.Data.Database.Redis.RedisHelper.StringIncrement </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字增长val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>增长后的值</dd></dl>
+
+</div>
+</div>
+<a id="a284a3e3d0b554057fd72eb663b33874d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284a3e3d0b554057fd72eb663b33874d">&#9670;&nbsp;</a></span>StringIncrementAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;double&gt; ES.Data.Database.Redis.RedisHelper.StringIncrementAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>val</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>为数字增长val </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">val</td><td>可以为负</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>增长后的值</dd></dl>
+
+</div>
+</div>
+<a id="a5b7bf4aea52138d94782611e1bbb6055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b7bf4aea52138d94782611e1bbb6055">&#9670;&nbsp;</a></span>StringSet() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.StringSet </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; KeyValuePair&lt; RedisKey, RedisValue &gt;&gt;&#160;</td>
+          <td class="paramname"><em>keyValues</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存多个key value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keyValues</td><td>键值对</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="acff453425bc9ac3ec0cfd579e8247a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff453425bc9ac3ec0cfd579e8247a02">&#9670;&nbsp;</a></span>StringSet() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.Redis.RedisHelper.StringSet </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>expiry</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存单个key value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key</td></tr>
+    <tr><td class="paramname">value</td><td>保存的值</td></tr>
+    <tr><td class="paramname">expiry</td><td>过期时间</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ad088c82e197d7928895f66712d4ed98c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad088c82e197d7928895f66712d4ed98c">&#9670;&nbsp;</a></span>StringSetAsync() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.StringSetAsync </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; KeyValuePair&lt; RedisKey, RedisValue &gt;&gt;&#160;</td>
+          <td class="paramname"><em>keyValues</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存多个key value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keyValues</td><td>键值对</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a4126249de7f8c538854b6408935b1f53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4126249de7f8c538854b6408935b1f53">&#9670;&nbsp;</a></span>StringSetAsync() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; ES.Data.Database.Redis.RedisHelper.StringSetAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>expiry</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存单个key value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a> Key</td></tr>
+    <tr><td class="paramname">value</td><td>保存的值</td></tr>
+    <tr><td class="paramname">expiry</td><td>过期时间</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="afe5ce7dbd1ce6dad9dc50c471b2311ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5ce7dbd1ce6dad9dc50c471b2311ec">&#9670;&nbsp;</a></span>StringSetAsync&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;bool&gt; <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4126249de7f8c538854b6408935b1f53">ES.Data.Database.Redis.RedisHelper.StringSetAsync</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan?&#160;</td>
+          <td class="paramname"><em>expiry</em> = <code>default</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存一个对象 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+    <tr><td class="paramname">obj</td><td></td></tr>
+    <tr><td class="paramname">expiry</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a28920d39ee0310a9f80a6c17be37574c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28920d39ee0310a9f80a6c17be37574c">&#9670;&nbsp;</a></span>Subscribe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.Subscribe </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>subChannel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; RedisChannel, RedisValue &gt;&#160;</td>
+          <td class="paramname"><em>handler</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redis发布订阅 订阅 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subChannel</td><td></td></tr>
+    <tr><td class="paramname">handler</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a51c8e5dd4bb40967615179fb810ad35e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c8e5dd4bb40967615179fb810ad35e">&#9670;&nbsp;</a></span>Unsubscribe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.Unsubscribe </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redis发布订阅 取消订阅 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7a45a1b291361b4030b165cb70fcd629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a45a1b291361b4030b165cb70fcd629">&#9670;&nbsp;</a></span>UnsubscribeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.Redis.RedisHelper.UnsubscribeAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redis发布订阅 取消全部订阅 </p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a919bf363585068fcb17a2ecf8e320cde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919bf363585068fcb17a2ecf8e320cde">&#9670;&nbsp;</a></span>prefixKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Data.Database.Redis.RedisHelper.prefixKey</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>前缀键 </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>RedisHelper.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data.html">Data</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_redis.html">Redis</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html">RedisHelper</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

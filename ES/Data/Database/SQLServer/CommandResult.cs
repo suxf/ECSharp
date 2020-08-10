@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace ES.Data.Database.SQLServer
 {
@@ -19,5 +20,14 @@ namespace ES.Data.Database.SQLServer
         /// 数据总合集
         /// </summary>
         public DataSet dataSet { internal set; get; }
+
+        /// <summary>
+        /// 是否有异常
+        /// </summary>
+        public bool hasException { internal set; get; }
+        /// <summary>
+        /// 异常内容
+        /// </summary>
+        public Exception exception { internal set; get; }
     }
 }

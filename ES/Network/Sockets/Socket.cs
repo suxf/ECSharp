@@ -91,8 +91,8 @@ namespace ES.Network.Sockets
             this.addressFamily = addressFamily;
             this.socketType = socketType;
             this.protocolType = protocolType;
-            try
-            {
+            // try
+            // {
                 // 创建套接字 并且绑定接口和设置监听
                 socket = new System.Net.Sockets.Socket((System.Net.Sockets.AddressFamily)addressFamily, (System.Net.Sockets.SocketType)socketType, (System.Net.Sockets.ProtocolType)protocolType);
                 socket.Bind(endPoint);
@@ -100,12 +100,12 @@ namespace ES.Network.Sockets
                     socket.Listen(backlog);
                 isConnected = true;
                 return true;
-            }
-            catch (Exception ex)
-            {
-                Log.Exception(ex, "Socket", "ConnectAsServer", "Socket");
-                return false;
-            }
+            // }
+            // catch (Exception ex)
+            // {
+            //     // Log.Exception(ex, "Socket", "ConnectAsServer", "Socket");
+            //     return false;
+            // }
         }
 
         /// <summary>
@@ -124,8 +124,8 @@ namespace ES.Network.Sockets
             this.addressFamily = addressFamily;
             this.socketType = socketType;
             this.protocolType = protocolType;
-            try
-            {
+            // try
+            // {
                 // 创建套接字 并且连接服务器
                 socket = new System.Net.Sockets.Socket((System.Net.Sockets.AddressFamily)addressFamily, (System.Net.Sockets.SocketType)socketType, (System.Net.Sockets.ProtocolType)protocolType);
                 if (socketType == SocketType.Stream)
@@ -134,12 +134,12 @@ namespace ES.Network.Sockets
                     socket.Bind(new IPEndPoint(IPAddress.Any, 0));
                 isConnected = true;
                 return true;
-            }
-            catch (Exception ex)
-            {
-                Log.Exception(ex, "Socket", "Connect", "Socket");
-                return false;
-            }
+            // }
+            // catch (Exception ex)
+            // {
+            //     Log.Exception(ex, "Socket", "Connect", "Socket");
+            //     return false;
+            // }
         }
 
         /// <summary>

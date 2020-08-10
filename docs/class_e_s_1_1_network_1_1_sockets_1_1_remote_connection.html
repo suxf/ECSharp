@@ -1,0 +1,729 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Network.Sockets.RemoteConnection类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.8.3.373</span>
+   </div>
+   <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Network.Sockets.RemoteConnection类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>远程客户端连接 TCP模式下 主动推送数据直接保存 UDP模式下 主动推送需要调用CloneUDPConnection()保存使用  
+ <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:abdd1f2642c752be925eb96c6042f9564"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abdd1f2642c752be925eb96c6042f9564">RemoteConnection</a> ()</td></tr>
+<tr class="memdesc:abdd1f2642c752be925eb96c6042f9564"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 正式调用还需执行Init()  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abdd1f2642c752be925eb96c6042f9564">更多...</a><br /></td></tr>
+<tr class="separator:abdd1f2642c752be925eb96c6042f9564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73206a9c9951756afc98164a32821951"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a73206a9c9951756afc98164a32821951">Init</a> (<a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abb72b0d80a2478d153e9f6d26e092713">socket</a>, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_socket.html">ServerSocket</a> service, <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_remote_socket_invoke.html">RemoteSocketInvoke</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ab38aecddc66fc9352af66b593432cdfd">socketInvoke</a>)</td></tr>
+<tr class="memdesc:a73206a9c9951756afc98164a32821951"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a73206a9c9951756afc98164a32821951">更多...</a><br /></td></tr>
+<tr class="separator:a73206a9c9951756afc98164a32821951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79cd512b667572f46bd3d4ea49268093"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a79cd512b667572f46bd3d4ea49268093">Send</a> (byte[] buffer)</td></tr>
+<tr class="memdesc:a79cd512b667572f46bd3d4ea49268093"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a79cd512b667572f46bd3d4ea49268093">更多...</a><br /></td></tr>
+<tr class="separator:a79cd512b667572f46bd3d4ea49268093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae799f4095f56bab170c47631a70d9fd0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ae799f4095f56bab170c47631a70d9fd0">Send</a> (string utf8str)</td></tr>
+<tr class="memdesc:ae799f4095f56bab170c47631a70d9fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ae799f4095f56bab170c47631a70d9fd0">更多...</a><br /></td></tr>
+<tr class="separator:ae799f4095f56bab170c47631a70d9fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a85d1d2fb816d0bd52addb2c53c8681"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a1a85d1d2fb816d0bd52addb2c53c8681">Send</a> (byte main, byte second, byte[] buffer)</td></tr>
+<tr class="memdesc:a1a85d1d2fb816d0bd52addb2c53c8681"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a1a85d1d2fb816d0bd52addb2c53c8681">更多...</a><br /></td></tr>
+<tr class="separator:a1a85d1d2fb816d0bd52addb2c53c8681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3577b0162f521c55660cea6ebf60d164"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a3577b0162f521c55660cea6ebf60d164">Send</a> (byte[] buffer, int offset, int count)</td></tr>
+<tr class="memdesc:a3577b0162f521c55660cea6ebf60d164"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a3577b0162f521c55660cea6ebf60d164">更多...</a><br /></td></tr>
+<tr class="separator:a3577b0162f521c55660cea6ebf60d164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb32350b4ea0857950f767b1fc5d7118"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aeb32350b4ea0857950f767b1fc5d7118">Send</a> (byte main, byte second, string utf8str)</td></tr>
+<tr class="memdesc:aeb32350b4ea0857950f767b1fc5d7118"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aeb32350b4ea0857950f767b1fc5d7118">更多...</a><br /></td></tr>
+<tr class="separator:aeb32350b4ea0857950f767b1fc5d7118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146ebb96135f644ceaf6a28ed71b4f49"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a146ebb96135f644ceaf6a28ed71b4f49">Send</a> (byte main, byte second, byte[] buffer, int offset, int count)</td></tr>
+<tr class="memdesc:a146ebb96135f644ceaf6a28ed71b4f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a146ebb96135f644ceaf6a28ed71b4f49">更多...</a><br /></td></tr>
+<tr class="separator:a146ebb96135f644ceaf6a28ed71b4f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f35c29ac18fa8d8aabe95966c6e2251"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html">RemoteConnection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a2f35c29ac18fa8d8aabe95966c6e2251">CloneUDPConnection</a> ()</td></tr>
+<tr class="memdesc:a2f35c29ac18fa8d8aabe95966c6e2251"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取UDP发送器 仅在UDP连接下有实际意义，其他连接下返回为NULL  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a2f35c29ac18fa8d8aabe95966c6e2251">更多...</a><br /></td></tr>
+<tr class="separator:a2f35c29ac18fa8d8aabe95966c6e2251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1487388f7b79d85a316af3621f85f64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aa1487388f7b79d85a316af3621f85f64">Destroy</a> ()</td></tr>
+<tr class="memdesc:aa1487388f7b79d85a316af3621f85f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁当前对象并且从服务器列表中删除  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aa1487388f7b79d85a316af3621f85f64">更多...</a><br /></td></tr>
+<tr class="separator:aa1487388f7b79d85a316af3621f85f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a31da6fc71efb95bf17fd58b5d7235a52"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a31da6fc71efb95bf17fd58b5d7235a52">Target</a> = null</td></tr>
+<tr class="memdesc:a31da6fc71efb95bf17fd58b5d7235a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">用户绑定对象(TCP模式)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a31da6fc71efb95bf17fd58b5d7235a52">更多...</a><br /></td></tr>
+<tr class="separator:a31da6fc71efb95bf17fd58b5d7235a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a98f1c40c229d8e718c6fdfd1cbfdab4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_socket.html">ServerSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a98f1c40c229d8e718c6fdfd1cbfdab4a">socketSvrMgr</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a98f1c40c229d8e718c6fdfd1cbfdab4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接服务控制对象  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a98f1c40c229d8e718c6fdfd1cbfdab4a">更多...</a><br /></td></tr>
+<tr class="separator:a98f1c40c229d8e718c6fdfd1cbfdab4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab142764eec2eb8825e588cfa6f1085f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aab142764eec2eb8825e588cfa6f1085f">rBuffer</a> = null<code> [get, set]</code></td></tr>
+<tr class="memdesc:aab142764eec2eb8825e588cfa6f1085f"><td class="mdescLeft">&#160;</td><td class="mdescRight">数据包缓存  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aab142764eec2eb8825e588cfa6f1085f">更多...</a><br /></td></tr>
+<tr class="separator:aab142764eec2eb8825e588cfa6f1085f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3e08051c9c9ed621ceecf9b4717c95d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#af3e08051c9c9ed621ceecf9b4717c95d">hasConnected</a><code> [get]</code></td></tr>
+<tr class="memdesc:af3e08051c9c9ed621ceecf9b4717c95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接状态  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#af3e08051c9c9ed621ceecf9b4717c95d">更多...</a><br /></td></tr>
+<tr class="separator:af3e08051c9c9ed621ceecf9b4717c95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38aecddc66fc9352af66b593432cdfd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_remote_socket_invoke.html">RemoteSocketInvoke</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ab38aecddc66fc9352af66b593432cdfd">socketInvoke</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:ab38aecddc66fc9352af66b593432cdfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步接受信息委托回调  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ab38aecddc66fc9352af66b593432cdfd">更多...</a><br /></td></tr>
+<tr class="separator:ab38aecddc66fc9352af66b593432cdfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb72b0d80a2478d153e9f6d26e092713"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abb72b0d80a2478d153e9f6d26e092713">socket</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:abb72b0d80a2478d153e9f6d26e092713"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESF.Socket  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abb72b0d80a2478d153e9f6d26e092713">更多...</a><br /></td></tr>
+<tr class="separator:abb72b0d80a2478d153e9f6d26e092713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81cc23f524765961af09554cde69ac98"><td class="memItemLeft" align="right" valign="top">SocketAsyncEventArgs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a81cc23f524765961af09554cde69ac98">receiveEventArgs</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a81cc23f524765961af09554cde69ac98"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受事件参数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a81cc23f524765961af09554cde69ac98">更多...</a><br /></td></tr>
+<tr class="separator:a81cc23f524765961af09554cde69ac98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a49ba0a8f7dba5961b65d4eac33f2b2"><td class="memItemLeft" align="right" valign="top">SocketAsyncEventArgs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a7a49ba0a8f7dba5961b65d4eac33f2b2">sendEventArgs</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a7a49ba0a8f7dba5961b65d4eac33f2b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送事件参数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a7a49ba0a8f7dba5961b65d4eac33f2b2">更多...</a><br /></td></tr>
+<tr class="separator:a7a49ba0a8f7dba5961b65d4eac33f2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66477989d497a0a2c96aac55cfbfaed3"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a66477989d497a0a2c96aac55cfbfaed3">connectDateTime</a> = DateTime.MinValue<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a66477989d497a0a2c96aac55cfbfaed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接时间  <a href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a66477989d497a0a2c96aac55cfbfaed3">更多...</a><br /></td></tr>
+<tr class="separator:a66477989d497a0a2c96aac55cfbfaed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>远程客户端连接 TCP模式下 主动推送数据直接保存 UDP模式下 主动推送需要调用CloneUDPConnection()保存使用 </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="abdd1f2642c752be925eb96c6042f9564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdd1f2642c752be925eb96c6042f9564">&#9670;&nbsp;</a></span>RemoteConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Network.Sockets.RemoteConnection.RemoteConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数 正式调用还需执行Init() </p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2f35c29ac18fa8d8aabe95966c6e2251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f35c29ac18fa8d8aabe95966c6e2251">&#9670;&nbsp;</a></span>CloneUDPConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html">RemoteConnection</a> ES.Network.Sockets.RemoteConnection.CloneUDPConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取UDP发送器 仅在UDP连接下有实际意义，其他连接下返回为NULL </p>
+
+</div>
+</div>
+<a id="aa1487388f7b79d85a316af3621f85f64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1487388f7b79d85a316af3621f85f64">&#9670;&nbsp;</a></span>Destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Network.Sockets.RemoteConnection.Destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>销毁当前对象并且从服务器列表中删除 </p>
+
+</div>
+</div>
+<a id="a73206a9c9951756afc98164a32821951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73206a9c9951756afc98164a32821951">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Network.Sockets.RemoteConnection.Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_socket.html">ServerSocket</a>&#160;</td>
+          <td class="paramname"><em>service</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_remote_socket_invoke.html">RemoteSocketInvoke</a>&#160;</td>
+          <td class="paramname"><em>socketInvoke</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化 </p>
+
+</div>
+</div>
+<a id="a1a85d1d2fb816d0bd52addb2c53c8681"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a85d1d2fb816d0bd52addb2c53c8681">&#9670;&nbsp;</a></span>Send() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>main</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">main</td><td>主指令</td></tr>
+    <tr><td class="paramname">second</td><td>副指令</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a146ebb96135f644ceaf6a28ed71b4f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a146ebb96135f644ceaf6a28ed71b4f49">&#9670;&nbsp;</a></span>Send() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>main</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">main</td><td>主指令</td></tr>
+    <tr><td class="paramname">second</td><td>副指令</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+    <tr><td class="paramname">offset</td><td>数据偏移</td></tr>
+    <tr><td class="paramname">count</td><td>数据大小</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeb32350b4ea0857950f767b1fc5d7118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb32350b4ea0857950f767b1fc5d7118">&#9670;&nbsp;</a></span>Send() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>main</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">main</td><td>主指令</td></tr>
+    <tr><td class="paramname">second</td><td>副指令</td></tr>
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a79cd512b667572f46bd3d4ea49268093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79cd512b667572f46bd3d4ea49268093">&#9670;&nbsp;</a></span>Send() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3577b0162f521c55660cea6ebf60d164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3577b0162f521c55660cea6ebf60d164">&#9670;&nbsp;</a></span>Send() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+    <tr><td class="paramname">offset</td><td>数据偏移</td></tr>
+    <tr><td class="paramname">count</td><td>数据大小</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae799f4095f56bab170c47631a70d9fd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae799f4095f56bab170c47631a70d9fd0">&#9670;&nbsp;</a></span>Send() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a31da6fc71efb95bf17fd58b5d7235a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31da6fc71efb95bf17fd58b5d7235a52">&#9670;&nbsp;</a></span>Target</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">object ES.Network.Sockets.RemoteConnection.Target = null</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>用户绑定对象(TCP模式) </p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a66477989d497a0a2c96aac55cfbfaed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66477989d497a0a2c96aac55cfbfaed3">&#9670;&nbsp;</a></span>connectDateTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime ES.Network.Sockets.RemoteConnection.connectDateTime = DateTime.MinValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接时间 </p>
+
+</div>
+</div>
+<a id="af3e08051c9c9ed621ceecf9b4717c95d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e08051c9c9ed621ceecf9b4717c95d">&#9670;&nbsp;</a></span>hasConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.RemoteConnection.hasConnected</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接状态 </p>
+
+</div>
+</div>
+<a id="aab142764eec2eb8825e588cfa6f1085f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab142764eec2eb8825e588cfa6f1085f">&#9670;&nbsp;</a></span>rBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a> ES.Network.Sockets.RemoteConnection.rBuffer = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>数据包缓存 </p>
+
+</div>
+</div>
+<a id="a81cc23f524765961af09554cde69ac98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81cc23f524765961af09554cde69ac98">&#9670;&nbsp;</a></span>receiveEventArgs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SocketAsyncEventArgs ES.Network.Sockets.RemoteConnection.receiveEventArgs = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受事件参数 </p>
+
+</div>
+</div>
+<a id="a7a49ba0a8f7dba5961b65d4eac33f2b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a49ba0a8f7dba5961b65d4eac33f2b2">&#9670;&nbsp;</a></span>sendEventArgs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SocketAsyncEventArgs ES.Network.Sockets.RemoteConnection.sendEventArgs = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>发送事件参数 </p>
+
+</div>
+</div>
+<a id="abb72b0d80a2478d153e9f6d26e092713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb72b0d80a2478d153e9f6d26e092713">&#9670;&nbsp;</a></span>socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a> ES.Network.Sockets.RemoteConnection.socket = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ESF.Socket </p>
+
+</div>
+</div>
+<a id="ab38aecddc66fc9352af66b593432cdfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab38aecddc66fc9352af66b593432cdfd">&#9670;&nbsp;</a></span>socketInvoke</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_remote_socket_invoke.html">RemoteSocketInvoke</a> ES.Network.Sockets.RemoteConnection.socketInvoke = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>异步接受信息委托回调 </p>
+
+</div>
+</div>
+<a id="a98f1c40c229d8e718c6fdfd1cbfdab4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98f1c40c229d8e718c6fdfd1cbfdab4a">&#9670;&nbsp;</a></span>socketSvrMgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_socket.html">ServerSocket</a> ES.Network.Sockets.RemoteConnection.socketSvrMgr = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接服务控制对象 </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>Sockets/RemoteConnection.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html">Sockets</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html">RemoteConnection</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

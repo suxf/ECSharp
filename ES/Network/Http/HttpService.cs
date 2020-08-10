@@ -21,6 +21,7 @@ namespace ES.Network.Http
         /// HTTP访问回调委托
         /// </summary>
         private HttpInvoke httpInvoke = null;
+
         /// <summary>
         /// 默认前缀
         /// </summary>
@@ -189,7 +190,8 @@ namespace ES.Network.Http
                         }
                         catch (Exception ex)
                         {
-                            Log.Exception(ex, $"[Request Url]:{request.RawUrl}", "HttpService", "GetContextCallBack", "Http");
+                            // Log.Exception(ex, $"[Request Url]:{request.RawUrl}", "HttpService", "GetContextCallBack", "Http");
+                            httpInvoke.HttpException(ex, conn);
                         }
                         // int status = (int)httpInvoke.OnRequest(conn);
                         // httpListenerContext.Response.StatusCode = status;
@@ -199,7 +201,8 @@ namespace ES.Network.Http
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "HttpService", "GetContextCallBack", "Http");
+                // Log.Exception(ex, "HttpService", "GetContextCallBack", "Http");
+                httpInvoke.HttpException(ex, null);
             }
 
             // 异步

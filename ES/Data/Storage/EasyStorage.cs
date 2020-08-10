@@ -22,7 +22,7 @@ namespace ES.Data.Storage
         /// <returns></returns>
         public static JObject GetAll()
         {
-            if(jsonCache != null) return jsonCache;
+            if (jsonCache != null) return jsonCache;
             var data = ReadData("default.json");
             if (string.IsNullOrWhiteSpace(data)) data = "{}";
             jsonCache = JsonConvert.DeserializeObject<JObject>(data);
@@ -32,7 +32,6 @@ namespace ES.Data.Storage
         /// <summary>
         /// 获取对应key值数据
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         public static JToken Get(string key)

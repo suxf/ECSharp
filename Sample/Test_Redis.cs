@@ -20,7 +20,7 @@ namespace Sample
             // 设置一个值
             helper.Set("test", 111);
             // 取出值
-            Log.Info("Test:"+ helper.Get<int>("test"));
+            Log.Info("Test:" + helper.Get<int>("test"));
 
             // 关于redis还有很多函数方法提供这里不再赘述，有兴趣可以看看源码
         }

@@ -23,7 +23,7 @@ namespace ES.Data.Database.Redis
         /// <summary>
         /// 前缀键
         /// </summary>
-        public string prefixKey;
+        public string prefixKey { private set; get; }
 
         /// <summary>
         /// 构造函数

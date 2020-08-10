@@ -286,7 +286,8 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "ServerConnection", "AcceptEventArg_Completed", "Socket");
+                // Log.Exception(ex, "ServerConnection", "AcceptEventArg_Completed", "Socket");
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -435,7 +436,7 @@ namespace ES.Network.Sockets
                     ProcessReceiveFrom(e);
                     break;
                 default:
-                    Log.Info("IO_Completed The last operation completed on the socket was not a receive or send");
+                    // Log.Info("IO_Completed The last operation completed on the socket was not a receive or send");
                     break;
             }
         }
@@ -523,7 +524,8 @@ namespace ES.Network.Sockets
                 // throws if client process has already closed
                 catch (Exception ex)
                 {
-                    Log.Exception(ex, "ServerConnection", "CloseClientSocket", "Socket");
+                    // Log.Exception(ex, "ServerConnection", "CloseClientSocket", "Socket");
+                    socketInvoke.SocketException(ex);
                 }
                 // 断开连接回调
                 if (socketStatusListener != null) socketStatusListener.OnClose(client);

@@ -64,7 +64,7 @@ namespace ES.Common.Log
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             periodNow += timeFlowPeriod;
             if (periodNow >= LogConfig.LOG_PERIOD)

@@ -1,4 +1,6 @@
-﻿namespace ES.Network.Http
+﻿using System;
+
+namespace ES.Network.Http
 {
     /// <summary>
     /// 超文本访问协议委托回调
@@ -11,5 +13,12 @@
         /// </summary>
         /// <param name="conn">超文本访问连接对象</param>
         void OnRequest(HttpConnection conn);
+
+        /// <summary>
+        /// 套接字异常捕获
+        /// </summary>
+        /// <param name="exception">异常对象</param>
+        /// <param name="conn">原始链接</param>
+        void HttpException(Exception exception, HttpConnection conn);
     }
 }

@@ -85,9 +85,9 @@ namespace ES.Data.Database.SQLServer
                 {
                     conn.Open();
                 }
-                catch (Exception ex)
+                catch // (Exception ex)
                 {
-                    Log.Exception(ex, "", "DBHelper", "CheckConnected", "SqlServer");
+                    // Log.Exception(ex, "", "DBHelper", "CheckConnected", "SqlServer");
                     return false;
                 }
                 return conn.State == ConnectionState.Open;
@@ -117,6 +117,8 @@ namespace ES.Data.Database.SQLServer
         public ProcedureResult Procedure(string procedure, SQLServerDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
         {
             ProcedureResult result = new ProcedureResult();
+            result.procedure = procedure;
+            result.isCompleted = true;
             // 执行SQL语句过程
             try
             {
@@ -130,7 +132,7 @@ namespace ES.Data.Database.SQLServer
                         {
                             sqlCommand.CommandType = CommandType.StoredProcedure;
                             sqlCommand.Parameters.AddRange(sqlParameters);
-                            sqlCommand.Parameters.Add("@RETURN_VALUE", (System.Data.SqlDbType)retvalueDbType, retvalueSize).Direction = System.Data.ParameterDirection.ReturnValue;
+                            sqlCommand.Parameters.Add("@RETURN_VALUE", (SqlDbType)retvalueDbType, retvalueSize).Direction = System.Data.ParameterDirection.ReturnValue;
                             SqlDataAdapter dataAdapter = new SqlDataAdapter();
                             dataAdapter.SelectCommand = sqlCommand;
                             DataSet myDataSet = new DataSet();
@@ -138,16 +140,17 @@ namespace ES.Data.Database.SQLServer
                             result.returnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
                             result.SqlParameters = sqlCommand.Parameters;
                             result.Tables = myDataSet.Tables;
-                            return result;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
+                // Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
+                result.isCompleted = false;
+                result.exception = ex;
             }
-            return null;
+            return result;
         }
 
         /// <summary>
@@ -176,9 +179,9 @@ namespace ES.Data.Database.SQLServer
                     }
                 }
             }
-            catch (Exception ex)
+            catch // (Exception ex)
             {
-                Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
+                // Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
             }
             return -1;
         }
@@ -192,6 +195,7 @@ namespace ES.Data.Database.SQLServer
         public CommandResult CommandSQL(string sql, params object[] obj)
         {
             CommandResult result = new CommandResult();
+            result.hasException = false;
             // 执行SQL语句过程
             try
             {
@@ -228,7 +232,9 @@ namespace ES.Data.Database.SQLServer
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, sql, "DBHelper", "CommandSQL", "SqlServer");
+                // Log.Exception(ex, sql, "DBHelper", "CommandSQL", "SqlServer");
+                result.hasException = true;
+                result.exception = ex;
                 result.effectNum = -1;
             }
             return result;
@@ -261,9 +267,9 @@ namespace ES.Data.Database.SQLServer
                     return -2;
                 }
             }
-            catch (Exception ex)
+            catch // (Exception ex)
             {
-                Log.Exception(ex, sql, "DBHelper", "CommandSQL2", "SqlServer");
+                // Log.Exception(ex, sql, "DBHelper", "CommandSQL2", "SqlServer");
                 return -1;
             }
         }
@@ -319,7 +325,7 @@ namespace ES.Data.Database.SQLServer
         /// 固定周期为 1s
         /// </summary>
         /// <param name="dt"></param>
-        public override void Update(int dt)
+        protected override void Update(int dt)
         {
             periodUpdate += timeFlowPeriod;
             if (periodUpdate >= 1000)
