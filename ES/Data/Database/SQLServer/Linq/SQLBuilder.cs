@@ -4,8 +4,8 @@ namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
     /// SQL语句构建器
-    /// 适合简单的语句构建
-    /// 可以帮助开发者减少拼写sql语句带来的不便
+    /// <para>适合简单的语句构建</para>
+    /// <para>可以帮助开发者减少拼写sql语句带来的不便</para>
     /// </summary>
     public class SQLBuilder
     {
@@ -21,7 +21,7 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 构建函数
-        /// 需要传入一个非空数据库助手实例对象
+        /// <para>需要传入一个非空数据库助手实例对象</para>
         /// </summary>
         /// <param name="dBHelper">数据库助手实例</param>
         private SQLBuilder(SQLServerDBHelper dBHelper)
@@ -39,7 +39,7 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 创建一个构造器
-        /// 需要传入一个非空数据库助手实例对象
+        /// <para>需要传入一个非空数据库助手实例对象</para>
         /// </summary>
         /// <param name="dBHelper">数据库助手实例</param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns></returns>
         public CommandResult Select(bool isLock = true)
         {
-            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(',', fields)} FROM {tableName} {(isLock ? "" : "WITH(NOLOCK)")} WHERE {conditions};");
+            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(",", fields)} FROM {tableName} {(isLock ? "" : "WITH(NOLOCK)")} WHERE {conditions};");
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns></returns>
         public CommandResult Insert()
         {
-            return dBHelper.CommandSQL($"INSERT {tableName} ({string.Join(',', fields)}) VALUES ({string.Join(',', values)});");
+            return dBHelper.CommandSQL($"INSERT {tableName} ({string.Join(",", fields)}) VALUES ({string.Join(",", values)});");
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace ES.Data.Database.SQLServer.Linq
                 string[] kvStrs;
                 kvStrs = new string[fields.Length];
                 for (int i = 0, len = kvStrs.Length; i < len; i++) kvStrs[i] = $"[{fields[i]}] = '{values[i]}'";
-                return dBHelper.ExecuteSQL($"UPDATE {tableName} SET {string.Join(',', kvStrs)} WHERE {conditions};");
+                return dBHelper.ExecuteSQL($"UPDATE {tableName} SET {string.Join(",", kvStrs)} WHERE {conditions};");
             }
             return -1;
         }

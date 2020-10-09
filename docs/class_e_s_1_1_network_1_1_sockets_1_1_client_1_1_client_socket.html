@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Network.Sockets.Client.ClientSocket类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.10.2.504</span>
+   </div>
+   <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Network.Sockets.Client.ClientSocket类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ESF客户端套接字（异步接受）  
+ <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#details">更多...</a></p>
+<div class="dynheader">
+类 ES.Network.Sockets.Client.ClientSocket 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.png" usemap="#ES.Network.Sockets.Client.ClientSocket_map" alt=""/>
+  <map id="ES.Network.Sockets.Client.ClientSocket_map" name="ES.Network.Sockets.Client.ClientSocket_map">
+<area href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html" title="ESF客户端套接字 抽象基础类" alt="ES.Network.Sockets.Client.BaseClientSocket" shape="rect" coords="0,0,264,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a0cdd3213a957ab00a89ea8853e341e05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0cdd3213a957ab00a89ea8853e341e05">ClientSocket</a> (string ip, int port, int <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">numMaxBufferSize</a>)</td></tr>
+<tr class="memdesc:a0cdd3213a957ab00a89ea8853e341e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0cdd3213a957ab00a89ea8853e341e05">更多...</a><br /></td></tr>
+<tr class="separator:a0cdd3213a957ab00a89ea8853e341e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc772d669c659583c6d0980fbcdc97c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#afc772d669c659583c6d0980fbcdc97c3">ClientSocket</a> (<a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a> esfSocket, int <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">numMaxBufferSize</a>)</td></tr>
+<tr class="memdesc:afc772d669c659583c6d0980fbcdc97c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#afc772d669c659583c6d0980fbcdc97c3">更多...</a><br /></td></tr>
+<tr class="separator:afc772d669c659583c6d0980fbcdc97c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c3a798d8ca4c58b6a8e178a51caf28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a62c3a798d8ca4c58b6a8e178a51caf28">Init</a> (<a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#aa8be3c8939a63beabebc4b09e195d525">AddressFamily</a> addressFamily, <a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6a">SocketType</a> socketType, <a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6ae">ProtocolType</a> protocolType, <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket_invoke.html">ISocketInvoke</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#ae4b30551d7b345608258d0d24eca949a">socketInvoke</a>)</td></tr>
+<tr class="memdesc:a62c3a798d8ca4c58b6a8e178a51caf28"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化套接字  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a62c3a798d8ca4c58b6a8e178a51caf28">更多...</a><br /></td></tr>
+<tr class="separator:a62c3a798d8ca4c58b6a8e178a51caf28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a745796ae499f6ae2d0a53c923107e571"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a745796ae499f6ae2d0a53c923107e571">Send</a> (byte[] <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a>)</td></tr>
+<tr class="memdesc:a745796ae499f6ae2d0a53c923107e571"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a745796ae499f6ae2d0a53c923107e571">更多...</a><br /></td></tr>
+<tr class="separator:a745796ae499f6ae2d0a53c923107e571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5507e868dfc9665edac745375b1ef21c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a5507e868dfc9665edac745375b1ef21c">Send</a> (string utf8str)</td></tr>
+<tr class="memdesc:a5507e868dfc9665edac745375b1ef21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a5507e868dfc9665edac745375b1ef21c">更多...</a><br /></td></tr>
+<tr class="separator:a5507e868dfc9665edac745375b1ef21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc78e12075dc24323e9b22e1c17e19b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#acfc78e12075dc24323e9b22e1c17e19b">Send</a> (ushort sessionId, byte[] <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a>)</td></tr>
+<tr class="memdesc:acfc78e12075dc24323e9b22e1c17e19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#acfc78e12075dc24323e9b22e1c17e19b">更多...</a><br /></td></tr>
+<tr class="separator:acfc78e12075dc24323e9b22e1c17e19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7563a9c8573692d1e374679c7531977b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a7563a9c8573692d1e374679c7531977b">Send</a> (ushort sessionId, string utf8str)</td></tr>
+<tr class="memdesc:a7563a9c8573692d1e374679c7531977b"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a7563a9c8573692d1e374679c7531977b">更多...</a><br /></td></tr>
+<tr class="separator:a7563a9c8573692d1e374679c7531977b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e02eba25d5127e43fbe5d86bba9eab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ad3e02eba25d5127e43fbe5d86bba9eab">Send</a> (ushort sessionId, byte[] <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a>, int offset, int count)</td></tr>
+<tr class="memdesc:ad3e02eba25d5127e43fbe5d86bba9eab"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ad3e02eba25d5127e43fbe5d86bba9eab">更多...</a><br /></td></tr>
+<tr class="separator:ad3e02eba25d5127e43fbe5d86bba9eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd851e722dea554b90f16d5b3bdb014"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a2cd851e722dea554b90f16d5b3bdb014">Close</a> ()</td></tr>
+<tr class="memdesc:a2cd851e722dea554b90f16d5b3bdb014"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a2cd851e722dea554b90f16d5b3bdb014">更多...</a><br /></td></tr>
+<tr class="separator:a2cd851e722dea554b90f16d5b3bdb014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html">ES.Network.Sockets.Client.BaseClientSocket</a></td></tr>
+<tr class="memitem:a79df046d802cce4f7f3626022b9d6db8 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a79df046d802cce4f7f3626022b9d6db8">BaseClientSocket</a> (string ip, int port, int <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">numMaxBufferSize</a>)</td></tr>
+<tr class="memdesc:a79df046d802cce4f7f3626022b9d6db8 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a79df046d802cce4f7f3626022b9d6db8">更多...</a><br /></td></tr>
+<tr class="separator:a79df046d802cce4f7f3626022b9d6db8 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf18a82ac460b764ea3dcc59062ef906 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#acf18a82ac460b764ea3dcc59062ef906">BaseClientSocket</a> (<a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a> esfSocket, int <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">numMaxBufferSize</a>)</td></tr>
+<tr class="memdesc:acf18a82ac460b764ea3dcc59062ef906 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#acf18a82ac460b764ea3dcc59062ef906">更多...</a><br /></td></tr>
+<tr class="separator:acf18a82ac460b764ea3dcc59062ef906 inherit pub_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae2805b201cad908bbd53a121d0fe0d79"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ae2805b201cad908bbd53a121d0fe0d79">ReceiveCallback</a> (IAsyncResult result)</td></tr>
+<tr class="memdesc:ae2805b201cad908bbd53a121d0fe0d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受线程函数(异步)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ae2805b201cad908bbd53a121d0fe0d79">更多...</a><br /></td></tr>
+<tr class="separator:ae2805b201cad908bbd53a121d0fe0d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a6fbe9106ee0f46456f0fffcdccd97a"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0a6fbe9106ee0f46456f0fffcdccd97a">ReceiveFromCallback</a> (IAsyncResult result)</td></tr>
+<tr class="memdesc:a0a6fbe9106ee0f46456f0fffcdccd97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受线程函数(异步)  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0a6fbe9106ee0f46456f0fffcdccd97a">更多...</a><br /></td></tr>
+<tr class="separator:a0a6fbe9106ee0f46456f0fffcdccd97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5ed3826732067bc1a349589bc007d0c"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ad5ed3826732067bc1a349589bc007d0c">TriggerSocketInvoke</a> ()</td></tr>
+<tr class="memdesc:ad5ed3826732067bc1a349589bc007d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">触发回调委托  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ad5ed3826732067bc1a349589bc007d0c">更多...</a><br /></td></tr>
+<tr class="separator:ad5ed3826732067bc1a349589bc007d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html">ES.Network.Sockets.Client.BaseClientSocket</a></td></tr>
+<tr class="memitem:acff00eac55f8bed7d44403a546906a2e inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#acff00eac55f8bed7d44403a546906a2e">SendBuffer</a> (ushort sessionId, byte[] <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a>, int offset, int count)</td></tr>
+<tr class="memdesc:acff00eac55f8bed7d44403a546906a2e inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#acff00eac55f8bed7d44403a546906a2e">更多...</a><br /></td></tr>
+<tr class="separator:acff00eac55f8bed7d44403a546906a2e inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d11fae75d2b9855a1efe41b78a82981 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a5d11fae75d2b9855a1efe41b78a82981">SendBufferTo</a> (ushort sessionId, byte[] <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a>, int offset, int count)</td></tr>
+<tr class="memdesc:a5d11fae75d2b9855a1efe41b78a82981 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据 报文  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a5d11fae75d2b9855a1efe41b78a82981">更多...</a><br /></td></tr>
+<tr class="separator:a5d11fae75d2b9855a1efe41b78a82981 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc56fc83a0b9aaf2be1c16b87ba09726 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#abc56fc83a0b9aaf2be1c16b87ba09726">BeginReceived</a> ()</td></tr>
+<tr class="memdesc:abc56fc83a0b9aaf2be1c16b87ba09726 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始监听  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#abc56fc83a0b9aaf2be1c16b87ba09726">更多...</a><br /></td></tr>
+<tr class="separator:abc56fc83a0b9aaf2be1c16b87ba09726 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ead4b86bc272acb3ec84e020ca3f2b1 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2ead4b86bc272acb3ec84e020ca3f2b1">BeginReceivedFrom</a> ()</td></tr>
+<tr class="memdesc:a2ead4b86bc272acb3ec84e020ca3f2b1 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始监听 udp  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2ead4b86bc272acb3ec84e020ca3f2b1">更多...</a><br /></td></tr>
+<tr class="separator:a2ead4b86bc272acb3ec84e020ca3f2b1 inherit pro_methods_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket')"><img src="closed.png" alt="-"/>&#160;Public 属性 继承自 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html">ES.Network.Sockets.Client.BaseClientSocket</a></td></tr>
+<tr class="memitem:a57fa80d3682732177f20db2a7a745d91 inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a57fa80d3682732177f20db2a7a745d91">Target</a> = null</td></tr>
+<tr class="memdesc:a57fa80d3682732177f20db2a7a745d91 inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">用户绑定对象  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a57fa80d3682732177f20db2a7a745d91">更多...</a><br /></td></tr>
+<tr class="separator:a57fa80d3682732177f20db2a7a745d91 inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4b30551d7b345608258d0d24eca949a inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket_invoke.html">ISocketInvoke</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#ae4b30551d7b345608258d0d24eca949a">socketInvoke</a> = null</td></tr>
+<tr class="memdesc:ae4b30551d7b345608258d0d24eca949a inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">消息委托  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#ae4b30551d7b345608258d0d24eca949a">更多...</a><br /></td></tr>
+<tr class="separator:ae4b30551d7b345608258d0d24eca949a inherit pub_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html">ES.Network.Sockets.Client.BaseClientSocket</a></td></tr>
+<tr class="memitem:a8eb0a3a0389871b3c541665089c143d8 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a8eb0a3a0389871b3c541665089c143d8">clientSocket</a> = null</td></tr>
+<tr class="memdesc:a8eb0a3a0389871b3c541665089c143d8 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">远程客户端套接字  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a8eb0a3a0389871b3c541665089c143d8">更多...</a><br /></td></tr>
+<tr class="separator:a8eb0a3a0389871b3c541665089c143d8 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a176cb1754fac20efba1a6fb4a1cf3a90 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">numMaxBufferSize</a></td></tr>
+<tr class="memdesc:a176cb1754fac20efba1a6fb4a1cf3a90 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受缓存最大长度  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90">更多...</a><br /></td></tr>
+<tr class="separator:a176cb1754fac20efba1a6fb4a1cf3a90 inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9205e7b8362836bae230e1bc154a3b1d inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">buffer</a> = null</td></tr>
+<tr class="memdesc:a9205e7b8362836bae230e1bc154a3b1d inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">缓存  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d">更多...</a><br /></td></tr>
+<tr class="separator:a9205e7b8362836bae230e1bc154a3b1d inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7657c0525daf36fc0b3d6f86831a158a inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a7657c0525daf36fc0b3d6f86831a158a">isRecving</a> = false</td></tr>
+<tr class="memdesc:a7657c0525daf36fc0b3d6f86831a158a inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受状态  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a7657c0525daf36fc0b3d6f86831a158a">更多...</a><br /></td></tr>
+<tr class="separator:a7657c0525daf36fc0b3d6f86831a158a inherit pro_attribs_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td colspan="2" onclick="javascript:toggleInherit('properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html">ES.Network.Sockets.Client.BaseClientSocket</a></td></tr>
+<tr class="memitem:a3b307195d95aead4171d4f2f34aa8918 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a3b307195d95aead4171d4f2f34aa8918">rBuffer</a> = null<code> [get]</code></td></tr>
+<tr class="memdesc:a3b307195d95aead4171d4f2f34aa8918 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析缓存  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a3b307195d95aead4171d4f2f34aa8918">更多...</a><br /></td></tr>
+<tr class="separator:a3b307195d95aead4171d4f2f34aa8918 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f1a8f630fb60be88c3c8cecbfcc1a5 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a65f1a8f630fb60be88c3c8cecbfcc1a5">hasConnected</a><code> [get]</code></td></tr>
+<tr class="memdesc:a65f1a8f630fb60be88c3c8cecbfcc1a5 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接状态  <a href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a65f1a8f630fb60be88c3c8cecbfcc1a5">更多...</a><br /></td></tr>
+<tr class="separator:a65f1a8f630fb60be88c3c8cecbfcc1a5 inherit properties_class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>ESF客户端套接字（异步接受） </p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a0cdd3213a957ab00a89ea8853e341e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cdd3213a957ab00a89ea8853e341e05">&#9670;&nbsp;</a></span>ClientSocket() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Network.Sockets.Client.ClientSocket.ClientSocket </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numMaxBufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数 </p>
+<p>创建一个异步socket</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ip</td><td>ip地址</td></tr>
+    <tr><td class="paramname">port</td><td>端口</td></tr>
+    <tr><td class="paramname">numMaxBufferSize</td><td>接受数据大小[UDP模式以传送理论最大值/TCP模式以传送最佳合适值]</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc772d669c659583c6d0980fbcdc97c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc772d669c659583c6d0980fbcdc97c3">&#9670;&nbsp;</a></span>ClientSocket() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Network.Sockets.Client.ClientSocket.ClientSocket </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>&#160;</td>
+          <td class="paramname"><em>esfSocket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numMaxBufferSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">esfSocket</td><td>ESFSocket对象</td></tr>
+    <tr><td class="paramname">numMaxBufferSize</td><td>接受数据大小[UDP模式以传送理论最大值/TCP模式以传送最佳合适值]</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2cd851e722dea554b90f16d5b3bdb014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd851e722dea554b90f16d5b3bdb014">&#9670;&nbsp;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ES.Network.Sockets.Client.ClientSocket.Close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>关闭 </p>
+
+<p>重载 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a3a3a7199637a1b20b8b1726af3d305b7">ES.Network.Sockets.Client.BaseClientSocket</a> .</p>
+
+</div>
+</div>
+<a id="a62c3a798d8ca4c58b6a8e178a51caf28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c3a798d8ca4c58b6a8e178a51caf28">&#9670;&nbsp;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#aa8be3c8939a63beabebc4b09e195d525">AddressFamily</a>&#160;</td>
+          <td class="paramname"><em>addressFamily</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6a">SocketType</a>&#160;</td>
+          <td class="paramname"><em>socketType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6ae">ProtocolType</a>&#160;</td>
+          <td class="paramname"><em>protocolType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket_invoke.html">ISocketInvoke</a>&#160;</td>
+          <td class="paramname"><em>socketInvoke</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化套接字 </p>
+
+</div>
+</div>
+<a id="ae2805b201cad908bbd53a121d0fe0d79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2805b201cad908bbd53a121d0fe0d79">&#9670;&nbsp;</a></span>ReceiveCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ES.Network.Sockets.Client.ClientSocket.ReceiveCallback </td>
+          <td>(</td>
+          <td class="paramtype">IAsyncResult&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受线程函数(异步) </p>
+
+<p>实现了 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#ae91fbd95b6ae11de1829c2b9f870473a">ES.Network.Sockets.Client.BaseClientSocket</a>.</p>
+
+</div>
+</div>
+<a id="a0a6fbe9106ee0f46456f0fffcdccd97a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a6fbe9106ee0f46456f0fffcdccd97a">&#9670;&nbsp;</a></span>ReceiveFromCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ES.Network.Sockets.Client.ClientSocket.ReceiveFromCallback </td>
+          <td>(</td>
+          <td class="paramtype">IAsyncResult&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受线程函数(异步) </p>
+
+<p>实现了 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#ae191286d28365164c16ca8855b485789">ES.Network.Sockets.Client.BaseClientSocket</a>.</p>
+
+</div>
+</div>
+<a id="a745796ae499f6ae2d0a53c923107e571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745796ae499f6ae2d0a53c923107e571">&#9670;&nbsp;</a></span>Send() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Send </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5507e868dfc9665edac745375b1ef21c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5507e868dfc9665edac745375b1ef21c">&#9670;&nbsp;</a></span>Send() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Send </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfc78e12075dc24323e9b22e1c17e19b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfc78e12075dc24323e9b22e1c17e19b">&#9670;&nbsp;</a></span>Send() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad3e02eba25d5127e43fbe5d86bba9eab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3e02eba25d5127e43fbe5d86bba9eab">&#9670;&nbsp;</a></span>Send() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+    <tr><td class="paramname">offset</td><td>偏移</td></tr>
+    <tr><td class="paramname">count</td><td>数量</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7563a9c8573692d1e374679c7531977b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7563a9c8573692d1e374679c7531977b">&#9670;&nbsp;</a></span>Send() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Network.Sockets.Client.ClientSocket.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5ed3826732067bc1a349589bc007d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5ed3826732067bc1a349589bc007d0c">&#9670;&nbsp;</a></span>TriggerSocketInvoke()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ES.Network.Sockets.Client.ClientSocket.TriggerSocketInvoke </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>触发回调委托 </p>
+
+<p>重载 <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a41ee88708d0c53b417f2d591e162be4e">ES.Network.Sockets.Client.BaseClientSocket</a> .</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>ClientSocket.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html">Sockets</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_network_1_1_sockets_1_1_client.html">Client</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html">ClientSocket</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

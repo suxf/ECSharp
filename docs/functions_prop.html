@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.8.3.373</span>
+   &#160;<span id="projectnumber">1.10.2.504</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_loader.html#aba0361b2ece5fa97f07e3f85e2a2dbf7">ES.Data.Database.SQLServer.Linq.ConfigLoader&lt; T &gt;</a>
 </li>
 <li>connectDateTime
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a66477989d497a0a2c96aac55cfbfaed3">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a2e9c08762088d2286efecce367789228">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>Count
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row.html#a39e14746716a94e5fba7563f875cbaa3">ES.Data.Database.SQLServer.Linq.DataAgentRow</a>
@@ -138,11 +138,8 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 
 <h3><a id="index_h"></a>- h -</h3><ul>
 <li>hasConnected
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_base_client_socket.html#a70b161ccdda40a567204fd011b72f135">ES.Network.Sockets.BaseClientSocket</a>
-, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#af3e08051c9c9ed621ceecf9b4717c95d">ES.Network.Sockets.RemoteConnection</a>
-</li>
-<li>hasException
-: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#aaa277e1f17cd3b43e7571408f7f55c6e">ES.Data.Database.SQLServer.CommandResult</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a65f1a8f630fb60be88c3c8cecbfcc1a5">ES.Network.Sockets.Client.BaseClientSocket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a7a03d39b4d8b99b03c65b5a354a13796">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 </ul>
 
@@ -151,6 +148,10 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 <li>ip
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a88b22ffdf7f98d0dcd2a9b3f76fb81b9">ES.Network.Sockets.Socket</a>
 </li>
+<li>IsAlive
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba42d6acf02c45915c34a308efc43f09">ES.Network.HyperSocket.HyperSocket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a57ae50655fc0750fb809e3728fea0cda">ES.Network.HyperSocket.RemoteHyperSocket</a>
+</li>
 <li>IsAvailable
 : <a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a1ab0d7cbd8e69d593e8bfde522a63343">ES.Network.Websocket.RemoteConnection</a>
 </li>
@@ -158,7 +159,8 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ab5f2b69c01c4af195fa280f43e06d0a4">ES.Network.Sockets.Socket</a>
 </li>
 <li>isCompleted
-: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#aca2eb9acc6e61194a6c65c26f3af9261">ES.Data.Database.SQLServer.ProcedureResult</a>
+: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a2453653a7ca084ea36ae9c96170e891f">ES.Data.Database.SQLServer.CommandResult</a>
+, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#aca2eb9acc6e61194a6c65c26f3af9261">ES.Data.Database.SQLServer.ProcedureResult</a>
 </li>
 <li>isConnected
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5e2e08293820cae79c444ddc399e30f3">ES.Network.Sockets.Socket</a>
@@ -175,13 +177,6 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>Length
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a1ef70a3922075dfe17f40d352f02c199">ES.Data.Database.SQLServer.Linq.DataAgentRows</a>
-</li>
-</ul>
-
-
-<h3><a id="index_m"></a>- m -</h3><ul>
-<li>main
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_stream_buffer.html#aef8652d4b167635a859e1698adf33f81">ES.Network.Sockets.StreamBuffer</a>
 </li>
 </ul>
 
@@ -217,11 +212,11 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>rBuffer
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_base_client_socket.html#a807d181c46b04300ee5b64eefb416c0b">ES.Network.Sockets.BaseClientSocket</a>
-, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#aab142764eec2eb8825e588cfa6f1085f">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a3b307195d95aead4171d4f2f34aa8918">ES.Network.Sockets.Client.BaseClientSocket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#af4fc50d08fe812e3e6b408a8b0f0879b">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>receiveEventArgs
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a81cc23f524765961af09554cde69ac98">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a9c4f90171c92876e2c4e0c503855adaa">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>returnValue
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#ae7ccc5d09925d717d3a004840d1d54bc">ES.Data.Database.SQLServer.ProcedureResult</a>
@@ -230,23 +225,21 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
-<li>second
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_stream_buffer.html#a77ed34dc5381e687f51a41ffbfa1f054">ES.Network.Sockets.StreamBuffer</a>
+<li>SessionId
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">ES.Network.HyperSocket.HyperSocket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a7681cc5dc64b51d6fcd9e20adab4a079">ES.Network.HyperSocket.RemoteHyperSocket</a>
 </li>
-<li>SendEventArgs
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_base_client_socket.html#a89feb5677be77aa67a0bc7d0dea2bc1e">ES.Network.Sockets.BaseClientSocket</a>
-</li>
-<li>sendEventArgs
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a7a49ba0a8f7dba5961b65d4eac33f2b2">ES.Network.Sockets.RemoteConnection</a>
+<li>sessionId
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_stream_buffer.html#a547538ddb191e5a1177a4791b0c7ecff">ES.Network.Sockets.StreamBuffer</a>
 </li>
 <li>socket
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#abb72b0d80a2478d153e9f6d26e092713">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a6a107723de3f93c24ede2f1e3a38b1c3">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>socketInvoke
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#ab38aecddc66fc9352af66b593432cdfd">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a94a98008e87f1e255a9291710ad176f0">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>socketSvrMgr
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a98f1c40c229d8e718c6fdfd1cbfdab4a">ES.Network.Sockets.RemoteConnection</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aeee8bfe7ca03147f37618e6e963ffc91">ES.Network.Sockets.Server.RemoteConnection</a>
 </li>
 <li>socketType
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ade2fbc0ba035db39e3d23c5e3628aae7">ES.Network.Sockets.Socket</a>
@@ -264,11 +257,21 @@ $(document).ready(function(){initNavTree('functions_prop.html',''); initResizabl
 <li>Tables
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#a59a9ebbeda207330331821dc8684b8fb">ES.Data.Database.SQLServer.ProcedureResult</a>
 </li>
+<li>TcpPort
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac27b1147bdd1f2b5fd05f84994fb1b0f">ES.Network.HyperSocket.HyperSocket</a>
+</li>
 <li>this[object key]
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a8531704db0f572b542c4b8659a9c9e73">ES.Data.Database.SQLServer.Linq.DataAgentRows</a>
 </li>
 <li>this[string key]
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row.html#abfd9eef0b5de063e646187be796882e2">ES.Data.Database.SQLServer.Linq.DataAgentRow</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>UdpPort
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a316816e474e3ae992bf913976ebf11d9">ES.Network.HyperSocket.HyperSocket</a>
 </li>
 </ul>
 

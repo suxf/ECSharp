@@ -9,6 +9,8 @@ namespace ES.Common.Utils
     {
         /// <summary>
         /// 获取byte的实际长度
+        /// <para>数组中有连续9个字节连续为0的情况</para>
+        /// <para>原理 默认基础类型字节占用情况最大为8个</para>
         /// </summary>
         /// <param name="bytes">数据</param>
         /// <returns></returns>
@@ -18,13 +20,20 @@ namespace ES.Common.Utils
             if (null == bytes || 0 == bytes.Length) return i;
             for (; i < bytes.Length; i++)
             {
-                if (i + 4 < bytes.Length && bytes[i] + bytes[i + 1] + bytes[i + 2] + bytes[i + 3] + bytes[i + 4] == 0x00) break;
+                int index = i;
+                if (i + 8 < bytes.Length)
+                {
+                    int r = bytes[index] + bytes[++index] + bytes[++index] + bytes[++index] + bytes[++index] + bytes[++index] + bytes[++index] + bytes[++index] + bytes[++index];
+                    if (r == 0x00) break;
+                }
             }
             return i;
         }
 
         /// <summary>
         /// 获取byte的实际数据
+        /// <para>数组中有连续9个字节连续为0的情况</para>
+        /// <para>原理 默认基础类型字节占用情况最大为8个</para>
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns>实际长度的byte[]</returns>

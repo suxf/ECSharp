@@ -2,15 +2,16 @@
 {
     /// <summary>
     /// 时间执行器
-    /// 此执行器多线程分配
-    /// 需要统一线程调度请使用SyncTimeCaller
+    /// <para>此执行器多线程分配</para>
+    /// <para>需要统一线程调度请使用SyncTimeCaller</para>
     /// </summary>
-    public class TimeCaller : TimeFlow
+    public class TimeCaller : BaseTimeFlow
     {
         /// <summary>
         /// 回调执行的函数
         /// </summary>
-        public delegate void MethodHandle();
+        /// <param name="count">执行次数</param>
+        public delegate void MethodHandle(long count);
         private MethodHandle handle = null;
 
         /// <summary>
@@ -51,6 +52,8 @@
             this.isRepeat = isRepeat;
             this.repeatNum = repeatNum;
             this.handle = handle;
+
+            StartTimeFlow();
         }
 
         /// <summary>
@@ -69,6 +72,8 @@
             this.isRepeat = isRepeat;
             this.repeatNum = repeatNum;
             this.handle = handle;
+
+            StartTimeFlow();
         }
 
         /// <summary>
@@ -85,7 +90,7 @@
         /// </summary>
         public void CancelTimeCall()
         {
-            CloseTimeFlow();
+            CloseTimeFlowES();
         }
 
         /// <summary>
@@ -100,8 +105,7 @@
                 if (delayTimeNow >= delayTime)
                 {
                     isFirstCall = false;
-                    handle?.Invoke();
-                    repeatNumNow++;
+                    handle?.Invoke(++repeatNumNow);
                 }
             }
             else
@@ -112,12 +116,18 @@
                     if (periodTimeNow >= periodTime)
                     {
                         periodTimeNow = 0;
-                        handle?.Invoke();
-                        repeatNumNow++;
+                        handle?.Invoke(++repeatNumNow);
                     }
                 }
-                if (!isRepeat || (isRepeat && repeatNumNow >= repeatNum)) CloseTimeFlow();
+                if (!isRepeat || (isRepeat && repeatNum != -1 && repeatNumNow >= repeatNum)) CloseTimeFlowES();
             }
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
         }
     }
 }

@@ -10,14 +10,14 @@ namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
     /// Sqlserver数据缓存助理数据组[线程安全]
-    /// 是一个集成化数据高速操作（查询，更新）的助手对象
-    /// 使用此类可以更加有效的进行数据库数据的常规操作。
-    /// 此类固定同步数据库周期为：1秒
-    /// 数据助理产生的对象
-    /// 用于托管数据操作的代理类
-    /// 如果有一条数据不进行任何读写操作一定时间[默认300s有效]后，下一次操作必定重新读取数据库最新数据
+    /// <para>是一个集成化数据高速操作（查询，更新）的助手对象</para>
+    /// <para>使用此类可以更加有效的进行数据库数据的常规操作。</para>
+    /// <para>此类固定同步数据库周期为：1秒</para>
+    /// <para>数据助理产生的对象</para>
+    /// <para>用于托管数据操作的代理类</para>
+    /// <para>如果有一条数据不进行任何读写操作一定时间[默认300s有效]后，下一次操作必定重新读取数据库最新数据</para>
     /// </summary>
-    public class DataAgentRows : TimeFlow, IEnumerable<DataAgentRow>
+    public class DataAgentRows : BaseTimeFlow, IEnumerable<DataAgentRow>
     {
         /// <summary>
         /// 数据库对象
@@ -38,7 +38,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 记录字典
         /// </summary>
-        private ConcurrentDictionary<object, DataAgentRow> rows = new ConcurrentDictionary<object, DataAgentRow>();
+        private readonly ConcurrentDictionary<object, DataAgentRow> rows = new ConcurrentDictionary<object, DataAgentRow>();
 
         /// <summary>
         /// 实际周期
@@ -109,6 +109,8 @@ namespace ES.Data.Database.SQLServer.Linq
                 foreach (object column in dataRow.Table.Columns) dataObject.data.TryAdd(column.ToString(), dataRow[column.ToString()]);
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
+
+            StartTimeFlow();
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 提交至数据库
-        /// 将所有缓存数据立刻写入数据库
+        /// <para>将所有缓存数据立刻写入数据库</para>
         /// </summary>
         public void CommitDB()
         {
@@ -222,6 +224,13 @@ namespace ES.Data.Database.SQLServer.Linq
                     UpdateDBHandle(realPeriod);
                 }
             }
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
         }
     }
 }

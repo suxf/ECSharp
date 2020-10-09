@@ -12,36 +12,36 @@ namespace ES.Data.Database.Redis
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerConfigurationChanged(object sender, EndPointEventArgs e);
+        void MuxerConfigurationChanged(object sender, EndPointEventArgs e);
         /// <summary>
         /// 发生错误时
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerErrorMessage(object sender, RedisErrorEventArgs e);
+        void MuxerErrorMessage(object sender, RedisErrorEventArgs e);
         /// <summary>
         /// 重新建立连接之前的错误
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerConnectionRestored(object sender, ConnectionFailedEventArgs e);
+        void MuxerConnectionRestored(object sender, ConnectionFailedEventArgs e);
         /// <summary>
         /// 连接失败 ， 如果重新连接成功你将不会收到这个通知
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerConnectionFailed(object sender, ConnectionFailedEventArgs e);
+        void MuxerConnectionFailed(object sender, ConnectionFailedEventArgs e);
         /// <summary>
         /// 更改集群
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerHashSlotMoved(object sender, HashSlotMovedEventArgs e);
+        void MuxerHashSlotMoved(object sender, HashSlotMovedEventArgs e);
         /// <summary>
         /// redis类库错误
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void MuxerInternalError(object sender, InternalErrorEventArgs e);
+        void MuxerInternalError(object sender, InternalErrorEventArgs e);
     }
 }

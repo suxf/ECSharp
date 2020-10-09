@@ -1,4 +1,5 @@
 ﻿using ES.Common.Time;
+using ES.Common.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
     /// 非关系型存储类
-    /// 此类设计灵感源于非关系型数据库中基础原理
-    /// 使用起来只需要知道数据库中取出值和筛选条件即可类似使用字典方式来实现高速访问改变以及同步持久化
+    /// <para>此类设计灵感源于非关系型数据库中基础原理</para>
+    /// <para>使用起来只需要知道数据库中取出值和筛选条件即可类似使用字典方式来实现高速访问改变以及同步持久化</para>
     /// </summary>
-    public class NoDBStorage<T, U> : TimeFlow where T : IComparable where U : IComparable
+    public class NoDBStorage<T, U> : BaseTimeFlow where T : IComparable where U : IComparable
     {
         private readonly SQLServerDBHelper dBHelper;
 
@@ -45,6 +46,8 @@ namespace ES.Data.Database.SQLServer.Linq
             this.tableName = tableName;
             this.syncPeriod = syncPeriod;
             this.condition = (condition != null && condition != "") ? (condition + " AND ") : "";
+
+            StartTimeFlow();
         }
 
         /// <summary>
@@ -78,7 +81,7 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 增加新的数据
-        /// 注意使用此函数 请确保该记录不受其他约束条件影响 否则可能会在持久化存储中插入失败
+        /// <para>注意使用此函数 请确保该记录不受其他约束条件影响 否则可能会在持久化存储中插入失败</para>
         /// </summary>
         /// <param name="key">key值</param>
         /// <param name="value">value值</param>
@@ -170,8 +173,8 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         public void Clear()
         {
-            keyUpdateQueue.Clear();
-            keyInsertQueue.Clear();
+            keyUpdateQueue.ClearAll();
+            keyInsertQueue.ClearAll();
             keyValues.Clear();
         }
 
@@ -190,6 +193,13 @@ namespace ES.Data.Database.SQLServer.Linq
                 while (keyUpdateQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.NoDBStorageSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
                 while (keyDeleteQueue.TryDequeue(out T key)) if (keyValues.TryRemove(key, out _)) dBHelper.NoDBStorageSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
             }
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
         }
     }
 }

@@ -6,11 +6,14 @@ var class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper
     [ "CheckConnected", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a8c84657d43b7c0292936dd54f8d9a2b0", null ],
     [ "CommandSQL", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a779a729bd9676cd511ffb423ec200669", null ],
     [ "ExecuteSQL", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aab391f1b31562f11395ed0cebbe86eb0", null ],
+    [ "GetConnectionString", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#ab6b2486e8f4b4cf05a4793b87027c001", null ],
     [ "LoadDataCache", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a1985b4d2022db4498eb804cea2a08dba", null ],
+    [ "OnUpdateEnd", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a88a08fd89d1b36ae124f4c2f857ed0b2", null ],
     [ "Procedure", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#adb6162127d83b64a22ced05f9094807b", null ],
     [ "Procedure", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#ae21b3fb2a66f58f6e0694743f38e421e", null ],
     [ "ProcedureNonQuery", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#afbe7adcfa74a63bc17e33026cdfd8ed6", null ],
     [ "PushProcedure", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aa878517d67b07136fb762aa841f64829", null ],
     [ "PushSQL", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#af4cb9c9c984ff8e8cb8251b8a221d770", null ],
+    [ "SetExceptionListener", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aa110a2f06929ceaf17cb6dd650a3b96b", null ],
     [ "Update", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#adb339df7e946bbab8c8a4f66d2128d4c", null ]
 ];

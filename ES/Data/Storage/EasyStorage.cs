@@ -6,8 +6,8 @@ namespace ES.Data.Storage
 {
     /// <summary>
     /// 简单信息存储,也可以自己读/写入新文件
-    /// 用于文本生成一些由用户或机器产生的持久数据存储
-    /// 默认存储文件为根目录下:default.json
+    /// <para>用于文本生成一些由用户或机器产生的持久数据存储</para>
+    /// <para>默认存储文件为根目录下:default.json</para>
     /// </summary>
     public static class EasyStorage
     {

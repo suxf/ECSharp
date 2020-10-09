@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sample
 {
@@ -15,8 +17,11 @@ namespace Sample
             // new Test_EasyStorage();
             // new Test_Time();
             // new Test_RandomCode();
+            // new Test_SweetStream();
+            new Test_HyperSocket();
 
             Console.ReadLine();
         }
+
     }
 }

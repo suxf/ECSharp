@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['udp_754',['Udp',['../namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6aea81baba40274ccb30f9fdfa2c73cf0482',1,'ES::Network::Sockets']]],
-  ['udt_755',['Udt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a6faeb961a160a13c203da6663c864a47',1,'ES::Data::Database::SQLServer']]],
-  ['uniqueidentifier_756',['UniqueIdentifier',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a00810bfd2b1bd45a3467a32a808c6026',1,'ES::Data::Database::SQLServer']]]
+  ['smalldatetime_840',['SmallDateTime',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a5c614d174b242f38938d9cf77a8571ce',1,'ES::Data::Database::SQLServer']]],
+  ['smallint_841',['SmallInt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46abd06c32556baf8267e1313d7a5c58ce7',1,'ES::Data::Database::SQLServer']]],
+  ['smallmoney_842',['SmallMoney',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a165d9d9f2c3bddce0126abe2cf704c3a',1,'ES::Data::Database::SQLServer']]],
+  ['stream_843',['Stream',['../namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6aaeae835e83c0494a376229f254f7d3392',1,'ES::Network::Sockets']]],
+  ['structured_844',['Structured',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a854cc9d26f059f347c097abc58efbc94',1,'ES::Data::Database::SQLServer']]],
+  ['success_845',['Success',['../namespace_e_s_1_1_network_1_1_http.html#a2052fa941b7896b1f745a81ca3748bcca505a83f220c02df2f85c3810cd9ceb38',1,'ES::Network::Http']]]
 ];

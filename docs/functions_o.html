@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.8.3.373</span>
+   &#160;<span id="projectnumber">1.10.2.504</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -90,30 +90,65 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 : <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#a864f82af6492d85f4ad7065d361498bf">ES.Network.Websocket.IWebsocketInvoke</a>
 </li>
 <li>OnClose()
-: <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_socket_status_listener.html#a6905ae73c9fdc1dd36bdeca0fc6829a7">ES.Network.Sockets.SocketStatusListener</a>
+: <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server_listener.html#a37e2faffb14ef160f1f618e2d06f4227">ES.Network.HyperSocket.IHyperSocketServerListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_socket_status_listener.html#ae0dcdfd9c8370e7156f9bc69182f19e6">ES.Network.Sockets.Server.SocketStatusListener</a>
 , <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#af61dce4dd38714ca9217c08bbd41c0ee">ES.Network.Websocket.IWebsocketInvoke</a>
 </li>
 <li>OnConnect()
-: <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_socket_status_listener.html#a8c9b80c3e4acd7671ebae586fb35143e">ES.Network.Sockets.SocketStatusListener</a>
+: <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_socket_status_listener.html#accac4263eda2be21b5cd53dfd23bfd0f">ES.Network.Sockets.Server.SocketStatusListener</a>
 </li>
 <li>OnError()
-: <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#ae325e5fee0311f00cea6057656bbf103">ES.Network.Websocket.IWebsocketInvoke</a>
+: <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client_listener.html#a51104745c8115a68607e80be21d7243a">ES.Network.HyperSocket.IHyperSocketClientListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server_listener.html#ac0bca3ebda6dcd019c29277063ce1f74">ES.Network.HyperSocket.IHyperSocketServerListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#ae325e5fee0311f00cea6057656bbf103">ES.Network.Websocket.IWebsocketInvoke</a>
 </li>
 <li>OnMessage()
 : <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#ad5161649030c7ba481904ec9e8d783ba">ES.Network.Websocket.IWebsocketInvoke</a>
 </li>
 <li>OnOpen()
-: <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#a76c80a325e7d2dc9962313d8d4ea3d76">ES.Network.Websocket.IWebsocketInvoke</a>
+: <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client_listener.html#a5a5c05c6b3f94d6378e8d7e09913f475">ES.Network.HyperSocket.IHyperSocketClientListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server_listener.html#a01a00b0b2e0c17101b70165338665319">ES.Network.HyperSocket.IHyperSocketServerListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html#a76c80a325e7d2dc9962313d8d4ea3d76">ES.Network.Websocket.IWebsocketInvoke</a>
+</li>
+<li>OnReceive()
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a453b788b3b7d73f7f1d03990af921add">ES.Network.HyperSocket.RemoteHyperSocket</a>
+</li>
+<li>OnReceivedException()
+: <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_linq_1_1_i_socket_visitor_exception.html#a4938b88ebe12db8d2b70b575d7ee6d84">ES.Network.Sockets.Client.Linq.ISocketVisitorException</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_i_remote_socket_visitor_exception.html#afe0c9ae0138ad42f9ed6dea7d2ecd9c1">ES.Network.Sockets.Server.Linq.IRemoteSocketVisitorException</a>
 </li>
 <li>OnRequest()
 : <a class="el" href="interface_e_s_1_1_network_1_1_http_1_1_http_invoke.html#aeee8163031c5c95c5ac2042fe06f24a4">ES.Network.Http.HttpInvoke</a>
-, <a class="el" href="class_e_s_1_1_network_1_1_visitor_1_1_http_visitor.html#a45da535e63c175e91ae997ceddd900b3">ES.Network.Visitor.HttpVisitor</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html#ada0f7485fcf9591050276ff4934d69f6">ES.Network.Http.Linq.HttpVisitor</a>
+</li>
+<li>OnSend()
+: <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#afe069b9e0b1b1bb850bff58aa575a473">ES.Network.HyperSocket.RemoteHyperSocket</a>
+</li>
+<li>OnSocketException()
+: <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket_invoke.html#a192d0a5c812b2f99c0f058b1c2c0a636">ES.Network.Sockets.Client.ISocketInvoke</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_linq_1_1_socket_visitor.html#a7c305a71960fafca72d0a93702c52c73">ES.Network.Sockets.Client.Linq.SocketVisitor</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket_invoke.html#ada42a7d005f78a2905ba5676f6b5060a">ES.Network.Sockets.Server.IRemoteSocketInvoke</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_remote_socket_visitor.html#a1cee63e90c6a8e77826fd66defdb4bc1">ES.Network.Sockets.Server.Linq.RemoteSocketVisitor</a>
+</li>
+<li>OnTcpReceive()
+: <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client_listener.html#ad8f2613bd0d5eb75c393d80472e6f96e">ES.Network.HyperSocket.IHyperSocketClientListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server_listener.html#a06708c51bbe7e271a4f84b3af91d13c6">ES.Network.HyperSocket.IHyperSocketServerListener</a>
+</li>
+<li>OnUdpReceive()
+: <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client_listener.html#aa7eb3a677d28d6964eb7763a3f46bf44">ES.Network.HyperSocket.IHyperSocketClientListener</a>
+, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server_listener.html#a139fb196a7759775c515a472b1bbf830">ES.Network.HyperSocket.IHyperSocketServerListener</a>
+</li>
+<li>OnUpdateEnd()
+: <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#aa5ea5bc85e4f38d5e2b595ac02a8d995">ES.Common.Time.BaseTimeFlow</a>
+, <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#abcfe6ba5b8831be350dfd472d07c6b3e">ES.Common.Time.TimeCaller</a>
+, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a545bd5f3c45451355a2c1da0ec73d923">ES.Data.Database.SQLServer.Linq.DataAgentRows</a>
+, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ad24e16d8a5ae5a486c5ba3fb736384bb">ES.Data.Database.SQLServer.Linq.NoDBStorage&lt; T, U &gt;</a>
+, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a88a08fd89d1b36ae124f4c2f857ed0b2">ES.Data.Database.SQLServer.SQLServerDBHelper</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#afaff21f578071fa3875315d6182060a6">ES.Network.HyperSocket.HyperSocket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task.html#aa08fe9a58393a275536c60d16a479e02">ES.Network.Sockets.Server.Linq.MonitorSocketStatusTask</a>
 </li>
 <li>OUTSOURCING_SIZE
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a8061a274a23641ff69a05ccae05705ed">ES.Network.Sockets.SweetStream</a>
-</li>
-<li>outTime
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_sync_client_socket.html#a1218b5d93ed6cae30d0f6a076c32632b">ES.Network.Sockets.SyncClientSocket</a>
 </li>
 </ul>
 </div><!-- contents -->

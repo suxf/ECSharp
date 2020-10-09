@@ -9,10 +9,10 @@ namespace ES.Common.Log
 {
     /// <summary>
     /// 日志管理器
-    /// 周期性写入文件
-    /// 周期LOG_PERIOD、写入路径LOG_PATH和分文件大小限制LOG_UNIT_FILE_MAX_SIZE可以直接调用静态修改（程序启动时未第一次调用就应修改完成）
+    /// <para>周期性写入文件</para>
+    /// <para>周期LOG_PERIOD、写入路径LOG_PATH和分文件大小限制LOG_UNIT_FILE_MAX_SIZE可以直接调用静态修改（程序启动时未第一次调用就应修改完成）</para>
     /// </summary>
-    internal class LogManager : TimeFlow
+    internal class LogManager : BaseTimeFlow
     {
         /// <summary>
         /// 单例静态对象
@@ -34,7 +34,7 @@ namespace ES.Common.Log
         /// <summary>
         /// 日志ID
         /// </summary>
-        private string logId = null;
+        private readonly string logId = null;
         /// <summary>
         /// 日志索引，如果单个时间内日志太大则分开
         /// </summary>
@@ -42,7 +42,7 @@ namespace ES.Common.Log
         /// <summary>
         /// 进程名称
         /// </summary>
-        private string proccessName = "";
+        private readonly string proccessName = "";
 
         /// <summary>
         /// 构造函数
@@ -57,6 +57,7 @@ namespace ES.Common.Log
             {
                 Directory.CreateDirectory(LogConfig.LOG_PATH);
             }
+            StartTimeFlow();
         }
 
         private int periodNow = 0;
@@ -116,6 +117,13 @@ namespace ES.Common.Log
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());
                 }
             }
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
         }
     }
 }

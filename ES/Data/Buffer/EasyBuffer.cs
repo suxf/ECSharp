@@ -8,8 +8,8 @@ namespace ES.Data.Buffer
 {
     /// <summary>
     /// 简单数据通信流
-    /// 只需要简单继承此类 即可达到类似protobuff的简单效果
-    /// 注意此类适合交互即时性要求不高的操作，如果延时性要求很高谨慎使用
+    /// <para>只需要简单继承此类 即可达到类似protobuff的简单效果</para>
+    /// <para>注意此类适合交互即时性要求不高的操作，如果延时性要求很高谨慎使用</para>
     /// </summary>
     public abstract class EasyBuffer<T> : EasyBuffer where T : EasyBuffer<T>
     {
@@ -164,7 +164,7 @@ namespace ES.Data.Buffer
 
     /// <summary>
     /// 简单数据通信流 基础类
-    /// 实际使用中请使用 EasyBuffer`1 (T) 带模板类
+    /// <para>实际使用中请使用 EasyBuffer`1 (T) 带模板类</para>
     /// </summary>
     public abstract class EasyBuffer
     {

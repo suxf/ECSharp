@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using ES.Common.Time;
+﻿using ES.Common.Time;
 using ES.Data.Database.SQLServer.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,25 +9,29 @@ namespace ES.Data.Database.SQLServer
 {
     /// <summary>
     /// SQLServer数据库访问助手
-    /// 不可继承
-    /// 详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+    /// <para>数据库异常可以通过 异常监听来获取</para>
+    /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
     /// </summary>
-    public sealed class SQLServerDBHelper : TimeFlow
+    public sealed class SQLServerDBHelper : BaseTimeFlow
     {
         /// <summary>
         /// 数据连接参数构造器
         /// </summary>
-        private SqlConnectionStringBuilder builder = null;
+        private readonly SqlConnectionStringBuilder builder = null;
         /// <summary>
         /// sql队列用于缓存通过压入队列执行的sql对象
         /// </summary>
-        private Queue<string> SQLQueue = new Queue<string>();
-        private Queue<ProcedureCmd> ProcedureQueue = new Queue<ProcedureCmd>();
+        private readonly Queue<string> SQLQueue = new Queue<string>();
+        private readonly Queue<ProcedureCmd> ProcedureQueue = new Queue<ProcedureCmd>();
+        /// <summary>
+        /// 数据库异常监听
+        /// </summary>
+        private ISQLServerDBHelperException listener = null;
 
         /// <summary>
         /// SqlServer助手构造函数
-        /// 存在参数不需要再次在额外配置中设置
-        /// 详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+        /// <para>存在参数不需要再次在额外配置中设置</para>
+        /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
         /// <param name="address">数据库地址，如果非默认端口需要带端口号，注意地址与端口号是以逗号分隔的</param>
         /// <param name="username">数据库账号</param>
@@ -52,25 +55,40 @@ namespace ES.Data.Database.SQLServer
             builder.MinPoolSize = minPoolSize;
             builder.MaxPoolSize = maxPoolSize;
             builder.IntegratedSecurity = false;
+
+            StartTimeFlow();
         }
 
         /// <summary>
         /// SqlServer助手构造函数
-        /// 详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+        /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
         /// <param name="connectionString">连接配置</param>
         public SQLServerDBHelper(string connectionString) : base(0)
         {
             builder = new SqlConnectionStringBuilder(connectionString);
+
+            StartTimeFlow();
         }
 
         /// <summary>
         /// SqlServer助手构造函数
-        /// 详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring
+        /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
         public SQLServerDBHelper(SqlConnectionStringBuilder sqlConnectionStringBuilder) : base(0)
         {
             builder = sqlConnectionStringBuilder;
+
+            StartTimeFlow();
+        }
+
+        /// <summary>
+        /// 设置异常监听
+        /// </summary>
+        /// <param name="listener">异常监听器</param>
+        public void SetExceptionListener(ISQLServerDBHelperException listener)
+        {
+            this.listener = listener;
         }
 
         /// <summary>
@@ -85,9 +103,9 @@ namespace ES.Data.Database.SQLServer
                 {
                     conn.Open();
                 }
-                catch // (Exception ex)
+                catch (Exception ex)
                 {
-                    // Log.Exception(ex, "", "DBHelper", "CheckConnected", "SqlServer");
+                    if (listener != null) listener.CheckConnectedException(this, ex);
                     return false;
                 }
                 return conn.State == ConnectionState.Open;
@@ -95,8 +113,17 @@ namespace ES.Data.Database.SQLServer
         }
 
         /// <summary>
+        /// 获取数据库连接地址
+        /// </summary>
+        /// <returns></returns>
+        public string GetConnectionString()
+        {
+            return builder.ConnectionString;
+        }
+
+        /// <summary>
         /// 存储过程 1
-        /// 返回值默认为整型，长度为4
+        /// <para>返回值默认为整型，长度为4</para>
         /// </summary>
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
@@ -146,15 +173,15 @@ namespace ES.Data.Database.SQLServer
             }
             catch (Exception ex)
             {
-                // Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
                 result.isCompleted = false;
-                result.exception = ex;
+                if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
             }
             return result;
         }
 
         /// <summary>
-        /// 存储过程 不需要返回任何数据 3
+        /// 存储过程 3
+        /// <para>不需要返回任何数据</para>
         /// </summary>
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
@@ -179,15 +206,16 @@ namespace ES.Data.Database.SQLServer
                     }
                 }
             }
-            catch // (Exception ex)
+            catch (Exception ex)
             {
-                // Log.Exception(ex, procedure, "DBHelper", "Procedure", "SqlServer");
+                if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
             }
             return -1;
         }
 
         /// <summary>
-        /// 执行查询SQL语句（SELECT适用和部分需要更新返回的SQL）
+        /// 执行查询SQL语句
+        /// <para>SELECT适用和部分需要更新返回的SQL</para>
         /// </summary>
         /// <param name="sql">执行SQL</param>
         /// <param name="obj">格式化参数输入【类似string.Format】</param>
@@ -195,8 +223,8 @@ namespace ES.Data.Database.SQLServer
         public CommandResult CommandSQL(string sql, params object[] obj)
         {
             CommandResult result = new CommandResult();
-            result.hasException = false;
             // 执行SQL语句过程
+            result.isCompleted = true;
             try
             {
                 using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
@@ -232,16 +260,16 @@ namespace ES.Data.Database.SQLServer
             }
             catch (Exception ex)
             {
-                // Log.Exception(ex, sql, "DBHelper", "CommandSQL", "SqlServer");
-                result.hasException = true;
-                result.exception = ex;
+                result.isCompleted = false;
                 result.effectNum = -1;
+                if (listener != null) listener.CommandSQLException(this, sql, ex);
             }
             return result;
         }
 
         /// <summary>
-        /// 执行修改SQL语句（非SELECT适用，只需要影响行数）
+        /// 执行修改SQL语句
+        /// <para>非SELECT适用，只需要影响行数</para>
         /// </summary>
         /// <param name="sql">执行SQL</param>
         /// <param name="obj">格式化参数输入【类似string.Format】</param>
@@ -267,17 +295,17 @@ namespace ES.Data.Database.SQLServer
                     return -2;
                 }
             }
-            catch // (Exception ex)
+            catch (Exception ex)
             {
-                // Log.Exception(ex, sql, "DBHelper", "CommandSQL2", "SqlServer");
+                if (listener != null) listener.CommandSQLException(this, sql, ex);
                 return -1;
             }
         }
 
         /// <summary>
         /// 压入SQL队列，等待统一顺序执行【异步】
-        /// 此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用
-        /// 脱离主线程由其他线程处理数据
+        /// <para>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</para>
+        /// <para>脱离主线程由其他线程处理数据</para>
         /// </summary>
         /// <param name="sql">执行SQL</param>
         /// <param name="obj">格式化参数输入【类似string.Format】</param>
@@ -289,8 +317,8 @@ namespace ES.Data.Database.SQLServer
 
         /// <summary>
         /// 压入SQL队列，等待统一顺序执行【异步】
-        /// 此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用
-        /// 脱离主线程由其他线程处理数据
+        /// <para>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</para>
+        /// <para>脱离主线程由其他线程处理数据</para>
         /// </summary>
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
@@ -302,7 +330,7 @@ namespace ES.Data.Database.SQLServer
 
         /// <summary>
         /// 加载数据缓存
-        /// 同 DataAgent 使用相同
+        /// <para>同 DataAgent 使用相同</para>
         /// </summary>
         /// <param name="primaryKey">主键名，用于更新和寻找唯一依据字段</param>
         /// <param name="tableName">SQL表名</param>
@@ -322,7 +350,7 @@ namespace ES.Data.Database.SQLServer
         private int periodUpdate = 0;
         /// <summary>
         /// 通过时间流来更新通过队列执行的SQL
-        /// 固定周期为 1s
+        /// <para>固定周期为 1s</para>
         /// </summary>
         /// <param name="dt"></param>
         protected override void Update(int dt)
@@ -331,8 +359,8 @@ namespace ES.Data.Database.SQLServer
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;
-                lock (SQLQueue) while (SQLQueue.TryDequeue(out var sql)) ExecuteSQL(sql, null);
-                lock (ProcedureQueue) while (ProcedureQueue.TryDequeue(out var pr)) Procedure(pr.procedure, pr.sqlParameters);
+                lock (SQLQueue) { foreach (var sql in SQLQueue) ExecuteSQL(sql, null); SQLQueue.Clear(); }
+                lock (ProcedureQueue) { foreach (var pr in ProcedureQueue) Procedure(pr.procedure, pr.sqlParameters); ProcedureQueue.Clear(); }
             }
         }
 
@@ -346,6 +374,13 @@ namespace ES.Data.Database.SQLServer
             var result = CommandSQL(sql);
             if (result.effectNum > 0) return result.dataSet;
             return null;
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
         }
     }
 }

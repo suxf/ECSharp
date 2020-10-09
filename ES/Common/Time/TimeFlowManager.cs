@@ -18,29 +18,20 @@ namespace ES.Common.Time
         /// </summary>
         internal static TimeFlowManager Instance { get { if (instance == null) instance = new TimeFlowManager(); return instance; } }
         /// <summary>
-        /// 更新队列
-        /// </summary>
-        internal Queue<WeakReference<TimeFlow>>[] weakReferences = null;
-        /// <summary>
         /// 固定刷新周期
-        /// 刷新固定时间：10ms
+        /// <para>刷新固定时间：10ms</para>
         /// </summary>
         internal const int timeFlowPeriod = 10;
 
         /// <summary>
         /// 时间流控制线程 核心线程
         /// </summary>
-        private readonly Thread[] timeFlowThread;
+        private readonly List<TimeFlowThread> timeFlowThreads;
 
         /// <summary>
         /// 监控线程
         /// </summary>
         private readonly Thread timeFlowThreadMoniter;
-
-        /// <summary>
-        /// 正在更新状态值
-        /// </summary>
-        private readonly bool[] isHandleUpdates;
 
         /// <summary>
         /// 私有构造
@@ -51,15 +42,8 @@ namespace ES.Common.Time
             int MAX_HANDLE_TASK_THREAD = Environment.ProcessorCount * 2 + 1;
             // 不足四线程则改为4线程
             if (MAX_HANDLE_TASK_THREAD < 4) MAX_HANDLE_TASK_THREAD = 4;
-            // 先初始化10个队列
-            weakReferences = new Queue<WeakReference<TimeFlow>>[MAX_HANDLE_TASK_THREAD];
-            isHandleUpdates = new bool[MAX_HANDLE_TASK_THREAD];
-            timeFlowThread = new Thread[MAX_HANDLE_TASK_THREAD];
-            for (int i = 0, len = weakReferences.Length; i < len; i++)
-            {
-                isHandleUpdates[i] = false;
-                weakReferences[i] = new Queue<WeakReference<TimeFlow>>();
-            }
+            timeFlowThreads = new List<TimeFlowThread>();
+            for (int i = 0; i < MAX_HANDLE_TASK_THREAD; i++) timeFlowThreads.Add(new TimeFlowThread(i));
 
             // 检测线程启动
             timeFlowThreadMoniter = new Thread(UpdateCheckTimeFlowThread);
@@ -72,88 +56,49 @@ namespace ES.Common.Time
         /// </summary>
         /// <param name="tf"></param>
         /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分 2 单线程同步update</param>
-        internal void PushTimeFlow(TimeFlow tf, int tfIndex = -1)
+        internal void PushTimeFlow(BaseTimeFlow tf, int tfIndex = -1)
         {
             // 查找适用的时间流存储器
-            Queue<WeakReference<TimeFlow>> timeFlows = null;
-            int len = weakReferences.Length;
             int minQueueTaskTfCount = int.MaxValue;
             int index = tfIndex;
-            if (tfIndex == -1)
+
+            lock (timeFlowThreads)
             {
-                // 按单核算 最高为4 索引位最高为3 否则会出问题
-                for (int i = 3; i < len; i++)
+                if (tfIndex == -1)
                 {
-                    lock (weakReferences[i])
+                    // 按单核算 最高为4 索引位最高为3 否则会出问题
+                    for (int i = 3, len = timeFlowThreads.Count; i < len; i++)
                     {
-                        if (weakReferences[i].Count < minQueueTaskTfCount)
+                        var count = timeFlowThreads[i].GetTaskCount();
+                        if (count < minQueueTaskTfCount)
                         {
-                            minQueueTaskTfCount = weakReferences[i].Count;
+                            minQueueTaskTfCount = count;
                             index = i;
                         }
                     }
                 }
+                // 如果线程没有启动则启动
+                var timeFlows = timeFlowThreads[index];
+                if (!timeFlows.IsRunning) timeFlows.Start();
+                if (timeFlows == null) timeFlows = timeFlowThreads[timeFlowThreads.Count - 1];
+                // 压入操作
+                timeFlows.Push(tf);
             }
-            timeFlows = weakReferences[index];
-            // 如果线程没有启动则启动
-            if (!isHandleUpdates[index])
-            {
-                isHandleUpdates[index] = true;
-                lock (timeFlowThread)
-                {
-                    timeFlowThread[index] = new Thread(UpdateHandle);
-                    timeFlowThread[index].IsBackground = true;
-                    timeFlowThread[index].Start(index);
-                }
-            }
-
-            if (timeFlows == null) timeFlows = weakReferences[len - 1];
-            // 压入操作
-            lock (timeFlows) timeFlows.Enqueue(new WeakReference<TimeFlow>(tf));
         }
 
-        /// <summary>
-        /// 更新句柄
-        /// </summary>
-        private void UpdateHandle(object o)
+        internal int CreateExtraTimeFlow()
         {
-            int index = (int)o;
-            bool isHandleUpdate = isHandleUpdates[index];
-            Queue<WeakReference<TimeFlow>> timeFlows = weakReferences[index];
-            // 时间补偿助手
-            TimeFix timeFixHelper = new TimeFix(timeFlowPeriod);
-            // 闲置处理时间计数， 如果超出10s空处理则关闭线程
-            int idlHandleTimeCount = 0;
-
-            int currentPeriod = timeFlowPeriod;
-            while (isHandleUpdate)
+            lock (timeFlowThreads)
             {
-                timeFixHelper.Begin();
-                Thread.Sleep(currentPeriod);
-                lock (timeFlows)
-                {
-                    for (int i = 0, len = timeFlows.Count; i < len; i++)
-                    {
-                        WeakReference<TimeFlow> reference = timeFlows.Dequeue();
-                        if (reference.TryGetTarget(out TimeFlow tf))
-                        {
-                            if (!tf.isTimeFlowPause) tf.UpdateES(timeFlowPeriod - currentPeriod);
-                            if (!tf.isTimeFlowStop) timeFlows.Enqueue(reference);
-                            tf = null;
-                        }
-                    }
-                    if (timeFlows.Count <= 0) { if (++idlHandleTimeCount >= 1000) break; }
-                    else { if (idlHandleTimeCount > 0) idlHandleTimeCount = 0; }
-                }
-                currentPeriod = timeFixHelper.End();
+                var len = timeFlowThreads.Count;
+                timeFlowThreads.Add(new TimeFlowThread(len));
+                return len;
             }
-            // 线程结束时则重置为false
-            isHandleUpdates[(int)o] = false;
         }
 
         /// <summary>
         /// 更新检查阻塞线程并重启
-        /// 检测周期为线程睡眠 1 秒
+        /// <para>检测周期为线程睡眠 1 秒</para>
         /// </summary>
         private void UpdateCheckTimeFlowThread()
         {
@@ -163,17 +108,14 @@ namespace ES.Common.Time
                 {
                     // 睡眠
                     Thread.Sleep(1000);
-                    lock (timeFlowThread)
+                    lock (timeFlowThreads)
                     {
-                        for (int i = timeFlowThread.Length - 1; i >= 0; i--)
+                        for (int i = timeFlowThreads.Count - 1; i >= 0; i--)
                         {
-                            var thread = timeFlowThread[i];
+                            var thread = timeFlowThreads[i];
                             if (thread != null)
                             {
-                                // 阻塞挂起
-                                if (thread.ThreadState == ThreadState.WaitSleepJoin) { thread.Interrupt(); }
-                                // 已经停止的
-                                else if (thread.ThreadState == ThreadState.Aborted || !thread.IsAlive) { timeFlowThread[i] = null; }
+                                thread.CheckThreadSafe();
                             }
                         }
                     }
@@ -184,13 +126,20 @@ namespace ES.Common.Time
 
         /// <summary>
         /// 销毁所有更新
-        /// 本次程序运行结束前都无法使用。建议只有在即将关闭前调用
+        /// <para>本次程序运行结束前都无法使用。建议只有在即将关闭前调用</para>
         /// </summary>
         internal void Destroy()
         {
-            for (int i = 0, len = isHandleUpdates.Length; i < len; i++)
+            lock (timeFlowThreads)
             {
-                isHandleUpdates[i] = false;
+                for (int i = timeFlowThreads.Count - 1; i >= 0; i--)
+                {
+                    var thread = timeFlowThreads[i];
+                    if (thread != null)
+                    {
+                        thread.Close();
+                    }
+                }
             }
         }
     }

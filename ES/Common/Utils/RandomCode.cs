@@ -5,7 +5,7 @@ namespace ES.Common.Utils
 {
     /// <summary>
     /// 随机码
-    /// 用于生成指定长度的符号代码
+    /// <para>用于生成指定长度的符号代码</para>
     /// </summary>
     public static class RandomCode
     {
@@ -78,16 +78,23 @@ namespace ES.Common.Utils
         };
 
         /// <summary>
+        /// 随机器
+        /// </summary>
+        private readonly static Random random = new Random();
+
+        /// <summary>
         /// 生成大小写字母和数字组合的字符串
-        /// 默认随机为大小写和数字
+        /// <para>默认随机为大小写和数字</para>
         /// </summary>
         /// <param name="len">生成长度</param>
         /// <param name="type">随机代码类型</param>
+        /// <param name="seed">随机种子</param>
         /// <returns>生成的字符串</returns>
-        public static string Generate(int len, RandomCodeType type = RandomCodeType.HighLowLetterAndNumber)
+        public static string Generate(int len, RandomCodeType type = RandomCodeType.HighLowLetterAndNumber, int? seed = null)
         {
             StringBuilder newRandom = null;
-            Random rd = new Random();
+            var rd = random;
+            if (seed != null) rd = new Random((int)seed);
             switch (type)
             {
                 case RandomCodeType.HighLowLetterAndNumberAndSymbol:

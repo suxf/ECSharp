@@ -4,18 +4,18 @@ namespace ES.Common.Time
 {
     /// <summary>
     /// 时间修补助手
-    /// 用于线程循环中执行时间不对等产生问题
+    /// <para>用于线程循环中执行时间不对等产生问题</para>
     /// </summary>
     public class TimeFix
     {
         /// <summary>
         /// 监视器
         /// </summary>
-        private Stopwatch sw = new Stopwatch();
+        private readonly Stopwatch sw = new Stopwatch();
         /// <summary>
         /// 循环执行理想周期
         /// </summary>
-        private int period = 0;
+        private readonly int period = 0;
         /// <summary>
         /// 当前执行周期
         /// </summary>
@@ -55,7 +55,7 @@ namespace ES.Common.Time
 
         /// <summary>
         /// 需要执行消耗结束的地方
-        /// 此结果为下一次周期执行等待的时间，如需计算补差值，可以拿理想周期减去实际周期即可
+        /// <para>此结果为下一次周期执行等待的时间，如需计算补差值，可以拿理想周期减去实际周期即可</para>
         /// </summary>
         /// <returns>下一次执行的周期时间</returns>
         public int End()

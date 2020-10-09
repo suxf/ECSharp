@@ -1,7 +1,9 @@
-﻿using ES.Data.Database.SQLServer;
+﻿using ES.Common.Log;
+using ES.Data.Database.SQLServer;
 using ES.Data.Database.SQLServer.Linq;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Sample
 {
@@ -10,7 +12,7 @@ namespace Sample
     /// 此类包含数据库对象中所有内容
     /// 帮助使用框架的朋友进一步了解数据库创建和使用
     /// </summary>
-    class Test_DBSqlServer
+    class Test_DBSqlServer : ISQLServerDBHelperException
     {
         // 数据库助手对象
         SQLServerDBHelper dbHelper;
@@ -19,6 +21,8 @@ namespace Sample
             Console.WriteLine("数据测试开始");
             // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
             dbHelper = new SQLServerDBHelper("127.0.0.1", "sa", "123456", "db_test");
+            // 增加异常监听器
+            dbHelper.SetExceptionListener(this);
             // 检测数据库连接是否成功调用 成功返回true
             if (dbHelper.CheckConnected())
             {
@@ -143,6 +147,21 @@ namespace Sample
             // 如果需要重新拉取数据，那么就调用这个吧
             // 清空函数会把内存中的数据清空，然后后续操作全部会重新读取数据库最新数据
             nodb.Clear();
+        }
+
+        public void CheckConnectedException(SQLServerDBHelper helper, Exception exception)
+        {
+            Log.Exception(exception, "CheckConnectedException");
+        }
+
+        public void CommandSQLException(SQLServerDBHelper helper, string sql, Exception exception)
+        {
+            Log.Exception(exception, "CommandSQLException");
+        }
+
+        public void ProcedureException(SQLServerDBHelper helper, string procedure, SqlParameter[] sqlParameters, Exception exception)
+        {
+            Log.Exception(exception, "ProcedureException");
         }
 
         #region 数据库表配置加载器测试样本

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['randomcodetype_709',['RandomCodeType',['../class_e_s_1_1_common_1_1_utils_1_1_random_code.html#ad27db38974b973a77fdd4d0cdde4eebd',1,'ES::Common::Utils::RandomCode']]]
+  ['parameterdirection_800',['ParameterDirection',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#a65a596bf0b2b4c8b9b81c74586d8260d',1,'ES::Data::Database::SQLServer']]],
+  ['protocoltype_801',['ProtocolType',['../namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6ae',1,'ES::Network::Sockets']]]
 ];

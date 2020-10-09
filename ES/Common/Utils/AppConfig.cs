@@ -6,11 +6,11 @@ namespace ES.Common.Utils
 {
     /// <summary>
     /// 应用配置文件读取
-    /// 默认读取项目同级目录下 [应用名].config 或 [应用名].dll.config 的XML文件(dll同样调用启动程序配置)
-    /// 配置文件 可以直接通过VS新建项 配置文件类型.config 生成
-    /// 最简单的方式通过VS添加新建项选择 应用程序配置文件 后直接确定 即可生成名为 App.config 的文件 就可以了
-    /// 仅支持一级层级和二级层级
-    /// 具体格式：&lt;?xml version="1.0" encoding="utf-8" ?&gt;&lt;configuration&gt;&lt;Hello&gt;Hello World&lt;/Hello&gt;&lt;RootTest&gt;&lt;Hello&gt;Hello World2&lt;/Hello&gt;&lt;/RootTest&gt;&lt;/configuration&gt;
+    /// <para>默认读取项目同级目录下 [应用名].config 或 [应用名].dll.config 的XML文件(dll同样调用启动程序配置)</para>
+    /// <para>配置文件 可以直接通过VS新建项 配置文件类型.config 生成</para>
+    /// <para>最简单的方式通过VS添加新建项选择 应用程序配置文件 后直接确定 即可生成名为 App.config 的文件 就可以了</para>
+    /// <para>仅支持一级层级和二级层级</para>
+    /// <para>具体格式：&lt;?xml version="1.0" encoding="utf-8" ?&gt;&lt;configuration&gt;&lt;Hello&gt;Hello World&lt;/Hello&gt;&lt;RootTest&gt;&lt;Hello&gt;Hello World2&lt;/Hello&gt;&lt;/RootTest&gt;&lt;/configuration&gt;</para>
     /// </summary>
     public static class AppConfig
     {

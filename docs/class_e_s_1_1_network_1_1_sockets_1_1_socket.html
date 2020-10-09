@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.8.3.373</span>
+   &#160;<span id="projectnumber">1.10.2.504</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_sockets_1_1_
 </div><!--header-->
 <div class="contents">
 
-<p>ESF框架Socket模型 此模型只能一次性使用 [无法重复连接] 不建议直接使用此类创建连接操作  
+<p>ESF框架Socket模型  
  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -101,7 +101,7 @@ Public 成员函数</h2></td></tr>
 <tr class="memdesc:a846414568cabf9a321f31c867395e276"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个ESFSocket对象  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a846414568cabf9a321f31c867395e276">更多...</a><br /></td></tr>
 <tr class="separator:a846414568cabf9a321f31c867395e276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b8ed40d74669af0dfe60b5eb53c7ad8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5b8ed40d74669af0dfe60b5eb53c7ad8">Connect</a> (<a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#aa8be3c8939a63beabebc4b09e195d525">AddressFamily</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ab80657203798df8ceb3e1c76931fe00b">addressFamily</a>, <a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6a">SocketType</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ade2fbc0ba035db39e3d23c5e3628aae7">socketType</a>, <a class="el" href="namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6ae">ProtocolType</a> <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aa09ca9ac75036602abd69c91bb5f0ca5">protocolType</a>)</td></tr>
-<tr class="memdesc:a5b8ed40d74669af0dfe60b5eb53c7ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接服务器端 作为客户端连接  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5b8ed40d74669af0dfe60b5eb53c7ad8">更多...</a><br /></td></tr>
+<tr class="memdesc:a5b8ed40d74669af0dfe60b5eb53c7ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接服务器端  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5b8ed40d74669af0dfe60b5eb53c7ad8">更多...</a><br /></td></tr>
 <tr class="separator:a5b8ed40d74669af0dfe60b5eb53c7ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840951666e236c0685870c8002609218"><td class="memItemLeft" align="right" valign="top">System.Net.Sockets.Socket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a840951666e236c0685870c8002609218">GetSocket</a> ()</td></tr>
 <tr class="memdesc:a840951666e236c0685870c8002609218"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取原生套接字对象  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a840951666e236c0685870c8002609218">更多...</a><br /></td></tr>
@@ -128,14 +128,16 @@ Public 成员函数</h2></td></tr>
 <tr class="memdesc:aa09ca9ac75036602abd69c91bb5f0ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议类型  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aa09ca9ac75036602abd69c91bb5f0ca5">更多...</a><br /></td></tr>
 <tr class="separator:aa09ca9ac75036602abd69c91bb5f0ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e2e08293820cae79c444ddc399e30f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5e2e08293820cae79c444ddc399e30f3">isConnected</a> = false<code> [get]</code></td></tr>
-<tr class="memdesc:a5e2e08293820cae79c444ddc399e30f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接状态 只要使用类中连接函数且绑定或连接成功，此变量就会为true  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5e2e08293820cae79c444ddc399e30f3">更多...</a><br /></td></tr>
+<tr class="memdesc:a5e2e08293820cae79c444ddc399e30f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接状态  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5e2e08293820cae79c444ddc399e30f3">更多...</a><br /></td></tr>
 <tr class="separator:a5e2e08293820cae79c444ddc399e30f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f2b69c01c4af195fa280f43e06d0a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ab5f2b69c01c4af195fa280f43e06d0a4">isClosed</a> = false<code> [get]</code></td></tr>
-<tr class="memdesc:ab5f2b69c01c4af195fa280f43e06d0a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭状态 只要调用过类中Close函数或者心跳检测断开连接此变量就会为true  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ab5f2b69c01c4af195fa280f43e06d0a4">更多...</a><br /></td></tr>
+<tr class="memdesc:ab5f2b69c01c4af195fa280f43e06d0a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭状态  <a href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ab5f2b69c01c4af195fa280f43e06d0a4">更多...</a><br /></td></tr>
 <tr class="separator:ab5f2b69c01c4af195fa280f43e06d0a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>ESF框架Socket模型 此模型只能一次性使用 [无法重复连接] 不建议直接使用此类创建连接操作 </p>
+<div class="textblock"><p>ESF框架Socket模型 </p>
+<p>此模型只能一次性使用 [无法重复连接]</p>
+<p>不建议直接使用此类创建连接操作</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="a846414568cabf9a321f31c867395e276"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a846414568cabf9a321f31c867395e276">&#9670;&nbsp;</a></span>Socket()</h2>
@@ -226,7 +228,8 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>连接服务器端 作为客户端连接 </p>
+<p>连接服务器端 </p>
+<p>作为客户端连接</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">addressFamily</td><td>地址协议簇 [ipv4或ipv6]</td></tr>
@@ -327,7 +330,8 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>关闭状态 只要调用过类中Close函数或者心跳检测断开连接此变量就会为true </p>
+<p>关闭状态 </p>
+<p>只要调用过类中Close函数或者心跳检测断开连接此变量就会为true</p>
 
 </div>
 </div>
@@ -351,7 +355,8 @@ Public 成员函数</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>连接状态 只要使用类中连接函数且绑定或连接成功，此变量就会为true </p>
+<p>连接状态 </p>
+<p>只要使用类中连接函数且绑定或连接成功，此变量就会为true</p>
 
 </div>
 </div>

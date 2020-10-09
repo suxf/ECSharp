@@ -2,9 +2,9 @@
 {
     /// <summary>
     /// 日志类
-    /// 调用此日志类可以应对高速写入日志需求
-    /// 日志周期性写入目标文件路径
-    /// 配置请参考 LogConfig.cs 类
+    /// <para>调用此日志类可以应对高速写入日志需求</para>
+    /// <para>日志周期性写入目标文件路径</para>
+    /// <para>配置请参考 LogConfig.cs 类</para>
     /// </summary>
     public static class Log
     {

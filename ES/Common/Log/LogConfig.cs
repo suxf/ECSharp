@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// 日志配置器
-    /// 配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题
+    /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
     /// </summary>
     public static class LogConfig
     {

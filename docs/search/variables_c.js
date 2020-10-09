@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['tag_701',['tag',['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a04f1489eb724ede377e1cd7150ffbcab',1,'ES::Network::Websocket::RemoteConnection']]],
-  ['target_702',['Target',['../class_e_s_1_1_network_1_1_sockets_1_1_base_client_socket.html#acd84bffa6c3336d57dc0f3c1ece1ce46',1,'ES.Network.Sockets.BaseClientSocket.Target()'],['../class_e_s_1_1_network_1_1_sockets_1_1_remote_connection.html#a31da6fc71efb95bf17fd58b5d7235a52',1,'ES.Network.Sockets.RemoteConnection.Target()']]],
-  ['timeflowperiod_703',['timeFlowPeriod',['../class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a8a119739181c05519c43569ce53384f3',1,'ES::Common::Time::TimeFlow']]]
+  ['readwritepool_779',['readWritePool',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a40b249041dc6159529852075bbc69f16',1,'ES::Network::Sockets::Server::ServerSocket']]],
+  ['remoteendpoint_780',['remoteEndPoint',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html#a8f395bcdf4bd89cd2b901ba2317e4a17',1,'ES::Network::Sockets::Server::RemoteSocketMsg']]],
+  ['repeatnum_781',['repeatNum',['../class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b',1,'ES::Common::Time::TimeCaller']]],
+  ['request_782',['request',['../class_e_s_1_1_network_1_1_http_1_1_http_connection.html#a8caf32a2c5145cc069b091afa36056fa',1,'ES::Network::Http::HttpConnection']]],
+  ['response_783',['response',['../class_e_s_1_1_network_1_1_http_1_1_http_connection.html#a0fbb2428f4b2486079b090a6ed673f10',1,'ES::Network::Http::HttpConnection']]]
 ];

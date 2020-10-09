@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.8.3.373</span>
+   &#160;<span id="projectnumber">1.10.2.504</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -131,6 +131,8 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 </div><div class="memdoc">
 
 <p>获取byte的实际数据 </p>
+<p>数组中有连续9个字节连续为0的情况</p>
+<p>原理 默认基础类型字节占用情况最大为8个</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">bytes</td><td></td></tr>
@@ -166,6 +168,8 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 </div><div class="memdoc">
 
 <p>获取byte的实际长度 </p>
+<p>数组中有连续9个字节连续为0的情况</p>
+<p>原理 默认基础类型字节占用情况最大为8个</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">bytes</td><td>数据</td></tr>

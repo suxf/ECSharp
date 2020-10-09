@@ -7,8 +7,8 @@ namespace ES.Network.Websocket
 {
     /// <summary>
     /// esf websocket服务器模块
-    /// 模块是对第三方框架Fleck二次封装完成
-    /// Fleck地址:https://github.com/statianzo/Fleck
+    /// <para>模块是对第三方框架Fleck二次封装完成</para>
+    /// <para>Fleck地址:https://github.com/statianzo/Fleck</para>
     /// </summary>
     public sealed class WebsocketService
     {
@@ -17,7 +17,7 @@ namespace ES.Network.Websocket
         /// </summary>
         private WebSocketServer websocketSvr = null;
 
-        private ConcurrentDictionary<Guid, RemoteConnection> remoteConnections = new ConcurrentDictionary<Guid, RemoteConnection>();
+        private readonly ConcurrentDictionary<Guid, RemoteConnection> remoteConnections = new ConcurrentDictionary<Guid, RemoteConnection>();
 
         /// <summary>
         /// 创建服务

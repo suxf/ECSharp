@@ -1,53 +1,38 @@
 ﻿namespace ES.Common.Time
 {
     /// <summary>
-    /// 时间流 [多线程处理逻辑] Update以10ms周期循环
-    /// 继承此类可以实现Update实时更新功能
-    /// 每次Update被调用都是Sleep过需要的时间，也就是说执行逻辑的时候已经等待了响应间隔周期了
-    /// 继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类
+    /// 时间流 
+    /// <para>[多线程处理逻辑] Update以10ms周期循环</para>
+    /// <para>继承此类可以实现Update实时更新功能</para>
+    /// <para>为了方便类的部分初始和性能节省需手动调用 StartTimeFlow(); 函数</para>
+    /// <para>每次Update是先执行函数体内容再睡眠等待，所以如果需要精确的时间间隔应当先判定时间再累加时间</para>
+    /// <para>继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类</para>
     /// </summary>
-    public abstract class TimeFlow
+    public abstract class TimeFlow : BaseTimeFlow
     {
         /// <summary>
-        /// 获取时间流固定周期
-        /// 刷新固定时间：10ms
-        /// </summary>
-        public static readonly int timeFlowPeriod = TimeFlowManager.timeFlowPeriod;
-
-        /// <summary>
-        /// 时间流暂停开关
-        /// </summary>
-        internal bool isTimeFlowPause = false;
-        /// <summary>
-        /// 时间流暂停开关
+        /// 时间流暂停开关 
+        /// <para>只读 修改通过 SetTimeFlowPause 函数</para>
         /// </summary>
         public bool IsTimeFlowPause { get { return isTimeFlowStop; } }
+
         /// <summary>
         /// 时间流停止开关
-        /// </summary>
-        internal bool isTimeFlowStop = false;
-        /// <summary>
-        /// 时间流停止开关
+        /// <para>只读 修改通过 CloseTimeFlow 函数</para>
         /// </summary>
         public bool IsTimeFlowStop { get { return isTimeFlowStop; } }
 
         /// <summary>
         /// 构造函数 多线程处理逻辑
-        /// 继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类
+        /// <para>继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类</para>
         /// </summary>
-        public TimeFlow()
-        {
-            TimeFlowManager.Instance.PushTimeFlow(this);
-        }
+        public TimeFlow() { }
 
         /// <summary>
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
-        internal TimeFlow(int tfIndex)
-        {
-            TimeFlowManager.Instance.PushTimeFlow(this, tfIndex);
-        }
+        internal TimeFlow(int tfIndex) : base(tfIndex) { }
 
         /// <summary>
         /// 设置时间流暂停
@@ -55,41 +40,26 @@
         /// <param name="pause">暂停开关 true暂停时间流 false恢复时间流</param>
         public void SetTimeFlowPause(bool pause)
         {
-            isTimeFlowPause = pause;
+            SetTimeFlowPauseES(pause);
         }
 
         /// <summary>
         /// 关闭时间流
-        /// 关闭后无法在此对象唤醒
+        /// <para>关闭后无法在此对象唤醒</para>
+        /// <para>如果可能尽可能在不再使用时调用此函数</para>
         /// </summary>
         public void CloseTimeFlow()
         {
-            isTimeFlowStop = true;
+            CloseTimeFlowES();
         }
 
         /// <summary>
         /// 关闭程序中所有时间流
-        /// 调用此函数，在此次进程中无法再次启动
+        /// <para>调用此函数，在此次进程中无法再次启动</para>
         /// </summary>
         public static void CloseAllTimeFlow()
         {
-            TimeFlowManager.Instance.Destroy();
+            CloseAllTimeFlowES();
         }
-
-        /// <summary>
-        /// 内部 更新
-        /// </summary>
-        /// <param name="dt"></param>
-        internal void UpdateES(int dt)
-        {
-            Update(dt);
-        }
-
-        /// <summary>
-        /// 更新 Update以10ms周期循环 可以通过此timeFlowPeriod对象直接获取
-        /// </summary>
-        /// <param name="dt">时间差，实际执行时间 减去 理论周期时间10ms 精度：ms</param>
-        protected abstract void Update(int dt);
-
     }
 }

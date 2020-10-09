@@ -3,6 +3,7 @@ var class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row
     [ "CommitDB", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a7d52404a4a93aa411069fdddc8ac47f0", null ],
     [ "GetEnumerator", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a8c2003231ac3635bb8ebc24f52824d87", null ],
     [ "Load", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ad53b8ce5afd9faf426bfb589523372f9", null ],
+    [ "OnUpdateEnd", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a545bd5f3c45451355a2c1da0ec73d923", null ],
     [ "SetExpiredTime", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#abb8bbf05b71840b8982ec7f4bcc79108", null ],
     [ "SetSyncPeriod", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a8dbd22ba32b18bdb7300ec66768fb8c5", null ],
     [ "Update", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#acb488906aa2ee361bced1695cab3bde0", null ],

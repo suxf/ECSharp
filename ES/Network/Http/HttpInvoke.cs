@@ -4,7 +4,7 @@ namespace ES.Network.Http
 {
     /// <summary>
     /// 超文本访问协议委托回调
-    /// 返回状态码：200 成功 400 访问无效 404 无此页面
+    /// <para>返回状态码：200 成功 400 访问无效 404 无此页面</para>
     /// </summary>
     public interface HttpInvoke
     {

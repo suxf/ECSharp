@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using ES.Network.Visitor;
+﻿using ES.Network.Http.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,9 +26,15 @@ namespace ES.Network.Http
         /// </summary>
         private string defaultPrefix = "";
 
+        // & 风格符
+        private readonly static char[] separator1 = new char[] { '&' };
+
+        // = 风格符
+        private readonly static char[] separator2 = new char[] { '=' };
+
         /// <summary>
         /// 构造函数
-        /// 创建一个HTTP服务
+        /// <para>创建一个HTTP服务</para>
         /// </summary>
         /// <param name="prefix">网址地址（端口号(包括端口)之前的部分:protocol+hostname+port）</param>
         /// <param name="visitor">访问器(注意：访问器需要全部初始化加载完成后才能创建http服务)</param>
@@ -56,7 +61,7 @@ namespace ES.Network.Http
 
         /// <summary>
         /// 构造函数
-        /// 创建一个HTTP服务
+        /// <para>创建一个HTTP服务</para>
         /// </summary>
         /// <param name="invoke">回调接口[不适用访问器添加]</param>
         public HttpService(HttpInvoke invoke)
@@ -107,7 +112,7 @@ namespace ES.Network.Http
 
         /// <summary>
         /// 添加监听链接
-        /// 第二个参数不填默认使用之前填过的第二个参数的值。
+        /// <para>第二个参数不填默认使用之前填过的第二个参数的值。</para>
         /// </summary>
         /// <param name="suffix">网址后缀</param>
         /// <param name="prefix">网址前缀，固定不变的部分，第一次使用必填</param>
@@ -151,22 +156,20 @@ namespace ES.Network.Http
                 int index = requestUrl.IndexOf("?");
                 HttpConnection conn = new HttpConnection();
                 // 读取get值
+                var kvPair = conn.getValue = new Dictionary<string, string>();
                 if (index >= 0)
                 {
                     string getdata = null;
-                    Dictionary<string, string> kvPair = null;
                     getdata = requestUrl.Substring(index + 1, requestUrl.Length - index - 1);
                     requestUrl = requestUrl.Substring(0, index);
-                    string[] parameters = getdata.Split("&", StringSplitOptions.RemoveEmptyEntries);
-                    kvPair = new Dictionary<string, string>();
+                    string[] parameters = getdata.Split(separator1, StringSplitOptions.RemoveEmptyEntries);
                     for (int i = 0, len = parameters.Length; i < len; i++)
                     {
-                        string[] kv = parameters[i].Split("=", StringSplitOptions.RemoveEmptyEntries);
+                        string[] kv = parameters[i].Split(separator2, StringSplitOptions.RemoveEmptyEntries);
                         int kvLen = kv.Length;
                         if (kvLen == 2) kvPair.Add(kv[0], kv[1]);
                         else if (kvLen == 1) kvPair.Add(kv[0], "");
                     }
-                    conn.getValue = kvPair;
                 }
                 // 读取post值
                 if (request.InputStream != null)
@@ -180,6 +183,10 @@ namespace ES.Network.Http
                 {
                     using (StreamWriter writer = new StreamWriter(httpListenerContext.Response.OutputStream))
                     {
+                        if (request.HttpMethod.ToUpper() == "GET") conn.methodType = HttpMethodType.GET;
+                        else if (request.HttpMethod.ToUpper() == "POST") conn.methodType = HttpMethodType.POST;
+                        else conn.methodType = HttpMethodType.UNKNOWN;
+
                         conn.request = request;
                         conn.suffix = requestUrl;
                         conn.response = httpListenerContext.Response;

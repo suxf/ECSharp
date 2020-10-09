@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['tcp_749',['Tcp',['../namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6aea30b7fdeebc36988717d0e274cc2e7520',1,'ES::Network::Sockets']]],
-  ['text_750',['Text',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a9dffbf69ffba8bc38bc4e01abf4b1675',1,'ES::Data::Database::SQLServer']]],
-  ['time_751',['Time',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46aa76d4ef5f3f6a672bbfab2865563e530',1,'ES::Data::Database::SQLServer']]],
-  ['timestamp_752',['Timestamp',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46aa3d5de3eac8bb00ae86fd1a1005f1500',1,'ES::Data::Database::SQLServer']]],
-  ['tinyint_753',['TinyInt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a4ed585d0619a0a98e9d6816528777f5b',1,'ES::Data::Database::SQLServer']]]
+  ['real_838',['Real',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a7f80fcc452c2f1ed2bb51b39d0864df1',1,'ES::Data::Database::SQLServer']]],
+  ['returnvalue_839',['ReturnValue',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#a65a596bf0b2b4c8b9b81c74586d8260daef075575efe2059289041f1118338f18',1,'ES::Data::Database::SQLServer']]]
 ];

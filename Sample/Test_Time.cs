@@ -14,6 +14,7 @@ namespace Sample
         public Test_Time()
         {
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
+            // 如果可能尽可能在不再使用时调用此函数
             // CloseTimeFlow();
             // 同样需要关闭一切进程中的更新可以使用此类的静态函数
             // TimeFlow.CloseAllTimeFlow();
@@ -34,7 +35,7 @@ namespace Sample
             TimeCaller caller = new TimeCaller(1000, 1000);
             // 执行函数可以通过这个函数进行绑定，也可以在构造对象的时候写入
             // 这个可以自行查看函数提示 我这边只是为了简单事例
-            caller.CallMethod(() => { Console.WriteLine("Hello TimeCaller"); });
+            caller.CallMethod((long count) => { Console.WriteLine("Hello TimeCaller"); });
 
             // 接下来就是贯穿在以上两个类的一个重要类
             // TimeFix 时间修正类 当然需要特殊处理时间循环的时候可以单独使用这个类
@@ -58,6 +59,8 @@ namespace Sample
             Console.WriteLine("Hello TimeFix2");
             periodNow = timeFix.End();
             /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
+
+            StartTimeFlow();
         }
 
 
@@ -81,6 +84,14 @@ namespace Sample
                 period1 = 0;
                 Console.WriteLine("Hello TimeFlow");
             }
+        }
+
+        /// <summary>
+        /// 停止更新
+        /// </summary>
+        protected override void OnUpdateEnd()
+        {
+            Console.WriteLine("TimeFlow End");
         }
     }
 }

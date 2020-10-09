@@ -2,13 +2,13 @@
 {
     /// <summary>
     /// 时间执行器
-    /// 此执行器是SyncTimeFlow同一个线程执行
+    /// <para>此执行器是SyncTimeFlow同一个线程执行</para>
     /// </summary>
     public class SyncTimeCaller : TimeCaller
     {
         /// <summary>
         /// 创建一个同步时间执行器
-        /// 此执行器是SyncTimeFlow同一个线程执行
+        /// <para>此执行器是SyncTimeFlow同一个线程执行</para>
         /// </summary>
         /// <param name="delayTime">第一次开始延迟时间，单位ms</param>
         /// <param name="periodTime">每次周期时间【第二次之后开始执行的延迟时间】，单位ms</param>

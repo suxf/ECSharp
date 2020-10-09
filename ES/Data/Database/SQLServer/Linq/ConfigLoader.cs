@@ -16,7 +16,7 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 加载器构造函数
-        /// 此操作是利用sql查询到结果然后进行绑定
+        /// <para>此操作是利用sql查询到结果然后进行绑定</para>
         /// </summary>
         /// <param name="dBHelper">数据库连接对象</param>
         /// <param name="sql">需要查询的语句</param>
@@ -48,7 +48,7 @@ namespace ES.Data.Database.SQLServer.Linq
         public void Reload()
         {
             var result = dBHelper.CommandSQL(sql);
-            if(result.effectNum >= 0)
+            if (result.effectNum >= 0)
             {
                 Configs = new T[result.collection.Count];
                 int i = 0;

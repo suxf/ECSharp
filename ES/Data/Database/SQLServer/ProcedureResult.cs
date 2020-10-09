@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace ES.Data.Database.SQLServer
@@ -31,12 +30,7 @@ namespace ES.Data.Database.SQLServer
 
         /// <summary>
         /// 是否已完成
-        /// 如果未完成很可能有异常 请通过 exception 对象获取
         /// </summary>
         public bool isCompleted { internal set; get; }
-        /// <summary>
-        /// 异常内容
-        /// </summary>
-        public Exception exception { internal set; get; }
     }
 }

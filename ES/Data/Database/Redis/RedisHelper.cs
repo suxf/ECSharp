@@ -2,7 +2,6 @@
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +9,7 @@ namespace ES.Data.Database.Redis
 {
     /// <summary>
     /// Redis内存缓存数据库助手
-    /// 不可继承
+    /// <para>不可继承</para>
     /// </summary>
     public sealed class RedisHelper
     {

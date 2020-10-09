@@ -9,7 +9,7 @@ namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
     /// 数据记录[线程安全]
-    /// 数据不进行任何读写操作一定时间[默认300s有效]后，下一次读取必定重新读取数据库最新数据
+    /// <para>数据不进行任何读写操作一定时间[默认300s有效]后，下一次读取必定重新读取数据库最新数据</para>
     /// </summary>
     public class DataAgentRow : IEnumerable<KeyValuePair<string, object>>
     {
@@ -26,8 +26,8 @@ namespace ES.Data.Database.SQLServer.Linq
 
         /// <summary>
         /// 获取数据对象数据
-        /// 这个可以直接获得未转类型的对象
-        /// 但是更加推荐使用 GetObject 来获取
+        /// <para>这个可以直接获得未转类型的对象</para>
+        /// <para>但是更加推荐使用 GetObject 来获取</para>
         /// </summary>
         /// <param name="key">主键</param>
         /// <returns></returns>
