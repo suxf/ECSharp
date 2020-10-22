@@ -17,6 +17,28 @@ namespace ES.Network.HyperSocket
     public class HyperSocket : BaseTimeFlow
     {
         /// <summary>
+        /// 心跳pong字节
+        /// </summary>
+        internal readonly static byte[] HeartPongBytes = new byte[] { 0x01, 0x00, 0x02 };
+        /// <summary>
+        /// 心跳ping字节
+        /// </summary>
+        internal readonly static byte[] HeartPingBytes = new byte[] { 0x01, 0x00, 0x01 };
+        /// <summary>
+        /// 客户端连接成功字节
+        /// </summary>
+        internal readonly static byte[] ConnectedClientBytes = new byte[] { 0x01, 0x00, 0x03 };
+        /// <summary>
+        /// 初次握手
+        /// </summary>
+        internal readonly static byte[] FirstConnectBytes = new byte[] { 0x01, 0x02, 0x01 };
+        /// <summary>
+        /// 签名握手
+        /// </summary>
+        internal readonly static byte[] SignSecurityBytes = new byte[] { 0x01, 0x02, 0x02 };
+
+
+        /// <summary>
         /// 是否为服务器模式
         /// </summary>
         public readonly bool IsServerMode;
@@ -46,6 +68,11 @@ namespace ES.Network.HyperSocket
         /// </summary>
         private int heartCheckPeriod = 0;
 
+        /// <summary>
+        /// SSL传输协议
+        /// </summary>
+        internal SSL ssl;
+
 
         /// <summary>
         /// 构造函数
@@ -67,7 +94,11 @@ namespace ES.Network.HyperSocket
             this.connectMaxNum = connectMaxNum;
             this.config = config;
 
-            if (this.IsServerMode) remoteSockets = new RemoteHyperSocket[connectMaxNum];
+            if (this.IsServerMode)
+            {
+                remoteSockets = new RemoteHyperSocket[connectMaxNum];
+                ssl = new SSL(SSL.SSLMode.RSA);
+            }
         }
 
         /// <summary>
@@ -175,10 +206,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         private readonly RemoteHyperSocket[] remoteSockets;
 
-        /// <summary>
-        /// 心跳pong字节
-        /// </summary>
-        internal readonly static byte[] HeartPongBytes = new byte[] { 0x01, 0x00, 0x02 };
+
 
         /// <summary>
         /// 创建一个服务器超级套接字
@@ -235,24 +263,26 @@ namespace ES.Network.HyperSocket
         /// 生成认证通道
         /// </summary>
         /// <returns></returns>
-        internal byte[] GenerateVerifyConnection(out int sessionId)
+        internal byte[] GenerateVerifyConnection(out ushort sessionId)
         {
             try
             {
-                sessionId = GetUnusedSocketIndex();
+                sessionId = (ushort)GetUnusedSocketIndex();
                 if (sessionId > ushort.MinValue)
                 {
                     // 先加入验证
-                    RemoteHyperSocket remote = new RemoteHyperSocket((ushort)sessionId, this, config);
+                    RemoteHyperSocket remote = new RemoteHyperSocket(sessionId, this, config);
                     SetSocketAtIndex(sessionId, remote);
                     // 返回验证码
                     long secondTicks = DateTime.UtcNow.ToSecondTicks();
                     // 刚建立连接
                     string nativeCode = RandomCode.Generate(8, RandomCode.RandomCodeType.HighLetterAndNumber, (int)secondTicks);
-                    byte[] data = new byte[10];
+                    byte[] data = new byte[12];
                     Array.Copy(Encoding.UTF8.GetBytes(nativeCode), data, 8);
                     data[8] = (byte)((UdpPort >> 8) & 0xFF);
                     data[9] = (byte)((UdpPort) & 0xFF);
+                    data[10] = (byte)((sessionId >> 8) & 0xFF);
+                    data[11] = (byte)((sessionId) & 0xFF);
                     return data;
                 }
             }
@@ -333,15 +363,6 @@ namespace ES.Network.HyperSocket
         private IHyperSocketClientListener cntListener;
 
         /// <summary>
-        /// 心跳ping字节
-        /// </summary>
-        internal readonly static byte[] HeartPingBytes = new byte[] { 0x01, 0x00, 0x01 };
-        /// <summary>
-        /// 客户端连接成功字节
-        /// </summary>
-        internal readonly static byte[] ConnectedClientBytes = new byte[] { 0x01, 0x00, 0x03 };
-
-        /// <summary>
         /// 客户端会话ID
         /// </summary>
         public ushort SessionId { get; private set; } = 0;
@@ -350,6 +371,11 @@ namespace ES.Network.HyperSocket
         /// 获取有效性
         /// </summary>
         internal bool IsValid { get; private set; } = false;
+
+        /// <summary>
+        /// 是否安全连接 启用安全连接才可以使用
+        /// </summary>
+        internal bool isSecurityConnected = false;
 
         /// <summary>
         /// 创建一个客户端超级套接字
@@ -372,7 +398,7 @@ namespace ES.Network.HyperSocket
                 hyperSocket.tcpClient.SetListener(listener);
                 hyperSocket.tcpClient.Init(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp, hyperSocket.tcpClient);
                 // 发送验证标签
-                hyperSocket.tcpClient.Send(new byte[] { 0x01, 0x02 });
+                hyperSocket.tcpClient.Send(FirstConnectBytes);
 
                 return hyperSocket;
             }
@@ -386,7 +412,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 初始化
         /// </summary>
-        internal void InitializeUdpClient(byte[] data, ushort sessionId)
+        internal void InitializeUdpClient(byte[] data)
         {
             try
             {
@@ -395,15 +421,15 @@ namespace ES.Network.HyperSocket
                 string nativeCode = RandomCode.Generate(8, RandomCode.RandomCodeType.HighLetterAndNumber, (int)secondTicks);
                 if (Encoding.UTF8.GetString(data.Take(8).ToArray()) == nativeCode)
                 {
-                    SessionId = sessionId;
                     ushort udpPort = (ushort)(((data[8] & 0xFF) << 8) | (data[9] & 0xFF));
+                    SessionId = (ushort)(((data[10] & 0xFF) << 8) | (data[11] & 0xFF));
                     UdpPort = udpPort;
                     udpClient = new HyperSocketClientModule(ip, udpPort, (int)config.UdpReceiveSize, ProtocolType.Udp, this);
                     udpClient.SetListener(cntListener);
                     // 返回验证UDP连接
                     if (udpClient.Init(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp, udpClient))
                     {
-                        long verifyCode = sessionId * (secondTicks / 100);
+                        long verifyCode = SessionId * (secondTicks / 100);
                         udpClient.SendKcp(Encoding.UTF8.GetBytes(verifyCode.ToString()));
                         return;
                     }
@@ -422,12 +448,23 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal void VerifyServerData(byte[] data)
         {
-            if (Encoding.UTF8.GetString(data) == DateTime.UtcNow.ToSecondTicks().ToString())
+            var str = Encoding.UTF8.GetString(data);
+            if (str.ElementAt(0) == '0')
             {
                 IsValid = true;
                 IsAlive = true;
                 StartTimeFlow();
                 SendTcp(ConnectedClientBytes);
+            }
+            else if (str.ElementAt(0) == '1')
+            {
+                IsValid = true;
+                IsAlive = true;
+                var publicKey = str.Substring(2);
+                config.UseSSL = true;
+                config.SSLMode = int.Parse(str.ElementAt(1).ToString());
+                ssl = new SSL(SSL.SSLMode.Both, publicKey);
+                tcpClient.Send(SessionId, ssl.RSAEncrypt(ssl.GetAESKey().AsBytes()));
             }
             else Close();
         }
@@ -438,7 +475,11 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public bool SendTcp(byte[] data)
         {
-            if (IsValid && data != null) return tcpClient.Send(SessionId, data);
+            if (IsValid && data != null)
+            {
+                if (config.UseSSL && (config.SSLMode == 0 || config.SSLMode == 1)) return tcpClient.Send(SessionId, ssl.AESEncrypt(data));
+                else return tcpClient.Send(SessionId, data);
+            }
             else return false;
         }
 
@@ -448,7 +489,11 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void SendUdp(byte[] data)
         {
-            if (IsValid) udpClient.SendKcp(data);
+            if (IsValid)
+            {
+                if (config.UseSSL && (config.SSLMode == 0 || config.SSLMode == 2)) udpClient.SendKcp(ssl.AESEncrypt(data));
+                else udpClient.SendKcp(data);
+            }
         }
 
         /// <summary>
@@ -466,7 +511,7 @@ namespace ES.Network.HyperSocket
         /// <param name="dataStr"></param>
         public void SendUdp(string dataStr)
         {
-            if (IsValid) udpClient.SendKcp(Encoding.UTF8.GetBytes(dataStr));
+            SendUdp(Encoding.UTF8.GetBytes(dataStr));
         }
         #endregion
     }

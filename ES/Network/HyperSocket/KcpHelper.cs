@@ -120,7 +120,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         protected override void OnUpdateEnd()
         {
-            kcp.Dispose();
+            // kcp.Dispose();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Sample
             // new Test_RandomCode();
             // new Test_SweetStream();
             new Test_HyperSocket();
+            // new Test_SimpleChatRoom();
 
             Console.ReadLine();
         }

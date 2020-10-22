@@ -28,6 +28,8 @@ namespace ES.Common.Time
         /// </summary>
         private readonly List<TimeFlowThread> timeFlowThreads;
 
+        private readonly object m_lock = new object();
+
         /// <summary>
         /// 监控线程
         /// </summary>
@@ -62,7 +64,7 @@ namespace ES.Common.Time
             int minQueueTaskTfCount = int.MaxValue;
             int index = tfIndex;
 
-            lock (timeFlowThreads)
+            lock (m_lock)
             {
                 if (tfIndex == -1)
                 {
@@ -88,7 +90,7 @@ namespace ES.Common.Time
 
         internal int CreateExtraTimeFlow()
         {
-            lock (timeFlowThreads)
+            lock (m_lock)
             {
                 var len = timeFlowThreads.Count;
                 timeFlowThreads.Add(new TimeFlowThread(len));
@@ -108,7 +110,7 @@ namespace ES.Common.Time
                 {
                     // 睡眠
                     Thread.Sleep(1000);
-                    lock (timeFlowThreads)
+                    lock (m_lock)
                     {
                         for (int i = timeFlowThreads.Count - 1; i >= 0; i--)
                         {
@@ -130,7 +132,7 @@ namespace ES.Common.Time
         /// </summary>
         internal void Destroy()
         {
-            lock (timeFlowThreads)
+            lock (m_lock)
             {
                 for (int i = timeFlowThreads.Count - 1; i >= 0; i--)
                 {

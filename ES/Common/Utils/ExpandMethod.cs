@@ -254,5 +254,27 @@ namespace ES.Common.Utils
             return result == 0;
         }
         #endregion
+
+        #region 用UTF-8编码 String转Byte Byte转String
+        /// <summary>
+        /// 转为UTF-8编码的字节数组
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns></returns>
+        public static byte[] AsBytes(this string str)
+        {
+            return Encoding.UTF8.GetBytes(str);
+        }
+
+        /// <summary>
+        /// 转为UTF-8编码的字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <returns></returns>
+        public static string AsString(this byte[] bytes)
+        {
+            return Encoding.UTF8.GetString(bytes);
+        }
+        #endregion
     }
 }

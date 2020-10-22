@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['port_879',['port',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5bf1c52bcd035995707d4e6f5ec27d27',1,'ES::Network::Sockets::Socket']]],
-  ['prefixkey_880',['prefixKey',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde',1,'ES::Data::Database::Redis::RedisHelper']]],
-  ['primarykey_881',['primaryKey',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ae8e07ec9f561aac1bbdce046da7cb1cf',1,'ES::Data::Database::SQLServer::Linq::DataAgentRows']]],
-  ['primarykeyvalue_882',['PrimaryKeyValue',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row.html#a65c400cf9046b57d48ccbd26b14a5912',1,'ES::Data::Database::SQLServer::Linq::DataAgentRow']]],
-  ['procedure_883',['procedure',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#a55cf9e024403ce1819382561bd176af4',1,'ES::Data::Database::SQLServer::ProcedureResult']]],
-  ['protocoltype_884',['protocolType',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aa09ca9ac75036602abd69c91bb5f0ca5',1,'ES::Network::Sockets::Socket']]]
+  ['rbuffer_881',['rBuffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a3b307195d95aead4171d4f2f34aa8918',1,'ES.Network.Sockets.Client.BaseClientSocket.rBuffer()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#af4fc50d08fe812e3e6b408a8b0f0879b',1,'ES.Network.Sockets.Server.RemoteConnection.rBuffer()']]],
+  ['receiveeventargs_882',['receiveEventArgs',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a9c4f90171c92876e2c4e0c503855adaa',1,'ES::Network::Sockets::Server::RemoteConnection']]],
+  ['returnvalue_883',['returnValue',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#ae7ccc5d09925d717d3a004840d1d54bc',1,'ES::Data::Database::SQLServer::ProcedureResult']]]
 ];

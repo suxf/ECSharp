@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.2.504</span>
+   &#160;<span id="projectnumber">1.10.5.526</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -99,15 +99,15 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 <tr class="memitem:a0c8967408ced77b83f2a026e67675e82"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0c8967408ced77b83f2a026e67675e82">GetValidLength</a> (byte[] bytes)</td></tr>
 <tr class="memdesc:a0c8967408ced77b83f2a026e67675e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际长度  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0c8967408ced77b83f2a026e67675e82">更多...</a><br /></td></tr>
 <tr class="separator:a0c8967408ced77b83f2a026e67675e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e1281460cd0b27623db969a0178707e"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a8e1281460cd0b27623db969a0178707e">GetValidByte</a> (byte[] bytes)</td></tr>
-<tr class="memdesc:a8e1281460cd0b27623db969a0178707e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际数据  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a8e1281460cd0b27623db969a0178707e">更多...</a><br /></td></tr>
-<tr class="separator:a8e1281460cd0b27623db969a0178707e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6f11ad8142b6812bc9a5fc6a7cf28246">GetValidByte</a> (byte[] bytes, int retainNum=0)</td></tr>
+<tr class="memdesc:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际数据  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6f11ad8142b6812bc9a5fc6a7cf28246">更多...</a><br /></td></tr>
+<tr class="separator:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>字节助手 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a8e1281460cd0b27623db969a0178707e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e1281460cd0b27623db969a0178707e">&#9670;&nbsp;</a></span>GetValidByte()</h2>
+<a id="a6f11ad8142b6812bc9a5fc6a7cf28246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f11ad8142b6812bc9a5fc6a7cf28246">&#9670;&nbsp;</a></span>GetValidByte()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -119,8 +119,18 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
           <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetValidByte </td>
           <td>(</td>
           <td class="paramtype">byte[]&#160;</td>
-          <td class="paramname"><em>bytes</em></td><td>)</td>
+          <td class="paramname"><em>bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>retainNum</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -135,7 +145,8 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 <p>原理 默认基础类型字节占用情况最大为8个</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bytes</td><td></td></tr>
+    <tr><td class="paramname">bytes</td><td>数据</td></tr>
+    <tr><td class="paramname">retainNum</td><td>往有效数据后保留几位，默认为 0 不保留</td></tr>
   </table>
   </dd>
 </dl>

@@ -22,7 +22,7 @@ namespace Sample
 
                 for (int i = 1; i <= 1000; i++)
                 {
-                    byte[] b = sw.Encode(0x00, Encoding.UTF8.GetBytes(RandomCode.Generate(new Random().Next(1, 5000))));
+                    byte[] b = sw.Encode(Encoding.UTF8.GetBytes(RandomCode.Generate(new Random().Next(1, 5000))));
                     // byte[] b = sw.Encode(Encoding.UTF8.GetBytes("a"));
                     int size = 128 - memoryStream.ToArray().Length;
                     if (size > 0)
@@ -51,12 +51,12 @@ namespace Sample
                 if (memoryStream.ToArray().Length > 0) sw.Decode(memoryStream.ToArray());
 
                 int count = 0;
-                byte[] r = sw.TakeBuffer();
+                byte[] r = sw.TakeStreamBuffer();
                 do
                 {
                     count++;
                     Console.WriteLine(Encoding.UTF8.GetString(r));
-                    r = sw.TakeBuffer();
+                    r = sw.TakeStreamBuffer();
                 } while (r != null);
                 Console.WriteLine("all:" + count);
 

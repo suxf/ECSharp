@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.2.504</span>
+   &#160;<span id="projectnumber">1.10.5.526</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -162,6 +162,12 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 <tr class="memitem:a23c8e3e254958e607910933280f3e79b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#a23c8e3e254958e607910933280f3e79b">Compare</a> (this byte[] b1, byte[] b2)</td></tr>
 <tr class="memdesc:a23c8e3e254958e607910933280f3e79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">比较字节数组  <a href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#a23c8e3e254958e607910933280f3e79b">更多...</a><br /></td></tr>
 <tr class="separator:a23c8e3e254958e607910933280f3e79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb7f33d07aace671ef004abfbc1497f"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#abbb7f33d07aace671ef004abfbc1497f">AsBytes</a> (this string str)</td></tr>
+<tr class="memdesc:abbb7f33d07aace671ef004abfbc1497f"><td class="mdescLeft">&#160;</td><td class="mdescRight">转为UTF-8编码的字节数组  <a href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#abbb7f33d07aace671ef004abfbc1497f">更多...</a><br /></td></tr>
+<tr class="separator:abbb7f33d07aace671ef004abfbc1497f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff71b6280c85a6ba0d94b85cb19e8b7d"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#aff71b6280c85a6ba0d94b85cb19e8b7d">AsString</a> (this byte[] bytes)</td></tr>
+<tr class="memdesc:aff71b6280c85a6ba0d94b85cb19e8b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">转为UTF-8编码的字符串  <a href="class_e_s_1_1_common_1_1_utils_1_1_extend_class.html#aff71b6280c85a6ba0d94b85cb19e8b7d">更多...</a><br /></td></tr>
+<tr class="separator:aff71b6280c85a6ba0d94b85cb19e8b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>拓展方法类 </p>
@@ -169,7 +175,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 <p>便于更快捷的开发</p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="a09aec212b48facb48c1fc7401a2c32df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09aec212b48facb48c1fc7401a2c32df">&#9670;&nbsp;</a></span>AsBytes() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a09aec212b48facb48c1fc7401a2c32df">&#9670;&nbsp;</a></span>AsBytes() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +205,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 </div>
 </div>
 <a id="a5b121105a2cca356388609363884e617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b121105a2cca356388609363884e617">&#9670;&nbsp;</a></span>AsBytes() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b121105a2cca356388609363884e617">&#9670;&nbsp;</a></span>AsBytes() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,6 +231,41 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 <p>序列化json对象为字节流 </p>
 <p>此字节流编码：UTF-8</p>
 <dl class="section return"><dt>返回</dt><dd>序列化的字节流</dd></dl>
+
+</div>
+</div>
+<a id="abbb7f33d07aace671ef004abfbc1497f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb7f33d07aace671ef004abfbc1497f">&#9670;&nbsp;</a></span>AsBytes() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ExtendClass.AsBytes </td>
+          <td>(</td>
+          <td class="paramtype">this string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转为UTF-8编码的字节数组 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>字符串</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -342,8 +383,43 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 
 </div>
 </div>
+<a id="aff71b6280c85a6ba0d94b85cb19e8b7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff71b6280c85a6ba0d94b85cb19e8b7d">&#9670;&nbsp;</a></span>AsString() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string ES.Common.Utils.ExtendClass.AsString </td>
+          <td>(</td>
+          <td class="paramtype">this byte[]&#160;</td>
+          <td class="paramname"><em>bytes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转为UTF-8编码的字符串 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bytes</td><td>字节数组</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a99c2da5f280802ad88d904056b6bdf96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99c2da5f280802ad88d904056b6bdf96">&#9670;&nbsp;</a></span>AsString() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c2da5f280802ad88d904056b6bdf96">&#9670;&nbsp;</a></span>AsString() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +448,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_ext
 </div>
 </div>
 <a id="a33e41a57b80fb90d7e2dd65e3511b905"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33e41a57b80fb90d7e2dd65e3511b905">&#9670;&nbsp;</a></span>AsString() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a33e41a57b80fb90d7e2dd65e3511b905">&#9670;&nbsp;</a></span>AsString() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

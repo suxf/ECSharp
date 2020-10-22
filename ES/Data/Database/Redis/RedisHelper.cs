@@ -860,14 +860,7 @@ namespace ES.Data.Database.Redis
             ISubscriber sub = multiplexer.GetSubscriber();
             sub.Subscribe(subChannel, (channel, message) =>
             {
-                if (handler == null)
-                {
-                    Console.WriteLine(subChannel + " 订阅收到消息：" + message);
-                }
-                else
-                {
-                    handler(channel, message);
-                }
+                handler?.Invoke(channel, message);
             });
         }
 

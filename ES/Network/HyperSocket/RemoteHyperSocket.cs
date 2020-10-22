@@ -30,6 +30,10 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal bool isValid = false;
         /// <summary>
+        /// 是否安全连接 启用安全连接才可以使用
+        /// </summary>
+        internal bool isSecurityConnected = false;
+        /// <summary>
         /// 与远程对象捆绑标记
         /// </summary>
         public object Tag;
@@ -37,9 +41,14 @@ namespace ES.Network.HyperSocket
         /// 心跳检测超时累计
         /// </summary>
         internal long heartCheckTimeOut = DateTime.UtcNow.Ticks;
+        /// <summary>
+        /// 安全传输协议
+        /// </summary>
+        internal SSL ssl;
 
         internal RemoteHyperSocket(ushort sessionId, HyperSocket hyperSocket, HyperSocketConfig config)
         {
+            if (config.UseSSL) ssl = new SSL(SSL.SSLMode.AES);
             hyperSocketRef = new WeakReference<HyperSocket>(hyperSocket);
             SessionId = sessionId;
             kcpHelper = new KcpHelper(sessionId, (int)config.UdpReceiveSize, config.KcpWinSize, config.kcpMode, this);
@@ -52,7 +61,11 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         public bool SendTcp(byte[] data)
         {
-            if (IsAlive && isValid && data != null) return tcpConn.Send(SessionId, data);
+            if (IsAlive && isValid && data != null)
+            {
+                if (hyperSocketRef.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) return tcpConn.Send(SessionId, ssl.AESEncrypt(data));
+                else return tcpConn.Send(SessionId, data);
+            }
             else return false;
         }
 
@@ -64,6 +77,15 @@ namespace ES.Network.HyperSocket
         {
             System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
             return tcpConn.Send(SessionId, HyperSocket.HeartPongBytes);
+        }
+
+        /// <summary>
+        /// 发送签名 TCP
+        /// </summary>
+        /// <returns></returns>
+        internal bool SendSignData(byte[] signData)
+        {
+            return tcpConn.Send(SessionId, signData);
         }
 
         /// <summary>
@@ -81,7 +103,11 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void SendUdp(byte[] data)
         {
-            if (IsAlive && isValid) SendKcp(data);
+            if (IsAlive && isValid)
+            {
+                if (hyperSocketRef.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2)) SendKcp(ssl.AESEncrypt(data));
+                else SendKcp(data);
+            }
         }
 
         /// <summary>

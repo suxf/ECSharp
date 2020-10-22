@@ -48,6 +48,11 @@ namespace ES.Network.Sockets.Server
         public object Target = null;
 
         /// <summary>
+        /// 超级远程连接
+        /// </summary>
+        internal HyperSocket.RemoteHyperSocket hySocket = null;
+
+        /// <summary>
         /// 接受事件参数
         /// </summary>
         public System.Net.Sockets.SocketAsyncEventArgs receiveEventArgs { get; protected set; } = null;
@@ -181,12 +186,12 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         internal void TriggerSocketInvoke()
         {
-            StreamBuffer sb = null;
+            byte[] sb = null;
             do
             {
                 if (rBuffer != null) sb = rBuffer.TakeStreamBuffer();
                 if (sb == null) return;
-                if (socketInvoke != null) socketInvoke.ReceivedCompleted(new RemoteSocketMsg(sb.sessionId, sb.buffer, this));
+                if (socketInvoke != null) socketInvoke.ReceivedCompleted(new RemoteSocketMsg(0, sb, this));
             } while (true);
         }
 
@@ -209,6 +214,7 @@ namespace ES.Network.Sockets.Server
             socket = null;
             rBuffer = null;
             Target = null;
+            hySocket = null;
         }
     }
 }

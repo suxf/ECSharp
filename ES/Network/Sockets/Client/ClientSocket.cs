@@ -188,11 +188,11 @@ namespace ES.Network.Sockets.Client
         /// </summary>
         protected override void TriggerSocketInvoke()
         {
-            StreamBuffer sb = rBuffer.TakeStreamBuffer();
+            var sb = rBuffer.TakeStreamBuffer();
             while (sb != null)
             {
                 if (socketInvoke != null)
-                    socketInvoke.ReceivedCompleted(new SocketMsg(sb.sessionId, sb.buffer, this));
+                    socketInvoke.ReceivedCompleted(new SocketMsg(0, sb, this));
                 // 提取下一个
                 sb = rBuffer.TakeStreamBuffer();
             }

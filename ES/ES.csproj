@@ -7,7 +7,7 @@
     <Authors>Fyenet Inc.</Authors>
     <Description>Easy .NET CORE Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.10.2.504</Version>
+    <Version>1.10.5.526</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
@@ -16,7 +16,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/suxf/EasySharpFrame</RepositoryUrl>
     <Product>EasySharpFrame</Product>
-    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>

@@ -48,9 +48,8 @@ namespace ES.Network.HyperSocket
 
         public void ReceivedCompleted(SocketMsg msg)
         {
-            if (hyperSocket != null)
+            if (hyperSocket != null && msg.data != null)
             {
-
                 if (clientSocket.protocolType == ProtocolType.Tcp)
                 {
                     // 验证通过
@@ -61,11 +60,26 @@ namespace ES.Network.HyperSocket
                             Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
                             if (!hasFirstRecvPong) { hasFirstRecvPong = true; listener.OnOpen(hyperSocket); }
                         }
+                        else if (hyperSocket.config.UseSSL && !hyperSocket.isSecurityConnected)
+                        {
+                            if (msg.data != null)
+                            {
+                                var signOk = hyperSocket.ssl.RSAVerifyData(hyperSocket.ssl.AESEncrypt(HyperSocket.SignSecurityBytes), msg.data);
+                                if (signOk)
+                                {
+                                    hyperSocket.isSecurityConnected = true;
+                                    hyperSocket.StartTimeFlow();
+                                    Send(hyperSocket.SessionId, HyperSocket.ConnectedClientBytes);
+                                }
+                            }
+                        }
                         else
-                            listener.OnTcpReceive(msg.data, hyperSocket);
-
+                        {
+                            if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener.OnTcpReceive(hyperSocket.ssl.AESDecrypt(msg.data), hyperSocket);
+                            else listener.OnTcpReceive(msg.data, hyperSocket);
+                        }
                     }
-                    else hyperSocket.InitializeUdpClient(msg.data, msg.sessionId);
+                    else hyperSocket.InitializeUdpClient(msg.data);
                 }
                 else if (clientSocket.protocolType == ProtocolType.Udp)
                 {
@@ -90,7 +104,11 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void OnReceive(byte[] data)
         {
-            if (hyperSocket.IsValid) listener.OnUdpReceive(data, hyperSocket);
+            if (hyperSocket.IsValid)
+            {
+                if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2)) listener.OnUdpReceive(hyperSocket.ssl.AESDecrypt(data), hyperSocket);
+                else listener.OnUdpReceive(data, hyperSocket);
+            }
             else hyperSocket.VerifyServerData(data);
         }
 

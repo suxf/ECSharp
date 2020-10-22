@@ -39,13 +39,13 @@ namespace ES.Common.Time
 
         internal int GetTaskCount()
         {
-            lock (m_lock) 
+            lock (m_lock)
             {
                 if (timeFlows == null) return 0;
-                else 
-                { 
-                    if (IsPausePushTask) return int.MaxValue; 
-                    else return timeFlows.Count; 
+                else
+                {
+                    if (IsPausePushTask) return int.MaxValue;
+                    else return timeFlows.Count;
                 }
             }
         }
@@ -77,10 +77,14 @@ namespace ES.Common.Time
             TimeFix timeFixHelper = new TimeFix(TimeFlowManager.timeFlowPeriod);
             // 闲置处理时间计数， 1000次为10s 如果超出10s空处理则关闭线程
             int idlHandleTimeCount = 0;
-            // 计算句柄超出间隔次数 连续超出3次则分割任务
+            // 计算句柄超出间隔次数 1s内连续超出10次则分割任务 
             int mathHandleTimeCount = 0;
+            // 重置计算句柄超出间隔次数计数 100次为1s 
+            int mathHandleTimeResetCount = 0;
             // 暂停推送任务计数 6000次为60s 超出1分钟尝试重新接管线程
             int pausePushTaskCount = 0;
+            // 转移其他线程组
+            BaseTimeFlow[] moveOtherThreadFlow = null;
 
             int currentPeriod = TimeFlowManager.timeFlowPeriod;
             while (IsRunning)
@@ -118,31 +122,33 @@ namespace ES.Common.Time
                     {
                         if (idlHandleTimeCount > 0) idlHandleTimeCount = 0;
                         // index大于等于3为0 1 2核心线程不需要处理分离任务
-                        if(index >= 3)
+                        if (index >= 3)
                         {
                             // 超出运行算率3次 分割算率建立新时间线
                             if (len > 1 && totalTime > TimeFlowManager.timeFlowPeriod)
                             {
-                                mathHandleTimeCount++;
-                                if (mathHandleTimeCount >= 3)
+                                if (++mathHandleTimeCount >= 10)
                                 {
                                     mathHandleTimeCount = 0;
                                     IsPausePushTask = true;
-                                    // 创建新的时间线
-                                    var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
+
                                     // 移除一半内容进入新的时间线
+                                    int moveOtherThreadFlowIndex = 0;
+                                    moveOtherThreadFlow = new BaseTimeFlow[len - len / 2];
                                     for (int i = len - 1, end = len / 2; i >= end; i--)
                                     {
                                         WeakReference<BaseTimeFlow> reference = timeFlows[i];
                                         if (reference.TryGetTarget(out BaseTimeFlow tf))
                                         {
-                                            TimeFlowManager.Instance.PushTimeFlow(tf, index);
+                                            moveOtherThreadFlow[moveOtherThreadFlowIndex++] = tf;
                                             timeFlows.RemoveAt(i);
                                         }
                                     }
                                 }
+
+                                // 超过10s 重置一次分割检测任务
+                                if (++mathHandleTimeResetCount >= 100) { mathHandleTimeResetCount = 0; mathHandleTimeCount = 0; }
                             }
-                            else mathHandleTimeCount = 0;
 
                             // 暂停接管任务缓和处理
                             if (IsPausePushTask)
@@ -156,6 +162,18 @@ namespace ES.Common.Time
                         }
                     }
                 }
+                // 在锁外迁移
+                if (moveOtherThreadFlow != null)
+                {
+                    // 创建新的时间线
+                    var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
+                    for (int i = 0, len = moveOtherThreadFlow.Length; i < len; i++)
+                    {
+                        TimeFlowManager.Instance.PushTimeFlow(moveOtherThreadFlow[i], index);
+                    }
+                    moveOtherThreadFlow = null;
+                }
+
                 Thread.Sleep(currentPeriod);
                 currentPeriod = timeFixHelper.End();
             }

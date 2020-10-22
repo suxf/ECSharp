@@ -106,13 +106,13 @@ namespace ES.Network.Sockets.Client
             byte[] data = null;
             if (offset == 0 && buffer.Length == count)
             {
-                data = rBuffer.Encode(sessionId, buffer);
+                data = rBuffer.Encode(buffer);
             }
             else if (offset > 0)
             {
                 byte[] buffer2 = new byte[count];
                 Array.Copy(buffer, offset, buffer2, 0, count);
-                data = rBuffer.Encode(sessionId, buffer);
+                data = rBuffer.Encode(buffer);
             }
 
             try

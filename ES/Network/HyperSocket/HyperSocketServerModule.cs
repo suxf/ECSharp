@@ -3,7 +3,6 @@ using ES.Network.Sockets;
 using ES.Network.Sockets.Server;
 using System;
 using System.Text;
-using System.Threading;
 
 namespace ES.Network.HyperSocket
 {
@@ -31,21 +30,22 @@ namespace ES.Network.HyperSocket
 
         public void ReceivedCompleted(RemoteSocketMsg msg)
         {
-            if (hyperSocket != null)
+            if (hyperSocket != null && msg.data != null)
             {
                 if (serverSocket.protocolType == ProtocolType.Tcp)
                 {
-                    if (msg.sessionId == ushort.MinValue)
+                    if (msg.sender.hySocket == null)
                     {
                         // 连接握手开头验证
-                        if (msg.data[0] == 0x01 && msg.data[1] == 0x02)
+                        if (msg.data.Compare(HyperSocket.FirstConnectBytes))
                         {
                             var data = hyperSocket.GenerateVerifyConnection(out var sessionId);
                             if (data != null)
                             {
+                                msg.sender.hySocket = hyperSocket.GetSocketAtIndex(sessionId);
                                 // 发送验证数据
-                                hyperSocket.GetSocketAtIndex(sessionId).tcpConn = msg.sender;
-                                msg.sender.Send((ushort)sessionId, data);
+                                msg.sender.hySocket.tcpConn = msg.sender;
+                                msg.sender.Send(sessionId, data);
                             }
                         }
                         else msg.sender.Destroy();
@@ -53,7 +53,7 @@ namespace ES.Network.HyperSocket
                     else
                     {
                         // 处理消息
-                        var remote = hyperSocket.GetSocketAtIndex(msg.sessionId);
+                        var remote = hyperSocket.GetSocketAtIndex(msg.sender.hySocket.SessionId);
                         if (remote != null)
                         {
                             if (msg.data != null && remote.isValid && remote.CheckSameRemote(msg.sender))
@@ -64,7 +64,22 @@ namespace ES.Network.HyperSocket
                                     remote.SendPong();
                                     listener.OnOpen(remote);
                                 }
-                                else listener.OnTcpReceive(msg.data, remote);
+                                else if (hyperSocket.config.UseSSL && !remote.isSecurityConnected)
+                                {
+                                    var key = hyperSocket.ssl.RSADecrypt(msg.data);
+                                    if (key != null)
+                                    {
+                                        remote.isSecurityConnected = true;
+                                        remote.ssl.SetAESKey(key.AsString());
+                                        remote.SendSignData(hyperSocket.ssl.RSASignData(remote.ssl.AESEncrypt(HyperSocket.SignSecurityBytes)));
+                                    }
+                                    else remote.CloseSocket();
+                                }
+                                else
+                                {
+                                    if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener.OnTcpReceive(remote.ssl.AESDecrypt(msg.data), remote);
+                                    else listener.OnTcpReceive(msg.data, remote);
+                                }
                             }
                             else remote.CloseSocket();
                         }
@@ -93,6 +108,9 @@ namespace ES.Network.HyperSocket
         {
             if (remote.isValid)
             {
+                if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2))
+                    data = remote.ssl.AESDecrypt(data);
+
                 if (data.Compare(HyperSocket.HeartPingBytes)) remote.SendPong();
                 else listener.OnUdpReceive(data, remote);
             }
@@ -104,7 +122,8 @@ namespace ES.Network.HyperSocket
                 if (verifyCode.ToString() == waitVerifyCode)
                 {
                     remote.isValid = true;
-                    remote.SendKcp(Encoding.UTF8.GetBytes(DateTime.UtcNow.ToSecondTicks().ToString()));
+                    var str = hyperSocket.config.UseSSL ? ("1" + hyperSocket.config.SSLMode + hyperSocket.ssl.GetRSAPublicKey()) : "0";
+                    remote.SendKcp(Encoding.UTF8.GetBytes(str));
                 }
                 else remote.CloseSocket();
             }

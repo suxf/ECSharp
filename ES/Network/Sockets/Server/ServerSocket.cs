@@ -515,7 +515,7 @@ namespace ES.Network.Sockets.Server
             var SEAE = client.sendEventArgs.Pop();
             if (client.socket.socketType == SocketType.Stream)
             {
-                data = client.rBuffer.Encode(sessionId, data);
+                data = client.rBuffer.Encode(data);
                 SEAE.SetBuffer(data, 0, data.Length);
                 bool willRaiseEvent = client.socket.SendAsync(SEAE);
                 if (!willRaiseEvent)
