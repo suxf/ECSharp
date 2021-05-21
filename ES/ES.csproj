@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net462</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;net462;net5.0;</TargetFrameworks>
     <AssemblyName>ES</AssemblyName>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Fyenet Inc.</Authors>
     <Description>Easy .NET CORE Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.10.5.526</Version>
+    <Version>1.12.0</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>

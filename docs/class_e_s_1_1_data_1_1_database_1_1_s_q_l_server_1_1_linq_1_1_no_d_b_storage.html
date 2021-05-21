@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.5.526</span>
+   &#160;<span id="projectnumber">1.12.0</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -85,7 +85,6 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
-<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">ES.Data.Database.SQLServer.Linq.NoDBStorage&lt; T, U &gt; 模板类 参考</div>  </div>
@@ -100,7 +99,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
  <div class="center">
   <img src="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.png" usemap="#ES.Data.Database.SQLServer.Linq.NoDBStorage_3C_20T_2C_20U_20_3E_map" alt=""/>
   <map id="ES.Data.Database.SQLServer.Linq.NoDBStorage_3C_20T_2C_20U_20_3E_map" name="ES.Data.Database.SQLServer.Linq.NoDBStorage_3C_20T_2C_20U_20_3E_map">
-<area href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html" title="时间流基类" alt="ES.Common.Time.BaseTimeFlow" shape="rect" coords="0,0,339,24"/>
+<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,339,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -109,6 +108,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a3d1cdbd0a43208f457e9c053ce74dee6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a3d1cdbd0a43208f457e9c053ce74dee6">NoDBStorage</a> (<a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html">SQLServerDBHelper</a> dBHelper, string keyName, string valueName, string tableName, int syncPeriod=1000, string condition=&quot;&quot;)</td></tr>
 <tr class="memdesc:a3d1cdbd0a43208f457e9c053ce74dee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个非关系型数据存储类  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a3d1cdbd0a43208f457e9c053ce74dee6">更多...</a><br /></td></tr>
 <tr class="separator:a3d1cdbd0a43208f457e9c053ce74dee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abefd4b22a6862c86eab8b1df9b7ded34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#abefd4b22a6862c86eab8b1df9b7ded34">ContainsKey</a> (T key)</td></tr>
+<tr class="memdesc:abefd4b22a6862c86eab8b1df9b7ded34"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否包含键  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#abefd4b22a6862c86eab8b1df9b7ded34">更多...</a><br /></td></tr>
+<tr class="separator:abefd4b22a6862c86eab8b1df9b7ded34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a394b168b47727c0ddc9bd312b2e10fe2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a394b168b47727c0ddc9bd312b2e10fe2">TryGetValue</a> (T key, out U value)</td></tr>
 <tr class="memdesc:a394b168b47727c0ddc9bd312b2e10fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取值  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a394b168b47727c0ddc9bd312b2e10fe2">更多...</a><br /></td></tr>
 <tr class="separator:a394b168b47727c0ddc9bd312b2e10fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,26 +129,12 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a0536b9fdd29c859b0da69ae51f95517a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a0536b9fdd29c859b0da69ae51f95517a">Clear</a> ()</td></tr>
 <tr class="memdesc:a0536b9fdd29c859b0da69ae51f95517a"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空所有数据  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a0536b9fdd29c859b0da69ae51f95517a">更多...</a><br /></td></tr>
 <tr class="separator:a0536b9fdd29c859b0da69ae51f95517a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">StartTimeFlow</a> ()</td></tr>
-<tr class="memdesc:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始时间流  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">更多...</a><br /></td></tr>
-<tr class="separator:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected 成员函数</h2></td></tr>
-<tr class="memitem:a83b8bc2a1e1e58a35018e9dd01af328a"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a83b8bc2a1e1e58a35018e9dd01af328a">Update</a> (int dt)</td></tr>
-<tr class="memdesc:a83b8bc2a1e1e58a35018e9dd01af328a"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统调用  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#a83b8bc2a1e1e58a35018e9dd01af328a">更多...</a><br /></td></tr>
-<tr class="separator:a83b8bc2a1e1e58a35018e9dd01af328a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad24e16d8a5ae5a486c5ba3fb736384bb"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ad24e16d8a5ae5a486c5ba3fb736384bb">OnUpdateEnd</a> ()</td></tr>
-<tr class="memdesc:ad24e16d8a5ae5a486c5ba3fb736384bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ad24e16d8a5ae5a486c5ba3fb736384bb">更多...</a><br /></td></tr>
-<tr class="separator:ad24e16d8a5ae5a486c5ba3fb736384bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-额外继承的成员函数</h2></td></tr>
-<tr class="inherit_header pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">timeFlowPeriod</a> = TimeFlowManager.timeFlowPeriod</td></tr>
-<tr class="memdesc:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取时间流固定周期  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">更多...</a><br /></td></tr>
-<tr class="separator:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3145c95c51e4d87171ae82502768172"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ae3145c95c51e4d87171ae82502768172">Update</a> (int dt)</td></tr>
+<tr class="memdesc:ae3145c95c51e4d87171ae82502768172"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统调用  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ae3145c95c51e4d87171ae82502768172">更多...</a><br /></td></tr>
+<tr class="separator:ae3145c95c51e4d87171ae82502768172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7b7d8d7d4edaa2f16748b8a586cc93c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ac7b7d8d7d4edaa2f16748b8a586cc93c">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:ac7b7d8d7d4edaa2f16748b8a586cc93c"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html#ac7b7d8d7d4edaa2f16748b8a586cc93c">更多...</a><br /></td></tr>
+<tr class="separator:ac7b7d8d7d4edaa2f16748b8a586cc93c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>非关系型存储类 </p>
@@ -247,6 +235,33 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
+<a id="abefd4b22a6862c86eab8b1df9b7ded34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abefd4b22a6862c86eab8b1df9b7ded34">&#9670;&nbsp;</a></span>ContainsKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html">ES.Data.Database.SQLServer.Linq.NoDBStorage</a>&lt; T, U &gt;.ContainsKey </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>是否包含键 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>键</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>存在为真，否则为假</dd></dl>
+
+</div>
+</div>
 <a id="a4de625294d1747c751e20120dbffd7dc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4de625294d1747c751e20120dbffd7dc">&#9670;&nbsp;</a></span>DeleteKey()</h2>
 
@@ -290,35 +305,6 @@ Protected 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>立即更新数据库 </p>
-
-</div>
-</div>
-<a id="ad24e16d8a5ae5a486c5ba3fb736384bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad24e16d8a5ae5a486c5ba3fb736384bb">&#9670;&nbsp;</a></span>OnUpdateEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html">ES.Data.Database.SQLServer.Linq.NoDBStorage</a>&lt; T, U &gt;.OnUpdateEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>停止更新 </p>
-
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#aa5ea5bc85e4f38d5e2b595ac02a8d995">ES.Common.Time.BaseTimeFlow</a>.</p>
 
 </div>
 </div>
@@ -437,28 +423,20 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a83b8bc2a1e1e58a35018e9dd01af328a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83b8bc2a1e1e58a35018e9dd01af328a">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="ae3145c95c51e4d87171ae82502768172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3145c95c51e4d87171ae82502768172">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override void <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html">ES.Data.Database.SQLServer.Linq.NoDBStorage</a>&lt; T, U &gt;.Update </td>
+          <td class="memname">void <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html">ES.Data.Database.SQLServer.Linq.NoDBStorage</a>&lt; T, U &gt;.Update </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>dt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>系统调用 </p>
@@ -469,7 +447,28 @@ Protected 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ab5d8347e16822c2c4f02b94d1e53f5ba">ES.Common.Time.BaseTimeFlow</a>.</p>
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="ac7b7d8d7d4edaa2f16748b8a586cc93c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7b7d8d7d4edaa2f16748b8a586cc93c">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html">ES.Data.Database.SQLServer.Linq.NoDBStorage</a>&lt; T, U &gt;.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">ES.Common.Time.ITimeUpdate</a>.</p>
 
 </div>
 </div>

@@ -12,7 +12,7 @@ namespace ES.Data.Database.SQLServer
     /// <para>数据库异常可以通过 异常监听来获取</para>
     /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
     /// </summary>
-    public sealed class SQLServerDBHelper : BaseTimeFlow
+    public sealed class SQLServerDBHelper : ITimeUpdate
     {
         /// <summary>
         /// 数据连接参数构造器
@@ -28,6 +28,22 @@ namespace ES.Data.Database.SQLServer
         /// </summary>
         private ISQLServerDBHelperException listener = null;
 
+        private readonly BaseTimeFlow timeFlow;
+
+        /// <summary>
+        /// 获取数据库时间
+        /// <para>如果数据库异常导致查询失败，则默认返回DateTime.Now</para>
+        /// </summary>
+        public DateTime Now
+        {
+            get
+            {
+                var result = CommandSQL("SELECT GETDATE()");
+                if (result.effectNum == 1) return (DateTime)result.collection[0][0];
+                else return DateTime.Now;
+            }
+        }
+
         /// <summary>
         /// SqlServer助手构造函数
         /// <para>存在参数不需要再次在额外配置中设置</para>
@@ -40,7 +56,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="minPoolSize">数据库池连接最小值，默认为0</param>
         /// <param name="maxPoolSize">数据库池连接最大值，默认为100</param>
         /// <param name="extraConfig">数据库额外配置</param>
-        public SQLServerDBHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null) : base(0)
+        public SQLServerDBHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null)
         {
             if (extraConfig != null && extraConfig != "")
                 builder = new SqlConnectionStringBuilder(extraConfig);
@@ -56,7 +72,8 @@ namespace ES.Data.Database.SQLServer
             builder.MaxPoolSize = maxPoolSize;
             builder.IntegratedSecurity = false;
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -64,22 +81,24 @@ namespace ES.Data.Database.SQLServer
         /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
         /// <param name="connectionString">连接配置</param>
-        public SQLServerDBHelper(string connectionString) : base(0)
+        public SQLServerDBHelper(string connectionString)
         {
             builder = new SqlConnectionStringBuilder(connectionString);
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
         /// SqlServer助手构造函数
         /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
-        public SQLServerDBHelper(SqlConnectionStringBuilder sqlConnectionStringBuilder) : base(0)
+        public SQLServerDBHelper(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
             builder = sqlConnectionStringBuilder;
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -224,7 +243,6 @@ namespace ES.Data.Database.SQLServer
         {
             CommandResult result = new CommandResult();
             // 执行SQL语句过程
-            result.isCompleted = true;
             try
             {
                 using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
@@ -260,7 +278,6 @@ namespace ES.Data.Database.SQLServer
             }
             catch (Exception ex)
             {
-                result.isCompleted = false;
                 result.effectNum = -1;
                 if (listener != null) listener.CommandSQLException(this, sql, ex);
             }
@@ -353,9 +370,9 @@ namespace ES.Data.Database.SQLServer
         /// <para>固定周期为 1s</para>
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
-            periodUpdate += timeFlowPeriod;
+            periodUpdate += TimeFlow.period;
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;
@@ -365,21 +382,9 @@ namespace ES.Data.Database.SQLServer
         }
 
         /// <summary>
-        /// 内部调用
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
-        internal DataSet NoDBStorageSQL(string sql)
-        {
-            var result = CommandSQL(sql);
-            if (result.effectNum > 0) return result.dataSet;
-            return null;
-        }
-
-        /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }

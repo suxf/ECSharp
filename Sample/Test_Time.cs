@@ -7,24 +7,26 @@ namespace Sample
     /// <summary>
     /// 时间帮助类测试
     /// </summary>
-    class Test_Time : TimeFlow/* 继承此类可以周期性执行Update函数 */
+    class Test_Time : ITimeUpdate/* 继承此类可以周期性执行Update函数 */
     {
         int period1 = 0;
+        private readonly TimeFlow timeFlow;
 
         public Test_Time()
         {
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
-            // CloseTimeFlow();
+            // Close();
             // 同样需要关闭一切进程中的更新可以使用此类的静态函数
-            // TimeFlow.CloseAllTimeFlow();
+            // TimeFlow.CloseAll();
             // 如果只是暂停的话 那么可以调用
-            // SetTimeFlowPause(true);
+            // Pause();
             // 再次恢复时间更新
-            // SetTimeFlowPause(false);
+            // Start();
             // 最后如果你需要查看此时update的状态话可以通过以下两个变量
-            // IsTimeFlowPause
-            // IsTimeFlowStop
+            // isPause
+            // isStop
+            timeFlow = TimeFlow.Create(this);
 
             // 时间执行器
             // 了解了TimeFlow有时候觉得太繁琐
@@ -32,7 +34,7 @@ namespace Sample
             // 这个类根据类似Task设计思想开发
             // 但是他们还是有些区别，注意不管是这类函数操作中不要在包含一些特别耗时的操作
             // 比如说 Thread.Sleep 这种
-            TimeCaller caller = new TimeCaller(1000, 1000);
+            TimeCaller caller = TimeCaller.Create(2000, 10000, true);
             // 执行函数可以通过这个函数进行绑定，也可以在构造对象的时候写入
             // 这个可以自行查看函数提示 我这边只是为了简单事例
             caller.CallMethod((long count) => { Console.WriteLine("Hello TimeCaller"); });
@@ -59,8 +61,23 @@ namespace Sample
             Console.WriteLine("Hello TimeFix2");
             periodNow = timeFix.End();
             /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
+            timeFlow.Start();
 
-            StartTimeFlow();
+            // 临时变量 测试时间流自动停止
+            StartTempTime();
+            // 需要gc回收一下
+            // 此处gc不会影响当前大括号的其他定时器，因为这个函数域还没结束
+            GC.Collect();
+        }
+
+        private void StartTempTime()
+        {
+            TimeCaller caller = TimeCaller.Create(1000, 10000, true);
+            // 执行函数可以通过这个函数进行绑定，也可以在构造对象的时候写入
+            // 这个可以自行查看函数提示 我这边只是为了简单事例
+            caller.CallMethod((long count) => { Console.WriteLine("Hello TimeCaller2"); });
+            // 时间流
+            for(int i = 0; i < 100; i++) new Time2();
         }
 
 
@@ -72,10 +89,10 @@ namespace Sample
         /// 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因为我们有自动修正
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             /* 如果需要统计时间在处理就需要处理 */
-            period1 += timeFlowPeriod;
+            period1 += TimeFlow.period;
             
             /* 在此处可以处理预期过了时间的一些判定或者内容 */
             // 这里我们每5秒执行一次
@@ -89,9 +106,38 @@ namespace Sample
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
             Console.WriteLine("TimeFlow End");
+        }
+
+        private class Time2 : ITimeUpdate
+        {
+
+            public Time2()
+            {
+                TimeFlow.Create(this).Start();
+            }
+
+            int period1 = 0;
+            public void Update(int deltaTime)
+            {
+                /* 如果需要统计时间在处理就需要处理 */
+                period1 += TimeFlow.period;
+
+                /* 在此处可以处理预期过了时间的一些判定或者内容 */
+                // 这里我们每5秒执行一次
+                if (period1 >= 5000)
+                {
+                    period1 = 0;
+                    Console.WriteLine("Hello TimeFlow2");
+                }
+            }
+
+            public void UpdateEnd()
+            {
+                
+            }
         }
     }
 }

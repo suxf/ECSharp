@@ -46,6 +46,19 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal SSL ssl;
 
+        /// <summary>
+        /// ip地址
+        /// </summary>
+        internal string ip;
+        /// <summary>
+        /// tcp端口
+        /// </summary>
+        internal int tcpPort;
+        /// <summary>
+        /// udp端口
+        /// </summary>
+        internal int udpPort;
+
         internal RemoteHyperSocket(ushort sessionId, HyperSocket hyperSocket, HyperSocketConfig config)
         {
             if (config.UseSSL) ssl = new SSL(SSL.SSLMode.AES);
@@ -184,7 +197,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         public string GetRemoteIp()
         {
-            return tcpConn.socket.endPoint.Address.ToString();
+            return ip;
         }
 
         /// <summary>
@@ -192,7 +205,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         public int GetRemoteTcpPort()
         {
-            return tcpConn.socket.endPoint.Port;
+            return tcpPort;
         }
 
         /// <summary>
@@ -200,7 +213,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         public int GetRemoteUdpPort()
         {
-            return tcpConn.socket.endPoint.Port;
+            return udpPort;
         }
 
         /// <summary>
@@ -222,6 +235,7 @@ namespace ES.Network.HyperSocket
             }
             IsAlive = false;
             isValid = false;
+            Tag = null;
             hyperSocketRef = null;
         }
     }

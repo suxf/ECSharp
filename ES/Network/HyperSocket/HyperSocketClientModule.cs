@@ -68,7 +68,7 @@ namespace ES.Network.HyperSocket
                                 if (signOk)
                                 {
                                     hyperSocket.isSecurityConnected = true;
-                                    hyperSocket.StartTimeFlow();
+                                    hyperSocket.timeFlow.StartTimeFlowES();
                                     Send(hyperSocket.SessionId, HyperSocket.ConnectedClientBytes);
                                 }
                             }

@@ -76,7 +76,7 @@ namespace Sample
                 fff = true;
                 Console.WriteLine($"Connect Num:{++num}");
                 // Console.WriteLine($"Connect OK:{socket.SessionId}");
-                timeCaller2[index++] = new TimeCaller(1000, 50, true, -1, (long count) =>
+                timeCaller2[index++] = TimeCaller.Create(1000, 50, true, -1, (long count) =>
                 {
                     socket.SendUdp(count.ToString());
                 });

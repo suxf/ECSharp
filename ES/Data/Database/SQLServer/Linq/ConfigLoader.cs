@@ -55,8 +55,8 @@ namespace ES.Data.Database.SQLServer.Linq
                 foreach (DataRow item in result.collection)
                 {
                     var temp = Configs[i++] = new T();
-                    temp.SetESPrimaryKey(item);
                     temp.SetESConfig(item);
+                    temp.SetESPrimaryKey(item);
                 }
             }
         }

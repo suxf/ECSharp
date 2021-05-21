@@ -85,11 +85,18 @@ namespace ES.Network.Http
         /// </summary>
         public void StartServer()
         {
-            listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
-            listener.TimeoutManager.IdleConnection = new TimeSpan(0, 0, 5);// 允许
-            listener.Start();
+            try
+            {
+                listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+                listener.TimeoutManager.IdleConnection = new TimeSpan(0, 0, 5);// 允许
+                listener.Start();
 
-            listener.BeginGetContext(new AsyncCallback(GetContextCallBack), listener);
+                listener.BeginGetContext(new AsyncCallback(GetContextCallBack), listener);
+            }
+            catch (Exception ex)
+            {
+                httpInvoke.HttpException(ex, null);
+            }
         }
 
         /// <summary>
@@ -205,16 +212,16 @@ namespace ES.Network.Http
                         // if (status == 400 || status == 404) httpListenerContext.Response.Abort();
                     }
                 }
+
+                // 异步
+                if (httpListener != null && httpListener.IsListening)
+                    httpListener.BeginGetContext(new AsyncCallback(GetContextCallBack), httpListener);
             }
             catch (Exception ex)
             {
                 // Log.Exception(ex, "HttpService", "GetContextCallBack", "Http");
                 httpInvoke.HttpException(ex, null);
             }
-
-            // 异步
-            if (httpListener != null && httpListener.IsListening)
-                httpListener.BeginGetContext(new AsyncCallback(GetContextCallBack), httpListener);
         }
 
         /// <summary>
@@ -222,12 +229,20 @@ namespace ES.Network.Http
         /// </summary>
         public void CloseHttpServer()
         {
-            if (listener != null)
+            try
             {
-                listener.Abort();// 立刻停止访问请求
-                listener = null;
+                if (listener != null)
+                {
+                    listener.Abort();// 立刻停止访问请求
+                    listener = null;
+                }
+                httpInvoke = null;
             }
-            httpInvoke = null;
+            catch (Exception ex)
+            {
+                // Log.Exception(ex, "HttpService", "GetContextCallBack", "Http");
+                httpInvoke.HttpException(ex, null);
+            }
         }
     }
 }

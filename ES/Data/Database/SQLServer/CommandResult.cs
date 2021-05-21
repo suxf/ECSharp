@@ -8,7 +8,8 @@ namespace ES.Data.Database.SQLServer
     public class CommandResult
     {
         /// <summary>
-        /// 影响行数
+        /// 单表执行影响行数
+        /// <para>此值大于等于0的情况才代表执行成功，大于0的情况表示对数据有记录或影响</para>
         /// </summary>
         public int effectNum { internal set; get; }
         /// <summary>
@@ -19,10 +20,5 @@ namespace ES.Data.Database.SQLServer
         /// 数据总合集
         /// </summary>
         public DataSet dataSet { internal set; get; }
-
-        /// <summary>
-        /// 是否已完成
-        /// </summary>
-        public bool isCompleted { internal set; get; }
     }
 }

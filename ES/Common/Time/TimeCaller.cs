@@ -5,7 +5,7 @@
     /// <para>此执行器多线程分配</para>
     /// <para>需要统一线程调度请使用SyncTimeCaller</para>
     /// </summary>
-    public class TimeCaller : BaseTimeFlow
+    public class TimeCaller : ITimeUpdate
     {
         /// <summary>
         /// 回调执行的函数
@@ -37,6 +37,8 @@
         public readonly long repeatNum;
         private long repeatNumNow = 0;
 
+        private readonly BaseTimeFlow timeFlow;
+
         /// <summary>
         /// 创建一个时间执行器
         /// </summary>
@@ -45,7 +47,8 @@
         /// <param name="isRepeat">是否重复状态，不重复状态下周期时间无效, 默认不重复</param>
         /// <param name="repeatNum">重复次数，值为 -1时 无限循环，默认 -1</param>
         /// <param name="handle">需要被执行的函数</param>
-        public TimeCaller(int delayTime, int periodTime, bool isRepeat = false, long repeatNum = -1, MethodHandle handle = null)
+        /// <param name="tfIndex">时间流索引</param>
+        private TimeCaller(int delayTime, int periodTime, bool isRepeat, long repeatNum, MethodHandle handle, int tfIndex = -1)
         {
             this.delayTime = delayTime;
             this.periodTime = periodTime;
@@ -53,27 +56,37 @@
             this.repeatNum = repeatNum;
             this.handle = handle;
 
-            StartTimeFlow();
+            if (tfIndex == -1)
+                timeFlow = BaseTimeFlow.CreateTimeFlow(this);
+            else
+                timeFlow = BaseTimeFlow.CreateTimeFlow(this, tfIndex);
+            timeFlow.StartTimeFlowES();
+        }
+   
+        /// <summary>
+        /// 创建一个时间执行器
+        /// </summary>
+        /// <param name="delayTime">第一次开始延迟时间，单位ms</param>
+        /// <param name="periodTime">每次周期时间【第二次之后开始执行的延迟时间】，单位ms</param>
+        /// <param name="isRepeat">是否重复状态，不重复状态下周期时间无效, 默认不重复</param>
+        /// <param name="repeatNum">重复次数，值为 -1时 无限循环，默认 -1</param>
+        /// <param name="handle">需要被执行的函数</param>
+        public static TimeCaller Create(int delayTime, int periodTime, bool isRepeat = false, long repeatNum = -1, MethodHandle handle = null)
+        {
+            return new TimeCaller(delayTime, periodTime, isRepeat, repeatNum, handle);
         }
 
         /// <summary>
-        /// 创建一个时间执行器
+        /// 创建一个同步时间执行器
         /// </summary>
         /// <param name="delayTime">第一次开始延迟时间，单位ms</param>
         /// <param name="periodTime">每次周期时间【第二次之后开始执行的延迟时间】，单位ms</param>
         /// <param name="isRepeat">是否重复状态，不重复状态下周期时间无效, 默认不重复</param>
         /// <param name="repeatNum">重复次数，值为 -1时 无限循环，默认 -1</param>
         /// <param name="handle">需要被执行的函数</param>
-        /// <param name="timeFlowIndex">时间流线程索引</param>
-        protected TimeCaller(int delayTime, int periodTime, bool isRepeat, long repeatNum, MethodHandle handle, int timeFlowIndex) : base(timeFlowIndex)
+        public static TimeCaller CreateSync(int delayTime, int periodTime, bool isRepeat = false, long repeatNum = -1, MethodHandle handle = null)
         {
-            this.delayTime = delayTime;
-            this.periodTime = periodTime;
-            this.isRepeat = isRepeat;
-            this.repeatNum = repeatNum;
-            this.handle = handle;
-
-            StartTimeFlow();
+            return new TimeCaller(delayTime, periodTime, isRepeat, repeatNum, handle, 2);
         }
 
         /// <summary>
@@ -90,44 +103,45 @@
         /// </summary>
         public void CancelTimeCall()
         {
-            CloseTimeFlowES();
+            timeFlow.CloseTimeFlowES();
         }
 
         /// <summary>
         /// 系统调用
         /// </summary>
-        /// <param name="dt"></param>
-        protected override void Update(int dt)
+        /// <param name="deltaTime"></param>
+        public void Update(int deltaTime)
         {
             if (isFirstCall)
             {
-                delayTimeNow += timeFlowPeriod;
+                delayTimeNow += TimeFlow.period;
                 if (delayTimeNow >= delayTime)
                 {
                     isFirstCall = false;
-                    handle?.Invoke(++repeatNumNow);
+                    if (handle != null) handle.Invoke(++repeatNumNow);
                 }
             }
             else
             {
                 if (repeatNum == -1 || repeatNumNow < repeatNum)
                 {
-                    periodTimeNow += timeFlowPeriod;
+                    periodTimeNow += TimeFlow.period;
                     if (periodTimeNow >= periodTime)
                     {
                         periodTimeNow = 0;
-                        handle?.Invoke(++repeatNumNow);
+                        if (handle != null) handle.Invoke(++repeatNumNow);
                     }
                 }
-                if (!isRepeat || (isRepeat && repeatNum != -1 && repeatNumNow >= repeatNum)) CloseTimeFlowES();
+                if (!isRepeat || (isRepeat && repeatNum != -1 && repeatNumNow >= repeatNum)) timeFlow.CloseTimeFlowES();
             }
         }
 
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
+
         }
     }
 }

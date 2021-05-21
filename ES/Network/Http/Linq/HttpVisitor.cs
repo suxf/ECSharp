@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace ES.Network.Http.Linq
 {
@@ -15,7 +15,7 @@ namespace ES.Network.Http.Linq
         /// <summary>
         /// 回调委托列表
         /// </summary>
-        internal Dictionary<string, OnRequest> commandList = null;
+        internal ConcurrentDictionary<string, OnRequest> commandList = null;
         /// <summary>
         /// 全局Http监听者
         /// </summary>
@@ -30,21 +30,19 @@ namespace ES.Network.Http.Linq
         /// </summary>
         public HttpVisitor(IHttpVisitorException catchReceivedException)
         {
-            commandList = new Dictionary<string, OnRequest>();
+            commandList = new ConcurrentDictionary<string, OnRequest>();
             this.catchReceivedException = catchReceivedException;
         }
 
         /// <summary>
         /// 添加访问函数
+        /// 相同访问后缀可以被覆盖 可重复注册相同后缀访问已更新内容
         /// </summary>
         /// <param name="suffix">标记后缀</param>
         /// <param name="callback">访问函数</param>
         public void Add(string suffix, OnRequest callback)
         {
-            lock (commandList)
-            {
-                commandList.Add(suffix, callback);
-            }
+            if (!commandList.TryAdd(suffix, callback)) commandList[suffix] = callback;
         }
 
         /// <summary>
@@ -62,12 +60,9 @@ namespace ES.Network.Http.Linq
         void HttpInvoke.OnRequest(HttpConnection conn)
         {
             OnRequest or = null;
-            lock (commandList)
+            if (commandList.TryGetValue(conn.suffix, out OnRequest value))
             {
-                if (commandList.TryGetValue(conn.suffix, out OnRequest value))
-                {
-                    or = value;
-                }
+                or = value;
             }
             if (or != null)
             {
@@ -79,12 +74,11 @@ namespace ES.Network.Http.Linq
                 catch (Exception ex)
                 {
                     if (catchReceivedException != null) catchReceivedException.CatchOnRequestException(conn, ex);
-                    else throw ex;
+                    else throw;
                     conn.response.StatusCode = (int)HttpRequestState.NonExistent;
                 }
             }
-            else
-                conn.response.StatusCode = (int)HttpRequestState.NonExistent;
+            else conn.response.StatusCode = (int)HttpRequestState.NonExistent;
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace ES.Network.HyperSocket
     /// <para>在连接过程中因为握手是异步处理的，所以需要在接口中才能得到正确的连接对象</para>
     /// <para>如果仅仅是创建了对象后就发送消息等操作是无法正确应答的</para>
     /// </summary>
-    public class HyperSocket : BaseTimeFlow
+    public class HyperSocket : ITimeUpdate
     {
         /// <summary>
         /// 心跳pong字节
@@ -73,6 +73,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal SSL ssl;
 
+        internal readonly BaseTimeFlow timeFlow;
 
         /// <summary>
         /// 构造函数
@@ -99,17 +100,19 @@ namespace ES.Network.HyperSocket
                 remoteSockets = new RemoteHyperSocket[connectMaxNum];
                 ssl = new SSL(SSL.SSLMode.RSA);
             }
+
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this);
         }
 
         /// <summary>
         /// 心跳检测
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             if (IsAlive)
             {
-                heartCheckPeriod -= timeFlowPeriod;
+                heartCheckPeriod -= TimeFlow.period;
                 if (heartCheckPeriod <= 0)
                 {
                     if (IsServerMode)
@@ -153,14 +156,14 @@ namespace ES.Network.HyperSocket
             if (IsAlive)
             {
                 IsAlive = false;
-                CloseTimeFlowES();
+                timeFlow.CloseTimeFlowES();
             }
         }
 
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
             if (IsServerMode)
             {
@@ -253,7 +256,7 @@ namespace ES.Network.HyperSocket
             if (r1 && r2)
             {
                 hyperSocket.IsAlive = true;
-                hyperSocket.StartTimeFlow();
+                hyperSocket.timeFlow.StartTimeFlowES();
                 return hyperSocket;
             }
             else return null;
@@ -273,16 +276,17 @@ namespace ES.Network.HyperSocket
                     // 先加入验证
                     RemoteHyperSocket remote = new RemoteHyperSocket(sessionId, this, config);
                     SetSocketAtIndex(sessionId, remote);
-                    // 返回验证码
-                    long secondTicks = DateTime.UtcNow.ToSecondTicks();
-                    // 刚建立连接
-                    string nativeCode = RandomCode.Generate(8, RandomCode.RandomCodeType.HighLetterAndNumber, (int)secondTicks);
-                    byte[] data = new byte[12];
-                    Array.Copy(Encoding.UTF8.GetBytes(nativeCode), data, 8);
-                    data[8] = (byte)((UdpPort >> 8) & 0xFF);
-                    data[9] = (byte)((UdpPort) & 0xFF);
-                    data[10] = (byte)((sessionId >> 8) & 0xFF);
-                    data[11] = (byte)((sessionId) & 0xFF);
+                    
+                    byte[] data = new byte[8];
+                    data[0] = (byte)((UdpPort >> 8) & 0xFF);
+                    data[1] = (byte)((UdpPort) & 0xFF);
+                    data[2] = (byte)((sessionId >> 8) & 0xFF);
+                    data[3] = (byte)((sessionId) & 0xFF);
+                    // 认证部分
+                    data[4] = (byte)(data[0] + data[1]);
+                    data[5] = (byte)(data[2] + data[3]);
+                    data[6] = (byte)(data[0] + data[3]);
+                    data[7] = (byte)(data[1] + data[2]);
                     return data;
                 }
             }
@@ -416,20 +420,17 @@ namespace ES.Network.HyperSocket
         {
             try
             {
-                long secondTicks = DateTime.UtcNow.ToSecondTicks();
-                // 刚建立连接
-                string nativeCode = RandomCode.Generate(8, RandomCode.RandomCodeType.HighLetterAndNumber, (int)secondTicks);
-                if (Encoding.UTF8.GetString(data.Take(8).ToArray()) == nativeCode)
+                if (data.Length == 8 && data[4] == (byte)(data[0] + data[1]) && data[5] == (byte)(data[2] + data[3]) && data[6] == (byte)(data[0] + data[3]) && data[7] == (byte)(data[1] + data[2]))
                 {
-                    ushort udpPort = (ushort)(((data[8] & 0xFF) << 8) | (data[9] & 0xFF));
-                    SessionId = (ushort)(((data[10] & 0xFF) << 8) | (data[11] & 0xFF));
+                    ushort udpPort = (ushort)(((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
+                    SessionId = (ushort)(((data[2] & 0xFF) << 8) | (data[3] & 0xFF));
                     UdpPort = udpPort;
                     udpClient = new HyperSocketClientModule(ip, udpPort, (int)config.UdpReceiveSize, ProtocolType.Udp, this);
                     udpClient.SetListener(cntListener);
                     // 返回验证UDP连接
                     if (udpClient.Init(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp, udpClient))
                     {
-                        long verifyCode = SessionId * (secondTicks / 100);
+                        long verifyCode = SessionId * (udpPort / 10);
                         udpClient.SendKcp(Encoding.UTF8.GetBytes(verifyCode.ToString()));
                         return;
                     }
@@ -453,7 +454,7 @@ namespace ES.Network.HyperSocket
             {
                 IsValid = true;
                 IsAlive = true;
-                StartTimeFlow();
+                timeFlow.StartTimeFlowES();
                 SendTcp(ConnectedClientBytes);
             }
             else if (str.ElementAt(0) == '1')

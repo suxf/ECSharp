@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.5.526</span>
+   &#160;<span id="projectnumber">1.12.0</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -87,7 +87,6 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_hyper_socket
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pub-attribs">Public 属性</a> &#124;
-<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#properties">属性</a> &#124;
 <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
@@ -103,15 +102,21 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_hyper_socket
  <div class="center">
   <img src="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.png" usemap="#ES.Network.HyperSocket.HyperSocket_map" alt=""/>
   <map id="ES.Network.HyperSocket.HyperSocket_map" name="ES.Network.HyperSocket.HyperSocket_map">
-<area href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html" title="时间流基类" alt="ES.Common.Time.BaseTimeFlow" shape="rect" coords="0,0,232,24"/>
+<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,232,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:af13e1d60ba78597089b45217f628a7b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">Update</a> (int dt)</td></tr>
+<tr class="memdesc:af13e1d60ba78597089b45217f628a7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">心跳检测  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">更多...</a><br /></td></tr>
+<tr class="separator:af13e1d60ba78597089b45217f628a7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac322dc73985f896777be3fa6bd138088"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088">Close</a> ()</td></tr>
 <tr class="memdesc:ac322dc73985f896777be3fa6bd138088"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088">更多...</a><br /></td></tr>
 <tr class="separator:ac322dc73985f896777be3fa6bd138088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba462bcc43da4cfa1717d02da7e125e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba462bcc43da4cfa1717d02da7e125e2">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:aba462bcc43da4cfa1717d02da7e125e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba462bcc43da4cfa1717d02da7e125e2">更多...</a><br /></td></tr>
+<tr class="separator:aba462bcc43da4cfa1717d02da7e125e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf">GetUsedSocketCount</a> ()</td></tr>
 <tr class="memdesc:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回使用的远程套接字数量  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf">更多...</a><br /></td></tr>
 <tr class="separator:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,10 +132,6 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a54b9cbcac4011cd7e776db4a675beced"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54b9cbcac4011cd7e776db4a675beced">SendUdp</a> (string dataStr)</td></tr>
 <tr class="memdesc:a54b9cbcac4011cd7e776db4a675beced"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过UDP发送数据[KCP]  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54b9cbcac4011cd7e776db4a675beced">更多...</a><br /></td></tr>
 <tr class="separator:a54b9cbcac4011cd7e776db4a675beced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">StartTimeFlow</a> ()</td></tr>
-<tr class="memdesc:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始时间流  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">更多...</a><br /></td></tr>
-<tr class="separator:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
@@ -159,15 +160,6 @@ Public 属性</h2></td></tr>
 <tr class="memdesc:a3c50d5b94c4eb3c160b1562daf11ae6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大连接数【服务器模式用】  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a">更多...</a><br /></td></tr>
 <tr class="separator:a3c50d5b94c4eb3c160b1562daf11ae6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected 成员函数</h2></td></tr>
-<tr class="memitem:a07d51e385973d76fcc1598b4323b9269"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a07d51e385973d76fcc1598b4323b9269">Update</a> (int dt)</td></tr>
-<tr class="memdesc:a07d51e385973d76fcc1598b4323b9269"><td class="mdescLeft">&#160;</td><td class="mdescRight">心跳检测  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a07d51e385973d76fcc1598b4323b9269">更多...</a><br /></td></tr>
-<tr class="separator:a07d51e385973d76fcc1598b4323b9269"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaff21f578071fa3875315d6182060a6"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#afaff21f578071fa3875315d6182060a6">OnUpdateEnd</a> ()</td></tr>
-<tr class="memdesc:afaff21f578071fa3875315d6182060a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#afaff21f578071fa3875315d6182060a6">更多...</a><br /></td></tr>
-<tr class="separator:afaff21f578071fa3875315d6182060a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 属性</h2></td></tr>
 <tr class="memitem:ac27b1147bdd1f2b5fd05f84994fb1b0f"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac27b1147bdd1f2b5fd05f84994fb1b0f">TcpPort</a><code> [get]</code></td></tr>
@@ -182,13 +174,6 @@ Protected 成员函数</h2></td></tr>
 <tr class="memitem:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">SessionId</a> = 0<code> [get]</code></td></tr>
 <tr class="memdesc:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">客户端会话ID  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">更多...</a><br /></td></tr>
 <tr class="separator:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-额外继承的成员函数</h2></td></tr>
-<tr class="inherit_header pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">timeFlowPeriod</a> = TimeFlowManager.timeFlowPeriod</td></tr>
-<tr class="memdesc:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取时间流固定周期  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">更多...</a><br /></td></tr>
-<tr class="separator:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>超级套接字 </p>
@@ -438,35 +423,6 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="afaff21f578071fa3875315d6182060a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaff21f578071fa3875315d6182060a6">&#9670;&nbsp;</a></span>OnUpdateEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void ES.Network.HyperSocket.HyperSocket.OnUpdateEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>停止更新 </p>
-
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#aa5ea5bc85e4f38d5e2b595ac02a8d995">ES.Common.Time.BaseTimeFlow</a>.</p>
-
-</div>
-</div>
 <a id="a1c39d283c6741729d03e143f9ae3ec16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c39d283c6741729d03e143f9ae3ec16">&#9670;&nbsp;</a></span>SendTcp() <span class="overload">[1/2]</span></h2>
 
@@ -571,28 +527,20 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a07d51e385973d76fcc1598b4323b9269"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07d51e385973d76fcc1598b4323b9269">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="af13e1d60ba78597089b45217f628a7b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af13e1d60ba78597089b45217f628a7b9">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override void ES.Network.HyperSocket.HyperSocket.Update </td>
+          <td class="memname">void ES.Network.HyperSocket.HyperSocket.Update </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>dt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>心跳检测 </p>
@@ -603,7 +551,28 @@ Protected 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ab5d8347e16822c2c4f02b94d1e53f5ba">ES.Common.Time.BaseTimeFlow</a>.</p>
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="aba462bcc43da4cfa1717d02da7e125e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba462bcc43da4cfa1717d02da7e125e2">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Network.HyperSocket.HyperSocket.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">ES.Common.Time.ITimeUpdate</a>.</p>
 
 </div>
 </div>

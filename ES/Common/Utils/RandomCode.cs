@@ -123,13 +123,14 @@ namespace ES.Common.Utils
 
         /// <summary>
         /// 生成唯一Guid
+        /// <para>默认无横线 格式为32个字符</para>
         /// </summary>
         /// <param name="hasLine">是否需要分段横线 默认无横线</param>
         /// <returns></returns>
         public static string GenerateGuid(bool hasLine = false)
         {
-            if (hasLine) return Guid.NewGuid().ToString("N");
-            else return Guid.NewGuid().ToString();
+            if (hasLine)  return Guid.NewGuid().ToString();
+            else return Guid.NewGuid().ToString("N");
         }
     }
 }

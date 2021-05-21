@@ -17,7 +17,7 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <para>用于托管数据操作的代理类</para>
     /// <para>如果有一条数据不进行任何读写操作一定时间[默认300s有效]后，下一次操作必定重新读取数据库最新数据</para>
     /// </summary>
-    public class DataAgentRows : BaseTimeFlow, IEnumerable<DataAgentRow>
+    public class DataAgentRows : ITimeUpdate, IEnumerable<DataAgentRow>
     {
         /// <summary>
         /// 数据库对象
@@ -48,6 +48,8 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 当前周期记录
         /// </summary>
         private int period = 0;
+
+        private readonly BaseTimeFlow timeFlow;
 
         /// <summary>
         /// 读取数据对
@@ -97,7 +99,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 命名空间构造函数
         /// </summary>
-        internal DataAgentRows(SQLServerDBHelper dBHelper, DataRowCollection collection, string primaryKey, string tableName, string fieldNames) : base(0)
+        internal DataAgentRows(SQLServerDBHelper dBHelper, DataRowCollection collection, string primaryKey, string tableName, string fieldNames)
         {
             this.dBHelper = dBHelper;
             this.tableName = tableName;
@@ -110,7 +112,8 @@ namespace ES.Data.Database.SQLServer.Linq
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -213,7 +216,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 更新句柄【不需要操作】
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             period += TimeFlowManager.timeFlowPeriod;
             if (period >= realPeriod)
@@ -229,7 +232,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }

@@ -12,7 +12,7 @@ namespace ES.Common.Log
     /// <para>周期性写入文件</para>
     /// <para>周期LOG_PERIOD、写入路径LOG_PATH和分文件大小限制LOG_UNIT_FILE_MAX_SIZE可以直接调用静态修改（程序启动时未第一次调用就应修改完成）</para>
     /// </summary>
-    internal class LogManager : BaseTimeFlow
+    internal class LogManager : ITimeUpdate
     {
         /// <summary>
         /// 单例静态对象
@@ -44,10 +44,12 @@ namespace ES.Common.Log
         /// </summary>
         private readonly string proccessName = "";
 
+        private readonly BaseTimeFlow timeFlow;
+
         /// <summary>
         /// 构造函数
         /// </summary>
-        private LogManager() : base(1)
+        private LogManager()
         {
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
             logId = new Random().Next(100, 999).ToString();
@@ -57,7 +59,9 @@ namespace ES.Common.Log
             {
                 Directory.CreateDirectory(LogConfig.LOG_PATH);
             }
-            StartTimeFlow();
+
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 1);
+            timeFlow.StartTimeFlowES();
         }
 
         private int periodNow = 0;
@@ -65,9 +69,9 @@ namespace ES.Common.Log
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
-            periodNow += timeFlowPeriod;
+            periodNow += TimeFlow.period;
             if (periodNow >= LogConfig.LOG_PERIOD)
             {
                 periodNow = 0;
@@ -122,7 +126,7 @@ namespace ES.Common.Log
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }

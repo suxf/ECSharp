@@ -43,8 +43,11 @@ namespace ES.Network.HyperSocket
                             if (data != null)
                             {
                                 msg.sender.hySocket = hyperSocket.GetSocketAtIndex(sessionId);
-                                // 发送验证数据
+                                // 绑定数据
                                 msg.sender.hySocket.tcpConn = msg.sender;
+                                msg.sender.hySocket.ip = msg.sender.hySocket.tcpConn.socket.ip;
+                                msg.sender.hySocket.tcpPort = msg.sender.hySocket.tcpConn.socket.port;
+                                // 发送验证数据
                                 msg.sender.Send(sessionId, data);
                             }
                         }
@@ -93,7 +96,11 @@ namespace ES.Network.HyperSocket
                         if (remote != null)
                         {
                             // 判断是否一样来源
-                            if (remote.udpConn == null) remote.udpConn = new RemoteConnection(msg.remoteEndPoint, this);
+                            if (remote.udpConn == null)
+                            {
+                                remote.udpConn = new RemoteConnection(msg.remoteEndPoint, this);
+                                remote.udpPort = remote.udpConn.socket.port;
+                            }
 
                             // 处理信息
                             if (remote.CheckSameRemote(msg.remoteEndPoint)) remote.RecvData(msg.data);
@@ -116,8 +123,7 @@ namespace ES.Network.HyperSocket
             }
             else
             {
-                long secondTicks = DateTime.UtcNow.ToSecondTicks();
-                long verifyCode = remote.SessionId * (secondTicks / 100);
+                long verifyCode = remote.SessionId * (hyperSocket.UdpPort / 10);
                 var waitVerifyCode = Encoding.UTF8.GetString(data);
                 if (verifyCode.ToString() == waitVerifyCode)
                 {

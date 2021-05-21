@@ -28,6 +28,9 @@ namespace Sample
             {
                 Console.WriteLine("数据库已连接");
             }
+            //获取数据库时间 如果获取不到默认获取程序本地时间
+            Console.WriteLine("数据库时间:" + dbHelper.Now);
+
             Console.WriteLine("数据库测试结束");
         }
 

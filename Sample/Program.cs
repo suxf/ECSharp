@@ -11,6 +11,7 @@ namespace Sample
     {
         static void Main(string[] args)
         {
+            // new Test_DBSqlServer();
             // new Test_ESBuffer().test();
             // new LogTest();
             // new Test_Redis();
@@ -18,9 +19,9 @@ namespace Sample
             // new Test_Time();
             // new Test_RandomCode();
             // new Test_SweetStream();
-            new Test_HyperSocket();
+            // new Test_HyperSocket();
             // new Test_SimpleChatRoom();
-
+            
             Console.ReadLine();
         }
 

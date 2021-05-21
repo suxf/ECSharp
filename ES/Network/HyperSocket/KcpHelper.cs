@@ -9,7 +9,7 @@ namespace ES.Network.HyperSocket
     /// <summary>
     /// KCP助手
     /// </summary>
-    internal class KcpHelper : BaseTimeFlow, IKcpCallback
+    internal class KcpHelper : ITimeUpdate, IKcpCallback
     {
         private readonly Kcp kcp;
 
@@ -24,6 +24,8 @@ namespace ES.Network.HyperSocket
         private int noNetDataCount = 0;
         private readonly object m_lock = new object();
 
+        private readonly BaseTimeFlow timeFlow;
+
         internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcpListener listener)
         {
             kcp = new Kcp(conv, this);
@@ -34,7 +36,8 @@ namespace ES.Network.HyperSocket
 
             kcpListener = listener;
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -91,14 +94,14 @@ namespace ES.Network.HyperSocket
 
         internal void CloseKcp()
         {
-            CloseTimeFlowES();
+            timeFlow.CloseTimeFlowES();
         }
 
         /// <summary>
         /// 更新
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             // 更新周期10ms 此处次数大于100 则为 1s 无数据跳出
             if (noNetDataCount >= 100) return;
@@ -118,7 +121,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
             // kcp.Dispose();
         }

@@ -5,17 +5,7 @@ var hierarchy =
       [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ]
     ] ],
     [ "ES.Common.Time.BaseTimeFlow", "class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html", [
-      [ "ES.Common.Time.TimeCaller", "class_e_s_1_1_common_1_1_time_1_1_time_caller.html", [
-        [ "ES.Common.Time.SyncTimeCaller", "class_e_s_1_1_common_1_1_time_1_1_sync_time_caller.html", null ]
-      ] ],
-      [ "ES.Common.Time.TimeFlow", "class_e_s_1_1_common_1_1_time_1_1_time_flow.html", [
-        [ "ES.Common.Time.SyncTimeFlow", "class_e_s_1_1_common_1_1_time_1_1_sync_time_flow.html", null ]
-      ] ],
-      [ "ES.Data.Database.SQLServer.Linq.DataAgentRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html", null ],
-      [ "ES.Data.Database.SQLServer.Linq.NoDBStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html", null ],
-      [ "ES.Data.Database.SQLServer.SQLServerDBHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html", null ],
-      [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
-      [ "ES.Network.Sockets.Server.Linq.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task.html", null ]
+      [ "ES.Common.Time.TimeFlow", "class_e_s_1_1_common_1_1_time_1_1_time_flow.html", null ]
     ] ],
     [ "ES.Common.Utils.ByteHelper", "class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html", null ],
     [ "ES.Data.Database.SQLServer.CommandResult", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html", null ],
@@ -52,6 +42,14 @@ var hierarchy =
     ] ],
     [ "ES.Network.Sockets.Client.Linq.ISocketVisitorException", "interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_linq_1_1_i_socket_visitor_exception.html", null ],
     [ "ES.Data.Database.SQLServer.ISQLServerDBHelperException", "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_s_q_l_server_d_b_helper_exception.html", null ],
+    [ "ES.Common.Time.ITimeUpdate", "interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html", [
+      [ "ES.Common.Time.TimeCaller", "class_e_s_1_1_common_1_1_time_1_1_time_caller.html", null ],
+      [ "ES.Data.Database.SQLServer.Linq.DataAgentRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html", null ],
+      [ "ES.Data.Database.SQLServer.Linq.NoDBStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html", null ],
+      [ "ES.Data.Database.SQLServer.SQLServerDBHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html", null ],
+      [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
+      [ "ES.Network.Sockets.Server.Linq.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task.html", null ]
+    ] ],
     [ "ES.Network.Websocket.IWebsocketInvoke", "interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket_invoke.html", null ],
     [ "ES.Common.Log.Log", "class_e_s_1_1_common_1_1_log_1_1_log.html", null ],
     [ "ES.Common.Log.LogConfig", "class_e_s_1_1_common_1_1_log_1_1_log_config.html", null ],
@@ -61,8 +59,8 @@ var hierarchy =
     [ "ES.Common.Utils.RandomCode", "class_e_s_1_1_common_1_1_utils_1_1_random_code.html", null ],
     [ "ES.Data.Database.Redis.RedisEventListener", "interface_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_event_listener.html", null ],
     [ "ES.Data.Database.Redis.RedisHelper", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html", null ],
-    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
     [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
+    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
     [ "ES.Network.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
     [ "ES.Network.Sockets.Server.RemoteSocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html", null ],
     [ "ES.Network.Sockets.Server.ServerSocket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html", null ],

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.5.526</span>
+   &#160;<span id="projectnumber">1.12.0</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 属性</h2></td></tr>
 <tr class="memitem:afae47aa50100e3b9216b6ea491442111"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#afae47aa50100e3b9216b6ea491442111">effectNum</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afae47aa50100e3b9216b6ea491442111"><td class="mdescLeft">&#160;</td><td class="mdescRight">影响行数  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#afae47aa50100e3b9216b6ea491442111">更多...</a><br /></td></tr>
+<tr class="memdesc:afae47aa50100e3b9216b6ea491442111"><td class="mdescLeft">&#160;</td><td class="mdescRight">单表执行影响行数  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#afae47aa50100e3b9216b6ea491442111">更多...</a><br /></td></tr>
 <tr class="separator:afae47aa50100e3b9216b6ea491442111"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57829062ee37c565f41792a2805fcfed"><td class="memItemLeft" align="right" valign="top">DataRowCollection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a57829062ee37c565f41792a2805fcfed">collection</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a57829062ee37c565f41792a2805fcfed"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行数据合集  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a57829062ee37c565f41792a2805fcfed">更多...</a><br /></td></tr>
@@ -105,9 +105,6 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
 <tr class="memitem:aed6f16397af31c4168d266c31c86d1f8"><td class="memItemLeft" align="right" valign="top">DataSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#aed6f16397af31c4168d266c31c86d1f8">dataSet</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aed6f16397af31c4168d266c31c86d1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">数据总合集  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#aed6f16397af31c4168d266c31c86d1f8">更多...</a><br /></td></tr>
 <tr class="separator:aed6f16397af31c4168d266c31c86d1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2453653a7ca084ea36ae9c96170e891f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a2453653a7ca084ea36ae9c96170e891f">isCompleted</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a2453653a7ca084ea36ae9c96170e891f"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否已完成  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a2453653a7ca084ea36ae9c96170e891f">更多...</a><br /></td></tr>
-<tr class="separator:a2453653a7ca084ea36ae9c96170e891f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>SQL语句执行对象结果 </p>
@@ -180,31 +177,8 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
 </table>
 </div><div class="memdoc">
 
-<p>影响行数 </p>
-
-</div>
-</div>
-<a id="a2453653a7ca084ea36ae9c96170e891f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2453653a7ca084ea36ae9c96170e891f">&#9670;&nbsp;</a></span>isCompleted</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ES.Data.Database.SQLServer.CommandResult.isCompleted</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>是否已完成 </p>
+<p>单表执行影响行数 </p>
+<p>此值大于等于0的情况才代表执行成功，大于0的情况表示对数据有记录或影响</p>
 
 </div>
 </div>

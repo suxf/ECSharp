@@ -30,6 +30,7 @@ namespace ES.Data.Database.SQLServer
 
         /// <summary>
         /// 是否已完成
+        /// <para>为True代表存储过程完整执行成功，False表示有异常</para>
         /// </summary>
         public bool isCompleted { internal set; get; }
     }

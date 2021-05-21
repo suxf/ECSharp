@@ -87,9 +87,9 @@ namespace ES.Network.Http.Linq
 
                 return retString;
             }
-            catch (Exception ex)
+            catch 
             {
-                if (depthNum <= 0) throw ex;
+                if (depthNum <= 0) throw;
                 else return HttpPost(url, postDataStr, depthNum - 1);
             }
         }
@@ -117,9 +117,9 @@ namespace ES.Network.Http.Linq
                 myResponseStream.Close();
                 return retString;
             }
-            catch (Exception ex)
+            catch
             {
-                if (depthNum <= 0) throw ex;
+                if (depthNum <= 0) throw;
                 else return HttpGet(url, depthNum - 1);
             }
         }

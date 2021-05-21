@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.10.5.526</span>
+   &#160;<span id="projectnumber">1.12.0</span>
    </div>
    <div id="projectbrief">Easy .NET CORE Develop Frame.</div>
   </td>
@@ -85,7 +85,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
-<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
 <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">ES.Data.Database.SQLServer.SQLServerDBHelper类 参考</div>  </div>
@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_
  <div class="center">
   <img src="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.png" usemap="#ES.Data.Database.SQLServer.SQLServerDBHelper_map" alt=""/>
   <map id="ES.Data.Database.SQLServer.SQLServerDBHelper_map" name="ES.Data.Database.SQLServer.SQLServerDBHelper_map">
-<area href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html" title="时间流基类" alt="ES.Common.Time.BaseTimeFlow" shape="rect" coords="0,0,306,24"/>
+<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,306,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -148,26 +148,18 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a1985b4d2022db4498eb804cea2a08dba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html">DataAgentRows</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a1985b4d2022db4498eb804cea2a08dba">LoadDataCache</a> (string primaryKey, string tableName, string whereCondition, string fieldNames=&quot;*&quot;, int topNum=-1, bool isNoLock=false)</td></tr>
 <tr class="memdesc:a1985b4d2022db4498eb804cea2a08dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载数据缓存  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a1985b4d2022db4498eb804cea2a08dba">更多...</a><br /></td></tr>
 <tr class="separator:a1985b4d2022db4498eb804cea2a08dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">StartTimeFlow</a> ()</td></tr>
-<tr class="memdesc:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始时间流  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ac639be9c660506c4120ffff04e37d80c">更多...</a><br /></td></tr>
-<tr class="separator:ac639be9c660506c4120ffff04e37d80c inherit pub_methods_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626bca1ade54d6373897edc62bed7755"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a626bca1ade54d6373897edc62bed7755">Update</a> (int dt)</td></tr>
+<tr class="memdesc:a626bca1ade54d6373897edc62bed7755"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过时间流来更新通过队列执行的SQL  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a626bca1ade54d6373897edc62bed7755">更多...</a><br /></td></tr>
+<tr class="separator:a626bca1ade54d6373897edc62bed7755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84360e3a79dc90e05ceeb3370bd69fb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a84360e3a79dc90e05ceeb3370bd69fb7">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:a84360e3a79dc90e05ceeb3370bd69fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a84360e3a79dc90e05ceeb3370bd69fb7">更多...</a><br /></td></tr>
+<tr class="separator:a84360e3a79dc90e05ceeb3370bd69fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected 成员函数</h2></td></tr>
-<tr class="memitem:adb339df7e946bbab8c8a4f66d2128d4c"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#adb339df7e946bbab8c8a4f66d2128d4c">Update</a> (int dt)</td></tr>
-<tr class="memdesc:adb339df7e946bbab8c8a4f66d2128d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过时间流来更新通过队列执行的SQL  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#adb339df7e946bbab8c8a4f66d2128d4c">更多...</a><br /></td></tr>
-<tr class="separator:adb339df7e946bbab8c8a4f66d2128d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88a08fd89d1b36ae124f4c2f857ed0b2"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a88a08fd89d1b36ae124f4c2f857ed0b2">OnUpdateEnd</a> ()</td></tr>
-<tr class="memdesc:a88a08fd89d1b36ae124f4c2f857ed0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a88a08fd89d1b36ae124f4c2f857ed0b2">更多...</a><br /></td></tr>
-<tr class="separator:a88a08fd89d1b36ae124f4c2f857ed0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-额外继承的成员函数</h2></td></tr>
-<tr class="inherit_header pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow')"><img src="closed.png" alt="-"/>&#160;静态 Public 属性 继承自 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html">ES.Common.Time.BaseTimeFlow</a></td></tr>
-<tr class="memitem:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">timeFlowPeriod</a> = TimeFlowManager.timeFlowPeriod</td></tr>
-<tr class="memdesc:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取时间流固定周期  <a href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#a2b8f318e18952657ed966fbdd5c0b6cc">更多...</a><br /></td></tr>
-<tr class="separator:a2b8f318e18952657ed966fbdd5c0b6cc inherit pub_static_attribs_class_e_s_1_1_common_1_1_time_1_1_base_time_flow"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:aefe0fb675eee589bb838e86531519967"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aefe0fb675eee589bb838e86531519967">Now</a><code> [get]</code></td></tr>
+<tr class="memdesc:aefe0fb675eee589bb838e86531519967"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库时间  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aefe0fb675eee589bb838e86531519967">更多...</a><br /></td></tr>
+<tr class="separator:aefe0fb675eee589bb838e86531519967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>SQLServer数据库访问助手 </p>
@@ -482,35 +474,6 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a88a08fd89d1b36ae124f4c2f857ed0b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88a08fd89d1b36ae124f4c2f857ed0b2">&#9670;&nbsp;</a></span>OnUpdateEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override void ES.Data.Database.SQLServer.SQLServerDBHelper.OnUpdateEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>停止更新 </p>
-
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#aa5ea5bc85e4f38d5e2b595ac02a8d995">ES.Common.Time.BaseTimeFlow</a>.</p>
-
-</div>
-</div>
 <a id="adb6162127d83b64a22ced05f9094807b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb6162127d83b64a22ced05f9094807b">&#9670;&nbsp;</a></span>Procedure() <span class="overload">[1/2]</span></h2>
 
@@ -746,28 +709,20 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="adb339df7e946bbab8c8a4f66d2128d4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb339df7e946bbab8c8a4f66d2128d4c">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="a626bca1ade54d6373897edc62bed7755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a626bca1ade54d6373897edc62bed7755">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override void ES.Data.Database.SQLServer.SQLServerDBHelper.Update </td>
+          <td class="memname">void ES.Data.Database.SQLServer.SQLServerDBHelper.Update </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>dt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>通过时间流来更新通过队列执行的SQL </p>
@@ -779,7 +734,54 @@ Protected 成员函数</h2></td></tr>
   </dd>
 </dl>
 
-<p>实现了 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_base_time_flow.html#ab5d8347e16822c2c4f02b94d1e53f5ba">ES.Common.Time.BaseTimeFlow</a>.</p>
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="a84360e3a79dc90e05ceeb3370bd69fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84360e3a79dc90e05ceeb3370bd69fb7">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SQLServerDBHelper.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="aefe0fb675eee589bb838e86531519967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefe0fb675eee589bb838e86531519967">&#9670;&nbsp;</a></span>Now</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime ES.Data.Database.SQLServer.SQLServerDBHelper.Now</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取数据库时间 </p>
+<p>如果数据库异常导致查询失败，则默认返回DateTime.Now</p>
 
 </div>
 </div>

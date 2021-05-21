@@ -8,7 +8,7 @@ namespace ES.Network.Sockets.Server.Linq
     /// 监控套接字状态任务 (服务器用)
     /// <para>监控原理：只要处于队列中的用户票据都会每秒递增1，达到设定超时秒数后移除。（只要收到任何对方消息都会重置该事件）</para>
     /// </summary>
-    public class MonitorSocketStatusTask : BaseTimeFlow
+    public class MonitorSocketStatusTask : ITimeUpdate
     {
         private readonly ConcurrentQueue<RemoteConnection> remoteUserTokens = new ConcurrentQueue<RemoteConnection>();
         /// <summary>
@@ -16,14 +16,18 @@ namespace ES.Network.Sockets.Server.Linq
         /// </summary>
         private int timeoutSecond = -1;
 
+        private readonly BaseTimeFlow timeFlow;
+
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="timeout">(超时)断线时间，单位:s</param>
-        public MonitorSocketStatusTask(int timeout) : base(0)
+        public MonitorSocketStatusTask(int timeout)
         {
             SetTimeout(timeout);
-            StartTimeFlow();
+
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -81,7 +85,7 @@ namespace ES.Network.Sockets.Server.Linq
         /// </summary>
         internal void Close()
         {
-            CloseTimeFlowES();
+            timeFlow.CloseTimeFlowES();
         }
 
         int periodNow = 0;
@@ -89,9 +93,9 @@ namespace ES.Network.Sockets.Server.Linq
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
-            periodNow += timeFlowPeriod;
+            periodNow += TimeFlow.period;
             if (periodNow >= 1000)
             {
                 periodNow = 0;
@@ -102,7 +106,7 @@ namespace ES.Network.Sockets.Server.Linq
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }

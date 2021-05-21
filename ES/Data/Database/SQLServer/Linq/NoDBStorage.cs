@@ -12,7 +12,7 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <para>此类设计灵感源于非关系型数据库中基础原理</para>
     /// <para>使用起来只需要知道数据库中取出值和筛选条件即可类似使用字典方式来实现高速访问改变以及同步持久化</para>
     /// </summary>
-    public class NoDBStorage<T, U> : BaseTimeFlow where T : IComparable where U : IComparable
+    public class NoDBStorage<T, U> : ITimeUpdate where T : IComparable where U : IComparable
     {
         private readonly SQLServerDBHelper dBHelper;
 
@@ -28,6 +28,8 @@ namespace ES.Data.Database.SQLServer.Linq
         private readonly ConcurrentQueue<T> keyUpdateQueue = new ConcurrentQueue<T>();
         private readonly ConcurrentQueue<T> keyInsertQueue = new ConcurrentQueue<T>();
         private readonly ConcurrentQueue<T> keyDeleteQueue = new ConcurrentQueue<T>();
+        
+        private readonly BaseTimeFlow timeFlow; 
 
         /// <summary>
         /// 创建一个非关系型数据存储类
@@ -38,7 +40,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="tableName">数据所对应数据库的表名</param>
         /// <param name="syncPeriod">同步周期 用于控制写入到持久化数据库的时间 单位 毫秒 默认 1000ms</param>
         /// <param name="condition">数据查询的其他条件 如不需要则默认值即可，注意此处不需要再次写入key名所对应的条件了</param>
-        public NoDBStorage(SQLServerDBHelper dBHelper, string keyName, string valueName, string tableName, int syncPeriod = 1000, string condition = "") : base(0)
+        public NoDBStorage(SQLServerDBHelper dBHelper, string keyName, string valueName, string tableName, int syncPeriod = 1000, string condition = "")
         {
             this.dBHelper = dBHelper;
             this.keyName = keyName;
@@ -47,7 +49,30 @@ namespace ES.Data.Database.SQLServer.Linq
             this.syncPeriod = syncPeriod;
             this.condition = (condition != null && condition != "") ? (condition + " AND ") : "";
 
-            StartTimeFlow();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow.StartTimeFlowES();
+        }
+
+        /// <summary>
+        /// 是否包含键
+        /// </summary>
+        /// <param name="key">键</param>
+        /// <returns>存在为真，否则为假</returns>
+        public bool ContainsKey(T key)
+        {
+            if (keyValues.ContainsKey(key))
+            {
+                return true;
+            }
+            else
+            {
+                var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                if (result.effectNum > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -64,15 +89,12 @@ namespace ES.Data.Database.SQLServer.Linq
             }
             else
             {
-                var dataSet = dBHelper.NoDBStorageSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (dataSet != null)
+                var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                if (result.effectNum > 0)
                 {
-                    if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        var val = value = (U)dataSet.Tables[0].Rows[0][valueName];
-                        keyValues.AddOrUpdate(key, value, (k, v) => val);
-                        return true;
-                    }
+                    var val = value = (U)result.collection[0][valueName];
+                    keyValues.AddOrUpdate(key, value, (k, v) => val);
+                    return true;
                 }
             }
             value = default;
@@ -88,16 +110,12 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns>如果已存在则返回 false</returns>
         public bool TryAdd(T key, U value)
         {
-            var dataSet = dBHelper.NoDBStorageSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-            if (dataSet != null)
+            var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
+            if (result.effectNum <= 0)
             {
-                if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
-                {
-                    var val = value = (U)dataSet.Tables[0].Rows[0][valueName];
-                    keyValues.AddOrUpdate(key, value, (k, v) => val);
-                    if (!keyInsertQueue.Contains(key)) keyInsertQueue.Enqueue(key);
-                    return true;
-                }
+                keyValues.TryAdd(key, value);
+                if (!keyInsertQueue.Contains(key)) keyInsertQueue.Enqueue(key);
+                return true;
             }
             return false;
         }
@@ -118,15 +136,13 @@ namespace ES.Data.Database.SQLServer.Linq
             }
             else
             {
-                var dataSet = dBHelper.NoDBStorageSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (dataSet != null)
+                var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                if (result.effectNum > 0)
                 {
-                    if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        keyValues.AddOrUpdate(key, value, (k, v) => value);
-                        if (!keyUpdateQueue.Contains(key)) keyUpdateQueue.Enqueue(key);
-                        return true;
-                    }
+                    var val = (U)result.collection[0][valueName];
+                    keyValues.AddOrUpdate(key, value, (k, v) => value);
+                    if (!keyUpdateQueue.Contains(key) && !val.Equals(value)) keyUpdateQueue.Enqueue(key);
+                    return true;
                 }
             }
             return false;
@@ -146,14 +162,11 @@ namespace ES.Data.Database.SQLServer.Linq
             }
             else
             {
-                var dataSet = dBHelper.NoDBStorageSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (dataSet != null)
+                var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                if (result.effectNum > 0)
                 {
-                    if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
-                    {
-                        if (!keyDeleteQueue.Contains(key)) keyDeleteQueue.Enqueue(key);
-                        return true;
-                    }
+                    if (!keyDeleteQueue.Contains(key)) keyDeleteQueue.Enqueue(key);
+                    return true;
                 }
             }
             return false;
@@ -183,22 +196,22 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
-            syncPeriodNow += timeFlowPeriod;
+            syncPeriodNow += TimeFlow.period;
             if (syncPeriodNow >= syncPeriod)
             {
                 syncPeriodNow = 0;
-                while (keyInsertQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.NoDBStorageSQL($"INSERT {tableName} ({keyName}, [{valueName}]) VALUES ('{key}', '{value}')");
-                while (keyUpdateQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.NoDBStorageSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
-                while (keyDeleteQueue.TryDequeue(out T key)) if (keyValues.TryRemove(key, out _)) dBHelper.NoDBStorageSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                while (keyInsertQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.ExecuteSQL($"INSERT {tableName} ({keyName}, [{valueName}]) VALUES ('{key}', '{value}')");
+                while (keyUpdateQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.ExecuteSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
+                while (keyDeleteQueue.TryDequeue(out T key)) if (keyValues.TryRemove(key, out _)) dBHelper.ExecuteSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
             }
         }
 
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }
