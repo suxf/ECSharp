@@ -1,6 +1,11 @@
 var hierarchy =
 [
+    [ "ES.Hotfix.AgentData", "class_e_s_1_1_hotfix_1_1_agent_data.html", null ],
+    [ "ES.Hotfix.AgentDataPivot", "class_e_s_1_1_hotfix_1_1_agent_data_pivot.html", null ],
     [ "ES.Common.Utils.AppConfig", "class_e_s_1_1_common_1_1_utils_1_1_app_config.html", null ],
+    [ "ES.Hotfix.BaseAgent", "class_e_s_1_1_hotfix_1_1_base_agent.html", [
+      [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
+    ] ],
     [ "ES.Network.Sockets.Client.BaseClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html", [
       [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ]
     ] ],
@@ -47,6 +52,7 @@ var hierarchy =
       [ "ES.Data.Database.SQLServer.Linq.DataAgentRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html", null ],
       [ "ES.Data.Database.SQLServer.Linq.NoDBStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html", null ],
       [ "ES.Data.Database.SQLServer.SQLServerDBHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html", null ],
+      [ "ES.Hotfix.HotfixMgr", "class_e_s_1_1_hotfix_1_1_hotfix_mgr.html", null ],
       [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
       [ "ES.Network.Sockets.Server.Linq.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task.html", null ]
     ] ],
@@ -59,8 +65,8 @@ var hierarchy =
     [ "ES.Common.Utils.RandomCode", "class_e_s_1_1_common_1_1_utils_1_1_random_code.html", null ],
     [ "ES.Data.Database.Redis.RedisEventListener", "interface_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_event_listener.html", null ],
     [ "ES.Data.Database.Redis.RedisHelper", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html", null ],
-    [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
     [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
+    [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
     [ "ES.Network.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
     [ "ES.Network.Sockets.Server.RemoteSocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html", null ],
     [ "ES.Network.Sockets.Server.ServerSocket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html", null ],
@@ -68,6 +74,7 @@ var hierarchy =
     [ "ES.Network.Sockets.Client.SocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_socket_msg.html", null ],
     [ "ES.Network.Sockets.Server.SocketStatusListener", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_socket_status_listener.html", null ],
     [ "ES.Data.Database.SQLServer.Linq.SQLBuilder", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_s_q_l_builder.html", null ],
+    [ "ES.Hotfix.StructValue", "class_e_s_1_1_hotfix_1_1_struct_value.html", null ],
     [ "ES.Network.Sockets.SweetStream", "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html", null ],
     [ "ES.Common.Time.TimeFix", "class_e_s_1_1_common_1_1_time_1_1_time_fix.html", null ],
     [ "ES.Common.Utils.Version", "class_e_s_1_1_common_1_1_utils_1_1_version.html", null ],

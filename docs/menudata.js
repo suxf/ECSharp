@@ -88,6 +88,7 @@ var menudata={children:[
 {text:"s",url:"functions_vars.html#index_s"},
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"u",url:"functions_vars.html#index_u"},
+{text:"v",url:"functions_vars.html#index_v"},
 {text:"w",url:"functions_vars.html#index_w"}]},
 {text:"枚举",url:"functions_enum.html"},
 {text:"属性",url:"functions_prop.html",children:[
