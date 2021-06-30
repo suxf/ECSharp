@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ES\ES.csproj" />
+    <ProjectReference Include="..\Sample\Sample.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;copy .\$(OutDir)$(TargetName).* ..\Sample\bin\Debug\net5.0\&#xD;&#xA;)" />
+  </Target>
+
+</Project>

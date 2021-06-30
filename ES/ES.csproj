@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net462;net5.0;</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net5.0;</TargetFrameworks>
     <AssemblyName>ES</AssemblyName>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Fyenet Inc.</Authors>
-    <Description>Easy .NET CORE Develop Frame.</Description>
+    <Description>Easy .NET Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.12.0</Version>
+    <Version>1.13.0</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
-    <PackageTags>C#,.Net CORE,Easy Develop,Server,Client</PackageTags>
+    <PackageTags>C#,.Net CORE,.Net,Easy Develop,Server</PackageTags>
     <PackageProjectUrl>http://easysharpframe.fyenet.com/</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/suxf/EasySharpFrame</RepositoryUrl>

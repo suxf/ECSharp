@@ -21,6 +21,7 @@ namespace Sample
             // new Test_SweetStream();
             // new Test_HyperSocket();
             // new Test_SimpleChatRoom();
+            new Test_Hotfix();
             
             Console.ReadLine();
         }
