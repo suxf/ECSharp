@@ -126,7 +126,8 @@ class WebsocketHandle : IWebsocketInvoke
 该模块已经深度封装了原生Socket模块，实现了快捷连接，加密连接等比较便捷实用的功能，通过IOCP接口可以实现高并发收发。需要配合配套的客户端才能使用。
 ```csharp
 // 创建服务器
-HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true });
+var config = new HyperSocketConfig() { UseSSL = true };
+HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), config);
 // 创建客户端
 HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
 
