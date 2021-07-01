@@ -5,22 +5,339 @@ Easy .NET Develop Frame.
 
 这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！
 
-## 快速使用
-此处只是公开了源码，如果想要使用此框架可以直接从NuGet库中搜索安装最新版本。
+# 快速使用
+库中只是公开了源码，如果使用此框架可以直接从NuGet库中搜索安装最新版本。
 
-## 目录说明
+# 目录介绍
 | 目录 | 备注 |
 | ------------ | ------------ |
 | Client | 客户端框架支持(目前只更新了Unity版本)  |
-| docs | 在线API文档 |
+| docs | [在线API文档](https://easysharpframe.fyenet.com) |
 | ES | 框架主版本 |
 | Sample | 框架测试样本项目 |
 | SampleDll | 框架热更模块测试样本项目  |
 
-## 功能
-功能说明待完善
+# 功能说明
+### 1.HTTP服务
+对HttpListener进行封装，内部采用完成接口回调，可以支持高并发任务。
+```csharp
+/* 使用方法一 */
+public void Http1()
+{
+    // 先继承http异常接口，这里把测试的访问函数也写在一个类中，实际不需要
+    HttpHandle1 handle = new HttpHandle1();
+    // 建立http访问器，并载入异常接口类
+    HttpVisitor visitor = new HttpVisitor(handle);
+    // 给访问器增加函数
+    visitor.Add("Hello", handle.Hello);
+    // 建立http服务，填写前缀地址并且赋予访问器
+    // 注：全监听 0.0.0.0 在这里用 + 号代替
+    HttpService service = new HttpService("http://127.0.0.1:8080", visitor);
+    // 启动服务
+    service.StartServer();
+    // 然后就可以通过浏览器或其他请求工具来访问了
+    // 访问地址： http://127.0.0.1:8080/Hello?text=World
 
-## 引用声明
+    Console.ReadLine();
+}
+
+class HttpHandle1 : IHttpVisitorException
+{
+    public void Hello(HttpConnection conn)
+    {
+        if (!conn.getValue.TryGetValue("text", out var text)) text = "text没有内容";
+        conn.writer.Write("Hello World:" + text);
+    }
+
+    public void CatchOnRequestException(HttpConnection conn, Exception ex)
+    {
+        // http异常处理
+    }
+}
+
+/* 使用方法二 */
+public void Http2()
+{
+    // 先继承http异常接口，这里把测试的访问函数也写在一个类中，实际不需要
+    HttpHandle2 handle = new HttpHandle2();
+    // 建立http服务，填写前缀地址并且赋予访问器
+    // 注：全监听 0.0.0.0 在这里用 + 号代替
+    HttpService service = new HttpService(handle);
+    // 这里需要添加所有完整监听链接
+    service.AddFullPrefix("http://127.0.0.1:8080/Hello");
+    // 启动服务
+    service.StartServer();
+    // 然后就可以通过浏览器或其他请求工具来访问了
+    // 访问地址： http://127.0.0.1:8080/Hello?text=World
+
+    Console.ReadLine();
+}
+
+class HttpHandle2 : HttpInvoke
+{
+    public void HttpException(Exception exception, HttpConnection conn)
+    {
+        // http异常处理
+    }
+
+    public void OnRequest(HttpConnection conn)
+    {
+        // 这里是全部消息回调接口
+        // 所以如果需要高度自定义可以使用此方法
+    }
+}
+
+```
+### 2.Websocket服务
+使用Fleck库中的Websocket进行二次封装。
+```csharp
+WebsocketService service = new WebsocketService("ws://127.0.0.1:8081", new WebsocketHandle());
+
+class WebsocketHandle : IWebsocketInvoke
+{
+    public void OnBinary(RemoteConnection conn)
+    {
+        // 数据使用byte流传输调用
+    }
+
+    public void OnClose(RemoteConnection conn)
+    {
+        // 关闭时调用
+    }
+
+    public void OnError(RemoteConnection conn, Exception exception)
+    {
+        // 出现异常调用
+    }
+
+    public void OnMessage(RemoteConnection conn)
+    {
+        // 数据使用文本时调用
+    }
+
+    public void OnOpen(RemoteConnection conn)
+    {
+        // 新连接产生调用
+    }
+}
+
+```
+### 3.HyperSocket[自定义Socket服务]
+该模块已经深度封装了原生Socket模块，实现了快捷连接，加密连接等比较便捷实用的功能，通过IOCP接口可以实现高并发收发。需要配合配套的客户端才能使用。
+```csharp
+// 创建服务器
+HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true });
+// 创建客户端
+HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
+
+// 服务器监听接口
+class ServerListener : IHyperSocketServerListener
+{
+    public void OnClose(RemoteHyperSocket socket)
+    {
+        // 客户端关闭
+    }
+
+    public void OnError(Exception ex)
+    {
+        // 连接异常
+    }
+
+    public void OnOpen(RemoteHyperSocket socket)
+    {
+        // 客户端新连接
+    }
+
+    public void OnTcpReceive(byte[] data, RemoteHyperSocket socket)
+    {
+        // Tcp模式接收
+    }
+
+    public void OnUdpReceive(byte[] data, RemoteHyperSocket socket)
+    {
+        // Udp模式接收
+    }
+}
+
+// 客户端监听接口
+class ClientListener : IHyperSocketClientListener
+{
+    public void OnError(HyperSocket socket, Exception ex)
+    {
+        // 客户端异常
+    }
+
+    public void OnOpen(HyperSocket socket)
+    {
+        // 客户端连接成功
+    }
+
+    public void OnTcpReceive(byte[] data, HyperSocket socket)
+    {
+        // Tcp模式接收
+    }
+
+    public void OnUdpReceive(byte[] data, HyperSocket socket)
+    {
+        // Udp模式接收
+    }
+}
+```
+### 4.TimeFlow[时间流]
+该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定10ms的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类。
+```csharp
+class TimeDemo : ITimeUpdate
+{
+	TimeFlow tf;
+	public TimeDemo(){
+		tf = TimeFlow.Create(this);
+		tf.Start();
+	}
+
+	/// 此函数会默认10毫秒调用一次
+	/// 可以从 TimeFlow.period 直接获取周期时间
+	/// dt为消耗时间的差值 因为程序不可能每次都精准10毫秒执行
+	/// 所以update会不断调整时间执行时间 dt就是这个时间的差值
+	/// 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因为我们有自动修正
+	public void Update(int dt)
+	{
+	}
+
+	/// 停止更新
+	public void UpdateEnd()
+	{
+	}
+}
+```
+### 5.Sqlserver数据库助手
+Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs "链接")
+助手目前有以下几种功能：
+- 数据库连接：简化连接操作步骤
+- 数据库执行SQL和存储过程：书写SQL直接执行得到结果
+- SQL语句构建器：函数化某些SQL关键字，通过函数连调实现执行SQL
+- SQLServer基础配置加载器：可以通过映射关系加载数据库表中的配置，高并发读取
+- Sqlserver数据缓存助理数据组：可以通过映射关系加载数据库表中的数据，高并发实现增删改查
+- 非关系型存储：通过映射原理建立表中Key-Value模型的对象，实现高并发读写
+
+```csharp
+// 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
+dbHelper = new SQLServerDBHelper("127.0.0.1", "sa", "123456", "db_test");
+// 增加异常监听器 需要一个继承 ISQLServerDBHelperException 接口
+dbHelper.SetExceptionListener(this);
+// 检测数据库连接是否成功调用 成功返回true
+if (dbHelper.CheckConnected())
+{
+    Console.WriteLine("数据库已连接");
+}
+```
+### 6.Redis数据库助手
+简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，是订阅更加易用。
+```csharp
+// 继承 RedisEventListener 接口来用于监听回调
+RedisHelper helper = new RedisHelper("127.0.0.1:6379");
+// 增加事件监听用于检测连接状态
+helper.AddEventListener(this);
+// 设置一个值
+helper.Set("test", 1);
+// 取出值
+var test = helper.Get<int>("test");
+```
+### 7.Log功能
+日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。LogConfig类为日志前置配置类，可以对日志进行自定义配置。
+```csharp
+// 以下四个函数均为普通分级日志输出函数
+Log.Debug("debug is this");
+Log.Info("Info is this");
+Log.Warn("warn is this");
+Log.Error("error is this");
+// 此函数可以写在try catch中 用于打印异常问题
+Log.Exception(new System.Exception(), "exception is this");
+```
+### 8.热更功能
+是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，发现在如今的配置服务器下这点性能消耗已经不足以影响整个流程，当然如果实在是有高度原生强迫的开发“患者”可以忽略这个功能。
+
+```csharp
+/** 主工程项目 **/
+// 读取热更模块
+HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
+// 调用热更模块入口类的函数
+HotfixMgr.Instance.Agent.Test();
+
+// 代理数据
+public class Player : AgentData
+{
+    public int count;
+}
+
+```
+```csharp
+/** 热更工程项目 **/
+/// 热更测试DLL入口
+public class Main
+{
+    readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
+    public void Test()
+    {
+        player.GetAgent<PlayerAgent>().Test();
+    }
+}
+
+// 如果需要时间流需要在热更层继承和使用
+public class PlayerAgent : Agent<Player>, ITimeUpdate
+{
+    public TimeFlow tf;
+
+    public PlayerAgent()
+    {
+        tf = TimeFlow.Create(this);
+        tf.Start();
+    }
+
+    public void Test()
+    {
+        self.count++;
+        Console.WriteLine(self.count);
+    }
+
+    public void Update(int deltaTime)
+    {
+    }
+
+    public void UpdateEnd()
+    {
+    }
+}
+```
+### 9.其他
+其他小功能不再过多介绍，可以在使用的过程中慢慢查询API来获取使用细节。
+
+```csharp
+// 读取配置 默认和读取程序名一样配置文件 比如此程序生成为Sample.exe那么读取对应的是Sample.exe.config
+// 一般来说使用vs2019开发 只需要在新建一个和程序集名称一模一样的.config配置文件即可
+// 注意此函数不支持读取其他文件 此demo已经创建了配置文件详见项目 Sample.config
+// 本类设计初只能读取两层 具体结构可以参照样例
+// 此处读取第一层配置数据
+string test = AppConfig.Read("test");
+// 此处读取第二层配置数据
+string test2 = AppConfig.Read("testgroup", "test2");
+
+// 获取有效字节
+// 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现
+// 所以这里的设定还是要看具体情况来 不一定适用所有情况
+// ByteHelper.GetValidLength 则是直接获取长度大小 而非返回数据
+byte[] bytes = ByteHelper.GetValidByte(new byte[] { 1, 2, 3, 4, 0, 0, 0 });
+
+// 随机生成指定位数的字符串
+// 字符串将有数字与大小写字母组成
+string code = RandomCode.Generate(32);
+
+// md5的封装
+string md5Str = MD5.Encrypt("helloworld");
+
+// 获取此框架的版本信息
+string versionStr = ES.Common.Utils.Version.ToString();
+```
+# 引用声明
 本框架所有引用第三方外部工具均为MIT协议且均采用NuGet库自动安装
 
 1. [statianzo/Fleck](https://github.com/statianzo/Fleck) 支持WebSocket连接库
