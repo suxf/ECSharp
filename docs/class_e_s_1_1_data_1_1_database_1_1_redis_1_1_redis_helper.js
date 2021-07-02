@@ -1,7 +1,7 @@
 var class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper =
 [
     [ "RedisHelper", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a98a85292a8e5ed3d8e7edce29690254f", null ],
-    [ "AddEventListener", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab45b9d69f586729c13acb2fe64f7122a", null ],
+    [ "AddEventListener", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a461c0dfc439e6bb5aefd48c179ee2462", null ],
     [ "Close", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a9e3eb30bce191609ae51c642b7f34fad", null ],
     [ "CreateTransaction", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aa061b11877479996631484a790f5b62c", null ],
     [ "Get< T >", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af470bad645d95fdef867d7771464e903", null ],

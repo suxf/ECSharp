@@ -3,7 +3,7 @@ var class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket =
     [ "ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0cdd3213a957ab00a89ea8853e341e05", null ],
     [ "ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#afc772d669c659583c6d0980fbcdc97c3", null ],
     [ "Close", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a2cd851e722dea554b90f16d5b3bdb014", null ],
-    [ "Init", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a62c3a798d8ca4c58b6a8e178a51caf28", null ],
+    [ "Init", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a3f94978a319abc8da043973a45ecc024", null ],
     [ "ReceiveCallback", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#ae2805b201cad908bbd53a121d0fe0d79", null ],
     [ "ReceiveFromCallback", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0a6fbe9106ee0f46456f0fffcdccd97a", null ],
     [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a745796ae499f6ae2d0a53c923107e571", null ],

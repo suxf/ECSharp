@@ -18,10 +18,9 @@ var searchData=
   ['load_238',['Load',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ad53b8ce5afd9faf426bfb589523372f9',1,'ES.Data.Database.SQLServer.Linq.DataAgentRows.Load()'],['../class_e_s_1_1_hotfix_1_1_hotfix_mgr.html#a7e063c5fd2fc9f24242cd7d8c0fcf4a9',1,'ES.Hotfix.HotfixMgr.Load()']]],
   ['loaddatacache_239',['LoadDataCache',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a1985b4d2022db4498eb804cea2a08dba',1,'ES::Data::Database::SQLServer::SQLServerDBHelper']]],
   ['log_240',['Log',['../class_e_s_1_1_common_1_1_log_1_1_log.html',1,'ES::Common::Log']]],
-  ['log_5fconsole_5foutput_241',['LOG_CONSOLE_OUTPUT',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a9a29460b833141bce4718c233d17dcc0',1,'ES::Common::Log::LogConfig']]],
-  ['log_5ffile_5fsuffix_242',['LOG_FILE_SUFFIX',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a48d45bd3b0c1e09d3ea5e9ec7b44bdc0',1,'ES::Common::Log::LogConfig']]],
-  ['log_5fpath_243',['LOG_PATH',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a9bac318366b985132a180237996276b5',1,'ES::Common::Log::LogConfig']]],
-  ['log_5fperiod_244',['LOG_PERIOD',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a991d4450bec9d53917d0e23fcda6ace7',1,'ES::Common::Log::LogConfig']]],
-  ['log_5funit_5ffile_5fmax_5fsize_245',['LOG_UNIT_FILE_MAX_SIZE',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a2f715d13e28fb15c7bcc2279264f3a81',1,'ES::Common::Log::LogConfig']]],
-  ['logconfig_246',['LogConfig',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html',1,'ES::Common::Log']]]
+  ['log_5fconsole_5foutput_241',['LOG_CONSOLE_OUTPUT',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a1e449f8d614814881170545da60b9390',1,'ES::Common::Log::Log']]],
+  ['log_5ffile_5fsuffix_242',['LOG_FILE_SUFFIX',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a00bd5dfb6642f4046c91052953ee1e29',1,'ES::Common::Log::Log']]],
+  ['log_5fpath_243',['LOG_PATH',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a23a4aed5506f97ee2669aeeecb27ef53',1,'ES::Common::Log::Log']]],
+  ['log_5fperiod_244',['LOG_PERIOD',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a79915fbb9517c569e7e4c71f27429b51',1,'ES::Common::Log::Log']]],
+  ['log_5funit_5ffile_5fmax_5fsize_245',['LOG_UNIT_FILE_MAX_SIZE',['../class_e_s_1_1_common_1_1_log_1_1_log.html#af403a447f167bc715fad6aa4ed6a0626',1,'ES::Common::Log::Log']]]
 ];

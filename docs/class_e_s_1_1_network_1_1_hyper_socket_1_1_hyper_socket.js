@@ -1,9 +1,9 @@
 var class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket =
 [
     [ "Close", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088", null ],
-    [ "CreateClient", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3243a689dc584eeefe07e37a46eec447", null ],
-    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a96803f43187b9118d5fefb39fd32b694", null ],
-    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a4e24901abe59491728b9de2f4ea262d2", null ],
+    [ "CreateClient", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a2c786dc5e183898cf8290f0167df17eb", null ],
+    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a30baaef0b2abe0b7d1f87e37197fcb8a", null ],
+    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a01ed95fe34c5468a7cc395ad4d14713d", null ],
     [ "GetUsedSocketCount", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf", null ],
     [ "SendTcp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a1c39d283c6741729d03e143f9ae3ec16", null ],
     [ "SendTcp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a98a1ab407e5af910fcbfab557e17348d", null ],

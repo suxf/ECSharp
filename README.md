@@ -18,7 +18,7 @@ Easy .NET Develop Frame.
 
 注：从1.13.x版本后仅支持框架版本情况如上，主要是因为热更功能所需的框架功能在老版本中没有支持，在1.12.x及之前的版本基本上全框架版本都可以使用，不需要热更功能可以使用1.12.x版本。
 
-## 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
+### 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
 
 # 目录介绍
 | 目录 | 备注 |

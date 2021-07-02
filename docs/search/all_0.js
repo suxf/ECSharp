@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['add_0',['Add',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html#a63651c980dbf85482482ee70ef0852eb',1,'ES.Network.Http.Linq.HttpVisitor.Add()'],['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_linq_1_1_socket_visitor.html#a74aa8e6fe094aae7ee08ff983f87dca4',1,'ES.Network.Sockets.Client.Linq.SocketVisitor.Add()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_remote_socket_visitor.html#ace7b5d50d3ef083e25efde3a30822e83',1,'ES.Network.Sockets.Server.Linq.RemoteSocketVisitor.Add()']]],
-  ['addeventlistener_1',['AddEventListener',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ab45b9d69f586729c13acb2fe64f7122a',1,'ES::Data::Database::Redis::RedisHelper']]],
+  ['add_0',['Add',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html#a9de09fd153d4af5721de1ac581daf466',1,'ES::Network::Http::Linq::HttpVisitor']]],
+  ['addeventlistener_1',['AddEventListener',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a461c0dfc439e6bb5aefd48c179ee2462',1,'ES::Data::Database::Redis::RedisHelper']]],
   ['addfullprefix_2',['AddFullPrefix',['../class_e_s_1_1_network_1_1_http_1_1_http_service.html#a71f99d4f47f66ca9666b2b2eaf87f8f7',1,'ES::Network::Http::HttpService']]],
   ['addorgetobject_3c_20t_20_3e_3',['AddOrGetObject&lt; T &gt;',['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#a26c75eaa30659172d85a6d1ab5609b75',1,'ES.Hotfix.AgentDataPivot.AddOrGetObject&lt; T &gt;(string key)'],['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#aa7b52b7a3460c947abce81eae64c87c5',1,'ES.Hotfix.AgentDataPivot.AddOrGetObject&lt; T &gt;(string key, Func&lt; T &gt; action)']]],
   ['addorgetstruct_3c_20t_20_3e_4',['AddOrGetStruct&lt; T &gt;',['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#ad11d20cb54ed011389a2df1f141847af',1,'ES::Hotfix::AgentDataPivot']]],

@@ -14,6 +14,6 @@ var class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection =
     [ "rBuffer", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#af4fc50d08fe812e3e6b408a8b0f0879b", null ],
     [ "receiveEventArgs", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a9c4f90171c92876e2c4e0c503855adaa", null ],
     [ "socket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a6a107723de3f93c24ede2f1e3a38b1c3", null ],
-    [ "socketInvoke", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a94a98008e87f1e255a9291710ad176f0", null ],
+    [ "socketInvoke", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ac45edfd2dd2078008558f628b6615886", null ],
     [ "socketSvrMgr", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aeee8bfe7ca03147f37618e6e963ffc91", null ]
 ];

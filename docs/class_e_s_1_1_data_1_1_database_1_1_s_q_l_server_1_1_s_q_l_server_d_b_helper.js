@@ -13,7 +13,7 @@ var class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper
     [ "ProcedureNonQuery", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#afbe7adcfa74a63bc17e33026cdfd8ed6", null ],
     [ "PushProcedure", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aa878517d67b07136fb762aa841f64829", null ],
     [ "PushSQL", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#af4cb9c9c984ff8e8cb8251b8a221d770", null ],
-    [ "SetExceptionListener", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aa110a2f06929ceaf17cb6dd650a3b96b", null ],
+    [ "SetExceptionListener", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#ae93afc473466ebc66073cc123521a522", null ],
     [ "Update", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a626bca1ade54d6373897edc62bed7755", null ],
     [ "UpdateEnd", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#a84360e3a79dc90e05ceeb3370bd69fb7", null ],
     [ "Now", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html#aefe0fb675eee589bb838e86531519967", null ]
