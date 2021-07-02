@@ -9,7 +9,6 @@ namespace ES.Data.Database.SQLServer.Linq
     /// </summary>
     public class SQLBuilder
     {
-
         readonly SQLServerDBHelper dBHelper = null;
 
         int topCount = 0;
@@ -17,7 +16,6 @@ namespace ES.Data.Database.SQLServer.Linq
         object[] values = null;
         string conditions = null;
         string tableName = null;
-
 
         /// <summary>
         /// 构建函数

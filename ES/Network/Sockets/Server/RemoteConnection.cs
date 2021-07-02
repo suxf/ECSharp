@@ -35,7 +35,7 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 异步接受信息委托回调
         /// </summary>
-        public IRemoteSocketInvoke socketInvoke { get; protected set; } = null;
+        public IRemoteSocket socketInvoke { get; protected set; } = null;
 
         /// <summary>
         /// ESF.Socket
@@ -76,7 +76,7 @@ namespace ES.Network.Sockets.Server
         /// 构造函数 tcp
         /// <para>正式调用还需执行Init()</para>
         /// </summary>
-        internal RemoteConnection(ServerSocket service, IRemoteSocketInvoke socketInvoke)
+        internal RemoteConnection(ServerSocket service, IRemoteSocket socketInvoke)
         {
             socketSvrMgr = service;
             this.socketInvoke = socketInvoke;
@@ -191,7 +191,7 @@ namespace ES.Network.Sockets.Server
             {
                 if (rBuffer != null) sb = rBuffer.TakeStreamBuffer();
                 if (sb == null) return;
-                if (socketInvoke != null) socketInvoke.ReceivedCompleted(new RemoteSocketMsg(0, sb, this));
+                if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new RemoteSocketMsg(0, sb, this));
             } while (true);
         }
 

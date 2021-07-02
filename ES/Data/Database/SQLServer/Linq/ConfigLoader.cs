@@ -5,7 +5,7 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <summary>
     /// SQLServer基础配置加载器
     /// </summary>
-    public class ConfigLoader<T> where T : ConfigLoaderItem, new()
+    public class ConfigLoader<T> where T : ConfigItem, new()
     {
         private readonly string sql = null;
         private readonly SQLServerDBHelper dBHelper = null;

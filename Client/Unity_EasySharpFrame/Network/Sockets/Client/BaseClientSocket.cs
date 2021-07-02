@@ -36,7 +36,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 消息委托
         /// </summary>
-        public ISocketInvoke socketInvoke = null;
+        public ISocket socketInvoke = null;
 
         /// <summary>
         /// 接受状态
@@ -129,7 +129,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "SendBuffer", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
                 return false;
             }
         }
@@ -182,7 +182,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "SendBufferTo", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
                 return false;
             }
         }
@@ -235,7 +235,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "BeginReceived", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -254,7 +254,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "BeginReceivedFrom", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
         }
 

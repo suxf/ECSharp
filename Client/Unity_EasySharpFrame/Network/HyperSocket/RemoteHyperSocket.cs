@@ -7,7 +7,7 @@ namespace ES.Network.HyperSocket
     /// <summary>
     /// 远程超级套接字
     /// </summary>
-    public class RemoteHyperSocket : IKcpListener
+    public class RemoteHyperSocket : IKcp
     {
         /// <summary>
         /// kcp协议模块
@@ -230,7 +230,7 @@ namespace ES.Network.HyperSocket
             if (hyperSocketRef.TryGetTarget(out var hyperSocket))
             {
                 if (IsAlive && isValid) hyperSocket.svrListener.OnClose(this);
-                else hyperSocket.svrListener.OnError(new Exception("Initialize Connection Fail"));
+                else hyperSocket.svrListener.SocketError(new Exception("Initialize Connection Fail"));
                 hyperSocket.SetSocketAtIndex(SessionId, null);
             }
             IsAlive = false;

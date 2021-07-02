@@ -19,7 +19,7 @@ namespace ES.Network.Http
         /// <summary>
         /// HTTP访问回调委托
         /// </summary>
-        private HttpInvoke httpInvoke = null;
+        private IHttp httpInvoke = null;
 
         /// <summary>
         /// 默认前缀
@@ -64,7 +64,7 @@ namespace ES.Network.Http
         /// <para>创建一个HTTP服务</para>
         /// </summary>
         /// <param name="invoke">回调接口[不适用访问器添加]</param>
-        public HttpService(HttpInvoke invoke)
+        public HttpService(IHttp invoke)
         {
             if (!HttpListener.IsSupported)
             {
@@ -103,7 +103,7 @@ namespace ES.Network.Http
         /// 设置HTTP委托
         /// </summary>
         /// <param name="invoke">委托接口</param>
-        public void SetHttpInvoke(HttpInvoke invoke)
+        public void SetHttpInvoke(IHttp invoke)
         {
             httpInvoke = invoke;
         }
@@ -159,7 +159,7 @@ namespace ES.Network.Http
                 string requestUrl = request.RawUrl;
                 // 去掉首尾 / 
                 if (requestUrl[0] == '/') requestUrl = requestUrl.Substring(1);
-                if (requestUrl[requestUrl.Length - 1] == '/') requestUrl = requestUrl.Substring(0, requestUrl.Length - 1);
+                if (requestUrl.Length >= 1 && requestUrl[requestUrl.Length - 1] == '/') requestUrl = requestUrl.Substring(0, requestUrl.Length - 1);
                 int index = requestUrl.IndexOf("?");
                 HttpConnection conn = new HttpConnection();
                 // 读取get值

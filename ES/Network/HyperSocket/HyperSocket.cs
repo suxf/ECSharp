@@ -202,7 +202,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 服务端监听器
         /// </summary>
-        internal IHyperSocketServerListener svrListener;
+        internal IHyperSocketServer svrListener;
 
         /// <summary>
         /// 远程连接
@@ -220,7 +220,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateServer(string ip, uint port, uint connectMaxNum, IHyperSocketServerListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateServer(string ip, uint port, uint connectMaxNum, IHyperSocketServer listener, HyperSocketConfig config = null)
         {
             return CreateServer(ip, port, port, connectMaxNum, listener, config);
         }
@@ -235,7 +235,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateServer(string ip, uint tcpPort, uint udpPort, uint connectMaxNum, IHyperSocketServerListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateServer(string ip, uint tcpPort, uint udpPort, uint connectMaxNum, IHyperSocketServer listener, HyperSocketConfig config = null)
         {
             if (config == null) config = new HyperSocketConfig();
             if (connectMaxNum > ushort.MaxValue - 1) connectMaxNum = ushort.MaxValue - 1;
@@ -292,7 +292,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                svrListener.OnError(ex);
+                svrListener.SocketError(ex);
             }
             sessionId = 0;
             return null;
@@ -364,7 +364,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 客户端监听器
         /// </summary>
-        private IHyperSocketClientListener cntListener;
+        private IHyperSocketClient cntListener;
 
         /// <summary>
         /// 客户端会话ID
@@ -390,7 +390,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateClient(string ip, uint port, IHyperSocketClientListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateClient(string ip, uint port, IHyperSocketClient listener, HyperSocketConfig config = null)
         {
             try
             {
@@ -408,7 +408,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                listener.OnError(null, ex);
+                listener.SocketError(null, ex);
                 return null;
             }
         }
@@ -438,7 +438,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                cntListener.OnError(this, ex);
+                cntListener.SocketError(this, ex);
             }
             // 没有进入最内部逻辑则直接关闭
             Close();

@@ -20,6 +20,7 @@ namespace Sample
             // 建立http访问器，并载入异常接口类
             HttpVisitor visitor = new HttpVisitor(handle);
             // 给访问器增加函数
+            visitor.Add("", handle.Index);
             visitor.Add("Hello", handle.Hello);
             // 建立http服务，填写前缀地址并且赋予访问器
             // 注：全监听 0.0.0.0 在这里用 + 号代替
@@ -32,15 +33,20 @@ namespace Sample
             Console.ReadLine();
         }
 
-        class HttpHandle1 : IHttpVisitorException
+        class HttpHandle1 : IHttpVisitor
         {
+            public void Index(HttpConnection conn)
+            {
+                // 首页根访问
+            }
+            
             public void Hello(HttpConnection conn)
             {
                 if (!conn.getValue.TryGetValue("text", out var text)) text = "text没有内容";
                 conn.writer.Write("Hello World:" + text);
             }
 
-            public void CatchOnRequestException(HttpConnection conn, Exception ex)
+            public void HttpVisitorException(HttpConnection conn, Exception ex)
             {
                 // http异常处理
             }
@@ -56,6 +62,7 @@ namespace Sample
             HttpService service = new HttpService(handle);
             // 这里需要添加所有完整监听链接
             service.AddFullPrefix("http://127.0.0.1:8080/Hello");
+            service.AddFullPrefix("http://127.0.0.1:8080");
             // 启动服务
             service.StartServer();
             // 然后就可以通过浏览器或其他请求工具来访问了
@@ -64,7 +71,7 @@ namespace Sample
             Console.ReadLine();
         }
 
-        class HttpHandle2 : HttpInvoke
+        class HttpHandle2 : IHttp
         {
             public void HttpException(Exception exception, HttpConnection conn)
             {

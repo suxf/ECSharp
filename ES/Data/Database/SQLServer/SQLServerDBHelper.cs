@@ -26,7 +26,7 @@ namespace ES.Data.Database.SQLServer
         /// <summary>
         /// 数据库异常监听
         /// </summary>
-        private ISQLServerDBHelperException listener = null;
+        private ISQLServerDBHelper listener = null;
 
         private readonly BaseTimeFlow timeFlow;
 
@@ -105,7 +105,7 @@ namespace ES.Data.Database.SQLServer
         /// 设置异常监听
         /// </summary>
         /// <param name="listener">异常监听器</param>
-        public void SetExceptionListener(ISQLServerDBHelperException listener)
+        public void SetExceptionListener(ISQLServerDBHelper listener)
         {
             this.listener = listener;
         }

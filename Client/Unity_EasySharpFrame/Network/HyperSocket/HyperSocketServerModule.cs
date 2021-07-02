@@ -9,13 +9,13 @@ namespace ES.Network.HyperSocket
     /// <summary>
     /// 超级服务器套接字模块
     /// </summary>
-    internal class HyperSocketServerModule : ServerSocket, IRemoteSocketInvoke
+    internal class HyperSocketServerModule : ServerSocket, IRemoteSocket
     {
         private HyperSocket hyperSocket;
         /// <summary>
         /// 监听器
         /// </summary>
-        private IHyperSocketServerListener listener;
+        private IHyperSocketServer listener;
 
 
         internal HyperSocketServerModule(string ip, int port, int num, int size, HyperSocket hyperSocket) : base(ip, port, num, size)
@@ -23,12 +23,12 @@ namespace ES.Network.HyperSocket
             this.hyperSocket = hyperSocket;
         }
 
-        internal void SetListener(IHyperSocketServerListener listener)
+        internal void SetListener(IHyperSocketServer listener)
         {
             this.listener = listener;
         }
 
-        public void ReceivedCompleted(RemoteSocketMsg msg)
+        public void OnReceivedCompleted(RemoteSocketMsg msg)
         {
             if (hyperSocket != null && msg.data != null)
             {
@@ -135,9 +135,9 @@ namespace ES.Network.HyperSocket
             }
         }
 
-        public void OnSocketException(Exception exception)
+        public void SocketException(Exception exception)
         {
-            listener.OnError(exception);
+            listener.SocketError(exception);
         }
 
         internal void CloseSocket()

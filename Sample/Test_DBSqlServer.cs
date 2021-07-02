@@ -12,7 +12,7 @@ namespace Sample
     /// 此类包含数据库对象中所有内容
     /// 帮助使用框架的朋友进一步了解数据库创建和使用
     /// </summary>
-    class Test_DBSqlServer : ISQLServerDBHelperException
+    class Test_DBSqlServer : ISQLServerDBHelper
     {
         // 数据库助手对象
         SQLServerDBHelper dbHelper;
@@ -191,7 +191,7 @@ namespace Sample
         /// 测试配置
         /// 配置需要继承 ConfigLoaderItem 加载器子类
         /// </summary>
-        class TestConfig : ConfigLoaderItem
+        class TestConfig : ConfigItem
         {
             public int id;
             public string name;
@@ -207,7 +207,9 @@ namespace Sample
 
             protected override object SetPrimaryKey(DataRow row)
             {
-                return row["id"];
+                /** 两种写法都可 **/
+                // return row["id"];
+                return id;
             }
         }
         #endregion

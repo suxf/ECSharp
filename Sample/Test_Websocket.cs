@@ -12,7 +12,7 @@ namespace Sample
             Console.ReadLine();
         }
 
-        class WebsocketHandle : IWebsocketInvoke
+        class WebsocketHandle : IWebsocket
         {
             public void OnBinary(RemoteConnection conn)
             {

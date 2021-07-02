@@ -51,13 +51,8 @@ namespace Sample
             }
         }
 
-        class ClientListener : IHyperSocketClientListener
+        class ClientListener : IHyperSocketClient
         {
-            public void OnError(HyperSocket socket, Exception ex)
-            {
-                Console.WriteLine($"客户端错误:{ex.Message}");
-            }
-
             public void OnOpen(HyperSocket socket)
             {
                 Console.WriteLine($"连接服务器成功！聊天ID:{socket.SessionId}");
@@ -76,21 +71,20 @@ namespace Sample
             {
                 Console.WriteLine($"消息发送{Encoding.UTF8.GetString(data)}");
             }
+
+            public void SocketError(HyperSocket socket, Exception ex)
+            {
+                Console.WriteLine($"客户端错误:{ex.Message}");
+            }
         }
 
-        class ServerListener : IHyperSocketServerListener
+        class ServerListener : IHyperSocketServer
         {
             ConcurrentDictionary<int, RemoteHyperSocket> sockets = new ConcurrentDictionary<int, RemoteHyperSocket>();
 
             public void OnClose(RemoteHyperSocket socket)
             {
                 Console.WriteLine($"客户端关闭:{socket.SessionId}");
-                sockets.TryRemove(socket.SessionId, out _);
-            }
-
-            public void OnError(Exception ex)
-            {
-                Console.WriteLine($"客户端错误:{ex.Message}");
                 sockets.TryRemove(socket.SessionId, out _);
             }
 
@@ -128,6 +122,12 @@ namespace Sample
                         socket.SendUdp("失败");
                     }
                 }
+            }
+
+            public void SocketError(Exception ex)
+            {
+                Console.WriteLine($"客户端错误:{ex.Message}");
+                sockets.TryRemove(socket.SessionId, out _);
             }
         }
     }

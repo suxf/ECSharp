@@ -29,7 +29,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 初始化套接字
         /// </summary>
-        public bool Init(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, ISocketInvoke socketInvoke)
+        public bool Init(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, ISocket socketInvoke)
         {
             // 绑定委托
             this.socketInvoke = socketInvoke;
@@ -128,7 +128,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ClientConnection", "ReceiveCallback", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -149,7 +149,7 @@ namespace ES.Network.Sockets.Client
                         ushort sessionId = (ushort)(((buffer[0] & 0xFF) << 8) | (buffer[1] & 0xFF));
                         byte[] data = new byte[buffer.Length - 3];
                         Buffer.BlockCopy(buffer, 3, data, 0, data.Length);
-                        if (socketInvoke != null) socketInvoke.ReceivedCompleted(new SocketMsg(sessionId, data, this));
+                        if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new SocketMsg(sessionId, data, this));
                     }
                     // rBuffer.Decode(buffer);
                     // TriggerSocketInvoke();
@@ -168,18 +168,18 @@ namespace ES.Network.Sockets.Client
             {
                 Close();
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
             catch (IOException ex)
             {
                 Close();
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -192,7 +192,7 @@ namespace ES.Network.Sockets.Client
             while (sb != null)
             {
                 if (socketInvoke != null)
-                    socketInvoke.ReceivedCompleted(new SocketMsg(0, sb, this));
+                    socketInvoke.OnReceivedCompleted(new SocketMsg(0, sb, this));
                 // 提取下一个
                 sb = rBuffer.TakeStreamBuffer();
             }

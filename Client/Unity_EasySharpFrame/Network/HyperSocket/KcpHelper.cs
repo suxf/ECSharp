@@ -9,11 +9,11 @@ namespace ES.Network.HyperSocket
     /// <summary>
     /// KCP助手
     /// </summary>
-    internal class KcpHelper : BaseTimeFlow, IKcpCallback
+    internal class KcpHelper : ITimeUpdate, IKcpCallback
     {
         private readonly Kcp kcp;
 
-        private readonly IKcpListener kcpListener;
+        private readonly IKcp kcpListener;
         /// <summary>
         /// 下次更新时间 【kcp优化方案】
         /// </summary>
@@ -24,7 +24,9 @@ namespace ES.Network.HyperSocket
         private int noNetDataCount = 0;
         private readonly object m_lock = new object();
 
-        internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcpListener listener)
+        private readonly BaseTimeFlow timeFlow;
+
+        internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcp listener)
         {
             kcp = new Kcp(conv, this);
             if (kcpMode == KcpMode.Normal) kcp.NoDelay(0, 40, 0, 0);
@@ -34,7 +36,8 @@ namespace ES.Network.HyperSocket
 
             kcpListener = listener;
 
-            StartTimeFlowES();
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this);
+            timeFlow.StartTimeFlowES();
         }
 
         /// <summary>
@@ -91,14 +94,14 @@ namespace ES.Network.HyperSocket
 
         internal void CloseKcp()
         {
-            CloseTimeFlowES();
+            timeFlow.CloseTimeFlowES();
         }
 
         /// <summary>
         /// 更新
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             // 更新周期10ms 此处次数大于100 则为 1s 无数据跳出
             if (noNetDataCount >= 100) return;
@@ -118,7 +121,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
             // kcp.Dispose();
         }

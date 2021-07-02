@@ -41,15 +41,15 @@ namespace ES.Data.Database.Redis
         /// 增加事件监听
         /// </summary>
         /// <param name="listener"></param>
-        public void AddEventListener(RedisEventListener listener)
+        public void AddEventListener(IRedisEvent listener)
         {
             //注册如下事件
-            multiplexer.ConnectionFailed += listener.MuxerConnectionFailed;
-            multiplexer.ConnectionRestored += listener.MuxerConnectionRestored;
-            multiplexer.ErrorMessage += listener.MuxerErrorMessage;
-            multiplexer.ConfigurationChanged += listener.MuxerConfigurationChanged;
-            multiplexer.HashSlotMoved += listener.MuxerHashSlotMoved;
-            multiplexer.InternalError += listener.MuxerInternalError;
+            multiplexer.ConnectionFailed += listener.OnConnectionFailed;
+            multiplexer.ConnectionRestored += listener.OnConnectionRestored;
+            multiplexer.ErrorMessage += listener.OnErrorMessage;
+            multiplexer.ConfigurationChanged += listener.OnConfigurationChanged;
+            multiplexer.HashSlotMoved += listener.OnHashSlotMoved;
+            multiplexer.InternalError += listener.OnInternalError;
         }
 
         #region String

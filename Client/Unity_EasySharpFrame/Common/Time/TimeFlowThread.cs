@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 namespace ES.Common.Time
@@ -7,7 +6,7 @@ namespace ES.Common.Time
     internal class TimeFlowThread
     {
         private Thread thread;
-        private List<WeakReference<BaseTimeFlow>> timeFlows;
+        private List<BaseTimeFlow> timeFlows;
         private readonly object m_lock = new object();
         internal int index { private set; get; } = -1;
         /// <summary>
@@ -35,7 +34,7 @@ namespace ES.Common.Time
             {
                 IsRunning = true;
                 IsPausePushTask = false;
-                timeFlows = new List<WeakReference<BaseTimeFlow>>();
+                timeFlows = new List<BaseTimeFlow>();
                 thread = new Thread(UpdateHandle);
                 thread.IsBackground = true;
                 thread.Start();
@@ -57,7 +56,7 @@ namespace ES.Common.Time
 
         internal void Push(BaseTimeFlow timeFlow)
         {
-            lock (m_lock) timeFlows.Add(new WeakReference<BaseTimeFlow>(timeFlow));
+            lock (m_lock) timeFlows.Add(timeFlow);
         }
 
         internal void CheckThreadSafe()
@@ -74,18 +73,19 @@ namespace ES.Common.Time
                 if (threadBlockTimeOutCount >= 10)
                 {
                     Interlocked.Exchange(ref threadBlockTimeOutCount, 0);
-                    WeakReference<BaseTimeFlow>[] temp = null;
+                    BaseTimeFlow[] temp = null;
                     lock (m_lock) { temp = timeFlows.ToArray(); timeFlows.Clear(); }
                     // 超时终止当前线程并切换线程
                     Close();
-                    try { thread.Abort(); } catch { }
+                    // 因为已经过时所以此处也取消此操作 后续版本可能移除此处内容
+                    // try { thread.Abort(); } catch { }
                     // 创建新的时间线
                     if(temp != null)
                     {
                         var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
                         for (int i = 0, len = temp.Length; i < len; i++)
                         {
-                            if (temp[i].TryGetTarget(out var target)) TimeFlowManager.Instance.PushTimeFlow(target, index);
+                            if (temp[i].IsTimeUpdateActive()) TimeFlowManager.Instance.PushTimeFlow(temp[i], index);
                         }
                     }
                 }
@@ -122,17 +122,17 @@ namespace ES.Common.Time
                     var len = timeFlows.Count;
                     for (int i = len - 1; i >= 0; i--)
                     {
-                        WeakReference<BaseTimeFlow> reference = timeFlows[i];
-                        if (reference.TryGetTarget(out BaseTimeFlow tf))
+                        BaseTimeFlow tf = timeFlows[i];
+                        if (tf.IsTimeUpdateActive())
                         {
                             if (tf.isTimeFlowStop)
                             {
                                 timeFlows.RemoveAt(i);
-                                tf.OnUpdateEndES();
+                                tf.UpdateEndES();
                             }
                             else if (!tf.isTimeFlowPause)
                             {
-                                tf.UpdateES(TimeFlowManager.timeFlowPeriod - currentPeriod);
+                                tf.UpdateES(currentPeriod);
                                 totalTime += tf.lastUseTime;
                             }
                         }
@@ -166,8 +166,8 @@ namespace ES.Common.Time
                                     moveOtherThreadFlow = new BaseTimeFlow[len - len / 2];
                                     for (int i = len - 1, end = len / 2; i >= end; i--)
                                     {
-                                        WeakReference<BaseTimeFlow> reference = timeFlows[i];
-                                        if (reference.TryGetTarget(out BaseTimeFlow tf))
+                                        BaseTimeFlow tf = timeFlows[i];
+                                        if (tf.IsTimeUpdateActive())
                                         {
                                             moveOtherThreadFlow[moveOtherThreadFlowIndex++] = tf;
                                             timeFlows.RemoveAt(i);

@@ -1,5 +1,4 @@
-﻿using ES.Network.Sockets.Server.Linq;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
@@ -65,11 +64,11 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 消息委托
         /// </summary>
-        public IRemoteSocketInvoke socketInvoke = null;
+        public IRemoteSocket socketInvoke = null;
         /// <summary>
         /// 套接字状态监听回调器
         /// </summary>
-        internal SocketStatusListener socketStatusListener = null;
+        internal IServerSocket socketStatusListener = null;
         /// <summary>
         /// 监听套接字状态任务
         /// </summary>
@@ -131,7 +130,7 @@ namespace ES.Network.Sockets.Server
         /// <param name="backlog">同时监听接入连接数 默认为0, 即 并发可监听数</param>
         /// <param name="socketInvoke">委托回调</param>
         /// <returns>连接是否成功</returns>
-        public bool Init(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, int backlog, IRemoteSocketInvoke socketInvoke)
+        public bool Init(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, int backlog, IRemoteSocket socketInvoke)
         {
             // 绑定委托
             this.socketInvoke = socketInvoke;
@@ -227,7 +226,7 @@ namespace ES.Network.Sockets.Server
                     catch (Exception ex)
                     {
                         // Log.Exception(ex, "ServerConnection", "CloseClientSocket", "Socket");
-                        socketInvoke.OnSocketException(ex);
+                        socketInvoke.SocketException(ex);
                     }
                     // 断开连接回调
                     if (socketStatusListener != null) socketStatusListener.OnClose(client);
@@ -247,7 +246,7 @@ namespace ES.Network.Sockets.Server
         /// <para>TCP可以使用监控任务 UDP无法通过监控判断其断开情况</para>
         /// </summary>
         /// <param name="listener"></param>
-        public void SetSocketEvent(SocketStatusListener listener)
+        public void SetSocketEvent(IServerSocket listener)
         {
             SetSocketEvent(listener, new MonitorSocketStatusTask(-1));
         }
@@ -258,7 +257,7 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         /// <param name="listener"></param>
         /// <param name="task"></param>
-        public void SetSocketEvent(SocketStatusListener listener, MonitorSocketStatusTask task)
+        public void SetSocketEvent(IServerSocket listener, MonitorSocketStatusTask task)
         {
             socketStatusListener = listener;
             monitorSocketStatusTask = task;
@@ -301,7 +300,7 @@ namespace ES.Network.Sockets.Server
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ServerConnection", "AcceptEventArg_Completed", "Socket");
-                socketInvoke.OnSocketException(ex);
+                socketInvoke.SocketException(ex);
             }
         }
 
@@ -426,7 +425,7 @@ namespace ES.Network.Sockets.Server
                     ushort sessionId = (ushort)(((buffer[0] & 0xFF) << 8) | (buffer[1] & 0xFF));
                     byte[] data = new byte[buffer.Length - 3];
                     Buffer.BlockCopy(buffer, 3, data, 0, data.Length);
-                    if (socketInvoke != null) socketInvoke.ReceivedCompleted(new RemoteSocketMsg(sessionId, data, e.RemoteEndPoint));
+                    if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new RemoteSocketMsg(sessionId, data, e.RemoteEndPoint));
                 }
             }
 

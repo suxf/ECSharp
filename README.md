@@ -6,7 +6,19 @@ Easy .NET Develop Frame.
 这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！
 
 # 快速使用
-库中只是公开了源码，如果使用此框架可以直接从NuGet库中搜索安装最新版本。
+可以直接从NuGet库中搜索安装最新版本。
+
+# 框架版本
+| 版本 | 支持 |
+| ------------ | ------------ |
+| .Net 6.0 | √  |
+| .Net 5.0 | √  |
+| .Net Core 3.1 | √ |
+| .Net Framework 4.8 | × |
+
+注：从1.13.x版本后仅支持框架版本情况如上，主要是因为热更功能所需的框架功能在老版本中没有支持，在1.12.x及之前的版本基本上全框架版本都可以使用，不需要热更功能可以使用1.12.x版本。
+
+## 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
 
 # 目录介绍
 | 目录 | 备注 |
@@ -29,6 +41,7 @@ public void Http1()
     // 建立http访问器，并载入异常接口类
     HttpVisitor visitor = new HttpVisitor(handle);
     // 给访问器增加函数
+    visitor.Add("", handle.Index);
     visitor.Add("Hello", handle.Hello);
     // 建立http服务，填写前缀地址并且赋予访问器
     // 注：全监听 0.0.0.0 在这里用 + 号代替
@@ -41,20 +54,26 @@ public void Http1()
     Console.ReadLine();
 }
 
-class HttpHandle1 : IHttpVisitorException
+class HttpHandle1 : IHttpVisitor
 {
+    public void Index(HttpConnection conn)
+    {
+        // 首页根访问
+    }
+
     public void Hello(HttpConnection conn)
     {
         if (!conn.getValue.TryGetValue("text", out var text)) text = "text没有内容";
         conn.writer.Write("Hello World:" + text);
     }
 
-    public void CatchOnRequestException(HttpConnection conn, Exception ex)
+    public void HttpVisitorException(HttpConnection conn, Exception ex)
     {
         // http异常处理
     }
 }
-
+```
+```csharp
 /* 使用方法二 */
 public void Http2()
 {
@@ -73,7 +92,7 @@ public void Http2()
     Console.ReadLine();
 }
 
-class HttpHandle2 : HttpInvoke
+class HttpHandle2 : IHttp
 {
     public void HttpException(Exception exception, HttpConnection conn)
     {
@@ -86,14 +105,13 @@ class HttpHandle2 : HttpInvoke
         // 所以如果需要高度自定义可以使用此方法
     }
 }
-
 ```
 ### 2.Websocket服务
 使用Fleck库中的Websocket进行二次封装。
 ```csharp
 WebsocketService service = new WebsocketService("ws://127.0.0.1:8081", new WebsocketHandle());
 
-class WebsocketHandle : IWebsocketInvoke
+class WebsocketHandle : IWebsocket
 {
     public void OnBinary(RemoteConnection conn)
     {
@@ -122,24 +140,22 @@ class WebsocketHandle : IWebsocketInvoke
 }
 
 ```
-### 3.HyperSocket[自定义Socket服务]
+### 3.HyperSocket<自定义Socket服务>
 该模块已经深度封装了原生Socket模块，实现了快捷连接，加密连接等比较便捷实用的功能，通过IOCP接口可以实现高并发收发。需要配合配套的客户端才能使用。
 ```csharp
 // 创建服务器
 var config = new HyperSocketConfig() { UseSSL = true };
 HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), config);
-// 创建客户端
-HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
 
 // 服务器监听接口
-class ServerListener : IHyperSocketServerListener
+class ServerListener : IHyperSocketServer
 {
     public void OnClose(RemoteHyperSocket socket)
     {
         // 客户端关闭
     }
 
-    public void OnError(Exception ex)
+    public void SocketError(Exception ex)
     {
         // 连接异常
     }
@@ -159,11 +175,15 @@ class ServerListener : IHyperSocketServerListener
         // Udp模式接收
     }
 }
+```
+```csharp
+// 创建客户端
+HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
 
 // 客户端监听接口
-class ClientListener : IHyperSocketClientListener
+class ClientListener : IHyperSocketClient
 {
-    public void OnError(HyperSocket socket, Exception ex)
+    public void SocketError(HyperSocket socket, Exception ex)
     {
         // 客户端异常
     }
@@ -184,34 +204,35 @@ class ClientListener : IHyperSocketClientListener
     }
 }
 ```
-### 4.TimeFlow[时间流]
+### 4.TimeFlow<时间流>
 该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定10ms的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类。
 ```csharp
 class TimeDemo : ITimeUpdate
 {
-	TimeFlow tf;
-	public TimeDemo(){
-		tf = TimeFlow.Create(this);
-		tf.Start();
-	}
-
-	/// 此函数会默认10毫秒调用一次
-	/// 可以从 TimeFlow.period 直接获取周期时间
-	/// dt为消耗时间的差值 因为程序不可能每次都精准10毫秒执行
-	/// 所以update会不断调整时间执行时间 dt就是这个时间的差值
-	/// 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因为我们有自动修正
-	public void Update(int dt)
-	{
-	}
-
-	/// 停止更新
-	public void UpdateEnd()
-	{
-	}
+    TimeFlow tf;
+    public TimeDemo(){
+        tf = TimeFlow.Create(this);
+        tf.Start();
+    }
+    
+    // 此函数会默认10毫秒调用一次
+    // 可以从 TimeFlow.period 直接获取周期时间
+    // dt为消耗时间的差值 因为程序不可能每次都精准10毫秒执行
+    // 所以update会不断调整时间执行时间 dt就是这个时间的差值
+    // 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因    为我们有自动修正
+    public void Update(int dt)
+    {
+    }
+    
+    // 停止更新
+    public void UpdateEnd()
+    {
+    }
 }
 ```
 ### 5.Sqlserver数据库助手
-Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs "链接")
+Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs)
+
 助手目前有以下几种功能：
 - 数据库连接：简化连接操作步骤
 - 数据库执行SQL和存储过程：书写SQL直接执行得到结果
@@ -223,18 +244,28 @@ Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例�
 ```csharp
 // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
 dbHelper = new SQLServerDBHelper("127.0.0.1", "sa", "123456", "db_test");
-// 增加异常监听器 需要一个继承 ISQLServerDBHelperException 接口
+// 增加异常监听器 需要一个继承 ISQLServerDBHelper 接口
 dbHelper.SetExceptionListener(this);
 // 检测数据库连接是否成功调用 成功返回true
 if (dbHelper.CheckConnected())
 {
     Console.WriteLine("数据库已连接");
 }
+// 普通查询调用
+var result = dbHelper.CommandSQL("SELECT * FROM tb_test");
+// 查询条数判断
+if (result.effectNum > 0)
+{
+    // 取出表一的相关数据
+    // 如果查询有多个select 可以通过result.dataSet取得
+    int id = (int)result.collection[0]["id"];
+    Console.WriteLine($"id:{id}");
+}
 ```
 ### 6.Redis数据库助手
-简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，是订阅更加易用。
+简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，使订阅更加易用。
 ```csharp
-// 继承 RedisEventListener 接口来用于监听回调
+// 继承 IRedisEvent 接口来用于监听回调
 RedisHelper helper = new RedisHelper("127.0.0.1:6379");
 // 增加事件监听用于检测连接状态
 helper.AddEventListener(this);
@@ -244,15 +275,30 @@ helper.Set("test", 1);
 var test = helper.Get<int>("test");
 ```
 ### 7.Log功能
-日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。LogConfig类为日志前置配置类，可以对日志进行自定义配置。
+日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。Log类中提供日志前置配置参数，可以对日志进行自定义配置。
 ```csharp
 // 以下四个函数均为普通分级日志输出函数
 Log.Debug("debug is this");
-Log.Info("Info is this");
+Log.Info("info is this");
 Log.Warn("warn is this");
 Log.Error("error is this");
 // 此函数可以写在try catch中 用于打印异常问题
 Log.Exception(new System.Exception(), "exception is this");
+```
+```csharp
+/** 可配置变量 **/
+/** 配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题 **/
+// 日志控制台输出开关 默认开启
+Log.LOG_CONSOLE_OUTPUT = true;
+// 日志写入周期 单位 ms
+Log.LOG_PERIOD = 1000;
+// 日志写入文件后缀
+Log.LOG_FILE_SUFFIX = ".log";
+// 日志单个文件最多大小
+// 单位 byte 默认 50MB大小
+Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
+// 日志根路径
+Log.LOG_PATH = "./log/";
 ```
 ### 8.热更功能
 是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，发现在如今的配置服务器下这点性能消耗已经不足以影响整个流程，当然如果实在是有高度原生强迫的开发“患者”可以忽略这个功能。
@@ -273,7 +319,7 @@ public class Player : AgentData
 ```
 ```csharp
 /** 热更工程项目 **/
-/// 热更测试DLL入口
+// 热更测试DLL入口
 public class Main
 {
     readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
@@ -338,6 +384,7 @@ string md5Str = MD5.Encrypt("helloworld");
 // 获取此框架的版本信息
 string versionStr = ES.Common.Utils.Version.ToString();
 ```
+
 # 引用声明
 本框架所有引用第三方外部工具均为MIT协议且均采用NuGet库自动安装
 

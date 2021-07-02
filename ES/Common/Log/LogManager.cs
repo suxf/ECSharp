@@ -55,9 +55,9 @@ namespace ES.Common.Log
             logId = new Random().Next(100, 999).ToString();
             logInfos = new ConcurrentQueue<LogInfo>();
             // 创建目录
-            if (!Directory.Exists(LogConfig.LOG_PATH))
+            if (!Directory.Exists(Log.LOG_PATH))
             {
-                Directory.CreateDirectory(LogConfig.LOG_PATH);
+                Directory.CreateDirectory(Log.LOG_PATH);
             }
 
             timeFlow = BaseTimeFlow.CreateTimeFlow(this, 1);
@@ -72,18 +72,18 @@ namespace ES.Common.Log
         public void Update(int dt)
         {
             periodNow += TimeFlow.period;
-            if (periodNow >= LogConfig.LOG_PERIOD)
+            if (periodNow >= Log.LOG_PERIOD)
             {
                 periodNow = 0;
 
                 // 如果没有日志则不处理
                 if (logInfos.Count <= 0) return;
                 // 创建当日目录
-                if (!Directory.Exists(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
+                if (!Directory.Exists(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
                 {
-                    Directory.CreateDirectory(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
+                    Directory.CreateDirectory(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
                 }
-                string filename = LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX);
+                string filename = Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX);
                 if (!File.Exists(filename)) fileInfo = null;
                 // 检查文件
                 if (fileInfo == null)
@@ -92,9 +92,9 @@ namespace ES.Common.Log
                     fileInfo.Refresh();
                 if (fileInfo.Exists)
                 {
-                    if (fileInfo.Length > LogConfig.LOG_UNIT_FILE_MAX_SIZE)
+                    if (fileInfo.Length > Log.LOG_UNIT_FILE_MAX_SIZE)
                     {
-                        fileInfo = new FileInfo(LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX));
+                        fileInfo = new FileInfo(Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX));
                         FileStream fs = fileInfo.Create();
                         fs.Close();
                         fileInfo.Refresh();
@@ -112,12 +112,12 @@ namespace ES.Common.Log
                 {
                     if (log.data == null) continue;
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendFormat("{0} {1} [", log.time, log.type);
+                    sb.AppendFormat("{0} {1}", log.time, log.type);
                     if (log.spaceName != null) sb.AppendFormat(" {0} ", log.spaceName);
                     if (log.className != null) sb.AppendFormat(" {0} ", log.className);
                     if (log.methodName != null) sb.AppendFormat(" {0} ", log.methodName);
-                    sb.AppendFormat("]:{0}", log.data);
-                    if (LogConfig.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
+                    sb.AppendFormat(":{0}", log.data);
+                    if (Log.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());
                 }
             }

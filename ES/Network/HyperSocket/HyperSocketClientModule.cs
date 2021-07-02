@@ -9,13 +9,13 @@ namespace ES.Network.HyperSocket
     /// <summary>
     /// 超级套接字客户端模块
     /// </summary>
-    internal class HyperSocketClientModule : ClientSocket, ISocketInvoke, IKcpListener
+    internal class HyperSocketClientModule : ClientSocket, ISocket, IKcp
     {
         private HyperSocket hyperSocket;
         /// <summary>
         /// 监听器
         /// </summary>
-        private IHyperSocketClientListener listener;
+        private IHyperSocketClient listener;
         /// <summary>
         /// kcp协议模块
         /// </summary>
@@ -36,7 +36,7 @@ namespace ES.Network.HyperSocket
             if (protocolType == ProtocolType.Udp) kcpHelper = new KcpHelper(hyperSocket.SessionId, (int)hyperSocket.config.UdpReceiveSize, hyperSocket.config.KcpWinSize, hyperSocket.config.kcpMode, this);
         }
 
-        internal void SetListener(IHyperSocketClientListener listener)
+        internal void SetListener(IHyperSocketClient listener)
         {
             this.listener = listener;
         }
@@ -46,7 +46,7 @@ namespace ES.Network.HyperSocket
             kcpHelper.Send(data);
         }
 
-        public void ReceivedCompleted(SocketMsg msg)
+        public void OnReceivedCompleted(SocketMsg msg)
         {
             if (hyperSocket != null && msg.data != null)
             {
@@ -112,9 +112,9 @@ namespace ES.Network.HyperSocket
             else hyperSocket.VerifyServerData(data);
         }
 
-        public void OnSocketException(Exception exception)
+        public void SocketException(Exception exception)
         {
-            if (listener != null) listener.OnError(hyperSocket, exception);
+            if (listener != null) listener.SocketError(hyperSocket, exception);
             if (hyperSocket != null) hyperSocket.Close();
         }
 

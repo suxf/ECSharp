@@ -12,7 +12,7 @@ namespace ES.Common.Log
     /// <para>周期性写入文件</para>
     /// <para>周期LOG_PERIOD、写入路径LOG_PATH和分文件大小限制LOG_UNIT_FILE_MAX_SIZE可以直接调用静态修改（程序启动时未第一次调用就应修改完成）</para>
     /// </summary>
-    internal class LogManager : BaseTimeFlow
+    internal class LogManager : ITimeUpdate
     {
         /// <summary>
         /// 单例静态对象
@@ -44,20 +44,24 @@ namespace ES.Common.Log
         /// </summary>
         private readonly string proccessName = "";
 
+        private readonly BaseTimeFlow timeFlow;
+
         /// <summary>
         /// 构造函数
         /// </summary>
-        private LogManager() : base(1)
+        private LogManager()
         {
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
             logId = new Random().Next(100, 999).ToString();
             logInfos = new ConcurrentQueue<LogInfo>();
             // 创建目录
-            if (!Directory.Exists(LogConfig.LOG_PATH))
+            if (!Directory.Exists(Log.LOG_PATH))
             {
-                Directory.CreateDirectory(LogConfig.LOG_PATH);
+                Directory.CreateDirectory(Log.LOG_PATH);
             }
-            StartTimeFlowES();
+
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 1);
+            timeFlow.StartTimeFlowES();
         }
 
         private int periodNow = 0;
@@ -65,21 +69,21 @@ namespace ES.Common.Log
         /// 系统调用
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
-            periodNow += timeFlowPeriod;
-            if (periodNow >= LogConfig.LOG_PERIOD)
+            periodNow += TimeFlow.period;
+            if (periodNow >= Log.LOG_PERIOD)
             {
                 periodNow = 0;
 
                 // 如果没有日志则不处理
                 if (logInfos.Count <= 0) return;
                 // 创建当日目录
-                if (!Directory.Exists(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
+                if (!Directory.Exists(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
                 {
-                    Directory.CreateDirectory(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
+                    Directory.CreateDirectory(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
                 }
-                string filename = LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX);
+                string filename = Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX);
                 if (!File.Exists(filename)) fileInfo = null;
                 // 检查文件
                 if (fileInfo == null)
@@ -88,9 +92,9 @@ namespace ES.Common.Log
                     fileInfo.Refresh();
                 if (fileInfo.Exists)
                 {
-                    if (fileInfo.Length > LogConfig.LOG_UNIT_FILE_MAX_SIZE)
+                    if (fileInfo.Length > Log.LOG_UNIT_FILE_MAX_SIZE)
                     {
-                        fileInfo = new FileInfo(LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX));
+                        fileInfo = new FileInfo(Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX));
                         FileStream fs = fileInfo.Create();
                         fs.Close();
                         fileInfo.Refresh();
@@ -108,12 +112,12 @@ namespace ES.Common.Log
                 {
                     if (log.data == null) continue;
                     StringBuilder sb = new StringBuilder();
-                    sb.AppendFormat("{0} {1} [", log.time, log.type);
+                    sb.AppendFormat("{0} {1}", log.time, log.type);
                     if (log.spaceName != null) sb.AppendFormat(" {0} ", log.spaceName);
                     if (log.className != null) sb.AppendFormat(" {0} ", log.className);
                     if (log.methodName != null) sb.AppendFormat(" {0} ", log.methodName);
-                    sb.AppendFormat("]:{0}", log.data);
-                    if (LogConfig.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
+                    sb.AppendFormat(":{0}", log.data);
+                    if (Log.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());
                 }
             }
@@ -122,7 +126,7 @@ namespace ES.Common.Log
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
         }
     }

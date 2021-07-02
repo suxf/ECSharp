@@ -14,7 +14,7 @@ namespace ES.Network.HyperSocket
     /// <para>在连接过程中因为握手是异步处理的，所以需要在接口中才能得到正确的连接对象</para>
     /// <para>如果仅仅是创建了对象后就发送消息等操作是无法正确应答的</para>
     /// </summary>
-    public class HyperSocket : BaseTimeFlow
+    public class HyperSocket : ITimeUpdate
     {
         /// <summary>
         /// 心跳pong字节
@@ -73,6 +73,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal SSL ssl;
 
+        internal readonly BaseTimeFlow timeFlow;
 
         /// <summary>
         /// 构造函数
@@ -99,17 +100,19 @@ namespace ES.Network.HyperSocket
                 remoteSockets = new RemoteHyperSocket[connectMaxNum];
                 ssl = new SSL(SSL.SSLMode.RSA);
             }
+
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this);
         }
 
         /// <summary>
         /// 心跳检测
         /// </summary>
         /// <param name="dt"></param>
-        protected override void Update(int dt)
+        public void Update(int dt)
         {
             if (IsAlive)
             {
-                heartCheckPeriod -= timeFlowPeriod;
+                heartCheckPeriod -= TimeFlow.period;
                 if (heartCheckPeriod <= 0)
                 {
                     if (IsServerMode)
@@ -153,14 +156,14 @@ namespace ES.Network.HyperSocket
             if (IsAlive)
             {
                 IsAlive = false;
-                CloseTimeFlowES();
+                timeFlow.CloseTimeFlowES();
             }
         }
 
         /// <summary>
         /// 停止更新
         /// </summary>
-        protected override void OnUpdateEnd()
+        public void UpdateEnd()
         {
             if (IsServerMode)
             {
@@ -199,7 +202,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 服务端监听器
         /// </summary>
-        internal IHyperSocketServerListener svrListener;
+        internal IHyperSocketServer svrListener;
 
         /// <summary>
         /// 远程连接
@@ -217,7 +220,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateServer(string ip, uint port, uint connectMaxNum, IHyperSocketServerListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateServer(string ip, uint port, uint connectMaxNum, IHyperSocketServer listener, HyperSocketConfig config = null)
         {
             return CreateServer(ip, port, port, connectMaxNum, listener, config);
         }
@@ -232,7 +235,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateServer(string ip, uint tcpPort, uint udpPort, uint connectMaxNum, IHyperSocketServerListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateServer(string ip, uint tcpPort, uint udpPort, uint connectMaxNum, IHyperSocketServer listener, HyperSocketConfig config = null)
         {
             if (config == null) config = new HyperSocketConfig();
             if (connectMaxNum > ushort.MaxValue - 1) connectMaxNum = ushort.MaxValue - 1;
@@ -253,7 +256,7 @@ namespace ES.Network.HyperSocket
             if (r1 && r2)
             {
                 hyperSocket.IsAlive = true;
-                hyperSocket.StartTimeFlowES();
+                hyperSocket.timeFlow.StartTimeFlowES();
                 return hyperSocket;
             }
             else return null;
@@ -289,7 +292,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                svrListener.OnError(ex);
+                svrListener.SocketError(ex);
             }
             sessionId = 0;
             return null;
@@ -361,7 +364,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 客户端监听器
         /// </summary>
-        private IHyperSocketClientListener cntListener;
+        private IHyperSocketClient cntListener;
 
         /// <summary>
         /// 客户端会话ID
@@ -387,7 +390,7 @@ namespace ES.Network.HyperSocket
         /// <param name="listener">监听器</param>
         /// <param name="config">配置</param>
         /// <returns></returns>
-        public static HyperSocket CreateClient(string ip, uint port, IHyperSocketClientListener listener, HyperSocketConfig config = null)
+        public static HyperSocket CreateClient(string ip, uint port, IHyperSocketClient listener, HyperSocketConfig config = null)
         {
             try
             {
@@ -405,7 +408,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                listener.OnError(null, ex);
+                listener.SocketError(null, ex);
                 return null;
             }
         }
@@ -435,7 +438,7 @@ namespace ES.Network.HyperSocket
             }
             catch (Exception ex)
             {
-                cntListener.OnError(this, ex);
+                cntListener.SocketError(this, ex);
             }
             // 没有进入最内部逻辑则直接关闭
             Close();
@@ -451,7 +454,7 @@ namespace ES.Network.HyperSocket
             {
                 IsValid = true;
                 IsAlive = true;
-                StartTimeFlowES();
+                timeFlow.StartTimeFlowES();
                 SendTcp(ConnectedClientBytes);
             }
             else if (str.ElementAt(0) == '1')

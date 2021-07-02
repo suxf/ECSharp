@@ -11,7 +11,7 @@ namespace Sample
         public Test_EasyStorage()
         {
             // 先打开控制台日志
-            LogConfig.LOG_CONSOLE_OUTPUT = true;
+            Log.LOG_CONSOLE_OUTPUT = true;
             // 设置一个值
             EasyStorage.Set("test", 1);
             EasyStorage.Set("test2", "Hello world");

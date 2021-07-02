@@ -25,7 +25,7 @@ namespace ES.Network.Websocket
         /// <param name="url">监听地址</param>
         /// <param name="invoke">监听委托</param>
 
-        public WebsocketService(string url, IWebsocketInvoke invoke)
+        public WebsocketService(string url, IWebsocket invoke)
         {
             websocketSvr = new WebSocketServer(url);
 
@@ -38,7 +38,7 @@ namespace ES.Network.Websocket
         /// <param name="url">监听地址</param>
         /// <param name="certificateFile">ssl证书路径</param>
         /// <param name="invoke">监听委托</param>
-        public WebsocketService(string url, string certificateFile, IWebsocketInvoke invoke)
+        public WebsocketService(string url, string certificateFile, IWebsocket invoke)
         {
             websocketSvr = new WebSocketServer(url);
             websocketSvr.Certificate = new X509Certificate2(certificateFile);
@@ -50,7 +50,7 @@ namespace ES.Network.Websocket
         /// 初始化委托
         /// </summary>
         /// <param name="invoke"></param>
-        private void InitInvoke(IWebsocketInvoke invoke)
+        private void InitInvoke(IWebsocket invoke)
         {
             websocketSvr.Start(socket =>
             {

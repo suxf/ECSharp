@@ -13,7 +13,7 @@ namespace ES.Network.HyperSocket
     {
         private readonly Kcp kcp;
 
-        private readonly IKcpListener kcpListener;
+        private readonly IKcp kcpListener;
         /// <summary>
         /// 下次更新时间 【kcp优化方案】
         /// </summary>
@@ -26,7 +26,7 @@ namespace ES.Network.HyperSocket
 
         private readonly BaseTimeFlow timeFlow;
 
-        internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcpListener listener)
+        internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcp listener)
         {
             kcp = new Kcp(conv, this);
             if (kcpMode == KcpMode.Normal) kcp.NoDelay(0, 40, 0, 0);

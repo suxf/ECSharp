@@ -16,9 +16,9 @@ namespace Sample
         {
             // 此处只举例一个配置例子
             // 在首次调用Log前如果需要自定义一些配置输出
-            // 可以使用LogConfig进行更改 之后更改也将无效
-            LogConfig.LOG_PERIOD = 1000;
-            LogConfig.LOG_CONSOLE_OUTPUT = false;
+            // 可以使用Log进行更改
+            Log.LOG_PERIOD = 1000;
+            Log.LOG_CONSOLE_OUTPUT = false;
             // 以下四个函数均为普通分级日志输出函数
             Log.Debug("debug is this");
             Log.Info("Info is this");

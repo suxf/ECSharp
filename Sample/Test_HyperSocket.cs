@@ -55,11 +55,11 @@ namespace Sample
             //threads[i].Start();
         }
 
-        class ClientListener : IHyperSocketClientListener
+        class ClientListener : IHyperSocketClient
         {
             bool fff = false;
        
-            public void OnError(HyperSocket socket, Exception ex)
+            public void SocketError(HyperSocket socket, Exception ex)
             {
                 if (fff) --num;
                 Console.WriteLine($"Connect Num:{num}");
@@ -106,17 +106,15 @@ namespace Sample
             }
         }
 
-        class ServerListener : IHyperSocketServerListener
+        class ServerListener : IHyperSocketServer
         {
-            
-
             public void OnClose(RemoteHyperSocket socket)
             {
                 if(ssss.Remove(socket.SessionId)) Console.WriteLine($"【OnClose】Connect Num:{ssss.Count}");
                 // Console.WriteLine($"Socket Session Close:{socket.SessionId}");
             }
 
-            public void OnError(Exception ex)
+            public void SocketError(Exception ex)
             {
                 Console.WriteLine($"【OnError】Connect Message:{ex.Message}");
             }

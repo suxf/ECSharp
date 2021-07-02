@@ -6,41 +6,41 @@ namespace ES.Network.Http.Linq
     /// <summary>
     /// http访问器
     /// </summary>
-    public class HttpVisitor : HttpInvoke
+    public class HttpVisitor : IHttp
     {
         /// <summary>
         /// 回调委托
         /// </summary>
-        public delegate void OnRequest(HttpConnection conn);
+        public delegate void Request(HttpConnection conn);
         /// <summary>
         /// 回调委托列表
         /// </summary>
-        internal ConcurrentDictionary<string, OnRequest> commandList = null;
+        internal ConcurrentDictionary<string, Request> commandList = null;
         /// <summary>
         /// 全局Http监听者
         /// </summary>
-        private OnRequest allHttpListener = null;
+        private Request allHttpListener = null;
         /// <summary>
         /// 异常回调函数地址
         /// </summary>
-        private readonly IHttpVisitorException catchReceivedException = null;
+        private readonly IHttpVisitor listener = null;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public HttpVisitor(IHttpVisitorException catchReceivedException)
+        public HttpVisitor(IHttpVisitor listener)
         {
-            commandList = new ConcurrentDictionary<string, OnRequest>();
-            this.catchReceivedException = catchReceivedException;
+            commandList = new ConcurrentDictionary<string, Request>();
+            this.listener = listener;
         }
 
         /// <summary>
         /// 添加访问函数
         /// 相同访问后缀可以被覆盖 可重复注册相同后缀访问已更新内容
         /// </summary>
-        /// <param name="suffix">标记后缀</param>
+        /// <param name="suffix">标记后缀,空字符串表示根访问</param>
         /// <param name="callback">访问函数</param>
-        public void Add(string suffix, OnRequest callback)
+        public void Add(string suffix, Request callback)
         {
             if (!commandList.TryAdd(suffix, callback)) commandList[suffix] = callback;
         }
@@ -52,15 +52,15 @@ namespace ES.Network.Http.Linq
         /// <para>这个监听是返回所有可以接收到的请求,以此来实现添加Add无法实现的全部监听</para>
         /// </summary>
         /// <param name="callback"></param>
-        public void SetAllListener(OnRequest callback)
+        public void SetAllListener(Request callback)
         {
             allHttpListener = callback;
         }
 
-        void HttpInvoke.OnRequest(HttpConnection conn)
+        void IHttp.OnRequest(HttpConnection conn)
         {
-            OnRequest or = null;
-            if (commandList.TryGetValue(conn.suffix, out OnRequest value))
+            Request or = null;
+            if (commandList.TryGetValue(conn.suffix, out Request value))
             {
                 or = value;
             }
@@ -73,7 +73,7 @@ namespace ES.Network.Http.Linq
                 }
                 catch (Exception ex)
                 {
-                    if (catchReceivedException != null) catchReceivedException.CatchOnRequestException(conn, ex);
+                    if (listener != null) listener.HttpVisitorException(conn, ex);
                     else throw;
                     conn.response.StatusCode = (int)HttpRequestState.NonExistent;
                 }
@@ -88,7 +88,7 @@ namespace ES.Network.Http.Linq
         /// <param name="conn"></param>
         public void HttpException(Exception exception, HttpConnection conn)
         {
-            if (catchReceivedException != null) catchReceivedException.CatchOnRequestException(conn, exception);
+            if (listener != null) listener.HttpVisitorException(conn, exception);
             else throw exception;
         }
     }
