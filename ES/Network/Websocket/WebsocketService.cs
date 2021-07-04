@@ -28,7 +28,6 @@ namespace ES.Network.Websocket
         public WebsocketService(string url, IWebsocket invoke)
         {
             websocketSvr = new WebSocketServer(url);
-
             InitInvoke(invoke);
         }
 
@@ -36,13 +35,12 @@ namespace ES.Network.Websocket
         /// 创建ssl服务
         /// </summary>
         /// <param name="url">监听地址</param>
-        /// <param name="certificateFile">ssl证书路径</param>
+        /// <param name="certificate">安全证书</param>
         /// <param name="invoke">监听委托</param>
-        public WebsocketService(string url, string certificateFile, IWebsocket invoke)
+        public WebsocketService(string url, X509Certificate2 certificate, IWebsocket invoke)
         {
             websocketSvr = new WebSocketServer(url);
-            websocketSvr.Certificate = new X509Certificate2(certificateFile);
-
+            websocketSvr.Certificate = certificate;
             InitInvoke(invoke);
         }
 

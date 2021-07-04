@@ -11,14 +11,14 @@ namespace ES.Data.Database.SQLServer
         /// 单表执行影响行数
         /// <para>此值大于等于0的情况才代表执行成功，大于0的情况表示对数据有记录或影响</para>
         /// </summary>
-        public int effectNum { internal set; get; }
+        public int EffectNum { internal set; get; }
         /// <summary>
         /// 执行数据合集
         /// </summary>
-        public DataRowCollection collection { internal set; get; }
+        public DataRowCollection Collection { internal set; get; }
         /// <summary>
         /// 数据总合集
         /// </summary>
-        public DataSet dataSet { internal set; get; }
+        public DataSet DataSet { internal set; get; }
     }
 }

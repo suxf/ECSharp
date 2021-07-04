@@ -50,7 +50,7 @@ namespace ES.Network.HyperSocket
         {
             if (hyperSocket != null && msg.data != null)
             {
-                if (clientSocket.protocolType == ProtocolType.Tcp)
+                if (clientSocket.ProtocolType == ProtocolType.Tcp)
                 {
                     // 验证通过
                     if (hyperSocket.IsValid)
@@ -81,7 +81,7 @@ namespace ES.Network.HyperSocket
                     }
                     else hyperSocket.InitializeUdpClient(msg.data);
                 }
-                else if (clientSocket.protocolType == ProtocolType.Udp)
+                else if (clientSocket.ProtocolType == ProtocolType.Udp)
                 {
                     // 验证通过
                     if (hyperSocket.SessionId == msg.sessionId) kcpHelper.Recv(msg.data);

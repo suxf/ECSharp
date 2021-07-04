@@ -113,9 +113,9 @@ namespace ES.Common.Log
                     if (log.data == null) continue;
                     StringBuilder sb = new StringBuilder();
                     sb.AppendFormat("{0} {1}", log.time, log.type);
-                    if (log.spaceName != null) sb.AppendFormat(" {0} ", log.spaceName);
-                    if (log.className != null) sb.AppendFormat(" {0} ", log.className);
-                    if (log.methodName != null) sb.AppendFormat(" {0} ", log.methodName);
+                    if (!string.IsNullOrEmpty(log.spaceName)) sb.AppendFormat(" {0} ", log.spaceName);
+                    if (!string.IsNullOrEmpty(log.className)) sb.AppendFormat(" {0} ", log.className);
+                    if (!string.IsNullOrEmpty(log.methodName)) sb.AppendFormat(" {0} ", log.methodName);
                     sb.AppendFormat(":{0}", log.data);
                     if (Log.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());

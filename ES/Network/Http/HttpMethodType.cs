@@ -16,6 +16,30 @@
         /// <summary>
         /// POST请求
         /// </summary>
-        POST
+        POST,
+        /// <summary>
+        /// PUT请求
+        /// </summary>
+        PUT,
+        /// <summary>
+        /// DELETE请求
+        /// </summary>
+        DELETE,
+        /// <summary>
+        /// HEAD请求
+        /// </summary>
+        HEAD,
+        /// <summary>
+        /// CONNECT请求
+        /// </summary>
+        CONNECT,
+        /// <summary>
+        /// OPTIONS请求
+        /// </summary>
+        OPTIONS,
+        /// <summary>
+        /// TRACE请求
+        /// </summary>
+        TRACE
     }
 }

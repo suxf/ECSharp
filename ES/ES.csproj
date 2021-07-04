@@ -4,14 +4,14 @@
     <TargetFrameworks>netcoreapp3.1;net5.0;</TargetFrameworks>
     <AssemblyName>ES</AssemblyName>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>suxf</Authors>
+    <Authors>枫</Authors>
     <Description>Easy .NET Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.13.1</Version>
+    <Version>1.13.2</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
-    <PackageTags>C#,.Net,Easy Develop,Server</PackageTags>
+    <PackageTags>C#,.Net,Server,Http,Hotfix,Socket,Sql,Mssql,Sqlserver,Redis,Websocket</PackageTags>
     <PackageProjectUrl>http://easysharpframe.fyenet.com/</PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/suxf/EasySharpFrame</RepositoryUrl>

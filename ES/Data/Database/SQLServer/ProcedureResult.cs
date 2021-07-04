@@ -11,12 +11,12 @@ namespace ES.Data.Database.SQLServer
         /// <summary>
         /// 返回结果
         /// </summary>
-        public object returnValue { internal set; get; }
+        public object ReturnValue { internal set; get; }
 
         /// <summary>
         /// 存储过程
         /// </summary>
-        public string procedure { internal set; get; }
+        public string Procedure { internal set; get; }
 
         /// <summary>
         /// 执行数据输出参数
@@ -32,6 +32,6 @@ namespace ES.Data.Database.SQLServer
         /// 是否已完成
         /// <para>为True代表存储过程完整执行成功，False表示有异常</para>
         /// </summary>
-        public bool isCompleted { internal set; get; }
+        public bool IsCompleted { internal set; get; }
     }
 }

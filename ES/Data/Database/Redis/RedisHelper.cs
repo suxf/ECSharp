@@ -18,11 +18,11 @@ namespace ES.Data.Database.Redis
         /// </summary>
         private readonly ConnectionMultiplexer multiplexer = null;
 
-        private int dbIndex { get; }
+        private int DbIndex { get; }
         /// <summary>
         /// 前缀键
         /// </summary>
-        public string prefixKey { private set; get; }
+        public string PrefixKey { private set; get; }
 
         /// <summary>
         /// 构造函数
@@ -33,7 +33,7 @@ namespace ES.Data.Database.Redis
         public RedisHelper(string readWriteHosts, int dbIndex = 0, string prefixKey = null)
         {
             if (prefixKey != null) SetPrefixKey(prefixKey);
-            this.dbIndex = dbIndex;
+            this.DbIndex = dbIndex;
             multiplexer = ConnectionMultiplexer.Connect(readWriteHosts);
         }
 
@@ -914,7 +914,7 @@ namespace ES.Data.Database.Redis
         /// <returns></returns>
         public IDatabase GetDatabase()
         {
-            return multiplexer.GetDatabase(dbIndex);
+            return multiplexer.GetDatabase(DbIndex);
         }
 
         /// <summary>
@@ -933,7 +933,7 @@ namespace ES.Data.Database.Redis
         /// <param name="prefixKey"></param>
         public void SetPrefixKey(string prefixKey)
         {
-            this.prefixKey = prefixKey;
+            PrefixKey = prefixKey;
         }
 
         /// <summary>
@@ -951,12 +951,12 @@ namespace ES.Data.Database.Redis
 
         private string AddSysCustomKey(string oldKey)
         {
-            return prefixKey + oldKey;
+            return PrefixKey + oldKey;
         }
 
         private T Do<T>(Func<IDatabase, T> func)
         {
-            var database = multiplexer.GetDatabase(dbIndex);
+            var database = multiplexer.GetDatabase(DbIndex);
             return func(database);
         }
 

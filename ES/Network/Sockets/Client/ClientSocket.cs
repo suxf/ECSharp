@@ -94,9 +94,9 @@ namespace ES.Network.Sockets.Client
         /// <param name="count">数量</param>
         public bool Send(ushort sessionId, byte[] buffer, int offset, int count)
         {
-            if (clientSocket.socketType == SocketType.Stream)
-                return SendBuffer(sessionId, buffer, offset, count);
-            else if (clientSocket.socketType == SocketType.Dgram)
+            if (clientSocket.SocketType == SocketType.Stream)
+                return SendBuffer(/*sessionId,*/ buffer, offset, count);
+            else if (clientSocket.SocketType == SocketType.Dgram)
                 return SendBufferTo(sessionId, buffer, offset, count);
             return false;
         }
@@ -113,7 +113,7 @@ namespace ES.Network.Sockets.Client
                 if (len > 0)
                 {
                     result.AsyncWaitHandle.Close();
-                    rBuffer.Decode(buffer);
+                    RBuffer.Decode(buffer);
                     TriggerSocketInvoke();
                 }
                 else if (len == 0)
@@ -188,13 +188,13 @@ namespace ES.Network.Sockets.Client
         /// </summary>
         protected override void TriggerSocketInvoke()
         {
-            var sb = rBuffer.TakeStreamBuffer();
+            var sb = RBuffer.TakeStreamBuffer();
             while (sb != null)
             {
                 if (socketInvoke != null)
                     socketInvoke.OnReceivedCompleted(new SocketMsg(0, sb, this));
                 // 提取下一个
-                sb = rBuffer.TakeStreamBuffer();
+                sb = RBuffer.TakeStreamBuffer();
             }
         }
 

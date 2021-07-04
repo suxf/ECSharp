@@ -70,6 +70,6 @@ var class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper =
     [ "Subscribe", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a28920d39ee0310a9f80a6c17be37574c", null ],
     [ "Unsubscribe", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a51c8e5dd4bb40967615179fb810ad35e", null ],
     [ "UnsubscribeAll", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a7a45a1b291361b4030b165cb70fcd629", null ],
-    [ "dbIndex", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a278a6ebeb6f4fb30b178a1a8963a0690", null ],
-    [ "prefixKey", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a919bf363585068fcb17a2ecf8e320cde", null ]
+    [ "DbIndex", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a62d060bd6a3fd6c143d29c467f73f148", null ],
+    [ "PrefixKey", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a544f2e6bdde8a08e9beb45bc6e3d1868", null ]
 ];

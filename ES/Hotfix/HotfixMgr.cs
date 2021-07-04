@@ -259,7 +259,7 @@ namespace ES.Hotfix
             /// </summary>
             private class AssemblyProtectContext : AssemblyLoadContext
             {
-                public Assembly assembly { private set; get; } = null;
+                public Assembly assembly = null;
 
                 public AssemblyProtectContext(Stream stream, Stream pdbStream) : base(true)
                 {

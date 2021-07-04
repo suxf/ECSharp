@@ -72,7 +72,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 获取主键值
         /// </summary>
-        public object PrimaryKeyValue { get { return data[parent.primaryKey]; } }
+        public object PrimaryKeyValue { get { return data[parent.PrimaryKey]; } }
 
         /// <summary>
         /// 重读数据库
@@ -80,10 +80,10 @@ namespace ES.Data.Database.SQLServer.Linq
         private void ReloadDB()
         {
             Interlocked.Exchange(ref expiredTime, 0);
-            CommandResult result = parent.dBHelper.CommandSQL("SELECT {0} FROM {1} WHERE {2}='{3}'", parent.fieldNames, parent.tableName, parent.primaryKey, data[parent.primaryKey]);
-            if (result != null && result.effectNum > 0)
+            CommandResult result = parent.dBHelper.CommandSQL("SELECT {0} FROM {1} WHERE {2}='{3}'", parent.FieldNames, parent.TableName, parent.PrimaryKey, data[parent.PrimaryKey]);
+            if (result != null && result.EffectNum > 0)
             {
-                DataRow row = result.collection[0];
+                DataRow row = result.Collection[0];
                 data.Clear();
                 foreach (object column in row.Table.Columns) data.TryAdd(column.ToString(), row[column.ToString()]);
             }

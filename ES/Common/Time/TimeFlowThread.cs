@@ -8,7 +8,7 @@ namespace ES.Common.Time
         private Thread thread;
         private List<BaseTimeFlow> timeFlows;
         private readonly object m_lock = new object();
-        internal int index { private set; get; } = -1;
+        internal int Index { private set; get; } = -1;
         /// <summary>
         /// 正在更新状态值
         /// </summary>
@@ -25,7 +25,7 @@ namespace ES.Common.Time
 
         internal TimeFlowThread(int index)
         {
-            this.index = index;
+            Index = index;
         }
 
         internal void Start()
@@ -151,7 +151,7 @@ namespace ES.Common.Time
                     {
                         if (idlHandleTimeCount > 0) idlHandleTimeCount = 0;
                         // index大于等于3为0 1 2核心线程不需要处理分离任务
-                        if (index >= 3)
+                        if (Index >= 3)
                         {
                             // 超出运行算率3次 分割算率建立新时间线
                             if (len > 1 && totalTime > TimeFlowManager.timeFlowPeriod)

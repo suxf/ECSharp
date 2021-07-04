@@ -32,7 +32,7 @@ namespace ES.Network.HyperSocket
         {
             if (hyperSocket != null && msg.data != null)
             {
-                if (serverSocket.protocolType == ProtocolType.Tcp)
+                if (serverSocket.ProtocolType == ProtocolType.Tcp)
                 {
                     if (msg.sender.hySocket == null)
                     {
@@ -45,8 +45,8 @@ namespace ES.Network.HyperSocket
                                 msg.sender.hySocket = hyperSocket.GetSocketAtIndex(sessionId);
                                 // 绑定数据
                                 msg.sender.hySocket.tcpConn = msg.sender;
-                                msg.sender.hySocket.ip = msg.sender.hySocket.tcpConn.socket.ip;
-                                msg.sender.hySocket.tcpPort = msg.sender.hySocket.tcpConn.socket.port;
+                                msg.sender.hySocket.ip = msg.sender.hySocket.tcpConn.Socket.Ip;
+                                msg.sender.hySocket.tcpPort = msg.sender.hySocket.tcpConn.Socket.Port;
                                 // 发送验证数据
                                 msg.sender.Send(sessionId, data);
                             }
@@ -88,7 +88,7 @@ namespace ES.Network.HyperSocket
                         }
                     }
                 }
-                else if (serverSocket.protocolType == ProtocolType.Udp)
+                else if (serverSocket.ProtocolType == ProtocolType.Udp)
                 {
                     if (msg.sessionId > ushort.MinValue)
                     {
@@ -99,7 +99,7 @@ namespace ES.Network.HyperSocket
                             if (remote.udpConn == null)
                             {
                                 remote.udpConn = new RemoteConnection(msg.remoteEndPoint, this);
-                                remote.udpPort = remote.udpConn.socket.port;
+                                remote.udpPort = remote.udpConn.Socket.Port;
                             }
 
                             // 处理信息

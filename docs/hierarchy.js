@@ -22,8 +22,11 @@ var hierarchy =
     ] ],
     [ "ES.Data.Storage.EasyStorage", "class_e_s_1_1_data_1_1_storage_1_1_easy_storage.html", null ],
     [ "ES.Common.Utils.ExtendClass", "class_e_s_1_1_common_1_1_utils_1_1_extend_class.html", null ],
-    [ "ES.Network.Http.HttpConnection", "class_e_s_1_1_network_1_1_http_1_1_http_connection.html", null ],
-    [ "ES.Network.Http.Linq.HttpRequest", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request.html", null ],
+    [ "ES.Network.Http.HttpHeader", "class_e_s_1_1_network_1_1_http_1_1_http_header.html", [
+      [ "ES.Network.Http.HttpRequest", "class_e_s_1_1_network_1_1_http_1_1_http_request.html", null ],
+      [ "ES.Network.Http.HttpResponse", "class_e_s_1_1_network_1_1_http_1_1_http_response.html", null ]
+    ] ],
+    [ "ES.Network.Http.Linq.HttpRequestHelper", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html", null ],
     [ "ES.Network.Http.HttpService", "class_e_s_1_1_network_1_1_http_1_1_http_service.html", null ],
     [ "ES.Network.HyperSocket.HyperSocketConfig", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html", null ],
     [ "IEnumerable", null, [

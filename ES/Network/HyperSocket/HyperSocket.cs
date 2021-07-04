@@ -175,8 +175,8 @@ namespace ES.Network.HyperSocket
                         if (remote != null && remote.IsAlive) remote.CloseSocket();
                     }
                 }
-                if (tcpServer != null) tcpServer.CloseSocket();
-                if (udpServer != null) udpServer.CloseSocket();
+                if (TcpServer != null) TcpServer.CloseSocket();
+                if (UdpServer != null) UdpServer.CloseSocket();
             }
             else
             {
@@ -194,11 +194,11 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// TCP连接服务器
         /// </summary>
-        internal HyperSocketServerModule tcpServer { get; private set; }
+        internal HyperSocketServerModule TcpServer { get; private set; }
         /// <summary>
         /// UDP连接服务器
         /// </summary>
-        internal HyperSocketServerModule udpServer { get; private set; }
+        internal HyperSocketServerModule UdpServer { get; private set; }
         /// <summary>
         /// 服务端监听器
         /// </summary>
@@ -242,16 +242,16 @@ namespace ES.Network.HyperSocket
 
             var hyperSocket = new HyperSocket(true, ip, tcpPort, udpPort, connectMaxNum, config);
 
-            hyperSocket.tcpServer = new HyperSocketServerModule(ip, (int)tcpPort, (int)connectMaxNum, (int)config.TcpReceiveSize, hyperSocket);
-            hyperSocket.udpServer = new HyperSocketServerModule(ip, (int)udpPort, (int)connectMaxNum, (int)config.UdpReceiveSize, hyperSocket);
+            hyperSocket.TcpServer = new HyperSocketServerModule(ip, (int)tcpPort, (int)connectMaxNum, (int)config.TcpReceiveSize, hyperSocket);
+            hyperSocket.UdpServer = new HyperSocketServerModule(ip, (int)udpPort, (int)connectMaxNum, (int)config.UdpReceiveSize, hyperSocket);
 
             hyperSocket.svrListener = listener;
 
-            hyperSocket.tcpServer.SetListener(listener);
-            hyperSocket.udpServer.SetListener(listener);
+            hyperSocket.TcpServer.SetListener(listener);
+            hyperSocket.UdpServer.SetListener(listener);
 
-            var r1 = hyperSocket.tcpServer.Init(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp, 0, hyperSocket.tcpServer);
-            var r2 = hyperSocket.udpServer.Init(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp, 0, hyperSocket.udpServer);
+            var r1 = hyperSocket.TcpServer.Init(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp, 0, hyperSocket.TcpServer);
+            var r2 = hyperSocket.UdpServer.Init(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp, 0, hyperSocket.UdpServer);
 
             if (r1 && r2)
             {

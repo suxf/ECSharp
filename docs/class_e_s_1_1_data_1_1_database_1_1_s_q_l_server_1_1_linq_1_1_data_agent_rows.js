@@ -8,9 +8,9 @@ var class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row
     [ "Update", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a47e0e67a9cbeafb713ce0f3d0cf7b979", null ],
     [ "UpdateEnd", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a41a3d524ffd70eb14d4fd0390da1cfcd", null ],
     [ "dBHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a905d3e0c8105ce3c2b76cbbf4b522274", null ],
-    [ "fieldNames", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#aea5cf6c83f90989d04640bb0b283d728", null ],
+    [ "FieldNames", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a1d67ce11a86687d46e4b681efbd0d581", null ],
     [ "Length", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a1ef70a3922075dfe17f40d352f02c199", null ],
-    [ "primaryKey", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ae8e07ec9f561aac1bbdce046da7cb1cf", null ],
-    [ "tableName", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a36c01b20699313b68de20d6fdf2be632", null ],
+    [ "PrimaryKey", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ad3069b87e1ebe62d26015a7effa2762d", null ],
+    [ "TableName", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#ac7d5d73f61ee5549bd7ee07f681a7d27", null ],
     [ "this[object key]", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a8531704db0f572b542c4b8659a9c9e73", null ]
 ];

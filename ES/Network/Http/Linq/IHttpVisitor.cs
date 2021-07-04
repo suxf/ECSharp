@@ -10,8 +10,8 @@ namespace ES.Network.Http.Linq
         /// <summary>
         /// 异常捕捉回调
         /// </summary>
-        /// <param name="conn"></param>
+        /// <param name="request"></param>
         /// <param name="ex"></param>
-        void HttpVisitorException(HttpConnection conn, Exception ex);
+        void HttpVisitorException(HttpRequest request, Exception ex);
     }
 }

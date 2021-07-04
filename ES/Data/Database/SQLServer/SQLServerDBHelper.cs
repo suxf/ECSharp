@@ -39,7 +39,7 @@ namespace ES.Data.Database.SQLServer
             get
             {
                 var result = CommandSQL("SELECT GETDATE()");
-                if (result.effectNum == 1) return (DateTime)result.collection[0][0];
+                if (result.EffectNum == 1) return (DateTime)result.Collection[0][0];
                 else return DateTime.Now;
             }
         }
@@ -58,7 +58,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="extraConfig">数据库额外配置</param>
         public SQLServerDBHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null)
         {
-            if (extraConfig != null && extraConfig != "")
+            if (!string.IsNullOrEmpty(extraConfig))
                 builder = new SqlConnectionStringBuilder(extraConfig);
             else
                 builder = new SqlConnectionStringBuilder();
@@ -163,8 +163,8 @@ namespace ES.Data.Database.SQLServer
         public ProcedureResult Procedure(string procedure, SQLServerDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
         {
             ProcedureResult result = new ProcedureResult();
-            result.procedure = procedure;
-            result.isCompleted = true;
+            result.Procedure = procedure;
+            result.IsCompleted = true;
             // 执行SQL语句过程
             try
             {
@@ -183,7 +183,7 @@ namespace ES.Data.Database.SQLServer
                             dataAdapter.SelectCommand = sqlCommand;
                             DataSet myDataSet = new DataSet();
                             dataAdapter.Fill(myDataSet);
-                            result.returnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
+                            result.ReturnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
                             result.SqlParameters = sqlCommand.Parameters;
                             result.Tables = myDataSet.Tables;
                         }
@@ -192,7 +192,7 @@ namespace ES.Data.Database.SQLServer
             }
             catch (Exception ex)
             {
-                result.isCompleted = false;
+                result.IsCompleted = false;
                 if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
             }
             return result;
@@ -257,28 +257,28 @@ namespace ES.Data.Database.SQLServer
                             sqlCommand.CommandType = CommandType.Text;
                             SqlDataAdapter dataAdapter = new SqlDataAdapter();
                             dataAdapter.SelectCommand = sqlCommand;
-                            result.dataSet = new DataSet();
-                            dataAdapter.Fill(result.dataSet);
-                            if (result.dataSet.Tables.Count > 0)
+                            result.DataSet = new DataSet();
+                            dataAdapter.Fill(result.DataSet);
+                            if (result.DataSet.Tables.Count > 0)
                             {
-                                result.collection = result.dataSet.Tables[0].Rows;
-                                result.effectNum = result.collection.Count;
+                                result.Collection = result.DataSet.Tables[0].Rows;
+                                result.EffectNum = result.Collection.Count;
                             }
                             else
                             {
-                                result.effectNum = 0;
+                                result.EffectNum = 0;
                             }
                         }
                     }
                     else
                     {
-                        result.effectNum = -2;
+                        result.EffectNum = -2;
                     }
                 }
             }
             catch (Exception ex)
             {
-                result.effectNum = -1;
+                result.EffectNum = -1;
                 if (listener != null) listener.CommandSQLException(this, sql, ex);
             }
             return result;

@@ -64,16 +64,16 @@ namespace ES.Network.Sockets.Server
                         token.Destroy();
                     }
 
-                    if (token.isAlive)
+                    if (token.IsAlive)
                     {
                         remoteUserTokens.Enqueue(token);
                     }
                     else
                     {
                         // 断开回调
-                        if (token.socketSvrMgr != null && token.socketSvrMgr.socketStatusListener != null)
+                        if (token.SocketSvrMgr != null && token.SocketSvrMgr.socketStatusListener != null)
                         {
-                            token.socketSvrMgr.socketStatusListener.OnClose(token);
+                            token.SocketSvrMgr.socketStatusListener.OnClose(token);
                         }
                     }
                 }

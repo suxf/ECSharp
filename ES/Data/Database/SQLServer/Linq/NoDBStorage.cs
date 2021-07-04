@@ -47,7 +47,7 @@ namespace ES.Data.Database.SQLServer.Linq
             this.valueName = valueName;
             this.tableName = tableName;
             this.syncPeriod = syncPeriod;
-            this.condition = (condition != null && condition != "") ? (condition + " AND ") : "";
+            this.condition = !string.IsNullOrEmpty(condition) ? (condition + " AND ") : "";
 
             timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
             timeFlow.StartTimeFlowES();
@@ -67,7 +67,7 @@ namespace ES.Data.Database.SQLServer.Linq
             else
             {
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (result.effectNum > 0)
+                if (result.EffectNum > 0)
                 {
                     return true;
                 }
@@ -90,9 +90,9 @@ namespace ES.Data.Database.SQLServer.Linq
             else
             {
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (result.effectNum > 0)
+                if (result.EffectNum > 0)
                 {
-                    var val = value = (U)result.collection[0][valueName];
+                    var val = value = (U)result.Collection[0][valueName];
                     keyValues.AddOrUpdate(key, value, (k, v) => val);
                     return true;
                 }
@@ -111,7 +111,7 @@ namespace ES.Data.Database.SQLServer.Linq
         public bool TryAdd(T key, U value)
         {
             var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-            if (result.effectNum <= 0)
+            if (result.EffectNum <= 0)
             {
                 keyValues.TryAdd(key, value);
                 if (!keyInsertQueue.Contains(key)) keyInsertQueue.Enqueue(key);
@@ -137,9 +137,9 @@ namespace ES.Data.Database.SQLServer.Linq
             else
             {
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (result.effectNum > 0)
+                if (result.EffectNum > 0)
                 {
-                    var val = (U)result.collection[0][valueName];
+                    var val = (U)result.Collection[0][valueName];
                     keyValues.AddOrUpdate(key, value, (k, v) => value);
                     if (!keyUpdateQueue.Contains(key) && !val.Equals(value)) keyUpdateQueue.Enqueue(key);
                     return true;
@@ -163,7 +163,7 @@ namespace ES.Data.Database.SQLServer.Linq
             else
             {
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
-                if (result.effectNum > 0)
+                if (result.EffectNum > 0)
                 {
                     if (!keyDeleteQueue.Contains(key)) keyDeleteQueue.Enqueue(key);
                     return true;

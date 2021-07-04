@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['udp_868',['Udp',['../namespace_e_s_1_1_network_1_1_sockets.html#a3f921fb5497a37f21d442279b436f6aea81baba40274ccb30f9fdfa2c73cf0482',1,'ES::Network::Sockets']]],
-  ['udt_869',['Udt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a6faeb961a160a13c203da6663c864a47',1,'ES::Data::Database::SQLServer']]],
-  ['uniqueidentifier_870',['UniqueIdentifier',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a00810bfd2b1bd45a3467a32a808c6026',1,'ES::Data::Database::SQLServer']]],
-  ['unknown_871',['UNKNOWN',['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158a696b031073e74bf2cb98e5ef201d4aa3',1,'ES::Network::Http']]]
+  ['post_950',['POST',['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158aa02439ec229d8be0e74b0c1602392310',1,'ES::Network::Http']]],
+  ['pragma_951',['Pragma',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925af607fdcea4127aad4f0cdae948a4f3f7',1,'ES.Network.Http.Pragma()'],['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3eaf607fdcea4127aad4f0cdae948a4f3f7',1,'ES.Network.Http.Pragma()']]],
+  ['proxyauthenticate_952',['ProxyAuthenticate',['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3ea5896637b3d6078393671d65439530c24',1,'ES::Network::Http']]],
+  ['proxyauthorization_953',['ProxyAuthorization',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925ab1d325fe085c6078662aeeb18c98b3ee',1,'ES::Network::Http']]],
+  ['put_954',['PUT',['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158a3e75383a5992a6d15fb81e872e46e256',1,'ES::Network::Http']]]
 ];

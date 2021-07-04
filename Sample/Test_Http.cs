@@ -19,12 +19,14 @@ namespace Sample
             HttpHandle1 handle = new HttpHandle1();
             // 建立http访问器，并载入异常接口类
             HttpVisitor visitor = new HttpVisitor(handle);
+            // 建立http服务，填写前缀地址并且赋予访问器
+            // 注：全监听 0.0.0.0 在这里用 + 号代替
+            // X509Certificate2 certificate = new X509Certificate2("https.pfx", "8888");
+            // HttpService service = new HttpService("127.0.0.1", 8080, visitor, certificate);
+            HttpService service = new HttpService("127.0.0.1", 8080, visitor);
             // 给访问器增加函数
             visitor.Add("", handle.Index);
             visitor.Add("Hello", handle.Hello);
-            // 建立http服务，填写前缀地址并且赋予访问器
-            // 注：全监听 0.0.0.0 在这里用 + 号代替
-            HttpService service = new HttpService("http://127.0.0.1:8080", visitor);
             // 启动服务
             service.StartServer();
             // 然后就可以通过浏览器或其他请求工具来访问了
@@ -35,18 +37,19 @@ namespace Sample
 
         class HttpHandle1 : IHttpVisitor
         {
-            public void Index(HttpConnection conn)
+            public void Index(HttpRequest request, HttpResponse response)
             {
                 // 首页根访问
+                if (!request.GetParams.TryGetValue("text", out var text)) text = "text no content";
+                response.Write("Index:" + text);
             }
             
-            public void Hello(HttpConnection conn)
+            public void Hello(HttpRequest request, HttpResponse response)
             {
-                if (!conn.getValue.TryGetValue("text", out var text)) text = "text没有内容";
-                conn.writer.Write("Hello World:" + text);
+                response.Write("Hello World:" + request.PostValue);
             }
 
-            public void HttpVisitorException(HttpConnection conn, Exception ex)
+            public void HttpVisitorException(HttpRequest request, Exception ex)
             {
                 // http异常处理
             }
@@ -59,10 +62,7 @@ namespace Sample
             HttpHandle2 handle = new HttpHandle2();
             // 建立http服务，填写前缀地址并且赋予访问器
             // 注：全监听 0.0.0.0 在这里用 + 号代替
-            HttpService service = new HttpService(handle);
-            // 这里需要添加所有完整监听链接
-            service.AddFullPrefix("http://127.0.0.1:8080/Hello");
-            service.AddFullPrefix("http://127.0.0.1:8080");
+            HttpService service = new HttpService("127.0.0.1", 8080, handle);
             // 启动服务
             service.StartServer();
             // 然后就可以通过浏览器或其他请求工具来访问了
@@ -73,12 +73,12 @@ namespace Sample
 
         class HttpHandle2 : IHttp
         {
-            public void HttpException(Exception exception, HttpConnection conn)
+            public void HttpException(HttpRequest request, Exception exception)
             {
                 // http异常处理
             }
 
-            public void OnRequest(HttpConnection conn)
+            public void OnRequest(HttpRequest request, HttpResponse response)
             {
                 // 这里是全部消息回调接口
                 // 所以如果需要高度自定义可以使用此方法

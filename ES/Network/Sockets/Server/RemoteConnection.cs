@@ -14,19 +14,19 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 连接服务控制对象
         /// </summary>
-        public ServerSocket socketSvrMgr { get; protected set; } = null;
+        public ServerSocket SocketSvrMgr { get; protected set; } = null;
         /// <summary>
         /// 数据包缓存
         /// </summary>
-        public SweetStream rBuffer { get; internal set; } = null;
+        public SweetStream RBuffer { get; internal set; } = null;
         /// <summary>
         /// 存活情况
         /// </summary>
-        internal bool isAlive { get; set; } = false;
+        internal bool IsAlive { get; set; } = false;
         /// <summary>
         /// 连接状态
         /// </summary>
-        public bool hasConnected { get { if (socket != null) return socket.isConnected && !socket.isClosed; return false; } }
+        public bool HasConnected { get { if (Socket != null) return Socket.IsConnected && !Socket.IsClosed; return false; } }
         /// <summary>
         /// 时间计时器
         /// </summary>
@@ -35,12 +35,12 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 异步接受信息委托回调
         /// </summary>
-        public IRemoteSocket socketInvoke { get; protected set; } = null;
+        public IRemoteSocket SocketInvoke { get; protected set; } = null;
 
         /// <summary>
         /// ESF.Socket
         /// </summary>
-        public Socket socket { get; protected set; } = null;
+        public Socket Socket { get; protected set; } = null;
 
         /// <summary>
         /// 用户绑定对象(TCP模式)
@@ -55,7 +55,7 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 接受事件参数
         /// </summary>
-        public System.Net.Sockets.SocketAsyncEventArgs receiveEventArgs { get; protected set; } = null;
+        public System.Net.Sockets.SocketAsyncEventArgs ReceiveEventArgs { get; protected set; } = null;
 
         /// <summary>
         /// 发送事件参数
@@ -70,7 +70,7 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 连接时间
         /// </summary>
-        public DateTime connectDateTime { get; protected set; } = DateTime.MinValue;
+        public DateTime ConnectDateTime { get; protected set; } = DateTime.MinValue;
 
         /// <summary>
         /// 构造函数 tcp
@@ -78,8 +78,8 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         internal RemoteConnection(ServerSocket service, IRemoteSocket socketInvoke)
         {
-            socketSvrMgr = service;
-            this.socketInvoke = socketInvoke;
+            SocketSvrMgr = service;
+            this.SocketInvoke = socketInvoke;
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         internal RemoteConnection(EndPoint remoteEndPoint, ServerSocket service)
         {
-            isAlive = true;
-            socketSvrMgr = service;
-            socket = Socket.FillAsClient(remoteEndPoint);
+            IsAlive = true;
+            SocketSvrMgr = service;
+            Socket = Socket.FillAsClient(remoteEndPoint);
             sendEventArgs = new SocketAsyncEventArgsEx(this, remoteEndPoint, null);
         }
 
@@ -100,20 +100,20 @@ namespace ES.Network.Sockets.Server
         internal void Init(Socket socket, EventHandler<System.Net.Sockets.SocketAsyncEventArgs> eventHandler)
         {
 
-            receiveEventArgs = new System.Net.Sockets.SocketAsyncEventArgs();
-            receiveEventArgs.UserToken = this;
+            ReceiveEventArgs = new System.Net.Sockets.SocketAsyncEventArgs();
+            ReceiveEventArgs.UserToken = this;
 
-            connectDateTime = DateTime.Now;
-            rBuffer = new SweetStream();
-            isAlive = true;
+            ConnectDateTime = DateTime.Now;
+            RBuffer = new SweetStream();
+            IsAlive = true;
             timeoutCount = 0;
 
-            this.socket = socket;
-            if (this.socket != null)
+            Socket = socket;
+            if (Socket != null)
             {
                 sendEventArgs = new SocketAsyncEventArgsEx(this, socket, eventHandler);
-                receiveEventArgs.AcceptSocket = this.socket.GetSocket();
-                receiveEventArgs.RemoteEndPoint = this.socket.endPoint;
+                ReceiveEventArgs.AcceptSocket = Socket.GetSocket();
+                ReceiveEventArgs.RemoteEndPoint = Socket.endPoint;
             }
         }
 
@@ -177,7 +177,7 @@ namespace ES.Network.Sockets.Server
         /// <param name="count">数据大小</param>
         public bool Send(ushort sessionId, byte[] buffer, int offset, int count)
         {
-            if (socketSvrMgr != null) return socketSvrMgr.SendAsyncEvent(this, sessionId, buffer, offset, count);
+            if (SocketSvrMgr != null) return SocketSvrMgr.SendAsyncEvent(this, sessionId, buffer, offset, count);
             return false;
         }
 
@@ -189,9 +189,9 @@ namespace ES.Network.Sockets.Server
             byte[] sb = null;
             do
             {
-                if (rBuffer != null) sb = rBuffer.TakeStreamBuffer();
+                if (RBuffer != null) sb = RBuffer.TakeStreamBuffer();
                 if (sb == null) return;
-                if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new RemoteSocketMsg(0, sb, this));
+                if (SocketInvoke != null) SocketInvoke.OnReceivedCompleted(new RemoteSocketMsg(0, sb, this));
             } while (true);
         }
 
@@ -201,18 +201,18 @@ namespace ES.Network.Sockets.Server
         public void Destroy()
         {
             // 不存活就不存在销毁
-            if (!isAlive) return;
-            isAlive = false;
+            if (!IsAlive) return;
+            IsAlive = false;
             // 移除套接字参数
             sendEventArgs.Destroy();
-            if (receiveEventArgs != null) receiveEventArgs.Dispose();
+            if (ReceiveEventArgs != null) ReceiveEventArgs.Dispose();
 
             // 移除管理器
-            if (socketSvrMgr != null) socketSvrMgr.RemoveExistClient(this);
+            if (SocketSvrMgr != null) SocketSvrMgr.RemoveExistClient(this);
             // 重置
-            receiveEventArgs = null;
-            socket = null;
-            rBuffer = null;
+            ReceiveEventArgs = null;
+            Socket = null;
+            RBuffer = null;
             Target = null;
             hySocket = null;
         }

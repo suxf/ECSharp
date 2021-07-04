@@ -46,11 +46,11 @@ namespace Sample
             // 普通查询调用
             var result = dbHelper.CommandSQL("SELECT * FROM tb_test");
             // 查询条数判断
-            if (result.effectNum > 0)
+            if (result.EffectNum > 0)
             {
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
-                int id = (int)result.collection[0]["id"];
+                int id = (int)result.Collection[0]["id"];
                 Console.WriteLine($"id:{id}");
             }
 
@@ -66,11 +66,11 @@ namespace Sample
             // 这种方式快捷，但是也只能应付一些简单的数据处理
             var result5 = SQLBuilder.Create(dbHelper).Fields("id", "userid").Where("id > 0").Select();
             // 查询条数判断
-            if (result5.effectNum > 0)
+            if (result5.EffectNum > 0)
             {
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
-                int id = (int)result5.collection[0]["id"];
+                int id = (int)result5.Collection[0]["id"];
                 Console.WriteLine($"id:{id}");
             }
 
@@ -80,7 +80,7 @@ namespace Sample
             var result4 = dbHelper.Procedure("pr_test", Parameter.Create("@id", 1), "@id2".ToParameter(2));
             // 存储过程中返回已经默认写好了
             // 直接调用结果的变量即可得到，但需要根据返回进行强转
-            if ((int)result4.returnValue == 0)
+            if ((int)result4.ReturnValue == 0)
             {
                 // 如果有select返回
                 var count = result4.Tables.Count;

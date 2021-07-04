@@ -11,7 +11,7 @@ namespace ES.Network.Http.Linq
         /// <summary>
         /// 回调委托
         /// </summary>
-        public delegate void Request(HttpConnection conn);
+        public delegate void Request(HttpRequest request, HttpResponse response);
         /// <summary>
         /// 回调委托列表
         /// </summary>
@@ -57,10 +57,13 @@ namespace ES.Network.Http.Linq
             allHttpListener = callback;
         }
 
-        void IHttp.OnRequest(HttpConnection conn)
+        void IHttp.OnRequest(HttpRequest request, HttpResponse response)
         {
             Request or = null;
-            if (commandList.TryGetValue(conn.suffix, out Request value))
+            var url = request.RawUrl.Split("?")[0];
+            if (url.Length >= 1) url = url[0] == '/' ? url.Substring(1) : url;
+            if (url.Length >= 1) url = url[url.Length - 1] == '/' ? url.Substring(0, url.Length - 1) : url;
+            if (commandList.TryGetValue(url, out Request value))
             {
                 or = value;
             }
@@ -68,27 +71,27 @@ namespace ES.Network.Http.Linq
             {
                 try
                 {
-                    if (allHttpListener != null) allHttpListener.Invoke(conn);
-                    or.Invoke(conn);
+                    if (allHttpListener != null) allHttpListener.Invoke(request, response);
+                    or.Invoke(request, response);
                 }
                 catch (Exception ex)
                 {
-                    if (listener != null) listener.HttpVisitorException(conn, ex);
+                    if (listener != null) listener.HttpVisitorException(request, ex);
                     else throw;
-                    conn.response.StatusCode = (int)HttpRequestState.NonExistent;
+                    response.StatusCode = 404;
                 }
             }
-            else conn.response.StatusCode = (int)HttpRequestState.NonExistent;
+            else response.StatusCode = 404;
         }
 
         /// <summary>
         /// 异常捕捉回调
         /// </summary>
         /// <param name="exception"></param>
-        /// <param name="conn"></param>
-        public void HttpException(Exception exception, HttpConnection conn)
+        /// <param name="request"></param>
+        public void HttpException(HttpRequest request, Exception exception)
         {
-            if (listener != null) listener.HttpVisitorException(conn, exception);
+            if (listener != null) listener.HttpVisitorException(request, exception);
             else throw exception;
         }
     }

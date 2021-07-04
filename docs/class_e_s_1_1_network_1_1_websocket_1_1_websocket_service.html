@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.1</span>
+   &#160;<span id="projectnumber">1.13.2</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -99,9 +99,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a491569be00dc8bded6b0af82ce03900b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a491569be00dc8bded6b0af82ce03900b">WebsocketService</a> (string url, <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html">IWebsocket</a> invoke)</td></tr>
 <tr class="memdesc:a491569be00dc8bded6b0af82ce03900b"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建服务  <a href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a491569be00dc8bded6b0af82ce03900b">更多...</a><br /></td></tr>
 <tr class="separator:a491569be00dc8bded6b0af82ce03900b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58fadeaae587edcb689c6697459d0784"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a58fadeaae587edcb689c6697459d0784">WebsocketService</a> (string url, string certificateFile, <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html">IWebsocket</a> invoke)</td></tr>
-<tr class="memdesc:a58fadeaae587edcb689c6697459d0784"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建ssl服务  <a href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a58fadeaae587edcb689c6697459d0784">更多...</a><br /></td></tr>
-<tr class="separator:a58fadeaae587edcb689c6697459d0784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c31cc9c0281adf089c4e02e5ff78198"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a5c31cc9c0281adf089c4e02e5ff78198">WebsocketService</a> (string url, X509Certificate2 certificate, <a class="el" href="interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html">IWebsocket</a> invoke)</td></tr>
+<tr class="memdesc:a5c31cc9c0281adf089c4e02e5ff78198"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建ssl服务  <a href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#a5c31cc9c0281adf089c4e02e5ff78198">更多...</a><br /></td></tr>
+<tr class="separator:a5c31cc9c0281adf089c4e02e5ff78198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdcea81499498b60586c62f53269ba80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#afdcea81499498b60586c62f53269ba80">CloseWebSocketSvrService</a> ()</td></tr>
 <tr class="memdesc:afdcea81499498b60586c62f53269ba80"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭websocket  <a href="class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html#afdcea81499498b60586c62f53269ba80">更多...</a><br /></td></tr>
 <tr class="separator:afdcea81499498b60586c62f53269ba80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,8 +148,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a58fadeaae587edcb689c6697459d0784"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58fadeaae587edcb689c6697459d0784">&#9670;&nbsp;</a></span>WebsocketService() <span class="overload">[2/2]</span></h2>
+<a id="a5c31cc9c0281adf089c4e02e5ff78198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c31cc9c0281adf089c4e02e5ff78198">&#9670;&nbsp;</a></span>WebsocketService() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,8 +163,8 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>certificateFile</em>, </td>
+          <td class="paramtype">X509Certificate2&#160;</td>
+          <td class="paramname"><em>certificate</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -184,7 +184,7 @@ Public 成员函数</h2></td></tr>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">url</td><td>监听地址</td></tr>
-    <tr><td class="paramname">certificateFile</td><td>ssl证书路径</td></tr>
+    <tr><td class="paramname">certificate</td><td>安全证书</td></tr>
     <tr><td class="paramname">invoke</td><td>监听委托</td></tr>
   </table>
   </dd>

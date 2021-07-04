@@ -38,7 +38,7 @@ namespace ES.Network.Sockets.Server
             this.sessionId = sessionId;
             this.data = data;
             this.sender = sender;
-            remoteEndPoint = sender.socket.endPoint;
+            remoteEndPoint = sender.Socket.endPoint;
         }
 
         /// <summary>

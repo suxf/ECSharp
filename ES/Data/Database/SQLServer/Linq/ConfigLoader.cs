@@ -37,7 +37,7 @@ namespace ES.Data.Database.SQLServer.Linq
             string cval = value.ToString();
             for (int i = 0, len = Configs.Length; i < len; i++)
             {
-                if (cval == Configs[i].___PrimaryKey) return Configs[i];
+                if (cval == Configs[i].PrimaryKey) return Configs[i];
             }
             return default;
         }
@@ -48,11 +48,11 @@ namespace ES.Data.Database.SQLServer.Linq
         public void Reload()
         {
             var result = dBHelper.CommandSQL(sql);
-            if (result.effectNum >= 0)
+            if (result.EffectNum >= 0)
             {
-                Configs = new T[result.collection.Count];
+                Configs = new T[result.Collection.Count];
                 int i = 0;
-                foreach (DataRow item in result.collection)
+                foreach (DataRow item in result.Collection)
                 {
                     var temp = Configs[i++] = new T();
                     temp.SetESConfig(item);

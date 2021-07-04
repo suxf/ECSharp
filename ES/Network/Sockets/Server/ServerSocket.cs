@@ -170,9 +170,9 @@ namespace ES.Network.Sockets.Server
         /// <returns></returns>
         private void StartServer()
         {
-            if (serverSocket.socketType == SocketType.Stream)
+            if (serverSocket.SocketType == SocketType.Stream)
                 StartAccept(null);
-            if (serverSocket.socketType == SocketType.Dgram)
+            if (serverSocket.SocketType == SocketType.Dgram)
                 StartAcceptReceiveFrom();
         }
 
@@ -182,7 +182,7 @@ namespace ES.Network.Sockets.Server
         /// <returns></returns>
         public int GetClientCount()
         {
-            if (serverSocket.socketType == SocketType.Stream)
+            if (serverSocket.SocketType == SocketType.Stream)
                 lock (remoteTCPClients)
                     return remoteTCPClients.Count;
             // else if (serverSocket.socketType == SocketType.Dgram)
@@ -197,7 +197,7 @@ namespace ES.Network.Sockets.Server
         /// <param name="client"></param>
         public bool CheckExistClient(RemoteConnection client)
         {
-            if (serverSocket.socketType == SocketType.Stream)
+            if (serverSocket.SocketType == SocketType.Stream)
                 lock (remoteTCPClients)
                     return remoteTCPClients.Contains(client);
             // else if (serverSocket.socketType == SocketType.Dgram)
@@ -211,7 +211,7 @@ namespace ES.Network.Sockets.Server
         /// <param name="client">指定客户端对象</param>
         internal void RemoveExistClient(RemoteConnection client)
         {
-            if (serverSocket.socketType != SocketType.Stream) return;
+            if (serverSocket.SocketType != SocketType.Stream) return;
             lock (remoteTCPClients)
             {
                 if (remoteTCPClients.Contains(client))
@@ -220,7 +220,7 @@ namespace ES.Network.Sockets.Server
                     // close the socket associated with the client
                     try
                     {
-                        client.socket.Close();
+                        client.Socket.Close();
                     }
                     // throws if client process has already closed
                     catch (Exception ex)
@@ -331,7 +331,7 @@ namespace ES.Network.Sockets.Server
                     if (monitorSocketStatusTask != null) monitorSocketStatusTask.PushCheck(client);
 
                     // As soon as the client is connected, post a receive to the connection
-                    bool willRaiseEvent = client.socket.ReceiveAsync(readEventArgs);
+                    bool willRaiseEvent = client.Socket.ReceiveAsync(readEventArgs);
                     if (!willRaiseEvent)
                     {
                         ProcessReceive(readEventArgs);
@@ -361,11 +361,11 @@ namespace ES.Network.Sockets.Server
                 byte[] buffer = new byte[e.BytesTransferred];
                 Array.Copy(e.Buffer, e.Offset, buffer, 0, e.BytesTransferred);
                 // Console.WriteLine(Encoding.UTF8.GetString(buffer));
-                client.rBuffer.Decode(buffer);
+                client.RBuffer.Decode(buffer);
                 client.TriggerSocketInvoke();
 
-                bool willRaiseEvent = client.socket.ReceiveAsync(e);
-                if (!client.socket.isClosed && !willRaiseEvent) ProcessReceive(e);
+                bool willRaiseEvent = client.Socket.ReceiveAsync(e);
+                if (!client.Socket.IsClosed && !willRaiseEvent) ProcessReceive(e);
             }
             else client.Destroy();
         }
@@ -494,7 +494,7 @@ namespace ES.Network.Sockets.Server
         /// <returns></returns>
         internal bool SendAsyncEvent(RemoteConnection client, ushort sessionId, byte[] buffer, int offset, int count)
         {
-            if (client == null || client.socket == null) return false;
+            if (client == null || client.Socket == null) return false;
             // 重置超时标记
             if (monitorSocketStatusTask != null) Interlocked.Exchange(ref client.timeoutCount, 0);
 
@@ -512,18 +512,18 @@ namespace ES.Network.Sockets.Server
 
             // 数据发送
             var SEAE = client.sendEventArgs.Pop();
-            if (client.socket.socketType == SocketType.Stream)
+            if (client.Socket.SocketType == SocketType.Stream)
             {
-                data = client.rBuffer.Encode(data);
+                data = client.RBuffer.Encode(data);
                 SEAE.SetBuffer(data, 0, data.Length);
-                bool willRaiseEvent = client.socket.SendAsync(SEAE);
+                bool willRaiseEvent = client.Socket.SendAsync(SEAE);
                 if (!willRaiseEvent)
                 {
                     return ProcessSend(SEAE);
                 }
                 else return true;
             }
-            else if (client.socket.socketType == SocketType.Dgram)
+            else if (client.Socket.SocketType == SocketType.Dgram)
             {
                 byte[] sendBuffer = new byte[3 + buffer.Length];
                 /* 会话ID 高位 */
@@ -555,7 +555,7 @@ namespace ES.Network.Sockets.Server
         {
             foreach (var item in remoteTCPClients.ToArray()) item.Destroy();
             remoteTCPClients.Clear();
-            if (!serverSocket.isClosed) serverSocket.Close();
+            if (!serverSocket.IsClosed) serverSocket.Close();
             if (monitorSocketStatusTask != null) monitorSocketStatusTask.Close();
         }
     }

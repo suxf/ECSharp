@@ -12,14 +12,14 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 主键 内部变量
         /// <para>对某个字段值进行绑定</para>
         /// </summary>
-        internal string ___PrimaryKey { private set; get; }
+        internal string PrimaryKey { private set; get; }
 
         /// <summary>
         /// 设置主键
         /// </summary>
         internal void SetESPrimaryKey(DataRow row)
         {
-            ___PrimaryKey = SetPrimaryKey(row).ToString();
+            PrimaryKey = SetPrimaryKey(row).ToString();
         }
 
         /// <summary>

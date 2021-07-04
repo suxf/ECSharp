@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hasconnected_885',['hasConnected',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a65f1a8f630fb60be88c3c8cecbfcc1a5',1,'ES.Network.Sockets.Client.BaseClientSocket.hasConnected()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a7a03d39b4d8b99b03c65b5a354a13796',1,'ES.Network.Sockets.Server.RemoteConnection.hasConnected()']]]
+  ['fieldnames_1004',['FieldNames',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html#a1d67ce11a86687d46e4b681efbd0d581',1,'ES::Data::Database::SQLServer::Linq::DataAgentRows']]]
 ];

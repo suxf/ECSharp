@@ -26,15 +26,15 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 表名
         /// </summary>
-        public string tableName { internal set; get; } = null;
+        public string TableName { internal set; get; } = null;
         /// <summary>
         /// 主键
         /// </summary>
-        public string primaryKey { internal set; get; } = null;
+        public string PrimaryKey { internal set; get; } = null;
         /// <summary>
         /// 查询的字段名
         /// </summary>
-        public string fieldNames { internal set; get; } = null;
+        public string FieldNames { internal set; get; } = null;
         /// <summary>
         /// 记录字典
         /// </summary>
@@ -67,9 +67,9 @@ namespace ES.Data.Database.SQLServer.Linq
             if (dBHelper != null)
             {
                 CommandResult result = dBHelper.CommandSQL($"SELECT {(topNum > -1 ? ("TOP(" + topNum + ")") : "")} {fieldNames} FROM {tableName} {(isNoLock ? "WITH(NOLOCK)" : "")} {(whereCondition != null && whereCondition != "" ? ("WHERE " + whereCondition) : "")}");
-                if (result != null && result.effectNum > 0)
+                if (result != null && result.EffectNum > 0)
                 {
-                    DataAgentRows dataPairs = new DataAgentRows(dBHelper, result.collection, primaryKey, tableName, fieldNames);
+                    DataAgentRows dataPairs = new DataAgentRows(dBHelper, result.Collection, primaryKey, tableName, fieldNames);
                     return dataPairs;
                 }
             }
@@ -102,9 +102,9 @@ namespace ES.Data.Database.SQLServer.Linq
         internal DataAgentRows(SQLServerDBHelper dBHelper, DataRowCollection collection, string primaryKey, string tableName, string fieldNames)
         {
             this.dBHelper = dBHelper;
-            this.tableName = tableName;
-            this.primaryKey = primaryKey;
-            this.fieldNames = fieldNames;
+            this.TableName = tableName;
+            this.PrimaryKey = primaryKey;
+            this.FieldNames = fieldNames;
             foreach (DataRow dataRow in collection)
             {
                 DataAgentRow dataObject = new DataAgentRow(this);
@@ -184,7 +184,7 @@ namespace ES.Data.Database.SQLServer.Linq
                         }
                         dataItem.listChangeColumns.Clear();
                     }
-                    if (value.Length > 0) dBHelper.CommandSQL("UPDATE {0} SET {1} WHERE {2}='{3}'", tableName, value.Remove(value.Length - 1, 1).ToString(), primaryKey, Key);
+                    if (value.Length > 0) dBHelper.CommandSQL("UPDATE {0} SET {1} WHERE {2}='{3}'", TableName, value.Remove(value.Length - 1, 1).ToString(), PrimaryKey, Key);
                 }
                 else if (dataItem.bReadState)
                 {

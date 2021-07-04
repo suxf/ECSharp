@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['smalldatetime_857',['SmallDateTime',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a5c614d174b242f38938d9cf77a8571ce',1,'ES::Data::Database::SQLServer']]],
-  ['smallint_858',['SmallInt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46abd06c32556baf8267e1313d7a5c58ce7',1,'ES::Data::Database::SQLServer']]],
-  ['smallmoney_859',['SmallMoney',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a165d9d9f2c3bddce0126abe2cf704c3a',1,'ES::Data::Database::SQLServer']]],
-  ['stream_860',['Stream',['../namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6aaeae835e83c0494a376229f254f7d3392',1,'ES::Network::Sockets']]],
-  ['structured_861',['Structured',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a854cc9d26f059f347c097abc58efbc94',1,'ES::Data::Database::SQLServer']]],
-  ['success_862',['Success',['../namespace_e_s_1_1_network_1_1_http.html#a2052fa941b7896b1f745a81ca3748bcca505a83f220c02df2f85c3810cd9ceb38',1,'ES::Network::Http']]]
+  ['nchar_943',['NChar',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a0dae0a0e2a2cef813a10af137bb9f980',1,'ES::Data::Database::SQLServer']]],
+  ['normal_944',['Normal',['../namespace_e_s_1_1_network_1_1_hyper_socket.html#a3428893405cee3da5e40b83a6e02f11aa960b44c579bc2f6818d2daaf9e4c16f0',1,'ES::Network::HyperSocket']]],
+  ['ntext_945',['NText',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a21c68a429c0a27b3f13c6e93b301f48e',1,'ES::Data::Database::SQLServer']]],
+  ['number_946',['Number',['../class_e_s_1_1_common_1_1_utils_1_1_random_code.html#ad27db38974b973a77fdd4d0cdde4eebdab2ee912b91d69b435159c7c3f6df7f5f',1,'ES::Common::Utils::RandomCode']]],
+  ['nvarchar_947',['NVarChar',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#acd967217cadb9ebdb6f938ebb094fb46a3871265b5505f3ac07e4b9dbb3e05114',1,'ES::Data::Database::SQLServer']]]
 ];

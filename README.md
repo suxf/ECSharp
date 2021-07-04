@@ -25,13 +25,13 @@ Easy .NET Develop Frame.
 | ------------ | ------------ |
 | Client | 客户端框架支持(目前只更新了Unity版本)  |
 | docs | [在线API文档](https://easysharpframe.fyenet.com) |
-| ES | 框架主版本 |
-| Sample | 框架测试样本项目 |
-| SampleDll | 框架热更模块测试样本项目  |
+| ES | 框架主工程 |
+| Sample | 框架测试样本工程 |
+| SampleDll | 框架热更模块测试样本工程 |
 
 # 功能说明
 ### 1.HTTP服务
-对HttpListener进行封装，内部采用完成接口回调，可以支持高并发任务。
+对TcpListener进行封装，支持ssl模式，可以完成高并发任务。以后可能会更新静态文件的访问，即网页访问。
 ```csharp
 /* 使用方法一 */
 public void Http1()
@@ -40,12 +40,14 @@ public void Http1()
     HttpHandle1 handle = new HttpHandle1();
     // 建立http访问器，并载入异常接口类
     HttpVisitor visitor = new HttpVisitor(handle);
+    // 建立http服务，填写前缀地址并且赋予访问器
+    // 注：全监听 0.0.0.0 在这里用 + 号代替
+    // X509Certificate2 certificate = new X509Certificate2("https.pfx", "8888");
+    // HttpService service = new HttpService("127.0.0.1", 8080, visitor, certificate);
+    HttpService service = new HttpService("127.0.0.1", 8080, visitor);
     // 给访问器增加函数
     visitor.Add("", handle.Index);
     visitor.Add("Hello", handle.Hello);
-    // 建立http服务，填写前缀地址并且赋予访问器
-    // 注：全监听 0.0.0.0 在这里用 + 号代替
-    HttpService service = new HttpService("http://127.0.0.1:8080", visitor);
     // 启动服务
     service.StartServer();
     // 然后就可以通过浏览器或其他请求工具来访问了
@@ -56,18 +58,19 @@ public void Http1()
 
 class HttpHandle1 : IHttpVisitor
 {
-    public void Index(HttpConnection conn)
+    public void Index(HttpRequest request, HttpResponse response)
     {
         // 首页根访问
+        if (!request.GetParams.TryGetValue("text", out var text)) text = "text no content";
+        response.Write("Index:" + text);
     }
-
-    public void Hello(HttpConnection conn)
+    
+    public void Hello(HttpRequest request, HttpResponse response)
     {
-        if (!conn.getValue.TryGetValue("text", out var text)) text = "text没有内容";
-        conn.writer.Write("Hello World:" + text);
+        response.Write("Hello World:" + request.PostValue);
     }
 
-    public void HttpVisitorException(HttpConnection conn, Exception ex)
+    public void HttpVisitorException(HttpRequest request, Exception ex)
     {
         // http异常处理
     }
@@ -81,9 +84,7 @@ public void Http2()
     HttpHandle2 handle = new HttpHandle2();
     // 建立http服务，填写前缀地址并且赋予访问器
     // 注：全监听 0.0.0.0 在这里用 + 号代替
-    HttpService service = new HttpService(handle);
-    // 这里需要添加所有完整监听链接
-    service.AddFullPrefix("http://127.0.0.1:8080/Hello");
+    HttpService service = new HttpService("127.0.0.1", 8080, handle);
     // 启动服务
     service.StartServer();
     // 然后就可以通过浏览器或其他请求工具来访问了
@@ -94,12 +95,12 @@ public void Http2()
 
 class HttpHandle2 : IHttp
 {
-    public void HttpException(Exception exception, HttpConnection conn)
+    public void HttpException(HttpRequest request, Exception exception)
     {
         // http异常处理
     }
 
-    public void OnRequest(HttpConnection conn)
+    public void OnRequest(HttpRequest request, HttpResponse response)
     {
         // 这里是全部消息回调接口
         // 所以如果需要高度自定义可以使用此方法
@@ -107,7 +108,7 @@ class HttpHandle2 : IHttp
 }
 ```
 ### 2.Websocket服务
-使用Fleck库中的Websocket进行二次封装。
+使用Fleck库中的Websocket进行二次封装，支持ssl模式。
 ```csharp
 WebsocketService service = new WebsocketService("ws://127.0.0.1:8081", new WebsocketHandle());
 
@@ -262,7 +263,10 @@ if (result.effectNum > 0)
     Console.WriteLine($"id:{id}");
 }
 ```
-### 6.Redis数据库助手
+### 6.Mysql数据助手
+待开发...
+
+### 7.Redis数据库助手
 简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，使订阅更加易用。
 ```csharp
 // 继承 IRedisEvent 接口来用于监听回调
@@ -274,7 +278,7 @@ helper.Set("test", 1);
 // 取出值
 var test = helper.Get<int>("test");
 ```
-### 7.Log功能
+### 8.Log功能
 日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。Log类中提供日志前置配置参数，可以对日志进行自定义配置。
 ```csharp
 // 以下四个函数均为普通分级日志输出函数
@@ -300,7 +304,7 @@ Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
 // 日志根路径
 Log.LOG_PATH = "./log/";
 ```
-### 8.热更功能
+### 9.热更功能
 是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，发现在如今的配置服务器下这点性能消耗已经不足以影响整个流程，当然如果实在是有高度原生强迫的开发“患者”可以忽略这个功能。
 
 ```csharp
@@ -355,7 +359,7 @@ public class PlayerAgent : Agent<Player>, ITimeUpdate
     }
 }
 ```
-### 9.其他
+### 10.其他
 其他小功能不再过多介绍，可以在使用的过程中慢慢查询API来获取使用细节。
 
 ```csharp
@@ -393,3 +397,8 @@ string versionStr = ES.Common.Utils.Version.ToString();
 1. [JamesNK/Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) 通用强大的Json格式化工具
 1. [StackExchange/StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) Redis数据库支持工具
 1. [dotnet/corefx](https://github.com/dotnet/corefx) 微软官方支持的SqlServer支持库
+
+# 关于项目
+本项目最初是由平时和业余时开发遇到的问题慢慢汇聚出来的，最初的版本是一些零零散散的工具类，经过一段时间专门花时间整理构建以及后续不断维护，才有了现在这个版本，基于此框架的项目也正常运行着，总的来说是初衷是为自己开发更加快速便捷才构建了这个项目。
+所以只要还是用C#语言开发着，这个框架就会一直更新着，也会加入更多好用的封装集合，让“轮子”越来越好使，当然不会意味着追求很多功能加入一些不实用的内容，
+初衷还是为了更好更简单的来快速开发一个基于C#语言环境的服务器。

@@ -13,11 +13,11 @@ namespace ES.Network.Sockets
         /// <summary>
         /// ip地址
         /// </summary>
-        public string ip { get; private set; }
+        public string Ip { get; private set; }
         /// <summary>
         /// 端口
         /// </summary>
-        public int port { get; private set; }
+        public int Port { get; private set; }
         /// <summary>
         /// ip地址对象
         /// </summary>
@@ -29,15 +29,15 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 地址簇
         /// </summary>
-        public AddressFamily addressFamily { get; private set; }
+        public AddressFamily AddressFamily { get; private set; }
         /// <summary>
         /// 套接字类型
         /// </summary>
-        public SocketType socketType { get; private set; }
+        public SocketType SocketType { get; private set; }
         /// <summary>
         /// 协议类型
         /// </summary>
-        public ProtocolType protocolType { get; private set; }
+        public ProtocolType ProtocolType { get; private set; }
         /// <summary>
         /// 套接字连接
         /// </summary>
@@ -47,12 +47,12 @@ namespace ES.Network.Sockets
         /// 连接状态
         /// <para>只要使用类中连接函数且绑定或连接成功，此变量就会为true</para>
         /// </summary>
-        public bool isConnected { get; private set; } = false;
+        public bool IsConnected { get; private set; } = false;
         /// <summary>
         /// 关闭状态
         /// <para>只要调用过类中Close函数或者心跳检测断开连接此变量就会为true</para>
         /// </summary>
-        public bool isClosed { get; private set; } = false;
+        public bool IsClosed { get; private set; } = false;
 
         /// <summary>
         /// 私有构造
@@ -66,8 +66,8 @@ namespace ES.Network.Sockets
         /// <param name="port">端口号</param>
         public Socket(string ip, int port)
         {
-            this.ip = ip;
-            this.port = port;
+            this.Ip = ip;
+            this.Port = port;
 
             address = IPAddress.Parse(ip);
             endPoint = new IPEndPoint(address, port);
@@ -83,12 +83,12 @@ namespace ES.Network.Sockets
         /// <returns>连接是否成功</returns>
         internal bool ConnectAsServer(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, int backlog)
         {
-            if (isConnected && !isClosed) return true;
-            else if (isClosed) return false;
+            if (IsConnected && !IsClosed) return true;
+            else if (IsClosed) return false;
 
-            this.addressFamily = addressFamily;
-            this.socketType = socketType;
-            this.protocolType = protocolType;
+            this.AddressFamily = addressFamily;
+            this.SocketType = socketType;
+            this.ProtocolType = protocolType;
             // try
             // {
             // 创建套接字 并且绑定接口和设置监听
@@ -96,7 +96,7 @@ namespace ES.Network.Sockets
             socket.Bind(endPoint);
             if (socketType == SocketType.Stream)
                 socket.Listen(backlog);
-            isConnected = true;
+            IsConnected = true;
             return true;
             // }
             // catch (Exception ex)
@@ -116,12 +116,12 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         public bool Connect(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
-            if (isConnected && !isClosed) return true;
-            else if (isClosed) return false;
+            if (IsConnected && !IsClosed) return true;
+            else if (IsClosed) return false;
 
-            this.addressFamily = addressFamily;
-            this.socketType = socketType;
-            this.protocolType = protocolType;
+            this.AddressFamily = addressFamily;
+            this.SocketType = socketType;
+            this.ProtocolType = protocolType;
             // try
             // {
             // 创建套接字 并且连接服务器
@@ -130,7 +130,7 @@ namespace ES.Network.Sockets
                 socket.Connect(endPoint);
             else if (socketType == SocketType.Dgram)
                 socket.Bind(new IPEndPoint(IPAddress.Any, 0));
-            isConnected = true;
+            IsConnected = true;
             return true;
             // }
             // catch (Exception ex)
@@ -160,17 +160,17 @@ namespace ES.Network.Sockets
             {
                 Socket esfSocket = new Socket();
                 // 再次填充的套接字默认为连接好的
-                esfSocket.isConnected = true;
+                esfSocket.IsConnected = true;
 
-                esfSocket.addressFamily = (AddressFamily)s.AddressFamily;
-                esfSocket.socketType = (SocketType)s.SocketType;
-                esfSocket.protocolType = (ProtocolType)s.ProtocolType;
+                esfSocket.AddressFamily = (AddressFamily)s.AddressFamily;
+                esfSocket.SocketType = (SocketType)s.SocketType;
+                esfSocket.ProtocolType = (ProtocolType)s.ProtocolType;
 
                 esfSocket.endPoint = s.RemoteEndPoint as IPEndPoint;
                 esfSocket.address = esfSocket.endPoint.Address;
 
-                esfSocket.ip = esfSocket.address.ToString();
-                esfSocket.port = esfSocket.endPoint.Port;
+                esfSocket.Ip = esfSocket.address.ToString();
+                esfSocket.Port = esfSocket.endPoint.Port;
 
                 esfSocket.socket = s;
 
@@ -189,17 +189,17 @@ namespace ES.Network.Sockets
         {
             Socket esfSocket = new Socket();
             // 再次填充的套接字默认为连接好的
-            esfSocket.isConnected = true;
+            esfSocket.IsConnected = true;
 
-            esfSocket.addressFamily = (AddressFamily)endPoint.AddressFamily;
-            esfSocket.socketType = SocketType.Dgram;
-            esfSocket.protocolType = ProtocolType.Udp;
+            esfSocket.AddressFamily = (AddressFamily)endPoint.AddressFamily;
+            esfSocket.SocketType = SocketType.Dgram;
+            esfSocket.ProtocolType = ProtocolType.Udp;
 
             esfSocket.endPoint = endPoint as IPEndPoint;
             esfSocket.address = esfSocket.endPoint.Address;
 
-            esfSocket.ip = esfSocket.address.ToString();
-            esfSocket.port = esfSocket.endPoint.Port;
+            esfSocket.Ip = esfSocket.address.ToString();
+            esfSocket.Port = esfSocket.endPoint.Port;
 
             esfSocket.socket = null;
 
@@ -212,13 +212,13 @@ namespace ES.Network.Sockets
         /// <param name="endPoint">链接终端</param>
         internal void UpdateEndPoint(EndPoint endPoint)
         {
-            addressFamily = (AddressFamily)endPoint.AddressFamily;
+            AddressFamily = (AddressFamily)endPoint.AddressFamily;
 
             this.endPoint = endPoint as IPEndPoint;
             address = this.endPoint.Address;
 
-            ip = address.ToString();
-            port = this.endPoint.Port;
+            Ip = address.ToString();
+            Port = this.endPoint.Port;
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace ES.Network.Sockets
         /// </summary>
         public void Close()
         {
-            if (isClosed) return;
+            if (IsClosed) return;
             if (socket == null) return;
             if (!socket.Connected) return;
             try
@@ -239,7 +239,7 @@ namespace ES.Network.Sockets
                 socket.Close();
             }
             catch { }
-            isClosed = true;
+            IsClosed = true;
         }
 
         #region 原生Socket部分函数移植 已隐藏
@@ -250,7 +250,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal int Send(byte[] buffer)
         {
-            if (!isConnected || isClosed) return -1;
+            if (!IsConnected || IsClosed) return -1;
             return socket.Send(buffer);
         }
 
@@ -262,7 +262,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal int SendTo(byte[] buffer, EndPoint endPoint)
         {
-            if (!isConnected || isClosed) return -1;
+            if (!IsConnected || IsClosed) return -1;
             return socket.SendTo(buffer, endPoint);
         }
 
@@ -273,7 +273,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal bool SendAsync(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            if (!isConnected || isClosed) return false;
+            if (!IsConnected || IsClosed) return false;
             return socket.SendAsync(e);
         }
 
@@ -284,7 +284,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal bool SendToAsync(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            if (!isConnected || isClosed) return false;
+            if (!IsConnected || IsClosed) return false;
             return socket.SendToAsync(e);
         }
 
@@ -296,7 +296,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal IAsyncResult BeginAccept(AsyncCallback callback, object state)
         {
-            if (!isConnected || isClosed) return null;
+            if (!IsConnected || IsClosed) return null;
             return socket.BeginAccept(callback, state);
         }
 
@@ -308,7 +308,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal System.Net.Sockets.Socket EndAccept(out byte[] buffer, IAsyncResult asyncResult)
         {
-            if (!isConnected || isClosed) { buffer = null; return null; }
+            if (!IsConnected || IsClosed) { buffer = null; return null; }
             return socket.EndAccept(out buffer, asyncResult);
         }
 
@@ -324,7 +324,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, AsyncCallback callback, object state)
         {
-            if (!isConnected || isClosed) return null;
+            if (!IsConnected || IsClosed) return null;
             return socket.BeginReceive(buffer, offset, size, socketFlags, callback, state);
         }
 
@@ -335,7 +335,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal int EndReceive(IAsyncResult asyncResult)
         {
-            if (!isConnected || isClosed) return 0;
+            if (!IsConnected || IsClosed) return 0;
             return socket.EndReceive(asyncResult);
         }
 
@@ -352,7 +352,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal IAsyncResult BeginReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref EndPoint endPoint, AsyncCallback callback, object state)
         {
-            if (!isConnected || isClosed) return null;
+            if (!IsConnected || IsClosed) return null;
             return socket.BeginReceiveFrom(buffer, offset, size, socketFlags, ref endPoint, callback, state);
         }
 
@@ -364,7 +364,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal int EndReceiveFrom(IAsyncResult asyncResult, ref EndPoint endPoint)
         {
-            if (!isConnected || isClosed) return 0;
+            if (!IsConnected || IsClosed) return 0;
             return socket.EndReceiveFrom(asyncResult, ref endPoint);
         }
 
@@ -375,7 +375,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal bool AcceptAsync(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            if (!isConnected || isClosed) return false;
+            if (!IsConnected || IsClosed) return false;
             return socket.AcceptAsync(e);
         }
 
@@ -386,7 +386,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal bool ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            if (!isConnected || isClosed) return false;
+            if (!IsConnected || IsClosed) return false;
             return socket.ReceiveAsync(e);
         }
 
@@ -397,7 +397,7 @@ namespace ES.Network.Sockets
         /// <returns></returns>
         internal bool ReceiveFromAsync(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            if (!isConnected || isClosed) return false;
+            if (!IsConnected || IsClosed) return false;
             return socket.ReceiveFromAsync(e);
         }
 

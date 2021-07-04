@@ -31,7 +31,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 解析缓存
         /// </summary>
-        public SweetStream rBuffer { get; private set; } = null;
+        public SweetStream RBuffer { get; private set; } = null;
 
         /// <summary>
         /// 消息委托
@@ -46,7 +46,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 连接状态
         /// </summary>
-        public bool hasConnected { get { if (clientSocket != null) return clientSocket.isConnected && !clientSocket.isClosed; return false; } }
+        public bool HasConnected { get { if (clientSocket != null) return clientSocket.IsConnected && !clientSocket.IsClosed; return false; } }
 
         /// <summary>
         /// 发送事件参数
@@ -68,7 +68,7 @@ namespace ES.Network.Sockets.Client
         {
             clientSocket = new Socket(ip, port);
             this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
-            rBuffer = new SweetStream();
+            RBuffer = new SweetStream();
 
             sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed);
             readWriteEventArg = new SocketAsyncEventArgs() { UserToken = clientSocket, RemoteEndPoint = clientSocket.endPoint };
@@ -84,7 +84,7 @@ namespace ES.Network.Sockets.Client
         {
             clientSocket = esfSocket;
             this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
-            rBuffer = new SweetStream();
+            RBuffer = new SweetStream();
 
             sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed);
             readWriteEventArg = new SocketAsyncEventArgs() { UserToken = clientSocket, RemoteEndPoint = clientSocket.endPoint };
@@ -95,24 +95,23 @@ namespace ES.Network.Sockets.Client
         /// 发送数据
         /// <para>返回 0 为成功 -1 异常</para>
         /// </summary>
-        /// <param name="sessionId">会话ID</param>
         /// <param name="buffer">数据</param>
         /// <param name="offset">偏移</param>
         /// <param name="count">数量</param>
         /// <returns>0 为成功 -1 异常</returns>
-        protected bool SendBuffer(ushort sessionId, byte[] buffer, int offset, int count)
+        protected bool SendBuffer(/*ushort sessionId,*/ byte[] buffer, int offset, int count)
         {
             // 数据打包
             byte[] data = null;
             if (offset == 0 && buffer.Length == count)
             {
-                data = rBuffer.Encode(buffer);
+                data = RBuffer.Encode(buffer);
             }
             else if (offset > 0)
             {
                 byte[] buffer2 = new byte[count];
                 Array.Copy(buffer, offset, buffer2, 0, count);
-                data = rBuffer.Encode(buffer);
+                data = RBuffer.Encode(buffer);
             }
 
             try

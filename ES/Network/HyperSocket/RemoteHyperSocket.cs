@@ -147,7 +147,7 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void OnReceive(byte[] data)
         {
-            if (hyperSocketRef.TryGetTarget(out var hyperSocket)) hyperSocket.udpServer.KcpDataBackHandle(this, data);
+            if (hyperSocketRef.TryGetTarget(out var hyperSocket)) hyperSocket.UdpServer.KcpDataBackHandle(this, data);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool CheckSameRemote(RemoteConnection conn)
         {
-            if (conn != null && tcpConn != null && tcpConn.socket.endPoint.Address.Equals(conn.socket.endPoint.Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
+            if (conn != null && tcpConn != null && tcpConn.Socket.endPoint.Address.Equals(conn.Socket.endPoint.Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
                 return true;
             else
                 return false;
@@ -186,7 +186,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool CheckSameRemote(System.Net.EndPoint conn)
         {
-            if (conn != null && udpConn != null && udpConn.socket.endPoint.Address.Equals((conn as System.Net.IPEndPoint).Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
+            if (conn != null && udpConn != null && udpConn.Socket.endPoint.Address.Equals((conn as System.Net.IPEndPoint).Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
                 return true;
             else
                 return false;
