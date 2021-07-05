@@ -24,7 +24,7 @@ Easy .NET Develop Frame.
 | 目录 | 备注 |
 | ------------ | ------------ |
 | Client | 客户端框架支持(目前只更新了Unity版本)  |
-| docs | [在线API文档](https://easysharpframe.fyenet.com) |
+| docs | [在线API文档](https://suxf.github.io/EasySharpFrame) |
 | ES | 框架主工程 |
 | Sample | 框架测试样本工程 |
 | SampleDll | 框架热更模块测试样本工程 |
@@ -40,8 +40,7 @@ public void Http1()
     HttpHandle1 handle = new HttpHandle1();
     // 建立http访问器，并载入异常接口类
     HttpVisitor visitor = new HttpVisitor(handle);
-    // 建立http服务，填写前缀地址并且赋予访问器
-    // 注：全监听 0.0.0.0 在这里用 + 号代替
+    // 建立http服务，填写地址并且赋予访问器
     // X509Certificate2 certificate = new X509Certificate2("https.pfx", "8888");
     // HttpService service = new HttpService("127.0.0.1", 8080, visitor, certificate);
     HttpService service = new HttpService("127.0.0.1", 8080, visitor);
@@ -82,8 +81,7 @@ public void Http2()
 {
     // 先继承http异常接口，这里把测试的访问函数也写在一个类中，实际不需要
     HttpHandle2 handle = new HttpHandle2();
-    // 建立http服务，填写前缀地址并且赋予访问器
-    // 注：全监听 0.0.0.0 在这里用 + 号代替
+    // 建立http服务，填写地址
     HttpService service = new HttpService("127.0.0.1", 8080, handle);
     // 启动服务
     service.StartServer();
