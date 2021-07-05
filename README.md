@@ -396,5 +396,5 @@ string versionStr = ES.Common.Utils.Version.ToString();
 1. [StackExchange/StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) Redis数据库支持工具
 1. [dotnet/corefx](https://github.com/dotnet/corefx) 微软官方支持的SqlServer支持库
 
-# 关于项目
-本项目最初是由平时和业余时开发遇到的问题慢慢汇聚出来的，最初的版本是一些零零散散的工具类，经过一段时间专门花时间整理构建以及后续不断维护，才有了现在这个版本，基于此框架的项目也正常运行着，总的来说是为了自己开发更加快速便捷才构建了这个框架。
+# 关于框架
+最初是由工作和业余开发过程中遇到的问题慢慢汇聚出来的一些零零散散的工具类，经过一段时间整理重构和后续维护，才有了现在这个版本，在此之前使用此框架的项目也一直在线上跑着，总的来说是为了开发更加快速便捷才构建了这个框架。
