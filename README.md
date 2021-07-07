@@ -1,12 +1,17 @@
 # EasySharpFrame
-[![NuGet version (EasySharpFrame)](https://img.shields.io/nuget/v/EasySharpFrame.svg?style=flat-square)](https://www.nuget.org/packages/EasySharpFrame/) 
+[![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/suxf/EasySharpFrame?color=9cf&style=float)
+![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)
+![Platform](https://img.shields.io/badge/.netcore-3.1-blueviolet?style=float)
+![Platform](https://img.shields.io/badge/.net->=5.0-blueviolet?style=float)
+![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)
 
 Easy .NET Develop Frame.
 
 这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！
 
 # 快速使用
-可以直接从NuGet库中搜索安装最新版本。
+可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/EasySharpFrame)。
 
 # 框架版本
 | 版本 | 支持 |
@@ -253,11 +258,11 @@ if (dbHelper.CheckConnected())
 // 普通查询调用
 var result = dbHelper.CommandSQL("SELECT * FROM tb_test");
 // 查询条数判断
-if (result.effectNum > 0)
+if (result.EffectNum > 0)
 {
     // 取出表一的相关数据
     // 如果查询有多个select 可以通过result.dataSet取得
-    int id = (int)result.collection[0]["id"];
+    int id = (int)result.Collection[0]["id"];
     Console.WriteLine($"id:{id}");
 }
 ```
@@ -303,21 +308,103 @@ Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
 Log.LOG_PATH = "./log/";
 ```
 ### 9.热更功能
-是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，发现在如今的配置服务器下这点性能消耗已经不足以影响整个流程，当然如果实在是有高度原生强迫的开发“患者”可以忽略这个功能。
+是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，在百万次的简单循环下，初次调用可能会存在总量100毫秒的延迟；随之以后的调用则影响很小，循环总量在30毫秒左右，偏差基本可以忽略不计。
 
 ```csharp
 /** 主工程项目 **/
-// 读取热更模块
-HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
-// 调用热更模块入口类的函数
-HotfixMgr.Instance.Agent.Test();
+class Test_Hotfix
+{
+    // 实际创建都需要先完成热更模块读取完成后执行
+    Player player = new Player();
+    Player1 player1;
+    public Test_Hotfix()
+    {
+        TestHotfix();
+    }
 
-// 代理数据
+    /// <summary>
+    /// 测试只需要放入构造函数
+    /// 热更测试
+    /// </summary>
+    public void TestHotfix()
+    {
+        while (true)
+        {
+            HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
+            HotfixMgr.Instance.Agent.Test();
+            if(player1 == null) player1 = new Player1();
+            Console.ReadLine();
+            Console.Clear();
+            GC.Collect();
+        }
+    }
+
+    /// <summary>
+    /// 测试只需要放入构造函数
+    /// 耗时测试
+    /// </summary>
+    public void ConsumeTime()
+    {
+        HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
+        Stopwatch watch = new Stopwatch();
+        /* 性能测试 */
+        // 第一次直接调用
+        Console.WriteLine("直接调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.Test();
+        watch.Stop();
+        Console.WriteLine("直接调用耗时1:" + watch.ElapsedMilliseconds);
+        // 第一次实测热更调用
+        Console.WriteLine("\n\n热更调用开始~");
+        watch.Reset();
+        watch.Start();
+        HotfixMgr.Instance.Agent.Test();
+        watch.Stop();
+        Console.WriteLine("热更层耗时1:" + watch.ElapsedMilliseconds);
+        // 第二次直接调用
+        Console.WriteLine("\n\n直接调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.Test();
+        watch.Stop();
+        Console.WriteLine("直接调用耗时2:" + watch.ElapsedMilliseconds);
+        // 第二次实测热更调用
+        Console.WriteLine("\n\n热更调用开始~");
+        watch.Reset();
+        watch.Start();
+        HotfixMgr.Instance.Agent.Test();
+        watch.Stop();
+        Console.WriteLine("热更层耗时2:" + watch.ElapsedMilliseconds);
+    }
+}
+
+/// <summary>
+/// 手动创建对应的代理
+/// 如果每次热更重载后不主动创建 则代理不会运作
+/// </summary>
+[NotCreateAgent]
 public class Player : AgentData
 {
     public int count;
+   
+    // 用于测试 实际上一般数据层不写逻辑
+    public void Test()
+    {
+        for (int i = 0; i < 1000000; i++) count++;
+        Console.WriteLine("直接调用计数:" + count);
+    }
 }
 
+/// <summary>
+/// 自动创建代理
+/// 并且实现代理内变量差异拷贝
+/// </summary>
+[CopyAgentValue]
+public class Player1 : AgentData
+{
+    public int count;
+}
 ```
 ```csharp
 /** 热更工程项目 **/
@@ -332,6 +419,7 @@ public class Main
 }
 
 // 如果需要时间流需要在热更层继承和使用
+// 测试案例一 非主动创建
 public class PlayerAgent : Agent<Player>, ITimeUpdate
 {
     public TimeFlow tf;
@@ -344,12 +432,43 @@ public class PlayerAgent : Agent<Player>, ITimeUpdate
 
     public void Test()
     {
-        self.count++;
-        Console.WriteLine(self.count);
+        // Console.WriteLine(self.name);
+        Stopwatch watch = new Stopwatch();
+        /* 性能测试 */
+        // 第一次直接调用
+        watch.Start();
+        for (int i = 0; i < 1000000; i++) self.count++;
+        watch.Stop();
+        Console.WriteLine("热更层循环耗时:" + watch.ElapsedMilliseconds);
+        // for (int i = 0; i < 1000000; i++) self.count++;
+        Console.WriteLine("热更层计数:" + self.count);
+    }
+
+    int count = 0;
+    public void Update(int deltaTime)
+    {
+        if (count % 1000 == 0) Console.WriteLine($"player count:{self.count++},copyCount:{count}");
+        count += TimeFlow.period;
+    }
+
+    public void UpdateEnd()
+    {
+    }
+}
+// 测试案例二 主动创建 且保留值
+public class Player1Agent : Agent<Player1>, ITimeUpdate
+{
+    public int copyCount = 0;
+
+    public Player1Agent()
+    {
+        TimeFlow.Create(this).Start();
     }
 
     public void Update(int deltaTime)
     {
+        if (copyCount % 1000 == 0) Console.WriteLine($"player1 count:{self.count++},copyCount:{copyCount}");
+        copyCount += TimeFlow.period;
     }
 
     public void UpdateEnd()

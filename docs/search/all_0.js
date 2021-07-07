@@ -12,7 +12,7 @@ var searchData=
   ['addressfamily_9',['AddressFamily',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a9922b320961a6b605f0beb0b7b7ece2c',1,'ES.Network.Sockets.Socket.AddressFamily()'],['../namespace_e_s_1_1_network_1_1_sockets.html#aa8be3c8939a63beabebc4b09e195d525',1,'ES.Network.Sockets.AddressFamily()']]],
   ['age_10',['Age',['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3ea9d8d2d5ab12b515182a505f54db7f538',1,'ES::Network::Http']]],
   ['agent_11',['Agent',['../class_e_s_1_1_hotfix_1_1_agent.html',1,'ES.Hotfix.Agent&lt; T &gt;'],['../class_e_s_1_1_hotfix_1_1_hotfix_mgr.html#ab5bbe1eabc856e71be73a217fa2fde83',1,'ES.Hotfix.HotfixMgr.Agent()']]],
-  ['agentdata_12',['AgentData',['../class_e_s_1_1_hotfix_1_1_agent_data.html',1,'ES::Hotfix']]],
+  ['agentdata_12',['AgentData',['../class_e_s_1_1_hotfix_1_1_agent_data.html',1,'ES.Hotfix.AgentData'],['../class_e_s_1_1_hotfix_1_1_agent_data.html#aa05ec9b048c9e1032f8c3ccae7ce0bab',1,'ES.Hotfix.AgentData.AgentData()']]],
   ['agentdatapivot_13',['AgentDataPivot',['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html',1,'ES::Hotfix']]],
   ['allow_14',['Allow',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925a45f0fb72a0defdfdb01de4b5a5a6876b',1,'ES.Network.Http.Allow()'],['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3ea45f0fb72a0defdfdb01de4b5a5a6876b',1,'ES.Network.Http.Allow()']]],
   ['appconfig_15',['AppConfig',['../class_e_s_1_1_common_1_1_utils_1_1_app_config.html',1,'ES::Common::Utils']]],
