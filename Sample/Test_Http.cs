@@ -19,8 +19,7 @@ namespace Sample
             HttpHandle1 handle = new HttpHandle1();
             // 建立http访问器，并载入异常接口类
             HttpVisitor visitor = new HttpVisitor(handle);
-            // 建立http服务，填写前缀地址并且赋予访问器
-            // 注：全监听 0.0.0.0 在这里用 + 号代替
+            // 建立http服务，填写地址并且赋予访问器
             // X509Certificate2 certificate = new X509Certificate2("https.pfx", "8888");
             // HttpService service = new HttpService("127.0.0.1", 8080, visitor, certificate);
             HttpService service = new HttpService("127.0.0.1", 8080, visitor);
@@ -60,8 +59,7 @@ namespace Sample
         {
             // 先继承http异常接口，这里把测试的访问函数也写在一个类中，实际不需要
             HttpHandle2 handle = new HttpHandle2();
-            // 建立http服务，填写前缀地址并且赋予访问器
-            // 注：全监听 0.0.0.0 在这里用 + 号代替
+            // 建立http服务，填写地址
             HttpService service = new HttpService("127.0.0.1", 8080, handle);
             // 启动服务
             service.StartServer();

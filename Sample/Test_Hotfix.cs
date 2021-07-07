@@ -6,7 +6,9 @@ namespace Sample
 {
     class Test_Hotfix
     {
-        readonly Player player = new Player();
+        // 实际创建都需要先完成热更模块读取完成后执行
+        Player player = new Player();
+        Player1 player1;
         public Test_Hotfix()
         {
             TestHotfix();
@@ -22,6 +24,7 @@ namespace Sample
             {
                 HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
                 HotfixMgr.Instance.Agent.Test();
+                if(player1 == null) player1 = new Player1();
                 Console.ReadLine();
                 Console.Clear();
                 GC.Collect();
@@ -68,6 +71,11 @@ namespace Sample
         }
     }
 
+    /// <summary>
+    /// 手动创建对应的代理
+    /// 如果每次热更重载后不主动创建 则代理不会运作
+    /// </summary>
+    [NotCreateAgent]
     public class Player : AgentData
     {
         public int count;
@@ -78,5 +86,15 @@ namespace Sample
             for (int i = 0; i < 1000000; i++) count++;
             Console.WriteLine("直接调用计数:" + count);
         }
+    }
+
+    /// <summary>
+    /// 自动创建代理
+    /// 并且实现代理内变量差异拷贝
+    /// </summary>
+    [CopyAgentValue]
+    public class Player1 : AgentData
+    {
+        public int count;
     }
 }

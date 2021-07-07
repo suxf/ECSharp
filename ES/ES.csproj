@@ -7,12 +7,12 @@
     <Authors>枫</Authors>
     <Description>Easy .NET Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.13.2</Version>
+    <Version>1.13.3</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
     <PackageTags>C#,.Net,Server,Http,Hotfix,Socket,Sql,Mssql,Sqlserver,Redis,Websocket</PackageTags>
-    <PackageProjectUrl>http://easysharpframe.fyenet.com/</PackageProjectUrl>
+    <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
     <RepositoryUrl>https://github.com/suxf/EasySharpFrame</RepositoryUrl>
     <Product>EasySharpFrame</Product>

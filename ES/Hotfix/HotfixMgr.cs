@@ -1,5 +1,6 @@
 ﻿using ES.Common.Time;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -46,11 +47,14 @@ namespace ES.Hotfix
         /// </summary>
         private readonly BaseTimeFlow tf;
 
+        internal readonly ConcurrentDictionary<Type, Type> agentTypeMap;
+
         /// <summary>
         /// 创建一个热更管理器
         /// </summary>
         private HotfixMgr()
-        { 
+        {
+            agentTypeMap = new ConcurrentDictionary<Type, Type>();
             tf = BaseTimeFlow.CreateTimeFlow(this, 0); 
             tf.StartTimeFlowES(); 
         }
@@ -89,8 +93,23 @@ namespace ES.Hotfix
                         if (tempDllAssemblyLoader.IsAlive)
                         {
                             // 最终绑定对象
-                            var typeInfo = tempDllAssemblyLoader.GetAssembly().GetType(classFullName);
+                            var assembly = tempDllAssemblyLoader.GetAssembly();
+                            var typeInfo = assembly.GetType(classFullName);
                             if (typeInfo == null) throw new NullReferenceException("Class is not found!");
+                            // 处理代理类字典
+                            agentTypeMap.Clear();
+                            var allTypes = assembly.GetTypes();
+                            var baseAgentType = typeof(BaseAgent);
+                            for (int i = 0, len = allTypes.Length; i < len; i++)
+                            {
+                                var type = allTypes[i];
+                                if (type.IsSubclassOf(baseAgentType) && type.BaseType.IsGenericType)
+                                {
+                                    var agentDataType = type.BaseType.GetGenericArguments()[0];
+                                    agentTypeMap.TryAdd(agentDataType, type);
+                                }
+                            }
+                            // 创建入口实例
                             var typeInstance = tempDllAssemblyLoader.GetAssembly().CreateInstance(classFullName);
                             // var assemblies = AppDomain.CurrentDomain.GetAssemblies();
                             // var lmBinderType = dllStaticAssembly.GetType("Module.LmBinder");
@@ -99,9 +118,17 @@ namespace ES.Hotfix
                             // 原子锁
                             Interlocked.Exchange(ref _agent, Convert.ChangeType(typeInstance, typeInfo));
                             // 处理代理索引
-                            lock (agentRefs)
-                                for (int i = agentRefs.Count - 1; i >= 0; i--)
-                                    if (agentRefs[i].TryGetTarget(out var agentRef)) { agentRef._agent = null; agentRef.isCreated = false; } else agentRefs.RemoveAt(i);
+                            lock (agentRefs) { 
+                                for (int i = agentRefs.Count - 1; i >= 0; i--) { 
+                                    if (agentRefs[i].TryGetTarget(out var agentRef)) 
+                                    {
+                                        agentRef.isCreated = false;
+                                        if (agentRef.type != null) agentRef.CreateAgent();
+                                        else agentRef._agent = null;
+                                    } 
+                                    else agentRefs.RemoveAt(i);
+                                }
+                            }
                             // 程序域转换
                             if (assemblyLoader != null && assemblyLoader.IsAlive) assemblyLoader.Unload();
                             assemblyLoader = tempDllAssemblyLoader;
