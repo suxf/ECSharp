@@ -267,7 +267,7 @@ if (result.EffectNum > 0)
 }
 ```
 ### 6.Mysql数据助手
-待开发...
+以后如果用的人多了，再补充吧~
 
 ### 7.Redis数据库助手
 简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，使订阅更加易用。
@@ -322,10 +322,8 @@ class Test_Hotfix
         TestHotfix();
     }
 
-    /// <summary>
-    /// 测试只需要放入构造函数
-    /// 热更测试
-    /// </summary>
+    // 测试只需要放入构造函数
+    // 热更测试
     public void TestHotfix()
     {
         while (true)
@@ -335,72 +333,27 @@ class Test_Hotfix
             if(player1 == null) player1 = new Player1();
             Console.ReadLine();
             Console.Clear();
-            GC.Collect();
         }
-    }
-
-    /// <summary>
-    /// 测试只需要放入构造函数
-    /// 耗时测试
-    /// </summary>
-    public void ConsumeTime()
-    {
-        HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
-        Stopwatch watch = new Stopwatch();
-        /* 性能测试 */
-        // 第一次直接调用
-        Console.WriteLine("直接调用开始~");
-        watch.Reset();
-        watch.Start();
-        player.Test();
-        watch.Stop();
-        Console.WriteLine("直接调用耗时1:" + watch.ElapsedMilliseconds);
-        // 第一次实测热更调用
-        Console.WriteLine("\n\n热更调用开始~");
-        watch.Reset();
-        watch.Start();
-        HotfixMgr.Instance.Agent.Test();
-        watch.Stop();
-        Console.WriteLine("热更层耗时1:" + watch.ElapsedMilliseconds);
-        // 第二次直接调用
-        Console.WriteLine("\n\n直接调用开始~");
-        watch.Reset();
-        watch.Start();
-        player.Test();
-        watch.Stop();
-        Console.WriteLine("直接调用耗时2:" + watch.ElapsedMilliseconds);
-        // 第二次实测热更调用
-        Console.WriteLine("\n\n热更调用开始~");
-        watch.Reset();
-        watch.Start();
-        HotfixMgr.Instance.Agent.Test();
-        watch.Stop();
-        Console.WriteLine("热更层耗时2:" + watch.ElapsedMilliseconds);
     }
 }
 
-/// <summary>
-/// 手动创建对应的代理
-/// 如果每次热更重载后不主动创建 则代理不会运作
-/// </summary>
+// 手动创建对应的代理
+// 如果每次热更重载后不主动创建 则代理不会运作
+// 也可以通过带参数构造函数来设定手动
 [NotCreateAgent]
 public class Player : AgentData
 {
     public int count;
-   
-    // 用于测试 实际上一般数据层不写逻辑
-    public void Test()
-    {
-        for (int i = 0; i < 1000000; i++) count++;
-        Console.WriteLine("直接调用计数:" + count);
-    }
+
+    // 通过base(false)设置手动创建
+    // 这样就不用通过 NotCreateAgent 特性来判断 二者选其一即可
+    public Player() : base(false) { }
 }
 
-/// <summary>
-/// 自动创建代理
-/// 并且实现代理内变量差异拷贝
-/// </summary>
-[CopyAgentValue]
+// 自动创建代理
+// 并且添加 KeepAgentValue 特性实现代理内变量保存
+// 如果去除 KeepAgentValue 特性则变量不会在重载后保存
+[KeepAgentValue]
 public class Player1 : AgentData
 {
     public int count;
@@ -432,16 +385,7 @@ public class PlayerAgent : Agent<Player>, ITimeUpdate
 
     public void Test()
     {
-        // Console.WriteLine(self.name);
-        Stopwatch watch = new Stopwatch();
-        /* 性能测试 */
-        // 第一次直接调用
-        watch.Start();
-        for (int i = 0; i < 1000000; i++) self.count++;
-        watch.Stop();
-        Console.WriteLine("热更层循环耗时:" + watch.ElapsedMilliseconds);
-        // for (int i = 0; i < 1000000; i++) self.count++;
-        Console.WriteLine("热更层计数:" + self.count);
+        Console.WriteLine("Hello:" + self.count);
     }
 
     int count = 0;
@@ -455,6 +399,7 @@ public class PlayerAgent : Agent<Player>, ITimeUpdate
     {
     }
 }
+
 // 测试案例二 主动创建 且保留值
 public class Player1Agent : Agent<Player1>, ITimeUpdate
 {

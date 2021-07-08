@@ -4,3 +4,6 @@ Sample/bin
 Sample/obj
 SampleDll/bin
 SampleDll/obj
+.vs
+.svn
+Doxyfile

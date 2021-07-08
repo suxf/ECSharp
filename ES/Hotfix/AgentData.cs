@@ -24,10 +24,27 @@ namespace ES.Hotfix
         public AgentData()
         {
             var type = GetType();
-            if(type.IsDefined(typeof(NotCreateAgentAttribute), false))
+            if (type.IsDefined(typeof(NotCreateAgentAttribute), false))
                 _ref = new AgentRef(null, false, null);
             else
-                _ref = new AgentRef(type, type.IsDefined(typeof(CopyAgentValueAttribute), false), this);
+                _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
+            HotfixMgr.Instance.AddAgentRef(_ref);
+            // 如果不为空 就创建
+            if (_ref.type != null) _ref.CreateAgent();
+        }
+
+        /// <summary>
+        /// 构建代理数据
+        /// </summary>
+        /// <param name="isAutoCreate">是否自动创建代理</param>
+        public AgentData(bool isAutoCreate)
+        {
+            if (isAutoCreate)
+            {
+                var type = GetType();
+                _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
+            }
+            else _ref = new AgentRef(null, false, null);
             HotfixMgr.Instance.AddAgentRef(_ref);
             // 如果不为空 就创建
             if (_ref.type != null) _ref.CreateAgent();

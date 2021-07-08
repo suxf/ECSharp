@@ -4,7 +4,7 @@ var hierarchy =
     [ "ES.Hotfix.AgentDataPivot", "class_e_s_1_1_hotfix_1_1_agent_data_pivot.html", null ],
     [ "ES.Common.Utils.AppConfig", "class_e_s_1_1_common_1_1_utils_1_1_app_config.html", null ],
     [ "Attribute", null, [
-      [ "ES.Hotfix.CopyAgentValueAttribute", "class_e_s_1_1_hotfix_1_1_copy_agent_value_attribute.html", null ],
+      [ "ES.Hotfix.KeepAgentValueAttribute", "class_e_s_1_1_hotfix_1_1_keep_agent_value_attribute.html", null ],
       [ "ES.Hotfix.NotCreateAgentAttribute", "class_e_s_1_1_hotfix_1_1_not_create_agent_attribute.html", null ]
     ] ],
     [ "ES.Hotfix.BaseAgent", "class_e_s_1_1_hotfix_1_1_base_agent.html", [

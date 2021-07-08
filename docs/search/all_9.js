@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['kcpmode_254',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES.Network.HyperSocket.HyperSocketConfig.kcpMode()'],['../namespace_e_s_1_1_network_1_1_hyper_socket.html#a3428893405cee3da5e40b83a6e02f11a',1,'ES.Network.HyperSocket.KcpMode()']]],
-  ['kcpwinsize_255',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['kcpmode_253',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES.Network.HyperSocket.HyperSocketConfig.kcpMode()'],['../namespace_e_s_1_1_network_1_1_hyper_socket.html#a3428893405cee3da5e40b83a6e02f11a',1,'ES.Network.HyperSocket.KcpMode()']]],
+  ['kcpwinsize_254',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['keepagentvalueattribute_255',['KeepAgentValueAttribute',['../class_e_s_1_1_hotfix_1_1_keep_agent_value_attribute.html',1,'ES::Hotfix']]],
   ['keepalive_256',['KeepAlive',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925a17229586d3c63a13bfdc6c71c569c867',1,'ES.Network.Http.KeepAlive()'],['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3ea17229586d3c63a13bfdc6c71c569c867',1,'ES.Network.Http.KeepAlive()']]],
   ['keydelete_257',['KeyDelete',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a24311b4928c24e692c84aeff6eb6fe22',1,'ES.Data.Database.Redis.RedisHelper.KeyDelete(string key)'],['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a971ade7f1af15585e94075cdc728f145',1,'ES.Data.Database.Redis.RedisHelper.KeyDelete(List&lt; string &gt; keys)']]],
   ['keyexists_258',['KeyExists',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1a2c41b3c066f6613420b10b52a7bb14',1,'ES::Data::Database::Redis::RedisHelper']]],

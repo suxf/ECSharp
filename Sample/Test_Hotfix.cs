@@ -27,7 +27,6 @@ namespace Sample
                 if(player1 == null) player1 = new Player1();
                 Console.ReadLine();
                 Console.Clear();
-                GC.Collect();
             }
         }
 
@@ -74,11 +73,18 @@ namespace Sample
     /// <summary>
     /// 手动创建对应的代理
     /// 如果每次热更重载后不主动创建 则代理不会运作
+    /// 也可以通过带参数构造函数来设定手动
     /// </summary>
     [NotCreateAgent]
     public class Player : AgentData
     {
         public int count;
+
+        /// <summary>
+        /// 通过base(false)设置手动创建
+        /// 这样就不用通过 NotCreateAgent 特性来判断 二者选其一即可
+        /// </summary>
+        public Player() : base(false) { }
        
         // 用于测试 实际上一般数据层不写逻辑
         public void Test()
@@ -90,9 +96,10 @@ namespace Sample
 
     /// <summary>
     /// 自动创建代理
-    /// 并且实现代理内变量差异拷贝
+    /// 并且添加 KeepAgentValue 特性实现代理内变量保存
+    /// 如果去除 KeepAgentValue 特性则变量不会在重载后保存
     /// </summary>
-    [CopyAgentValue]
+    [KeepAgentValue]
     public class Player1 : AgentData
     {
         public int count;

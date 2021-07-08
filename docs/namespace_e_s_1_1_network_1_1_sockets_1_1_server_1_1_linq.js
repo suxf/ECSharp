@@ -1,6 +1,0 @@
-var namespace_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq =
-[
-    [ "IRemoteSocketVisitorException", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_i_remote_socket_visitor_exception.html", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_i_remote_socket_visitor_exception" ],
-    [ "MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task.html", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_monitor_socket_status_task" ],
-    [ "RemoteSocketVisitor", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_remote_socket_visitor.html", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_linq_1_1_remote_socket_visitor" ]
-];
