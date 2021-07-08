@@ -1,10 +1,10 @@
 # EasySharpFrame
 [![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/suxf/EasySharpFrame?color=9cf&style=float)
-![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)
-![Platform](https://img.shields.io/badge/.netcore-3.1-blueviolet?style=float)
-![Platform](https://img.shields.io/badge/.net->=5.0-blueviolet?style=float)
-![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/suxf/EasySharpFrame?color=9cf&style=float)](https://github.com/suxf/EasySharpFrame/releases)
+[![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
+[![Platform](https://img.shields.io/badge/.netcore-3.1-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![Platform](https://img.shields.io/badge/.net->=5.0-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/EasySharpFrame/blob/master/LICENSE)
 
 Easy .NET Develop Frame.
 
@@ -462,3 +462,5 @@ string versionStr = ES.Common.Utils.Version.ToString();
 
 # 关于框架
 最初是由工作和业余开发过程中遇到的问题慢慢汇聚出来的一些零零散散的工具类，经过一段时间整理重构和后续维护，才有了现在这个版本，在此之前使用此框架的项目也一直在线上跑着，总的来说是为了开发更加快速便捷才构建了这个框架。
+
+如果对这个项目比较感兴趣的朋友，希望能够给颗⭐支持一下~
