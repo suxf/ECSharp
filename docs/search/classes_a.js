@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nodbstorage_550',['NoDBStorage',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html',1,'ES::Data::Database::SQLServer::Linq']]],
-  ['notcreateagentattribute_551',['NotCreateAgentAttribute',['../class_e_s_1_1_hotfix_1_1_not_create_agent_attribute.html',1,'ES::Hotfix']]]
+  ['nosqlstorage_553',['NoSqlStorage',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html',1,'ES::Data::Database::SQLServer::Linq']]],
+  ['notcreateagentattribute_554',['NotCreateAgentAttribute',['../class_e_s_1_1_hotfix_1_1_not_create_agent_attribute.html',1,'ES::Hotfix']]]
 ];

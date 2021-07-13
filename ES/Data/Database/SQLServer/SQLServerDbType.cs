@@ -3,7 +3,7 @@
     /// <summary>
     /// ES存储过程 参数类型
     /// </summary>
-    public enum SQLServerDbType
+    public enum SqlServerDbType
     {
         /// <summary>
         /// System.Int64. A 64-bit signed integer.

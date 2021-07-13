@@ -12,7 +12,7 @@ namespace ES.Data.Database.SQLServer
     /// <para>数据库异常可以通过 异常监听来获取</para>
     /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
     /// </summary>
-    public sealed class SQLServerDBHelper : ITimeUpdate
+    public sealed class SqlServerDbHelper : ITimeUpdate
     {
         /// <summary>
         /// 数据连接参数构造器
@@ -26,7 +26,7 @@ namespace ES.Data.Database.SQLServer
         /// <summary>
         /// 数据库异常监听
         /// </summary>
-        private ISQLServerDBHelper listener = null;
+        private ISqlServerDbHelper listener = null;
 
         private readonly BaseTimeFlow timeFlow;
 
@@ -56,7 +56,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="minPoolSize">数据库池连接最小值，默认为0</param>
         /// <param name="maxPoolSize">数据库池连接最大值，默认为100</param>
         /// <param name="extraConfig">数据库额外配置</param>
-        public SQLServerDBHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null)
+        public SqlServerDbHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null)
         {
             if (!string.IsNullOrEmpty(extraConfig))
                 builder = new SqlConnectionStringBuilder(extraConfig);
@@ -81,7 +81,7 @@ namespace ES.Data.Database.SQLServer
         /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
         /// <param name="connectionString">连接配置</param>
-        public SQLServerDBHelper(string connectionString)
+        public SqlServerDbHelper(string connectionString)
         {
             builder = new SqlConnectionStringBuilder(connectionString);
 
@@ -93,7 +93,7 @@ namespace ES.Data.Database.SQLServer
         /// SqlServer助手构造函数
         /// <para>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</para>
         /// </summary>
-        public SQLServerDBHelper(SqlConnectionStringBuilder sqlConnectionStringBuilder)
+        public SqlServerDbHelper(SqlConnectionStringBuilder sqlConnectionStringBuilder)
         {
             builder = sqlConnectionStringBuilder;
 
@@ -105,7 +105,7 @@ namespace ES.Data.Database.SQLServer
         /// 设置异常监听
         /// </summary>
         /// <param name="listener">异常监听器</param>
-        public void SetExceptionListener(ISQLServerDBHelper listener)
+        public void SetExceptionListener(ISqlServerDbHelper listener)
         {
             this.listener = listener;
         }
@@ -149,7 +149,7 @@ namespace ES.Data.Database.SQLServer
         /// <returns>返回 ProcedureResult 失败为null</returns>
         public ProcedureResult Procedure(string procedure, params SqlParameter[] sqlParameters)
         {
-            return Procedure(procedure, SQLServerDbType.Int, 4, sqlParameters);
+            return Procedure(procedure, SqlServerDbType.Int, 4, sqlParameters);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="retvalueSize">返回值大小</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>返回 ProcedureResult 失败为null</returns>
-        public ProcedureResult Procedure(string procedure, SQLServerDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
+        public ProcedureResult Procedure(string procedure, SqlServerDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
         {
             ProcedureResult result = new ProcedureResult();
             result.Procedure = procedure;
@@ -346,7 +346,7 @@ namespace ES.Data.Database.SQLServer
         }
 
         /// <summary>
-        /// 加载数据缓存
+        /// 创建一个数据实体组
         /// <para>同 DataAgent 使用相同</para>
         /// </summary>
         /// <param name="primaryKey">主键名，用于更新和寻找唯一依据字段</param>
@@ -356,9 +356,41 @@ namespace ES.Data.Database.SQLServer
         /// <param name="topNum">SQL取值数量【默认为：-1 无限】</param>
         /// <param name="isNoLock">是否不锁Sql，默认锁表</param>
         /// <returns></returns>
-        public DataAgentRows LoadDataCache(string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
+        public DataEntityRows CreateDataEntityRows(string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
         {
-            return DataAgentRows.Load(this, primaryKey, tableName, whereCondition, fieldNames, topNum, isNoLock);
+            return DataEntityRows.Load(this, primaryKey, tableName, whereCondition, fieldNames, topNum, isNoLock);
+        }
+
+        /// <summary>
+        /// 创建一个配置加载器
+        /// <para>此操作是利用sql查询到结果然后进行绑定</para>
+        /// </summary>
+        /// <param name="sql">需要查询的语句</param>
+        public ConfigLoader<T> CreateConfigLoader<T>(string sql) where T : ConfigItem, new()
+        {
+            return new ConfigLoader<T>(this, sql);
+        }
+
+        /// <summary>
+        /// 创建一个非关系型数据存储类
+        /// </summary>
+        /// <param name="keyName">数据所对应数据库中的key名</param>
+        /// <param name="valueName">数据所对应数据库中的value名</param>
+        /// <param name="tableName">数据所对应数据库的表名</param>
+        /// <param name="syncPeriod">同步周期 用于控制写入到持久化数据库的时间 单位 毫秒 默认 1000ms</param>
+        /// <param name="condition">数据查询的其他条件 如不需要则默认值即可，注意此处不需要再次写入key名所对应的条件了</param>
+        public NoSqlStorage<T, U> CreateNoSqlStorage<T, U>(string keyName, string valueName, string tableName, int syncPeriod = 1000, string condition = "") where T : IComparable where U : IComparable
+        {
+            return new NoSqlStorage<T, U>(this, keyName, valueName, tableName, syncPeriod, condition);
+        }
+
+        /// <summary>
+        /// 创建一个Sql构造器
+        /// <para>需要传入一个非空数据库助手实例对象</para>
+        /// </summary>
+        public SqlBuilder CreateBuilder()
+        {
+            return SqlBuilder.Create(this);
         }
 
         /// <summary>

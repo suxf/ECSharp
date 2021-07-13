@@ -7,7 +7,7 @@
     <Authors>枫</Authors>
     <Description>Easy .NET Develop Frame.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.13.4</Version>
+    <Version>1.13.5</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>

@@ -12,15 +12,15 @@ namespace Sample
     /// 此类包含数据库对象中所有内容
     /// 帮助使用框架的朋友进一步了解数据库创建和使用
     /// </summary>
-    class Test_DBSqlServer : ISQLServerDBHelper
+    class Test_DBSqlServer : ISqlServerDbHelper
     {
         // 数据库助手对象
-        SQLServerDBHelper dbHelper;
+        SqlServerDbHelper dbHelper;
         public Test_DBSqlServer()
         {
             Console.WriteLine("数据测试开始");
             // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
-            dbHelper = new SQLServerDBHelper("127.0.0.1", "sa", "123456", "db_test");
+            dbHelper = new SqlServerDbHelper("127.0.0.1", "sa", "123456", "db_test");
             // 增加异常监听器
             dbHelper.SetExceptionListener(this);
             // 检测数据库连接是否成功调用 成功返回true
@@ -64,7 +64,8 @@ namespace Sample
 
             // 使用sql构建器来执行sql
             // 这种方式快捷，但是也只能应付一些简单的数据处理
-            var result5 = SQLBuilder.Create(dbHelper).Fields("id", "userid").Where("id > 0").Select();
+            // var result5 = dbHelper.CreateBuilder().Fields("id", "userid").Where("id > 0").Select();
+            var result5 = SqlBuilder.Create(dbHelper).Fields("id", "userid").Where("id > 0").Select();
             // 查询条数判断
             if (result5.EffectNum > 0)
             {
@@ -105,7 +106,8 @@ namespace Sample
             // 代理是为了某些高频读写操作而设计的缓存
             // 代理可以事先根据条件读取一张表
             // 读取成功后可以长时间对表进行读和写
-            var dbagentRows = dbHelper.LoadDataCache("id", "tb_test", "id > 0");
+            // var dbagentRows = dbHelper.CreateDataEntityRows("id", "tb_test", "id > 0");
+            var dbagentRows = DataEntityRows.Load(dbHelper, "id", "tb_test", "id > 0");
             // 读取表id为100的记录
             var row = dbagentRows[100];
             // 读取表id为100记录的content字段
@@ -126,15 +128,16 @@ namespace Sample
             // 注意一旦读取，数据将托管的在程序内存中，数据库只是用于持久化保存方案，所以如果键值关系是比较重要且处理频繁的数据
             // 切记不要直接修改数据库
             // 另外由于整个框架除了引入一些必要框架外 全部原生类和算法实现，所以对于数据的插入没有进行注入检测 需要根据各自需求进行检测
-            var nodb = new NoDBStorage<int, string>(dbHelper, "id", "content", "tb_cus_accounts", 10000/* 这个时间为持久化更新周期 */);
+            // var db = dbHelper.CreateNoSqlStorage<int, string>("id", "content", "tb_cus_accounts", 10000/* 这个时间为持久化更新周期 */);
+            var db = new NoSqlStorage<int, string>(dbHelper, "id", "content", "tb_cus_accounts", 10000/* 这个时间为持久化更新周期 */);
             // 通过建立的对象来加入一个新的数据
             // 注意此对象所在的表 不能够存在 一些约束性规则 来阻止记录的插入 否则失败
-            nodb.TryAdd(100, "hello world");
+            db.TryAdd(100, "hello world");
 
             Console.ReadLine();
             // 通过建立的对象来拾取数据
             // 如果存在则为true 并且返回数据对象
-            if (nodb.TryGetValue(100, out string value))
+            if (db.TryGetValue(100, out string value))
             {
                 Console.WriteLine($"value:{value}");
             }
@@ -142,27 +145,27 @@ namespace Sample
             Console.ReadLine();
             // 通过建立的对象进行修改值
             // 修改的数据会周期性写入持久化数据库中
-            nodb.SetValue(100, "hello world again!!!");
+            db.SetValue(100, "hello world again!!!");
             // 立即刷新持久化数据
             // 当有需求需要立刻通过键值更新到持久化中的时候可以使用
             // 建议不要频繁使用，这样不就没价值了不是
-            nodb.Flush();
+            db.Flush();
             // 如果需要重新拉取数据，那么就调用这个吧
             // 清空函数会把内存中的数据清空，然后后续操作全部会重新读取数据库最新数据
-            nodb.Clear();
+            db.Clear();
         }
 
-        public void CheckConnectedException(SQLServerDBHelper helper, Exception exception)
+        public void CheckConnectedException(SqlServerDbHelper helper, Exception exception)
         {
             Log.Exception(exception, "CheckConnectedException");
         }
 
-        public void CommandSQLException(SQLServerDBHelper helper, string sql, Exception exception)
+        public void CommandSQLException(SqlServerDbHelper helper, string sql, Exception exception)
         {
             Log.Exception(exception, "CommandSQLException");
         }
 
-        public void ProcedureException(SQLServerDBHelper helper, string procedure, SqlParameter[] sqlParameters, Exception exception)
+        public void ProcedureException(SqlServerDbHelper helper, string procedure, SqlParameter[] sqlParameters, Exception exception)
         {
             Log.Exception(exception, "ProcedureException");
         }
@@ -174,6 +177,7 @@ namespace Sample
         public void ConfigLoaderDemo()
         {
             // 创建一个加载器
+            // var loader = dbHelper.CreateConfigLoader<TestConfig>("SELECT * FROM tb_configs WITH(NOLOCK)");
             var loader = new ConfigLoader<TestConfig>(dbHelper, "SELECT * FROM tb_configs WITH(NOLOCK)");
             // 遍历配置
             for(int i = 0, len = loader.Configs.Length; i < len; i++)

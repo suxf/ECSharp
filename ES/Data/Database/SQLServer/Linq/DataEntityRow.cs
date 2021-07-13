@@ -8,12 +8,12 @@ using System.Threading;
 namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
-    /// 数据记录[线程安全]
+    /// 数据实体记录[线程安全]
     /// <para>数据不进行任何读写操作一定时间[默认300s有效]后，下一次读取必定重新读取数据库最新数据</para>
     /// </summary>
-    public class DataAgentRow : IEnumerable<KeyValuePair<string, object>>
+    public class DataEntityRow : IEnumerable<KeyValuePair<string, object>>
     {
-        internal DataAgentRows parent = null;
+        internal DataEntityRows parent = null;
 
         internal int realExpiredTime = 300000;
         internal int expiredTime = 0;
@@ -22,7 +22,7 @@ namespace ES.Data.Database.SQLServer.Linq
         internal ConcurrentDictionary<string, object> data = new ConcurrentDictionary<string, object>();
         internal List<string> listChangeColumns = new List<string>();
 
-        internal DataAgentRow(DataAgentRows p) { parent = p; }
+        internal DataEntityRow(DataEntityRows p) { parent = p; }
 
         /// <summary>
         /// 获取数据对象数据
@@ -59,9 +59,9 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <typeparam name="T">基础引用类型</typeparam>
         /// <param name="name"></param>
         /// <returns></returns>
-        public DataAgentObject<T> GetObject<T>(string name) where T : IComparable
+        public DataEntity<T> GetObject<T>(string name) where T : IComparable
         {
-            return new DataAgentObject<T>(name, this);
+            return new DataEntity<T>(name, this);
         }
 
         /// <summary>

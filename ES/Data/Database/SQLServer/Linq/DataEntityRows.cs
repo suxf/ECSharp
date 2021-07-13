@@ -9,7 +9,7 @@ using System.Threading;
 namespace ES.Data.Database.SQLServer.Linq
 {
     /// <summary>
-    /// Sqlserver数据缓存助理数据组[线程安全]
+    /// Sqlserver数据缓存实体助理数据组[线程安全]
     /// <para>是一个集成化数据高速操作（查询，更新）的助手对象</para>
     /// <para>使用此类可以更加有效的进行数据库数据的常规操作。</para>
     /// <para>此类固定同步数据库周期为：1秒</para>
@@ -17,12 +17,12 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <para>用于托管数据操作的代理类</para>
     /// <para>如果有一条数据不进行任何读写操作一定时间[默认300s有效]后，下一次操作必定重新读取数据库最新数据</para>
     /// </summary>
-    public class DataAgentRows : ITimeUpdate, IEnumerable<DataAgentRow>
+    public class DataEntityRows : ITimeUpdate, IEnumerable<DataEntityRow>
     {
         /// <summary>
         /// 数据库对象
         /// </summary>
-        public readonly SQLServerDBHelper dBHelper = null;
+        public readonly SqlServerDbHelper dBHelper = null;
         /// <summary>
         /// 表名
         /// </summary>
@@ -38,7 +38,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 记录字典
         /// </summary>
-        private readonly ConcurrentDictionary<object, DataAgentRow> rows = new ConcurrentDictionary<object, DataAgentRow>();
+        private readonly ConcurrentDictionary<object, DataEntityRow> rows = new ConcurrentDictionary<object, DataEntityRow>();
 
         /// <summary>
         /// 实际周期
@@ -62,14 +62,14 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="topNum">SQL取值数量【默认为：-1 无限】</param>
         /// <param name="isNoLock">是否不锁Sql，默认锁表</param>
         /// <returns></returns>
-        public static DataAgentRows Load(SQLServerDBHelper dBHelper, string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
+        public static DataEntityRows Load(SqlServerDbHelper dBHelper, string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
         {
             if (dBHelper != null)
             {
                 CommandResult result = dBHelper.CommandSQL($"SELECT {(topNum > -1 ? ("TOP(" + topNum + ")") : "")} {fieldNames} FROM {tableName} {(isNoLock ? "WITH(NOLOCK)" : "")} {(whereCondition != null && whereCondition != "" ? ("WHERE " + whereCondition) : "")}");
                 if (result != null && result.EffectNum > 0)
                 {
-                    DataAgentRows dataPairs = new DataAgentRows(dBHelper, result.Collection, primaryKey, tableName, fieldNames);
+                    DataEntityRows dataPairs = new DataEntityRows(dBHelper, result.Collection, primaryKey, tableName, fieldNames);
                     return dataPairs;
                 }
             }
@@ -81,11 +81,11 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="key">主键</param>
         /// <returns></returns>
-        public DataAgentRow this[object key]
+        public DataEntityRow this[object key]
         {
             get
             {
-                if (rows.TryGetValue(key, out DataAgentRow value))
+                if (rows.TryGetValue(key, out DataEntityRow value))
                     return value;
                 else return null;
             }
@@ -99,7 +99,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 命名空间构造函数
         /// </summary>
-        internal DataAgentRows(SQLServerDBHelper dBHelper, DataRowCollection collection, string primaryKey, string tableName, string fieldNames)
+        internal DataEntityRows(SqlServerDbHelper dBHelper, DataRowCollection collection, string primaryKey, string tableName, string fieldNames)
         {
             this.dBHelper = dBHelper;
             this.TableName = tableName;
@@ -107,7 +107,7 @@ namespace ES.Data.Database.SQLServer.Linq
             this.FieldNames = fieldNames;
             foreach (DataRow dataRow in collection)
             {
-                DataAgentRow dataObject = new DataAgentRow(this);
+                DataEntityRow dataObject = new DataEntityRow(this);
                 foreach (object column in dataRow.Table.Columns) dataObject.data.TryAdd(column.ToString(), dataRow[column.ToString()]);
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
@@ -151,7 +151,7 @@ namespace ES.Data.Database.SQLServer.Linq
             sec *= 1000;
             foreach (var item in rows)
             {
-                DataAgentRow dataItem = item.Value;
+                DataEntityRow dataItem = item.Value;
                 Interlocked.Exchange(ref dataItem.realExpiredTime, sec);
                 Interlocked.Exchange(ref dataItem.expiredTime, 0);
             }
@@ -165,7 +165,7 @@ namespace ES.Data.Database.SQLServer.Linq
             foreach (var Key in rows.Keys)
             {
                 var Value = rows[Key];
-                DataAgentRow dataItem = Value;
+                DataEntityRow dataItem = Value;
                 // 已改变需要更新
                 if (dataItem.bChangeState)
                 {
@@ -202,7 +202,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// 获取迭代器
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<DataAgentRow> GetEnumerator()
+        public IEnumerator<DataEntityRow> GetEnumerator()
         {
             return rows.Values.GetEnumerator();
         }

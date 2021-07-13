@@ -1,0 +1,935 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Data.Database.SQLServer.SqlServerDbHelper类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.13.5</span>
+   </div>
+   <div id="projectbrief">Easy .NET Develop Frame.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Data.Database.SQLServer.SqlServerDbHelper类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SQLServer数据库访问助手  
+ <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#details">更多...</a></p>
+<div class="dynheader">
+类 ES.Data.Database.SQLServer.SqlServerDbHelper 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.png" usemap="#ES.Data.Database.SQLServer.SqlServerDbHelper_map" alt=""/>
+  <map id="ES.Data.Database.SQLServer.SqlServerDbHelper_map" name="ES.Data.Database.SQLServer.SqlServerDbHelper_map">
+<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,297,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7ed015732ca303d1a3a33336d7f5726f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a7ed015732ca303d1a3a33336d7f5726f">SqlServerDbHelper</a> (string address, string username, string password, string databaseName=null, int minPoolSize=0, int maxPoolSize=100, string extraConfig=null)</td></tr>
+<tr class="memdesc:a7ed015732ca303d1a3a33336d7f5726f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SqlServer助手构造函数  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a7ed015732ca303d1a3a33336d7f5726f">更多...</a><br /></td></tr>
+<tr class="separator:a7ed015732ca303d1a3a33336d7f5726f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c95b16b3d0bdaa287b526a91707dcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a14c95b16b3d0bdaa287b526a91707dcd">SqlServerDbHelper</a> (string connectionString)</td></tr>
+<tr class="memdesc:a14c95b16b3d0bdaa287b526a91707dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">SqlServer助手构造函数  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a14c95b16b3d0bdaa287b526a91707dcd">更多...</a><br /></td></tr>
+<tr class="separator:a14c95b16b3d0bdaa287b526a91707dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89070ed1af246d13531f467fbe772f25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a89070ed1af246d13531f467fbe772f25">SqlServerDbHelper</a> (SqlConnectionStringBuilder sqlConnectionStringBuilder)</td></tr>
+<tr class="memdesc:a89070ed1af246d13531f467fbe772f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">SqlServer助手构造函数  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a89070ed1af246d13531f467fbe772f25">更多...</a><br /></td></tr>
+<tr class="separator:a89070ed1af246d13531f467fbe772f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b078f8573cd21734637093a86edc2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ac5b078f8573cd21734637093a86edc2c">SetExceptionListener</a> (<a class="el" href="interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html">ISqlServerDbHelper</a> listener)</td></tr>
+<tr class="memdesc:ac5b078f8573cd21734637093a86edc2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置异常监听  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ac5b078f8573cd21734637093a86edc2c">更多...</a><br /></td></tr>
+<tr class="separator:ac5b078f8573cd21734637093a86edc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25253e45be7bf12956bb667b9fa6b3d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a25253e45be7bf12956bb667b9fa6b3d0">CheckConnected</a> ()</td></tr>
+<tr class="memdesc:a25253e45be7bf12956bb667b9fa6b3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查是否连接  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a25253e45be7bf12956bb667b9fa6b3d0">更多...</a><br /></td></tr>
+<tr class="separator:a25253e45be7bf12956bb667b9fa6b3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989b242355721742958d01bfe3c933a7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a989b242355721742958d01bfe3c933a7">GetConnectionString</a> ()</td></tr>
+<tr class="memdesc:a989b242355721742958d01bfe3c933a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库连接地址  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a989b242355721742958d01bfe3c933a7">更多...</a><br /></td></tr>
+<tr class="separator:a989b242355721742958d01bfe3c933a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c7b5f58a1ded4ee80700d2f2d29bcd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html">ProcedureResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a2c7b5f58a1ded4ee80700d2f2d29bcd3">Procedure</a> (string procedure, params SqlParameter[] sqlParameters)</td></tr>
+<tr class="memdesc:a2c7b5f58a1ded4ee80700d2f2d29bcd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储过程 1  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a2c7b5f58a1ded4ee80700d2f2d29bcd3">更多...</a><br /></td></tr>
+<tr class="separator:a2c7b5f58a1ded4ee80700d2f2d29bcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac15e6282492df71b5095f1eba7d0cfa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html">ProcedureResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ac15e6282492df71b5095f1eba7d0cfa3">Procedure</a> (string procedure, <a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#ab7228bd2bc00acf4edab7aa81700aa65">SqlServerDbType</a> retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)</td></tr>
+<tr class="memdesc:ac15e6282492df71b5095f1eba7d0cfa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储过程 2  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ac15e6282492df71b5095f1eba7d0cfa3">更多...</a><br /></td></tr>
+<tr class="separator:ac15e6282492df71b5095f1eba7d0cfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b4f0edcc38a7c4027198dae8633ecc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#af9b4f0edcc38a7c4027198dae8633ecc">ProcedureNonQuery</a> (string procedure, params SqlParameter[] sqlParameters)</td></tr>
+<tr class="memdesc:af9b4f0edcc38a7c4027198dae8633ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储过程 3  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#af9b4f0edcc38a7c4027198dae8633ecc">更多...</a><br /></td></tr>
+<tr class="separator:af9b4f0edcc38a7c4027198dae8633ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaabb57319b1a09baed92b6c73b571fb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html">CommandResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#aaabb57319b1a09baed92b6c73b571fb5">CommandSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:aaabb57319b1a09baed92b6c73b571fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行查询SQL语句  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#aaabb57319b1a09baed92b6c73b571fb5">更多...</a><br /></td></tr>
+<tr class="separator:aaabb57319b1a09baed92b6c73b571fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29154c10b3168d6932386f501bf5b8a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a29154c10b3168d6932386f501bf5b8a3">ExecuteSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:a29154c10b3168d6932386f501bf5b8a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行修改SQL语句  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a29154c10b3168d6932386f501bf5b8a3">更多...</a><br /></td></tr>
+<tr class="separator:a29154c10b3168d6932386f501bf5b8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8146e9d7a21603fd8e4da29238900ed9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a8146e9d7a21603fd8e4da29238900ed9">PushSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:a8146e9d7a21603fd8e4da29238900ed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">压入SQL队列，等待统一顺序执行【异步】  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a8146e9d7a21603fd8e4da29238900ed9">更多...</a><br /></td></tr>
+<tr class="separator:a8146e9d7a21603fd8e4da29238900ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18715072598ea6ce71bc5cf6ac2855ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a18715072598ea6ce71bc5cf6ac2855ee">PushProcedure</a> (string procedure, params SqlParameter[] sqlParameters)</td></tr>
+<tr class="memdesc:a18715072598ea6ce71bc5cf6ac2855ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">压入SQL队列，等待统一顺序执行【异步】  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a18715072598ea6ce71bc5cf6ac2855ee">更多...</a><br /></td></tr>
+<tr class="separator:a18715072598ea6ce71bc5cf6ac2855ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1342b87121e71e28b16d71f42cffdc11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html">DataEntityRows</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1342b87121e71e28b16d71f42cffdc11">CreateDataEntityRows</a> (string primaryKey, string tableName, string whereCondition, string fieldNames=&quot;*&quot;, int topNum=-1, bool isNoLock=false)</td></tr>
+<tr class="memdesc:a1342b87121e71e28b16d71f42cffdc11"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个数据实体组  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1342b87121e71e28b16d71f42cffdc11">更多...</a><br /></td></tr>
+<tr class="separator:a1342b87121e71e28b16d71f42cffdc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1056e9deade0dfdea8436bbb6a96cd5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_loader.html">ConfigLoader</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1056e9deade0dfdea8436bbb6a96cd5a">CreateConfigLoader&lt; T &gt;</a> (string sql)</td></tr>
+<tr class="memdesc:a1056e9deade0dfdea8436bbb6a96cd5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个配置加载器  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1056e9deade0dfdea8436bbb6a96cd5a">更多...</a><br /></td></tr>
+<tr class="separator:a1056e9deade0dfdea8436bbb6a96cd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add3499b33e471b6f1c928b5d7311e82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html">NoSqlStorage</a>&lt; T, U &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#add3499b33e471b6f1c928b5d7311e82e">CreateNoSqlStorage&lt; T, U &gt;</a> (string keyName, string valueName, string tableName, int syncPeriod=1000, string condition=&quot;&quot;)</td></tr>
+<tr class="memdesc:add3499b33e471b6f1c928b5d7311e82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个非关系型数据存储类  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#add3499b33e471b6f1c928b5d7311e82e">更多...</a><br /></td></tr>
+<tr class="separator:add3499b33e471b6f1c928b5d7311e82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32e144f0e4b394efba51256310eca329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a32e144f0e4b394efba51256310eca329">CreateBuilder</a> ()</td></tr>
+<tr class="memdesc:a32e144f0e4b394efba51256310eca329"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个Sql构造器  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a32e144f0e4b394efba51256310eca329">更多...</a><br /></td></tr>
+<tr class="separator:a32e144f0e4b394efba51256310eca329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3ed570881e4f5435dbda432c7f222d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#afd3ed570881e4f5435dbda432c7f222d">Update</a> (int dt)</td></tr>
+<tr class="memdesc:afd3ed570881e4f5435dbda432c7f222d"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过时间流来更新通过队列执行的SQL  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#afd3ed570881e4f5435dbda432c7f222d">更多...</a><br /></td></tr>
+<tr class="separator:afd3ed570881e4f5435dbda432c7f222d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc7dfc342df94d7fb983c117dd8dd53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1dc7dfc342df94d7fb983c117dd8dd53">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:a1dc7dfc342df94d7fb983c117dd8dd53"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1dc7dfc342df94d7fb983c117dd8dd53">更多...</a><br /></td></tr>
+<tr class="separator:a1dc7dfc342df94d7fb983c117dd8dd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a5a2ada485745450ea3c144c7f287e357"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a5a2ada485745450ea3c144c7f287e357">Now</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5a2ada485745450ea3c144c7f287e357"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库时间  <a href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a5a2ada485745450ea3c144c7f287e357">更多...</a><br /></td></tr>
+<tr class="separator:a5a2ada485745450ea3c144c7f287e357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>SQLServer数据库访问助手 </p>
+<p>数据库异常可以通过 异常监听来获取</p>
+<p>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a7ed015732ca303d1a3a33336d7f5726f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed015732ca303d1a3a33336d7f5726f">&#9670;&nbsp;</a></span>SqlServerDbHelper() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Data.Database.SQLServer.SqlServerDbHelper.SqlServerDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>databaseName</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minPoolSize</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxPoolSize</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>extraConfig</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SqlServer助手构造函数 </p>
+<p>存在参数不需要再次在额外配置中设置</p>
+<p>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>数据库地址，如果非默认端口需要带端口号，注意地址与端口号是以逗号分隔的</td></tr>
+    <tr><td class="paramname">username</td><td>数据库账号</td></tr>
+    <tr><td class="paramname">password</td><td>数据库密码</td></tr>
+    <tr><td class="paramname">databaseName</td><td>数据库名称，默认为空</td></tr>
+    <tr><td class="paramname">minPoolSize</td><td>数据库池连接最小值，默认为0</td></tr>
+    <tr><td class="paramname">maxPoolSize</td><td>数据库池连接最大值，默认为100</td></tr>
+    <tr><td class="paramname">extraConfig</td><td>数据库额外配置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14c95b16b3d0bdaa287b526a91707dcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14c95b16b3d0bdaa287b526a91707dcd">&#9670;&nbsp;</a></span>SqlServerDbHelper() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Data.Database.SQLServer.SqlServerDbHelper.SqlServerDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>connectionString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SqlServer助手构造函数 </p>
+<p>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectionString</td><td>连接配置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a89070ed1af246d13531f467fbe772f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89070ed1af246d13531f467fbe772f25">&#9670;&nbsp;</a></span>SqlServerDbHelper() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Data.Database.SQLServer.SqlServerDbHelper.SqlServerDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">SqlConnectionStringBuilder&#160;</td>
+          <td class="paramname"><em>sqlConnectionStringBuilder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SqlServer助手构造函数 </p>
+<p>详情参考：https://docs.microsoft.com/zh-cn/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a25253e45be7bf12956bb667b9fa6b3d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25253e45be7bf12956bb667b9fa6b3d0">&#9670;&nbsp;</a></span>CheckConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Data.Database.SQLServer.SqlServerDbHelper.CheckConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查是否连接 </p>
+<dl class="section return"><dt>返回</dt><dd>成功连接返回true</dd></dl>
+
+</div>
+</div>
+<a id="aaabb57319b1a09baed92b6c73b571fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaabb57319b1a09baed92b6c73b571fb5">&#9670;&nbsp;</a></span>CommandSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html">CommandResult</a> ES.Data.Database.SQLServer.SqlServerDbHelper.CommandSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>执行查询SQL语句 </p>
+<p>SELECT适用和部分需要更新返回的SQL</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回成功与否</dd></dl>
+
+</div>
+</div>
+<a id="a32e144f0e4b394efba51256310eca329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e144f0e4b394efba51256310eca329">&#9670;&nbsp;</a></span>CreateBuilder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ES.Data.Database.SQLServer.SqlServerDbHelper.CreateBuilder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个Sql构造器 </p>
+<p>需要传入一个非空数据库助手实例对象</p>
+
+</div>
+</div>
+<a id="a1056e9deade0dfdea8436bbb6a96cd5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1056e9deade0dfdea8436bbb6a96cd5a">&#9670;&nbsp;</a></span>CreateConfigLoader&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_loader.html">ConfigLoader</a>&lt;T&gt; ES.Data.Database.SQLServer.SqlServerDbHelper.CreateConfigLoader&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个配置加载器 </p>
+<p>此操作是利用sql查询到结果然后进行绑定</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>需要查询的语句</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>类型限制</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>ConfigItem</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="a1342b87121e71e28b16d71f42cffdc11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1342b87121e71e28b16d71f42cffdc11">&#9670;&nbsp;</a></span>CreateDataEntityRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html">DataEntityRows</a> ES.Data.Database.SQLServer.SqlServerDbHelper.CreateDataEntityRows </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>primaryKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>whereCondition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fieldNames</em> = <code>&quot;*&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>topNum</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isNoLock</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个数据实体组 </p>
+<p>同 DataAgent 使用相同</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">primaryKey</td><td>主键名，用于更新和寻找唯一依据字段</td></tr>
+    <tr><td class="paramname">tableName</td><td>SQL表名</td></tr>
+    <tr><td class="paramname">whereCondition</td><td>SQL条件判断条件【Where语句后的内容 包括排序等】</td></tr>
+    <tr><td class="paramname">fieldNames</td><td>SQL字段名【默认为：*】</td></tr>
+    <tr><td class="paramname">topNum</td><td>SQL取值数量【默认为：-1 无限】</td></tr>
+    <tr><td class="paramname">isNoLock</td><td>是否不锁Sql，默认锁表</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="add3499b33e471b6f1c928b5d7311e82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add3499b33e471b6f1c928b5d7311e82e">&#9670;&nbsp;</a></span>CreateNoSqlStorage&lt; T, U &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html">NoSqlStorage</a>&lt;T, U&gt; ES.Data.Database.SQLServer.SqlServerDbHelper.CreateNoSqlStorage&lt; T, U &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>keyName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>valueName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>syncPeriod</em> = <code>1000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>condition</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建一个非关系型数据存储类 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keyName</td><td>数据所对应数据库中的key名</td></tr>
+    <tr><td class="paramname">valueName</td><td>数据所对应数据库中的value名</td></tr>
+    <tr><td class="paramname">tableName</td><td>数据所对应数据库的表名</td></tr>
+    <tr><td class="paramname">syncPeriod</td><td>同步周期 用于控制写入到持久化数据库的时间 单位 毫秒 默认 1000ms</td></tr>
+    <tr><td class="paramname">condition</td><td>数据查询的其他条件 如不需要则默认值即可，注意此处不需要再次写入key名所对应的条件了</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>类型限制</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>IComparable</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>U</em></td><td>&#160;:</td><td valign="top"><em>IComparable</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="a29154c10b3168d6932386f501bf5b8a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29154c10b3168d6932386f501bf5b8a3">&#9670;&nbsp;</a></span>ExecuteSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ES.Data.Database.SQLServer.SqlServerDbHelper.ExecuteSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>执行修改SQL语句 </p>
+<p>非SELECT适用，只需要影响行数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回影响条数</dd></dl>
+
+</div>
+</div>
+<a id="a989b242355721742958d01bfe3c933a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989b242355721742958d01bfe3c933a7">&#9670;&nbsp;</a></span>GetConnectionString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Data.Database.SQLServer.SqlServerDbHelper.GetConnectionString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取数据库连接地址 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2c7b5f58a1ded4ee80700d2f2d29bcd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c7b5f58a1ded4ee80700d2f2d29bcd3">&#9670;&nbsp;</a></span>Procedure() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html">ProcedureResult</a> ES.Data.Database.SQLServer.SqlServerDbHelper.Procedure </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>procedure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params SqlParameter[]&#160;</td>
+          <td class="paramname"><em>sqlParameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储过程 1 </p>
+<p>返回值默认为整型，长度为4</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procedure</td><td>存储过程名称</td></tr>
+    <tr><td class="paramname">sqlParameters</td><td>存储过程参数 建议使用Parameter生成</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回 <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html" title="存储过程结果集">ProcedureResult</a> 失败为null</dd></dl>
+
+</div>
+</div>
+<a id="ac15e6282492df71b5095f1eba7d0cfa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac15e6282492df71b5095f1eba7d0cfa3">&#9670;&nbsp;</a></span>Procedure() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html">ProcedureResult</a> ES.Data.Database.SQLServer.SqlServerDbHelper.Procedure </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>procedure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#ab7228bd2bc00acf4edab7aa81700aa65">SqlServerDbType</a>&#160;</td>
+          <td class="paramname"><em>retvalueDbType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>retvalueSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params SqlParameter[]&#160;</td>
+          <td class="paramname"><em>sqlParameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储过程 2 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procedure</td><td>存储过程名称</td></tr>
+    <tr><td class="paramname">retvalueDbType</td><td>返回值类型</td></tr>
+    <tr><td class="paramname">retvalueSize</td><td>返回值大小</td></tr>
+    <tr><td class="paramname">sqlParameters</td><td>存储过程参数 建议使用Parameter生成</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回 <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html" title="存储过程结果集">ProcedureResult</a> 失败为null</dd></dl>
+
+</div>
+</div>
+<a id="af9b4f0edcc38a7c4027198dae8633ecc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b4f0edcc38a7c4027198dae8633ecc">&#9670;&nbsp;</a></span>ProcedureNonQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ES.Data.Database.SQLServer.SqlServerDbHelper.ProcedureNonQuery </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>procedure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params SqlParameter[]&#160;</td>
+          <td class="paramname"><em>sqlParameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储过程 3 </p>
+<p>不需要返回任何数据</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procedure</td><td>存储过程名称</td></tr>
+    <tr><td class="paramname">sqlParameters</td><td>存储过程参数 建议使用Parameter生成</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>影响数量 -1表示异常</dd></dl>
+
+</div>
+</div>
+<a id="a18715072598ea6ce71bc5cf6ac2855ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18715072598ea6ce71bc5cf6ac2855ee">&#9670;&nbsp;</a></span>PushProcedure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SqlServerDbHelper.PushProcedure </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>procedure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params SqlParameter[]&#160;</td>
+          <td class="paramname"><em>sqlParameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>压入SQL队列，等待统一顺序执行【异步】 </p>
+<p>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</p>
+<p>脱离主线程由其他线程处理数据</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procedure</td><td>存储过程名称</td></tr>
+    <tr><td class="paramname">sqlParameters</td><td>存储过程参数 建议使用Parameter生成</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回成功与否</dd></dl>
+
+</div>
+</div>
+<a id="a8146e9d7a21603fd8e4da29238900ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8146e9d7a21603fd8e4da29238900ed9">&#9670;&nbsp;</a></span>PushSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SqlServerDbHelper.PushSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>压入SQL队列，等待统一顺序执行【异步】 </p>
+<p>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</p>
+<p>脱离主线程由其他线程处理数据</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac5b078f8573cd21734637093a86edc2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b078f8573cd21734637093a86edc2c">&#9670;&nbsp;</a></span>SetExceptionListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SqlServerDbHelper.SetExceptionListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html">ISqlServerDbHelper</a>&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置异常监听 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listener</td><td>异常监听器</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afd3ed570881e4f5435dbda432c7f222d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd3ed570881e4f5435dbda432c7f222d">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SqlServerDbHelper.Update </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>通过时间流来更新通过队列执行的SQL </p>
+<p>固定周期为 1s</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="a1dc7dfc342df94d7fb983c117dd8dd53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc7dfc342df94d7fb983c117dd8dd53">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Data.Database.SQLServer.SqlServerDbHelper.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">ES.Common.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a5a2ada485745450ea3c144c7f287e357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a2ada485745450ea3c144c7f287e357">&#9670;&nbsp;</a></span>Now</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime ES.Data.Database.SQLServer.SqlServerDbHelper.Now</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取数据库时间 </p>
+<p>如果数据库异常导致查询失败，则默认返回DateTime.Now</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>SqlServerDbHelper.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data.html">Data</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html">SQLServer</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html">SqlServerDbHelper</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

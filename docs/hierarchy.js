@@ -20,7 +20,7 @@ var hierarchy =
     [ "ES.Data.Database.SQLServer.CommandResult", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html", null ],
     [ "ES.Data.Database.SQLServer.Linq.ConfigItem", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_item.html", null ],
     [ "ES.Data.Database.SQLServer.Linq.ConfigLoader< T >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_loader.html", null ],
-    [ "ES.Data.Database.SQLServer.Linq.DataAgentObject< T >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_object.html", null ],
+    [ "ES.Data.Database.SQLServer.Linq.DataEntity< T >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity.html", null ],
     [ "EasyBuffer", null, [
       [ "ES.Data.Buffer.EasyBuffer< T >", "class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html", null ]
     ] ],
@@ -34,10 +34,10 @@ var hierarchy =
     [ "ES.Network.Http.HttpService", "class_e_s_1_1_network_1_1_http_1_1_http_service.html", null ],
     [ "ES.Network.HyperSocket.HyperSocketConfig", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html", null ],
     [ "IEnumerable", null, [
-      [ "ES.Data.Database.SQLServer.Linq.DataAgentRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html", null ]
+      [ "ES.Data.Database.SQLServer.Linq.DataEntityRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html", null ]
     ] ],
     [ "IEnumerable< KeyValuePair< string, object >>", null, [
-      [ "ES.Data.Database.SQLServer.Linq.DataAgentRow", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_row.html", null ]
+      [ "ES.Data.Database.SQLServer.Linq.DataEntityRow", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_row.html", null ]
     ] ],
     [ "ES.Network.Http.IHttp", "interface_e_s_1_1_network_1_1_http_1_1_i_http.html", [
       [ "ES.Network.Http.Linq.HttpVisitor", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html", null ]
@@ -49,12 +49,12 @@ var hierarchy =
     [ "ES.Network.Sockets.Server.IRemoteSocket", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html", null ],
     [ "ES.Network.Sockets.Server.IServerSocket", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_server_socket.html", null ],
     [ "ES.Network.Sockets.Client.ISocket", "interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket.html", null ],
-    [ "ES.Data.Database.SQLServer.ISQLServerDBHelper", "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_s_q_l_server_d_b_helper.html", null ],
+    [ "ES.Data.Database.SQLServer.ISqlServerDbHelper", "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html", null ],
     [ "ES.Common.Time.ITimeUpdate", "interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html", [
       [ "ES.Common.Time.TimeCaller", "class_e_s_1_1_common_1_1_time_1_1_time_caller.html", null ],
-      [ "ES.Data.Database.SQLServer.Linq.DataAgentRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_agent_rows.html", null ],
-      [ "ES.Data.Database.SQLServer.Linq.NoDBStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_d_b_storage.html", null ],
-      [ "ES.Data.Database.SQLServer.SQLServerDBHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_s_q_l_server_d_b_helper.html", null ],
+      [ "ES.Data.Database.SQLServer.Linq.DataEntityRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html", null ],
+      [ "ES.Data.Database.SQLServer.Linq.NoSqlStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html", null ],
+      [ "ES.Data.Database.SQLServer.SqlServerDbHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html", null ],
       [ "ES.Hotfix.HotfixMgr", "class_e_s_1_1_hotfix_1_1_hotfix_mgr.html", null ],
       [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
       [ "ES.Network.Sockets.Server.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_monitor_socket_status_task.html", null ]
@@ -73,7 +73,7 @@ var hierarchy =
     [ "ES.Network.Sockets.Server.ServerSocket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html", null ],
     [ "ES.Network.Sockets.Socket", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html", null ],
     [ "ES.Network.Sockets.Client.SocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_socket_msg.html", null ],
-    [ "ES.Data.Database.SQLServer.Linq.SQLBuilder", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_s_q_l_builder.html", null ],
+    [ "ES.Data.Database.SQLServer.Linq.SqlBuilder", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html", null ],
     [ "ES.Hotfix.StructValue", "class_e_s_1_1_hotfix_1_1_struct_value.html", null ],
     [ "ES.Network.Sockets.SweetStream", "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html", null ],
     [ "ES.Common.Time.TimeFix", "class_e_s_1_1_common_1_1_time_1_1_time_fix.html", null ],

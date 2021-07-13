@@ -8,7 +8,7 @@ namespace ES.Data.Database.SQLServer.Linq
     public class ConfigLoader<T> where T : ConfigItem, new()
     {
         private readonly string sql = null;
-        private readonly SQLServerDBHelper dBHelper = null;
+        private readonly SqlServerDbHelper dBHelper = null;
         /// <summary>
         /// 配置集合
         /// </summary>
@@ -20,7 +20,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="dBHelper">数据库连接对象</param>
         /// <param name="sql">需要查询的语句</param>
-        public ConfigLoader(SQLServerDBHelper dBHelper, string sql)
+        public ConfigLoader(SqlServerDbHelper dBHelper, string sql)
         {
             this.dBHelper = dBHelper;
             this.sql = sql;

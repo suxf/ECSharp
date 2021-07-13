@@ -29,7 +29,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="value">值</param>
         /// <param name="sqlDbType">值类型</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SQLServerDbType sqlDbType)
+        public static SqlParameter Create(string parameterName, object value, SqlServerDbType sqlDbType)
         {
             return new SqlParameter
             {
@@ -47,7 +47,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="sqlDbType">值类型</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SQLServerDbType sqlDbType, ParameterDirection direction)
+        public static SqlParameter Create(string parameterName, object value, SqlServerDbType sqlDbType, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -65,7 +65,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="sqlDbType">值类型</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, SQLServerDbType sqlDbType, ParameterDirection direction)
+        public static SqlParameter Create(string parameterName, SqlServerDbType sqlDbType, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -83,7 +83,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="size">值预设大小</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, SQLServerDbType sqlDbType, int size, ParameterDirection direction)
+        public static SqlParameter Create(string parameterName, SqlServerDbType sqlDbType, int size, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -103,7 +103,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="size">值预设大小</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SQLServerDbType sqlDbType, int size, ParameterDirection direction)
+        public static SqlParameter Create(string parameterName, object value, SqlServerDbType sqlDbType, int size, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -133,7 +133,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="value"></param>
         /// <param name="sqlDbType"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SQLServerDbType sqlDbType)
+        public static SqlParameter ToParameter(this string parameterName, object value, SqlServerDbType sqlDbType)
         {
             return Create(parameterName, value, sqlDbType);
         }
@@ -146,7 +146,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="sqlDbType"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SQLServerDbType sqlDbType, ParameterDirection direction)
+        public static SqlParameter ToParameter(this string parameterName, object value, SqlServerDbType sqlDbType, ParameterDirection direction)
         {
             return Create(parameterName, value, sqlDbType, direction);
         }
@@ -159,7 +159,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="size"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, SQLServerDbType sqlDbType, int size, ParameterDirection direction)
+        public static SqlParameter ToParameter(this string parameterName, SqlServerDbType sqlDbType, int size, ParameterDirection direction)
         {
             return Create(parameterName, sqlDbType, size, direction);
         }
@@ -173,7 +173,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="size"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SQLServerDbType sqlDbType, int size, ParameterDirection direction)
+        public static SqlParameter ToParameter(this string parameterName, object value, SqlServerDbType sqlDbType, int size, ParameterDirection direction)
         {
             return Create(parameterName, value, sqlDbType, size, direction);
         }

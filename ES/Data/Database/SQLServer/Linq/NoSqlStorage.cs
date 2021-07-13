@@ -12,9 +12,9 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <para>此类设计灵感源于非关系型数据库中基础原理</para>
     /// <para>使用起来只需要知道数据库中取出值和筛选条件即可类似使用字典方式来实现高速访问改变以及同步持久化</para>
     /// </summary>
-    public class NoDBStorage<T, U> : ITimeUpdate where T : IComparable where U : IComparable
+    public class NoSqlStorage<T, U> : ITimeUpdate where T : IComparable where U : IComparable
     {
-        private readonly SQLServerDBHelper dBHelper;
+        private readonly SqlServerDbHelper dBHelper;
 
         private readonly string tableName;
         private readonly int syncPeriod;
@@ -40,7 +40,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="tableName">数据所对应数据库的表名</param>
         /// <param name="syncPeriod">同步周期 用于控制写入到持久化数据库的时间 单位 毫秒 默认 1000ms</param>
         /// <param name="condition">数据查询的其他条件 如不需要则默认值即可，注意此处不需要再次写入key名所对应的条件了</param>
-        public NoDBStorage(SQLServerDBHelper dBHelper, string keyName, string valueName, string tableName, int syncPeriod = 1000, string condition = "")
+        public NoSqlStorage(SqlServerDbHelper dBHelper, string keyName, string valueName, string tableName, int syncPeriod = 1000, string condition = "")
         {
             this.dBHelper = dBHelper;
             this.keyName = keyName;

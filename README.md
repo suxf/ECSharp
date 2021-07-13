@@ -235,7 +235,7 @@ class TimeDemo : ITimeUpdate
 }
 ```
 ### 5.Sqlserver数据库助手
-Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs)
+Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DbSqlServer.cs)
 
 助手目前有以下几种功能：
 - 数据库连接：简化连接操作步骤
@@ -247,7 +247,7 @@ Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例�
 
 ```csharp
 // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
-dbHelper = new SQLServerDBHelper("127.0.0.1", "sa", "123456", "db_test");
+dbHelper = new SqlServerDbHelper("127.0.0.1", "sa", "123456", "db_test");
 // 增加异常监听器 需要一个继承 ISQLServerDBHelper 接口
 dbHelper.SetExceptionListener(this);
 // 检测数据库连接是否成功调用 成功返回true
@@ -267,7 +267,7 @@ if (result.EffectNum > 0)
 }
 ```
 ### 6.Mysql数据助手
-以后如果用的人多了，再补充吧~
+用到了或者如果用的人多了再补充~
 
 ### 7.Redis数据库助手
 简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，使订阅更加易用。

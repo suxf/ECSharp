@@ -7,9 +7,9 @@ namespace ES.Data.Database.SQLServer.Linq
     /// <para>适合简单的语句构建</para>
     /// <para>可以帮助开发者减少拼写sql语句带来的不便</para>
     /// </summary>
-    public class SQLBuilder
+    public class SqlBuilder
     {
-        readonly SQLServerDBHelper dBHelper = null;
+        readonly SqlServerDbHelper dBHelper = null;
 
         int topCount = 0;
         string[] fields = null;
@@ -22,7 +22,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <para>需要传入一个非空数据库助手实例对象</para>
         /// </summary>
         /// <param name="dBHelper">数据库助手实例</param>
-        private SQLBuilder(SQLServerDBHelper dBHelper)
+        private SqlBuilder(SqlServerDbHelper dBHelper)
         {
             if (dBHelper == null)
             {
@@ -41,9 +41,9 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="dBHelper">数据库助手实例</param>
         /// <returns></returns>
-        public static SQLBuilder Create(SQLServerDBHelper dBHelper)
+        public static SqlBuilder Create(SqlServerDbHelper dBHelper)
         {
-            return new SQLBuilder(dBHelper);
+            return new SqlBuilder(dBHelper);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="topCount"></param>
         /// <returns></returns>
-        public SQLBuilder Top(int topCount)
+        public SqlBuilder Top(int topCount)
         {
             this.topCount = topCount;
             return this;
@@ -62,7 +62,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="fields"></param>
         /// <returns></returns>
-        public SQLBuilder Fields(params string[] fields)
+        public SqlBuilder Fields(params string[] fields)
         {
             for (int i = 0, len = fields.Length; i < len; i++) fields[i] = $"[{fields[i]}]";
             this.fields = fields;
@@ -74,7 +74,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
-        public SQLBuilder Values(params object[] values)
+        public SqlBuilder Values(params object[] values)
         {
             for (int i = 0, len = values.Length; i < len; i++) values[i] = $"'{values[i]}'";
             this.values = values;
@@ -86,7 +86,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public SQLBuilder Table(string tableName)
+        public SqlBuilder Table(string tableName)
         {
             this.tableName = tableName;
             return this;
@@ -97,7 +97,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="conditions"></param>
         /// <returns></returns>
-        public SQLBuilder Where(string conditions)
+        public SqlBuilder Where(string conditions)
         {
             this.conditions = conditions;
             return this;
