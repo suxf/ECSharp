@@ -149,7 +149,7 @@ namespace ES.Data.Database.SQLServer
         /// <returns>返回 ProcedureResult 失败为null</returns>
         public ProcedureResult Procedure(string procedure, params SqlParameter[] sqlParameters)
         {
-            return Procedure(procedure, SqlServerDbType.Int, 4, sqlParameters);
+            return Procedure(procedure, SqlDbType.Int, 4, sqlParameters);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="retvalueSize">返回值大小</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>返回 ProcedureResult 失败为null</returns>
-        public ProcedureResult Procedure(string procedure, SqlServerDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
+        public ProcedureResult Procedure(string procedure, SqlDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
         {
             ProcedureResult result = new ProcedureResult();
             result.Procedure = procedure;
@@ -178,7 +178,7 @@ namespace ES.Data.Database.SQLServer
                         {
                             sqlCommand.CommandType = CommandType.StoredProcedure;
                             sqlCommand.Parameters.AddRange(sqlParameters);
-                            sqlCommand.Parameters.Add("@RETURN_VALUE", (SqlDbType)retvalueDbType, retvalueSize).Direction = System.Data.ParameterDirection.ReturnValue;
+                            sqlCommand.Parameters.Add("@RETURN_VALUE", retvalueDbType, retvalueSize).Direction = ParameterDirection.ReturnValue;
                             SqlDataAdapter dataAdapter = new SqlDataAdapter();
                             dataAdapter.SelectCommand = sqlCommand;
                             DataSet myDataSet = new DataSet();
@@ -186,12 +186,14 @@ namespace ES.Data.Database.SQLServer
                             result.ReturnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
                             result.SqlParameters = sqlCommand.Parameters;
                             result.Tables = myDataSet.Tables;
+                            if (result.Tables.Count > 0) result.FirstRows = result.Tables[0].Rows;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
+                result.ReturnValue = -1;
                 result.IsCompleted = false;
                 if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
             }
