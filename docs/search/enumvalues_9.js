@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keepalive_950',['KeepAlive',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925a17229586d3c63a13bfdc6c71c569c867',1,'ES.Network.Http.KeepAlive()'],['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3ea17229586d3c63a13bfdc6c71c569c867',1,'ES.Network.Http.KeepAlive()']]]
+  ['lastmodified_902',['LastModified',['../namespace_e_s_1_1_network_1_1_http.html#a8bd8500078eb23a6ccabb013a036e925ae262f42297bdd5776f68bd3b43868a16',1,'ES.Network.Http.LastModified()'],['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3eae262f42297bdd5776f68bd3b43868a16',1,'ES.Network.Http.LastModified()']]],
+  ['location_903',['Location',['../namespace_e_s_1_1_network_1_1_http.html#ab3307a6655ef0aa2ac794ab1922d4b3eace5bf551379459c1c61d2a204061c455',1,'ES::Network::Http']]]
 ];

@@ -6,10 +6,7 @@ var searchData=
   ['begin_25',['Begin',['../class_e_s_1_1_common_1_1_time_1_1_time_fix.html#adb97668f92ca544bd3ea8218fb63277a',1,'ES::Common::Time::TimeFix']]],
   ['beginreceived_26',['BeginReceived',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#abc56fc83a0b9aaf2be1c16b87ba09726',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
   ['beginreceivedfrom_27',['BeginReceivedFrom',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2ead4b86bc272acb3ec84e020ca3f2b1',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
-  ['bigint_28',['BigInt',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#ab7228bd2bc00acf4edab7aa81700aa65a65bb9fbe0268dd0c19e1af6542d9dc93',1,'ES::Data::Database::SQLServer']]],
-  ['binary_29',['Binary',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#ab7228bd2bc00acf4edab7aa81700aa65a6ce976e8f061b2b5cfe4d0c50c3405dd',1,'ES::Data::Database::SQLServer']]],
-  ['bit_30',['Bit',['../namespace_e_s_1_1_data_1_1_database_1_1_s_q_l_server.html#ab7228bd2bc00acf4edab7aa81700aa65aed98fd4f2d1aeadad43670b2d07d5b40',1,'ES::Data::Database::SQLServer']]],
-  ['body_31',['Body',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#add49ef580745a762f64297432d27ba65',1,'ES::Network::Http::HttpHeader']]],
-  ['buffer_32',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES.Network.Sockets.Client.BaseClientSocket.buffer()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a475a14a6700836a9b4ce2b4756da84d1',1,'ES.Network.Websocket.RemoteConnection.buffer()']]],
-  ['bytehelper_33',['ByteHelper',['../class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html',1,'ES::Common::Utils']]]
+  ['body_28',['Body',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#add49ef580745a762f64297432d27ba65',1,'ES::Network::Http::HttpHeader']]],
+  ['buffer_29',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES.Network.Sockets.Client.BaseClientSocket.buffer()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a475a14a6700836a9b4ce2b4756da84d1',1,'ES.Network.Websocket.RemoteConnection.buffer()']]],
+  ['bytehelper_30',['ByteHelper',['../class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html',1,'ES::Common::Utils']]]
 ];

@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace ES.Hotfix
 {
@@ -30,7 +31,7 @@ namespace ES.Hotfix
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
             HotfixMgr.Instance.AddAgentRef(_ref);
             // 如果不为空 就创建
-            if (_ref.type != null) _ref.CreateAgent();
+            if (_ref.type != null) Task.Run(_ref.CreateAgent);
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace ES.Hotfix
             else _ref = new AgentRef(null, false, null);
             HotfixMgr.Instance.AddAgentRef(_ref);
             // 如果不为空 就创建
-            if (_ref.type != null) _ref.CreateAgent();
+            if (_ref.type != null) Task.Run(_ref.CreateAgent);
         }
 
         /// <summary>

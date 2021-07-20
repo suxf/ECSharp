@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.5</span>
+   &#160;<span id="projectnumber">1.13.7</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -113,6 +113,7 @@ Protected 属性</h2></td></tr>
 <div class="textblock"><p>热更代理 </p>
 <p>只有继承这个代理类才能在热更层使用其泛型的变量值</p>
 <p>继承此类使用数据层变量请用 self 代替 this </p>
+<p>如果需要在代理构造内使用代理数据只需要创建仅有一个构造参数的构造函数，构造参数为当前代理数据对象类型即可使用</p>
 <p>代理类中函数如果存在委托情况，请注意如仅存于非热更层的委托可能存在问题</p>
 <p>此类事代理类，请不要使用代理类来直接声明变量或属性</p>
 <p>当然如果真的有需要，可以使用 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data_pivot.html" title="代理数据枢纽">AgentDataPivot</a> 类来存储变量实现热更层声明变量</p>

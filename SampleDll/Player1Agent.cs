@@ -9,8 +9,10 @@ namespace SampleDll
     {
         public int copyCount = 0;
 
-        public Player1Agent()
+        public Player1Agent(Player1 self)
         {
+            // 先处理代理数据构造函数，在处理代理构造
+            Console.WriteLine(self.test);
             TimeFlow.Create(this).Start();
         }
 

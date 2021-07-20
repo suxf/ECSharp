@@ -103,5 +103,12 @@ namespace Sample
     public class Player1 : AgentData
     {
         public int count;
+
+        public string test;
+
+        public Player1()
+        {
+            test = "Hello World";
+        }
     }
 }

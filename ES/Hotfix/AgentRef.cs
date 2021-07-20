@@ -48,8 +48,18 @@ namespace ES.Hotfix
             if (!isCreated && HotfixMgr.Instance.agentTypeMap.TryGetValue(type, out var agentType))
             {
                 isCreated = true;
-                var newAgent = Activator.CreateInstance(agentType);
-                (newAgent as BaseAgent)._self = agentData;
+                object newAgent = null;
+                var constructors = agentType.GetConstructors();
+                for (int i = 0, len = constructors.Length; i < len; i++)
+                {
+                    var constructor = constructors[i];
+                    var parameters = constructor.GetParameters();
+                    if (parameters.Length == 1 && parameters[0].ParameterType == type)
+                        newAgent = Activator.CreateInstance(agentType, agentData);
+                    else
+                        newAgent = Activator.CreateInstance(agentType);
+                }
+                if (newAgent != null) (newAgent as BaseAgent)._self = agentData;
                 // 处理值拷贝
                 if (_agent != null && isCopyValue)
                 {
@@ -59,7 +69,7 @@ namespace ES.Hotfix
                     {
                         var newField = fields[i];
                         var oldField = oldAgentType.GetField(newField.Name);
-                        if(newField.GetType() == oldField.GetType()) 
+                        if (newField.GetType() == oldField.GetType())
                             newField.SetValue(newAgent, oldField.GetValue(_agent));
                     }
                     var properties = agentType.GetProperties();
