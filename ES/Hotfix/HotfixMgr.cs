@@ -10,7 +10,7 @@ using System.Threading;
 namespace ES.Hotfix
 {
     /// <summary>
-    /// ESHotfix热更模块管理器
+    /// 热更新模块管理器
     /// <para>热更程序的核心调用类，一个热更服务器可以具备多个不同Assembly</para>
     /// <para>在使用此类需要在数据层操作，建议不要在热更层操作</para>
     /// <para>如果需要主动调用热更层入口类函数，可以通过本类 agent 变量来调用</para>
@@ -99,14 +99,25 @@ namespace ES.Hotfix
                             // 处理代理类字典
                             agentTypeMap.Clear();
                             var allTypes = assembly.GetTypes();
-                            var baseAgentType = typeof(BaseAgent);
+                            var abstractAgentType = typeof(AbstractAgent);
+                            var iAgentType = typeof(IAgent<>);
                             for (int i = 0, len = allTypes.Length; i < len; i++)
                             {
                                 var type = allTypes[i];
-                                if (type.IsSubclassOf(baseAgentType) && type.BaseType.IsGenericType)
+                                var interfaceTypes = type.GetInterfaces();
+                                Type interfaceType = null;
+                                for (int j = interfaceTypes.Length - 1; j >= 0; j--)
                                 {
-                                    var agentDataType = type.BaseType.GetGenericArguments()[0];
-                                    agentTypeMap.TryAdd(agentDataType, type);
+                                    var temp = interfaceTypes[j];
+                                    if(temp.IsAssignableFrom(type) && temp.IsGenericType)
+                                    {
+                                        interfaceType = temp;
+                                        break;
+                                    }
+                                }
+                                if (interfaceType != null && abstractAgentType.IsAssignableFrom(type))
+                                {
+                                    agentTypeMap.TryAdd(interfaceType.GetGenericArguments()[0], type);
                                 }
                             }
                             // 创建入口实例

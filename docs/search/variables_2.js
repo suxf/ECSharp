@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_810',['data',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_socket_msg.html#ac7beb0a5db90963fb9161a2756b60dce',1,'ES.Network.Sockets.Client.SocketMsg.data()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html#a56fb004822250fcee78d68618d1c3234',1,'ES.Network.Sockets.Server.RemoteSocketMsg.data()']]],
-  ['dbhelper_811',['dBHelper',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#a485815ddbc4b3516a3395af8415d7289',1,'ES::Data::Database::SQLServer::Linq::DataEntityRows']]],
-  ['delaytime_812',['delayTime',['../class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28',1,'ES::Common::Time::TimeCaller']]]
+  ['clientsocket_813',['clientSocket',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a8eb0a3a0389871b3c541665089c143d8',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
+  ['config_814',['config',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe',1,'ES::Network::HyperSocket::HyperSocket']]],
+  ['connectmaxnum_815',['connectMaxNum',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a',1,'ES::Network::HyperSocket::HyperSocket']]]
 ];

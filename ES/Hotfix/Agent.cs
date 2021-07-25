@@ -1,7 +1,7 @@
 ﻿namespace ES.Hotfix
 {
     /// <summary>
-    /// 热更代理
+    /// 热更新代理
     /// <para>只有继承这个代理类才能在热更层使用其泛型的变量值</para>
     /// <para>继承此类使用数据层变量请用 self 代替 this </para>
     /// <para>如果需要在代理构造内使用代理数据只需要创建仅有一个构造参数的构造函数，构造参数为当前代理数据对象类型即可使用</para>
@@ -14,14 +14,12 @@
     /// <para>如果确实需要在热更层新建字段或属性，并且希望可以重载之后值也可以保留，那么可以使用 [CopyAgentValue] 特性</para>
     /// </summary>
     /// <typeparam name="T">代理数据类型</typeparam>
-    public abstract class Agent<T> : BaseAgent where T : AgentData
+    public abstract class Agent<T> : AbstractAgent, IAgent<T> where T : AgentData
     {
         /// <summary>
         /// 代理类对象
         /// <para>通过此对象可以获取代理数据的对象，相当于this的用法</para>
         /// </summary>
-#pragma warning disable IDE1006 // 命名样式
-        protected T self => _self;
-#pragma warning restore IDE1006 // 命名样式
+        public T self => __self;
     }
 }

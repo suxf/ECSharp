@@ -1,14 +1,14 @@
 var hierarchy =
 [
+    [ "ES.Hotfix.AbstractAgent", "class_e_s_1_1_hotfix_1_1_abstract_agent.html", [
+      [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
+    ] ],
     [ "ES.Hotfix.AgentData", "class_e_s_1_1_hotfix_1_1_agent_data.html", null ],
     [ "ES.Hotfix.AgentDataPivot", "class_e_s_1_1_hotfix_1_1_agent_data_pivot.html", null ],
     [ "ES.Common.Utils.AppConfig", "class_e_s_1_1_common_1_1_utils_1_1_app_config.html", null ],
     [ "Attribute", null, [
       [ "ES.Hotfix.KeepAgentValueAttribute", "class_e_s_1_1_hotfix_1_1_keep_agent_value_attribute.html", null ],
       [ "ES.Hotfix.NotCreateAgentAttribute", "class_e_s_1_1_hotfix_1_1_not_create_agent_attribute.html", null ]
-    ] ],
-    [ "ES.Hotfix.BaseAgent", "class_e_s_1_1_hotfix_1_1_base_agent.html", [
-      [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
     ] ],
     [ "ES.Network.Sockets.Client.BaseClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html", [
       [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ]
@@ -33,6 +33,9 @@ var hierarchy =
     [ "ES.Network.Http.Linq.HttpRequestHelper", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html", null ],
     [ "ES.Network.Http.HttpService", "class_e_s_1_1_network_1_1_http_1_1_http_service.html", null ],
     [ "ES.Network.HyperSocket.HyperSocketConfig", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html", null ],
+    [ "ES.Hotfix.IAgent< T >", "interface_e_s_1_1_hotfix_1_1_i_agent.html", [
+      [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
+    ] ],
     [ "IEnumerable", null, [
       [ "ES.Data.Database.SQLServer.Linq.DataEntityRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html", null ]
     ] ],
@@ -66,8 +69,8 @@ var hierarchy =
     [ "ES.Data.Database.SQLServer.ProcedureResult", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", null ],
     [ "ES.Common.Utils.RandomCode", "class_e_s_1_1_common_1_1_utils_1_1_random_code.html", null ],
     [ "ES.Data.Database.Redis.RedisHelper", "class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html", null ],
-    [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
     [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
+    [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
     [ "ES.Network.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
     [ "ES.Network.Sockets.Server.RemoteSocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html", null ],
     [ "ES.Network.Sockets.Server.ServerSocket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html", null ],

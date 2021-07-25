@@ -9,6 +9,10 @@ namespace Sample
         // 实际创建都需要先完成热更模块读取完成后执行
         Player player = new Player();
         Player1 player1;
+
+        B b;
+        C c;
+
         public Test_Hotfix()
         {
             TestHotfix();
@@ -24,7 +28,10 @@ namespace Sample
             {
                 HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
                 HotfixMgr.Instance.Agent.Test();
-                if(player1 == null) player1 = new Player1();
+                b = new B();
+                c = new C();
+                HotfixMgr.Instance.Agent.Test2(b, c);
+                if (player1 == null) player1 = new Player1();
                 Console.ReadLine();
                 Console.Clear();
             }
@@ -84,7 +91,7 @@ namespace Sample
         /// 通过base(false)设置手动创建
         /// 这样就不用通过 NotCreateAgent 特性来判断 二者选其一即可
         /// </summary>
-        public Player() : base(false) { }
+        // internal Player() { }
        
         // 用于测试 实际上一般数据层不写逻辑
         public void Test()
@@ -110,5 +117,30 @@ namespace Sample
         {
             test = "Hello World";
         }
+    }
+
+    /// <summary>
+    /// 抽象类使用热更新测试基类A
+    /// </summary>
+    public abstract class A : AgentData
+    {
+        public int test1 = 0;
+        public string test2 = "hello";
+    }
+
+    /// <summary>
+    /// 抽象类使用热更新测试继承类B
+    /// </summary>
+    public class B : A
+    {
+        public string test3 = "hello";
+    }
+
+    /// <summary>
+    /// 抽象类使用热更新测试继承类C
+    /// </summary>
+    public class C : A
+    {
+        public string test4 = "hello";
     }
 }

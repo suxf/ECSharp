@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['numconnectedsockets_831',['numConnectedSockets',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a37b3ab4c7e71113c5ff27daecccd56bc',1,'ES::Network::Sockets::Server::ServerSocket']]],
-  ['nummaxbuffersize_832',['numMaxBufferSize',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90',1,'ES::Network::Sockets::Client::BaseClientSocket']]]
+  ['maxnumberacceptedclients_834',['maxNumberAcceptedClients',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#acb8a7129720afab3c9137156f5860fc1',1,'ES::Network::Sockets::Server::ServerSocket']]],
+  ['message_835',['message',['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#abf14f84a6b8e20ebe2635d826c224c50',1,'ES::Network::Websocket::RemoteConnection']]],
+  ['monitorsocketstatustask_836',['monitorSocketStatusTask',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a325db995e8f5afa144c6c095155d887a',1,'ES::Network::Sockets::Server::ServerSocket']]]
 ];

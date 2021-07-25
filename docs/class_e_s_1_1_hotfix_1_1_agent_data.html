@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.7</span>
+   &#160;<span id="projectnumber">1.13.8</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -91,28 +91,32 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_hotfix_1_1_agent_data.ht
 </div><!--header-->
 <div class="contents">
 
-<p>代理数据  
+<p>热更新代理数据  
  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:aa05ec9b048c9e1032f8c3ccae7ce0bab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#aa05ec9b048c9e1032f8c3ccae7ce0bab">AgentData</a> ()</td></tr>
-<tr class="memdesc:aa05ec9b048c9e1032f8c3ccae7ce0bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">构建代理数据  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#aa05ec9b048c9e1032f8c3ccae7ce0bab">更多...</a><br /></td></tr>
+<tr class="memdesc:aa05ec9b048c9e1032f8c3ccae7ce0bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建代理数据  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#aa05ec9b048c9e1032f8c3ccae7ce0bab">更多...</a><br /></td></tr>
 <tr class="separator:aa05ec9b048c9e1032f8c3ccae7ce0bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4">AgentData</a> (bool isAutoCreate)</td></tr>
-<tr class="memdesc:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">构建代理数据  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4">更多...</a><br /></td></tr>
+<tr class="memdesc:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建代理数据  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4">更多...</a><br /></td></tr>
 <tr class="separator:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1179aafa66f49edc122fffbee8e13ac4"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4">GetAgent&lt; T &gt;</a> ()</td></tr>
 <tr class="memdesc:a1179aafa66f49edc122fffbee8e13ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取代理  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4">更多...</a><br /></td></tr>
 <tr class="separator:a1179aafa66f49edc122fffbee8e13ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91572bf41150c0f357ae711c5c008379"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a91572bf41150c0f357ae711c5c008379">GetAbstractAgent&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:a91572bf41150c0f357ae711c5c008379"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取抽象代理  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#a91572bf41150c0f357ae711c5c008379">更多...</a><br /></td></tr>
+<tr class="separator:a91572bf41150c0f357ae711c5c008379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>代理数据 </p>
+<div class="textblock"><p>热更新代理数据 </p>
+<p>创建新的代理数据需要执行Initialize函数完成初始化</p>
 <p>只有通过继承代理数据的类才能使用热更代理层函数</p>
 <p>此类事代理数据类，代理类的变量或属性需要从此声明来使用</p>
 <p>需要在热更层使用的变量或者属性需要使用 public 访问修饰符</p>
-<p>当存在对应关系的代理 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent.html" title="热更代理">Agent</a> 继承对象时，会在构建代理数据 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html" title="代理数据">AgentData</a> 时自动构建 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent.html" title="热更代理">Agent</a> 继承对象</p>
-<p>当然如果不要自动构建可以在 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html" title="代理数据">AgentData</a> 继承类添加 [NotCreateAgent] 特性, 即可手动通过 GetAgent 函数创建</p>
+<p>当存在对应关系的代理 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent.html" title="热更新代理">Agent</a> 继承对象时，会在构建代理数据 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html" title="热更新代理数据">AgentData</a> 时自动构建 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent.html" title="热更新代理">Agent</a> 继承对象</p>
+<p>当然如果不要自动构建可以在 <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html" title="热更新代理数据">AgentData</a> 继承类添加 [NotCreateAgent] 特性, 即可手动通过 GetAgent 函数创建</p>
 <p>如果确实需要在热更层新建字段或属性，并且希望可以重载之后值也可以保留，那么可以使用 [CopyAgentValue] 特性</p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="aa05ec9b048c9e1032f8c3ccae7ce0bab"></a>
@@ -130,7 +134,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>构建代理数据 </p>
+<p>创建代理数据 </p>
 
 </div>
 </div>
@@ -150,7 +154,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>构建代理数据 </p>
+<p>创建代理数据 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">isAutoCreate</td><td>是否自动创建代理</td></tr>
@@ -161,6 +165,41 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="a91572bf41150c0f357ae711c5c008379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91572bf41150c0f357ae711c5c008379">&#9670;&nbsp;</a></span>GetAbstractAgent&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">T ES.Hotfix.AgentData.GetAbstractAgent&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取抽象代理 </p>
+<p>获取抽象代理要注意在代理数据创建的一开始，请先调用一次GetAgent获取最初的代理来确保代理类正确创建</p>
+<p>否则直接在构建新代理数据的时候可能抽象代理的继承代理子类还未创建，如果是后续线程调用则没有问题</p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>当前对象的抽象代理类</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>类型限制</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>AbstractAgent</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
 <a id="a1179aafa66f49edc122fffbee8e13ac4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1179aafa66f49edc122fffbee8e13ac4">&#9670;&nbsp;</a></span>GetAgent&lt; T &gt;()</h2>
 
@@ -186,7 +225,7 @@ Public 成员函数</h2></td></tr>
 <div class="typeconstraint">
 <dl><dt><b>类型限制</b></dt><dd>
 <table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>BaseAgent</em></td><td>&#160;</td></tr>
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>AbstractAgent</em></td><td>&#160;</td></tr>
 <tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>new()</em></td><td>&#160;</td></tr>
 </table>
 </dd>

@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 namespace ES.Hotfix
 {
     /// <summary>
-    /// 代理数据枢纽
+    /// 热更新代理数据枢纽
     /// <para>所有代理的最上层数据存储都通过此类来执行存储释放</para>
     /// </summary>
     public static class AgentDataPivot
@@ -20,6 +20,7 @@ namespace ES.Hotfix
 
         /// <summary>
         /// 增加或获取对象
+        /// <para>自动创建对象</para>
         /// </summary>
         public static T AddOrGetObject<T>(string key) where T : class, new()
         {
@@ -34,6 +35,7 @@ namespace ES.Hotfix
 
         /// <summary>
         /// 增加或获取对象
+        /// <para>手动创建对象，需要完成对象创建的所有过程</para>
         /// </summary>
         public static T AddOrGetObject<T>(string key, Func<T> action) where T : class
         {

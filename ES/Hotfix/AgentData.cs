@@ -1,10 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace ES.Hotfix
+﻿namespace ES.Hotfix
 {
     /// <summary>
-    /// 代理数据
+    /// 热更新代理数据
+    /// <para>创建新的代理数据需要执行Initialize函数完成初始化</para>
     /// <para>只有通过继承代理数据的类才能使用热更代理层函数</para>
     /// <para>此类事代理数据类，代理类的变量或属性需要从此声明来使用</para>
     /// <para>需要在热更层使用的变量或者属性需要使用 public 访问修饰符</para>
@@ -20,7 +18,7 @@ namespace ES.Hotfix
         private readonly AgentRef _ref;
 
         /// <summary>
-        /// 构建代理数据
+        /// 创建代理数据
         /// </summary>
         public AgentData()
         {
@@ -30,12 +28,11 @@ namespace ES.Hotfix
             else
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
             HotfixMgr.Instance.AddAgentRef(_ref);
-            // 如果不为空 就创建
-            if (_ref.type != null) Task.Run(_ref.CreateAgent);
+            if (_ref.type != null) _ref.CreateAsyncAgent();
         }
 
         /// <summary>
-        /// 构建代理数据
+        /// 创建代理数据
         /// </summary>
         /// <param name="isAutoCreate">是否自动创建代理</param>
         public AgentData(bool isAutoCreate)
@@ -47,21 +44,27 @@ namespace ES.Hotfix
             }
             else _ref = new AgentRef(null, false, null);
             HotfixMgr.Instance.AddAgentRef(_ref);
-            // 如果不为空 就创建
-            if (_ref.type != null) Task.Run(_ref.CreateAgent);
+            if (_ref.type != null) _ref.CreateAsyncAgent();
         }
 
         /// <summary>
         /// 获取代理
         /// </summary>
         /// <typeparam name="T">当前对象的代理类</typeparam>
-        public T GetAgent<T>() where T : BaseAgent, new() 
+        public T GetAgent<T>() where T : AbstractAgent, new()
         {
-            if (!_ref.isCreated)
-            {
-                _ref.isCreated = true;
-                Interlocked.Exchange(ref _ref._agent, new T() { _self = this });
-            }
+            _ref.CreateAgent<T>(this);
+            return _ref._agent;
+        }
+
+        /// <summary>
+        /// 获取抽象代理
+        /// <para>获取抽象代理要注意在代理数据创建的一开始，请先调用一次GetAgent获取最初的代理来确保代理类正确创建</para>
+        /// <para>否则直接在构建新代理数据的时候可能抽象代理的继承代理子类还未创建，如果是后续线程调用则没有问题</para>
+        /// </summary>
+        /// <typeparam name="T">当前对象的抽象代理类</typeparam>
+        public T GetAbstractAgent<T>() where T : AbstractAgent
+        {
             return _ref._agent;
         }
     }

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['headers_813',['headers',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#a04b2d25db68f3dd690a1df0d8510dabb',1,'ES::Network::Http::HttpHeader']]],
-  ['heartcheckperiod_814',['HeartCheckPeriod',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a1720ef4c470cf1a8e59fdbb9d97e0eac',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['heartsendperiod_815',['HeartSendPeriod',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a21f55b180213b744b83fac550b3fb4f9',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['hearttimeout_816',['HeartTimeOut',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a2f30de3558de195aa3deb3a02569758d',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
+  ['data_816',['data',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_socket_msg.html#ac7beb0a5db90963fb9161a2756b60dce',1,'ES.Network.Sockets.Client.SocketMsg.data()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html#a56fb004822250fcee78d68618d1c3234',1,'ES.Network.Sockets.Server.RemoteSocketMsg.data()']]],
+  ['dbhelper_817',['dBHelper',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#a485815ddbc4b3516a3395af8415d7289',1,'ES::Data::Database::SQLServer::Linq::DataEntityRows']]],
+  ['delaytime_818',['delayTime',['../class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28',1,'ES::Common::Time::TimeCaller']]]
 ];

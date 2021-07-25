@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buffer_806',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES.Network.Sockets.Client.BaseClientSocket.buffer()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a475a14a6700836a9b4ce2b4756da84d1',1,'ES.Network.Websocket.RemoteConnection.buffer()']]]
+  ['_5fself_811',['_self',['../class_e_s_1_1_hotfix_1_1_abstract_agent.html#a790678c591957a15ed894f494e14b08f',1,'ES::Hotfix::AbstractAgent']]]
 ];

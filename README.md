@@ -1,9 +1,8 @@
 # EasySharpFrame
 [![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/suxf/EasySharpFrame?color=9cf&style=float)](https://github.com/suxf/EasySharpFrame/releases)
 [![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
-[![Platform](https://img.shields.io/badge/.netcore-3.1-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
-[![Platform](https://img.shields.io/badge/.net->=5.0-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![Platform](https://img.shields.io/badge/framework-.netcore3.1|.net^5.0-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/EasySharpFrame/blob/master/LICENSE)
 
 Easy .NET Develop Frame.
