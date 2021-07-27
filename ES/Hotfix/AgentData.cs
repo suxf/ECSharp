@@ -28,7 +28,7 @@
             else
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
             HotfixMgr.Instance.AddAgentRef(_ref);
-            if (_ref.type != null) _ref.CreateAsyncAgent();
+            _ref.CreateAsyncAgent();
         }
 
         /// <summary>
@@ -44,7 +44,17 @@
             }
             else _ref = new AgentRef(null, false, null);
             HotfixMgr.Instance.AddAgentRef(_ref);
-            if (_ref.type != null) _ref.CreateAsyncAgent();
+            _ref.CreateAsyncAgent();
+        }
+
+        /// <summary>
+        /// 手动创建自动代理
+        /// <para>使用在代理数据构造函数末尾或构造完成后需要立即初始化代理的时候</para>
+        /// <para>使用条件需要满足是自动创建代理的代理数据类才能成功创建</para>
+        /// </summary>
+        public void CreateAgent()
+        {
+            if(_ref.isAutoCreate) _ref.CreateAgent();
         }
 
         /// <summary>
@@ -59,12 +69,11 @@
 
         /// <summary>
         /// 获取抽象代理
-        /// <para>获取抽象代理要注意在代理数据创建的一开始，请先调用一次GetAgent获取最初的代理来确保代理类正确创建</para>
-        /// <para>否则直接在构建新代理数据的时候可能抽象代理的继承代理子类还未创建，如果是后续线程调用则没有问题</para>
         /// </summary>
         /// <typeparam name="T">当前对象的抽象代理类</typeparam>
         public T GetAbstractAgent<T>() where T : AbstractAgent
         {
+            CreateAgent();
             return _ref._agent;
         }
     }

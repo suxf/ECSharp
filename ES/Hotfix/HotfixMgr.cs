@@ -134,7 +134,7 @@ namespace ES.Hotfix
                                     if (agentRefs[i].TryGetTarget(out var agentRef)) 
                                     {
                                         agentRef.isCreated = false;
-                                        if (agentRef.type != null) agentRef.CreateAgent();
+                                        if (agentRef.isAutoCreate) agentRef.CreateAgent();
                                         else agentRef._agent = null;
                                     } 
                                     else agentRefs.RemoveAt(i);

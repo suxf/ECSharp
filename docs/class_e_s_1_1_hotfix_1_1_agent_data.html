@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.8</span>
+   &#160;<span id="projectnumber">1.13.9</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -102,6 +102,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4">AgentData</a> (bool isAutoCreate)</td></tr>
 <tr class="memdesc:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建代理数据  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4">更多...</a><br /></td></tr>
 <tr class="separator:aff1d0aa30cc46e4d337d3d91ec35d5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e591a59b7c945bddcd7ef92cc22a3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a03e591a59b7c945bddcd7ef92cc22a3c">CreateAgent</a> ()</td></tr>
+<tr class="memdesc:a03e591a59b7c945bddcd7ef92cc22a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">手动创建自动代理  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#a03e591a59b7c945bddcd7ef92cc22a3c">更多...</a><br /></td></tr>
+<tr class="separator:a03e591a59b7c945bddcd7ef92cc22a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1179aafa66f49edc122fffbee8e13ac4"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4">GetAgent&lt; T &gt;</a> ()</td></tr>
 <tr class="memdesc:a1179aafa66f49edc122fffbee8e13ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取代理  <a href="class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4">更多...</a><br /></td></tr>
 <tr class="separator:a1179aafa66f49edc122fffbee8e13ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,6 +168,27 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="a03e591a59b7c945bddcd7ef92cc22a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e591a59b7c945bddcd7ef92cc22a3c">&#9670;&nbsp;</a></span>CreateAgent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Hotfix.AgentData.CreateAgent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>手动创建自动代理 </p>
+<p>使用在代理数据构造函数末尾或构造完成后需要立即初始化代理的时候</p>
+<p>使用条件需要满足是自动创建代理的代理数据类才能成功创建</p>
+
+</div>
+</div>
 <a id="a91572bf41150c0f357ae711c5c008379"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91572bf41150c0f357ae711c5c008379">&#9670;&nbsp;</a></span>GetAbstractAgent&lt; T &gt;()</h2>
 
@@ -181,8 +205,6 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>获取抽象代理 </p>
-<p>获取抽象代理要注意在代理数据创建的一开始，请先调用一次GetAgent获取最初的代理来确保代理类正确创建</p>
-<p>否则直接在构建新代理数据的时候可能抽象代理的继承代理子类还未创建，如果是后续线程调用则没有问题</p>
 <dl class="tparams"><dt>模板参数</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>当前对象的抽象代理类</td></tr>

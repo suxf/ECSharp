@@ -21,7 +21,11 @@ namespace ES.Hotfix
         /// <summary>
         /// 代理数据类型
         /// </summary>
-        internal readonly Type type;
+        private readonly Type type;
+        /// <summary>
+        /// 自动创建
+        /// </summary>
+        internal bool isAutoCreate;
         /// <summary>
         /// 是否拷贝值
         /// </summary>
@@ -41,6 +45,7 @@ namespace ES.Hotfix
         internal AgentRef(Type type, bool isCopyValue, AgentData agentData)
         {
             this.type = type;
+            isAutoCreate = type != null;
             this.isCopyValue = isCopyValue;
             this.agentData = agentData;
         }
@@ -50,7 +55,7 @@ namespace ES.Hotfix
         /// </summary>
         internal void CreateAsyncAgent()
         {
-            Task.Run(CreateAgent);
+            if(isAutoCreate) Task.Run(CreateAgent);
         }
 
         /// <summary>
@@ -99,7 +104,7 @@ namespace ES.Hotfix
                         {
                             var newField = fields[i];
                             var oldField = oldAgentType.GetField(newField.Name);
-                            if (newField.GetType() == oldField.GetType())
+                            if (newField.GetType() == oldField.GetType() && !newField.IsInitOnly)
                                 newField.SetValue(newAgent, oldField.GetValue(_agent));
                         }
                         var properties = agentType.GetProperties();
@@ -107,7 +112,7 @@ namespace ES.Hotfix
                         {
                             var newProperty = properties[i];
                             var oldProperty = oldAgentType.GetProperty(newProperty.Name);
-                            if (newProperty.GetType() == oldProperty.GetType())
+                            if (newProperty.GetType() == oldProperty.GetType() && newProperty.CanWrite)
                                 newProperty.SetValue(newAgent, oldProperty.GetValue(_agent));
                         }
                     }

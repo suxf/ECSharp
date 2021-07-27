@@ -116,6 +116,8 @@ namespace Sample
         public Player1()
         {
             test = "Hello World";
+            // 手动创建代理
+            CreateAgent();
         }
     }
 

@@ -26,8 +26,9 @@ var NAVTREEINDEX1 =
 "class_e_s_1_1_hotfix_1_1_agent.html":[1,0,0,2,1],
 "class_e_s_1_1_hotfix_1_1_agent.html#a16fdf1e929f4d090e3710ed92c675ccc":[1,0,0,2,1,0],
 "class_e_s_1_1_hotfix_1_1_agent_data.html":[1,0,0,2,2],
-"class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4":[1,0,0,2,2,3],
-"class_e_s_1_1_hotfix_1_1_agent_data.html#a91572bf41150c0f357ae711c5c008379":[1,0,0,2,2,2],
+"class_e_s_1_1_hotfix_1_1_agent_data.html#a03e591a59b7c945bddcd7ef92cc22a3c":[1,0,0,2,2,2],
+"class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4":[1,0,0,2,2,4],
+"class_e_s_1_1_hotfix_1_1_agent_data.html#a91572bf41150c0f357ae711c5c008379":[1,0,0,2,2,3],
 "class_e_s_1_1_hotfix_1_1_agent_data.html#aa05ec9b048c9e1032f8c3ccae7ce0bab":[1,0,0,2,2,0],
 "class_e_s_1_1_hotfix_1_1_agent_data.html#aff1d0aa30cc46e4d337d3d91ec35d5b4":[1,0,0,2,2,1],
 "class_e_s_1_1_hotfix_1_1_agent_data_pivot.html":[1,0,0,2,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a04f1489eb724ede377e1cd7150ffbcab":[1,0,0,3,3,1,6],
 "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a1ab0d7cbd8e69d593e8bfde522a63343":[1,0,0,3,3,1,7],
 "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a475a14a6700836a9b4ce2b4756da84d1":[1,0,0,3,3,1,3],
-"class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a9f71c83482613bed1bf3d3e2c374986e":[1,0,0,3,3,1,1],
-"class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#ab520ce281f021aaa5fac0f035b145850":[1,0,0,3,3,1,2]
+"class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a9f71c83482613bed1bf3d3e2c374986e":[1,0,0,3,3,1,1]
 };
