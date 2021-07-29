@@ -27,11 +27,31 @@ namespace ES.Common.Time
         private readonly WeakReference<ITimeUpdate> reference;
 
         /// <summary>
+        /// 耗时监视器累积时间 此处内部转换为纳秒整型
+        /// </summary>
+        private long consumeTime = 0;
+        /// <summary>
+        /// 未消耗的修正时间 此处内部转换为纳秒整型
+        /// </summary>
+        private long notConsumeFixedTime = 0;
+        /// <summary>
+        /// 修正时间 毫秒整型
+        /// </summary>
+        internal readonly int fixedTime = 0;
+        /// <summary>
+        /// 修正时间 此处内部转换为纳秒整型
+        /// </summary>
+        private readonly long fixedNanoTime = 0;
+
+        /// <summary>
         /// 构造函数 多线程处理逻辑
         /// <para>继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类</para>
         /// </summary>
-        protected BaseTimeFlow(ITimeUpdate timeUpdate)
+        protected BaseTimeFlow(ITimeUpdate timeUpdate, int fixedTime)
         {
+            this.fixedTime = fixedTime;
+            if (this.fixedTime <= 0) this.fixedTime = 0;
+            else fixedNanoTime = fixedTime * 1000000;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
             TimeFlowManager.Instance.PushTimeFlow(this);
         }
@@ -40,9 +60,13 @@ namespace ES.Common.Time
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="timeUpdate"></param>
+        /// <param name="fixedTime">修正时间</param>
         /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
-        protected BaseTimeFlow(ITimeUpdate timeUpdate, int tfIndex)
+        protected BaseTimeFlow(ITimeUpdate timeUpdate, int fixedTime, int tfIndex)
         {
+            this.fixedTime = fixedTime;
+            if (this.fixedTime <= 0) this.fixedTime = 0;
+            else fixedNanoTime = fixedTime * 1000000;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
             TimeFlowManager.Instance.PushTimeFlow(this, tfIndex);
         }
@@ -51,13 +75,14 @@ namespace ES.Common.Time
         /// 创建基础时间流
         /// </summary>
         /// <param name="timeUpdate"></param>
+        /// <param name="fixedTime">修正时间</param>
         /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
-        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, int tfIndex = -1)
+        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, int fixedTime = 10, int tfIndex = -1)
         {
             if (tfIndex == -1)
-                return new BaseTimeFlow(timeUpdate);
+                return new BaseTimeFlow(timeUpdate, fixedTime);
             else
-                return new BaseTimeFlow(timeUpdate, tfIndex);
+                return new BaseTimeFlow(timeUpdate, fixedTime, tfIndex);
         }
 
         /// <summary>
@@ -109,12 +134,26 @@ namespace ES.Common.Time
         /// 内部 更新
         /// </summary>
         /// <param name="dt"></param>
-        internal void UpdateES(int dt)
+        internal void UpdateES(double dt)
         {
             stopwatch.Start();
-            if(reference.TryGetTarget(out var iTimeUpdate)) iTimeUpdate.Update(dt);
-            stopwatch.Stop();
-            Interlocked.Exchange(ref lastUseTime, (int)stopwatch.Elapsed.TotalMilliseconds);
+            var nanoDt = (long)(dt * 1000000000L);
+            if (reference.TryGetTarget(out var iTimeUpdate))
+            {
+                var temp = nanoDt - consumeTime;
+                // 正常更新
+                if (fixedTime == 0) iTimeUpdate.Update((int)(temp / 1000000));
+                else
+                {
+                    // 修正更新
+                    var consumeFixedTime = notConsumeFixedTime + temp;
+                    notConsumeFixedTime = consumeFixedTime % fixedNanoTime;
+                    var count = consumeFixedTime / fixedNanoTime;
+                    for (int i = 0; i < count; i++) iTimeUpdate.Update(fixedTime);
+                }
+            }
+            consumeTime = nanoDt;
+            Interlocked.Exchange(ref lastUseTime, (int)stopwatch.ElapsedMilliseconds);
             stopwatch.Reset();
         }
 

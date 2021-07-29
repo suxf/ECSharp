@@ -19,6 +19,11 @@ namespace ES.Common.Time
         internal bool IsPausePushTask { private set; get; } = false;
 
         /// <summary>
+        /// 高精度模式
+        /// </summary>
+        internal static bool isHighPrecisionMode = false;
+
+        /// <summary>
         /// 线程阻塞超时计数
         /// </summary>
         private int threadBlockTimeOutCount = 0;
@@ -100,26 +105,31 @@ namespace ES.Common.Time
         private void UpdateHandle()
         {
             // 时间补偿助手
-            TimeFix timeFixHelper = new TimeFix(TimeFlowManager.timeFlowPeriod);
-            // 闲置处理时间计数， 1000次为10s 如果超出10s空处理则关闭线程
+            // TimeFix timeFixHelper = new TimeFix(TimeFlowManager.timeFlowPeriod);
+            // 闲置处理时间计数
             int idlHandleTimeCount = 0;
-            // 计算句柄超出间隔次数 1s内连续超出10次则分割任务 
+            // 计算句柄超出间隔次数 
             int mathHandleTimeCount = 0;
-            // 重置计算句柄超出间隔次数计数 100次为1s 
+            // 重置计算句柄超出间隔次数计数
             int mathHandleTimeResetCount = 0;
-            // 暂停推送任务计数 6000次为60s 超出1分钟尝试重新接管线程
+            // 暂停推送任务计数 超出1分钟尝试重新接管线程
             int pausePushTaskCount = 0;
+            // 总体目标运行间隔时间
+            int totalAllPeriod = 0;
             // 转移其他线程组
             BaseTimeFlow[] moveOtherThreadFlow = null;
-
-            int currentPeriod = TimeFlowManager.timeFlowPeriod;
+            // 耗时监视器
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+            // int currentPeriod = TimeFlowManager.timeFlowPeriod;
             while (IsRunning)
             {
-                timeFixHelper.Begin();
+                // timeFixHelper.Begin();
                 lock (m_lock)
                 {
                     int totalTime = 0;
                     var len = timeFlows.Count;
+                    totalAllPeriod = 0;
                     for (int i = len - 1; i >= 0; i--)
                     {
                         BaseTimeFlow tf = timeFlows[i];
@@ -132,12 +142,12 @@ namespace ES.Common.Time
                             }
                             else if (!tf.isTimeFlowPause)
                             {
-                                tf.UpdateES(currentPeriod);
+                                totalAllPeriod += tf.fixedTime;
+                                tf.UpdateES(watch.Elapsed.TotalSeconds);
                                 totalTime += tf.lastUseTime;
                             }
                         }
                     }
-
                     // 重置超时检测
                     Interlocked.Exchange(ref threadBlockTimeOutCount, 0);
 
@@ -145,7 +155,7 @@ namespace ES.Common.Time
                     if (len <= 0)
                     {
                         // 超出闲置时间跳出循环
-                        if (++idlHandleTimeCount >= 1000) break;
+                        if (++idlHandleTimeCount >= 1000000) break;
                     }
                     else
                     {
@@ -154,9 +164,10 @@ namespace ES.Common.Time
                         if (Index >= 3)
                         {
                             // 超出运行算率3次 分割算率建立新时间线
-                            if (len > 1 && totalTime > TimeFlowManager.timeFlowPeriod)
+                            if (len > 1 && totalTime * len > totalAllPeriod)
                             {
-                                if (++mathHandleTimeCount >= 10)
+                                mathHandleTimeResetCount = 0;
+                                if (++mathHandleTimeCount >= 100)
                                 {
                                     mathHandleTimeCount = 0;
                                     IsPausePushTask = true;
@@ -174,15 +185,14 @@ namespace ES.Common.Time
                                         }
                                     }
                                 }
-
-                                // 超过1s 重置一次分割检测任务
-                                if (++mathHandleTimeResetCount >= 100) { mathHandleTimeResetCount = 0; mathHandleTimeCount = 0; }
                             }
+                            // 重置一次分割检测任务
+                            if (++mathHandleTimeResetCount >= 100) { mathHandleTimeResetCount = 0; mathHandleTimeCount = 0; }
 
                             // 暂停接管任务缓和处理
                             if (IsPausePushTask)
                             {
-                                if (++pausePushTaskCount >= 6000)
+                                if (++pausePushTaskCount >= 6000000)
                                 {
                                     pausePushTaskCount = 0;
                                     IsPausePushTask = false;
@@ -203,8 +213,10 @@ namespace ES.Common.Time
                     moveOtherThreadFlow = null;
                 }
 
-                Thread.Sleep(currentPeriod);
-                currentPeriod = timeFixHelper.End();
+                // 精度调整
+                if(isHighPrecisionMode) Thread.Yield();
+                else Thread.Sleep(1);
+                // currentPeriod = timeFixHelper.End();
             }
             // 线程结束时则重置为false
             Close();

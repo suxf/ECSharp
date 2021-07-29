@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.9</span>
+   &#160;<span id="projectnumber">1.13.10</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('interface_e_s_1_1_common_1_1_time_1_1_
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:aa3d2f51decd68d63f4d87157f2240965"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">Update</a> (int deltaTime)</td></tr>
-<tr class="memdesc:aa3d2f51decd68d63f4d87157f2240965"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新 Update以10ms周期循环  <a href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">更多...</a><br /></td></tr>
+<tr class="memdesc:aa3d2f51decd68d63f4d87157f2240965"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新  <a href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">更多...</a><br /></td></tr>
 <tr class="separator:aa3d2f51decd68d63f4d87157f2240965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad72460ac119ef067839efec0ee3316e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">UpdateEnd</a> ()</td></tr>
 <tr class="memdesc:ad72460ac119ef067839efec0ee3316e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">更多...</a><br /></td></tr>
@@ -120,7 +120,6 @@ Public 成员函数</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>时间流 更新接口 </p>
-<p>[多线程处理逻辑] Update以10ms周期循环</p>
 <p>继承此类可以实现Update实时更新功能</p>
 <p>为了方便类的部分初始和性能节省需手动调用 StartTimeFlow(); 函数</p>
 <p>每次Update是先执行函数体内容再睡眠等待，所以如果需要精确的时间间隔应当先判定时间再累加时间</p>
@@ -142,17 +141,19 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>更新 Update以10ms周期循环 </p>
+<p>更新 </p>
 <p>可以通过此timeFlowPeriod对象直接获取</p>
 <p>每次Update是先执行函数体内容再睡眠等待，所以如果需要精确的时间间隔应当先判定时间再累加时间</p>
+<p>此处时间在配置为0的情况下为实时刷新的周期时间</p>
+<p>此处时间在配置为大于0的情况下为配置的固定周期</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deltaTime</td><td>程序函数实际执行时间间隔 精度：ms</td></tr>
+    <tr><td class="paramname">deltaTime</td><td>程序函数实际执行时间间隔 单位：毫秒</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>在 <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#afd3ed570881e4f5435dbda432c7f222d">ES.Data.Database.SQLServer.SqlServerDbHelper</a>, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#a34d993fb38622088c900edad05551d59">ES.Data.Database.SQLServer.Linq.DataEntityRows</a>, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html#aac01525d7e4c7556a1d8783485c6874a">ES.Data.Database.SQLServer.Linq.NoSqlStorage&lt; T, U &gt;</a>, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">ES.Network.HyperSocket.HyperSocket</a>, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_monitor_socket_status_task.html#a48b7b376ff126fb53410395d79d6f1b8">ES.Network.Sockets.Server.MonitorSocketStatusTask</a>, <a class="el" href="class_e_s_1_1_hotfix_1_1_hotfix_mgr.html#a81a109837c7639e0fb1be49d2a56892f">ES.Hotfix.HotfixMgr</a> , 以及 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ac43417972bdc22467f526444225d92a5">ES.Common.Time.TimeCaller</a> 内被实现.</p>
+<p>在 <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#afd3ed570881e4f5435dbda432c7f222d">ES.Data.Database.SQLServer.SqlServerDbHelper</a>, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#a34d993fb38622088c900edad05551d59">ES.Data.Database.SQLServer.Linq.DataEntityRows</a>, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">ES.Network.HyperSocket.HyperSocket</a>, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_monitor_socket_status_task.html#a48b7b376ff126fb53410395d79d6f1b8">ES.Network.Sockets.Server.MonitorSocketStatusTask</a>, <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html#a1a2ca6df469e524557e69fc029bf37af">ES.Data.Database.SQLServer.Linq.NoSqlStorage&lt; T, U &gt;</a>, <a class="el" href="class_e_s_1_1_hotfix_1_1_hotfix_mgr.html#a81a109837c7639e0fb1be49d2a56892f">ES.Hotfix.HotfixMgr</a> , 以及 <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ac43417972bdc22467f526444225d92a5">ES.Common.Time.TimeCaller</a> 内被实现.</p>
 
 </div>
 </div>

@@ -406,7 +406,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="dt"></param>
         public void Update(int dt)
         {
-            periodUpdate += TimeFlow.period;
+            periodUpdate += dt;
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;

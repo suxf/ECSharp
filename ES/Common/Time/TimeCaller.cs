@@ -114,7 +114,7 @@
         {
             if (isFirstCall)
             {
-                delayTimeNow += TimeFlow.period;
+                delayTimeNow += deltaTime;
                 if (delayTimeNow >= delayTime)
                 {
                     isFirstCall = false;
@@ -125,7 +125,7 @@
             {
                 if (repeatNum == -1 || repeatNumNow < repeatNum)
                 {
-                    periodTimeNow += TimeFlow.period;
+                    periodTimeNow += deltaTime;
                     if (periodTimeNow >= periodTime)
                     {
                         periodTimeNow = 0;

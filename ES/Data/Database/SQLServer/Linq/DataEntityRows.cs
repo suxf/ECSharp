@@ -218,7 +218,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="dt"></param>
         public void Update(int dt)
         {
-            period += TimeFlowManager.timeFlowPeriod;
+            period += dt;
             if (period >= realPeriod)
             {
                 period = 0;

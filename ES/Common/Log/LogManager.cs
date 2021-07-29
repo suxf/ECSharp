@@ -71,7 +71,7 @@ namespace ES.Common.Log
         /// <param name="dt"></param>
         public void Update(int dt)
         {
-            periodNow += TimeFlow.period;
+            periodNow += dt;
             if (periodNow >= Log.LOG_PERIOD)
             {
                 periodNow = 0;

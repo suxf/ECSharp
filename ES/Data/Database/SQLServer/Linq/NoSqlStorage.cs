@@ -195,10 +195,10 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 系统调用
         /// </summary>
-        /// <param name="dt"></param>
-        public void Update(int dt)
+        /// <param name="deltaTime"></param>
+        public void Update(int deltaTime)
         {
-            syncPeriodNow += TimeFlow.period;
+            syncPeriodNow += deltaTime;
             if (syncPeriodNow >= syncPeriod)
             {
                 syncPeriodNow = 0;

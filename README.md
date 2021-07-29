@@ -208,7 +208,7 @@ class ClientListener : IHyperSocketClient
 }
 ```
 ### 4.TimeFlow<时间流>
-该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定10ms的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类。
+该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定周期的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类。
 ```csharp
 class TimeDemo : ITimeUpdate
 {
@@ -218,11 +218,10 @@ class TimeDemo : ITimeUpdate
         tf.Start();
     }
     
-    // 此函数会默认10毫秒调用一次
     // 可以从 TimeFlow.period 直接获取周期时间
-    // dt为消耗时间的差值 因为程序不可能每次都精准10毫秒执行
+    // dt为消耗时间的差值 因为程序不可能每次都精准执行
     // 所以update会不断调整时间执行时间 dt就是这个时间的差值
-    // 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因    为我们有自动修正
+    // 一般情况下不需要管理，因为在总时间循环中 几乎可以忽略 因为我们有自动修正
     public void Update(int dt)
     {
     }

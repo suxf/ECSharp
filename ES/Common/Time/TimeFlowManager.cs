@@ -17,17 +17,14 @@ namespace ES.Common.Time
         /// 获取单例对象
         /// </summary>
         internal static TimeFlowManager Instance { get { if (instance == null) instance = new TimeFlowManager(); return instance; } }
-        /// <summary>
-        /// 固定刷新周期
-        /// <para>刷新固定时间：10ms</para>
-        /// </summary>
-        internal const int timeFlowPeriod = 10;
-
+       
         /// <summary>
         /// 时间流控制线程 核心线程
         /// </summary>
         private readonly List<TimeFlowThread> timeFlowThreads;
-
+        /// <summary>
+        /// 锁
+        /// </summary>
         private readonly object m_lock = new object();
 
         /// <summary>

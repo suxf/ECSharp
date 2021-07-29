@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['parameter_316',['Parameter',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_parameter.html',1,'ES::Data::Database::SQLServer']]],
-  ['parse_317',['Parse',['../class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html#a335edda4bd7bf847e9de66fa364409b6',1,'ES.Data.Buffer.EasyBuffer.Parse(byte[] buffer, bool isCompress=true)'],['../class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html#ab7c3af5b5adcefee603b9bac4ff6010c',1,'ES.Data.Buffer.EasyBuffer.Parse(string buffer, bool isCompress=true)']]],
-  ['pause_318',['Pause',['../class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a355bd67195875198e1956f1c244f854d',1,'ES::Common::Time::TimeFlow']]],
-  ['period_319',['period',['../class_e_s_1_1_common_1_1_time_1_1_time_flow.html#ad377556b5120176bef08b944fd41302b',1,'ES::Common::Time::TimeFlow']]],
+  ['parameter_317',['Parameter',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_parameter.html',1,'ES::Data::Database::SQLServer']]],
+  ['parse_318',['Parse',['../class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html#a335edda4bd7bf847e9de66fa364409b6',1,'ES.Data.Buffer.EasyBuffer.Parse(byte[] buffer, bool isCompress=true)'],['../class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html#ab7c3af5b5adcefee603b9bac4ff6010c',1,'ES.Data.Buffer.EasyBuffer.Parse(string buffer, bool isCompress=true)']]],
+  ['pause_319',['Pause',['../class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a355bd67195875198e1956f1c244f854d',1,'ES::Common::Time::TimeFlow']]],
   ['periodtime_320',['periodTime',['../class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2',1,'ES::Common::Time::TimeCaller']]],
   ['port_321',['Port',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aee35375d55ac45809c5fcc20cb5015c5',1,'ES::Network::Sockets::Socket']]],
   ['post_322',['Post',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html#a2d32e2a6d89103e41710490bb703a722',1,'ES.Network.Http.Linq.HttpRequestHelper.Post(string url, string postDataStr)'],['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html#a5db319ca431e9202215370d65ba1d333',1,'ES.Network.Http.Linq.HttpRequestHelper.Post(string url, string postDataStr, int retryNum)'],['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158aa02439ec229d8be0e74b0c1602392310',1,'ES.Network.Http.POST()']]],

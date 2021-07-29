@@ -245,7 +245,7 @@ namespace ES.Hotfix
                 }
             }
             // 减去流逝的时间
-            periodTime -= TimeFlow.period;
+            periodTime -= deltaTime;
         }
 
         /// <summary>

@@ -95,7 +95,7 @@ namespace ES.Network.Sockets.Server
         /// <param name="dt"></param>
         public void Update(int dt)
         {
-            periodNow += TimeFlow.period;
+            periodNow += dt;
             if (periodNow >= 1000)
             {
                 periodNow = 0;

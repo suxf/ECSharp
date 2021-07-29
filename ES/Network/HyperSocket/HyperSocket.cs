@@ -112,7 +112,7 @@ namespace ES.Network.HyperSocket
         {
             if (IsAlive)
             {
-                heartCheckPeriod -= TimeFlow.period;
+                heartCheckPeriod -= dt;
                 if (heartCheckPeriod <= 0)
                 {
                     if (IsServerMode)

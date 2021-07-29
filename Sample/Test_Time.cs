@@ -9,7 +9,7 @@ namespace Sample
     /// </summary>
     class Test_Time : ITimeUpdate/* 继承此类可以周期性执行Update函数 */
     {
-        int period1 = 0;
+        double period1 = 0;
         private readonly TimeFlow timeFlow;
 
         public Test_Time()
@@ -26,8 +26,9 @@ namespace Sample
             // 最后如果你需要查看此时update的状态话可以通过以下两个变量
             // isPause
             // isStop
-            timeFlow = TimeFlow.Create(this);
-
+            timeFlow = TimeFlow.Create(this, 1000);
+            timeFlow.Start();
+            // TimeFlow.SetHighPrecisionMode(true);
             // 时间执行器
             // 了解了TimeFlow有时候觉得太繁琐
             // 项目中根本不需要使用到那么就可以使用此类
@@ -61,7 +62,7 @@ namespace Sample
             Console.WriteLine("Hello TimeFix2");
             periodNow = timeFix.End();
             /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
-            timeFlow.Start();
+            
 
             // 临时变量 测试时间流自动停止
             StartTempTime();
@@ -82,7 +83,6 @@ namespace Sample
 
 
         /// <summary>
-        /// 此函数会默认10毫秒调用一次
         /// 可以从 timeFlowPeriod 直接获取周期时间
         /// dt为消耗时间的差值 因为程序不可能每次都精准10毫秒执行
         /// 所以update会不断调整时间执行时间 dt就是这个时间的差值
@@ -92,15 +92,15 @@ namespace Sample
         public void Update(int dt)
         {
             /* 如果需要统计时间在处理就需要处理 */
-            period1 += TimeFlow.period;
-            
+            period1 += dt;
             /* 在此处可以处理预期过了时间的一些判定或者内容 */
-            // 这里我们每5秒执行一次
-            if (period1 >= 5000)
+            // 这里我们每1秒执行一次
+            if (period1 >= 1000)
             {
                 period1 = 0;
-                Console.WriteLine("Hello TimeFlow");
+                Console.WriteLine($"Hello TimeFlow:[{dt}]{DateTime.Now:yyyy-MM-dd HH:mm:ss:fffffff}");
             }
+            // Thread.Sleep(500);
         }
 
         /// <summary>
@@ -113,7 +113,6 @@ namespace Sample
 
         private class Time2 : ITimeUpdate
         {
-
             public Time2()
             {
                 TimeFlow.Create(this).Start();
@@ -123,7 +122,7 @@ namespace Sample
             public void Update(int deltaTime)
             {
                 /* 如果需要统计时间在处理就需要处理 */
-                period1 += TimeFlow.period;
+                period1 += deltaTime;
 
                 /* 在此处可以处理预期过了时间的一些判定或者内容 */
                 // 这里我们每5秒执行一次
@@ -136,7 +135,7 @@ namespace Sample
 
             public void UpdateEnd()
             {
-                
+
             }
         }
     }

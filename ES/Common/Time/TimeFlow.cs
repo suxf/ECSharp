@@ -2,7 +2,6 @@
 {
     /// <summary>
     /// 时间流 
-    /// <para>[多线程处理逻辑] Update以10ms周期循环</para>
     /// <para>继承此类可以实现Update实时更新功能</para>
     /// <para>为了方便类的部分初始和性能节省需手动调用 Start(); 函数</para>
     /// <para>每次Update是先执行函数体内容再睡眠等待，所以如果需要精确的时间间隔应当先判定时间再累加时间</para>
@@ -10,53 +9,54 @@
     public sealed class TimeFlow : BaseTimeFlow
     {
         /// <summary>
-        /// 获取时间流固定周期
-        /// <para>刷新固定时间：10ms</para>
-        /// </summary>
-        public const int period = TimeFlowManager.timeFlowPeriod;
-
-        /// <summary>
         /// 时间流暂停开关 
         /// <para>只读 通过 Pause 函数修改</para>
         /// </summary>
-        public bool isPause { get { return isTimeFlowStop; } }
+        public bool IsPause { get { return isTimeFlowStop; } }
 
         /// <summary>
         /// 时间流停止开关
         /// <para>只读 通过 Close/CloseAll 函数修改</para>
         /// </summary>
-        public bool isStop { get { return isTimeFlowStop; } }
+        public bool IsStop { get { return isTimeFlowStop; } }
+
+        /// <summary>
+        /// 高精度模式
+        /// </summary>
+        public bool IsHighPrecisionMode { get { return TimeFlowThread.isHighPrecisionMode; } }
 
         /// <summary>
         /// 构造函数 多线程处理逻辑
         /// </summary>
-        private TimeFlow(ITimeUpdate timeUpdate) : base(timeUpdate) { }
+        private TimeFlow(ITimeUpdate timeUpdate, int fixedTime) : base(timeUpdate, fixedTime) { }
 
         /// <summary>
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="timeUpdate"></param>
+        /// <param name="fixedTime">修正时间</param>
         /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
-        private TimeFlow(ITimeUpdate timeUpdate, int tfIndex) : base(timeUpdate, tfIndex) { }
+        private TimeFlow(ITimeUpdate timeUpdate, int fixedTime, int tfIndex) : base(timeUpdate, fixedTime, tfIndex) { }
 
         /// <summary>
         /// 创建一个时间流
         /// </summary>
-        /// <param name="timeUpdate"></param>
-        /// <returns></returns>
-        public static TimeFlow Create(ITimeUpdate timeUpdate)
+        /// <param name="timeUpdate">更新回调接口</param>
+        /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
+        public static TimeFlow Create(ITimeUpdate timeUpdate, int period = 10)
         {
-            return new TimeFlow(timeUpdate);
+            return new TimeFlow(timeUpdate, period);
         }
 
         /// <summary>
         /// 创建一个同步时间流
+        /// <para>通过此函数创建的时间流将始终都处于一个线程运行</para>
         /// </summary>
-        /// <param name="timeUpdate"></param>
-        /// <returns></returns>
-        public static TimeFlow CreateSync(ITimeUpdate timeUpdate)
+        /// <param name="timeUpdate">更新回调接口</param>
+        /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
+        public static TimeFlow CreateSync(ITimeUpdate timeUpdate, int period = 10)
         {
-            return new TimeFlow(timeUpdate, 2);
+            return new TimeFlow(timeUpdate, period, 2);
         }
 
         /// <summary>
@@ -73,6 +73,19 @@
         public void Pause()
         {
             SetTimeFlowPauseES(true);
+        }
+
+        /// <summary>
+        /// 设置高精度模式
+        /// <para>在某些情况的服务中需要毫秒级无误差支持可打开此项</para>
+        /// <para>在机器设备支持的情况下可支持毫秒无误差更新，具体视执行函数体内容而定</para>
+        /// <para>此模式会占用更多的CPU资源，低精度不占用CPU资源，但会存在毫秒误差，不过结果趋向是相同的</para>
+        /// <para>默认是低精度模式，可在任何时间变更精度模式，要注意精度模式是影响整个框架的所有更新模式</para>
+        /// </summary>
+        /// <param name="state">打开状态</param>
+        public static void SetHighPrecisionMode(bool state)
+        {
+            TimeFlowThread.isHighPrecisionMode = state;
         }
 
         /// <summary>
