@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['log_5fconsole_5foutput_833',['LOG_CONSOLE_OUTPUT',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a1e449f8d614814881170545da60b9390',1,'ES::Common::Log::Log']]],
-  ['log_5ffile_5fsuffix_834',['LOG_FILE_SUFFIX',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a00bd5dfb6642f4046c91052953ee1e29',1,'ES::Common::Log::Log']]],
-  ['log_5fpath_835',['LOG_PATH',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a23a4aed5506f97ee2669aeeecb27ef53',1,'ES::Common::Log::Log']]],
-  ['log_5fperiod_836',['LOG_PERIOD',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a79915fbb9517c569e7e4c71f27429b51',1,'ES::Common::Log::Log']]],
-  ['log_5funit_5ffile_5fmax_5fsize_837',['LOG_UNIT_FILE_MAX_SIZE',['../class_e_s_1_1_common_1_1_log_1_1_log.html#af403a447f167bc715fad6aa4ed6a0626',1,'ES::Common::Log::Log']]]
+  ['kcpmode_851',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['kcpwinsize_852',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
 ];

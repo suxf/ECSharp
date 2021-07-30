@@ -129,7 +129,7 @@ namespace ES.Common.Utils
         /// <returns></returns>
         public static string GenerateGuid(bool hasLine = false)
         {
-            if (hasLine)  return Guid.NewGuid().ToString();
+            if (hasLine) return Guid.NewGuid().ToString();
             else return Guid.NewGuid().ToString("N");
         }
     }

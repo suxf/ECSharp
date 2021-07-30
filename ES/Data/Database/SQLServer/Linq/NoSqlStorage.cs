@@ -28,8 +28,8 @@ namespace ES.Data.Database.SQLServer.Linq
         private readonly ConcurrentQueue<T> keyUpdateQueue = new ConcurrentQueue<T>();
         private readonly ConcurrentQueue<T> keyInsertQueue = new ConcurrentQueue<T>();
         private readonly ConcurrentQueue<T> keyDeleteQueue = new ConcurrentQueue<T>();
-        
-        private readonly BaseTimeFlow timeFlow; 
+
+        private readonly BaseTimeFlow timeFlow;
 
         /// <summary>
         /// 创建一个非关系型数据存储类

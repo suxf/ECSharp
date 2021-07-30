@@ -17,7 +17,7 @@ namespace ES.Common.Time
         /// 获取单例对象
         /// </summary>
         internal static TimeFlowManager Instance { get { if (instance == null) instance = new TimeFlowManager(); return instance; } }
-       
+
         /// <summary>
         /// 时间流控制线程 核心线程
         /// </summary>

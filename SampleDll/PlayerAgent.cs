@@ -34,7 +34,7 @@ namespace SampleDll
         public void Update(int deltaTime)
         {
             if (count % 1000 == 0) Console.WriteLine($"player count:{self.count++},copyCount:{count}");
-            count += TimeFlow.period;
+            count += deltaTime;
         }
 
         public void UpdateEnd()

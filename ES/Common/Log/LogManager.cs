@@ -117,7 +117,34 @@ namespace ES.Common.Log
                     if (!string.IsNullOrEmpty(log.className)) sb.AppendFormat(" {0} ", log.className);
                     if (!string.IsNullOrEmpty(log.methodName)) sb.AppendFormat(" {0} ", log.methodName);
                     sb.AppendFormat(":{0}", log.data);
-                    if (Log.LOG_CONSOLE_OUTPUT) Console.WriteLine(sb.ToString());
+                    if (Log.LOG_CONSOLE_OUTPUT)
+                    {
+                        switch (log.type)
+                        {
+                            case "Info":
+                                Console.ForegroundColor = Log.FOREGROUND_INFO_COLOR;
+                                Console.BackgroundColor = Log.BACKGROUND_INFO_COLOR;
+                                break;
+                            case "Debug":
+                                Console.ForegroundColor = Log.FOREGROUND_DEBUG_COLOR;
+                                Console.BackgroundColor = Log.BACKGROUND_DEBUG_COLOR;
+                                break;
+                            case "Warn":
+                                Console.ForegroundColor = Log.FOREGROUND_WARN_COLOR;
+                                Console.BackgroundColor = Log.BACKGROUND_WARN_COLOR;
+                                break;
+                            case "Error":
+                                Console.ForegroundColor = Log.FOREGROUND_ERROR_COLOR;
+                                Console.BackgroundColor = Log.BACKGROUND_ERROR_COLOR;
+                                break;
+                            case "Exception":
+                                Console.ForegroundColor = Log.FOREGROUND_EXCEPTION_COLOR;
+                                Console.BackgroundColor = Log.BACKGROUND_EXCEPTION_COLOR;
+                                break;
+                        }
+                        Console.WriteLine(sb.ToString());
+                        Console.ResetColor();
+                    }
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());
                 }
             }

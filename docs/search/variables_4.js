@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['headers_823',['headers',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#a04b2d25db68f3dd690a1df0d8510dabb',1,'ES::Network::Http::HttpHeader']]],
-  ['heartcheckperiod_824',['HeartCheckPeriod',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a1720ef4c470cf1a8e59fdbb9d97e0eac',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['heartsendperiod_825',['HeartSendPeriod',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a21f55b180213b744b83fac550b3fb4f9',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['hearttimeout_826',['HeartTimeOut',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a2f30de3558de195aa3deb3a02569758d',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
+  ['foreground_5fdebug_5fcolor_838',['FOREGROUND_DEBUG_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#afffa9940272c82bba7ecc61aefcacf19',1,'ES::Common::Log::Log']]],
+  ['foreground_5ferror_5fcolor_839',['FOREGROUND_ERROR_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a362cfa549c02062e961a052fff7deaad',1,'ES::Common::Log::Log']]],
+  ['foreground_5fexception_5fcolor_840',['FOREGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#aa71ba98566c82fc0b56941b82aea2f0d',1,'ES::Common::Log::Log']]],
+  ['foreground_5finfo_5fcolor_841',['FOREGROUND_INFO_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#abfc293b8e4defb3a174163438e763341',1,'ES::Common::Log::Log']]],
+  ['foreground_5fwarn_5fcolor_842',['FOREGROUND_WARN_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#abb487ea87edcd7046552586791eec044',1,'ES::Common::Log::Log']]]
 ];

@@ -39,7 +39,7 @@ namespace ES.Hotfix
         /// </summary>
         public static T AddOrGetObject<T>(string key, Func<T> action) where T : class
         {
-            if(!objects.TryGetValue(key, out var value))
+            if (!objects.TryGetValue(key, out var value))
             {
                 var obj = action.Invoke();
                 objects.TryAdd(key, obj);
@@ -66,7 +66,7 @@ namespace ES.Hotfix
         {
             if (!structs.TryGetValue(key, out var value))
             {
-                var obj = new StructValue{ Value = defaultValue };
+                var obj = new StructValue { Value = defaultValue };
                 structs.TryAdd(key, obj);
                 return obj;
             }

@@ -860,7 +860,7 @@ namespace ES.Data.Database.Redis
             ISubscriber sub = multiplexer.GetSubscriber();
             sub.Subscribe(subChannel, (channel, message) =>
             {
-                if(handler != null) handler.Invoke(channel, message);
+                if (handler != null) handler.Invoke(channel, message);
             });
         }
 

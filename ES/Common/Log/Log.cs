@@ -34,6 +34,46 @@
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
         /// </summary>
         public static string LOG_PATH = "./log/";
+        /// <summary>
+        /// 信息性 日志字体颜色
+        /// </summary>
+        public static System.ConsoleColor FOREGROUND_INFO_COLOR = System.ConsoleColor.Green;
+        /// <summary>
+        /// 调试性 日志字体颜色
+        /// </summary>
+        public static System.ConsoleColor FOREGROUND_DEBUG_COLOR = System.ConsoleColor.Blue;
+        /// <summary>
+        /// 警告性 日志字体颜色
+        /// </summary>
+        public static System.ConsoleColor FOREGROUND_WARN_COLOR = System.ConsoleColor.Yellow;
+        /// <summary>
+        /// 错误性 日志字体颜色
+        /// </summary>
+        public static System.ConsoleColor FOREGROUND_ERROR_COLOR = System.ConsoleColor.Red;
+        /// <summary>
+        /// 异常 日志字体颜色
+        /// </summary>
+        public static System.ConsoleColor FOREGROUND_EXCEPTION_COLOR = System.ConsoleColor.DarkYellow;
+        /// <summary>
+        /// 信息性 日志字体背景颜色
+        /// </summary>
+        public static System.ConsoleColor BACKGROUND_INFO_COLOR = System.ConsoleColor.Black;
+        /// <summary>
+        /// 调试性 日志字体背景颜色
+        /// </summary>
+        public static System.ConsoleColor BACKGROUND_DEBUG_COLOR = System.ConsoleColor.Black;
+        /// <summary>
+        /// 警告性 日志字体背景颜色
+        /// </summary>
+        public static System.ConsoleColor BACKGROUND_WARN_COLOR = System.ConsoleColor.Black;
+        /// <summary>
+        /// 错误性 日志字体背景颜色
+        /// </summary>
+        public static System.ConsoleColor BACKGROUND_ERROR_COLOR = System.ConsoleColor.Black;
+        /// <summary>
+        /// 异常 日志字体背景颜色
+        /// </summary>
+        public static System.ConsoleColor BACKGROUND_EXCEPTION_COLOR = System.ConsoleColor.DarkRed;
 
         /// <summary>
         /// 信息性 日志

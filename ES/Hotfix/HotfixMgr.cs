@@ -55,8 +55,8 @@ namespace ES.Hotfix
         private HotfixMgr()
         {
             agentTypeMap = new ConcurrentDictionary<Type, Type>();
-            tf = BaseTimeFlow.CreateTimeFlow(this, 0); 
-            tf.StartTimeFlowES(); 
+            tf = BaseTimeFlow.CreateTimeFlow(this, 0);
+            tf.StartTimeFlowES();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace ES.Hotfix
                                 for (int j = interfaceTypes.Length - 1; j >= 0; j--)
                                 {
                                     var temp = interfaceTypes[j];
-                                    if(temp.IsAssignableFrom(type) && temp.IsGenericType)
+                                    if (temp.IsAssignableFrom(type) && temp.IsGenericType)
                                     {
                                         interfaceType = temp;
                                         break;
@@ -129,14 +129,16 @@ namespace ES.Hotfix
                             // 原子锁
                             Interlocked.Exchange(ref _agent, Convert.ChangeType(typeInstance, typeInfo));
                             // 处理代理索引
-                            lock (agentRefs) { 
-                                for (int i = agentRefs.Count - 1; i >= 0; i--) { 
-                                    if (agentRefs[i].TryGetTarget(out var agentRef)) 
+                            lock (agentRefs)
+                            {
+                                for (int i = agentRefs.Count - 1; i >= 0; i--)
+                                {
+                                    if (agentRefs[i].TryGetTarget(out var agentRef))
                                     {
                                         agentRef.isCreated = false;
                                         if (agentRef.isAutoCreate) agentRef.CreateAgent();
                                         else agentRef._agent = null;
-                                    } 
+                                    }
                                     else agentRefs.RemoveAt(i);
                                 }
                             }
@@ -213,31 +215,31 @@ namespace ES.Hotfix
                 {
                     var currentAgentRefCount = agentRefs.Count;
                     // 特殊情况是当前没有引用按照正常10s一次的周期检测
-                    if (currentAgentRefCount <= 0) 
-                    { 
-                        lastAgentRefCount = currentAgentRefCount; 
-                        periodTime = 10000; 
-                        return; 
+                    if (currentAgentRefCount <= 0)
+                    {
+                        lastAgentRefCount = currentAgentRefCount;
+                        periodTime = 10000;
+                        return;
                     }
                     var ratio = lastAgentRefCount * 1.0f / currentAgentRefCount;
                     // 比例增加第一次 周期1s
-                    if (ratio == 0) periodTime          = 1000;
+                    if (ratio == 0) periodTime = 1000;
                     // 缩减10倍 周期60s
-                    else if (ratio >= 10) periodTime    = 60000;
+                    else if (ratio >= 10) periodTime = 60000;
                     // 缩减5倍 周期30s
-                    else if (ratio >= 5) periodTime     = 30000;
+                    else if (ratio >= 5) periodTime = 30000;
                     // 缩减2倍 周期15s
-                    else if (ratio >= 2) periodTime     = 15000;
+                    else if (ratio >= 2) periodTime = 15000;
                     // 前后不变 周期12s
-                    else if (ratio >= 1) periodTime     = 12000;
+                    else if (ratio >= 1) periodTime = 12000;
                     // 增速1.25倍 周期10s
-                    else if (ratio >= 0.8) periodTime   = 10000;
+                    else if (ratio >= 0.8) periodTime = 10000;
                     // 增速2倍 周期8s
-                    else if (ratio >= 0.5) periodTime   = 8000;
+                    else if (ratio >= 0.5) periodTime = 8000;
                     // 增速5倍 周期4s
-                    else if (ratio >= 0.2) periodTime   = 4000;
+                    else if (ratio >= 0.2) periodTime = 4000;
                     // 增速10倍 周期1s
-                    else if (ratio >= 0.1) periodTime   = 1000;
+                    else if (ratio >= 0.1) periodTime = 1000;
                     // 其他情况也是1s
                     else periodTime = 1000;
                     // 记录最后一次数值
@@ -263,7 +265,7 @@ namespace ES.Hotfix
         /// <summary>
         /// 程序集装载器
         /// </summary>
-        private class AssemblyLoader 
+        private class AssemblyLoader
         {
             private AssemblyProtectContext context;
 

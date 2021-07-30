@@ -86,7 +86,7 @@ namespace ES.Network.Http.Linq
 
                 return retString;
             }
-            catch 
+            catch
             {
                 if (depthNum <= 0) throw;
                 else return HttpPost(url, postDataStr, depthNum - 1);

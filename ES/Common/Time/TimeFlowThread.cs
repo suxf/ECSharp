@@ -85,7 +85,7 @@ namespace ES.Common.Time
                     // 因为已经过时所以此处也取消此操作 后续版本可能移除此处内容
                     // try { thread.Abort(); } catch { }
                     // 创建新的时间线
-                    if(temp != null)
+                    if (temp != null)
                     {
                         var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
                         for (int i = 0, len = temp.Length; i < len; i++)
@@ -214,7 +214,7 @@ namespace ES.Common.Time
                 }
 
                 // 精度调整
-                if(isHighPrecisionMode) Thread.Yield();
+                if (isHighPrecisionMode) Thread.Yield();
                 else Thread.Sleep(1);
                 // currentPeriod = timeFixHelper.End();
             }

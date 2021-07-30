@@ -276,7 +276,7 @@ namespace ES.Network.HyperSocket
                     // 先加入验证
                     RemoteHyperSocket remote = new RemoteHyperSocket(sessionId, this, config);
                     SetSocketAtIndex(sessionId, remote);
-                    
+
                     byte[] data = new byte[8];
                     data[0] = (byte)((UdpPort >> 8) & 0xFF);
                     data[1] = (byte)((UdpPort) & 0xFF);

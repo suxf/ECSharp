@@ -306,7 +306,7 @@ Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
 Log.LOG_PATH = "./log/";
 ```
 ### 9.热更功能
-是的，没错！这个功能就是支持服务器运行中可以进行逻辑更新的功能。当然，众所周知这种非解释性脚本的热更实现，在各个语言上都是通过运行时反射实现的，所以一旦和反射搭上边的功能都会逊色于原生直接调用。但是！！！经过多次测试，在百万次的简单循环下，初次调用可能会存在总量100毫秒的延迟；随之以后的调用则影响很小，循环总量在30毫秒左右，偏差基本可以忽略不计。
+支持服务器运行中可以进行逻辑更新的功能。当然，热更的实现，在各个语言上都是通过运行时反射实现的，所以一旦利用反射原理的功能都会逊色于原生直接调用。但是经过多次测试，在百万次的简单循环下，初次调用可能会存在总量100毫秒的延迟；随之以后的调用则影响很小，循环总量在30毫秒左右，偏差基本可以忽略不计。
 
 ```csharp
 /** 主工程项目 **/
@@ -365,8 +365,19 @@ public class Main
     readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
     public void Test()
     {
-        player.GetAgent<PlayerAgent>().Test();
+        // 可以利用拓展特性来实现不每次都书写泛型实现获取代理
+        // player.GetAgent<PlayerAgent>().Test();
+        player.GetAgent().Test();
     }
+}
+
+// 如果觉得每次调用都需要使用GetAgent的泛型来处理
+// 那么可以针对需要大量调用的代理，在热更层写一个静态拓展来实现不用再写代理泛型的重复工作
+public static class AgentRegister 
+{
+    // PlayerAgent代理
+    // 这样只需要在这里写一次，以后就可以直接借助GetAgent()函数直接使用了
+    public static PlayerAgent GetAgent(this Player self) => self.GetAgent<PlayerAgent>();
 }
 
 // 如果需要时间流需要在热更层继承和使用
@@ -390,7 +401,7 @@ public class PlayerAgent : Agent<Player>, ITimeUpdate
     public void Update(int deltaTime)
     {
         if (count % 1000 == 0) Console.WriteLine($"player count:{self.count++},copyCount:{count}");
-        count += TimeFlow.period;
+        count += deltaTime;
     }
 
     public void UpdateEnd()
@@ -411,7 +422,7 @@ public class Player1Agent : Agent<Player1>, ITimeUpdate
     public void Update(int deltaTime)
     {
         if (copyCount % 1000 == 0) Console.WriteLine($"player1 count:{self.count++},copyCount:{copyCount}");
-        copyCount += TimeFlow.period;
+        copyCount += deltaTime;
     }
 
     public void UpdateEnd()

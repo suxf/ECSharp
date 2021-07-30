@@ -159,7 +159,7 @@ namespace ES.Network.Http
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     httpInvoke.HttpException(null, ex);
                 }

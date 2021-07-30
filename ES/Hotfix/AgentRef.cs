@@ -55,7 +55,7 @@ namespace ES.Hotfix
         /// </summary>
         internal void CreateAsyncAgent()
         {
-            if(isAutoCreate) Task.Run(CreateAgent);
+            if (isAutoCreate) Task.Run(CreateAgent);
         }
 
         /// <summary>

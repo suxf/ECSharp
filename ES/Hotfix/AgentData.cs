@@ -54,7 +54,7 @@
         /// </summary>
         public void CreateAgent()
         {
-            if(_ref.isAutoCreate) _ref.CreateAgent();
+            if (_ref.isAutoCreate) _ref.CreateAgent();
         }
 
         /// <summary>
