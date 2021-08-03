@@ -20,10 +20,16 @@ namespace Sample
             // 本类设计初只能读取两层 具体结构可以参照样例
             // 此处读取第一层配置数据
             string test = AppConfig.Read("test");
-            Console.WriteLine($"test{test}");
+            int test1 = AppConfig.Read<int>("test1");
+            bool test2 = AppConfig.Read<bool>("test2");
+            Console.WriteLine($"test->{test}");
+            Console.WriteLine($"test1->{test1}");
+            Console.WriteLine($"test2->{test2}");
             // 此处读取第二层配置数据
-            string test2 = AppConfig.Read("testgroup", "test2");
-            Console.WriteLine($"test2{test2}");
+            string tests2 = AppConfig.Read("testgroup", "test2");
+            float tests3 = AppConfig.Read<float>("testgroup", "test3");
+            Console.WriteLine($"test2->{tests2}");
+            Console.WriteLine($"test3->{tests3}");
 
             // 获取有效字节
             // 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现

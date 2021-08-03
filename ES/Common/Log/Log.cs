@@ -79,48 +79,36 @@
         /// 信息性 日志
         /// </summary>
         /// <param name="log">日志数据</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        public static void Info(string log, string className = null, string methodName = null, string spaceName = null)
+        public static void Info(string log)
         {
-            WriteLine("Info", log, className, methodName, spaceName);
+            WriteLine("INFO", log);
         }
 
         /// <summary>
         /// 调试性 日志
         /// </summary>
         /// <param name="log">日志数据</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        public static void Debug(string log, string className = null, string methodName = null, string spaceName = null)
+        public static void Debug(string log)
         {
-            WriteLine("Debug", log, className, methodName, spaceName);
+            WriteLine("DEBUG", log);
         }
 
         /// <summary>
         /// 警告性 日志
         /// </summary>
         /// <param name="log">日志数据</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        public static void Warn(string log, string className = null, string methodName = null, string spaceName = null)
+        public static void Warn(string log)
         {
-            WriteLine("Warn", log, className, methodName, spaceName);
+            WriteLine("WARN", log);
         }
 
         /// <summary>
         /// 错误性 日志
         /// </summary>
         /// <param name="log">日志数据</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        public static void Error(string log, string className = null, string methodName = null, string spaceName = null)
+        public static void Error(string log)
         {
-            WriteLine("Error", log, className, methodName, spaceName);
+            WriteLine("ERROR", log);
         }
 
         /// <summary>
@@ -128,13 +116,10 @@
         /// </summary>
         /// <param name="ex">异常对象</param>
         /// <param name="log">日志内容</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        public static void Exception(System.Exception ex, string log = "", string className = null, string methodName = null, string spaceName = null)
+        public static void Exception(System.Exception ex, string log = "")
         {
-            string data = string.Format("Message:{0}\r\n   ExceptionData:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", ex.Message, log, ex.TargetSite, ex.StackTrace);
-            WriteLine("Exception", data, className, methodName, spaceName);
+            string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", log, ex.Message, ex.TargetSite, ex.StackTrace);
+            WriteLine("FATAL", data);
         }
 
         /// <summary>
@@ -142,17 +127,11 @@
         /// </summary>
         /// <param name="type">日志类型</param>
         /// <param name="log">日志数据</param>
-        /// <param name="className">类型</param>
-        /// <param name="methodName">方法</param>
-        /// <param name="spaceName">空间命名</param>
-        private static void WriteLine(string type, string log, string className, string methodName, string spaceName)
+        private static void WriteLine(string type, string log)
         {
             LogInfo logInfo = new LogInfo();
             logInfo.type = type;
             logInfo.data = log;
-            logInfo.className = className;
-            logInfo.methodName = methodName;
-            logInfo.spaceName = spaceName;
             // 压入队列
             LogManager.Instance.logInfos.Enqueue(logInfo);
         }

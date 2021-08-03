@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 
@@ -55,6 +56,18 @@ namespace ES.Common.Utils
         }
 
         /// <summary>
+        /// 读取参数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static T Read<T>(string name)
+        {
+            if (doc == null && !Reload()) return default;
+            return (T)Convert.ChangeType(root.Element(name).Value, typeof(T));
+        }
+
+        /// <summary>
         /// 读取参数 可以往下读一级
         /// </summary>
         /// <param name="group"></param>
@@ -64,6 +77,19 @@ namespace ES.Common.Utils
         {
             if (doc == null && !Reload()) return null;
             return root.Element(group).Element(name).Value;
+        }
+
+        /// <summary>
+        /// 读取参数 可以往下读一级
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="group"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static T Read<T>(string group, string name)
+        {
+            if (doc == null && !Reload()) return default;
+            return (T)Convert.ChangeType(root.Element(group).Element(name).Value, typeof(T));
         }
     }
 }

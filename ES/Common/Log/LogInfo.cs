@@ -16,18 +16,6 @@ namespace ES.Common.Log
         /// </summary>
         public DateTime time = DateTime.Now;
         /// <summary>
-        /// 日志捕捉空间命名
-        /// </summary>
-        public string spaceName;
-        /// <summary>
-        /// 日志发生对象类名
-        /// </summary>
-        public string className;
-        /// <summary>
-        /// 日志发生函数
-        /// </summary>
-        public string methodName;
-        /// <summary>
         /// 日志内容
         /// </summary>
         public string data;

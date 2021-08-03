@@ -125,6 +125,7 @@ namespace ES.Data.Database.SQLServer
                 catch (Exception ex)
                 {
                     if (listener != null) listener.CheckConnectedException(this, ex);
+                    else throw;
                     return false;
                 }
                 return conn.State == ConnectionState.Open;
@@ -196,6 +197,7 @@ namespace ES.Data.Database.SQLServer
                 result.ReturnValue = -1;
                 result.IsCompleted = false;
                 if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
+                else throw;
             }
             return result;
         }
@@ -230,6 +232,7 @@ namespace ES.Data.Database.SQLServer
             catch (Exception ex)
             {
                 if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
+                else throw;
             }
             return -1;
         }
@@ -282,6 +285,7 @@ namespace ES.Data.Database.SQLServer
             {
                 result.EffectNum = -1;
                 if (listener != null) listener.CommandSQLException(this, sql, ex);
+                else throw;
             }
             return result;
         }
@@ -317,6 +321,7 @@ namespace ES.Data.Database.SQLServer
             catch (Exception ex)
             {
                 if (listener != null) listener.CommandSQLException(this, sql, ex);
+                else throw;
                 return -1;
             }
         }

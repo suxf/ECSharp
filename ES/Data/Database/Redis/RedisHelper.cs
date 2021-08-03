@@ -33,8 +33,22 @@ namespace ES.Data.Database.Redis
         public RedisHelper(string readWriteHosts, int dbIndex = 0, string prefixKey = null)
         {
             if (prefixKey != null) SetPrefixKey(prefixKey);
-            this.DbIndex = dbIndex;
+            DbIndex = dbIndex;
             multiplexer = ConnectionMultiplexer.Connect(readWriteHosts);
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="address">redis 连接地址 ip:port</param>
+        /// <param name="password">redis 连接密码</param>
+        /// <param name="dbIndex">数据库索引, 默认 索引位为0</param>
+        /// <param name="prefixKey">前缀键</param>
+        public RedisHelper(string address, string password, int dbIndex = 0, string prefixKey = null)
+        {
+            if (prefixKey != null) SetPrefixKey(prefixKey);
+            DbIndex = dbIndex;
+            multiplexer = ConnectionMultiplexer.Connect($"{address},password={password}");
         }
 
         /// <summary>
@@ -108,6 +122,23 @@ namespace ES.Data.Database.Redis
         }
 
         /// <summary>
+        /// 获取单个key的值，如果没有则写入并返回默认值
+        /// </summary>
+        /// <param name="key">Redis Key</param>
+        /// <param name="defaultValue">Redis Key</param>
+        /// <returns></returns>
+        public string StringGet(string key, string defaultValue)
+        {
+            key = AddSysCustomKey(key);
+            return Do(delegate (IDatabase db)
+            {
+                var val = db.StringGet(key);
+                if (val.IsNull) return defaultValue;
+                else return db.StringGet(key).ToString();
+            });
+        }
+
+        /// <summary>
         /// 获取多个Key
         /// </summary>
         /// <param name="listKey">Redis Key集合</param>
@@ -128,6 +159,24 @@ namespace ES.Data.Database.Redis
         {
             key = AddSysCustomKey(key);
             return Do(db => ConvertObj<T>(db.StringGet(key)));
+        }
+
+        /// <summary>
+        /// 获取一个key的对象，如果没有则写入并返回默认值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public T Get<T>(string key, T defaultValue)
+        {
+            key = AddSysCustomKey(key);
+            return Do(delegate (IDatabase db)
+            {
+                var val = db.StringGet(key);
+                if (val.IsNull) return defaultValue;
+                else return ConvertObj<T>(val);
+            });
         }
 
         /// <summary>
@@ -191,7 +240,7 @@ namespace ES.Data.Database.Redis
         /// <param name="obj"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public async Task<bool> StringSetAsync<T>(string key, T obj, TimeSpan? expiry = default)
+        public async Task<bool> SetAsync<T>(string key, T obj, TimeSpan? expiry = default)
         {
             key = AddSysCustomKey(key);
             string json = ConvertJson(obj);
@@ -226,7 +275,7 @@ namespace ES.Data.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<T> StringGetAsync<T>(string key)
+        public async Task<T> GetAsync<T>(string key)
         {
             key = AddSysCustomKey(key);
             string result = await Do(db => db.StringGetAsync(key));

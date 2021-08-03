@@ -3,7 +3,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace ES.Common.Log
 {
@@ -111,41 +110,36 @@ namespace ES.Common.Log
                 while (logInfos.TryDequeue(out LogInfo log))
                 {
                     if (log.data == null) continue;
-                    StringBuilder sb = new StringBuilder();
-                    sb.AppendFormat("{0} {1}", log.time, log.type);
-                    if (!string.IsNullOrEmpty(log.spaceName)) sb.AppendFormat(" {0} ", log.spaceName);
-                    if (!string.IsNullOrEmpty(log.className)) sb.AppendFormat(" {0} ", log.className);
-                    if (!string.IsNullOrEmpty(log.methodName)) sb.AppendFormat(" {0} ", log.methodName);
-                    sb.AppendFormat(":{0}", log.data);
+                    var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length==4?" ":"")}{log.data}";
                     if (Log.LOG_CONSOLE_OUTPUT)
                     {
                         switch (log.type)
                         {
-                            case "Info":
+                            case "INFO":
                                 Console.ForegroundColor = Log.FOREGROUND_INFO_COLOR;
                                 Console.BackgroundColor = Log.BACKGROUND_INFO_COLOR;
                                 break;
-                            case "Debug":
+                            case "DEBUG":
                                 Console.ForegroundColor = Log.FOREGROUND_DEBUG_COLOR;
                                 Console.BackgroundColor = Log.BACKGROUND_DEBUG_COLOR;
                                 break;
-                            case "Warn":
+                            case "WARN":
                                 Console.ForegroundColor = Log.FOREGROUND_WARN_COLOR;
                                 Console.BackgroundColor = Log.BACKGROUND_WARN_COLOR;
                                 break;
-                            case "Error":
+                            case "ERROR":
                                 Console.ForegroundColor = Log.FOREGROUND_ERROR_COLOR;
                                 Console.BackgroundColor = Log.BACKGROUND_ERROR_COLOR;
                                 break;
-                            case "Exception":
+                            case "FATAL":
                                 Console.ForegroundColor = Log.FOREGROUND_EXCEPTION_COLOR;
                                 Console.BackgroundColor = Log.BACKGROUND_EXCEPTION_COLOR;
                                 break;
                         }
-                        Console.WriteLine(sb.ToString());
+                        Console.WriteLine(logStr);
                         Console.ResetColor();
                     }
-                    using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(sb.ToString());
+                    using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(logStr);
                 }
             }
         }

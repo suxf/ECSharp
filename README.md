@@ -233,7 +233,7 @@ class TimeDemo : ITimeUpdate
 }
 ```
 ### 5.Sqlserver数据库助手
-Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DbSqlServer.cs)
+Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs)
 
 助手目前有以下几种功能：
 - 数据库连接：简化连接操作步骤
@@ -440,8 +440,11 @@ public class Player1Agent : Agent<Player1>, ITimeUpdate
 // 本类设计初只能读取两层 具体结构可以参照样例
 // 此处读取第一层配置数据
 string test = AppConfig.Read("test");
+int test1 = AppConfig.Read<int>("test1");
+bool test2 = AppConfig.Read<bool>("test2");
 // 此处读取第二层配置数据
 string test2 = AppConfig.Read("testgroup", "test2");
+float tests3 = AppConfig.Read<float>("testgroup", "test3");
 
 // 获取有效字节
 // 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现

@@ -62,9 +62,10 @@
         /// <summary>
         /// 开始时间流
         /// </summary>
-        public void Start()
+        public TimeFlow Start()
         {
             StartTimeFlowES();
+            return this;
         }
 
         /// <summary>

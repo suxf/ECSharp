@@ -13,7 +13,7 @@ namespace Sample
         {
             // new Test_DBSqlServer();
             // new Test_ESBuffer().test();
-            // new Test_Log();
+            new Test_Log();
             // new Test_Redis();
             // new Test_EasyStorage();
             // new Test_Time();
@@ -21,8 +21,9 @@ namespace Sample
             // new Test_SweetStream();
             // new Test_HyperSocket();
             // new Test_SimpleChatRoom();
-            new Test_Hotfix();
+            // new Test_Hotfix();
             // new Test_Http();
+            // new Test_Utils();
             
             Console.ReadLine();
         }
