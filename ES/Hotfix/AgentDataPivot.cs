@@ -16,7 +16,7 @@ namespace ES.Hotfix
         /// <summary>
         /// 值变量
         /// </summary>
-        private static readonly ConcurrentDictionary<string, StructValue> structs = new ConcurrentDictionary<string, StructValue>();
+        private static readonly ConcurrentDictionary<string, BaseStructValue> structs = new ConcurrentDictionary<string, BaseStructValue>();
 
         /// <summary>
         /// 增加或获取对象
@@ -62,15 +62,15 @@ namespace ES.Hotfix
         /// <summary>
         /// 增加或获取结构值
         /// </summary>
-        public static StructValue AddOrGetStruct<T>(string key, T defaultValue = default) where T : struct
+        public static StructValue<T> AddOrGetStruct<T>(string key, T defaultValue = default) where T : struct
         {
             if (!structs.TryGetValue(key, out var value))
             {
-                var obj = new StructValue { Value = defaultValue };
+                var obj = new StructValue<T> { Value = defaultValue };
                 structs.TryAdd(key, obj);
                 return obj;
             }
-            return value;
+            return value as StructValue<T>;
         }
 
         /// <summary>

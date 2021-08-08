@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.11</span>
+   &#160;<span id="projectnumber">1.13.14</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -84,10 +84,12 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_hotfix_1_1_abstract_agen
 
 <div class="header">
   <div class="summary">
+<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#properties">属性</a> &#124;
 <a href="class_e_s_1_1_hotfix_1_1_abstract_agent-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
-<div class="title">ES.Hotfix.AbstractAgent类 参考</div>  </div>
+<div class="title">ES.Hotfix.AbstractAgent类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -103,21 +105,35 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_hotfix_1_1_abstract_agen
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:aaf8cf01686db6829a9c7791adf1c7446"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#aaf8cf01686db6829a9c7791adf1c7446">Initialize</a> ()</td></tr>
+<tr class="memdesc:aaf8cf01686db6829a9c7791adf1c7446"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化函数  <a href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#aaf8cf01686db6829a9c7791adf1c7446">更多...</a><br /></td></tr>
+<tr class="separator:aaf8cf01686db6829a9c7791adf1c7446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:a790678c591957a15ed894f494e14b08f"><td class="memItemLeft" align="right" valign="top">dynamic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#a790678c591957a15ed894f494e14b08f">_self</a> =&gt; __self</td></tr>
-<tr class="memdesc:a790678c591957a15ed894f494e14b08f"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取代理数据动态类型  <a href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#a790678c591957a15ed894f494e14b08f">更多...</a><br /></td></tr>
-<tr class="separator:a790678c591957a15ed894f494e14b08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb6ca1959b50f18ba2497c1c18403b7"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#a5eb6ca1959b50f18ba2497c1c18403b7">_self</a> =&gt; __self</td></tr>
+<tr class="memdesc:a5eb6ca1959b50f18ba2497c1c18403b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取代理数据动态类型  <a href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#a5eb6ca1959b50f18ba2497c1c18403b7">更多...</a><br /></td></tr>
+<tr class="separator:a5eb6ca1959b50f18ba2497c1c18403b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:afdc9c2185a215c2b0719ed01a79a1476"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#afdc9c2185a215c2b0719ed01a79a1476">IsFirstCreate</a><code> [get]</code></td></tr>
+<tr class="memdesc:afdc9c2185a215c2b0719ed01a79a1476"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否是第一次代理创建标记  <a href="class_e_s_1_1_hotfix_1_1_abstract_agent.html#afdc9c2185a215c2b0719ed01a79a1476">更多...</a><br /></td></tr>
+<tr class="separator:afdc9c2185a215c2b0719ed01a79a1476"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>热更新抽象代理 </p>
 <p>普通代理类型请使用Agent类继承</p>
 <p>代理对象为抽象类时使用此类进行继承</p>
+<p>不要在代理类使用构造函数，请使用Initialize来初始化一些内容</p>
 <p>本类不可以直接使用self对象，需要使用_self函数获取</p>
 <p>使用抽象类还需要继承IAgent接口才可以使用完整功能</p>
-</div><h2 class="groupheader">类成员变量说明</h2>
-<a id="a790678c591957a15ed894f494e14b08f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a790678c591957a15ed894f494e14b08f">&#9670;&nbsp;</a></span>_self</h2>
+<p>其它功能参考Agent类</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="aaf8cf01686db6829a9c7791adf1c7446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8cf01686db6829a9c7791adf1c7446">&#9670;&nbsp;</a></span>Initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -126,7 +142,40 @@ Protected 属性</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">dynamic ES.Hotfix.AbstractAgent._self =&gt; __self</td>
+          <td class="memname">abstract void ES.Hotfix.AbstractAgent.Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化函数 </p>
+<p>代理创建后会主动调用此函数</p>
+<p>不要对代理使用构造函数</p>
+<p>可以通过 IsFirstCreate 来检测代理是否第一次创建</p>
+<p>需要注意的是此函数不会主动执行父类的 Initialize 函数</p>
+<p>初始化父类函数需要在每个子类 Initialize 函数 首行加入 base.Initialize(); </p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5eb6ca1959b50f18ba2497c1c18403b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb6ca1959b50f18ba2497c1c18403b7">&#9670;&nbsp;</a></span>_self</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object ES.Hotfix.AbstractAgent._self =&gt; __self</td>
         </tr>
       </table>
   </td>
@@ -138,6 +187,31 @@ Protected 属性</h2></td></tr>
 
 <p>获取代理数据动态类型 </p>
 <p>一般配合IAgent接口使用</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="afdc9c2185a215c2b0719ed01a79a1476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdc9c2185a215c2b0719ed01a79a1476">&#9670;&nbsp;</a></span>IsFirstCreate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Hotfix.AbstractAgent.IsFirstCreate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>是否是第一次代理创建标记 </p>
 
 </div>
 </div>

@@ -1,5 +1,7 @@
 ﻿using ES.Hotfix;
 using Sample;
+using System;
+using System.Diagnostics;
 
 namespace SampleDll
 {
@@ -8,15 +10,43 @@ namespace SampleDll
     /// </summary>
     public class Main
     {
-        readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
-        public void Test()
+        static readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
+        static Player1 player1;
+
+        static StructValue<int> test_1 = AgentDataPivot.AddOrGetStruct("test_1", 0);
+
+        static B b;
+        static C c;
+        public static void Main_Test(string[] args)
         {
-            // 可以利用拓展特性来实现不每次都书写泛型实现代理
-            // player.GetAgent<PlayerAgent>().Test();
-            player.GetAgent().Test();
+            Console.WriteLine($"Input args:{args[0]}, test_1:{test_1.Value++}");
+
+            player1 = AgentDataPivot.AddOrGetObject<Player1>("player1");
+            b = new B();
+            c = new C();
+            Test2(b, c);
         }
 
-        public void Test2(A obj1, A obj2)
+        public static void Main_Test1(string[] args)
+        {
+            Stopwatch watch = new Stopwatch();
+            // 可以利用拓展特性来实现不每次都书写泛型实现代理
+            // player.GetAgent<PlayerAgent>().Test();
+            // player.GetAgent().Test();
+
+            watch.Reset();
+            watch.Start();
+            player.GetAgent().Test();
+            watch.Stop();
+            Console.WriteLine($"内部第一次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n");
+            watch.Reset();
+            watch.Start();
+            player.GetAgent().Test();
+            watch.Stop();
+            Console.WriteLine($"内部第二次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n\n");
+        }
+
+        public static void Test2(A obj1, A obj2)
         {
             obj1.GetAbstractAgent<A_Agent>().WriteHelloA();
             obj2.GetAbstractAgent<A_Agent>().WriteHelloA();

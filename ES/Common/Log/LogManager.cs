@@ -110,7 +110,7 @@ namespace ES.Common.Log
                 while (logInfos.TryDequeue(out LogInfo log))
                 {
                     if (log.data == null) continue;
-                    var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length==4?" ":"")}{log.data}";
+                    var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length == 4 ? " " : "")}{log.data}";
                     if (Log.LOG_CONSOLE_OUTPUT)
                     {
                         switch (log.type)

@@ -6,16 +6,21 @@ namespace Sample
 {
     class Test_Hotfix
     {
-        // 实际创建都需要先完成热更模块读取完成后执行
-        Player player = new Player();
-        Player1 player1;
-
-        B b;
-        C c;
-
         public Test_Hotfix()
         {
-            TestHotfix();
+            while (true)
+            {
+                // 普通测试
+                TestHotfix();
+                // 耗时测试
+                // ConsumeTime();
+
+                Console.WriteLine($"Is First Load:{HotfixMgr.IsFirstLoad}");
+
+                // 回车重载测试
+                Console.ReadLine();
+                Console.Clear();
+            }
         }
 
         /// <summary>
@@ -24,17 +29,7 @@ namespace Sample
         /// </summary>
         public void TestHotfix()
         {
-            while (true)
-            {
-                HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
-                HotfixMgr.Instance.Agent.Test();
-                b = new B();
-                c = new C();
-                HotfixMgr.Instance.Agent.Test2(b, c);
-                if (player1 == null) player1 = new Player1();
-                Console.ReadLine();
-                Console.Clear();
-            }
+            HotfixMgr.Load("SampleDll", "SampleDll.Main", new string[] { "Hello World" }, "Main_Test");
         }
 
         /// <summary>
@@ -43,37 +38,38 @@ namespace Sample
         /// </summary>
         public void ConsumeTime()
         {
-            HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
+            HotfixMgr.Load("SampleDll", "SampleDll.Main", null, "Main_Test1");
+            Player player = new Player();
             Stopwatch watch = new Stopwatch();
             /* 性能测试 */
             // 第一次直接调用
-            Console.WriteLine("直接调用开始~");
+            Console.WriteLine("第一次直接调用开始~");
             watch.Reset();
             watch.Start();
             player.Test();
             watch.Stop();
-            Console.WriteLine("直接调用耗时1:" + watch.ElapsedMilliseconds);
+            Console.WriteLine($"第一次直接调用耗时1:{watch.Elapsed.TotalMilliseconds}ms");
             // 第一次实测热更调用
             Console.WriteLine("\n\n热更调用开始~");
             watch.Reset();
             watch.Start();
-            HotfixMgr.Instance.Agent.Test();
+            player.GetDynamicAgent().Test();
             watch.Stop();
-            Console.WriteLine("热更层耗时1:" + watch.ElapsedMilliseconds);
+            Console.WriteLine($"第一次热更层耗时1:{watch.Elapsed.TotalMilliseconds}ms");
             // 第二次直接调用
-            Console.WriteLine("\n\n直接调用开始~");
+            Console.WriteLine("\n\n第二次直接调用开始~");
             watch.Reset();
             watch.Start();
             player.Test();
             watch.Stop();
-            Console.WriteLine("直接调用耗时2:" + watch.ElapsedMilliseconds);
+            Console.WriteLine($"第二次直接调用耗时2:{watch.Elapsed.TotalMilliseconds}ms");
             // 第二次实测热更调用
             Console.WriteLine("\n\n热更调用开始~");
             watch.Reset();
             watch.Start();
-            HotfixMgr.Instance.Agent.Test();
+            player.GetDynamicAgent().Test();
             watch.Stop();
-            Console.WriteLine("热更层耗时2:" + watch.ElapsedMilliseconds);
+            Console.WriteLine($"第二次热更层耗时2:{watch.Elapsed.TotalMilliseconds}ms");
         }
     }
 
@@ -82,21 +78,15 @@ namespace Sample
     /// 如果每次热更重载后不主动创建 则代理不会运作
     /// 也可以通过带参数构造函数来设定手动
     /// </summary>
-    [NotCreateAgent]
+    // [NotCreateAgent]
     public class Player : AgentData
     {
         public int count;
-
-        /// <summary>
-        /// 通过base(false)设置手动创建
-        /// 这样就不用通过 NotCreateAgent 特性来判断 二者选其一即可
-        /// </summary>
-        // internal Player() { }
        
         // 用于测试 实际上一般数据层不写逻辑
         public void Test()
         {
-            for (int i = 0; i < 1000000; i++) count++;
+            for (int i = 0; i < 10000000; i++) count++;
             Console.WriteLine("直接调用计数:" + count);
         }
     }
@@ -116,8 +106,6 @@ namespace Sample
         public Player1()
         {
             test = "Hello World";
-            // 手动创建代理
-            CreateAgent();
         }
     }
 

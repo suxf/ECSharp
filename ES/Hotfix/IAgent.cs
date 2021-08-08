@@ -10,7 +10,8 @@
         /// <summary>
         /// self对象
         /// <para>在抽象代理中想要获取代理数据对象需要使用此函数</para>
-        /// <para>一般情况下函数实现: public [new] T self => _self;</para>
+        /// <para>一般情况下函数实现: public [new] T self => _self as T;</para>
+        /// <para>由于抽象继承所以子类需要用new隐藏父类self</para>
         /// </summary>
 #pragma warning disable IDE1006 // 命名样式
         T self { get; }

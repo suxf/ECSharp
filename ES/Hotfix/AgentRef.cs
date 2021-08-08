@@ -17,7 +17,7 @@ namespace ES.Hotfix
         /// 代理
         /// <para>通过代理可以执行关于类的函数</para>
         /// </summary>
-        internal dynamic _agent;
+        internal AbstractAgent _agent;
         /// <summary>
         /// 代理数据类型
         /// </summary>
@@ -26,6 +26,10 @@ namespace ES.Hotfix
         /// 自动创建
         /// </summary>
         internal bool isAutoCreate;
+        /// <summary>
+        /// 是否为第一次创建代理
+        /// </summary>
+        internal bool isFirstCreateAgent = true;
         /// <summary>
         /// 是否拷贝值
         /// </summary>
@@ -38,6 +42,10 @@ namespace ES.Hotfix
         /// 读写锁
         /// </summary>
         private readonly object m_lock = new object();
+        /// <summary>
+        /// 创建代理次数
+        /// </summary>
+        private int createAgentCount = 0;
 
         /// <summary>
         /// 构建代理索引
@@ -68,7 +76,10 @@ namespace ES.Hotfix
                 if (!isCreated)
                 {
                     isCreated = true;
+                    // 修改第一次创建状态标记
+                    if (++createAgentCount >= 2) isFirstCreateAgent = false;
                     Interlocked.Exchange(ref _agent, new T() { __self = data });
+                    _agent.InitializeES(isFirstCreateAgent);
                 }
             }
         }
@@ -80,21 +91,29 @@ namespace ES.Hotfix
         {
             lock (m_lock)
             {
-                if (!isCreated && HotfixMgr.Instance.agentTypeMap.TryGetValue(type, out var agentType))
+                if (!isCreated && HotfixMgr.agentTypeMap.TryGetValue(type, out var agentType))
                 {
                     isCreated = true;
-                    object newAgent = null;
-                    var constructors = agentType.GetConstructors();
-                    for (int i = 0, len = constructors.Length; i < len; i++)
+                    // 修改第一次创建状态标记
+                    if (++createAgentCount >= 2) isFirstCreateAgent = false;
+                    // 此处有问题带有一个参数的构造函数无法正确使用GetAgent 暂时舍弃 后期有其他方案再修复
+                    // object newAgent = null;
+                    // var constructors = agentType.GetConstructors();
+                    // for (int i = 0, len = constructors.Length; i < len; i++)
+                    // {
+                    //     var constructor = constructors[i];
+                    //     var parameters = constructor.GetParameters();
+                    //     if (parameters.Length == 1 && parameters[0].ParameterType == type)
+                    //         newAgent = Activator.CreateInstance(agentType, agentData);
+                    //     else
+                    //         newAgent = Activator.CreateInstance(agentType);
+                    // }
+                    var newAgent = Activator.CreateInstance(agentType) as AbstractAgent;
+                    if (newAgent != null)
                     {
-                        var constructor = constructors[i];
-                        var parameters = constructor.GetParameters();
-                        if (parameters.Length == 1 && parameters[0].ParameterType == type)
-                            newAgent = Activator.CreateInstance(agentType, agentData);
-                        else
-                            newAgent = Activator.CreateInstance(agentType);
+                        newAgent.__self = agentData;
+                        newAgent.InitializeES(isFirstCreateAgent);
                     }
-                    if (newAgent != null) (newAgent as AbstractAgent).__self = agentData;
                     // 处理值拷贝
                     if (_agent != null && isCopyValue)
                     {

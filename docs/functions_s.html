@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.11</span>
+   &#160;<span id="projectnumber">1.13.14</span>
    </div>
    <div id="projectbrief">Easy .NET Develop Frame.</div>
   </td>
@@ -116,11 +116,11 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af32c387db199ab92c6afc1d2629147ea">ES.Network.HyperSocket.HyperSocket</a>
 , <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a85fea479367860f589528de87970aa7d">ES.Network.HyperSocket.RemoteHyperSocket</a>
 </li>
-<li>serverSocket
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a12aaff105bd7597d78f01a97360feefe">ES.Network.Sockets.Server.ServerSocket</a>
-</li>
 <li>ServerSocket()
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a2808d07271f9cb59befc8175a8a75add">ES.Network.Sockets.Server.ServerSocket</a>
+</li>
+<li>serverSocket
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a12aaff105bd7597d78f01a97360feefe">ES.Network.Sockets.Server.ServerSocket</a>
 </li>
 <li>SessionId
 : <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">ES.Network.HyperSocket.HyperSocket</a>
@@ -138,6 +138,9 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 </li>
 <li>SetAllListener()
 : <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html#a16069d027d071321c3fe19eee10882c1">ES.Network.Http.Linq.HttpVisitor</a>
+</li>
+<li>SetAsync&lt; T &gt;()
+: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a5ae3ddaeef24f6e194d6ec7311348188">ES.Data.Database.Redis.RedisHelper</a>
 </li>
 <li>SetConfig()
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_item.html#ae848f00242b02dba70f856b8c8eacb48">ES.Data.Database.SQLServer.Linq.ConfigItem</a>
@@ -244,7 +247,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#aaf4eb6debb4331db8519d383bad4b7e8">ES.Network.HyperSocket.HyperSocketConfig</a>
 </li>
 <li>Start()
-: <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#ab545497d0dda54965cc9caaad9390b53">ES.Common.Time.TimeFlow</a>
+: <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_flow.html#a5ceb6ee50cd999c8ecafc9985cc26b8b">ES.Common.Time.TimeFlow</a>
 </li>
 <li>StartAcceptReceiveFrom()
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a3d9c07190577785e57d25ce7d9738f7a">ES.Network.Sockets.Server.ServerSocket</a>
@@ -267,9 +270,6 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <li>StringGetAsync()
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#af9bb79cd117dfcc07c176ad1ea601990">ES.Data.Database.Redis.RedisHelper</a>
 </li>
-<li>StringGetAsync&lt; T &gt;()
-: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a130422fffe3e261f1412ba8a8708962d">ES.Data.Database.Redis.RedisHelper</a>
-</li>
 <li>StringIncrement()
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a013b9ed70e1a3266ef7a8248867ee08a">ES.Data.Database.Redis.RedisHelper</a>
 </li>
@@ -280,10 +280,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#acff453425bc9ac3ec0cfd579e8247a02">ES.Data.Database.Redis.RedisHelper</a>
 </li>
 <li>StringSetAsync()
-: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#ad088c82e197d7928895f66712d4ed98c">ES.Data.Database.Redis.RedisHelper</a>
-</li>
-<li>StringSetAsync&lt; T &gt;()
-: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#afe5ce7dbd1ce6dad9dc50c471b2311ec">ES.Data.Database.Redis.RedisHelper</a>
+: <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a4126249de7f8c538854b6408935b1f53">ES.Data.Database.Redis.RedisHelper</a>
 </li>
 <li>Subscribe()
 : <a class="el" href="class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a28920d39ee0310a9f80a6c17be37574c">ES.Data.Database.Redis.RedisHelper</a>

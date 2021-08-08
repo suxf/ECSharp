@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5b8ed40d74669af0dfe60b5eb53c7ad8":[1,0,0,3,2,2,2],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a6eb368c1347161fd5e9ee68b736eb759":[1,0,0,3,2,2,5],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a840951666e236c0685870c8002609218":[1,0,0,3,2,2,3],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a846414568cabf9a321f31c867395e276":[1,0,0,3,2,2,0],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a9922b320961a6b605f0beb0b7b7ece2c":[1,0,0,3,2,2,4],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ac3a3d86dd1ff5e2abdbc6aea972f04ae":[1,0,0,3,2,2,6],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ad26741baae0bb2e1d98693d5e8652de2":[1,0,0,3,2,2,10],
 "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aee35375d55ac45809c5fcc20cb5015c5":[1,0,0,3,2,2,8],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html":[1,0,0,3,2,3],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a0dd5600b23c41660548ced790eeb08ed":[1,0,0,3,2,3,1],
@@ -84,8 +91,8 @@ var NAVTREEINDEX2 =
 "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html#a0f5bdf779ed26cfe8f5c8498d4cfb84d":[1,0,0,1,1,1,2,2],
 "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html#a7b38ec0f214e0632bd7f05dd9fe61d02":[1,0,0,1,1,1,2,1],
 "interface_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html#a9260fe8ff24cb151f3b4031a31194669":[1,0,0,1,1,1,2,0],
-"interface_e_s_1_1_hotfix_1_1_i_agent.html":[1,0,0,2,5],
-"interface_e_s_1_1_hotfix_1_1_i_agent.html#afb02e68c1e43e428e51598687ccd777f":[1,0,0,2,5,0],
+"interface_e_s_1_1_hotfix_1_1_i_agent.html":[1,0,0,2,6],
+"interface_e_s_1_1_hotfix_1_1_i_agent.html#afb02e68c1e43e428e51598687ccd777f":[1,0,0,2,6,0],
 "interface_e_s_1_1_network_1_1_http_1_1_i_http.html":[1,0,0,3,0,5],
 "interface_e_s_1_1_network_1_1_http_1_1_i_http.html#a265d09f23e6d4fe7be00234b5b8be2cb":[1,0,0,3,0,5,0],
 "interface_e_s_1_1_network_1_1_http_1_1_i_http.html#a816882748b5e1c1d810b25fb99375669":[1,0,0,3,0,5,1],

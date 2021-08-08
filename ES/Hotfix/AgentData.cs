@@ -2,7 +2,6 @@
 {
     /// <summary>
     /// 热更新代理数据
-    /// <para>创建新的代理数据需要执行Initialize函数完成初始化</para>
     /// <para>只有通过继承代理数据的类才能使用热更代理层函数</para>
     /// <para>此类事代理数据类，代理类的变量或属性需要从此声明来使用</para>
     /// <para>需要在热更层使用的变量或者属性需要使用 public 访问修饰符</para>
@@ -18,6 +17,13 @@
         private readonly AgentRef _ref;
 
         /// <summary>
+        /// 是否为第一次创建代理
+        /// <para>用于代理在第一次同时和代理数据创建时不需要处理的内容作为提示</para>
+        /// <para>第一次调用代理构造函数此值为true，之后每次调用都为false</para>
+        /// </summary>
+        public bool IsFirstCreateAgent => _ref.isFirstCreateAgent;
+
+        /// <summary>
         /// 创建代理数据
         /// </summary>
         public AgentData()
@@ -27,7 +33,7 @@
                 _ref = new AgentRef(null, false, null);
             else
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
-            HotfixMgr.Instance.AddAgentRef(_ref);
+            HotfixMgr.AddAgentRef(_ref);
             _ref.CreateAsyncAgent();
         }
 
@@ -43,18 +49,28 @@
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
             }
             else _ref = new AgentRef(null, false, null);
-            HotfixMgr.Instance.AddAgentRef(_ref);
+            HotfixMgr.AddAgentRef(_ref);
             _ref.CreateAsyncAgent();
         }
 
         /// <summary>
         /// 手动创建自动代理
-        /// <para>使用在代理数据构造函数末尾或构造完成后需要立即初始化代理的时候</para>
         /// <para>使用条件需要满足是自动创建代理的代理数据类才能成功创建</para>
         /// </summary>
-        public void CreateAgent()
+        private void CreateAgent()
         {
             if (_ref.isAutoCreate) _ref.CreateAgent();
+        }
+
+        /// <summary>
+        /// 获取动态类型代理
+        /// <para>此函数主要用于支持数据层能够动态调用热更层函数</para>
+        /// <para>热更层可以用GetAgent泛型来直接获取代理目标对象</para>
+        /// </summary>
+        public dynamic GetDynamicAgent()
+        {
+            CreateAgent();
+            return _ref._agent;
         }
 
         /// <summary>
@@ -64,7 +80,7 @@
         public T GetAgent<T>() where T : AbstractAgent, new()
         {
             _ref.CreateAgent<T>(this);
-            return _ref._agent;
+            return _ref._agent as T;
         }
 
         /// <summary>
@@ -74,7 +90,7 @@
         public T GetAbstractAgent<T>() where T : AbstractAgent
         {
             CreateAgent();
-            return _ref._agent;
+            return _ref._agent as T;
         }
     }
 }

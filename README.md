@@ -305,47 +305,90 @@ Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
 // 日志根路径
 Log.LOG_PATH = "./log/";
 ```
-### 9.热更功能
-支持服务器运行中可以进行逻辑更新的功能。当然，热更的实现，在各个语言上都是通过运行时反射实现的，所以一旦利用反射原理的功能都会逊色于原生直接调用。但是经过多次测试，在百万次的简单循环下，初次调用可能会存在总量100毫秒的延迟；随之以后的调用则影响很小，循环总量在30毫秒左右，偏差基本可以忽略不计。
+### 9.热更新功能
+支持服务器运行中可以进行逻辑更新的功能。当然，热更的实现，在各个语言上都是通过运行时反射实现的，所以一旦利用反射原理的功能都会逊色于原生直接调用。经过多次测试在千万次的简单循环下，初次加载可能会存在总量30~100毫秒的延迟；随之以后的调用则影响很小，循环总量和直接调用总量为2:1，也就是说在正常情况下，直接调用耗时1ms的操作，移植到热更新层也仅仅花费2ms左右，所以非密集型计算，耗时偏差基本可以忽略不计。
 
 ```csharp
 /** 主工程项目 **/
 class Test_Hotfix
 {
-    // 实际创建都需要先完成热更模块读取完成后执行
-    Player player = new Player();
-    Player1 player1;
     public Test_Hotfix()
     {
-        TestHotfix();
+        while (true)
+        {
+            // 普通测试
+            TestHotfix();
+            // 耗时测试
+            // ConsumeTime();
+
+            Console.WriteLine($"Is First Load:{HotfixMgr.IsFirstLoad}");
+
+            // 回车重载测试
+            Console.ReadLine();
+            Console.Clear();
+        }
     }
 
     // 测试只需要放入构造函数
     // 热更测试
     public void TestHotfix()
     {
-        while (true)
-        {
-            HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main");
-            HotfixMgr.Instance.Agent.Test();
-            if(player1 == null) player1 = new Player1();
-            Console.ReadLine();
-            Console.Clear();
-        }
+        HotfixMgr.Load("SampleDll", "SampleDll.Main", new string[] { "Hello World" }, "Main_Test");
+    }
+
+    // 测试只需要放入构造函数
+    // 耗时测试
+    public void ConsumeTime()
+    {
+        HotfixMgr.Instance.Load("SampleDll", "SampleDll.Main", null, "Main_Test1");
+        Player player = new Player();
+        Stopwatch watch = new Stopwatch();
+        /* 性能测试 */
+        // 第一次直接调用
+        Console.WriteLine("第一次直接调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.Test();
+        watch.Stop();
+        Console.WriteLine($"第一次直接调用耗时1:{watch.Elapsed.TotalMilliseconds}ms");
+        // 第一次实测热更调用
+        Console.WriteLine("\n\n热更调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.GetDynamicAgent().Test();
+        watch.Stop();
+        Console.WriteLine($"第一次热更层耗时1:{watch.Elapsed.TotalMilliseconds}ms");
+        // 第二次直接调用
+        Console.WriteLine("\n\n第二次直接调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.Test();
+        watch.Stop();
+        Console.WriteLine($"第二次直接调用耗时2:{watch.Elapsed.TotalMilliseconds}ms");
+        // 第二次实测热更调用
+        Console.WriteLine("\n\n热更调用开始~");
+        watch.Reset();
+        watch.Start();
+        player.GetDynamicAgent().Test();
+        watch.Stop();
+        Console.WriteLine($"第二次热更层耗时2:{watch.Elapsed.TotalMilliseconds}ms");
     }
 }
 
 // 手动创建对应的代理
 // 如果每次热更重载后不主动创建 则代理不会运作
 // 也可以通过带参数构造函数来设定手动
-[NotCreateAgent]
+// [NotCreateAgent]
 public class Player : AgentData
 {
     public int count;
-
-    // 通过base(false)设置手动创建
-    // 这样就不用通过 NotCreateAgent 特性来判断 二者选其一即可
-    public Player() : base(false) { }
+   
+    // 用于测试 实际上一般数据层不写逻辑
+    public void Test()
+    {
+        for (int i = 0; i < 10000000; i++) count++;
+        Console.WriteLine("直接调用计数:" + count);
+    }
 }
 
 // 自动创建代理
@@ -355,6 +398,15 @@ public class Player : AgentData
 public class Player1 : AgentData
 {
     public int count;
+
+    public string test;
+
+    public Player1()
+    {
+        test = "Hello World";
+        // 手动创建代理
+        CreateAgent();
+    }
 }
 ```
 ```csharp
@@ -362,12 +414,50 @@ public class Player1 : AgentData
 // 热更测试DLL入口
 public class Main
 {
-    readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
-    public void Test()
+    static readonly Player player = AgentDataPivot.AddOrGetObject<Player>("player");
+    static Player1 player1;
+
+    static StructValue<int> test_1 = AgentDataPivot.AddOrGetStruct("test_1", 0);
+
+    static B b;
+    static C c;
+    public static void Main_Test(string[] args)
     {
-        // 可以利用拓展特性来实现不每次都书写泛型实现获取代理
+        Console.WriteLine($"Input args:{args[0]}, test_1:{test_1.Value++}");
+
+        player1 = AgentDataPivot.AddOrGetObject<Player1>("player1");
+        b = new B();
+        c = new C();
+        Test2(b, c);
+    }
+
+    public static void Main_Test1(string[] args)
+    {
+        Stopwatch watch = new Stopwatch();
+        // 可以利用拓展特性来实现不每次都书写泛型实现代理
         // player.GetAgent<PlayerAgent>().Test();
+        // player.GetAgent().Test();
+
+        watch.Reset();
+        watch.Start();
         player.GetAgent().Test();
+        watch.Stop();
+        Console.WriteLine($"内部第一次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n");
+        watch.Reset();
+        watch.Start();
+        player.GetAgent().Test();
+        watch.Stop();
+        Console.WriteLine($"内部第二次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n\n");
+    }
+
+    public static void Test2(A obj1, A obj2)
+    {
+        obj1.GetAbstractAgent<A_Agent>().WriteHelloA();
+        obj2.GetAbstractAgent<A_Agent>().WriteHelloA();
+        obj1.GetAbstractAgent<A_Agent>().Hello();
+        obj2.GetAbstractAgent<A_Agent>().Hello();
+        obj1.GetAgent<B_Agent>().Hello();
+        obj2.GetAgent<C_Agent>().Hello();
     }
 }
 
@@ -381,52 +471,110 @@ public static class AgentRegister
 }
 
 // 如果需要时间流需要在热更层继承和使用
-// 测试案例一 非主动创建
+// 测试案例一
 public class PlayerAgent : Agent<Player>, ITimeUpdate
 {
-    public TimeFlow tf;
-
-    public PlayerAgent()
-    {
-        tf = TimeFlow.Create(this);
-        tf.Start();
-    }
-
-    public void Test()
-    {
-        Console.WriteLine("Hello:" + self.count);
-    }
-
-    int count = 0;
-    public void Update(int deltaTime)
-    {
-        if (count % 1000 == 0) Console.WriteLine($"player count:{self.count++},copyCount:{count}");
-        count += deltaTime;
-    }
-
-    public void UpdateEnd()
-    {
-    }
+public TimeFlow tf;
+protected override void Initialize()
+{
+    // tf = TimeFlow.Create(this);
+    // tf.Start();
+}
+public void Test()
+{
+    // Console.WriteLine(self.name);
+    Stopwatch watch = new Stopwatch();
+    /* 性能测试 */
+    // 第一次直接调用
+    watch.Start();
+    for (int i = 0; i < 10000000; i++) { self.count++; }
+    watch.Stop();
+    Console.WriteLine($"热更层循环耗时:{watch.Elapsed.TotalMilliseconds}ms");
+    // for (int i = 0; i < 1000000; i++) self.count++;
+    Console.WriteLine("热更层计数:" + self.count);
+}
+int count = 0;
+public void Update(int deltaTime)
+{
+    if (count % 1000 == 0) Console.WriteLine($"player count:{self.count++},copyCount:{count}");
+    count += deltaTime;
+}
+public void UpdateEnd()
+{
 }
 
 // 测试案例二 主动创建 且保留值
 public class Player1Agent : Agent<Player1>, ITimeUpdate
 {
-    public int copyCount = 0;
+public int copyCount = 0;
+private readonly int seed = new Random().Next(9999);
+protected override void Initialize()
+{
+    // 两种相同作用
+    Console.WriteLine("IsFirstCreateAgent:" + self.IsFirstCreateAgent);
+    Console.WriteLine("IsFirstCreate:" + IsFirstCreate);
+    // 先处理代理数据构造函数，在处理代理构造
+    Console.WriteLine(self.test);
+    TimeFlow.Create(this).Start();
+}
+public void Update(int deltaTime)
+{
+    if (copyCount % 1000 == 0) Console.WriteLine($"player1 count:{self.count++},copyCount:{copyCount},seed:{seed}");
+    copyCount += deltaTime;
+}
+public void UpdateEnd()
+{
+}
 
-    public Player1Agent()
+// 测试案例三 继承测试
+// A抽象代理实现
+public abstract class A_Agent : AbstractAgent, IAgent<A>
+{
+    public A self => _self as A;
+    public void WriteHelloA()
     {
-        TimeFlow.Create(this).Start();
+        self.test1 += 100;
+        self.test2 += " world A";
     }
-
-    public void Update(int deltaTime)
+    public abstract void Hello();
+    protected override void Initialize()
     {
-        if (copyCount % 1000 == 0) Console.WriteLine($"player1 count:{self.count++},copyCount:{copyCount}");
-        copyCount += deltaTime;
+        self.test1 += 1000;
     }
+}
 
-    public void UpdateEnd()
+// B抽象代理
+public class B_Agent : A_Agent, IAgent<B>
+{
+    public new B self => _self as B;
+
+    public override void Hello()
     {
+        self.test1 += 20;
+        self.test3 += " world B";
+        Console.WriteLine(self.test1 + "," + self.test2 + "," + self.test3);
+    }
+    protected override void Initialize()
+    {
+        base.Initialize();
+        self.test1 += 20;
+    }
+}
+
+// C抽象代理
+public class C_Agent : A_Agent, IAgent<C>
+{
+    public new C self => _self as C;
+    public override void Hello()
+    {
+        self.test1 += 50;
+        self.test4 += " world C";
+        Console.WriteLine(self.test1 + "," + self.test2 + "," + self.test4);
+    }
+    protected override void Initialize()
+    {
+        base.Initialize();
+        self.test1 += 10;
     }
 }
 ```
