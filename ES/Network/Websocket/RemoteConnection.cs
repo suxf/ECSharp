@@ -11,24 +11,33 @@ namespace ES.Network.Websocket
         /// <summary>
         /// 连接对象
         /// </summary>
-        public IWebSocketConnection socket;
+        public IWebSocketConnection Socket { get; private set; }
         /// <summary>
         /// 用户自定义标识 绑定对象
         /// </summary>
-        public object tag;
+        public object Tag { get; set; }
         /// <summary>
         /// 字符消息
         /// </summary>
-        public string message;
+        public string Message { get; internal set; }
         /// <summary>
         /// 字节消息
         /// </summary>
-        public byte[] buffer;
+        public byte[] Buffer { get; internal set; }
 
         /// <summary>
         /// 连接对象是否有效
         /// </summary>
-        public bool IsAvailable { get { if (socket != null) return socket.IsAvailable; else return false; } }
+        public bool IsAvailable { get { if (Socket != null) return Socket.IsAvailable; else return false; } }
+
+        /// <summary>
+        /// 构建
+        /// </summary>
+        /// <param name="socket"></param>
+        public RemoteConnection(IWebSocketConnection socket)
+        {
+            Socket = socket;
+        }
 
         /// <summary>
         /// 发送消息
@@ -36,7 +45,7 @@ namespace ES.Network.Websocket
         /// <param name="message">字符消息</param>
         public bool Send(string message)
         {
-            if (socket != null && socket.IsAvailable) { socket.Send(message); return true; }
+            if (Socket != null && Socket.IsAvailable) { Socket.Send(message); return true; }
             else return false;
         }
 
@@ -46,7 +55,7 @@ namespace ES.Network.Websocket
         /// <param name="message">字节消息</param>
         public bool Send(byte[] message)
         {
-            if (socket != null && socket.IsAvailable) { socket.Send(message); return true; }
+            if (Socket != null && Socket.IsAvailable) { Socket.Send(message); return true; }
             else return false;
         }
 
@@ -56,8 +65,27 @@ namespace ES.Network.Websocket
         /// <returns></returns>
         public Guid GetSocketGuid()
         {
-            if (socket != null && socket.IsAvailable) { return socket.ConnectionInfo.Id; }
+            if (Socket != null && Socket.IsAvailable) { return Socket.ConnectionInfo.Id; }
             else return default;
+        }
+
+        /// <summary>
+        /// 获取连接信息
+        /// </summary>
+        /// <returns></returns>
+        public IWebSocketConnectionInfo GetConnectionInfo()
+        {
+            if (IsAvailable) return Socket.ConnectionInfo;
+            else return null;
+        }
+
+        /// <summary>
+        /// 关闭当前连接
+        /// </summary>
+        public void Close()
+        {
+            if (IsAvailable) Socket.Close();
+            Socket = null;
         }
     }
 }

@@ -56,8 +56,7 @@ namespace ES.Network.Websocket
                 {
                     if (!remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
                     {
-                        conn = new RemoteConnection();
-                        conn.socket = socket;
+                        conn = new RemoteConnection(socket);
                         remoteConnections.TryAdd(socket.ConnectionInfo.Id, conn);
                     }
                     invoke.OnOpen(conn);
@@ -67,16 +66,15 @@ namespace ES.Network.Websocket
                     if (remoteConnections.TryRemove(socket.ConnectionInfo.Id, out var conn))
                     {
                         invoke.OnClose(conn);
-                        conn.tag = null;
-                        conn.message = null;
-                        conn.socket = null;
+                        conn.Tag = null;
+                        conn.Message = null;
                     }
                 };
                 socket.OnMessage = message =>
                 {
                     if (remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
                     {
-                        conn.message = message;
+                        conn.Message = message;
                         invoke.OnMessage(conn);
                     }
                 };
@@ -84,7 +82,7 @@ namespace ES.Network.Websocket
                 {
                     if (remoteConnections.TryGetValue(socket.ConnectionInfo.Id, out var conn))
                     {
-                        conn.buffer = buffer;
+                        conn.Buffer = buffer;
                         invoke.OnBinary(conn);
                     }
                 };

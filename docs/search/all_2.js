@@ -12,6 +12,6 @@ var searchData=
   ['beginreceived_34',['BeginReceived',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#abc56fc83a0b9aaf2be1c16b87ba09726',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
   ['beginreceivedfrom_35',['BeginReceivedFrom',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2ead4b86bc272acb3ec84e020ca3f2b1',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
   ['body_36',['Body',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#add49ef580745a762f64297432d27ba65',1,'ES::Network::Http::HttpHeader']]],
-  ['buffer_37',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES.Network.Sockets.Client.BaseClientSocket.buffer()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a475a14a6700836a9b4ce2b4756da84d1',1,'ES.Network.Websocket.RemoteConnection.buffer()']]],
+  ['buffer_37',['Buffer',['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a99d759817ccfd524d733585a762b9127',1,'ES.Network.Websocket.RemoteConnection.Buffer()'],['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES.Network.Sockets.Client.BaseClientSocket.buffer()']]],
   ['bytehelper_38',['ByteHelper',['../class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html',1,'ES::Common::Utils']]]
 ];
