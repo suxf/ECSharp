@@ -13,6 +13,10 @@ var hierarchy =
     [ "ES.Network.Sockets.Client.BaseClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html", [
       [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ]
     ] ],
+    [ "ES.Data.Linq.BaseConfigItem", "class_e_s_1_1_data_1_1_linq_1_1_base_config_item.html", [
+      [ "ES.Data.Database.Linq.DataTableConfig", "class_e_s_1_1_data_1_1_database_1_1_linq_1_1_data_table_config.html", null ],
+      [ "ES.Data.Database.Linq.JsonConfig", "class_e_s_1_1_data_1_1_database_1_1_linq_1_1_json_config.html", null ]
+    ] ],
     [ "ES.Hotfix.BaseStructValue", "class_e_s_1_1_hotfix_1_1_base_struct_value.html", [
       [ "ES.Hotfix.StructValue< T >", "class_e_s_1_1_hotfix_1_1_struct_value.html", null ]
     ] ],
@@ -21,9 +25,14 @@ var hierarchy =
     ] ],
     [ "ES.Common.Utils.ByteHelper", "class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html", null ],
     [ "ES.Data.Database.SQLServer.CommandResult", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html", null ],
-    [ "ES.Data.Database.SQLServer.Linq.ConfigItem", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_item.html", null ],
-    [ "ES.Data.Database.SQLServer.Linq.ConfigLoader< T >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_config_loader.html", null ],
+    [ "ConcurrentDictionary", null, [
+      [ "ES.Alias.ConcurrentMap< TKey, TValue >", "class_e_s_1_1_alias_1_1_concurrent_map.html", null ]
+    ] ],
+    [ "ES.Data.Linq.ConfigLoader< T >", "class_e_s_1_1_data_1_1_linq_1_1_config_loader.html", null ],
     [ "ES.Data.Database.SQLServer.Linq.DataEntity< T >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity.html", null ],
+    [ "Dictionary", null, [
+      [ "ES.Alias.Map< TKey, TValue >", "class_e_s_1_1_alias_1_1_map.html", null ]
+    ] ],
     [ "EasyBuffer", null, [
       [ "ES.Data.Buffer.EasyBuffer< T >", "class_e_s_1_1_data_1_1_buffer_1_1_easy_buffer.html", null ]
     ] ],
@@ -52,6 +61,8 @@ var hierarchy =
     [ "ES.Network.Http.Linq.IHttpVisitor", "interface_e_s_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor.html", null ],
     [ "ES.Network.HyperSocket.IHyperSocketClient", "interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html", null ],
     [ "ES.Network.HyperSocket.IHyperSocketServer", "interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html", null ],
+    [ "ES.Common.Utils.Ini", "class_e_s_1_1_common_1_1_utils_1_1_ini.html", null ],
+    [ "ES.Common.Utils.Ini.IniParser", "class_e_s_1_1_common_1_1_utils_1_1_ini_1_1_ini_parser.html", null ],
     [ "ES.Data.Database.Redis.IRedisEvent", "interface_e_s_1_1_data_1_1_database_1_1_redis_1_1_i_redis_event.html", null ],
     [ "ES.Network.Sockets.Server.IRemoteSocket", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html", null ],
     [ "ES.Network.Sockets.Server.IServerSocket", "interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_server_socket.html", null ],
@@ -62,11 +73,24 @@ var hierarchy =
       [ "ES.Data.Database.SQLServer.Linq.DataEntityRows", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html", null ],
       [ "ES.Data.Database.SQLServer.Linq.NoSqlStorage< T, U >", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_no_sql_storage.html", null ],
       [ "ES.Data.Database.SQLServer.SqlServerDbHelper", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html", null ],
-      [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
+      [ "ES.Network.HyperSocket.BaseHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html", [
+        [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
+        [ "ES.Network.HyperSocket.HyperSocketServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html", null ]
+      ] ],
       [ "ES.Network.Sockets.Server.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_monitor_socket_status_task.html", null ]
     ] ],
     [ "ES.Network.Websocket.IWebsocket", "interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html", null ],
+    [ "List", null, [
+      [ "ES.Variant.VarList", "class_e_s_1_1_variant_1_1_var_list.html", null ]
+    ] ],
     [ "ES.Common.Log.Log", "class_e_s_1_1_common_1_1_log_1_1_log.html", null ],
+    [ "ES.Common.Log.LogConfig", "class_e_s_1_1_common_1_1_log_1_1_log_config.html", null ],
+    [ "ES.Alias.Map< string, ES.Common.Utils.Ini.IniParser >", "class_e_s_1_1_alias_1_1_map.html", null ],
+    [ "ES.Alias.Map< string, Map< string, string > >", "class_e_s_1_1_alias_1_1_map.html", null ],
+    [ "ES.Alias.Map< string, T >", "class_e_s_1_1_alias_1_1_map.html", null ],
+    [ "ES.Alias.Map< Var, Var >", "class_e_s_1_1_alias_1_1_map.html", [
+      [ "ES.Variant.VarMap", "class_e_s_1_1_variant_1_1_var_map.html", null ]
+    ] ],
     [ "ES.Common.Utils.MD5", "class_e_s_1_1_common_1_1_utils_1_1_m_d5.html", null ],
     [ "ES.Data.Database.SQLServer.Parameter", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_parameter.html", null ],
     [ "ES.Data.Database.SQLServer.ProcedureResult", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", null ],
@@ -82,6 +106,7 @@ var hierarchy =
     [ "ES.Data.Database.SQLServer.Linq.SqlBuilder", "class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html", null ],
     [ "ES.Network.Sockets.SweetStream", "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html", null ],
     [ "ES.Common.Time.TimeFix", "class_e_s_1_1_common_1_1_time_1_1_time_fix.html", null ],
+    [ "ES.Variant.Var", "struct_e_s_1_1_variant_1_1_var.html", null ],
     [ "ES.Common.Utils.Version", "class_e_s_1_1_common_1_1_utils_1_1_version.html", null ],
     [ "ES.Network.Websocket.WebsocketService", "class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html", null ]
 ];

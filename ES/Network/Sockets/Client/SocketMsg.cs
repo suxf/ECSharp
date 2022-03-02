@@ -40,7 +40,7 @@ namespace ES.Network.Sockets.Client
         /// <para>默认编码UTF-8 如错误解析则抛出异常</para>
         /// </summary>
         /// <returns>json对象</returns>
-        public JObject AsJObject()
+        public JObject? AsJObject()
         {
             return Encoding.UTF8.GetString(data).AsJObject();
         }
@@ -50,7 +50,7 @@ namespace ES.Network.Sockets.Client
         /// <para>默认编码UTF-8 如错误解析则抛出异常</para>
         /// </summary>
         /// <returns>json数组</returns>
-        public JArray AsArray()
+        public JArray? AsArray()
         {
             return Encoding.UTF8.GetString(data).AsJArray();
         }

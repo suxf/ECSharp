@@ -13,7 +13,7 @@ namespace ES.Data.Database.SQLServer.Linq
     /// </summary>
     public class DataEntityRow : IEnumerable<KeyValuePair<string, object>>
     {
-        internal DataEntityRows parent = null;
+        internal DataEntityRows parent;
 
         internal int realExpiredTime = 300000;
         internal int expiredTime = 0;
@@ -31,13 +31,13 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="key">主键</param>
         /// <returns></returns>
-        public object this[string key]
+        public object? this[string key]
         {
             get
             {
                 bReadState = true;
                 if (expiredTime >= realExpiredTime) ReloadDB();
-                if (data.TryGetValue(key, out object value))
+                if (data.TryGetValue(key, out object? value))
                     return value;
                 else return null;
             }
@@ -49,7 +49,7 @@ namespace ES.Data.Database.SQLServer.Linq
                 lock (listChangeColumns)
                     if (!listChangeColumns.Contains(key))
                         listChangeColumns.Add(key);
-                data.AddOrUpdate(key, value, (k, v) => value);
+                data.AddOrUpdate(key, value!, (k, v) => value!);
             }
         }
 
@@ -83,9 +83,9 @@ namespace ES.Data.Database.SQLServer.Linq
             CommandResult result = parent.dBHelper.CommandSQL("SELECT {0} FROM {1} WHERE {2}='{3}'", parent.FieldNames, parent.TableName, parent.PrimaryKey, data[parent.PrimaryKey]);
             if (result != null && result.EffectNum > 0)
             {
-                DataRow row = result.Collection[0];
+                DataRow row = result.Rows![0];
                 data.Clear();
-                foreach (object column in row.Table.Columns) data.TryAdd(column.ToString(), row[column.ToString()]);
+                foreach (object? column in row.Table.Columns) data.TryAdd(column!.ToString()!, row[column!.ToString()!]);
             }
         }
 

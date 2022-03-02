@@ -26,9 +26,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.15</span>
+   &#160;<span id="projectnumber">1.15.5</span>
    </div>
-   <div id="projectbrief">一个让.NET开发更简单的框架。 AEasy.NETDevelopFrame.</div>
+   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
  </tr>
  </tbody>
@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
 <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">ES.Common.Utils.ByteHelper类 参考</div>  </div>
@@ -99,15 +100,89 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
 <tr class="memitem:a0c8967408ced77b83f2a026e67675e82"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0c8967408ced77b83f2a026e67675e82">GetValidLength</a> (byte[] bytes)</td></tr>
 <tr class="memdesc:a0c8967408ced77b83f2a026e67675e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际长度  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0c8967408ced77b83f2a026e67675e82">更多...</a><br /></td></tr>
 <tr class="separator:a0c8967408ced77b83f2a026e67675e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6f11ad8142b6812bc9a5fc6a7cf28246">GetValidByte</a> (byte[] bytes, int retainNum=0)</td></tr>
-<tr class="memdesc:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际数据  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6f11ad8142b6812bc9a5fc6a7cf28246">更多...</a><br /></td></tr>
-<tr class="separator:a6f11ad8142b6812bc9a5fc6a7cf28246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57c18b6b1a4cd2be92a6ed199ace814"><td class="memItemLeft" align="right" valign="top">static ? byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae57c18b6b1a4cd2be92a6ed199ace814">GetValidByte</a> (byte[] bytes, int retainNum=0)</td></tr>
+<tr class="memdesc:ae57c18b6b1a4cd2be92a6ed199ace814"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取byte的实际数据  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae57c18b6b1a4cd2be92a6ed199ace814">更多...</a><br /></td></tr>
+<tr class="separator:ae57c18b6b1a4cd2be92a6ed199ace814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d956cae3a996a1c1339f02627fef07c"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6d956cae3a996a1c1339f02627fef07c">GetBytes</a> (bool value)</td></tr>
+<tr class="separator:a6d956cae3a996a1c1339f02627fef07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f5749166298527d9d07e5c54f6088ca"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a9f5749166298527d9d07e5c54f6088ca">GetBytes</a> (char value)</td></tr>
+<tr class="memdesc:a9f5749166298527d9d07e5c54f6088ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a char into an array of bytes with length two.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a9f5749166298527d9d07e5c54f6088ca">更多...</a><br /></td></tr>
+<tr class="separator:a9f5749166298527d9d07e5c54f6088ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a5d92bd4f4d53e2af35f52089a4d6de"><td class="memItemLeft" align="right" valign="top">static unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0a5d92bd4f4d53e2af35f52089a4d6de">GetBytes</a> (short value)</td></tr>
+<tr class="memdesc:a0a5d92bd4f4d53e2af35f52089a4d6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a short into an array of bytes with length two.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a0a5d92bd4f4d53e2af35f52089a4d6de">更多...</a><br /></td></tr>
+<tr class="separator:a0a5d92bd4f4d53e2af35f52089a4d6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da75bc1128f18d3ec584ebd0da99efd"><td class="memItemLeft" align="right" valign="top">static unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a2da75bc1128f18d3ec584ebd0da99efd">GetBytes</a> (int value)</td></tr>
+<tr class="memdesc:a2da75bc1128f18d3ec584ebd0da99efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an int into an array of bytes with length four.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a2da75bc1128f18d3ec584ebd0da99efd">更多...</a><br /></td></tr>
+<tr class="separator:a2da75bc1128f18d3ec584ebd0da99efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a801aacc7ad8b33f5dd5769c17458ed5b"><td class="memItemLeft" align="right" valign="top">static unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a801aacc7ad8b33f5dd5769c17458ed5b">GetBytes</a> (long value)</td></tr>
+<tr class="memdesc:a801aacc7ad8b33f5dd5769c17458ed5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a long into an array of bytes with length eight.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a801aacc7ad8b33f5dd5769c17458ed5b">更多...</a><br /></td></tr>
+<tr class="separator:a801aacc7ad8b33f5dd5769c17458ed5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef80016f9d6314210fff79470e035a54"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#aef80016f9d6314210fff79470e035a54">GetBytes</a> (ushort value)</td></tr>
+<tr class="memdesc:aef80016f9d6314210fff79470e035a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ushort into an array of bytes with length two.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#aef80016f9d6314210fff79470e035a54">更多...</a><br /></td></tr>
+<tr class="separator:aef80016f9d6314210fff79470e035a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02758d1ee11cffe5ed63fcdf1097e019"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a02758d1ee11cffe5ed63fcdf1097e019">GetBytes</a> (uint value)</td></tr>
+<tr class="memdesc:a02758d1ee11cffe5ed63fcdf1097e019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an uint into an array of bytes with length four.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a02758d1ee11cffe5ed63fcdf1097e019">更多...</a><br /></td></tr>
+<tr class="separator:a02758d1ee11cffe5ed63fcdf1097e019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9391777dc20b4b3e7a8ec5da0bc1da3d"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a9391777dc20b4b3e7a8ec5da0bc1da3d">GetBytes</a> (ulong value)</td></tr>
+<tr class="memdesc:a9391777dc20b4b3e7a8ec5da0bc1da3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an unsigned long into an array of bytes with length eight.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a9391777dc20b4b3e7a8ec5da0bc1da3d">更多...</a><br /></td></tr>
+<tr class="separator:a9391777dc20b4b3e7a8ec5da0bc1da3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b77dba8767ca8ad4c54c6effb9d4a7"><td class="memItemLeft" align="right" valign="top">static unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae8b77dba8767ca8ad4c54c6effb9d4a7">GetBytes</a> (float value)</td></tr>
+<tr class="memdesc:ae8b77dba8767ca8ad4c54c6effb9d4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a float into an array of bytes with length four.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae8b77dba8767ca8ad4c54c6effb9d4a7">更多...</a><br /></td></tr>
+<tr class="separator:ae8b77dba8767ca8ad4c54c6effb9d4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a981a3b46a355bd578a55324bdcb753d0"><td class="memItemLeft" align="right" valign="top">static unsafe byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a981a3b46a355bd578a55324bdcb753d0">GetBytes</a> (double value)</td></tr>
+<tr class="memdesc:a981a3b46a355bd578a55324bdcb753d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a double into an array of bytes with length eight.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a981a3b46a355bd578a55324bdcb753d0">更多...</a><br /></td></tr>
+<tr class="separator:a981a3b46a355bd578a55324bdcb753d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a146bd518ee62920424f34128a746d3"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a7a146bd518ee62920424f34128a746d3">ToChar</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:a7a146bd518ee62920424f34128a746d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into a char. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a7a146bd518ee62920424f34128a746d3">更多...</a><br /></td></tr>
+<tr class="separator:a7a146bd518ee62920424f34128a746d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3037e1f23f0c9dc8b5d471ee0f1f9d4e"><td class="memItemLeft" align="right" valign="top">static unsafe short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a3037e1f23f0c9dc8b5d471ee0f1f9d4e">ToInt16</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:a3037e1f23f0c9dc8b5d471ee0f1f9d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into a short. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a3037e1f23f0c9dc8b5d471ee0f1f9d4e">更多...</a><br /></td></tr>
+<tr class="separator:a3037e1f23f0c9dc8b5d471ee0f1f9d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae624e4a23a5b7c70097fec69da86fd94"><td class="memItemLeft" align="right" valign="top">static unsafe int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae624e4a23a5b7c70097fec69da86fd94">ToInt32</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:ae624e4a23a5b7c70097fec69da86fd94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into an int. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae624e4a23a5b7c70097fec69da86fd94">更多...</a><br /></td></tr>
+<tr class="separator:ae624e4a23a5b7c70097fec69da86fd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f5d2a780e95e373f0bd0847ba3912f"><td class="memItemLeft" align="right" valign="top">static unsafe long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#af0f5d2a780e95e373f0bd0847ba3912f">ToInt64</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:af0f5d2a780e95e373f0bd0847ba3912f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into a long. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#af0f5d2a780e95e373f0bd0847ba3912f">更多...</a><br /></td></tr>
+<tr class="separator:af0f5d2a780e95e373f0bd0847ba3912f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86db67b8d80cf60da99b7b508f05b20f"><td class="memItemLeft" align="right" valign="top">static ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a86db67b8d80cf60da99b7b508f05b20f">ToUInt16</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:a86db67b8d80cf60da99b7b508f05b20f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into an ushort.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a86db67b8d80cf60da99b7b508f05b20f">更多...</a><br /></td></tr>
+<tr class="separator:a86db67b8d80cf60da99b7b508f05b20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35965954b011cf66b052eba195490c5"><td class="memItemLeft" align="right" valign="top">static uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae35965954b011cf66b052eba195490c5">ToUInt32</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:ae35965954b011cf66b052eba195490c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into an uint.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ae35965954b011cf66b052eba195490c5">更多...</a><br /></td></tr>
+<tr class="separator:ae35965954b011cf66b052eba195490c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8996f05600a6719b7a5a785edd80919"><td class="memItemLeft" align="right" valign="top">static ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ab8996f05600a6719b7a5a785edd80919">ToUInt64</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:ab8996f05600a6719b7a5a785edd80919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into an unsigned long.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ab8996f05600a6719b7a5a785edd80919">更多...</a><br /></td></tr>
+<tr class="separator:ab8996f05600a6719b7a5a785edd80919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93b5924c37997266aa19ea01b2461d81"><td class="memItemLeft" align="right" valign="top">unsafe static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a93b5924c37997266aa19ea01b2461d81">ToSingle</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:a93b5924c37997266aa19ea01b2461d81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into a float. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a93b5924c37997266aa19ea01b2461d81">更多...</a><br /></td></tr>
+<tr class="separator:a93b5924c37997266aa19ea01b2461d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf8fc3b8a0028b857e951526c0cb20b"><td class="memItemLeft" align="right" valign="top">unsafe static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#aeaf8fc3b8a0028b857e951526c0cb20b">ToDouble</a> (byte[] value, int startIndex)</td></tr>
+<tr class="memdesc:aeaf8fc3b8a0028b857e951526c0cb20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of bytes into a double. <br  />
+  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#aeaf8fc3b8a0028b857e951526c0cb20b">更多...</a><br /></td></tr>
+<tr class="separator:aeaf8fc3b8a0028b857e951526c0cb20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb78c24a8898d1bc435f8d099c105f0c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#adb78c24a8898d1bc435f8d099c105f0c">ToBoolean</a> (byte[] value, int startIndex)</td></tr>
+<tr class="separator:adb78c24a8898d1bc435f8d099c105f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c63489ece0b668ac3c9befd3022f402"><td class="memItemLeft" align="right" valign="top">static unsafe long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#a6c63489ece0b668ac3c9befd3022f402">DoubleToInt64Bits</a> (double value)</td></tr>
+<tr class="separator:a6c63489ece0b668ac3c9befd3022f402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61f69fcc589acee971d157099cc8a8c"><td class="memItemLeft" align="right" valign="top">static unsafe double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ab61f69fcc589acee971d157099cc8a8c">Int64BitsToDouble</a> (long value)</td></tr>
+<tr class="separator:ab61f69fcc589acee971d157099cc8a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:ac5d327bc7234bc59d19a379ffcff4cc8"><td class="memItemLeft" align="right" valign="top">static readonly bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ac5d327bc7234bc59d19a379ffcff4cc8">IsLittleEndian</a> = true</td></tr>
+<tr class="memdesc:ac5d327bc7234bc59d19a379ffcff4cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This field indicates the "endianess" of the architecture. The value is set to true if the architecture is little endian; false if it is big endian.  <a href="class_e_s_1_1_common_1_1_utils_1_1_byte_helper.html#ac5d327bc7234bc59d19a379ffcff4cc8">更多...</a><br /></td></tr>
+<tr class="separator:ac5d327bc7234bc59d19a379ffcff4cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>字节助手 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a6f11ad8142b6812bc9a5fc6a7cf28246"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f11ad8142b6812bc9a5fc6a7cf28246">&#9670;&nbsp;</a></span>GetValidByte()</h2>
+<a id="a6c63489ece0b668ac3c9befd3022f402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c63489ece0b668ac3c9befd3022f402">&#9670;&nbsp;</a></span>DoubleToInt64Bits()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +191,392 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetValidByte </td>
+          <td class="memname">static unsafe long ES.Common.Utils.ByteHelper.DoubleToInt64Bits </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a6d956cae3a996a1c1339f02627fef07c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d956cae3a996a1c1339f02627fef07c">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[1/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a9f5749166298527d9d07e5c54f6088ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5749166298527d9d07e5c54f6088ca">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[2/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a char into an array of bytes with length two. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a981a3b46a355bd578a55324bdcb753d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981a3b46a355bd578a55324bdcb753d0">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[3/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a double into an array of bytes with length eight. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae8b77dba8767ca8ad4c54c6effb9d4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b77dba8767ca8ad4c54c6effb9d4a7">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[4/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a float into an array of bytes with length four. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2da75bc1128f18d3ec584ebd0da99efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da75bc1128f18d3ec584ebd0da99efd">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[5/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an int into an array of bytes with length four. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a801aacc7ad8b33f5dd5769c17458ed5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801aacc7ad8b33f5dd5769c17458ed5b">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[6/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a long into an array of bytes with length eight. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a0a5d92bd4f4d53e2af35f52089a4d6de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a5d92bd4f4d53e2af35f52089a4d6de">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[7/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a short into an array of bytes with length two. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a02758d1ee11cffe5ed63fcdf1097e019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02758d1ee11cffe5ed63fcdf1097e019">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[8/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an uint into an array of bytes with length four. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a9391777dc20b4b3e7a8ec5da0bc1da3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9391777dc20b4b3e7a8ec5da0bc1da3d">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[9/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an unsigned long into an array of bytes with length eight. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aef80016f9d6314210fff79470e035a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef80016f9d6314210fff79470e035a54">&#9670;&nbsp;</a></span>GetBytes() <span class="overload">[10/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] ES.Common.Utils.ByteHelper.GetBytes </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an ushort into an array of bytes with length two. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae57c18b6b1a4cd2be92a6ed199ace814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae57c18b6b1a4cd2be92a6ed199ace814">&#9670;&nbsp;</a></span>GetValidByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ? byte [] ES.Common.Utils.ByteHelper.GetValidByte </td>
           <td>(</td>
           <td class="paramtype">byte[]&#160;</td>
           <td class="paramname"><em>bytes</em>, </td>
@@ -188,6 +648,532 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_utils_1_1_byt
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab61f69fcc589acee971d157099cc8a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab61f69fcc589acee971d157099cc8a8c">&#9670;&nbsp;</a></span>Int64BitsToDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe double ES.Common.Utils.ByteHelper.Int64BitsToDouble </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="adb78c24a8898d1bc435f8d099c105f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb78c24a8898d1bc435f8d099c105f0c">&#9670;&nbsp;</a></span>ToBoolean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool ES.Common.Utils.ByteHelper.ToBoolean </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a7a146bd518ee62920424f34128a746d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a146bd518ee62920424f34128a746d3">&#9670;&nbsp;</a></span>ToChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static char ES.Common.Utils.ByteHelper.ToChar </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into a char. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aeaf8fc3b8a0028b857e951526c0cb20b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf8fc3b8a0028b857e951526c0cb20b">&#9670;&nbsp;</a></span>ToDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe static double ES.Common.Utils.ByteHelper.ToDouble </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into a double. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a3037e1f23f0c9dc8b5d471ee0f1f9d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3037e1f23f0c9dc8b5d471ee0f1f9d4e">&#9670;&nbsp;</a></span>ToInt16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe short ES.Common.Utils.ByteHelper.ToInt16 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into a short. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae624e4a23a5b7c70097fec69da86fd94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae624e4a23a5b7c70097fec69da86fd94">&#9670;&nbsp;</a></span>ToInt32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe int ES.Common.Utils.ByteHelper.ToInt32 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into an int. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af0f5d2a780e95e373f0bd0847ba3912f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0f5d2a780e95e373f0bd0847ba3912f">&#9670;&nbsp;</a></span>ToInt64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsafe long ES.Common.Utils.ByteHelper.ToInt64 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into a long. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a93b5924c37997266aa19ea01b2461d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93b5924c37997266aa19ea01b2461d81">&#9670;&nbsp;</a></span>ToSingle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsafe static float ES.Common.Utils.ByteHelper.ToSingle </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into a float. <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a86db67b8d80cf60da99b7b508f05b20f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86db67b8d80cf60da99b7b508f05b20f">&#9670;&nbsp;</a></span>ToUInt16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ushort ES.Common.Utils.ByteHelper.ToUInt16 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into an ushort. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae35965954b011cf66b052eba195490c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae35965954b011cf66b052eba195490c5">&#9670;&nbsp;</a></span>ToUInt32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static uint ES.Common.Utils.ByteHelper.ToUInt32 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into an uint. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab8996f05600a6719b7a5a785edd80919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8996f05600a6719b7a5a785edd80919">&#9670;&nbsp;</a></span>ToUInt64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ulong ES.Common.Utils.ByteHelper.ToUInt64 </td>
+          <td>(</td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>startIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an array of bytes into an unsigned long. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">startIndex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ac5d327bc7234bc59d19a379ffcff4cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5d327bc7234bc59d19a379ffcff4cc8">&#9670;&nbsp;</a></span>IsLittleEndian</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly bool ES.Common.Utils.ByteHelper.IsLittleEndian = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This field indicates the "endianess" of the architecture. The value is set to true if the architecture is little endian; false if it is big endian. </p>
 
 </div>
 </div>

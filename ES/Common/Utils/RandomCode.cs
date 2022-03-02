@@ -92,7 +92,7 @@ namespace ES.Common.Utils
         /// <returns>生成的字符串</returns>
         public static string Generate(int len, RandomCodeType type = RandomCodeType.HighLowLetterAndNumber, int? seed = null)
         {
-            StringBuilder newRandom = null;
+            StringBuilder? newRandom = null;
             var rd = random;
             if (seed != null) rd = new Random((int)seed);
             switch (type)
@@ -118,7 +118,7 @@ namespace ES.Common.Utils
                     for (int i = 0, arrlen = charNumber.Length; i < len; i++) newRandom.Append(charNumber[rd.Next(arrlen)]);
                     break;
             }
-            return newRandom.ToString();
+            return newRandom?.ToString() ?? "";
         }
 
         /// <summary>

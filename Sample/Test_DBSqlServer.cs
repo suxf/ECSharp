@@ -1,6 +1,8 @@
 ﻿using ES.Common.Log;
+using ES.Data.Database.Linq;
 using ES.Data.Database.SQLServer;
 using ES.Data.Database.SQLServer.Linq;
+using ES.Data.Linq;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -50,7 +52,7 @@ namespace Sample
             {
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
-                int id = (int)result.Collection[0]["id"];
+                int id = (int)result.Rows[0]["id"];
                 Console.WriteLine($"id:{id}");
             }
 
@@ -71,7 +73,7 @@ namespace Sample
             {
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
-                int id = (int)result5.Collection[0]["id"];
+                int id = (int)result5.Rows[0]["id"];
                 Console.WriteLine($"id:{id}");
             }
 
@@ -180,7 +182,7 @@ namespace Sample
             // var loader = dbHelper.CreateConfigLoader<TestConfig>("SELECT * FROM tb_configs WITH(NOLOCK)");
             var loader = new ConfigLoader<TestConfig>(dbHelper, "SELECT * FROM tb_configs WITH(NOLOCK)");
             // 遍历配置
-            for(int i = 0, len = loader.Configs.Length; i < len; i++)
+            foreach(var item in loader.Configs)
             {
                 // do something
             }
@@ -195,7 +197,7 @@ namespace Sample
         /// 测试配置
         /// 配置需要继承 ConfigLoaderItem 加载器子类
         /// </summary>
-        class TestConfig : ConfigItem
+        class TestConfig : DataTableConfig
         {
             public int id;
             public string name;

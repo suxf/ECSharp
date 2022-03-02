@@ -26,9 +26,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.15</span>
+   &#160;<span id="projectnumber">1.15.5</span>
    </div>
-   <div id="projectbrief">一个让.NET开发更简单的框架。 AEasy.NETDevelopFrame.</div>
+   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
  </tr>
  </tbody>
@@ -107,12 +107,9 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_common_1_1_time_1_1_time
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a56a44db7604271db0f7797bbb861abde"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a> (long count)</td></tr>
-<tr class="memdesc:a56a44db7604271db0f7797bbb861abde"><td class="mdescLeft">&#160;</td><td class="mdescRight">回调执行的函数  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">更多...</a><br /></td></tr>
-<tr class="separator:a56a44db7604271db0f7797bbb861abde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4986688922f3a2ef5714540d301f91c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a4986688922f3a2ef5714540d301f91c4">CallMethod</a> (<a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a> handle)</td></tr>
-<tr class="memdesc:a4986688922f3a2ef5714540d301f91c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要被调用的函数  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a4986688922f3a2ef5714540d301f91c4">更多...</a><br /></td></tr>
-<tr class="separator:a4986688922f3a2ef5714540d301f91c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1327bf4bd787d3a0451828797ff57e48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a1327bf4bd787d3a0451828797ff57e48">CallMethod</a> (Action&lt; long &gt; handle)</td></tr>
+<tr class="memdesc:a1327bf4bd787d3a0451828797ff57e48"><td class="mdescLeft">&#160;</td><td class="mdescRight">需要被调用的函数  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a1327bf4bd787d3a0451828797ff57e48">更多...</a><br /></td></tr>
+<tr class="separator:a1327bf4bd787d3a0451828797ff57e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a1989d65ba95a4cb91508d082629b06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a9a1989d65ba95a4cb91508d082629b06">CancelTimeCall</a> ()</td></tr>
 <tr class="memdesc:a9a1989d65ba95a4cb91508d082629b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">取消时间执行器任务  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a9a1989d65ba95a4cb91508d082629b06">更多...</a><br /></td></tr>
 <tr class="separator:a9a1989d65ba95a4cb91508d082629b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,12 +122,18 @@ Public 成员函数</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a225344cddd5c7ac0adb108ecbc253655"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a225344cddd5c7ac0adb108ecbc253655">Create</a> (int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1, <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a> handle=null)</td></tr>
-<tr class="memdesc:a225344cddd5c7ac0adb108ecbc253655"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a225344cddd5c7ac0adb108ecbc253655">更多...</a><br /></td></tr>
-<tr class="separator:a225344cddd5c7ac0adb108ecbc253655"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eebb8d08e6ed118f25fb664388c94ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a2eebb8d08e6ed118f25fb664388c94ea">CreateSync</a> (int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1, <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a> handle=null)</td></tr>
-<tr class="memdesc:a2eebb8d08e6ed118f25fb664388c94ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a2eebb8d08e6ed118f25fb664388c94ea">更多...</a><br /></td></tr>
-<tr class="separator:a2eebb8d08e6ed118f25fb664388c94ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a102cd1fca144ab150311e2f59efa5631"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a102cd1fca144ab150311e2f59efa5631">Create</a> (int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1)</td></tr>
+<tr class="memdesc:a102cd1fca144ab150311e2f59efa5631"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a102cd1fca144ab150311e2f59efa5631">更多...</a><br /></td></tr>
+<tr class="separator:a102cd1fca144ab150311e2f59efa5631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba4345d9bb4a57fd9371eee51b1f1bc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a4ba4345d9bb4a57fd9371eee51b1f1bc">Create</a> (Action&lt; long &gt; handle, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1)</td></tr>
+<tr class="memdesc:a4ba4345d9bb4a57fd9371eee51b1f1bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a4ba4345d9bb4a57fd9371eee51b1f1bc">更多...</a><br /></td></tr>
+<tr class="separator:a4ba4345d9bb4a57fd9371eee51b1f1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd535e0f4e034c603f8432fd6ff5ddb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#afbd535e0f4e034c603f8432fd6ff5ddb">CreateSync</a> (int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1)</td></tr>
+<tr class="memdesc:afbd535e0f4e034c603f8432fd6ff5ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#afbd535e0f4e034c603f8432fd6ff5ddb">更多...</a><br /></td></tr>
+<tr class="separator:afbd535e0f4e034c603f8432fd6ff5ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023487d8dea19387602a993e7ef5cf1d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a023487d8dea19387602a993e7ef5cf1d">CreateSync</a> (Action&lt; long &gt; handle, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a3ee4f5bb08b621179a38962e1fa01f28">delayTime</a>, int <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#ad9d248ddbd21a95a000555a2f5e655b2">periodTime</a>, bool <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aee905bb084911bfcccd2359d8af7c37a">isRepeat</a>=false, long <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#aaf77de7eea7b7fe7d7473afb5d1ac88b">repeatNum</a>=-1)</td></tr>
+<tr class="memdesc:a023487d8dea19387602a993e7ef5cf1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步时间执行器  <a href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a023487d8dea19387602a993e7ef5cf1d">更多...</a><br /></td></tr>
+<tr class="separator:a023487d8dea19387602a993e7ef5cf1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public 属性</h2></td></tr>
@@ -152,8 +155,8 @@ Public 属性</h2></td></tr>
 <p>此执行器多线程分配</p>
 <p>需要统一线程调度请使用SyncTimeCaller</p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a4986688922f3a2ef5714540d301f91c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4986688922f3a2ef5714540d301f91c4">&#9670;&nbsp;</a></span>CallMethod()</h2>
+<a id="a1327bf4bd787d3a0451828797ff57e48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1327bf4bd787d3a0451828797ff57e48">&#9670;&nbsp;</a></span>CallMethod()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +164,7 @@ Public 属性</h2></td></tr>
         <tr>
           <td class="memname">void ES.Common.Time.TimeCaller.CallMethod </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a>&#160;</td>
+          <td class="paramtype">Action&lt; long &gt;&#160;</td>
           <td class="paramname"><em>handle</em></td><td>)</td>
           <td></td>
         </tr>
@@ -197,8 +200,74 @@ Public 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="a225344cddd5c7ac0adb108ecbc253655"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a225344cddd5c7ac0adb108ecbc253655">&#9670;&nbsp;</a></span>Create()</h2>
+<a id="a4ba4345d9bb4a57fd9371eee51b1f1bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba4345d9bb4a57fd9371eee51b1f1bc">&#9670;&nbsp;</a></span>Create() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a> ES.Common.Time.TimeCaller.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; long &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delayTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>periodTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>repeatNum</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个时间执行器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">delayTime</td><td>第一次开始延迟时间，单位ms</td></tr>
+    <tr><td class="paramname">periodTime</td><td>每次周期时间【第二次之后开始执行的延迟时间】，单位ms</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复状态，不重复状态下周期时间无效, 默认不重复</td></tr>
+    <tr><td class="paramname">repeatNum</td><td>重复次数，值为 -1时 无限循环，默认 -1</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a102cd1fca144ab150311e2f59efa5631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a102cd1fca144ab150311e2f59efa5631">&#9670;&nbsp;</a></span>Create() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,13 +297,7 @@ Public 属性</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>repeatNum</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a>&#160;</td>
-          <td class="paramname"><em>handle</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>repeatNum</em> = <code>-1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -256,15 +319,80 @@ Public 属性</h2></td></tr>
     <tr><td class="paramname">periodTime</td><td>每次周期时间【第二次之后开始执行的延迟时间】，单位ms</td></tr>
     <tr><td class="paramname">isRepeat</td><td>是否重复状态，不重复状态下周期时间无效, 默认不重复</td></tr>
     <tr><td class="paramname">repeatNum</td><td>重复次数，值为 -1时 无限循环，默认 -1</td></tr>
-    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a2eebb8d08e6ed118f25fb664388c94ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2eebb8d08e6ed118f25fb664388c94ea">&#9670;&nbsp;</a></span>CreateSync()</h2>
+<a id="a023487d8dea19387602a993e7ef5cf1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a023487d8dea19387602a993e7ef5cf1d">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html">TimeCaller</a> ES.Common.Time.TimeCaller.CreateSync </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; long &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delayTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>periodTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>repeatNum</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个同步时间执行器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">delayTime</td><td>第一次开始延迟时间，单位ms</td></tr>
+    <tr><td class="paramname">periodTime</td><td>每次周期时间【第二次之后开始执行的延迟时间】，单位ms</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复状态，不重复状态下周期时间无效, 默认不重复</td></tr>
+    <tr><td class="paramname">repeatNum</td><td>重复次数，值为 -1时 无限循环，默认 -1</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afbd535e0f4e034c603f8432fd6ff5ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbd535e0f4e034c603f8432fd6ff5ddb">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,13 +422,7 @@ Public 属性</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>repeatNum</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_common_1_1_time_1_1_time_caller.html#a56a44db7604271db0f7797bbb861abde">MethodHandle</a>&#160;</td>
-          <td class="paramname"><em>handle</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>repeatNum</em> = <code>-1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -322,33 +444,6 @@ Public 属性</h2></td></tr>
     <tr><td class="paramname">periodTime</td><td>每次周期时间【第二次之后开始执行的延迟时间】，单位ms</td></tr>
     <tr><td class="paramname">isRepeat</td><td>是否重复状态，不重复状态下周期时间无效, 默认不重复</td></tr>
     <tr><td class="paramname">repeatNum</td><td>重复次数，值为 -1时 无限循环，默认 -1</td></tr>
-    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a56a44db7604271db0f7797bbb861abde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56a44db7604271db0f7797bbb861abde">&#9670;&nbsp;</a></span>MethodHandle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">delegate void ES.Common.Time.TimeCaller.MethodHandle </td>
-          <td>(</td>
-          <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>count</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>回调执行的函数 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">count</td><td>执行次数</td></tr>
   </table>
   </dd>
 </dl>

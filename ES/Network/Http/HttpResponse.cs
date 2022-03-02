@@ -16,7 +16,7 @@ namespace ES.Network.Http
         /// <summary>
         /// 内容
         /// </summary>
-        public byte[] Content { get; private set; }
+        public byte[]? Content { get; private set; }
         /// <summary>
         /// 数据流句柄
         /// </summary>
@@ -41,11 +41,11 @@ namespace ES.Network.Http
         /// <param name="content">内容</param>
         /// <param name="encoding">编码，默认UTF8</param>
         /// <returns></returns>
-        public HttpResponse Write(byte[] content, Encoding encoding = null)
+        public HttpResponse Write(byte[] content, Encoding? encoding = null)
         {
             hasContent = true;
             Content = content;
-            Encoding = encoding != null ? encoding : Encoding.UTF8;
+            Encoding = encoding ?? Encoding.UTF8;
             ContentLength = content.Length.ToString();
             return this;
         }
@@ -56,10 +56,10 @@ namespace ES.Network.Http
         /// <param name="content">内容</param>
         /// <param name="encoding">编码，默认UTF8</param>
         /// <returns></returns>
-        public HttpResponse Write(string content, Encoding encoding = null)
+        public HttpResponse Write(string content, Encoding? encoding = null)
         {
             //初始化内容
-            encoding = encoding != null ? encoding : Encoding.UTF8;
+            encoding = encoding ?? Encoding.UTF8;
             return Write(encoding.GetBytes(content), encoding);
         }
 
@@ -77,7 +77,7 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="header"></param>
         /// <returns></returns>
-        public string GetHeader(ResponseHeaders header)
+        public string? GetHeader(ResponseHeaders header)
         {
             var fieldName = ResponseHeadersHelper.headerMap[header];
             return GetHeader(fieldName);
@@ -104,8 +104,8 @@ namespace ES.Network.Http
 
             builder.Append("HTTP/1.1 " + StatusCode + "\r\n");
 
-            if (!string.IsNullOrEmpty(ContentType))
-                builder.AppendLine("Content-Type:" + ContentType);
+            foreach (var item in headers) builder.AppendLine($"{item.Key}:{item.Value}");
+
             return builder.ToString();
         }
 
@@ -117,13 +117,13 @@ namespace ES.Network.Http
             if (!handler.CanWrite || !hasContent) return;
             //发送响应头
             var header = BuildHeader();
-            byte[] headerBytes = Encoding.GetBytes(header);
+            byte[] headerBytes = Encoding!.GetBytes(header);
             handler.Write(headerBytes, 0, headerBytes.Length);
             //发送空行
             byte[] lineBytes = Encoding.GetBytes(Environment.NewLine);
             handler.Write(lineBytes, 0, lineBytes.Length);
             //发送内容
-            handler.Write(Content, 0, Content.Length);
+            handler.Write(Content!, 0, Content!.Length);
         }
     }
 }

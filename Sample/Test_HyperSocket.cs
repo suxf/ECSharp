@@ -12,7 +12,7 @@ namespace Sample
     /// </summary>
     class Test_HyperSocket
     {
-        static HyperSocket[] sockets = new HyperSocket[10000];
+        static BaseHyperSocket[] sockets = new BaseHyperSocket[10000];
         static TimeCaller[] timeCaller1 = new TimeCaller[10000];
         static TimeCaller[] timeCaller2 = new TimeCaller[10000];
         static Thread[] threads = new Thread[10000];
@@ -42,7 +42,7 @@ namespace Sample
 
         public void StartServer(int i)
         {
-            sockets[i] = HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true });
+            sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
         }
 
         public void StartClient(int i)
@@ -50,7 +50,7 @@ namespace Sample
             //threads[i] = new Thread(delegate ()
             {
                 //Thread.Sleep(rd.Next(500, 5000));
-                sockets[i] = HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
+                sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
             }//);
             //threads[i].Start();
         }
@@ -76,10 +76,10 @@ namespace Sample
                 fff = true;
                 Console.WriteLine($"Connect Num:{++num}");
                 // Console.WriteLine($"Connect OK:{socket.SessionId}");
-                timeCaller2[index++] = TimeCaller.Create(1000, 50, true, -1, (long count) =>
+                timeCaller2[index++] = TimeCaller.Create((long count) =>
                 {
-                    socket.SendUdp(count.ToString());
-                });
+                    ((HyperSocket)socket).SendUdp(count.ToString());
+                }, 1000, 50, true, -1);
             }
 
             int lastNum = 1;

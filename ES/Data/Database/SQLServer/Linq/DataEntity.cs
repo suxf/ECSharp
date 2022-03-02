@@ -15,7 +15,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         public string Name { get; private set; }
 
-        internal DataEntityRow parent = null;
+        internal DataEntityRow parent;
 
         /// <summary>
         /// 通过名字和数据记录得到一个数据对象
@@ -35,7 +35,7 @@ namespace ES.Data.Database.SQLServer.Linq
         {
             get
             {
-                return (T)parent[Name];
+                return (T)parent[Name]!;
             }
 
             set

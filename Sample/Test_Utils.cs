@@ -50,6 +50,14 @@ namespace Sample
             // 获取此框架的版本信息
             string versionStr = ES.Common.Utils.Version.ToString();
             Console.WriteLine($"es version:{versionStr}");
+
+            // 通过ini文件读取配置
+            Ini.LoadParser("config.ini", true);
+            Ini.LoadParser("config2.ini");
+            Ini.ReplaceCurrentParsser("config.ini");
+            Console.WriteLine($"config filename name:{Ini.Current.GetValue("filename")}");
+            Console.WriteLine($"config section 1 option1:{Ini.Current.GetSectionValue("section 1", "option1").AsInt32()}");
+            Console.WriteLine($"config2 filename name:{Ini.Parsers("config2.ini").GetValue("filename")}");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ES.Data.Storage
         /// <summary>
         /// json缓存
         /// </summary>
-        private static JObject jsonCache = null;
+        private static JObject jsonCache = new JObject();
 
         /// <summary>
         /// 获取所有信息内容
@@ -25,8 +25,8 @@ namespace ES.Data.Storage
             if (jsonCache != null) return jsonCache;
             var data = ReadData("default.json");
             if (string.IsNullOrWhiteSpace(data)) data = "{}";
-            jsonCache = JsonConvert.DeserializeObject<JObject>(data);
-            return jsonCache;
+            jsonCache = JsonConvert.DeserializeObject<JObject>(data) ?? new JObject();
+            return jsonCache!;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace ES.Data.Storage
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static JToken Get(string key)
+        public static JToken? Get(string key)
         {
             if (GetAll().ContainsKey(key)) return GetAll()[key];
             else return default;
@@ -80,7 +80,7 @@ namespace ES.Data.Storage
         /// </summary>
         /// <param name="fileName">文件名和后缀类型，这里不需要带路径</param>
         /// <param name="path">路径[路径最后需要包含斜杠]，默认当前程序根目录</param>
-        public static string ReadData(string fileName, string path = ".\\")
+        public static string? ReadData(string fileName, string path = ".\\")
         {
             // 查看是否为空
             if (!File.Exists(path + fileName)) return null;

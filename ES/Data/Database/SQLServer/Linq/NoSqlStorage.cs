@@ -81,7 +81,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="key">key值</param>
         /// <param name="value">获取到的value值 失败为默认值</param>
         /// <returns>成功状态</returns>
-        public bool TryGetValue(T key, out U value)
+        public bool TryGetValue(T key, out U? value)
         {
             if (keyValues.TryGetValue(key, out value))
             {
@@ -92,7 +92,7 @@ namespace ES.Data.Database.SQLServer.Linq
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
                 if (result.EffectNum > 0)
                 {
-                    var val = value = (U)result.Collection[0][valueName];
+                    var val = value = (U)result.Rows![0][valueName];
                     keyValues.AddOrUpdate(key, value, (k, v) => val);
                     return true;
                 }
@@ -139,7 +139,7 @@ namespace ES.Data.Database.SQLServer.Linq
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
                 if (result.EffectNum > 0)
                 {
-                    var val = (U)result.Collection[0][valueName];
+                    var val = (U)result.Rows![0][valueName];
                     keyValues.AddOrUpdate(key, value, (k, v) => value);
                     if (!keyUpdateQueue.Contains(key) && !val.Equals(value)) keyUpdateQueue.Enqueue(key);
                     return true;
@@ -202,9 +202,9 @@ namespace ES.Data.Database.SQLServer.Linq
             if (syncPeriodNow >= syncPeriod)
             {
                 syncPeriodNow = 0;
-                while (keyInsertQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.ExecuteSQL($"INSERT {tableName} ({keyName}, [{valueName}]) VALUES ('{key}', '{value}')");
-                while (keyUpdateQueue.TryDequeue(out T key)) if (keyValues.TryGetValue(key, out U value)) dBHelper.ExecuteSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
-                while (keyDeleteQueue.TryDequeue(out T key)) if (keyValues.TryRemove(key, out _)) dBHelper.ExecuteSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
+                while (keyInsertQueue.TryDequeue(out T? key)) if (keyValues.TryGetValue(key, out U? value)) dBHelper.ExecuteSQL($"INSERT {tableName} ({keyName}, [{valueName}]) VALUES ('{key}', '{value}')");
+                while (keyUpdateQueue.TryDequeue(out T? key)) if (keyValues.TryGetValue(key, out U? value)) dBHelper.ExecuteSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
+                while (keyDeleteQueue.TryDequeue(out T? key)) if (keyValues.TryRemove(key, out _)) dBHelper.ExecuteSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
             }
         }
 

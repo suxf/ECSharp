@@ -108,7 +108,7 @@ namespace ES.Network.Sockets.Client
         {
             try
             {
-                Socket ts = (Socket)result.AsyncState;
+                Socket ts = (Socket)result.AsyncState!;
                 int len = ts.EndReceive(result);
                 if (len > 0)
                 {
@@ -128,7 +128,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ClientConnection", "ReceiveCallback", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
         }
 
@@ -139,7 +139,7 @@ namespace ES.Network.Sockets.Client
         {
             try
             {
-                Socket ts = (Socket)result.AsyncState;
+                Socket ts = (Socket)result.AsyncState!;
                 int len = ts.EndReceive(result);
                 if (len > 0)
                 {
@@ -168,18 +168,18 @@ namespace ES.Network.Sockets.Client
             {
                 Close();
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
             catch (IOException ex)
             {
                 Close();
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ClientConnection", "ReceiveFromCallback", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
         }
 

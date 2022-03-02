@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['self_1020',['self',['../class_e_s_1_1_hotfix_1_1_agent.html#a16fdf1e929f4d090e3710ed92c675ccc',1,'ES.Hotfix.Agent.self()'],['../interface_e_s_1_1_hotfix_1_1_i_agent.html#afb02e68c1e43e428e51598687ccd777f',1,'ES.Hotfix.IAgent.self()']]],
-  ['sessionid_1021',['SessionId',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3',1,'ES.Network.HyperSocket.HyperSocket.SessionId()'],['../class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a7681cc5dc64b51d6fcd9e20adab4a079',1,'ES.Network.HyperSocket.RemoteHyperSocket.SessionId()']]],
-  ['socket_1022',['Socket',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#afc856d90e257d0214199604c3374bb93',1,'ES.Network.Sockets.Server.RemoteConnection.Socket()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a4232a4885e5e3ebe45df607a71ef395a',1,'ES.Network.Websocket.RemoteConnection.Socket()']]],
-  ['socketinvoke_1023',['SocketInvoke',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a955fe7915ab767883a39adf8c79ac2c8',1,'ES::Network::Sockets::Server::RemoteConnection']]],
-  ['socketsvrmgr_1024',['SocketSvrMgr',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a054193419e0841f48be550b3b1d116d9',1,'ES::Network::Sockets::Server::RemoteConnection']]],
-  ['sockettype_1025',['SocketType',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ad26741baae0bb2e1d98693d5e8652de2',1,'ES::Network::Sockets::Socket']]],
-  ['sqlparameters_1026',['SqlParameters',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#ae7027bc011162681033327922e58b3ac',1,'ES::Data::Database::SQLServer::ProcedureResult']]],
-  ['statuscode_1027',['StatusCode',['../class_e_s_1_1_network_1_1_http_1_1_http_response.html#a918ee390172456d4f9931aa106e7be38',1,'ES::Network::Http::HttpResponse']]]
+  ['rawurl_1197',['RawUrl',['../class_e_s_1_1_network_1_1_http_1_1_http_request.html#a2097e88b5ca4906a04efa170771a3764',1,'ES::Network::Http::HttpRequest']]],
+  ['rbuffer_1198',['RBuffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2014fd7f6763e549f83ac4cc255408b5',1,'ES.Network.Sockets.Client.BaseClientSocket.RBuffer()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a1c6bb6b3067d6cfdc8e41c63df600f6b',1,'ES.Network.Sockets.Server.RemoteConnection.RBuffer()']]],
+  ['receiveeventargs_1199',['ReceiveEventArgs',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a4f9ea72f34ed596f139c13a965147653',1,'ES::Network::Sockets::Server::RemoteConnection']]],
+  ['returnvalue_1200',['ReturnValue',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#ad7510115d1d32c8064871a3c60715a29',1,'ES::Data::Database::SQLServer::ProcedureResult']]],
+  ['rows_1201',['Rows',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_command_result.html#a8dfa52046769aad122ebf84cc798027b',1,'ES::Data::Database::SQLServer::CommandResult']]]
 ];

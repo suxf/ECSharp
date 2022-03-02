@@ -17,16 +17,16 @@ namespace ES.Network.Http
         /// <summary>
         /// Http监听器
         /// </summary>
-        private TcpListener listener = null;
+        private TcpListener listener;
         /// <summary>
         /// HTTP访问回调委托
         /// </summary>
-        private IHttp httpInvoke = null;
+        private IHttp httpInvoke;
 
         /// <summary>
         /// 安全证书
         /// </summary>
-        private readonly X509Certificate2 certificate = null;
+        private readonly X509Certificate2? certificate;
 
         /// <summary>
         /// 构造函数
@@ -36,12 +36,11 @@ namespace ES.Network.Http
         /// <param name="port">监听端口</param>
         /// <param name="visitor">访问器</param>
         /// <param name="certificate">安全证书</param>
-        public HttpService(string ipAddress, int port, HttpVisitor visitor, X509Certificate2 certificate = null)
+        public HttpService(string ipAddress, int port, HttpVisitor visitor, X509Certificate2? certificate = null)
         {
             if (!HttpListener.IsSupported)
             {
-                Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
-                return;
+                throw new Exception("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
             }
 
             // 赋值证书
@@ -63,12 +62,11 @@ namespace ES.Network.Http
         /// <param name="port">监听端口</param>
         /// <param name="invoke">回调接口[不适用访问器添加]</param>
         /// <param name="certificate">安全证书</param>
-        public HttpService(string ipAddress, int port, IHttp invoke, X509Certificate2 certificate = null)
+        public HttpService(string ipAddress, int port, IHttp invoke, X509Certificate2? certificate = null)
         {
             if (!HttpListener.IsSupported)
             {
-                Console.WriteLine("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
-                return;
+                throw new Exception("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
             }
 
             // 赋值证书
@@ -122,7 +120,7 @@ namespace ES.Network.Http
         {
             try
             {
-                var tcpListener = ar.AsyncState as TcpListener;
+                var tcpListener = (TcpListener)ar.AsyncState!;
                 // 结束异步
                 TcpClient tcpClient = tcpListener.EndAcceptTcpClient(ar);
                 // 以取得所有需要的参数 继续监听下一个请求
@@ -181,9 +179,9 @@ namespace ES.Network.Http
                 if (listener != null)
                 {
                     listener.Stop();// 立刻停止访问请求
-                    listener = null;
+                    // listener = null;
                 }
-                httpInvoke = null;
+                // httpInvoke = null;
             }
             catch (Exception ex)
             {

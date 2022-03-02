@@ -48,12 +48,15 @@ namespace SampleDll
 
         public static void Test2(A obj1, A obj2)
         {
-            obj1.GetAbstractAgent<A_Agent>().WriteHelloA();
+            Console.WriteLine($"=======>>Test2 1");
+            var ss = obj1.GetAbstractAgent<A_Agent>();
+            ss.WriteHelloA();
             obj2.GetAbstractAgent<A_Agent>().WriteHelloA();
             obj1.GetAbstractAgent<A_Agent>().Hello();
             obj2.GetAbstractAgent<A_Agent>().Hello();
             obj1.GetAgent<B_Agent>().Hello();
             obj2.GetAgent<C_Agent>().Hello();
+            Console.WriteLine($"=======>>Test2 2");
         }
     }
 

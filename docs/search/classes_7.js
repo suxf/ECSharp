@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keepagentvalueattribute_539',['KeepAgentValueAttribute',['../class_e_s_1_1_hotfix_1_1_keep_agent_value_attribute.html',1,'ES::Hotfix']]]
+  ['jsonconfig_633',['JsonConfig',['../class_e_s_1_1_data_1_1_database_1_1_linq_1_1_json_config.html',1,'ES::Data::Database::Linq']]]
 ];

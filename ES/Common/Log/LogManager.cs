@@ -16,7 +16,7 @@ namespace ES.Common.Log
         /// <summary>
         /// 单例静态对象
         /// </summary>
-        private static LogManager instance = null;
+        private static LogManager? instance = null;
         /// <summary>
         /// 获取单例
         /// </summary>
@@ -25,15 +25,15 @@ namespace ES.Common.Log
         /// <summary>
         /// 日志数据队列
         /// </summary>
-        internal ConcurrentQueue<LogInfo> logInfos = null;
+        internal ConcurrentQueue<LogInfo> logInfos = new ConcurrentQueue<LogInfo>();
         /// <summary>
         /// 文件信息
         /// </summary>
-        private FileInfo fileInfo = null;
+        private FileInfo? fileInfo = null;
         /// <summary>
         /// 日志ID
         /// </summary>
-        private readonly string logId = null;
+        private readonly string logId;
         /// <summary>
         /// 日志索引，如果单个时间内日志太大则分开
         /// </summary>
@@ -52,11 +52,10 @@ namespace ES.Common.Log
         {
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
             logId = new Random().Next(100, 999).ToString();
-            logInfos = new ConcurrentQueue<LogInfo>();
             // 创建目录
-            if (!Directory.Exists(Log.LOG_PATH))
+            if (!Directory.Exists(LogConfig.LOG_PATH))
             {
-                Directory.CreateDirectory(Log.LOG_PATH);
+                Directory.CreateDirectory(LogConfig.LOG_PATH);
             }
 
             timeFlow = BaseTimeFlow.CreateTimeFlow(this, 1);
@@ -71,18 +70,18 @@ namespace ES.Common.Log
         public void Update(int dt)
         {
             periodNow += dt;
-            if (periodNow >= Log.LOG_PERIOD)
+            if (periodNow >= LogConfig.LOG_PERIOD)
             {
                 periodNow = 0;
 
                 // 如果没有日志则不处理
                 if (logInfos.Count <= 0) return;
                 // 创建当日目录
-                if (!Directory.Exists(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
+                if (!Directory.Exists(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/")))
                 {
-                    Directory.CreateDirectory(Log.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
+                    Directory.CreateDirectory(LogConfig.LOG_PATH + DateTime.Now.ToString("yyyy_MM_dd/"));
                 }
-                string filename = Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX);
+                string filename = LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX);
                 if (!File.Exists(filename)) fileInfo = null;
                 // 检查文件
                 if (fileInfo == null)
@@ -91,9 +90,9 @@ namespace ES.Common.Log
                     fileInfo.Refresh();
                 if (fileInfo.Exists)
                 {
-                    if (fileInfo.Length > Log.LOG_UNIT_FILE_MAX_SIZE)
+                    if (fileInfo.Length > LogConfig.LOG_UNIT_FILE_MAX_SIZE)
                     {
-                        fileInfo = new FileInfo(Log.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, Log.LOG_FILE_SUFFIX));
+                        fileInfo = new FileInfo(LogConfig.LOG_PATH + string.Format(DateTime.Now.ToString("yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX));
                         FileStream fs = fileInfo.Create();
                         fs.Close();
                         fileInfo.Refresh();
@@ -107,41 +106,52 @@ namespace ES.Common.Log
                 }
 
                 // 写入日志
-                while (logInfos.TryDequeue(out LogInfo log))
+                while (logInfos.TryDequeue(out LogInfo? log))
                 {
                     if (log.data == null) continue;
-                    var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length == 4 ? " " : "")}{log.data}";
-                    if (Log.LOG_CONSOLE_OUTPUT)
-                    {
-                        switch (log.type)
-                        {
-                            case "INFO":
-                                Console.ForegroundColor = Log.FOREGROUND_INFO_COLOR;
-                                Console.BackgroundColor = Log.BACKGROUND_INFO_COLOR;
-                                break;
-                            case "DEBUG":
-                                Console.ForegroundColor = Log.FOREGROUND_DEBUG_COLOR;
-                                Console.BackgroundColor = Log.BACKGROUND_DEBUG_COLOR;
-                                break;
-                            case "WARN":
-                                Console.ForegroundColor = Log.FOREGROUND_WARN_COLOR;
-                                Console.BackgroundColor = Log.BACKGROUND_WARN_COLOR;
-                                break;
-                            case "ERROR":
-                                Console.ForegroundColor = Log.FOREGROUND_ERROR_COLOR;
-                                Console.BackgroundColor = Log.BACKGROUND_ERROR_COLOR;
-                                break;
-                            case "FATAL":
-                                Console.ForegroundColor = Log.FOREGROUND_EXCEPTION_COLOR;
-                                Console.BackgroundColor = Log.BACKGROUND_EXCEPTION_COLOR;
-                                break;
-                        }
-                        Console.WriteLine(logStr);
-                        Console.ResetColor();
-                    }
+                    var logStr = OutputLog(log, LogConfig.LOG_CONSOLE_ASYNC_OUTPUT);
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(logStr);
                 }
             }
+        }
+
+        /// <summary>
+        /// 输出日志
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="isWriteConsole"></param>
+        internal static string OutputLog(LogInfo log, bool isWriteConsole)
+        {
+            var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length == 4 ? " " : "")}{log.data} {(log.stack == null ? "" : "@ " + log.stack)}";
+            if (isWriteConsole)
+            {
+                switch (log.type)
+                {
+                    case "DEBUG":
+                        Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
+                        Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
+                        break;
+                    case "INFO":
+                        Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
+                        Console.BackgroundColor = LogConfig.BACKGROUND_INFO_COLOR;
+                        break;
+                    case "WARN":
+                        Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
+                        Console.BackgroundColor = LogConfig.BACKGROUND_WARN_COLOR;
+                        break;
+                    case "ERROR":
+                        Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
+                        Console.BackgroundColor = LogConfig.BACKGROUND_ERROR_COLOR;
+                        break;
+                    case "FATAL":
+                        Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
+                        Console.BackgroundColor = LogConfig.BACKGROUND_EXCEPTION_COLOR;
+                        break;
+                }
+                Console.WriteLine(logStr);
+                Console.ResetColor();
+            }
+            return logStr;
         }
 
         /// <summary>
@@ -149,6 +159,29 @@ namespace ES.Common.Log
         /// </summary>
         public void UpdateEnd()
         {
+        }
+
+        /// <summary>
+        /// 日志信息数据
+        /// </summary>
+        internal class LogInfo
+        {
+            /// <summary>
+            /// 日志类型
+            /// </summary>
+            public string type = "";
+            /// <summary>
+            /// 日志时间
+            /// </summary>
+            public DateTime time = DateTime.Now;
+            /// <summary>
+            /// 日志内容
+            /// </summary>
+            public string data = "";
+            /// <summary>
+            /// 堆栈信息
+            /// </summary>
+            public string stack = "";
         }
     }
 }

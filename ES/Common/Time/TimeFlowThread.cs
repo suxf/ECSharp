@@ -5,8 +5,8 @@ namespace ES.Common.Time
 {
     internal class TimeFlowThread
     {
-        private Thread thread;
-        private List<BaseTimeFlow> timeFlows;
+        private Thread? thread;
+        private List<BaseTimeFlow> timeFlows = new List<BaseTimeFlow>();
         private readonly object m_lock = new object();
         internal int Index { private set; get; } = -1;
         /// <summary>
@@ -39,7 +39,7 @@ namespace ES.Common.Time
             {
                 IsRunning = true;
                 IsPausePushTask = false;
-                timeFlows = new List<BaseTimeFlow>();
+                timeFlows.Clear();
                 thread = new Thread(UpdateHandle);
                 thread.IsBackground = true;
                 thread.Start();
@@ -78,7 +78,7 @@ namespace ES.Common.Time
                 if (threadBlockTimeOutCount >= 10)
                 {
                     Interlocked.Exchange(ref threadBlockTimeOutCount, 0);
-                    BaseTimeFlow[] temp = null;
+                    BaseTimeFlow[]? temp = null;
                     lock (m_lock) { temp = timeFlows.ToArray(); timeFlows.Clear(); }
                     // 超时终止当前线程并切换线程
                     Close();
@@ -117,7 +117,7 @@ namespace ES.Common.Time
             // 总体目标运行间隔时间
             int totalAllPeriod = 0;
             // 转移其他线程组
-            BaseTimeFlow[] moveOtherThreadFlow = null;
+            BaseTimeFlow[]? moveOtherThreadFlow = null;
             // 耗时监视器
             var watch = new System.Diagnostics.Stopwatch();
             watch.Start();
@@ -220,6 +220,25 @@ namespace ES.Common.Time
             }
             // 线程结束时则重置为false
             Close();
+        }
+
+        /// <summary>
+        /// 通过对象关闭时间流
+        /// </summary>
+        /// <param name="timeUpdate"></param>
+        /// <returns></returns>
+        internal bool CloseByObj(ITimeUpdate timeUpdate)
+        {
+            lock (m_lock)
+            {
+                if (timeFlows == null) return false;
+                for (int i = 0, len = timeFlows.Count; i < len; i++)
+                {
+                    if (timeFlows[i].CloseByObj(timeUpdate)) return true;
+                    else continue;
+                }
+            }
+            return false;
         }
 
         internal void Close()

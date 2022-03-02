@@ -1,5 +1,6 @@
 ﻿using ES.Common.Time;
 using ES.Data.Database.SQLServer.Linq;
+using ES.Data.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace ES.Data.Database.SQLServer
         /// <summary>
         /// 数据连接参数构造器
         /// </summary>
-        private readonly SqlConnectionStringBuilder builder = null;
+        private readonly SqlConnectionStringBuilder builder;
         /// <summary>
         /// sql队列用于缓存通过压入队列执行的sql对象
         /// </summary>
@@ -26,7 +27,7 @@ namespace ES.Data.Database.SQLServer
         /// <summary>
         /// 数据库异常监听
         /// </summary>
-        private ISqlServerDbHelper listener = null;
+        private ISqlServerDbHelper? listener = null;
 
         private readonly BaseTimeFlow timeFlow;
 
@@ -39,7 +40,7 @@ namespace ES.Data.Database.SQLServer
             get
             {
                 var result = CommandSQL("SELECT GETDATE()");
-                if (result.EffectNum == 1) return (DateTime)result.Collection[0][0];
+                if (result.EffectNum == 1) return (DateTime)result.Rows![0][0];
                 else return DateTime.Now;
             }
         }
@@ -56,7 +57,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="minPoolSize">数据库池连接最小值，默认为0</param>
         /// <param name="maxPoolSize">数据库池连接最大值，默认为100</param>
         /// <param name="extraConfig">数据库额外配置</param>
-        public SqlServerDbHelper(string address, string username, string password, string databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string extraConfig = null)
+        public SqlServerDbHelper(string address, string username, string password, string? databaseName = null, int minPoolSize = 0, int maxPoolSize = 100, string? extraConfig = null)
         {
             if (!string.IsNullOrEmpty(extraConfig))
                 builder = new SqlConnectionStringBuilder(extraConfig);
@@ -65,7 +66,7 @@ namespace ES.Data.Database.SQLServer
             builder.DataSource = address;
             builder.UserID = username;
             builder.Password = password;
-            if (databaseName != null) builder.InitialCatalog = databaseName;
+            if (!string.IsNullOrEmpty(databaseName)) builder.InitialCatalog = databaseName;
             builder.Pooling = true;
             if (minPoolSize > maxPoolSize) minPoolSize = maxPoolSize;
             builder.MinPoolSize = minPoolSize;
@@ -266,8 +267,9 @@ namespace ES.Data.Database.SQLServer
                             dataAdapter.Fill(result.DataSet);
                             if (result.DataSet.Tables.Count > 0)
                             {
-                                result.Collection = result.DataSet.Tables[0].Rows;
-                                result.EffectNum = result.Collection.Count;
+                                result.Tables = result.DataSet.Tables;
+                                result.Rows = result.DataSet.Tables[0].Rows;
+                                result.EffectNum = result.Rows.Count;
                             }
                             else
                             {
@@ -307,7 +309,7 @@ namespace ES.Data.Database.SQLServer
                     conn.Open();
                     if (conn.State == ConnectionState.Open)
                     {
-                        if (obj != null && obj.Length > 0) sql = string.Format(sql, obj);
+                        if (obj.Length > 0) sql = string.Format(sql, obj);
                         // 执行SQL
                         using (SqlCommand sqlCommand = new SqlCommand(sql, conn))
                         {
@@ -363,7 +365,7 @@ namespace ES.Data.Database.SQLServer
         /// <param name="topNum">SQL取值数量【默认为：-1 无限】</param>
         /// <param name="isNoLock">是否不锁Sql，默认锁表</param>
         /// <returns></returns>
-        public DataEntityRows CreateDataEntityRows(string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
+        public DataEntityRows? CreateDataEntityRows(string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
         {
             return DataEntityRows.Load(this, primaryKey, tableName, whereCondition, fieldNames, topNum, isNoLock);
         }
@@ -373,7 +375,7 @@ namespace ES.Data.Database.SQLServer
         /// <para>此操作是利用sql查询到结果然后进行绑定</para>
         /// </summary>
         /// <param name="sql">需要查询的语句</param>
-        public ConfigLoader<T> CreateConfigLoader<T>(string sql) where T : ConfigItem, new()
+        public ConfigLoader<T> CreateConfigLoader<T>(string sql) where T : BaseConfigItem, new()
         {
             return new ConfigLoader<T>(this, sql);
         }
@@ -415,7 +417,7 @@ namespace ES.Data.Database.SQLServer
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;
-                lock (SQLQueue) { foreach (var sql in SQLQueue) ExecuteSQL(sql, null); SQLQueue.Clear(); }
+                lock (SQLQueue) { foreach (var sql in SQLQueue) ExecuteSQL(sql); SQLQueue.Clear(); }
                 lock (ProcedureQueue) { foreach (var pr in ProcedureQueue) Procedure(pr.procedure, pr.sqlParameters); ProcedureQueue.Clear(); }
             }
         }

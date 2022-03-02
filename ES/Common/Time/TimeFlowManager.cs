@@ -12,7 +12,7 @@ namespace ES.Common.Time
         /// <summary>
         /// 静态单例
         /// </summary>
-        private static TimeFlowManager instance = null;
+        private static TimeFlowManager? instance = null;
         /// <summary>
         /// 获取单例对象
         /// </summary>
@@ -93,6 +93,24 @@ namespace ES.Common.Time
                 timeFlowThreads.Add(new TimeFlowThread(len));
                 return len;
             }
+        }
+
+        /// <summary>
+        /// 通过对象关闭时间流
+        /// </summary>
+        /// <param name="timeUpdate"></param>
+        /// <returns></returns>
+        internal bool CloseByObj(ITimeUpdate timeUpdate)
+        {
+            lock (m_lock)
+            {
+                for (int i = 0, len = timeFlowThreads.Count; i < len; i++)
+                {
+                    if (timeFlowThreads[i].CloseByObj(timeUpdate)) return true;
+                    else continue;
+                }
+            }
+            return false;
         }
 
         /// <summary>

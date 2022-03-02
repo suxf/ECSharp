@@ -9,6 +9,6 @@
         /// <summary>
         /// 结构体值
         /// </summary>
-        protected object _value;
+        protected object? _value;
     }
 }

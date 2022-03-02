@@ -11,19 +11,15 @@ namespace ES.Network.Http
         /// <summary>
         /// 消息体
         /// </summary>
-        public string Body { get; set; }
+        public string? Body { get; set; }
         /// <summary>
         /// 编码
         /// </summary>
-        public Encoding Encoding { get; set; }
-        /// <summary>
-        /// 内容类型
-        /// </summary>
-        public string ContentType { get; set; }
+        public Encoding? Encoding { get; set; }
         /// <summary>
         /// 内容长度
         /// </summary>
-        public string ContentLength { get; internal set; }
+        public string? ContentLength { get; internal set; }
         /// <summary>
         /// 头信息字典
         /// </summary>
@@ -34,7 +30,7 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
-        public string GetHeader(string fieldName)
+        public string? GetHeader(string fieldName)
         {
             if (string.IsNullOrEmpty(fieldName)) return null;
             var hasKey = headers.ContainsKey(fieldName);

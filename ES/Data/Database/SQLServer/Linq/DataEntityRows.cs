@@ -22,19 +22,19 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <summary>
         /// 数据库对象
         /// </summary>
-        public readonly SqlServerDbHelper dBHelper = null;
+        public readonly SqlServerDbHelper dBHelper;
         /// <summary>
         /// 表名
         /// </summary>
-        public string TableName { internal set; get; } = null;
+        public string TableName { internal set; get; }
         /// <summary>
         /// 主键
         /// </summary>
-        public string PrimaryKey { internal set; get; } = null;
+        public string PrimaryKey { internal set; get; }
         /// <summary>
         /// 查询的字段名
         /// </summary>
-        public string FieldNames { internal set; get; } = null;
+        public string FieldNames { internal set; get; }
         /// <summary>
         /// 记录字典
         /// </summary>
@@ -62,14 +62,14 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <param name="topNum">SQL取值数量【默认为：-1 无限】</param>
         /// <param name="isNoLock">是否不锁Sql，默认锁表</param>
         /// <returns></returns>
-        public static DataEntityRows Load(SqlServerDbHelper dBHelper, string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
+        public static DataEntityRows? Load(SqlServerDbHelper dBHelper, string primaryKey, string tableName, string whereCondition, string fieldNames = "*", int topNum = -1, bool isNoLock = false)
         {
             if (dBHelper != null)
             {
                 CommandResult result = dBHelper.CommandSQL($"SELECT {(topNum > -1 ? ("TOP(" + topNum + ")") : "")} {fieldNames} FROM {tableName} {(isNoLock ? "WITH(NOLOCK)" : "")} {(whereCondition != null && whereCondition != "" ? ("WHERE " + whereCondition) : "")}");
                 if (result != null && result.EffectNum > 0)
                 {
-                    DataEntityRows dataPairs = new DataEntityRows(dBHelper, result.Collection, primaryKey, tableName, fieldNames);
+                    DataEntityRows dataPairs = new DataEntityRows(dBHelper, result.Rows!, primaryKey, tableName, fieldNames);
                     return dataPairs;
                 }
             }
@@ -81,11 +81,11 @@ namespace ES.Data.Database.SQLServer.Linq
         /// </summary>
         /// <param name="key">主键</param>
         /// <returns></returns>
-        public DataEntityRow this[object key]
+        public DataEntityRow? this[object key]
         {
             get
             {
-                if (rows.TryGetValue(key, out DataEntityRow value))
+                if (rows.TryGetValue(key, out DataEntityRow? value))
                     return value;
                 else return null;
             }
@@ -105,10 +105,10 @@ namespace ES.Data.Database.SQLServer.Linq
             this.TableName = tableName;
             this.PrimaryKey = primaryKey;
             this.FieldNames = fieldNames;
-            foreach (DataRow dataRow in collection)
+            foreach (DataRow? dataRow in collection)
             {
                 DataEntityRow dataObject = new DataEntityRow(this);
-                foreach (object column in dataRow.Table.Columns) dataObject.data.TryAdd(column.ToString(), dataRow[column.ToString()]);
+                foreach (object? column in dataRow!.Table.Columns) dataObject.data.TryAdd(column!.ToString()!, dataRow[column!.ToString()!]);
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
 

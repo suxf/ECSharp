@@ -26,9 +26,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.13.15</span>
+   &#160;<span id="projectnumber">1.15.5</span>
    </div>
-   <div id="projectbrief">一个让.NET开发更简单的框架。 AEasy.NETDevelopFrame.</div>
+   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
  </tr>
  </tbody>
@@ -85,16 +85,15 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_hyper_socket
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
-<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pub-attribs">Public 属性</a> &#124;
-<a href="#properties">属性</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">ES.Network.HyperSocket.HyperSocket类 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>超级套接字  
+<p>超级套接字 客户端  
  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#details">更多...</a></p>
 <div class="dynheader">
 类 ES.Network.HyperSocket.HyperSocket 继承关系图:</div>
@@ -102,24 +101,19 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_network_1_1_hyper_socket
  <div class="center">
   <img src="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.png" usemap="#ES.Network.HyperSocket.HyperSocket_map" alt=""/>
   <map id="ES.Network.HyperSocket.HyperSocket_map" name="ES.Network.HyperSocket.HyperSocket_map">
-<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,232,24"/>
+<area href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html" title="超级套接字" alt="ES.Network.HyperSocket.BaseHyperSocket" shape="rect" coords="0,56,260,80"/>
+<area href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Common.Time.ITimeUpdate" shape="rect" coords="0,0,260,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:af13e1d60ba78597089b45217f628a7b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">Update</a> (int dt)</td></tr>
-<tr class="memdesc:af13e1d60ba78597089b45217f628a7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">心跳检测  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9">更多...</a><br /></td></tr>
-<tr class="separator:af13e1d60ba78597089b45217f628a7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac322dc73985f896777be3fa6bd138088"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088">Close</a> ()</td></tr>
-<tr class="memdesc:ac322dc73985f896777be3fa6bd138088"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088">更多...</a><br /></td></tr>
-<tr class="separator:ac322dc73985f896777be3fa6bd138088"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba462bcc43da4cfa1717d02da7e125e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba462bcc43da4cfa1717d02da7e125e2">UpdateEnd</a> ()</td></tr>
-<tr class="memdesc:aba462bcc43da4cfa1717d02da7e125e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba462bcc43da4cfa1717d02da7e125e2">更多...</a><br /></td></tr>
-<tr class="separator:aba462bcc43da4cfa1717d02da7e125e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf">GetUsedSocketCount</a> ()</td></tr>
-<tr class="memdesc:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回使用的远程套接字数量  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf">更多...</a><br /></td></tr>
-<tr class="separator:a076eb85a3f2d5d3c7323d6a2328f3bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c842b2a0e75030b8acb450f6d9326d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a84c842b2a0e75030b8acb450f6d9326d">HyperSocket</a> (string <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a68d77c64622e060e32dcb7e11b5e65bd">ip</a>, uint port, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html">IHyperSocketClient</a> listener, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>? <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#afce9a1c6e7e22a466c33294d7907ea69">config</a>=null)</td></tr>
+<tr class="memdesc:a84c842b2a0e75030b8acb450f6d9326d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个客户端超级套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a84c842b2a0e75030b8acb450f6d9326d">更多...</a><br /></td></tr>
+<tr class="separator:a84c842b2a0e75030b8acb450f6d9326d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e387ab6f76c019f78ccf96e022804d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a0e387ab6f76c019f78ccf96e022804d0">Connect</a> ()</td></tr>
+<tr class="memdesc:a0e387ab6f76c019f78ccf96e022804d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">开启连接  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a0e387ab6f76c019f78ccf96e022804d0">更多...</a><br /></td></tr>
+<tr class="separator:a0e387ab6f76c019f78ccf96e022804d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c39d283c6741729d03e143f9ae3ec16"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a1c39d283c6741729d03e143f9ae3ec16">SendTcp</a> (byte[] data)</td></tr>
 <tr class="memdesc:a1c39d283c6741729d03e143f9ae3ec16"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过TCP发送数据  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a1c39d283c6741729d03e143f9ae3ec16">更多...</a><br /></td></tr>
 <tr class="separator:a1c39d283c6741729d03e143f9ae3ec16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,86 +126,66 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a54b9cbcac4011cd7e776db4a675beced"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54b9cbcac4011cd7e776db4a675beced">SendUdp</a> (string dataStr)</td></tr>
 <tr class="memdesc:a54b9cbcac4011cd7e776db4a675beced"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过UDP发送数据[KCP]  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54b9cbcac4011cd7e776db4a675beced">更多...</a><br /></td></tr>
 <tr class="separator:a54b9cbcac4011cd7e776db4a675beced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a30baaef0b2abe0b7d1f87e37197fcb8a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a30baaef0b2abe0b7d1f87e37197fcb8a">CreateServer</a> (string <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf">ip</a>, uint port, uint <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a">connectMaxNum</a>, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html">IHyperSocketServer</a> listener, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a> <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe">config</a>=null)</td></tr>
-<tr class="memdesc:a30baaef0b2abe0b7d1f87e37197fcb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个服务器超级套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a30baaef0b2abe0b7d1f87e37197fcb8a">更多...</a><br /></td></tr>
-<tr class="separator:a30baaef0b2abe0b7d1f87e37197fcb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ed95fe34c5468a7cc395ad4d14713d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a01ed95fe34c5468a7cc395ad4d14713d">CreateServer</a> (string <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf">ip</a>, uint tcpPort, uint udpPort, uint <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a">connectMaxNum</a>, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html">IHyperSocketServer</a> listener, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a> <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe">config</a>=null)</td></tr>
-<tr class="memdesc:a01ed95fe34c5468a7cc395ad4d14713d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个服务器超级套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a01ed95fe34c5468a7cc395ad4d14713d">更多...</a><br /></td></tr>
-<tr class="separator:a01ed95fe34c5468a7cc395ad4d14713d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c786dc5e183898cf8290f0167df17eb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a2c786dc5e183898cf8290f0167df17eb">CreateClient</a> (string <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf">ip</a>, uint port, <a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html">IHyperSocketClient</a> listener, <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a> <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe">config</a>=null)</td></tr>
-<tr class="memdesc:a2c786dc5e183898cf8290f0167df17eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个客户端超级套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a2c786dc5e183898cf8290f0167df17eb">更多...</a><br /></td></tr>
-<tr class="separator:a2c786dc5e183898cf8290f0167df17eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ac5faf737928df3ca9b9a990231552"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ad1ac5faf737928df3ca9b9a990231552">UpdateEnd</a> ()</td></tr>
+<tr class="separator:ad1ac5faf737928df3ca9b9a990231552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html">ES.Network.HyperSocket.BaseHyperSocket</a></td></tr>
+<tr class="memitem:a51e26ee50ed8ad4219acd878affb0592 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a51e26ee50ed8ad4219acd878affb0592">Update</a> (int dt)</td></tr>
+<tr class="memdesc:a51e26ee50ed8ad4219acd878affb0592 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">心跳检测  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a51e26ee50ed8ad4219acd878affb0592">更多...</a><br /></td></tr>
+<tr class="separator:a51e26ee50ed8ad4219acd878affb0592 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9865df0e968bb6c9845f919c1f2bb7 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a6a9865df0e968bb6c9845f919c1f2bb7">Close</a> ()</td></tr>
+<tr class="memdesc:a6a9865df0e968bb6c9845f919c1f2bb7 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a6a9865df0e968bb6c9845f919c1f2bb7">更多...</a><br /></td></tr>
+<tr class="separator:a6a9865df0e968bb6c9845f919c1f2bb7 inherit pub_methods_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public 属性</h2></td></tr>
-<tr class="memitem:aa95ce652c13bda8426d3fa9e235d337d"><td class="memItemLeft" align="right" valign="top">readonly bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aa95ce652c13bda8426d3fa9e235d337d">IsServerMode</a></td></tr>
-<tr class="memdesc:aa95ce652c13bda8426d3fa9e235d337d"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否为服务器模式  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aa95ce652c13bda8426d3fa9e235d337d">更多...</a><br /></td></tr>
-<tr class="separator:aa95ce652c13bda8426d3fa9e235d337d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b7a20544e45b9eae1a7fc7aa744bbbe"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe">config</a></td></tr>
-<tr class="memdesc:a5b7a20544e45b9eae1a7fc7aa744bbbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">配置  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe">更多...</a><br /></td></tr>
-<tr class="separator:a5b7a20544e45b9eae1a7fc7aa744bbbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab817c3ae24554536c72c9a5e8ddb88bf"><td class="memItemLeft" align="right" valign="top">readonly string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf">ip</a></td></tr>
-<tr class="memdesc:ab817c3ae24554536c72c9a5e8ddb88bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP地址  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf">更多...</a><br /></td></tr>
-<tr class="separator:ab817c3ae24554536c72c9a5e8ddb88bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c50d5b94c4eb3c160b1562daf11ae6a"><td class="memItemLeft" align="right" valign="top">readonly uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a">connectMaxNum</a></td></tr>
-<tr class="memdesc:a3c50d5b94c4eb3c160b1562daf11ae6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">最大连接数【服务器模式用】  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a">更多...</a><br /></td></tr>
-<tr class="separator:a3c50d5b94c4eb3c160b1562daf11ae6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-属性</h2></td></tr>
-<tr class="memitem:ac27b1147bdd1f2b5fd05f84994fb1b0f"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac27b1147bdd1f2b5fd05f84994fb1b0f">TcpPort</a><code> [get]</code></td></tr>
-<tr class="memdesc:ac27b1147bdd1f2b5fd05f84994fb1b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP模式监听端口  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac27b1147bdd1f2b5fd05f84994fb1b0f">更多...</a><br /></td></tr>
-<tr class="separator:ac27b1147bdd1f2b5fd05f84994fb1b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a316816e474e3ae992bf913976ebf11d9"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a316816e474e3ae992bf913976ebf11d9">UdpPort</a><code> [get]</code></td></tr>
-<tr class="memdesc:a316816e474e3ae992bf913976ebf11d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">UDP模式监听端口  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a316816e474e3ae992bf913976ebf11d9">更多...</a><br /></td></tr>
-<tr class="separator:a316816e474e3ae992bf913976ebf11d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba42d6acf02c45915c34a308efc43f09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba42d6acf02c45915c34a308efc43f09">IsAlive</a> = false<code> [get]</code></td></tr>
-<tr class="memdesc:aba42d6acf02c45915c34a308efc43f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">存活状态  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba42d6acf02c45915c34a308efc43f09">更多...</a><br /></td></tr>
-<tr class="separator:aba42d6acf02c45915c34a308efc43f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">SessionId</a> = 0<code> [get]</code></td></tr>
+<tr class="memitem:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">SessionId</a> = 0</td></tr>
 <tr class="memdesc:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">客户端会话ID  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3">更多...</a><br /></td></tr>
 <tr class="separator:a06b08c6dfdb233e0c606524fda7fe4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket')"><img src="closed.png" alt="-"/>&#160;Public 属性 继承自 <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html">ES.Network.HyperSocket.BaseHyperSocket</a></td></tr>
+<tr class="memitem:a08b1fef7337e477ee1c9c0492508c6a6 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">readonly bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a08b1fef7337e477ee1c9c0492508c6a6">IsServerMode</a></td></tr>
+<tr class="memdesc:a08b1fef7337e477ee1c9c0492508c6a6 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否为服务器模式  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a08b1fef7337e477ee1c9c0492508c6a6">更多...</a><br /></td></tr>
+<tr class="separator:a08b1fef7337e477ee1c9c0492508c6a6 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce9a1c6e7e22a466c33294d7907ea69 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#afce9a1c6e7e22a466c33294d7907ea69">config</a></td></tr>
+<tr class="memdesc:afce9a1c6e7e22a466c33294d7907ea69 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">配置  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#afce9a1c6e7e22a466c33294d7907ea69">更多...</a><br /></td></tr>
+<tr class="separator:afce9a1c6e7e22a466c33294d7907ea69 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68d77c64622e060e32dcb7e11b5e65bd inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">readonly string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a68d77c64622e060e32dcb7e11b5e65bd">ip</a></td></tr>
+<tr class="memdesc:a68d77c64622e060e32dcb7e11b5e65bd inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP地址  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a68d77c64622e060e32dcb7e11b5e65bd">更多...</a><br /></td></tr>
+<tr class="separator:a68d77c64622e060e32dcb7e11b5e65bd inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3028bcc337a3a3e677efbfb17f4c90b5 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a3028bcc337a3a3e677efbfb17f4c90b5">IsAlive</a> = false</td></tr>
+<tr class="memdesc:a3028bcc337a3a3e677efbfb17f4c90b5 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">存活状态  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a3028bcc337a3a3e677efbfb17f4c90b5">更多...</a><br /></td></tr>
+<tr class="separator:a3028bcc337a3a3e677efbfb17f4c90b5 inherit pub_attribs_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:aad45d896d751c6ef76014503527be7d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html">IHyperSocketClient</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aad45d896d751c6ef76014503527be7d0">cntListener</a></td></tr>
+<tr class="memdesc:aad45d896d751c6ef76014503527be7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">客户端监听器  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aad45d896d751c6ef76014503527be7d0">更多...</a><br /></td></tr>
+<tr class="separator:aad45d896d751c6ef76014503527be7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td colspan="2" onclick="javascript:toggleInherit('properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html">ES.Network.HyperSocket.BaseHyperSocket</a></td></tr>
+<tr class="memitem:a2de90334476123ef3db1b70bc053ffcd inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a2de90334476123ef3db1b70bc053ffcd">TcpPort</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2de90334476123ef3db1b70bc053ffcd inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP模式监听端口  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a2de90334476123ef3db1b70bc053ffcd">更多...</a><br /></td></tr>
+<tr class="separator:a2de90334476123ef3db1b70bc053ffcd inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e13bbf36f277355ae7501428f2cc2b0 inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a5e13bbf36f277355ae7501428f2cc2b0">UdpPort</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5e13bbf36f277355ae7501428f2cc2b0 inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="mdescLeft">&#160;</td><td class="mdescRight">UDP模式监听端口  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a5e13bbf36f277355ae7501428f2cc2b0">更多...</a><br /></td></tr>
+<tr class="separator:a5e13bbf36f277355ae7501428f2cc2b0 inherit properties_class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>超级套接字 </p>
+<div class="textblock"><p>超级套接字 客户端 </p>
 <p>使用最简单方式来建立服务器或客户端连接</p>
 <p>可以使用可靠的TCP通信、UDP[KCP]通信</p>
 <p>在连接过程中因为握手是异步处理的，所以需要在接口中才能得到正确的连接对象</p>
 <p>如果仅仅是创建了对象后就发送消息等操作是无法正确应答的</p>
-</div><h2 class="groupheader">成员函数说明</h2>
-<a id="ac322dc73985f896777be3fa6bd138088"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac322dc73985f896777be3fa6bd138088">&#9670;&nbsp;</a></span>Close()</h2>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a84c842b2a0e75030b8acb450f6d9326d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c842b2a0e75030b8acb450f6d9326d">&#9670;&nbsp;</a></span>HyperSocket()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ES.Network.HyperSocket.HyperSocket.Close </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>关闭套接字 </p>
-
-</div>
-</div>
-<a id="a2c786dc5e183898cf8290f0167df17eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c786dc5e183898cf8290f0167df17eb">&#9670;&nbsp;</a></span>CreateClient()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a> ES.Network.HyperSocket.HyperSocket.CreateClient </td>
+          <td class="memname">ES.Network.HyperSocket.HyperSocket.HyperSocket </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>ip</em>, </td>
@@ -231,7 +205,7 @@ Public 属性</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>?&#160;</td>
           <td class="paramname"><em>config</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
@@ -240,11 +214,6 @@ Public 属性</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>创建一个客户端超级套接字 </p>
@@ -262,155 +231,15 @@ Public 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="a30baaef0b2abe0b7d1f87e37197fcb8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30baaef0b2abe0b7d1f87e37197fcb8a">&#9670;&nbsp;</a></span>CreateServer() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a> ES.Network.HyperSocket.HyperSocket.CreateServer </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ip</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>connectMaxNum</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html">IHyperSocketServer</a>&#160;</td>
-          <td class="paramname"><em>listener</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>&#160;</td>
-          <td class="paramname"><em>config</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>创建一个服务器超级套接字 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ip</td><td>监听地址</td></tr>
-    <tr><td class="paramname">port</td><td>监听端口 TCP/UDP共用相同端口</td></tr>
-    <tr><td class="paramname">connectMaxNum</td><td>允许最大连接数 最大为65534个连接数</td></tr>
-    <tr><td class="paramname">listener</td><td>监听器</td></tr>
-    <tr><td class="paramname">config</td><td>配置</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a01ed95fe34c5468a7cc395ad4d14713d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01ed95fe34c5468a7cc395ad4d14713d">&#9670;&nbsp;</a></span>CreateServer() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a> ES.Network.HyperSocket.HyperSocket.CreateServer </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ip</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>tcpPort</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>udpPort</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>connectMaxNum</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html">IHyperSocketServer</a>&#160;</td>
-          <td class="paramname"><em>listener</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a>&#160;</td>
-          <td class="paramname"><em>config</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>创建一个服务器超级套接字 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ip</td><td>监听地址</td></tr>
-    <tr><td class="paramname">tcpPort</td><td>tcp端口</td></tr>
-    <tr><td class="paramname">udpPort</td><td>udp端口</td></tr>
-    <tr><td class="paramname">connectMaxNum</td><td>允许最大连接数</td></tr>
-    <tr><td class="paramname">listener</td><td>监听器</td></tr>
-    <tr><td class="paramname">config</td><td>配置</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a076eb85a3f2d5d3c7323d6a2328f3bbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a076eb85a3f2d5d3c7323d6a2328f3bbf">&#9670;&nbsp;</a></span>GetUsedSocketCount()</h2>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0e387ab6f76c019f78ccf96e022804d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e387ab6f76c019f78ccf96e022804d0">&#9670;&nbsp;</a></span>Connect()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ES.Network.HyperSocket.HyperSocket.GetUsedSocketCount </td>
+          <td class="memname"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html">HyperSocket</a> ES.Network.HyperSocket.HyperSocket.Connect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -418,8 +247,7 @@ Public 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>返回使用的远程套接字数量 </p>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<p>开启连接 </p>
 
 </div>
 </div>
@@ -527,123 +355,8 @@ Public 属性</h2></td></tr>
 
 </div>
 </div>
-<a id="af13e1d60ba78597089b45217f628a7b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af13e1d60ba78597089b45217f628a7b9">&#9670;&nbsp;</a></span>Update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ES.Network.HyperSocket.HyperSocket.Update </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dt</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>心跳检测 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dt</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#aa3d2f51decd68d63f4d87157f2240965">ES.Common.Time.ITimeUpdate</a>.</p>
-
-</div>
-</div>
-<a id="aba462bcc43da4cfa1717d02da7e125e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba462bcc43da4cfa1717d02da7e125e2">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ES.Network.HyperSocket.HyperSocket.UpdateEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>停止更新 </p>
-
-<p>实现了 <a class="el" href="interface_e_s_1_1_common_1_1_time_1_1_i_time_update.html#ad72460ac119ef067839efec0ee3316e4">ES.Common.Time.ITimeUpdate</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">类成员变量说明</h2>
-<a id="a5b7a20544e45b9eae1a7fc7aa744bbbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b7a20544e45b9eae1a7fc7aa744bbbe">&#9670;&nbsp;</a></span>config</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">readonly <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html">HyperSocketConfig</a> ES.Network.HyperSocket.HyperSocket.config</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>配置 </p>
-
-</div>
-</div>
-<a id="a3c50d5b94c4eb3c160b1562daf11ae6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c50d5b94c4eb3c160b1562daf11ae6a">&#9670;&nbsp;</a></span>connectMaxNum</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">readonly uint ES.Network.HyperSocket.HyperSocket.connectMaxNum</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>最大连接数【服务器模式用】 </p>
-
-</div>
-</div>
-<a id="ab817c3ae24554536c72c9a5e8ddb88bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab817c3ae24554536c72c9a5e8ddb88bf">&#9670;&nbsp;</a></span>ip</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">readonly string ES.Network.HyperSocket.HyperSocket.ip</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>IP地址 </p>
-
-</div>
-</div>
-<a id="aa95ce652c13bda8426d3fa9e235d337d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa95ce652c13bda8426d3fa9e235d337d">&#9670;&nbsp;</a></span>IsServerMode</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">readonly bool ES.Network.HyperSocket.HyperSocket.IsServerMode</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>是否为服务器模式 </p>
-
-</div>
-</div>
-<h2 class="groupheader">属性说明</h2>
-<a id="aba42d6acf02c45915c34a308efc43f09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba42d6acf02c45915c34a308efc43f09">&#9670;&nbsp;</a></span>IsAlive</h2>
+<a id="ad1ac5faf737928df3ca9b9a990231552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ac5faf737928df3ca9b9a990231552">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -652,17 +365,47 @@ Public 属性</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ES.Network.HyperSocket.HyperSocket.IsAlive = false</td>
+          <td class="memname">override void ES.Network.HyperSocket.HyperSocket.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>存活状态 </p>
+<p></p>
+
+<p>实现了 <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a801e8bffd7fd60aa11fc1fbf7c51bb3a">ES.Network.HyperSocket.BaseHyperSocket</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aad45d896d751c6ef76014503527be7d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad45d896d751c6ef76014503527be7d0">&#9670;&nbsp;</a></span>cntListener</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html">IHyperSocketClient</a> ES.Network.HyperSocket.HyperSocket.cntListener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>客户端监听器 </p>
 
 </div>
 </div>
@@ -671,70 +414,14 @@ Public 属性</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">ushort ES.Network.HyperSocket.HyperSocket.SessionId = 0</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>客户端会话ID </p>
-
-</div>
-</div>
-<a id="ac27b1147bdd1f2b5fd05f84994fb1b0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac27b1147bdd1f2b5fd05f84994fb1b0f">&#9670;&nbsp;</a></span>TcpPort</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint ES.Network.HyperSocket.HyperSocket.TcpPort</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>TCP模式监听端口 </p>
-
-</div>
-</div>
-<a id="a316816e474e3ae992bf913976ebf11d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a316816e474e3ae992bf913976ebf11d9">&#9670;&nbsp;</a></span>UdpPort</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint ES.Network.HyperSocket.HyperSocket.UdpPort</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>UDP模式监听端口 </p>
 
 </div>
 </div>

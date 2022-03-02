@@ -14,8 +14,8 @@ var class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket =
     [ "clientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a8eb0a3a0389871b3c541665089c143d8", null ],
     [ "isRecving", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a7657c0525daf36fc0b3d6f86831a158a", null ],
     [ "numMaxBufferSize", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a176cb1754fac20efba1a6fb4a1cf3a90", null ],
-    [ "socketInvoke", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a4df493a58641beb7f888cd3dc874e86f", null ],
-    [ "Target", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a57fa80d3682732177f20db2a7a745d91", null ],
+    [ "socketInvoke", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a959bf43b94392478f124f722c0a5ea66", null ],
+    [ "Target", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a754c8ef77e801922ab1cce789dbffe6e", null ],
     [ "HasConnected", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a8d7bd6e78cdf55482abaf5f85b6ceae6", null ],
     [ "RBuffer", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a2014fd7f6763e549f83ac4cc255408b5", null ]
 ];

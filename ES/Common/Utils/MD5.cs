@@ -25,7 +25,7 @@ namespace ES.Common.Utils
         /// <returns></returns>
         public static string Encrypt(byte[] data)
         {
-            System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
             byte[] md5data = md5.ComputeHash(data);//计算data字节数组的哈希值 
             md5.Clear();
             StringBuilder sb = new StringBuilder();

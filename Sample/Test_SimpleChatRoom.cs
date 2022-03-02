@@ -12,7 +12,8 @@ namespace Sample
     /// </summary>
     class Test_SimpleChatRoom
     {
-        static HyperSocket socket = null;
+        static HyperSocketServer server = null;
+        static HyperSocket client = null;
 
         public Test_SimpleChatRoom()
         {
@@ -34,12 +35,14 @@ namespace Sample
 
         public void StartServer()
         {
-            socket = HyperSocket.CreateServer("127.0.0.1", 8888, 50, new ServerListener(), new HyperSocketConfig() { UseSSL = true });
+            server = new HyperSocketServer("127.0.0.1", 8888, 50, new ServerListener(), new HyperSocketConfig() { UseSSL = true });
+            server.StartServer();
         }
 
         public void StartClient()
         {
-            socket = HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
+            client = new HyperSocket("127.0.0.1", 8888, new ClientListener());
+            client.Connect();
             while (true)
             {
                 var id = Console.ReadLine();
@@ -47,7 +50,7 @@ namespace Sample
                 var jsonObj = new JObject();
                 jsonObj.Add("id", int.Parse(id));
                 jsonObj.Add("msg", str);
-                socket.SendUdp(jsonObj.AsBytes());
+                ((HyperSocket)client).SendUdp(jsonObj.AsBytes());
             }
         }
 
@@ -127,7 +130,7 @@ namespace Sample
             public void SocketError(Exception ex)
             {
                 Console.WriteLine($"客户端错误:{ex.Message}");
-                sockets.TryRemove(socket.SessionId, out _);
+                sockets.TryRemove(client.SessionId, out _);
             }
         }
     }

@@ -65,7 +65,7 @@ namespace Sample
             
 
             // 临时变量 测试时间流自动停止
-            StartTempTime();
+            // StartTempTime();
             // 需要gc回收一下
             // 此处gc不会影响当前大括号的其他定时器，因为这个函数域还没结束
             GC.Collect();

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['background_5fdebug_5fcolor_839',['BACKGROUND_DEBUG_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#ad85d67ce5399ce4a52b97ec4c1ca9d5f',1,'ES::Common::Log::Log']]],
-  ['background_5ferror_5fcolor_840',['BACKGROUND_ERROR_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a25f9f1ad0fc686a42f88518f36f39a99',1,'ES::Common::Log::Log']]],
-  ['background_5fexception_5fcolor_841',['BACKGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#a5b255675ef4d9e21dd0efdc7879cea6e',1,'ES::Common::Log::Log']]],
-  ['background_5finfo_5fcolor_842',['BACKGROUND_INFO_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#ad47090bc201a73a6dd4ee1ee46456de2',1,'ES::Common::Log::Log']]],
-  ['background_5fwarn_5fcolor_843',['BACKGROUND_WARN_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log.html#ae5f41cc2c5c1e492fe4084cec4a63528',1,'ES::Common::Log::Log']]],
-  ['buffer_844',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES::Network::Sockets::Client::BaseClientSocket']]]
+  ['background_5fdebug_5fcolor_993',['BACKGROUND_DEBUG_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#acbb077a4816757880def8f8a9a4b10a4',1,'ES::Common::Log::LogConfig']]],
+  ['background_5ferror_5fcolor_994',['BACKGROUND_ERROR_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a2e57a09b658f80d2060bbeb1b7a2abb9',1,'ES::Common::Log::LogConfig']]],
+  ['background_5fexception_5fcolor_995',['BACKGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#a9d91248069f2efce34f0ebd7e7ce4749',1,'ES::Common::Log::LogConfig']]],
+  ['background_5finfo_5fcolor_996',['BACKGROUND_INFO_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#ac42ea6836f6cf8971c7bcc9570b83738',1,'ES::Common::Log::LogConfig']]],
+  ['background_5fwarn_5fcolor_997',['BACKGROUND_WARN_COLOR',['../class_e_s_1_1_common_1_1_log_1_1_log_config.html#afcb79d0ec300c8c6e90208cd0ed2a3d9',1,'ES::Common::Log::LogConfig']]],
+  ['buffer_998',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a9205e7b8362836bae230e1bc154a3b1d',1,'ES::Network::Sockets::Client::BaseClientSocket']]]
 ];

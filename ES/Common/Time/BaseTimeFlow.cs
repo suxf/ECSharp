@@ -42,6 +42,10 @@ namespace ES.Common.Time
         /// 修正时间 此处内部转换为纳秒整型
         /// </summary>
         private readonly long fixedNanoTime = 0;
+        /// <summary>
+        /// 首次更新
+        /// </summary>
+        private bool firstUpdate = true;
 
         /// <summary>
         /// 构造函数 多线程处理逻辑
@@ -51,7 +55,7 @@ namespace ES.Common.Time
         {
             this.fixedTime = fixedTime;
             if (this.fixedTime <= 0) this.fixedTime = 0;
-            else fixedNanoTime = fixedTime * 1000000;
+            else fixedNanoTime = fixedTime * 1000000L;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
             TimeFlowManager.Instance.PushTimeFlow(this);
         }
@@ -66,7 +70,7 @@ namespace ES.Common.Time
         {
             this.fixedTime = fixedTime;
             if (this.fixedTime <= 0) this.fixedTime = 0;
-            else fixedNanoTime = fixedTime * 1000000;
+            else fixedNanoTime = fixedTime * 1000000L;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
             TimeFlowManager.Instance.PushTimeFlow(this, tfIndex);
         }
@@ -131,6 +135,21 @@ namespace ES.Common.Time
         }
 
         /// <summary>
+        /// 通过对象关闭时间流
+        /// </summary>
+        /// <param name="timeUpdate"></param>
+        /// <returns></returns>
+        internal bool CloseByObj(ITimeUpdate timeUpdate)
+        {
+            if (reference.TryGetTarget(out var target) && target == timeUpdate)
+            {
+                CloseTimeFlowES();
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 内部 更新
         /// </summary>
         /// <param name="dt"></param>
@@ -140,9 +159,15 @@ namespace ES.Common.Time
             var nanoDt = (long)(dt * 1000000000L);
             if (reference.TryGetTarget(out var iTimeUpdate))
             {
+                // 首次处理忽略之前的值
+                if (firstUpdate)
+                {
+                    firstUpdate = false;
+                    consumeTime = nanoDt;
+                }
                 var temp = nanoDt - consumeTime;
                 // 正常更新
-                if (fixedTime == 0) iTimeUpdate.Update((int)(temp / 1000000));
+                if (fixedTime == 0) iTimeUpdate.Update((int)(temp / 1000000L));
                 else
                 {
                     // 修正更新

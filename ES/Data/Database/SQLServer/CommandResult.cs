@@ -14,11 +14,16 @@ namespace ES.Data.Database.SQLServer
         public int EffectNum { internal set; get; }
         /// <summary>
         /// 执行数据合集
+        /// <para>同名，简化名称，后期弃用 Collection 命名</para>
         /// </summary>
-        public DataRowCollection Collection { internal set; get; }
+        public DataRowCollection? Rows { internal set; get; }
+        /// <summary>
+        /// 数据表合集
+        /// </summary>
+        public DataTableCollection? Tables { internal set; get; }
         /// <summary>
         /// 数据总合集
         /// </summary>
-        public DataSet DataSet { internal set; get; }
+        public DataSet? DataSet { internal set; get; }
     }
 }

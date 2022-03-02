@@ -15,15 +15,15 @@ namespace ES.Network.Http.Linq
         /// <summary>
         /// 回调委托列表
         /// </summary>
-        internal ConcurrentDictionary<string, Request> commandList = null;
+        internal ConcurrentDictionary<string, Request> commandList;
         /// <summary>
         /// 全局Http监听者
         /// </summary>
-        private Request allHttpListener = null;
+        private Request? allHttpListener = null;
         /// <summary>
         /// 异常回调函数地址
         /// </summary>
-        private readonly IHttpVisitor listener = null;
+        private readonly IHttpVisitor listener;
 
         /// <summary>
         /// 构造函数
@@ -59,11 +59,11 @@ namespace ES.Network.Http.Linq
 
         void IHttp.OnRequest(HttpRequest request, HttpResponse response)
         {
-            Request or = null;
+            Request? or = null;
             var url = request.RawUrl.Split("?")[0];
             if (url.Length >= 1) url = url[0] == '/' ? url.Substring(1) : url;
             if (url.Length >= 1) url = url[url.Length - 1] == '/' ? url.Substring(0, url.Length - 1) : url;
-            if (commandList.TryGetValue(url, out Request value))
+            if (commandList.TryGetValue(url, out Request? value))
             {
                 or = value;
             }
@@ -89,10 +89,9 @@ namespace ES.Network.Http.Linq
         /// </summary>
         /// <param name="exception"></param>
         /// <param name="request"></param>
-        public void HttpException(HttpRequest request, Exception exception)
+        public void HttpException(HttpRequest? request, Exception exception)
         {
-            if (listener != null) listener.HttpVisitorException(request, exception);
-            else throw exception;
+            listener.HttpVisitorException(request!, exception);
         }
     }
 }

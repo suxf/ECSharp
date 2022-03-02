@@ -18,9 +18,9 @@ namespace ES.Network.HyperSocket
         /// </summary>
         public ushort SessionId { get; private set; } = 0;
 
-        internal RemoteConnection tcpConn;
-        internal RemoteConnection udpConn;
-        private WeakReference<HyperSocket> hyperSocketRef;
+        internal RemoteConnection? tcpConn;
+        internal RemoteConnection? udpConn;
+        private readonly WeakReference<HyperSocketServer> hyperSocketRef;
         /// <summary>
         /// 在线状态
         /// </summary>
@@ -36,7 +36,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 与远程对象捆绑标记
         /// </summary>
-        public object Tag;
+        public object? Tag;
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
@@ -44,12 +44,12 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 安全传输协议
         /// </summary>
-        internal SSL ssl;
+        internal SSL? ssl;
 
         /// <summary>
         /// ip地址
         /// </summary>
-        internal string ip;
+        internal string ip = "";
         /// <summary>
         /// tcp端口
         /// </summary>
@@ -59,10 +59,10 @@ namespace ES.Network.HyperSocket
         /// </summary>
         internal int udpPort;
 
-        internal RemoteHyperSocket(ushort sessionId, HyperSocket hyperSocket, HyperSocketConfig config)
+        internal RemoteHyperSocket(ushort sessionId, HyperSocketServer hyperSocket, HyperSocketConfig config)
         {
             if (config.UseSSL) ssl = new SSL(SSL.SSLMode.AES);
-            hyperSocketRef = new WeakReference<HyperSocket>(hyperSocket);
+            hyperSocketRef = new WeakReference<HyperSocketServer>(hyperSocket);
             SessionId = sessionId;
             kcpHelper = new KcpHelper(sessionId, (int)config.UdpReceiveSize, config.KcpWinSize, config.kcpMode, this);
         }
@@ -76,8 +76,8 @@ namespace ES.Network.HyperSocket
         {
             if (IsAlive && isValid && data != null)
             {
-                if (hyperSocketRef.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) return tcpConn.Send(SessionId, ssl.AESEncrypt(data));
-                else return tcpConn.Send(SessionId, data);
+                if (hyperSocketRef!.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) return tcpConn!.Send(SessionId, ssl!.AESEncrypt(data));
+                else return tcpConn!.Send(SessionId, data);
             }
             else return false;
         }
@@ -89,7 +89,7 @@ namespace ES.Network.HyperSocket
         internal bool SendPong()
         {
             System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
-            return tcpConn.Send(SessionId, HyperSocket.HeartPongBytes);
+            return tcpConn!.Send(SessionId, BaseHyperSocket.HeartPongBytes);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool SendSignData(byte[] signData)
         {
-            return tcpConn.Send(SessionId, signData);
+            return tcpConn!.Send(SessionId, signData);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace ES.Network.HyperSocket
         {
             if (IsAlive && isValid)
             {
-                if (hyperSocketRef.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2)) SendKcp(ssl.AESEncrypt(data));
+                if (hyperSocketRef!.TryGetTarget(out var hyperSocket) && hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2)) SendKcp(ssl!.AESEncrypt(data));
                 else SendKcp(data);
             }
         }
@@ -156,7 +156,7 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void OnSend(byte[] data)
         {
-            udpConn.Send(SessionId, data);
+            udpConn!.Send(SessionId, data);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool CheckSameRemote(RemoteConnection conn)
         {
-            if (conn != null && tcpConn != null && tcpConn.Socket.endPoint.Address.Equals(conn.Socket.endPoint.Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
+            if (conn != null && tcpConn != null && tcpConn.Socket!.endPoint.Address.Equals(conn.Socket!.endPoint.Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
                 return true;
             else
                 return false;
@@ -186,7 +186,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool CheckSameRemote(System.Net.EndPoint conn)
         {
-            if (conn != null && udpConn != null && udpConn.Socket.endPoint.Address.Equals((conn as System.Net.IPEndPoint).Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
+            if (conn != null && udpConn != null && udpConn.Socket!.endPoint.Address.Equals((conn as System.Net.IPEndPoint)!.Address) /*&& tcpConn.socket.endPoint.Port == conn.socket.endPoint.Port*/)
                 return true;
             else
                 return false;
@@ -223,11 +223,11 @@ namespace ES.Network.HyperSocket
         {
             if (IsAlive)
             {
-                tcpConn.Destroy();
-                udpConn.Destroy();
+                tcpConn!.Destroy();
+                udpConn!.Destroy();
                 kcpHelper.CloseKcp();
             }
-            if (hyperSocketRef.TryGetTarget(out var hyperSocket))
+            if (hyperSocketRef!.TryGetTarget(out var hyperSocket))
             {
                 if (IsAlive && isValid) hyperSocket.svrListener.OnClose(this);
                 else hyperSocket.svrListener.SocketError(new Exception("Initialize Connection Fail"));
@@ -236,7 +236,7 @@ namespace ES.Network.HyperSocket
             IsAlive = false;
             isValid = false;
             Tag = null;
-            hyperSocketRef = null;
+            // hyperSocketRef = null;
         }
     }
 }

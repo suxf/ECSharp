@@ -18,18 +18,18 @@ namespace ES.Common.Utils
         /// 通过json字节流新建Json对象
         /// <para>此字节流编码：UTF-8</para>
         /// </summary>
-        public static JObject AsJObject(this byte[] json) { return JsonConvert.DeserializeObject<JObject>(Encoding.UTF8.GetString(json)); }
+        public static JObject? AsJObject(this byte[] json) { return JsonConvert.DeserializeObject<JObject>(Encoding.UTF8.GetString(json)); }
 
         /// <summary>
         /// 通过json字符串新建Json对象
         /// </summary>
-        public static JObject AsJObject(this string json) { return JsonConvert.DeserializeObject<JObject>(json); }
+        public static JObject? AsJObject(this string json) { return JsonConvert.DeserializeObject<JObject>(json); }
 
         /// <summary>
         /// 序列化json对象为字符串
         /// </summary>
         /// <returns>序列化的字符串</returns>
-        public static string AsString(this JObject obj) { return JsonConvert.SerializeObject(obj); }
+        public static string? AsString(this JObject obj) { return JsonConvert.SerializeObject(obj); }
 
         /// <summary>
         /// 序列化json对象为字节流
@@ -42,12 +42,12 @@ namespace ES.Common.Utils
         /// 通过json字节流新建Json数组对象
         /// <para>此字节流编码：UTF-8</para>
         /// </summary>
-        public static JArray AsJArray(this byte[] json) { return JsonConvert.DeserializeObject<JArray>(Encoding.UTF8.GetString(json)); }
+        public static JArray? AsJArray(this byte[] json) { return JsonConvert.DeserializeObject<JArray>(Encoding.UTF8.GetString(json)); }
 
         /// <summary>
         /// 通过json字符串新建Json数组对象
         /// </summary>
-        public static JArray AsJArray(this string json) { return JsonConvert.DeserializeObject<JArray>(json); }
+        public static JArray? AsJArray(this string json) { return JsonConvert.DeserializeObject<JArray>(json); }
 
         /// <summary>
         /// 序列化json数组对象为字符串
@@ -274,6 +274,75 @@ namespace ES.Common.Utils
         public static string AsString(this byte[] bytes)
         {
             return Encoding.UTF8.GetString(bytes);
+        }
+        #endregion
+
+        #region 字符串转其他类型拓展
+        /// <summary>
+        /// 转字节
+        /// <para>转换无效时默认为0</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static byte AsByte(this string str)
+        {
+            byte.TryParse(str, out byte result);
+            return result;
+        }
+        /// <summary>
+        /// 转32位整型
+        /// <para>转换无效时默认为0</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static int AsInt32(this string str)
+        {
+            int.TryParse(str, out int result);
+            return result;
+        }
+        /// <summary>
+        /// 转64位整型
+        /// <para>转换无效时默认为0</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static long AsInt64(this string str)
+        {
+            long.TryParse(str, out long result);
+            return result;
+        }
+        /// <summary>
+        /// 转单精度浮点型
+        /// <para>转换无效时默认为0</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static float AsFloat(this string str)
+        {
+            float.TryParse(str, out float result);
+            return result;
+        }
+        /// <summary>
+        /// 转双精度浮点型
+        /// <para>转换无效时默认为0</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static double AsDouble(this string str)
+        {
+            double.TryParse(str, out double result);
+            return result;
+        }
+        /// <summary>
+        /// 转布尔型
+        /// <para>转换无效时默认为false</para>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool AsBool(this string str)
+        {
+            bool.TryParse(str, out bool result);
+            return result;
         }
         #endregion
     }

@@ -23,15 +23,15 @@ namespace ES.Network.Sockets
         /// </summary>
         private readonly int index = 0;
 
-        private object userToken = null;
-        private EndPoint endPoint = null;
-        private Socket socket = null;
-        private EventHandler<SocketAsyncEventArgs> eventHandler = null;
+        private object userToken;
+        private EndPoint? endPoint = null;
+        private Socket? socket = null;
+        private EventHandler<SocketAsyncEventArgs>? eventHandler;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        internal SocketAsyncEventArgsEx(object userToken, EndPoint endPoint, EventHandler<SocketAsyncEventArgs> eventHandler)
+        internal SocketAsyncEventArgsEx(object userToken, EndPoint endPoint, EventHandler<SocketAsyncEventArgs>? eventHandler)
         {
             argsList = new List<MySocketAsyncEventArgs>();
             this.userToken = userToken;
@@ -62,7 +62,7 @@ namespace ES.Network.Sockets
                 for (int i = 0; i < 8; i++)
                 {
                     MySocketAsyncEventArgs mySocketAsyncEventArgs;
-                    if (socket == null) mySocketAsyncEventArgs = new MySocketAsyncEventArgs(userToken, endPoint);
+                    if (socket == null) mySocketAsyncEventArgs = new MySocketAsyncEventArgs(userToken, endPoint!);
                     else mySocketAsyncEventArgs = new MySocketAsyncEventArgs(userToken, socket);
                     mySocketAsyncEventArgs.Completed += eventHandler;
                     argsList.Add(mySocketAsyncEventArgs);
@@ -102,13 +102,14 @@ namespace ES.Network.Sockets
                 {
                     argsList[i].isUsed = true;
                     argsList[i].Dispose();
-                    argsList[i] = null;
+                    // argsList[i] = null;
                 }
+                argsList.Clear();
             }
-            userToken = null;
+            // userToken = null;
             endPoint = null;
             socket = null;
-            eventHandler = null;
+            // eventHandler = null;
         }
     }
 }

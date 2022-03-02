@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
+using System.Threading;
 
 namespace ES.Hotfix
 {
@@ -15,17 +16,10 @@ namespace ES.Hotfix
     public static class HotfixMgr
     {
         private static bool isLoading = false;
-        // internal readonly static ManualResetEventSlim ResetEvent = new(false);
-        // /// <summary>
-        // /// 代理
-        // /// <para>上层需要使用热更层</para>
-        // /// </summary>
-        // public AbstractAgent Agent { get { /*ResetEvent.Wait();*/ return _agent; } }
-        // internal AbstractAgent _agent;
         /// <summary>
         /// 程序集装载器对象
         /// </summary>
-        private static AssemblyLoader assemblyLoader;
+        private static AssemblyLoader? assemblyLoader;
         /// <summary>
         /// 代理引用包
         /// </summary>
@@ -37,11 +31,7 @@ namespace ES.Hotfix
         /// <summary>
         /// 代理类型字典
         /// </summary>
-        internal static readonly ConcurrentDictionary<Type, Type> agentTypeMap;
-        /// <summary>
-        /// 加载时间
-        /// </summary>
-        private static DateTime loadTime;
+        internal static ConcurrentDictionary<Type, Type> agentTypeMap = new ConcurrentDictionary<Type, Type>();
         /// <summary>
         /// 是否为第一次加载
         /// <para>只有在第一次加载才为true，之后都是false</para>
@@ -55,14 +45,13 @@ namespace ES.Hotfix
         /// <summary>
         /// 更新检测
         /// </summary>
-        private static UpdateCheck updateCheck;
+        private readonly static UpdateCheck updateCheck;
 
         /// <summary>
         /// 创建一个热更管理器
         /// </summary>
         static HotfixMgr()
         {
-            agentTypeMap = new ConcurrentDictionary<Type, Type>();
             updateCheck = new UpdateCheck();
             tf = BaseTimeFlow.CreateTimeFlow(updateCheck, 0);
             tf.StartTimeFlowES();
@@ -72,16 +61,15 @@ namespace ES.Hotfix
         /// 载入热更新模块
         /// <para>读取不能保证所有情况都是正常的，建议用try-catch捕获异常，以确保未正确替换，还能保持旧环境继续运行</para>
         /// <para>主入口包含一个静态Main函数 public static void Main(string[] args){}</para>
-        /// <para>此函数使用存在调用间隔，3秒内不能重复调用</para>
         /// </summary>
         /// <param name="assemblyFileName">程序集文件名(后缀小写或不写且程序集需要在运行根目录下)</param>
         /// <param name="classFullName">含有 public static void Main(string[] args){} 程序集下热更模块主入口类全称(即命名空间和类名)</param>
         /// <param name="args">传入热更层字符串数组</param>
         /// <param name="entryMethodName">入口函数名称，默认不指定为 Main</param>
         /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
-        public static bool Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[] args = null, string entryMethodName = "Main")
+        public static bool Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
         {
-            if (isLoading || loadTime > DateTime.Now.AddSeconds(-3)) return false;
+            if (isLoading /*|| loadTime > DateTime.Now.AddSeconds(-3)*/) return false;
             isLoading = true;
             if (++loadCount >= 2) IsFirstLoad = false;
             // LmBinder.ResetEvent.Reset();
@@ -91,8 +79,8 @@ namespace ES.Hotfix
             var dllName = assemblyFileName + ".dll";
             var pdbName = assemblyFileName + ".pdb";
             // 处理开始
-            FileStream fsRead = null;
-            FileStream pdbRead = null;
+            FileStream? fsRead = null;
+            FileStream? pdbRead = null;
             try
             {
                 if (!File.Exists(dllName)) throw new NullReferenceException($"[{assemblyFileName}] file is not found!");
@@ -111,7 +99,7 @@ namespace ES.Hotfix
                 if (methodInfo == null) throw new NullReferenceException($"[{entryMethodName}] public static method is not found!");
                 if (methodInfo.GetParameters().Length != 1) throw new NullReferenceException($"[{entryMethodName}] method has not one args!");
                 // 处理代理类字典
-                agentTypeMap.Clear();
+                var agentTypeMapTemp = new ConcurrentDictionary<Type, Type>();
                 var allTypes = assembly.GetTypes();
                 var abstractAgentType = typeof(AbstractAgent);
                 var iAgentType = typeof(IAgent<>);
@@ -119,7 +107,7 @@ namespace ES.Hotfix
                 {
                     var type = allTypes[i];
                     var interfaceTypes = type.GetInterfaces();
-                    Type interfaceType = null;
+                    Type? interfaceType = null;
                     for (int j = interfaceTypes.Length - 1; j >= 0; j--)
                     {
                         var temp = interfaceTypes[j];
@@ -131,26 +119,32 @@ namespace ES.Hotfix
                     }
                     if (interfaceType != null && abstractAgentType.IsAssignableFrom(type))
                     {
-                        agentTypeMap.TryAdd(interfaceType.GetGenericArguments()[0], type);
+                        agentTypeMapTemp.TryAdd(interfaceType.GetGenericArguments()[0], type);
                     }
                 }
-                // 创建入口实例
-                // var typeInstance = tempDllAssemblyLoader.GetAssembly().CreateInstance(classFullName);
-                // var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-                // var lmBinderType = dllStaticAssembly.GetType("Module.LmBinder");
-                // if (lmBinderType == null) throw new NullReferenceException("LmBinder.cs module is not found!");
-                // lmBinderType.GetField(typeInfo.Name).SetValue(lmBinderType, typeInstance);
-                // 原子锁
-                // Interlocked.Exchange(ref _agent, Convert.ChangeType(typeInstance, typeInfo));
+                Interlocked.Exchange(ref agentTypeMap, agentTypeMapTemp);
                 // 处理代理索引
                 lock (agentRefs)
                 {
+                    // 先暂停时间流
+                    foreach (var item in agentRefs)
+                    {
+                        if (item.TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
+                        {
+                            // 处理时间流代理停止
+                            TimeFlowManager.Instance.CloseByObj((ITimeUpdate)agentRef._agent);
+                        }
+                    }
+                    // 后重置所有代理
                     for (int i = agentRefs.Count - 1; i >= 0; i--)
                     {
                         if (agentRefs[i].TryGetTarget(out var agentRef))
                         {
                             agentRef.isCreated = false;
-                            if (agentRef.isAutoCreate) agentRef.CreateAgent();
+                            if (agentRef.isAutoCreate)
+                            {
+                                agentRef.CreateAsyncAgent();
+                            }
                             else agentRef._agent = null;
                         }
                         else agentRefs.RemoveAt(i);
@@ -177,26 +171,24 @@ namespace ES.Hotfix
                 //             newProperty.SetValue(typeInfo, oldProperty.GetValue(oldTypeInfo));
                 //     }
                 // }
+                var waitDestroyLoader = assemblyLoader;
                 // 调用入口函数
-                methodInfo.Invoke(tempDllAssemblyLoader, new object[] { args });
+                methodInfo.Invoke(Interlocked.Exchange(ref assemblyLoader, tempDllAssemblyLoader), new object[] { args });
                 // 程序域转换
-                if (assemblyLoader != null && assemblyLoader.IsAlive) assemblyLoader.Unload();
-                assemblyLoader = tempDllAssemblyLoader;
+                if (waitDestroyLoader != null && waitDestroyLoader.IsAlive) waitDestroyLoader.Unload();
                 if (fsRead != null) fsRead.Close();
                 if (pdbRead != null) pdbRead.Close();
-                // LmBinder.ResetEvent.Set();
             }
             catch
             {
                 if (fsRead != null) fsRead.Close();
                 if (pdbRead != null) pdbRead.Close();
-                // LmBinder.ResetEvent.Set();
                 throw;
             }
             finally
             {
-                loadTime = DateTime.Now;
                 isLoading = false;
+                // 没有执行成功需要关闭写入锁
             }
             return true;
         }
@@ -207,25 +199,25 @@ namespace ES.Hotfix
         /// <returns></returns>
         public static Version GetVersion()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version;
+            return Assembly.GetExecutingAssembly().GetName().Version!;
         }
 
         /// <summary>
         /// 获取版本
         /// </summary>
         /// <returns></returns>
-        public static Version GetAssemblyVersion()
+        public static Version? GetAssemblyVersion()
         {
-            return assemblyLoader.GetAssembly().GetName().Version;
+            return assemblyLoader?.GetAssembly()?.GetName().Version;
         }
 
         /// <summary>
         /// 获取程序集
         /// </summary>
         /// <returns></returns>
-        public static Assembly GetAssembly()
+        public static Assembly? GetAssembly()
         {
-            return assemblyLoader.GetAssembly();
+            return assemblyLoader?.GetAssembly();
         }
 
         /// <summary>
@@ -315,15 +307,14 @@ namespace ES.Hotfix
 
             public bool IsAlive { get; private set; } = true;
 
-            public AssemblyLoader(Stream stream, Stream pdbStream)
+            public AssemblyLoader(Stream stream, Stream? pdbStream)
             {
                 context = new AssemblyProtectContext(stream, pdbStream);
             }
 
             public Assembly GetAssembly()
             {
-                if (context != null && IsAlive) return context.assembly;
-                return null;
+                return context.assembly!;
             }
 
             public void Unload()
@@ -332,7 +323,7 @@ namespace ES.Hotfix
                 {
                     IsAlive = false;
                     context.UnloadAssembly();
-                    context = null;
+                    // context = null;
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
                 }
@@ -343,14 +334,19 @@ namespace ES.Hotfix
             /// </summary>
             private class AssemblyProtectContext : AssemblyLoadContext
             {
-                public Assembly assembly = null;
+                public Assembly assembly;
 
-                public AssemblyProtectContext(Stream stream, Stream pdbStream) : base(true)
+                public AssemblyProtectContext(Stream stream, Stream? pdbStream) : base(true)
                 {
                     if (pdbStream == null) assembly = LoadFromStream(stream);
                     else assembly = LoadFromStream(stream, pdbStream);
                 }
-                public void UnloadAssembly() { Unload(); assembly = null; }
+
+                public void UnloadAssembly()
+                {
+                    Unload();
+                    // assembly = null; 
+                }
             }
         }
     }

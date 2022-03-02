@@ -15,7 +15,7 @@ namespace ES.Network.Websocket
         /// <summary>
         /// Fleck websocket服务对象
         /// </summary>
-        private WebSocketServer websocketSvr = null;
+        private WebSocketServer websocketSvr;
 
         private readonly ConcurrentDictionary<Guid, RemoteConnection> remoteConnections = new ConcurrentDictionary<Guid, RemoteConnection>();
 
@@ -67,7 +67,7 @@ namespace ES.Network.Websocket
                     {
                         invoke.OnClose(conn);
                         conn.Tag = null;
-                        conn.Message = null;
+                        conn.Message = "";
                     }
                 };
                 socket.OnMessage = message =>
@@ -103,7 +103,7 @@ namespace ES.Network.Websocket
         {
             if (websocketSvr != null)
                 websocketSvr.Dispose();
-            websocketSvr = null;
+            // websocketSvr = null;
         }
 
     }

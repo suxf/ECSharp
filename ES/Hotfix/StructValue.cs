@@ -9,6 +9,6 @@
         /// <summary>
         /// 结构体值
         /// </summary>
-        public T Value { get { return (T)_value; } set { _value = value; } }
+        public T Value { get { return (T)_value!; } set { _value = value; } }
     }
 }

@@ -19,6 +19,6 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="request">HTTP请求</param>
         /// <param name="exception">异常对象</param>
-        void HttpException(HttpRequest request, Exception exception);
+        void HttpException(HttpRequest? request, Exception exception);
     }
 }

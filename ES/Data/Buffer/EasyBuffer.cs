@@ -34,7 +34,7 @@ namespace ES.Data.Buffer
         /// <param name="buffer">解析字节流</param>
         /// <param name="isCompress">是否压缩流 默认true</param>
         /// <returns></returns>
-        public static T Parse(byte[] buffer, bool isCompress = true)
+        public static T? Parse(byte[] buffer, bool isCompress = true)
         {
             return Parse(Encoding.UTF8.GetString(buffer), isCompress);
         }
@@ -65,13 +65,13 @@ namespace ES.Data.Buffer
         /// <param name="buffer">解析字符串</param>
         /// <param name="isCompress">是否压缩流 默认true</param>
         /// <returns></returns>
-        public static T Parse(string buffer, bool isCompress = true)
+        public static T? Parse(string buffer, bool isCompress = true)
         {
             if (isCompress)
             {
                 var optimizedStr = new StringBuilder(buffer);
                 var jCompress = JsonConvert.DeserializeObject<JArray>(DeCompressJson(optimizedStr));
-                JObject jDeCompress = (Activator.CreateInstance(typeof(T)) as EasyBuffer).DeCompressESBuffer(jCompress);
+                JObject jDeCompress = (Activator.CreateInstance(typeof(T)) as EasyBuffer)!.DeCompressESBuffer(jCompress!);
                 return jDeCompress.ToObject<T>();
             }
             else return JsonConvert.DeserializeObject<T>(buffer);
@@ -188,20 +188,20 @@ namespace ES.Data.Buffer
             for (int i = 0, len = _esfields.Length; i < len; i++)
             {
                 FieldInfo field = _esfields[i];
-                if (field.FieldType.BaseType.FullName.Contains("EasyBuffer"))
+                if (field.FieldType.BaseType!.FullName!.Contains("EasyBuffer"))
                 {
                     // JArray jItemArray = (field.GetValue(this) as EasyBuffer).CompressESBuffer(jItem.Value as JObject);
                     // jCompress.Add(jItemArray);
                 }
                 else
                 {
-                    if (field.FieldType == typeof(int)) jRaw.Add(field.Name, (int)field.GetValue(this));
-                    else if (field.FieldType == typeof(bool)) jRaw.Add(field.Name, (bool)field.GetValue(this));
-                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this));
-                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this));
-                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this));
-                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this));
-                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this));
+                    if (field.FieldType == typeof(int)) jRaw.Add(field.Name, (int)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(bool)) jRaw.Add(field.Name, (bool)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this)!);
+                    else if (field.FieldType == typeof(string)) jRaw.Add(field.Name, (string)field.GetValue(this)!);
                 }
             }
 
@@ -223,17 +223,17 @@ namespace ES.Data.Buffer
                     var field = _esfields[i];
                     if (jItem.Key == field.Name)
                     {
-                        if (field.FieldType.BaseType.FullName.Contains("EasyBuffer"))
+                        if (field.FieldType.BaseType!.FullName!.Contains("EasyBuffer"))
                         {
                             isField = true;
 
-                            JArray jItemArray = (field.GetValue(this) as EasyBuffer).CompressESBuffer(jItem.Value as JObject);
+                            JArray jItemArray = (field.GetValue(this) as EasyBuffer)!.CompressESBuffer((JObject)jItem.Value!);
                             jCompress.Add(jItemArray);
                         }
                         break;
                     }
                 }
-                if (!isField) jCompress.Add(jItem.Value);
+                if (!isField) jCompress.Add(jItem.Value!);
             }
             return jCompress;
         }
@@ -251,11 +251,11 @@ namespace ES.Data.Buffer
 
                 var jItem = jCompress[i];
                 var field = _esfields[i];
-                if (field.FieldType.BaseType.FullName.Contains("EasyBuffer"))
+                if (field.FieldType.BaseType!.FullName!.Contains("EasyBuffer"))
                 {
                     isField = true;
 
-                    JObject jItemObj = (Activator.CreateInstance(field.FieldType) as EasyBuffer).DeCompressESBuffer(jItem as JArray);
+                    JObject jItemObj = (Activator.CreateInstance(field.FieldType) as EasyBuffer)!.DeCompressESBuffer((JArray)jItem);
                     jDeCompress.Add(field.Name, jItemObj);
                 }
                 if (!isField) jDeCompress.Add(field.Name, jItem);

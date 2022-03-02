@@ -70,7 +70,7 @@ namespace ES.Hotfix
                 structs.TryAdd(key, obj);
                 return obj;
             }
-            return value as StructValue<T>;
+            return (StructValue<T>)value;
         }
 
         /// <summary>

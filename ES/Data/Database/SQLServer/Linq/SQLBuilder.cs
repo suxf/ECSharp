@@ -9,13 +9,13 @@ namespace ES.Data.Database.SQLServer.Linq
     /// </summary>
     public class SqlBuilder
     {
-        readonly SqlServerDbHelper dBHelper = null;
+        readonly SqlServerDbHelper dBHelper;
 
         int topCount = 0;
-        string[] fields = null;
-        object[] values = null;
-        string conditions = null;
-        string tableName = null;
+        string[]? fields = null;
+        object[]? values = null;
+        string? conditions = null;
+        string? tableName = null;
 
         /// <summary>
         /// 构建函数
@@ -110,7 +110,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns></returns>
         public CommandResult Select(bool isLock = true)
         {
-            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(",", fields)} FROM {tableName} {(isLock ? "" : "WITH(NOLOCK)")} WHERE {conditions};");
+            return dBHelper.CommandSQL($"SELECT {(topCount > 0 ? ("TOP " + topCount) : "")} {string.Join(",", fields!)} FROM {tableName} {(isLock ? "" : "WITH(NOLOCK)")} WHERE {conditions};");
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns></returns>
         public CommandResult Insert()
         {
-            return dBHelper.CommandSQL($"INSERT {tableName} ({string.Join(",", fields)}) VALUES ({string.Join(",", values)});");
+            return dBHelper.CommandSQL($"INSERT {tableName} ({string.Join(",", fields!)}) VALUES ({string.Join(",", values!)});");
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace ES.Data.Database.SQLServer.Linq
         /// <returns></returns>
         public int Update()
         {
-            if (fields.Length == values.Length)
+            if (fields!.Length == values!.Length)
             {
                 string[] kvStrs;
                 kvStrs = new string[fields.Length];

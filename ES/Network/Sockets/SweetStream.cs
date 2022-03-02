@@ -18,7 +18,7 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 原始数据 解析缓冲区
         /// </summary>
-        private byte[] decodeBuffer = null;
+        private byte[]? decodeBuffer = null;
         /// <summary>
         /// 原始数据队列
         /// </summary>
@@ -27,10 +27,10 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 放入数据进行等待解析
         /// </summary>
-        /// <param name="rbuffer">接受到的数据流</param>
-        public void Decode(byte[] rbuffer)
+        /// <param name="buffer">接受到的数据流</param>
+        public void Decode(byte[] buffer)
         {
-            rbuffer = ByteHelper.GetValidByte(rbuffer);
+            var rbuffer = ByteHelper.GetValidByte(buffer);
             // 如果接受的数据为空 则直接跳出
             if (rbuffer == null || rbuffer.Length <= 0) return;
 
@@ -73,7 +73,7 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 检查头部信息是否正确
         /// </summary>
-        private byte[] ExtractData(byte[] buffer, int index, out int raw_len, out bool isOutRange)
+        private byte[]? ExtractData(byte[] buffer, int index, out int raw_len, out bool isOutRange)
         {
             raw_len = 0;
             // 此处加2为了弥补存在位头的情况
@@ -183,11 +183,11 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 提取并删除最先进入的数据
         /// </summary>
-        public byte[] TakeStreamBuffer()
+        public byte[]? TakeStreamBuffer()
         {
             if (!originalQueue.IsEmpty)
             {
-                byte[] result;
+                byte[]? result;
                 do
                 {
                     if (originalQueue.TryDequeue(out result)) return result;

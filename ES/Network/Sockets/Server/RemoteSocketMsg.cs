@@ -21,7 +21,7 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 发送者
         /// </summary>
-        public RemoteConnection sender;
+        public RemoteConnection? sender;
         /// <summary>
         /// 发送远程终端
         /// </summary>
@@ -38,7 +38,7 @@ namespace ES.Network.Sockets.Server
             this.sessionId = sessionId;
             this.data = data;
             this.sender = sender;
-            remoteEndPoint = sender.Socket.endPoint;
+            remoteEndPoint = sender.Socket!.endPoint;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace ES.Network.Sockets.Server
         /// <para>默认编码UTF-8 如错误解析则抛出异常</para>
         /// </summary>
         /// <returns>json对象</returns>
-        public JObject AsJObject()
+        public JObject? AsJObject()
         {
             return Encoding.UTF8.GetString(data).AsJObject();
         }
@@ -69,7 +69,7 @@ namespace ES.Network.Sockets.Server
         /// <para>默认编码UTF-8 如错误解析则抛出异常</para>
         /// </summary>
         /// <returns>json数组</returns>
-        public JArray AsJArray()
+        public JArray? AsJArray()
         {
             return Encoding.UTF8.GetString(data).AsJArray();
         }

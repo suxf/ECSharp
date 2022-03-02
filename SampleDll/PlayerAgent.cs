@@ -23,11 +23,16 @@ namespace SampleDll
             /* 性能测试 */
             // 第一次直接调用
             watch.Start();
-            for (int i = 0; i < 10000000; i++) { self.count++; }
+            for (int i = 0; i < 10000000; i++) Add();// { self.count++; }
             watch.Stop();
             Console.WriteLine($"热更层循环耗时:{watch.Elapsed.TotalMilliseconds}ms");
             // for (int i = 0; i < 1000000; i++) self.count++;
             Console.WriteLine("热更层计数:" + self.count);
+        }
+
+        private void Add()
+        {
+            self.count++;
         }
 
         int count = 0;

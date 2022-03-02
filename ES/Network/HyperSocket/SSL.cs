@@ -12,25 +12,25 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// RSA对象
         /// </summary>
-        private readonly RSACryptoServiceProvider rsa;
+        private readonly RSACryptoServiceProvider? rsa;
         /// <summary>
         /// AES对象
         /// </summary>
-        private readonly RijndaelManaged aes;
+        private readonly Aes? aes;
 
         /// <summary>
         /// RSA加密公钥
         /// </summary>
-        internal readonly string RSAPublicKey;
+        internal readonly string? RSAPublicKey;
         /// <summary>
         /// RSA加密私钥
         /// </summary>
-        private readonly string RSAPrivateKey;
+        private readonly string? RSAPrivateKey;
 
         /// <summary>
         /// AES加密密钥
         /// </summary>
-        private string AESKey = null;
+        private string? AESKey = null;
 
         /// <summary>
         /// 安全协议模式
@@ -54,7 +54,7 @@ namespace ES.Network.HyperSocket
 
             if (mode == SSLMode.AES || mode == SSLMode.Both)
             {
-                aes = new RijndaelManaged();
+                aes = Aes.Create();
                 aes.Mode = CipherMode.ECB;
                 aes.Padding = PaddingMode.PKCS7;
                 aes.KeySize = 128;
@@ -73,25 +73,23 @@ namespace ES.Network.HyperSocket
 
             if (mode == SSLMode.AES || mode == SSLMode.Both)
             {
-                aes = new RijndaelManaged()
-                {
-                    Mode = CipherMode.ECB,
-                    Padding = PaddingMode.PKCS7,
-                    KeySize = 128,
-                    BlockSize = 128
-                };
+                aes = Aes.Create();
+                aes.Mode = CipherMode.ECB;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.KeySize = 128;
+                aes.BlockSize = 128;
             }
         }
 
         internal string GetRSAPublicKey()
         {
-            return RSAPublicKey;
+            return RSAPublicKey ?? "";
         }
 
         internal void SetAESKey(string aesKey)
         {
             AESKey = aesKey;
-            aes.Key = Encoding.UTF8.GetBytes(AESKey);
+            aes!.Key = Encoding.UTF8.GetBytes(AESKey);
         }
 
         internal string GetAESKey()
@@ -99,7 +97,7 @@ namespace ES.Network.HyperSocket
             if (AESKey == null)
             {
                 AESKey = RandomCode.Generate(16, RandomCode.RandomCodeType.HighLetterAndNumber).ToLower();
-                aes.Key = Encoding.UTF8.GetBytes(AESKey);
+                aes!.Key = Encoding.UTF8.GetBytes(AESKey);
             }
             return AESKey;
         }
@@ -111,7 +109,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal byte[] AESEncrypt(byte[] encryptArray)
         {
-            ICryptoTransform cTransform = aes.CreateEncryptor();
+            ICryptoTransform cTransform = aes!.CreateEncryptor();
             byte[] resultArray = cTransform.TransformFinalBlock(encryptArray, 0, encryptArray.Length);
             return resultArray;
         }
@@ -121,11 +119,11 @@ namespace ES.Network.HyperSocket
         /// </summary>
         /// <param name="decryptArray">密文（待解密）</param>
         /// <returns></returns>
-        internal byte[] AESDecrypt(byte[] decryptArray)
+        internal byte[]? AESDecrypt(byte[] decryptArray)
         {
             try
             {
-                ICryptoTransform cTransform = aes.CreateDecryptor();
+                ICryptoTransform cTransform = aes!.CreateDecryptor();
                 byte[] resultArray = cTransform.TransformFinalBlock(decryptArray, 0, decryptArray.Length);
                 return resultArray;
             }
@@ -139,7 +137,7 @@ namespace ES.Network.HyperSocket
         /// <returns>表示加密数据的64位编码字符串.</returns>
         internal byte[] RSAEncrypt(byte[] encryptArray)
         {
-            return rsa.Encrypt(encryptArray, false);
+            return rsa!.Encrypt(encryptArray, false);
         }
 
         /// <summary>
@@ -147,11 +145,11 @@ namespace ES.Network.HyperSocket
         /// </summary>
         /// <param name="decryptArray">加密的密文</param>
         /// <returns></returns>
-        internal byte[] RSADecrypt(byte[] decryptArray)
+        internal byte[]? RSADecrypt(byte[] decryptArray)
         {
             try
             {
-                return rsa.Decrypt(decryptArray, false);
+                return rsa!.Decrypt(decryptArray, false);
             }
             catch { return null; }
         }
@@ -163,7 +161,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal byte[] RSASignData(byte[] strArray)
         {
-            return rsa.SignData(strArray, "SHA1");
+            return rsa!.SignData(strArray, "SHA1");
         }
 
         /// <summary>
@@ -174,7 +172,7 @@ namespace ES.Network.HyperSocket
         /// <returns></returns>
         internal bool RSAVerifyData(byte[] strArray, byte[] signArray)
         {
-            return rsa.VerifyData(strArray, "SHA1", signArray);
+            return rsa!.VerifyData(strArray, "SHA1", signArray);
         }
     }
 }

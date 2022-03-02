@@ -55,7 +55,7 @@ namespace ES.Network.Sockets.Server
         {
             for (int i = 0, len = remoteUserTokens.Count; i < len; i++)
             {
-                if (remoteUserTokens.TryDequeue(out RemoteConnection token))
+                if (remoteUserTokens.TryDequeue(out RemoteConnection? token))
                 {
                     Interlocked.Increment(ref token.timeoutCount);
                     if (token.timeoutCount >= timeoutSecond)

@@ -17,11 +17,11 @@ namespace ES.Hotfix
         /// 代理
         /// <para>通过代理可以执行关于类的函数</para>
         /// </summary>
-        internal AbstractAgent _agent;
+        internal AbstractAgent? _agent;
         /// <summary>
         /// 代理数据类型
         /// </summary>
-        private readonly Type type;
+        private readonly Type? type;
         /// <summary>
         /// 自动创建
         /// </summary>
@@ -37,7 +37,7 @@ namespace ES.Hotfix
         /// <summary>
         /// 代理数据对象
         /// </summary>
-        private readonly AgentData agentData;
+        private readonly AgentData? agentData;
         /// <summary>
         /// 读写锁
         /// </summary>
@@ -50,7 +50,7 @@ namespace ES.Hotfix
         /// <summary>
         /// 构建代理索引
         /// </summary>
-        internal AgentRef(Type type, bool isCopyValue, AgentData agentData)
+        internal AgentRef(Type? type, bool isCopyValue, AgentData? agentData)
         {
             this.type = type;
             isAutoCreate = type != null;
@@ -71,10 +71,12 @@ namespace ES.Hotfix
         /// </summary>
         internal void CreateAgent<T>(AgentData data) where T : AbstractAgent, new()
         {
-            lock (m_lock)
+            if (!isCreated)
             {
-                if (!isCreated)
+                lock (m_lock)
                 {
+                    if (isCreated) return;
+
                     isCreated = true;
                     // 修改第一次创建状态标记
                     if (++createAgentCount >= 2) isFirstCreateAgent = false;
@@ -89,10 +91,12 @@ namespace ES.Hotfix
         /// </summary>
         internal void CreateAgent()
         {
-            lock (m_lock)
+            if (!isCreated && HotfixMgr.agentTypeMap.TryGetValue(type!, out var agentType))
             {
-                if (!isCreated && HotfixMgr.agentTypeMap.TryGetValue(type, out var agentType))
+                lock (m_lock)
                 {
+                    if (isCreated) return;
+
                     isCreated = true;
                     // 修改第一次创建状态标记
                     if (++createAgentCount >= 2) isFirstCreateAgent = false;
@@ -123,7 +127,7 @@ namespace ES.Hotfix
                         {
                             var newField = fields[i];
                             var oldField = oldAgentType.GetField(newField.Name);
-                            if (newField.GetType() == oldField.GetType() && !newField.IsInitOnly)
+                            if (newField.GetType() == oldField?.GetType() && !newField.IsInitOnly)
                                 newField.SetValue(newAgent, oldField.GetValue(_agent));
                         }
                         var properties = agentType.GetProperties();
@@ -131,7 +135,7 @@ namespace ES.Hotfix
                         {
                             var newProperty = properties[i];
                             var oldProperty = oldAgentType.GetProperty(newProperty.Name);
-                            if (newProperty.GetType() == oldProperty.GetType() && newProperty.CanWrite)
+                            if (newProperty.GetType() == oldProperty?.GetType() && newProperty.CanWrite)
                                 newProperty.SetValue(newAgent, oldProperty.GetValue(_agent));
                         }
                     }

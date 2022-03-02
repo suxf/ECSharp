@@ -11,7 +11,7 @@
         /// <returns></returns>
         public new static string ToString()
         {
-            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString();
         }
     }
 }

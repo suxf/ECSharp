@@ -15,15 +15,15 @@ namespace ES.Network.Websocket
         /// <summary>
         /// 用户自定义标识 绑定对象
         /// </summary>
-        public object Tag { get; set; }
+        public object? Tag { get; set; }
         /// <summary>
         /// 字符消息
         /// </summary>
-        public string Message { get; internal set; }
+        public string Message { get; internal set; } = "";
         /// <summary>
         /// 字节消息
         /// </summary>
-        public byte[] Buffer { get; internal set; }
+        public byte[] Buffer { get; internal set; } = Array.Empty<byte>();
 
         /// <summary>
         /// 连接对象是否有效
@@ -73,7 +73,7 @@ namespace ES.Network.Websocket
         /// 获取连接信息
         /// </summary>
         /// <returns></returns>
-        public IWebSocketConnectionInfo GetConnectionInfo()
+        public IWebSocketConnectionInfo? GetConnectionInfo()
         {
             if (IsAvailable) return Socket.ConnectionInfo;
             else return null;
@@ -85,7 +85,7 @@ namespace ES.Network.Websocket
         public void Close()
         {
             if (IsAvailable) Socket.Close();
-            Socket = null;
+            // Socket = null;
         }
     }
 }

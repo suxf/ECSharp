@@ -14,11 +14,11 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 连接服务控制对象
         /// </summary>
-        public ServerSocket SocketSvrMgr { get; protected set; } = null;
+        public ServerSocket SocketSvrMgr { get; protected set; }
         /// <summary>
         /// 数据包缓存
         /// </summary>
-        public SweetStream RBuffer { get; internal set; } = null;
+        public SweetStream RBuffer { get; internal set; } = new SweetStream();
         /// <summary>
         /// 存活情况
         /// </summary>
@@ -35,37 +35,37 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 异步接受信息委托回调
         /// </summary>
-        public IRemoteSocket SocketInvoke { get; protected set; } = null;
+        public IRemoteSocket? SocketInvoke { get; protected set; } = null;
 
         /// <summary>
         /// ESF.Socket
         /// </summary>
-        public Socket Socket { get; protected set; } = null;
+        public Socket? Socket { get; protected set; } = null;
 
         /// <summary>
         /// 用户绑定对象(TCP模式)
         /// </summary>
-        public object Target = null;
+        public object? Target = null;
 
         /// <summary>
         /// 超级远程连接
         /// </summary>
-        internal HyperSocket.RemoteHyperSocket hySocket = null;
+        internal HyperSocket.RemoteHyperSocket? hySocket = null;
 
         /// <summary>
         /// 接受事件参数
         /// </summary>
-        public System.Net.Sockets.SocketAsyncEventArgs ReceiveEventArgs { get; protected set; } = null;
+        public System.Net.Sockets.SocketAsyncEventArgs? ReceiveEventArgs { get; protected set; } = null;
 
         /// <summary>
         /// 发送事件参数
         /// </summary>
-        internal SocketAsyncEventArgsEx sendEventArgs;
+        internal SocketAsyncEventArgsEx? sendEventArgs;
 
         /// <summary>
         /// 服务分配的系统接收参数
         /// </summary>
-        internal System.Net.Sockets.SocketAsyncEventArgs readWriteEventArg = null;
+        internal System.Net.Sockets.SocketAsyncEventArgs? readWriteEventArg = null;
 
         /// <summary>
         /// 连接时间
@@ -79,7 +79,7 @@ namespace ES.Network.Sockets.Server
         internal RemoteConnection(ServerSocket service, IRemoteSocket socketInvoke)
         {
             SocketSvrMgr = service;
-            this.SocketInvoke = socketInvoke;
+            SocketInvoke = socketInvoke;
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         internal void TriggerSocketInvoke()
         {
-            byte[] sb = null;
+            byte[]? sb = null;
             do
             {
                 if (RBuffer != null) sb = RBuffer.TakeStreamBuffer();
@@ -204,7 +204,7 @@ namespace ES.Network.Sockets.Server
             if (!IsAlive) return;
             IsAlive = false;
             // 移除套接字参数
-            sendEventArgs.Destroy();
+            sendEventArgs?.Destroy();
             if (ReceiveEventArgs != null) ReceiveEventArgs.Dispose();
 
             // 移除管理器
@@ -212,7 +212,7 @@ namespace ES.Network.Sockets.Server
             // 重置
             ReceiveEventArgs = null;
             Socket = null;
-            RBuffer = null;
+            // RBuffer = null;
             Target = null;
             hySocket = null;
         }

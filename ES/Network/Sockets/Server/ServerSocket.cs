@@ -41,7 +41,7 @@ namespace ES.Network.Sockets.Server
         /// 用于侦听传入连接请求的ESF套接字
         /// the socket used to listen for incoming connection requests
         /// </summary>
-        protected readonly Socket serverSocket = null;
+        protected readonly Socket serverSocket;
         /// <summary>
         /// 用于写入、读取和接受套接字操作的可重用SocketAsyncEventArgs对象池
         /// pool of reusable System.Net.Sockets.SocketAsyncEventArgs objects for write, read and accept socket operations
@@ -64,15 +64,15 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 消息委托
         /// </summary>
-        public IRemoteSocket socketInvoke = null;
+        public IRemoteSocket? socketInvoke = null;
         /// <summary>
         /// 套接字状态监听回调器
         /// </summary>
-        internal IServerSocket socketStatusListener = null;
+        internal IServerSocket? socketStatusListener = null;
         /// <summary>
         /// 监听套接字状态任务
         /// </summary>
-        protected MonitorSocketStatusTask monitorSocketStatusTask = null;
+        protected MonitorSocketStatusTask? monitorSocketStatusTask = null;
 
         /// <summary>
         /// 新建套接字服务管理对象
@@ -136,13 +136,13 @@ namespace ES.Network.Sockets.Server
             this.socketInvoke = socketInvoke;
             // Allocates one large byte buffer which all I/O operations use a piece of.  This gaurds 
             // against memory fragmentation
-            bufferManager.InitBuffer();
+            // bufferManager.InitBuffer();
             for (int i = 0; i < numConnections; i++)
             {
                 // preallocate pool of System.Net.Sockets.SocketAsyncEventArgs objects 
                 // Pre -allocate a set of reusable System.Net.Sockets.SocketAsyncEventArgs
                 System.Net.Sockets.SocketAsyncEventArgs readWriteEventArg = new System.Net.Sockets.SocketAsyncEventArgs();
-                readWriteEventArg.Completed += new EventHandler<System.Net.Sockets.SocketAsyncEventArgs>(IO_Completed);
+                readWriteEventArg.Completed += new EventHandler<System.Net.Sockets.SocketAsyncEventArgs>(IO_Completed!);
                 // 如果是报文结构则 初始化终端节点
                 if (socketType == SocketType.Stream)
                 {
@@ -220,20 +220,20 @@ namespace ES.Network.Sockets.Server
                     // close the socket associated with the client
                     try
                     {
-                        client.Socket.Close();
+                        client.Socket?.Close();
                     }
                     // throws if client process has already closed
                     catch (Exception ex)
                     {
                         // Log.Exception(ex, "ServerConnection", "CloseClientSocket", "Socket");
-                        socketInvoke.SocketException(ex);
+                        socketInvoke!.SocketException(ex);
                     }
                     // 断开连接回调
                     if (socketStatusListener != null) socketStatusListener.OnClose(client);
                     // decrement the counter keeping track of the total number of clients connected to the server
                     Interlocked.Decrement(ref numConnectedSockets);
                     // Free the SocketAsyncEventArg so they can be reused by another client
-                    readWritePool.Enqueue(client.readWriteEventArg);
+                    readWritePool.Enqueue(client.readWriteEventArg!);
                     maxNumberAcceptedClients.Release();
                     // Log.Info("CloseClientSocket A client has been disconnected from the server. There are " + numConnectedSockets + " clients connected to the server" );
                 }
@@ -268,12 +268,12 @@ namespace ES.Network.Sockets.Server
         /// <para>IOCP模型构建</para>
         /// </summary>
         /// <param name="acceptEventArg">异步事件参数</param>
-        private void StartAccept(System.Net.Sockets.SocketAsyncEventArgs acceptEventArg)
+        private void StartAccept(System.Net.Sockets.SocketAsyncEventArgs? acceptEventArg)
         {
             if (acceptEventArg == null)
             {
                 acceptEventArg = new System.Net.Sockets.SocketAsyncEventArgs();
-                acceptEventArg.Completed += new EventHandler<System.Net.Sockets.SocketAsyncEventArgs>(AcceptEventArg_Completed);
+                acceptEventArg.Completed += new EventHandler<System.Net.Sockets.SocketAsyncEventArgs>(AcceptEventArg_Completed!);
             }
             else
             {
@@ -300,7 +300,7 @@ namespace ES.Network.Sockets.Server
             catch (Exception ex)
             {
                 // Log.Exception(ex, "ServerConnection", "AcceptEventArg_Completed", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
         }
 
@@ -309,7 +309,7 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         private void ProcessAccept(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            var socket = Socket.FillAsClient(e.AcceptSocket);
+            var socket = Socket.FillAsClient(e.AcceptSocket!);
             if (socket != null)
             {
                 Interlocked.Increment(ref numConnectedSockets);
@@ -317,12 +317,12 @@ namespace ES.Network.Sockets.Server
 
                 // Get the socket for the accepted client connection and put it into the 
                 //ReadEventArg object user token
-                if (readWritePool.TryDequeue(out System.Net.Sockets.SocketAsyncEventArgs readEventArgs))
+                if (readWritePool.TryDequeue(out System.Net.Sockets.SocketAsyncEventArgs? readEventArgs))
                 {
-                    RemoteConnection client = (RemoteConnection)readEventArgs.UserToken;
+                    RemoteConnection client = (RemoteConnection)readEventArgs.UserToken!;
 
                     // 初始化
-                    client.Init(socket, IO_Completed);
+                    client.Init(socket, IO_Completed!);
                     // 加入已连接列表
                     lock (remoteTCPClients) remoteTCPClients.Add(client);
                     // 新连接回调
@@ -331,7 +331,7 @@ namespace ES.Network.Sockets.Server
                     if (monitorSocketStatusTask != null) monitorSocketStatusTask.PushCheck(client);
 
                     // As soon as the client is connected, post a receive to the connection
-                    bool willRaiseEvent = client.Socket.ReceiveAsync(readEventArgs);
+                    bool willRaiseEvent = client.Socket!.ReceiveAsync(readEventArgs);
                     if (!willRaiseEvent)
                     {
                         ProcessReceive(readEventArgs);
@@ -349,7 +349,7 @@ namespace ES.Network.Sockets.Server
         private void ProcessReceive(System.Net.Sockets.SocketAsyncEventArgs e)
         {
             // check if the remote host closed the connection
-            RemoteConnection client = (RemoteConnection)e.UserToken;
+            RemoteConnection client = (RemoteConnection)e.UserToken!;
             if (e.BytesTransferred > 0 && e.SocketError == System.Net.Sockets.SocketError.Success)
             {
                 // 重置超时标记
@@ -359,12 +359,12 @@ namespace ES.Network.Sockets.Server
                 // log.Info("ProcessReceive", "The server has read a total of {0} bytes", totalBytesRead);
                 // echo the data received back to the client
                 byte[] buffer = new byte[e.BytesTransferred];
-                Array.Copy(e.Buffer, e.Offset, buffer, 0, e.BytesTransferred);
+                Array.Copy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
                 // Console.WriteLine(Encoding.UTF8.GetString(buffer));
                 client.RBuffer.Decode(buffer);
                 client.TriggerSocketInvoke();
 
-                bool willRaiseEvent = client.Socket.ReceiveAsync(e);
+                bool willRaiseEvent = client.Socket!.ReceiveAsync(e);
                 if (!client.Socket.IsClosed && !willRaiseEvent) ProcessReceive(e);
             }
             else client.Destroy();
@@ -381,7 +381,7 @@ namespace ES.Network.Sockets.Server
 
             // Get the socket for the accepted client connection and put it into the 
             //ReadEventArg object user token
-            if (readWritePool.TryDequeue(out System.Net.Sockets.SocketAsyncEventArgs readEventArgs))
+            if (readWritePool.TryDequeue(out System.Net.Sockets.SocketAsyncEventArgs? readEventArgs))
             {
                 maxNumberAcceptedClients.WaitOne();
                 bool willRaiseEvent = serverSocket.ReceiveFromAsync(readEventArgs);
@@ -415,7 +415,7 @@ namespace ES.Network.Sockets.Server
                 // log.Info("ProcessReceiveFrom", "The server has read a total of {0} bytes", totalBytesRead);
                 // echo the data received back to the client
                 byte[] buffer = new byte[e.BytesTransferred];
-                Array.Copy(e.Buffer, e.Offset, buffer, 0, e.BytesTransferred);
+                Array.Copy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
 
                 // Console.WriteLine(System.Text.Encoding.UTF8.GetString(buffer));
                 // client.rBuffer.Decode(buffer);
@@ -425,7 +425,7 @@ namespace ES.Network.Sockets.Server
                     ushort sessionId = (ushort)(((buffer[0] & 0xFF) << 8) | (buffer[1] & 0xFF));
                     byte[] data = new byte[buffer.Length - 3];
                     Buffer.BlockCopy(buffer, 3, data, 0, data.Length);
-                    if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new RemoteSocketMsg(sessionId, data, e.RemoteEndPoint));
+                    if (socketInvoke != null) socketInvoke.OnReceivedCompleted(new RemoteSocketMsg(sessionId, data, e.RemoteEndPoint!));
                 }
             }
 
@@ -469,7 +469,7 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         private bool ProcessSend(System.Net.Sockets.SocketAsyncEventArgs e)
         {
-            (e as MySocketAsyncEventArgs).ResetUsedState();
+            (e as MySocketAsyncEventArgs)!.ResetUsedState();
             if (e.SocketError == System.Net.Sockets.SocketError.Success)
             {
                 // done echoing data back to the client
@@ -478,7 +478,7 @@ namespace ES.Network.Sockets.Server
             }
             else
             {
-                (e.UserToken as RemoteConnection).Destroy();
+                (e.UserToken as RemoteConnection)!.Destroy();
             }
             return false;
         }
@@ -499,7 +499,7 @@ namespace ES.Network.Sockets.Server
             if (monitorSocketStatusTask != null) Interlocked.Exchange(ref client.timeoutCount, 0);
 
             // 数据打包
-            byte[] data = null;
+            byte[] data = Array.Empty<byte>();
             if (offset == 0 && buffer.Length == count)
             {
                 data = buffer;
@@ -511,7 +511,7 @@ namespace ES.Network.Sockets.Server
             }
 
             // 数据发送
-            var SEAE = client.sendEventArgs.Pop();
+            var SEAE = client.sendEventArgs!.Pop();
             if (client.Socket.SocketType == SocketType.Stream)
             {
                 data = client.RBuffer.Encode(data);

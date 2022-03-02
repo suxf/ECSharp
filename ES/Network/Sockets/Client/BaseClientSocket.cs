@@ -11,7 +11,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 远程客户端套接字
         /// </summary>
-        protected Socket clientSocket = null;
+        protected Socket clientSocket;
 
         /// <summary>
         /// 接受缓存最大长度
@@ -21,22 +21,22 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 缓存
         /// </summary>
-        protected byte[] buffer = null;
+        protected byte[] buffer = Array.Empty<byte>();
 
         /// <summary>
         /// 用户绑定对象
         /// </summary>
-        public object Target = null;
+        public object? Target = null;
 
         /// <summary>
         /// 解析缓存
         /// </summary>
-        public SweetStream RBuffer { get; private set; } = null;
+        public SweetStream RBuffer { get; private set; }
 
         /// <summary>
         /// 消息委托
         /// </summary>
-        public ISocket socketInvoke = null;
+        public ISocket? socketInvoke = null;
 
         /// <summary>
         /// 接受状态
@@ -51,11 +51,11 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 发送事件参数
         /// </summary>
-        internal SocketAsyncEventArgsEx sendEventArgs = null;
+        internal SocketAsyncEventArgsEx sendEventArgs;
         /// <summary>
         /// 读写参数
         /// </summary>
-        private readonly SocketAsyncEventArgs readWriteEventArg = null;
+        private readonly SocketAsyncEventArgs readWriteEventArg;
 
 
         /// <summary>
@@ -70,9 +70,9 @@ namespace ES.Network.Sockets.Client
             this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
             RBuffer = new SweetStream();
 
-            sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed);
+            sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed!);
             readWriteEventArg = new SocketAsyncEventArgs() { UserToken = clientSocket, RemoteEndPoint = clientSocket.endPoint };
-            readWriteEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed);
+            readWriteEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed!);
         }
 
         /// <summary>
@@ -86,9 +86,9 @@ namespace ES.Network.Sockets.Client
             this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
             RBuffer = new SweetStream();
 
-            sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed);
+            sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, IO_Completed!);
             readWriteEventArg = new SocketAsyncEventArgs() { UserToken = clientSocket, RemoteEndPoint = clientSocket.endPoint };
-            readWriteEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed);
+            readWriteEventArg.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed!);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ES.Network.Sockets.Client
         protected bool SendBuffer(/*ushort sessionId,*/ byte[] buffer, int offset, int count)
         {
             // 数据打包
-            byte[] data = null;
+            byte[]? data = null;
             if (offset == 0 && buffer.Length == count)
             {
                 data = RBuffer.Encode(buffer);
@@ -116,6 +116,8 @@ namespace ES.Network.Sockets.Client
 
             try
             {
+                if (data == null)
+                    return false;
                 var args = sendEventArgs.Pop();
                 args.SetBuffer(data, 0, data.Length);
                 var willRaiseEvent = clientSocket.SendAsync(args);
@@ -128,7 +130,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "SendBuffer", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
                 return false;
             }
         }
@@ -143,7 +145,7 @@ namespace ES.Network.Sockets.Client
         protected bool SendBufferTo(ushort sessionId, byte[] buffer, int offset, int count)
         {
             // 数据打包
-            byte[] data = null;
+            byte[]? data = null;
             if (offset == 0 && buffer.Length == count)
             {
                 data = buffer;
@@ -156,6 +158,8 @@ namespace ES.Network.Sockets.Client
 
             try
             {
+                if (data == null)
+                    return false;
                 var args = sendEventArgs.Pop();
 
                 byte[] sendBuffer = new byte[3 + buffer.Length];
@@ -181,7 +185,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "SendBufferTo", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
                 return false;
             }
         }
@@ -210,7 +214,7 @@ namespace ES.Network.Sockets.Client
         /// </summary>
         private bool ProcessSend(SocketAsyncEventArgs e)
         {
-            (e as MySocketAsyncEventArgs).ResetUsedState();
+            (e as MySocketAsyncEventArgs)!.ResetUsedState();
             if (e.SocketError == SocketError.Success)
             {
                 // done echoing data back to the client
@@ -234,7 +238,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "BeginReceived", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
         }
 
@@ -253,7 +257,7 @@ namespace ES.Network.Sockets.Client
             catch (Exception ex)
             {
                 // Log.Exception(ex, "BaseClientConnection", "BeginReceivedFrom", "Socket");
-                socketInvoke.SocketException(ex);
+                socketInvoke!.SocketException(ex);
             }
         }
 

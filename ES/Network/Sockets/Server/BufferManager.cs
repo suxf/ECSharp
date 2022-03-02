@@ -8,7 +8,7 @@ namespace ES.Network.Sockets.Server
     internal class BufferManager
     {
         readonly int numBytes;                 // the total number of bytes controlled by the buffer pool
-        byte[] buffer;                // the underlying byte array maintained by the Buffer Manager
+        byte[] buffer;                         // the underlying byte array maintained by the Buffer Manager
         readonly Stack<int> freeIndexPool;     // 
         int currentIndex;
         readonly int bufferSize;
@@ -16,18 +16,19 @@ namespace ES.Network.Sockets.Server
         public BufferManager(int totalBytes, int bufferSize)
         {
             numBytes = totalBytes;
+            buffer = new byte[numBytes];
             currentIndex = 0;
             this.bufferSize = bufferSize;
             freeIndexPool = new Stack<int>();
         }
 
         // Allocates buffer space used by the buffer pool
-        public void InitBuffer()
-        {
-            // create one big large buffer and divide that 
-            // out to each SocketAsyncEventArg object
-            buffer = new byte[numBytes];
-        }
+        // public void InitBuffer()
+        // {
+        //     // create one big large buffer and divide that 
+        //     // out to each SocketAsyncEventArg object
+        //     buffer = new byte[numBytes];
+        // }
 
         // Assigns a buffer from the buffer pool to the 
         // specified SocketAsyncEventArgs object

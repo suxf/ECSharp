@@ -16,7 +16,7 @@ namespace ES.Data.Database.Redis
         /// <summary>
         /// redis 多路调制器
         /// </summary>
-        private readonly ConnectionMultiplexer multiplexer = null;
+        private readonly ConnectionMultiplexer multiplexer;
 
         private int DbIndex { get; }
         /// <summary>
@@ -30,9 +30,9 @@ namespace ES.Data.Database.Redis
         /// <param name="readWriteHosts">redis 连接地址 ip:port 也可根据需要追加一些配置</param>
         /// <param name="dbIndex">数据库索引, 默认 索引位为0</param>
         /// <param name="prefixKey">前缀键</param>
-        public RedisHelper(string readWriteHosts, int dbIndex = 0, string prefixKey = null)
+        public RedisHelper(string readWriteHosts, int dbIndex = 0, string prefixKey = "")
         {
-            if (prefixKey != null) SetPrefixKey(prefixKey);
+            PrefixKey = prefixKey;
             DbIndex = dbIndex;
             multiplexer = ConnectionMultiplexer.Connect(readWriteHosts);
         }
@@ -44,9 +44,9 @@ namespace ES.Data.Database.Redis
         /// <param name="password">redis 连接密码</param>
         /// <param name="dbIndex">数据库索引, 默认 索引位为0</param>
         /// <param name="prefixKey">前缀键</param>
-        public RedisHelper(string address, string password, int dbIndex = 0, string prefixKey = null)
+        public RedisHelper(string address, string password, int dbIndex = 0, string prefixKey = "")
         {
-            if (prefixKey != null) SetPrefixKey(prefixKey);
+            PrefixKey = prefixKey;
             DbIndex = dbIndex;
             multiplexer = ConnectionMultiplexer.Connect($"{address},password={password}");
         }
@@ -58,12 +58,12 @@ namespace ES.Data.Database.Redis
         public void AddEventListener(IRedisEvent listener)
         {
             //注册如下事件
-            multiplexer.ConnectionFailed += listener.OnConnectionFailed;
-            multiplexer.ConnectionRestored += listener.OnConnectionRestored;
-            multiplexer.ErrorMessage += listener.OnErrorMessage;
-            multiplexer.ConfigurationChanged += listener.OnConfigurationChanged;
-            multiplexer.HashSlotMoved += listener.OnHashSlotMoved;
-            multiplexer.InternalError += listener.OnInternalError;
+            multiplexer.ConnectionFailed += listener.OnConnectionFailed!;
+            multiplexer.ConnectionRestored += listener.OnConnectionRestored!;
+            multiplexer.ErrorMessage += listener.OnErrorMessage!;
+            multiplexer.ConfigurationChanged += listener.OnConfigurationChanged!;
+            multiplexer.HashSlotMoved += listener.OnHashSlotMoved!;
+            multiplexer.InternalError += listener.OnInternalError!;
         }
 
         #region String
@@ -75,12 +75,50 @@ namespace ES.Data.Database.Redis
         /// </summary>
         /// <param name="key">Redis Key</param>
         /// <param name="value">保存的值</param>
+        /// <returns></returns>
+        public bool StringSet(string key, string value)
+        {
+            key = AddSysCustomKey(key);
+            return Do(db => db.StringSet(key, value));
+        }
+
+        /// <summary>
+        /// 保存单个key value
+        /// </summary>
+        /// <param name="key">Redis Key</param>
+        /// <param name="value">保存的值</param>
         /// <param name="expiry">过期时间</param>
         /// <returns></returns>
-        public bool StringSet(string key, string value, TimeSpan? expiry = default)
+        public bool StringSet(string key, string value, TimeSpan expiry)
         {
             key = AddSysCustomKey(key);
             return Do(db => db.StringSet(key, value, expiry));
+        }
+
+        /// <summary>
+        /// 保存单个key value
+        /// </summary>
+        /// <param name="key">Redis Key</param>
+        /// <param name="value">保存的值</param>
+        /// <param name="expirySecond">过期时间 单位秒</param>
+        /// <returns></returns>
+        public bool StringSet(string key, string value, double expirySecond)
+        {
+            key = AddSysCustomKey(key);
+            return Do(db => db.StringSet(key, value, TimeSpan.FromSeconds((double)expirySecond)));
+        }
+
+        /// <summary>
+        /// 保存单个key value
+        /// </summary>
+        /// <param name="key">Redis Key</param>
+        /// <param name="value">保存的值</param>
+        /// <param name="expiryTime">过期时间</param>
+        /// <returns></returns>
+        public bool StringSet(string key, string value, DateTime expiryTime)
+        {
+            key = AddSysCustomKey(key);
+            return Do(db => db.StringSet(key, value, expiryTime - DateTime.Now));
         }
 
         /// <summary>
@@ -99,15 +137,59 @@ namespace ES.Data.Database.Redis
         /// 保存一个对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <param name="obj"></param>
-        /// <param name="expiry"></param>
+        /// <param name="key">Redis Key</param>
+        /// <param name="obj">保存的值</param>
         /// <returns></returns>
-        public bool Set<T>(string key, T obj, TimeSpan? expiry = default)
+        public bool Set<T>(string key, T obj)
+        {
+            key = AddSysCustomKey(key);
+            string json = ConvertJson(obj);
+            return Do(db => db.StringSet(key, json));
+        }
+
+        /// <summary>
+        /// 保存一个对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">Redis Key</param>
+        /// <param name="obj">保存的值</param>
+        /// <param name="expiry">过期时间</param>
+        /// <returns></returns>
+        public bool Set<T>(string key, T obj, TimeSpan expiry)
         {
             key = AddSysCustomKey(key);
             string json = ConvertJson(obj);
             return Do(db => db.StringSet(key, json, expiry));
+        }
+
+        /// <summary>
+        /// 保存一个对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">Redis Key</param>
+        /// <param name="obj">保存的值</param>
+        /// <param name="expirySecond">过期时间 单位秒</param>
+        /// <returns></returns>
+        public bool Set<T>(string key, T obj, double expirySecond)
+        {
+            key = AddSysCustomKey(key);
+            string json = ConvertJson(obj);
+            return Do(db => db.StringSet(key, json, TimeSpan.FromSeconds((double)expirySecond)));
+        }
+
+        /// <summary>
+        /// 保存一个对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">Redis Key</param>
+        /// <param name="obj">保存的值</param>
+        /// <param name="expiryTime">过期时间</param>
+        /// <returns></returns>
+        public bool Set<T>(string key, T obj, DateTime expiryTime)
+        {
+            key = AddSysCustomKey(key);
+            string json = ConvertJson(obj);
+            return Do(db => db.StringSet(key, json, expiryTime - DateTime.Now));
         }
 
         /// <summary>
@@ -904,12 +986,12 @@ namespace ES.Data.Database.Redis
         /// </summary>
         /// <param name="subChannel"></param>
         /// <param name="handler"></param>
-        public void Subscribe(string subChannel, Action<RedisChannel, RedisValue> handler = null)
+        public void Subscribe(string subChannel, Action<RedisChannel, RedisValue> handler)
         {
             ISubscriber sub = multiplexer.GetSubscriber();
             sub.Subscribe(subChannel, (channel, message) =>
             {
-                if (handler != null) handler.Invoke(channel, message);
+                handler.Invoke(channel, message);
             });
         }
 
@@ -1011,7 +1093,7 @@ namespace ES.Data.Database.Redis
 
         private string ConvertJson<T>(T value)
         {
-            string result = value is string ? value.ToString() : JsonConvert.SerializeObject(value);
+            string result = value is string ? value.ToString()! : JsonConvert.SerializeObject(value);
             return result;
         }
 
@@ -1019,9 +1101,9 @@ namespace ES.Data.Database.Redis
         {
             if (typeof(T).Name.Equals(typeof(string).Name))
             {
-                return JsonConvert.DeserializeObject<T>($"'{value}'");
+                return JsonConvert.DeserializeObject<T>($"'{value}'")!;
             }
-            return JsonConvert.DeserializeObject<T>(value);
+            return JsonConvert.DeserializeObject<T>(value)!;
         }
 
         private List<T> ConvetList<T>(RedisValue[] values)

@@ -19,7 +19,7 @@ namespace ES.Network.Http
         /// <summary>
         /// Get值
         /// </summary>
-        public string GetValue { get; private set; }
+        public string? GetValue { get; private set; }
         /// <summary>
         /// Post参数字典
         /// </summary>
@@ -27,7 +27,7 @@ namespace ES.Network.Http
         /// <summary>
         /// Post值
         /// </summary>
-        public string PostValue { get; private set; }
+        public string? PostValue { get; private set; }
         /// <summary>
         /// HTTP请求方式
         /// </summary>
@@ -39,11 +39,11 @@ namespace ES.Network.Http
         /// <summary>
         /// 地址
         /// </summary>
-        public string RawUrl { get; private set; }
+        public string RawUrl { get; private set; } = "";
         /// <summary>
         /// HTTP协议版本
         /// </summary>
-        public string ProtocolVersion { get; private set; }
+        public string ProtocolVersion { get; private set; } = "";
         /// <summary>
         /// 定义缓冲区
         /// </summary>
@@ -67,7 +67,7 @@ namespace ES.Network.Http
 
             //Request URL & Method & Version
             var first = Regex.Split(rows[0], @"(\s+)")
-                .Where(e => e.Trim() != string.Empty)
+                .Where(e => e.Trim() != "")
                 .ToArray();
             if (first.Length > 0)
             {
@@ -134,10 +134,10 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="header"></param>
         /// <returns></returns>
-        public string GetHeader(RequestHeaders header)
+        public string? GetHeader(RequestHeaders header)
         {
             var fieldName = RequestHeadersHelper.headerMap[header];
-            return GetHeader(fieldName);
+            return GetHeader(fieldName ?? "");
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace ES.Network.Http
         private string GetRequestData(Stream stream)
         {
             int length;
-            var data = string.Empty;
+            var data = "";
             do
             {
                 length = stream.Read(bytes, 0, bytes.Length);
@@ -176,8 +176,8 @@ namespace ES.Network.Http
         /// <returns></returns>
         private string GetRequestBody(IEnumerable<string> rows)
         {
-            var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == string.Empty);
-            if (target == null) return null;
+            var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
+            if (target == null) return "";
             var range = Enumerable.Range(target.Index + 1, rows.Count() - target.Index - 1);
             return string.Join(Environment.NewLine, range.Select(e => rows.ElementAt(e)).ToArray());
         }
@@ -190,7 +190,7 @@ namespace ES.Network.Http
         private Dictionary<string, string> GetRequestHeaders(IEnumerable<string> rows)
         {
             if (rows == null || rows.Count() <= 0) return new Dictionary<string, string>();
-            var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == string.Empty);
+            var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
             var length = target == null ? rows.Count() - 1 : target.Index;
             if (length <= 1) return new Dictionary<string, string>();
             var range = Enumerable.Range(1, length - 1);

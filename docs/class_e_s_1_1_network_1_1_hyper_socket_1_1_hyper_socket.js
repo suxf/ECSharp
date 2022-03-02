@@ -1,25 +1,12 @@
 var class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket =
 [
-    [ "Close", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac322dc73985f896777be3fa6bd138088", null ],
-    [ "CreateClient", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a2c786dc5e183898cf8290f0167df17eb", null ],
-    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a30baaef0b2abe0b7d1f87e37197fcb8a", null ],
-    [ "CreateServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a01ed95fe34c5468a7cc395ad4d14713d", null ],
-    [ "GetUsedSocketCount", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a076eb85a3f2d5d3c7323d6a2328f3bbf", null ],
+    [ "HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a84c842b2a0e75030b8acb450f6d9326d", null ],
+    [ "Connect", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a0e387ab6f76c019f78ccf96e022804d0", null ],
     [ "SendTcp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a1c39d283c6741729d03e143f9ae3ec16", null ],
     [ "SendTcp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a98a1ab407e5af910fcbfab557e17348d", null ],
     [ "SendUdp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af32c387db199ab92c6afc1d2629147ea", null ],
     [ "SendUdp", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54b9cbcac4011cd7e776db4a675beced", null ],
-    [ "Update", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#af13e1d60ba78597089b45217f628a7b9", null ],
-    [ "UpdateEnd", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba462bcc43da4cfa1717d02da7e125e2", null ],
-    [ "config", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a5b7a20544e45b9eae1a7fc7aa744bbbe", null ],
-    [ "connectMaxNum", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a3c50d5b94c4eb3c160b1562daf11ae6a", null ],
-    [ "ip", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ab817c3ae24554536c72c9a5e8ddb88bf", null ],
-    [ "IsServerMode", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aa95ce652c13bda8426d3fa9e235d337d", null ],
-    [ "IsAlive", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aba42d6acf02c45915c34a308efc43f09", null ],
-    [ "IsValid", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a54a01604f6a2208fa9a562bddd36b9b3", null ],
-    [ "SessionId", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3", null ],
-    [ "TcpPort", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ac27b1147bdd1f2b5fd05f84994fb1b0f", null ],
-    [ "TcpServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a00ef43918107966074f43af20c63fb5b", null ],
-    [ "UdpPort", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a316816e474e3ae992bf913976ebf11d9", null ],
-    [ "UdpServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a10a3026f9bb3cbb920d21d1800ad5d5d", null ]
+    [ "UpdateEnd", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#ad1ac5faf737928df3ca9b9a990231552", null ],
+    [ "cntListener", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#aad45d896d751c6ef76014503527be7d0", null ],
+    [ "SessionId", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a06b08c6dfdb233e0c606524fda7fe4d3", null ]
 ];

@@ -29,7 +29,9 @@ namespace Sample
         /// </summary>
         public void TestHotfix()
         {
+            Console.WriteLine($"=======>>TestHotfix 1");
             HotfixMgr.Load("SampleDll", "SampleDll.Main", new string[] { "Hello World" }, "Main_Test");
+            Console.WriteLine($"=======>>TestHotfix 2");
         }
 
         /// <summary>

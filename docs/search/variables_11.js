@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['value_880',['Value',['../class_e_s_1_1_hotfix_1_1_struct_value.html#ad7264918d5175961af4526e8de652942',1,'ES::Hotfix::StructValue']]]
+  ['udpreceivesize_1048',['UdpReceiveSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ad0c0a3ca21241cde61ac0e127ffd39c3',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['usessl_1049',['UseSSL',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#abb8daf2c8010c8179f039f0ef63c6165',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
 ];

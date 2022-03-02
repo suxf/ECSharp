@@ -18,8 +18,8 @@ namespace ES.Common.Utils
         /// <summary>
         /// 读取对象
         /// </summary>
-        private static XDocument doc = null;
-        private static XElement root = null;
+        private static XDocument? doc = null;
+        private static XElement? root = null;
 
         /// <summary>
         /// 从文件中重新读取最新的配置
@@ -49,10 +49,10 @@ namespace ES.Common.Utils
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static string Read(string name)
+        public static string? Read(string name)
         {
             if (doc == null && !Reload()) return null;
-            return root.Element(name).Value;
+            return root!.Element(name)!.Value;
         }
 
         /// <summary>
@@ -61,10 +61,10 @@ namespace ES.Common.Utils
         /// <typeparam name="T"></typeparam>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static T Read<T>(string name)
+        public static T? Read<T>(string name)
         {
             if (doc == null && !Reload()) return default;
-            return (T)Convert.ChangeType(root.Element(name).Value, typeof(T));
+            return (T)Convert.ChangeType(root!.Element(name)!.Value, typeof(T));
         }
 
         /// <summary>
@@ -73,10 +73,10 @@ namespace ES.Common.Utils
         /// <param name="group"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static string Read(string group, string name)
+        public static string? Read(string group, string name)
         {
             if (doc == null && !Reload()) return null;
-            return root.Element(group).Element(name).Value;
+            return root!.Element(group)!.Element(name)!.Value;
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace ES.Common.Utils
         /// <param name="group"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static T Read<T>(string group, string name)
+        public static T? Read<T>(string group, string name)
         {
             if (doc == null && !Reload()) return default;
-            return (T)Convert.ChangeType(root.Element(group).Element(name).Value, typeof(T));
+            return (T)Convert.ChangeType(root!.Element(group)!.Element(name)!.Value, typeof(T));
         }
     }
 }
