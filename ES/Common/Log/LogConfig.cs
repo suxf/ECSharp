@@ -10,27 +10,20 @@
         /// 日志控制台异步输出开关
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
         /// <para>异步输出采用其它线程处理，调试时可能出现意外，建议调试采用同步输出</para>
-        /// <para>Debug下默认关闭，Release下默认开启</para>
+        /// <para>默认关闭</para>
         /// </summary>
-        public static bool LOG_CONSOLE_ASYNC_OUTPUT =
-#if DEBUG
-            false;
-#else
-            true;
-#endif
-
+        public static bool LOG_CONSOLE_ASYNC_OUTPUT = false;
         /// <summary>
         /// 日志控制台堆栈跟踪输出
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
-        /// <para>Debug下默认开启，Release下默认关闭</para>
+        /// <para>默认开启</para>
         /// </summary>
-        public static bool LOG_CONSOLE_STACK_TRACE_OUTPUT =
-#if DEBUG
-            true;
-#else
-            false;
-#endif
-
+        public static bool LOG_CONSOLE_STACK_TRACE_OUTPUT = true;
+        /// <summary>
+        /// 控制台输出日志类型
+        /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
+        /// </summary>
+        public static LogType CONSOLE_OUTPUT_LOG_TYPE = LogType.DEBUG;
         /// <summary>
         /// 日志写入周期 单位 ms
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>

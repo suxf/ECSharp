@@ -122,32 +122,53 @@ namespace ES.Common.Log
         /// <param name="isWriteConsole"></param>
         internal static string OutputLog(LogInfo log, bool isWriteConsole)
         {
-            var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{log.type}] {(log.type.Length == 4 ? " " : "")}{log.data} {(log.stack == null ? "" : "@ " + log.stack)}";
-            if (isWriteConsole)
+            string logType = "";
+            switch (log.type)
             {
-                switch (log.type)
-                {
-                    case "DEBUG":
+                case LogType.DEBUG:
+                    if (isWriteConsole)
+                    {
                         Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
                         Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
-                        break;
-                    case "INFO":
+                    }
+                    logType = "DEBUG";
+                    break;
+                case LogType.INFO:
+                    if (isWriteConsole)
+                    {
                         Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
                         Console.BackgroundColor = LogConfig.BACKGROUND_INFO_COLOR;
-                        break;
-                    case "WARN":
+                    }
+                    logType = "INFO";
+                    break;
+                case LogType.WARN:
+                    if (isWriteConsole)
+                    {
                         Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
                         Console.BackgroundColor = LogConfig.BACKGROUND_WARN_COLOR;
-                        break;
-                    case "ERROR":
+                    }
+                    logType = "WARN";
+                    break;
+                case LogType.ERROR:
+                    if (isWriteConsole)
+                    {
                         Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
                         Console.BackgroundColor = LogConfig.BACKGROUND_ERROR_COLOR;
-                        break;
-                    case "FATAL":
+                    }
+                    logType = "ERROR";
+                    break;
+                case LogType.FATAL:
+                    if (isWriteConsole)
+                    {
                         Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
                         Console.BackgroundColor = LogConfig.BACKGROUND_EXCEPTION_COLOR;
-                        break;
-                }
+                    }
+                    logType = "FATAL";
+                    break;
+            }
+            var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{logType}] {(logType.Length == 4 ? " " : "")}{log.data} {(log.stack == null ? "" : "@ " + log.stack)}";
+            if (isWriteConsole && log.type >= LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
+            {
                 Console.WriteLine(logStr);
                 Console.ResetColor();
             }
@@ -169,7 +190,7 @@ namespace ES.Common.Log
             /// <summary>
             /// 日志类型
             /// </summary>
-            public string type = "";
+            public LogType type;
             /// <summary>
             /// 日志时间
             /// </summary>

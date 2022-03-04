@@ -359,7 +359,7 @@ namespace ES.Network.Sockets.Server
                 // log.Info("ProcessReceive", "The server has read a total of {0} bytes", totalBytesRead);
                 // echo the data received back to the client
                 byte[] buffer = new byte[e.BytesTransferred];
-                Array.Copy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
+                Buffer.BlockCopy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
                 // Console.WriteLine(Encoding.UTF8.GetString(buffer));
                 client.RBuffer.Decode(buffer);
                 client.TriggerSocketInvoke();
@@ -415,7 +415,7 @@ namespace ES.Network.Sockets.Server
                 // log.Info("ProcessReceiveFrom", "The server has read a total of {0} bytes", totalBytesRead);
                 // echo the data received back to the client
                 byte[] buffer = new byte[e.BytesTransferred];
-                Array.Copy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
+                Buffer.BlockCopy(e.Buffer!, e.Offset, buffer, 0, e.BytesTransferred);
 
                 // Console.WriteLine(System.Text.Encoding.UTF8.GetString(buffer));
                 // client.rBuffer.Decode(buffer);
@@ -467,7 +467,7 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 线程发送
         /// </summary>
-        private bool ProcessSend(System.Net.Sockets.SocketAsyncEventArgs e)
+        private static bool ProcessSend(System.Net.Sockets.SocketAsyncEventArgs e)
         {
             (e as MySocketAsyncEventArgs)!.ResetUsedState();
             if (e.SocketError == System.Net.Sockets.SocketError.Success)
@@ -507,7 +507,7 @@ namespace ES.Network.Sockets.Server
             else if (offset > 0)
             {
                 data = new byte[count];
-                Array.Copy(buffer, offset, data, 0, count);
+                Buffer.BlockCopy(buffer, offset, data, 0, count);
             }
 
             // 数据发送

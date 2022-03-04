@@ -110,7 +110,7 @@ namespace ES.Network.Sockets.Client
             else if (offset > 0)
             {
                 byte[] buffer2 = new byte[count];
-                Array.Copy(buffer, offset, buffer2, 0, count);
+                Buffer.BlockCopy(buffer, offset, buffer2, 0, count);
                 data = RBuffer.Encode(buffer);
             }
 
@@ -153,7 +153,7 @@ namespace ES.Network.Sockets.Client
             else if (offset > 0)
             {
                 data = new byte[count];
-                Array.Copy(buffer, offset, data, 0, count);
+                Buffer.BlockCopy(buffer, offset, data, 0, count);
             }
 
             try
@@ -212,7 +212,7 @@ namespace ES.Network.Sockets.Client
         /// <summary>
         /// 线程发送
         /// </summary>
-        private bool ProcessSend(SocketAsyncEventArgs e)
+        private static bool ProcessSend(SocketAsyncEventArgs e)
         {
             (e as MySocketAsyncEventArgs)!.ResetUsedState();
             if (e.SocketError == SocketError.Success)

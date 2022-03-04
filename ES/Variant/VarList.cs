@@ -14,6 +14,22 @@ namespace ES.Variant
         public static VarList New { get { return new VarList(); } }
 
         /// <summary>
+        /// 根据索引安全获取值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public new Var this[int index]
+        {
+            get
+            {
+                if (0 <= index && index < Count)
+                    return base[index];
+                return Var.Empty;
+            }
+            set { base[index] = value; }
+        }
+
+        /// <summary>
         /// 合并可变变量列表
         /// </summary>
         /// <param name="varlist"></param>
@@ -127,19 +143,22 @@ namespace ES.Variant
         /// <summary>
         /// 转列表
         /// </summary>
+        /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
         /// <returns></returns>
-        public static VarList Parse(byte[] data, int startIndex, out int length)
+        public static VarList? Parse(byte[] data, int startIndex, out int length)
         {
             if (data[startIndex] != (byte)VarType.VARLIST_HEAD)
             {
                 length = 0;
-                return New;
+                return null;
             }
             int size = Var.Parse(data, startIndex + 1, out int sizeLen);
             if (data[startIndex + size + sizeLen + 2] != (byte)VarType.VARLIST_END)
             {
                 length = 0;
-                return New;
+                return null;
             }
             startIndex += 1;
             length = size + 3 + sizeLen;
@@ -154,7 +173,7 @@ namespace ES.Variant
             if (data[startIndex] != (byte)list.Count)
             {
                 length = 0;
-                return New;
+                return null;
             }
             return list;
         }
@@ -162,10 +181,91 @@ namespace ES.Variant
         /// <summary>
         /// 转列表
         /// </summary>
+        /// <param name="data"></param>
+        /// <param name="length"></param>
         /// <returns></returns>
         public static VarList? Parse(byte[] data, out int length)
         {
             return Parse(data, 0, out length);
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static VarList? Parse(byte[] data, int startIndex)
+        {
+            return Parse(data, startIndex, out _);
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static VarList? Parse(byte[] data)
+        {
+            return Parse(data, 0, out _);
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="list"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static bool TryParse(byte[] data, int startIndex, out VarList list, out int length)
+        {
+            VarList? tempList = Parse(data, startIndex, out length);
+            if (tempList == null)
+            {
+                list = New;
+                return false;
+            }
+            else
+            {
+                list = tempList;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="list"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static bool TryParse(byte[] data, out VarList list, out int length)
+        {
+            return TryParse(data, 0, out list, out length);
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool TryParse(byte[] data, int startIndex, out VarList list)
+        {
+            return TryParse(data, startIndex, out list, out _);
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool TryParse(byte[] data, out VarList list)
+        {
+            return TryParse(data, 0, out list, out _);
         }
     }
 }

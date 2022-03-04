@@ -189,7 +189,7 @@ namespace ES.Network.Http
         /// <returns></returns>
         private Dictionary<string, string> GetRequestHeaders(IEnumerable<string> rows)
         {
-            if (rows == null || rows.Count() <= 0) return new Dictionary<string, string>();
+            if (!rows.Any()) return new Dictionary<string, string>();
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
             var length = target == null ? rows.Count() - 1 : target.Index;
             if (length <= 1) return new Dictionary<string, string>();

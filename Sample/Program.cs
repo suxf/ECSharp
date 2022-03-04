@@ -18,11 +18,12 @@ namespace Sample
             // new Test_RandomCode();
             // new Test_SweetStream();
             // new Test_HyperSocket();
-            new Test_SimpleChatRoom();
+            // new Test_SimpleChatRoom();
             // new Test_Hotfix();
             // new Test_Http();
             // new Test_Utils();
             // new Test_Variant();
+            new Test_MemoryRW();
             
             Console.ReadLine();
         }

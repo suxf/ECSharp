@@ -58,7 +58,7 @@ namespace Sample
             VarList varlist = VarList.New;
             varlist += 2;
             varlist += 2;
-            varlist.Add(varlist).Add(2, 6,7,8).Add(varlist);
+            varlist.Merge(varlist).Add(2, 6,7,8).Merge(varlist);
 
             var varlist3 = new VarList() + 2 + false + 30.0;
             varlist3.Add(false);
@@ -166,6 +166,7 @@ namespace Sample
             list1.Add(10);
             list1.Add("asd");
             map1.Add("cee", list1);
+            map1.Add(123, "asf");
             VarList list2 = VarList.New;
             list2.Add(222);
             list2.Add("2222");
@@ -183,7 +184,10 @@ namespace Sample
             list.Add(list3);
 
             byte[] data = list.GetBytes();
-            VarList list100 = VarList.Parse(data, out int length);
+            VarList list100 = VarList.Parse(data);
+            bool s = VarList.TryParse(data, out var list200);
+            VarMap map100 = VarMap.Parse(map22.GetBytes());
+            bool ss = VarMap.TryParse(map22.GetBytes(), out var map200);
         }
     }
 }

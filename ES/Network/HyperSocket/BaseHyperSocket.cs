@@ -1,7 +1,4 @@
 ﻿using ES.Common.Time;
-using ES.Network.Sockets;
-using System;
-using System.Text;
 
 namespace ES.Network.HyperSocket
 {
@@ -89,7 +86,7 @@ namespace ES.Network.HyperSocket
             this.ip = ip;
             TcpPort = tcpPort;
             UdpPort = udpPort;
-            
+
             if (config == null) config = new HyperSocketConfig();
             this.config = config;
 

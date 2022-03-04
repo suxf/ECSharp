@@ -14,7 +14,7 @@
         /// <param name="log">日志数据</param>
         public static void Debug(string log)
         {
-            WriteLine("DEBUG", log);
+            WriteLine(LogType.DEBUG, log);
         }
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// <param name="log">日志数据</param>
         public static void Info(string log)
         {
-            WriteLine("INFO", log);
+            WriteLine(LogType.INFO, log);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// <param name="log">日志数据</param>
         public static void Warn(string log)
         {
-            WriteLine("WARN", log);
+            WriteLine(LogType.WARN, log);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@
         /// <param name="log">日志数据</param>
         public static void Error(string log)
         {
-            WriteLine("ERROR", log);
+            WriteLine(LogType.ERROR, log);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@
         public static void Exception(System.Exception ex, string log = "")
         {
             string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", log, ex.Message, ex.TargetSite, ex.StackTrace);
-            WriteLine("FATAL", data);
+            WriteLine(LogType.FATAL, data);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@
         /// </summary>
         /// <param name="type">日志类型</param>
         /// <param name="log">日志数据</param>
-        private static void WriteLine(string type, string log)
+        private static void WriteLine(LogType type, string log)
         {
             LogManager.LogInfo logInfo = new LogManager.LogInfo();
             logInfo.type = type;

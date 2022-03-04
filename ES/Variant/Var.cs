@@ -1,5 +1,4 @@
-﻿using ES.Alias;
-using ES.Common.Utils;
+﻿using ES.Common.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -702,6 +701,19 @@ namespace ES.Variant
         public static Var MapVal(VarMap map) { return new Var() { Type = VarType.VARMAP, mapValue = map }; }
 
         /// <summary>
+        /// 检查类型
+        /// </summary>
+        /// <param name="toType"></param>
+        /// <exception cref="Exception"></exception>
+        private void CheckType(VarType toType)
+        {
+            if (Type != toType)
+            {
+                throw new Exception($"Var Type [{Type}] To [{toType}] Is Error");
+            }
+        }
+
+        /// <summary>
         /// 转字节数组
         /// </summary>
         /// <returns></returns>
@@ -787,7 +799,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.VARLIST:
-                    byte[] listBytes = (listValue??VarList.New).GetBytes();
+                    byte[] listBytes = (listValue ?? VarList.New).GetBytes();
                     bytes = new byte[1 + listBytes.Length];
                     bytes[0] = (byte)VarType.VARLIST;
                     Buffer.BlockCopy(listBytes, 0, bytes, 1, listBytes.Length);
@@ -858,11 +870,11 @@ namespace ES.Variant
                     else { strLen = value[startIndex + 1] << 24 | value[startIndex + 2] << 16 | value[startIndex + 3] << 8 | value[startIndex + 4]; length = strLen + 5; index = 5; }
                     return System.Text.Encoding.UTF8.GetString(value, startIndex + index, strLen);
                 case VarType.VARLIST:
-                    VarList list = VarList.Parse(value, startIndex + 1, out int listLen);
+                    VarList list = VarList.Parse(value, startIndex + 1, out int listLen) ?? VarList.New;
                     length = listLen + 1;
                     return ListVal(list);
                 case VarType.VARMAP:
-                    VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen);
+                    VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen) ?? VarMap.New;
                     length = mapLen + 1;
                     return MapVal(map);
                 case VarType.UNKNOWN:
@@ -887,16 +899,24 @@ namespace ES.Variant
         }
 
         /// <summary>
-        /// 检查类型
+        /// 通过字节转可变变量
         /// </summary>
-        /// <param name="toType"></param>
-        /// <exception cref="Exception"></exception>
-        private void CheckType(VarType toType)
+        /// <param name="value">字节数组</param>
+        /// <param name="startIndex">开始索引位</param>
+        /// <returns></returns>
+        public static Var Parse(byte[] value, int startIndex)
         {
-            if (Type != toType)
-            {
-                throw new Exception($"Var Type [{Type}] To [{toType}] Is Error");
-            }
+            return Parse(value, startIndex, out _);
+        }
+
+        /// <summary>
+        /// 通过字节转可变变量
+        /// </summary>
+        /// <param name="value">字节数组</param>
+        /// <returns></returns>
+        public static Var Parse(byte[] value)
+        {
+            return Parse(value, 0, out _);
         }
     }
 }
