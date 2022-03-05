@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['value_578',['Value',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity.html#ab55af0acf48ca552813ca4b6c39be452',1,'ES.Data.Database.SQLServer.Linq.DataEntity.Value()'],['../class_e_s_1_1_hotfix_1_1_struct_value.html#a83e5b3012a528a9fe9c766ca3d1bf9a4',1,'ES.Hotfix.StructValue.Value()']]],
-  ['values_579',['Values',['../class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html#ad781de4bed0720301a611655b90ee5bc',1,'ES::Data::Database::SQLServer::Linq::SqlBuilder']]],
+  ['value_578',['Value',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity.html#a64f183cdde4564b736f4a3ac3ea6bd5d',1,'ES.Database.SQLServer.Linq.DataEntity.Value()'],['../class_e_s_1_1_hotfix_1_1_struct_value.html#a83e5b3012a528a9fe9c766ca3d1bf9a4',1,'ES.Hotfix.StructValue.Value()']]],
+  ['values_579',['Values',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_sql_builder.html#a836c903933985697580adb8a5e5130b4',1,'ES::Database::SQLServer::Linq::SqlBuilder']]],
   ['var_580',['Var',['../struct_e_s_1_1_variant_1_1_var.html',1,'ES::Variant']]],
   ['varlist_581',['VarList',['../class_e_s_1_1_variant_1_1_var_list.html',1,'ES.Variant.VarList'],['../namespace_e_s_1_1_variant.html#ae7cf7dfbfd528133e23877f79a03abc8a66f88ff5f133ca7a5007af907d0100f1',1,'ES.Variant.VARLIST()']]],
   ['varlist_5fend_582',['VARLIST_END',['../namespace_e_s_1_1_variant.html#ae7cf7dfbfd528133e23877f79a03abc8abdaab1d46a280d81f1a92ed968dd0bd7',1,'ES::Variant']]],

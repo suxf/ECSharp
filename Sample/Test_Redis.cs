@@ -1,4 +1,4 @@
-﻿using ES.Data.Database.Redis;
+﻿using ES.Database.Redis;
 using StackExchange.Redis;
 
 namespace Sample

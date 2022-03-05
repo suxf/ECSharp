@@ -1,7 +1,6 @@
-﻿using ES.Data.Database.Linq;
-using ES.Data.Database.SQLServer;
-using ES.Data.Database.SQLServer.Linq;
-using ES.Data.Linq;
+﻿using ES.Database.Linq;
+using ES.Database.SQLServer;
+using ES.Database.SQLServer.Linq;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -181,7 +180,7 @@ namespace Sample
             // var loader = dbHelper.CreateConfigLoader<TestConfig>("SELECT * FROM tb_configs WITH(NOLOCK)");
             var loader = new ConfigLoader<TestConfig>(dbHelper, "SELECT * FROM tb_configs WITH(NOLOCK)");
             // 遍历配置
-            foreach(var item in loader.Configs)
+            foreach (var item in loader.Configs)
             {
                 // do something
             }

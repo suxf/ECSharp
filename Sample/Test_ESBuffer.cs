@@ -7,6 +7,7 @@ namespace Sample
     // 简单序列化数据数据展示
     class Test_ESBuffer
     {
+        [System.Obsolete]
         public void test()
         {
             var test = new HelloMessage();
@@ -42,12 +43,14 @@ namespace Sample
             for (int i = 0, len = 100000; i < len; i++) _ = Easyeeeee.Parse(eeee);
         }
 
+        [System.Obsolete]
         class Easyeeeee : EasyBuffer<Easyeeeee>
         {
             public int errcode;
             public string errmsg;
         }
 
+        [System.Obsolete]
         class HelloMessage : EasyBuffer<HelloMessage>
         {
             public string name = "Hello";
@@ -60,6 +63,7 @@ namespace Sample
             public fgffff sssgggg;
         }
 
+        [System.Obsolete]
         class fgffff : EasyBuffer<fgffff>
         {
             public int id = 1111;

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['keydelete_841',['KeyDelete',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a24311b4928c24e692c84aeff6eb6fe22',1,'ES.Data.Database.Redis.RedisHelper.KeyDelete(string key)'],['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a971ade7f1af15585e94075cdc728f145',1,'ES.Data.Database.Redis.RedisHelper.KeyDelete(List&lt; string &gt; keys)']]],
-  ['keyexists_842',['KeyExists',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a1a2c41b3c066f6613420b10b52a7bb14',1,'ES::Data::Database::Redis::RedisHelper']]],
-  ['keyexpire_843',['KeyExpire',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#a38080e48209cdc50f7797e04467b41ad',1,'ES::Data::Database::Redis::RedisHelper']]],
-  ['keyrename_844',['KeyRename',['../class_e_s_1_1_data_1_1_database_1_1_redis_1_1_redis_helper.html#aeab31e9e62328c51a6f50409145ada5d',1,'ES::Data::Database::Redis::RedisHelper']]]
+  ['keydelete_841',['KeyDelete',['../class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a1efacdd71c170f4011e7af1fd9fa9da4',1,'ES.Database.Redis.RedisHelper.KeyDelete(string key)'],['../class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a0ab281c59a48be58750a0b39c7be773f',1,'ES.Database.Redis.RedisHelper.KeyDelete(List&lt; string &gt; keys)']]],
+  ['keyexists_842',['KeyExists',['../class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a8ef667ad1e13c13de9faa6e500eb69e1',1,'ES::Database::Redis::RedisHelper']]],
+  ['keyexpire_843',['KeyExpire',['../class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a2bb3333e7bc4be452e417b729f6907a7',1,'ES::Database::Redis::RedisHelper']]],
+  ['keyrename_844',['KeyRename',['../class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a34beef64cb2cca989cd3a0fbc3c43e0e',1,'ES::Database::Redis::RedisHelper']]]
 ];

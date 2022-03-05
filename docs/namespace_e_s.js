@@ -1,6 +1,7 @@
 var namespace_e_s =
 [
     [ "Data", "namespace_e_s_1_1_data.html", "namespace_e_s_1_1_data" ],
+    [ "Database", "namespace_e_s_1_1_database.html", "namespace_e_s_1_1_database" ],
     [ "Hotfix", "namespace_e_s_1_1_hotfix.html", "namespace_e_s_1_1_hotfix" ],
     [ "Linq", "namespace_e_s_1_1_linq.html", "namespace_e_s_1_1_linq" ],
     [ "Log", "namespace_e_s_1_1_log.html", "namespace_e_s_1_1_log" ],

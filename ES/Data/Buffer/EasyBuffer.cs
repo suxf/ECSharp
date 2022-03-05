@@ -11,6 +11,7 @@ namespace ES.Data.Buffer
     /// <para>只需要简单继承此类 即可达到类似protobuff的简单效果</para>
     /// <para>注意此类适合交互即时性要求不高的操作，如果延时性要求很高谨慎使用</para>
     /// </summary>
+    [Obsolete("因为反射存在严重的性能问题，本类在后续版本随时移除，建议使用Protobuff或本框架的Variant来替代!")]
     public abstract class EasyBuffer<T> : EasyBuffer where T : EasyBuffer<T>
     {
         /// <summary>

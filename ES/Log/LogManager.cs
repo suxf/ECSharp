@@ -106,7 +106,7 @@ namespace ES.Log
                 }
 
                 // 写入日志
-                while (logInfos.TryDequeue(out LogInfo? log))
+                while (logInfos.TryDequeue(out LogInfo log))
                 {
                     if (LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
                     {
@@ -191,28 +191,28 @@ namespace ES.Log
         /// <summary>
         /// 日志信息数据
         /// </summary>
-        internal class LogInfo
+        internal struct LogInfo
         {
             /// <summary>
             /// 日志类型
             /// </summary>
-            public LogType type;
+            internal LogType type;
             /// <summary>
             /// 日志时间
             /// </summary>
-            public DateTime time = DateTime.Now;
+            internal DateTime time = DateTime.Now;
             /// <summary>
             /// 日志内容
             /// </summary>
-            public string data = "";
+            internal string data = "";
             /// <summary>
             /// 堆栈信息
             /// </summary>
-            public string stack = "";
+            internal string stack = "";
             /// <summary>
             /// 日志字符串
             /// </summary>
-            public string log = "";
+            internal string log = "";
         }
     }
 }
