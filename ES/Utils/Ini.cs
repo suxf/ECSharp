@@ -1,8 +1,7 @@
-﻿using ES.Alias;
-using System;
+﻿using System;
 using System.IO;
 
-namespace ES.Common.Utils
+namespace ES.Utils
 {
     /// <summary>
     /// ini文件读取

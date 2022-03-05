@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace ES.Common.Time
+namespace ES.Time
 {
     /// <summary>
     /// 时间流 管理器

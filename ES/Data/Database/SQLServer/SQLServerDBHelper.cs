@@ -1,6 +1,6 @@
-﻿using ES.Common.Time;
-using ES.Data.Database.SQLServer.Linq;
+﻿using ES.Data.Database.SQLServer.Linq;
 using ES.Data.Linq;
+using ES.Time;
 using System;
 using System.Collections.Generic;
 using System.Data;

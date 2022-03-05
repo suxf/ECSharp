@@ -1,4 +1,4 @@
-﻿using ES.Common.Log;
+﻿using ES.Log;
 
 namespace Sample
 {
@@ -14,7 +14,10 @@ namespace Sample
         /// </summary>
         public Test_Log()
         {
-            // LogConfig.CONSOLE_OUTPUT_LOG_TYPE = LogType.WARN;
+            LogConfig.CONSOLE_OUTPUT_LOG_TYPE = LogType.WARN;
+            LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = true;
+            LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = true;
+            LogConfig.LOG_CONSOLE_ASYNC_OUTPUT = false;
             // 此处只举例一个配置例子
             // 在首次调用Log前如果需要自定义一些配置输出
             // 可以使用Log进行更改

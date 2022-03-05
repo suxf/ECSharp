@@ -1,4 +1,4 @@
-﻿using ES.Common.Time;
+﻿using ES.Time;
 
 namespace ES.Network.HyperSocket
 {

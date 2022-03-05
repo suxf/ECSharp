@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace ES.Common.Time
+namespace ES.Time
 {
     internal class TimeFlowThread
     {

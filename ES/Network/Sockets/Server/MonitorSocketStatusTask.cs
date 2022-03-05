@@ -1,4 +1,4 @@
-﻿using ES.Common.Time;
+﻿using ES.Time;
 using System.Collections.Concurrent;
 using System.Threading;
 

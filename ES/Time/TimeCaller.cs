@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ES.Common.Time
+namespace ES.Time
 {
     /// <summary>
     /// 时间执行器

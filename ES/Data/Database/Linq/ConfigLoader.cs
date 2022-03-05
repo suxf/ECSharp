@@ -1,5 +1,4 @@
-﻿using ES.Alias;
-using ES.Data.Database.SQLServer;
+﻿using ES.Data.Database.SQLServer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;

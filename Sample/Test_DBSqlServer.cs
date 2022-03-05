@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using ES.Data.Database.Linq;
+﻿using ES.Data.Database.Linq;
 using ES.Data.Database.SQLServer;
 using ES.Data.Database.SQLServer.Linq;
 using ES.Data.Linq;

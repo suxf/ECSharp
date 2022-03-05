@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ES.Common.Utils
+namespace ES.Utils
 {
     /// <summary>
     /// 随机码

@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using ES.Data.Storage;
+﻿using ES.Data.Storage;
 
 namespace Sample
 {

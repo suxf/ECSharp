@@ -1,4 +1,4 @@
-﻿namespace ES.Common.Log
+﻿namespace ES.Log
 {
     /// <summary>
     /// 日志配置
@@ -15,10 +15,18 @@
         public static bool LOG_CONSOLE_ASYNC_OUTPUT = false;
         /// <summary>
         /// 日志控制台堆栈跟踪输出
+        /// <para>开启后控制台中日志将写入堆栈信息</para>
+        /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
+        /// <para>默认关闭</para>
+        /// </summary>
+        public static bool LOG_CONSOLE_STACK_TRACE_OUTPUT = false;
+        /// <summary>
+        /// 日志文件堆栈跟踪输出
+        /// <para>开启后日志文件中日志将写入堆栈信息</para>
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>
         /// <para>默认开启</para>
         /// </summary>
-        public static bool LOG_CONSOLE_STACK_TRACE_OUTPUT = true;
+        public static bool LOG_FILE_STACK_TRACE_OUTPUT = true;
         /// <summary>
         /// 控制台输出日志类型
         /// <para>配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题</para>

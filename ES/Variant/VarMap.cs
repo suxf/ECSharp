@@ -1,5 +1,4 @@
-﻿using ES.Alias;
-using System;
+﻿using System;
 
 namespace ES.Variant
 {

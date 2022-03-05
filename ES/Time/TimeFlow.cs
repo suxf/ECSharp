@@ -1,4 +1,4 @@
-﻿namespace ES.Common.Time
+﻿namespace ES.Time
 {
     /// <summary>
     /// 时间流 

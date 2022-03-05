@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 
-namespace ES.Common.Utils
+namespace ES.Utils
 {
     /// <summary>
     /// 应用配置文件读取

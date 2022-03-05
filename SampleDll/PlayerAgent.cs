@@ -1,4 +1,4 @@
-﻿using ES.Common.Time;
+﻿using ES.Time;
 using ES.Hotfix;
 using Sample;
 using System;

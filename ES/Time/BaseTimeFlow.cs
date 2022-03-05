@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace ES.Common.Time
+namespace ES.Time
 {
     /// <summary>
     /// 时间流基类

@@ -1,4 +1,4 @@
-﻿using ES.Common.Utils;
+﻿using ES.Utils;
 using System.Security.Cryptography;
 using System.Text;
 

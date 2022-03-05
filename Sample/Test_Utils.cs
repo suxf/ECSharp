@@ -1,4 +1,5 @@
-﻿using ES.Common.Utils;
+﻿using ES.Linq;
+using ES.Utils;
 using System;
 
 namespace Sample
@@ -42,13 +43,13 @@ namespace Sample
             // 字符串将有数字与大小写字母组成
             string code = RandomCode.Generate(32);
             Console.WriteLine($"code:{code}");
-
+            
             // md5的封装
             string md5Str = MD5.Encrypt("helloworld");
             Console.WriteLine($"helloworld:{md5Str}");
 
             // 获取此框架的版本信息
-            string versionStr = ES.Common.Utils.Version.ToString();
+            string versionStr = ES.Utils.Version.ToString();
             Console.WriteLine($"es version:{versionStr}");
 
             // 通过ini文件读取配置

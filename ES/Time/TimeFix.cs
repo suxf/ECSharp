@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ES.Common.Time
+namespace ES.Time
 {
     /// <summary>
     /// 时间修补助手

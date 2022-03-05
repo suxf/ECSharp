@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using ES.Data.Database.Redis;
+﻿using ES.Data.Database.Redis;
 using StackExchange.Redis;
 
 namespace Sample

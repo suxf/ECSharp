@@ -1,5 +1,4 @@
-﻿using ES.Common.Log;
-using System;
+﻿using System;
 using System.Net;
 
 namespace ES.Network.Sockets
@@ -140,7 +139,7 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                Log.Exception(ex, "Socket Connect");
+                global::Log.Exception(ex, "Socket Connect");
                 return false;
             }
         }

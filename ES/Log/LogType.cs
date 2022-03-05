@@ -1,4 +1,4 @@
-﻿namespace ES.Common.Log
+﻿namespace ES.Log
 {
     /// <summary>
     /// 日志类型

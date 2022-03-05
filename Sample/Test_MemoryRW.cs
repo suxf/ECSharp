@@ -22,7 +22,7 @@ namespace Sample
                 {
                     byte[] data = new byte[1000];
                     random.NextBytes(data);
-                    int ss = ES.Common.Utils.ByteHelper.GetValidLength(data);
+                    int ss = ES.Utils.ByteHelper.GetValidLength(data);
                 }
             }
 

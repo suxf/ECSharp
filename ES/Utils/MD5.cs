@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace ES.Common.Utils
+namespace ES.Utils
 {
     /// <summary>
     /// md5工具

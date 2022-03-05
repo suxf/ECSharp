@@ -2,7 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Security;
 
-namespace ES.Common.Utils
+namespace ES.Utils
 {
     /// <summary>
     /// 字节助手

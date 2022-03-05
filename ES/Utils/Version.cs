@@ -1,4 +1,4 @@
-﻿namespace ES.Common.Utils
+﻿namespace ES.Utils
 {
     /// <summary>
     /// 框架版本信息

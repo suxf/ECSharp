@@ -1,9 +1,10 @@
-﻿using ES.Common.Utils;
+﻿using ES.Utils;
 using ES.Network.HyperSocket;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
 using System.Text;
+using ES.Linq;
 
 namespace Sample
 {

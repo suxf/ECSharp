@@ -1,4 +1,4 @@
-﻿using ES.Common.Utils;
+﻿using ES.Utils;
 using ES.Network.Sockets;
 using System;
 using System.Diagnostics;

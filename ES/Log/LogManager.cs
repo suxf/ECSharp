@@ -1,10 +1,10 @@
-﻿using ES.Common.Time;
+﻿using ES.Time;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 
-namespace ES.Common.Log
+namespace ES.Log
 {
     /// <summary>
     /// 日志管理器
@@ -108,71 +108,77 @@ namespace ES.Common.Log
                 // 写入日志
                 while (logInfos.TryDequeue(out LogInfo? log))
                 {
-                    if (log.data == null) continue;
-                    var logStr = OutputLog(log, LogConfig.LOG_CONSOLE_ASYNC_OUTPUT);
-                    using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(logStr);
+                    if (LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
+                    {
+                        FormatLog(log);
+                        OutputLog(log);
+                    }
+                    using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(log.log + $"{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
                 }
             }
+        }
+
+        /// <summary>
+        /// 格式化日志
+        /// </summary>
+        /// <param name="log"></param>
+        internal static void FormatLog(LogInfo log)
+        {
+            string logType = "";
+            switch (log.type)
+            {
+                case LogType.DEBUG:
+                    logType = "DEBUG";
+                    break;
+                case LogType.INFO:
+                    logType = "INFO";
+                    break;
+                case LogType.WARN:
+                    logType = "WARN";
+                    break;
+                case LogType.ERROR:
+                    logType = "ERROR";
+                    break;
+                case LogType.FATAL:
+                    logType = "FATAL";
+                    break;
+            }
+            log.log = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{logType}] {(logType.Length == 4 ? " " : "")}{log.data}";
         }
 
         /// <summary>
         /// 输出日志
         /// </summary>
         /// <param name="log"></param>
-        /// <param name="isWriteConsole"></param>
-        internal static string OutputLog(LogInfo log, bool isWriteConsole)
+        internal static void OutputLog(LogInfo log)
         {
-            string logType = "";
+            if (log.type < LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
+                return;
             switch (log.type)
             {
                 case LogType.DEBUG:
-                    if (isWriteConsole)
-                    {
-                        Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
-                        Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
-                    }
-                    logType = "DEBUG";
+                    Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
+                    Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
                     break;
                 case LogType.INFO:
-                    if (isWriteConsole)
-                    {
-                        Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
-                        Console.BackgroundColor = LogConfig.BACKGROUND_INFO_COLOR;
-                    }
-                    logType = "INFO";
+                    Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
+                    Console.BackgroundColor = LogConfig.BACKGROUND_INFO_COLOR;
                     break;
                 case LogType.WARN:
-                    if (isWriteConsole)
-                    {
-                        Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
-                        Console.BackgroundColor = LogConfig.BACKGROUND_WARN_COLOR;
-                    }
-                    logType = "WARN";
+                    Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
+                    Console.BackgroundColor = LogConfig.BACKGROUND_WARN_COLOR;
                     break;
                 case LogType.ERROR:
-                    if (isWriteConsole)
-                    {
-                        Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
-                        Console.BackgroundColor = LogConfig.BACKGROUND_ERROR_COLOR;
-                    }
-                    logType = "ERROR";
+                    Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
+                    Console.BackgroundColor = LogConfig.BACKGROUND_ERROR_COLOR;
                     break;
                 case LogType.FATAL:
-                    if (isWriteConsole)
-                    {
-                        Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
-                        Console.BackgroundColor = LogConfig.BACKGROUND_EXCEPTION_COLOR;
-                    }
-                    logType = "FATAL";
+                    Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
+                    Console.BackgroundColor = LogConfig.BACKGROUND_EXCEPTION_COLOR;
                     break;
             }
-            var logStr = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{logType}] {(logType.Length == 4 ? " " : "")}{log.data} {(log.stack == null ? "" : "@ " + log.stack)}";
-            if (isWriteConsole && log.type >= LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
-            {
-                Console.WriteLine(logStr);
-                Console.ResetColor();
-            }
-            return logStr;
+            Console.WriteLine(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
+            Console.ResetColor();
         }
 
         /// <summary>
@@ -203,6 +209,10 @@ namespace ES.Common.Log
             /// 堆栈信息
             /// </summary>
             public string stack = "";
+            /// <summary>
+            /// 日志字符串
+            /// </summary>
+            public string log = "";
         }
     }
 }

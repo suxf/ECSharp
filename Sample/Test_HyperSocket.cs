@@ -1,4 +1,4 @@
-﻿using ES.Common.Time;
+﻿using ES.Time;
 using ES.Network.HyperSocket;
 using System;
 using System.Collections.Generic;
