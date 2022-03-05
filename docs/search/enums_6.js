@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vartype_1058',['VarType',['../namespace_e_s_1_1_variant.html#ae7cf7dfbfd528133e23877f79a03abc8',1,'ES::Variant']]]
+  ['sockettype_1076',['SocketType',['../namespace_e_s_1_1_network_1_1_sockets.html#a069f380ca81a68a495c5a405089b6a6a',1,'ES::Network::Sockets']]]
 ];

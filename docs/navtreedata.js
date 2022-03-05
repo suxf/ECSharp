@@ -45,9 +45,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_e_s_1_1_data_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity.html#ab55af0acf48ca552813ca4b6c39be452",
-"class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0a6fbe9106ee0f46456f0fffcdccd97a",
-"struct_e_s_1_1_variant_1_1_var.html#a126ecb87a896ff40af806e80eb6c2d6a"
+"class_e_s_1_1_linq_1_1_date_time_linq.html",
+"class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a8cf928103a35d8dc7674f7991bee790a",
+"namespace_e_s_1_1_log.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
