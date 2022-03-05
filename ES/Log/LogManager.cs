@@ -110,8 +110,8 @@ namespace ES.Log
                 {
                     if (LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
                     {
-                        FormatLog(log);
-                        OutputLog(log);
+                        FormatLog(ref log);
+                        OutputLog(ref log);
                     }
                     using (StreamWriter sw = fileInfo.AppendText()) sw.WriteLine(log.log + $"{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
                 }
@@ -122,7 +122,7 @@ namespace ES.Log
         /// 格式化日志
         /// </summary>
         /// <param name="log"></param>
-        internal static void FormatLog(LogInfo log)
+        internal static void FormatLog(ref LogInfo log)
         {
             string logType = "";
             switch (log.type)
@@ -150,7 +150,7 @@ namespace ES.Log
         /// 输出日志
         /// </summary>
         /// <param name="log"></param>
-        internal static void OutputLog(LogInfo log)
+        internal static void OutputLog(ref LogInfo log)
         {
             if (log.type < LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
                 return;

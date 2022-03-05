@@ -74,8 +74,8 @@ public static class Log
         }
         if (!ES.Log.LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
         {
-            ES.Log.LogManager.FormatLog(logInfo);
-            ES.Log.LogManager.OutputLog(logInfo);
+            ES.Log.LogManager.FormatLog(ref logInfo);
+            ES.Log.LogManager.OutputLog(ref logInfo);
         }
         // 压入队列
         ES.Log.LogManager.Instance.logInfos.Enqueue(logInfo);
