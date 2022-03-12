@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 namespace ES.Variant
@@ -8,11 +10,6 @@ namespace ES.Variant
     /// </summary>
     public class VarList : List<Var>
     {
-        /// <summary>
-        /// 新建列表
-        /// </summary>
-        public static VarList New { get { return new VarList(); } }
-
         /// <summary>
         /// 根据索引安全获取值
         /// </summary>
@@ -109,6 +106,98 @@ namespace ES.Variant
         }
 
         /// <summary>
+        /// 转json对象
+        /// </summary>
+        /// <returns></returns>
+        public JArray ToJson()
+        {
+            JArray json = new JArray();
+            foreach (var value in this)
+            {
+                switch (value.Type)
+                {
+                    case VarType.INT32: json.Add((int)value); break;
+                    case VarType.UINT32: json.Add((uint)value); break;
+                    case VarType.INT64: json.Add((long)value); break;
+                    case VarType.UINT64: json.Add((ulong)value); break;
+                    case VarType.FLOAT: json.Add((float)value); break;
+                    case VarType.BOOL: json.Add((bool)value); break;
+                    case VarType.STRING: json.Add((string)value); break;
+                    case VarType.VARLIST: json.Add(value.List.ToJson()); break;
+                    case VarType.VARMAP: json.Add(value.Map.ToJson()); break;
+                }
+            }
+            return json;
+        }
+
+        /// <summary>
+        /// 转字符串
+        /// </summary>
+        /// <returns></returns>
+        public new string ToString()
+        {
+            return JsonConvert.SerializeObject(ToJson());
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static VarList Parse(JArray json)
+        {
+            VarList list = new VarList();
+            foreach (var value in json)
+            {
+                if (value == null) continue;
+                switch (value.Type)
+                {
+                    case JTokenType.Integer: list.Add((int)value); break;
+                    case JTokenType.Float: list.Add((float)value); break;
+                    case JTokenType.Boolean: list.Add((bool)value); break;
+                    case JTokenType.Array: list.Add(Parse((JArray)value)); break;
+                    case JTokenType.Object: list.Add(VarMap.Parse((JObject)value)); break;
+                    case JTokenType.None: break;
+                    default: list.Add(value.ToString()); break;
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static VarList? Parse(string json)
+        {
+            JArray? jsonArr = JsonConvert.DeserializeObject<JArray>(json);
+            if (jsonArr == null) return null;
+            return Parse(jsonArr);
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool TryParse(string json, out VarList list)
+        {
+            VarList? value = Parse(json);
+            if (value == null)
+            {
+                list = new VarList();
+                return false;
+            }
+            else
+            {
+                list = value;
+                return true;
+            }
+        }
+
+        /// <summary>
         /// 获取字节数组
         /// </summary>
         /// <returns></returns>
@@ -163,7 +252,7 @@ namespace ES.Variant
             startIndex += 1;
             length = size + 3 + sizeLen;
             startIndex += sizeLen;
-            VarList list = New;
+            VarList list = new VarList();
             while (size > 0)
             {
                 list.Add(Var.Parse(data, startIndex, out int varLen));
@@ -223,7 +312,7 @@ namespace ES.Variant
             VarList? tempList = Parse(data, startIndex, out length);
             if (tempList == null)
             {
-                list = New;
+                list = new VarList();
                 return false;
             }
             else

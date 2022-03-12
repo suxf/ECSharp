@@ -1,5 +1,6 @@
 ﻿using ES.Linq;
 using ES.Network.Sockets;
+using ES.Variant;
 using System;
 using System.Linq;
 using System.Text;
@@ -115,6 +116,86 @@ namespace ES.Network.HyperSocket
         public void SendUdp(string dataStr)
         {
             SendUdp(Encoding.UTF8.GetBytes(dataStr));
+        }
+
+        /// <summary>
+        /// 通过TCP发送数据
+        /// </summary>
+        /// <param name="list"></param>
+        public void SendTcp(VarList list)
+        {
+            SendTcp(list.GetBytes());
+        }
+
+        /// <summary>
+        /// 通过UDP发送数据[KCP]
+        /// </summary>
+        /// <param name="list"></param>
+        public void SendUdp(VarList list)
+        {
+            SendUdp(list.GetBytes());
+        }
+
+        /// <summary>
+        /// 通过TCP发送数据
+        /// </summary>
+        /// <param name="map"></param>
+        public void SendTcp(VarMap map)
+        {
+            SendTcp(map.GetBytes());
+        }
+
+        /// <summary>
+        /// 通过UDP发送数据[KCP]
+        /// </summary>
+        /// <param name="map"></param>
+        public void SendUdp(VarMap map)
+        {
+            SendUdp(map.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="isTcpMode">默认tcp模式，否则udp模式</param>
+        public void Send(byte[] data, bool isTcpMode = true)
+        {
+            if (isTcpMode) SendTcp(data);
+            else SendUdp(data);
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="dataStr">数据</param>
+        /// <param name="isTcpMode">默认tcp模式，否则udp模式</param>
+        public void Send(string dataStr, bool isTcpMode = true)
+        {
+            if (isTcpMode) SendTcp(dataStr);
+            else SendUdp(dataStr);
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="list">数据</param>
+        /// <param name="isTcpMode">默认tcp模式，否则udp模式</param>
+        public void Send(VarList list, bool isTcpMode = true)
+        {
+            if (isTcpMode) SendTcp(list);
+            else SendUdp(list);
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="map">数据</param>
+        /// <param name="isTcpMode">默认tcp模式，否则udp模式</param>
+        public void Send(VarMap map, bool isTcpMode = true)
+        {
+            if (isTcpMode) SendTcp(map);
+            else SendUdp(map);
         }
 
         /// <summary>

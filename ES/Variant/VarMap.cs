@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 
 namespace ES.Variant
 {
@@ -7,11 +9,6 @@ namespace ES.Variant
     /// </summary>
     public class VarMap : Map<Var, Var>
     {
-        /// <summary>
-        /// 新建列表
-        /// </summary>
-        public static VarMap New { get { return new VarMap(); } }
-
         /// <summary>
         /// 根据键名安全获取键值
         /// </summary>
@@ -73,6 +70,106 @@ namespace ES.Variant
         {
             base.Add(key, Var.MapVal(map));
             return this;
+        }
+
+        /// <summary>
+        /// 转Json对象
+        /// </summary>
+        /// <returns></returns>
+        public JObject ToJson()
+        {
+            JObject json = new JObject();
+            foreach (var item in this)
+            {
+                Var key = item.Key;
+                if (key.Type == VarType.UNKNOWN || key.Type == VarType.OBJECT
+                    || key.Type == VarType.VARLIST || key.Type == VarType.VARMAP)
+                    continue;
+
+                Var value = item.Value;
+                switch (value.Type)
+                {
+                    case VarType.INT32: json.Add(key.ToString(), (int)value); break;
+                    case VarType.UINT32: json.Add(key.ToString(), (uint)value); break;
+                    case VarType.INT64: json.Add(key.ToString(), (long)value); break;
+                    case VarType.UINT64: json.Add(key.ToString(), (ulong)value); break;
+                    case VarType.FLOAT: json.Add(key.ToString(), (float)value); break;
+                    case VarType.BOOL: json.Add(key.ToString(), (bool)value); break;
+                    case VarType.STRING: json.Add(key.ToString(), (string)value); break;
+                    case VarType.VARLIST: json.Add(key.ToString(), value.List.ToJson()); break;
+                    case VarType.VARMAP: json.Add(key.ToString(), value.Map.ToJson()); break;
+                }
+            }
+            return json;
+        }
+
+        /// <summary>
+        /// 转字符串
+        /// </summary>
+        /// <returns></returns>
+        public new string ToString()
+        {
+            return JsonConvert.SerializeObject(ToJson());
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static VarMap Parse(JObject json)
+        {
+            VarMap map = new VarMap();
+            foreach (var kv in json)
+            {
+                var key = kv.Key;
+                var value = kv.Value;
+                if (key == null || value == null) continue;
+                switch (value.Type)
+                {
+                    case JTokenType.Integer: map.Add(key, (int)value); break;
+                    case JTokenType.Float: map.Add(key, (float)value); break;
+                    case JTokenType.Boolean: map.Add(key, (bool)value); break;
+                    case JTokenType.Array: map.Add(key, VarList.Parse((JArray)value)); break;
+                    case JTokenType.Object: map.Add(key, Parse((JObject)value)); break;
+                    case JTokenType.None: break;
+                    default: map.Add(key, value.ToString()); break;
+                }
+            }
+            return map;
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static VarMap? Parse(string json)
+        {
+            JObject? jsonObj = JsonConvert.DeserializeObject<JObject>(json);
+            if (jsonObj == null) return null;
+            return Parse(jsonObj);
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public static bool TryParse(string json, out VarMap map)
+        {
+            VarMap? value = Parse(json);
+            if (value == null)
+            {
+                map = new VarMap();
+                return false;
+            }
+            else
+            {
+                map = value;
+                return true;
+            }
         }
 
         /// <summary>
@@ -138,7 +235,7 @@ namespace ES.Variant
             startIndex += 1;
             length = size + 3 + sizeLen;
             startIndex += sizeLen;
-            VarMap map = New;
+            VarMap map = new VarMap();
             while (size > 0)
             {
                 Var key = Var.Parse(data, startIndex, out int keyLen);
@@ -201,7 +298,7 @@ namespace ES.Variant
             VarMap? tempMap = Parse(data, startIndex, out length);
             if (tempMap == null)
             {
-                map = New;
+                map = new VarMap();
                 return false;
             }
             else

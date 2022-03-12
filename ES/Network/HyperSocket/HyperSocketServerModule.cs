@@ -66,7 +66,7 @@ namespace ES.Network.HyperSocket
                                 {
                                     remote.IsAlive = true;
                                     remote.SendPong();
-                                    listener!.OnOpen(remote);
+                                    listener.OnOpen(remote);
                                     return;
                                 }
                                 else if (hyperSocket.config.UseSSL && !remote.isSecurityConnected)
@@ -83,8 +83,8 @@ namespace ES.Network.HyperSocket
                                 }
                                 else
                                 {
-                                    if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener!.OnTcpReceive(remote.ssl!.AESDecrypt(msg.data)!, remote);
-                                    else listener!.OnTcpReceive(msg.data, remote);
+                                    if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener.OnTcpReceive(remote.ssl!.AESDecrypt(msg.data)!, remote);
+                                    else listener.OnTcpReceive(msg.data, remote);
                                     return;
                                 }
                             }
@@ -129,7 +129,7 @@ namespace ES.Network.HyperSocket
                     data = remote.ssl!.AESDecrypt(data)!;
 
                 if (data.Compare(BaseHyperSocket.HeartPingBytes)) remote.SendPong();
-                else listener!.OnUdpReceive(data, remote);
+                else listener.OnUdpReceive(data, remote);
             }
             else
             {
@@ -147,7 +147,7 @@ namespace ES.Network.HyperSocket
 
         public void SocketException(Exception exception)
         {
-            listener!.SocketError(exception);
+            listener.SocketError(exception);
         }
 
         internal void CloseSocket()

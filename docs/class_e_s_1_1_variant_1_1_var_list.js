@@ -12,10 +12,14 @@ var class_e_s_1_1_variant_1_1_var_list =
     [ "Parse", "class_e_s_1_1_variant_1_1_var_list.html#a2f2497eab582ddc6e0d1d31b8f58d217", null ],
     [ "Parse", "class_e_s_1_1_variant_1_1_var_list.html#a4b6795dd8a0160fcc08e50a8a6ba43bc", null ],
     [ "Parse", "class_e_s_1_1_variant_1_1_var_list.html#ae0d73c106798579f56a096d30a4ef5d5", null ],
+    [ "Parse", "class_e_s_1_1_variant_1_1_var_list.html#a258427cc5acc72d6e90ecdb535bdabd1", null ],
+    [ "Parse", "class_e_s_1_1_variant_1_1_var_list.html#a4cdc4bbab39dc9c84644b9b6a541d724", null ],
+    [ "ToJson", "class_e_s_1_1_variant_1_1_var_list.html#a47f5bcd4464406d14d8ca2c91b9e1300", null ],
+    [ "ToString", "class_e_s_1_1_variant_1_1_var_list.html#a390cd8b5ac9057f80e66eeee659b68dc", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a7c30ff96b166612083213f15fc28f3a6", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a31f685dd7f8c1a1a23822cc92e8bdbd7", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a58827c016aff0cfbd06e158b1ee02ab5", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a1ba6260dcd551237ad64cb690369a75c", null ],
-    [ "New", "class_e_s_1_1_variant_1_1_var_list.html#a4d562a3141b2c4d5293cd6a82bd4916a", null ],
+    [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a2a9e060837a8d2e7740714352ecb16ad", null ],
     [ "this[int index]", "class_e_s_1_1_variant_1_1_var_list.html#a0af2f885618f44aa14f7149bc57e039d", null ]
 ];

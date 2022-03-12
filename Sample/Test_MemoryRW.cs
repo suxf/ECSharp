@@ -16,6 +16,31 @@ namespace Sample
             Random random = new Random();
 
             [Benchmark]
+            public void Test4_A()
+            {
+                int sss = 0;
+                for (int i = 0; i < 100000; i++)
+                {
+                    int ss = random.Next(0, 5000);
+                    int s = random.Next(0, 5000);
+                    sss += ss + s;
+                }
+                //Console.WriteLine(sss);
+            }
+            [Benchmark]
+            public void Test4_B()
+            {
+                int sss = 0;
+                for (int i = 0; i < 100000; i++)
+                {
+                    int ss = random.Next(0, 5000);
+                    long s = random.Next(0, 5000);
+                    sss += ss + (int)s;
+                }
+                //Console.WriteLine(sss);
+            }
+
+            //[Benchmark]
             public void Test3_A()
             {
                 for (int i = 0; i < 10000; i++)
@@ -26,7 +51,7 @@ namespace Sample
                 }
             }
 
-            [Benchmark]
+            //[Benchmark]
             public void Test3_B()
             {
                 for (int k = 0; k < 10000; k++)

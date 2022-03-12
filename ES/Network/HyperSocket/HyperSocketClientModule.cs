@@ -54,7 +54,7 @@ namespace ES.Network.HyperSocket
                         if (msg.data != null && msg.data.Compare(BaseHyperSocket.HeartPongBytes))
                         {
                             Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
-                            if (!hasFirstRecvPong) { hasFirstRecvPong = true; listener!.OnOpen(hyperSocket); }
+                            if (!hasFirstRecvPong) { hasFirstRecvPong = true; listener.OnOpen(hyperSocket); }
                         }
                         else if (hyperSocket.config.UseSSL && !hyperSocket.isSecurityConnected)
                         {
@@ -71,8 +71,8 @@ namespace ES.Network.HyperSocket
                         }
                         else
                         {
-                            if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener!.OnTcpReceive(hyperSocket.ssl!.AESDecrypt(msg.data!)!, hyperSocket);
-                            else listener!.OnTcpReceive(msg.data!, hyperSocket);
+                            if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1)) listener.OnTcpReceive(hyperSocket.ssl!.AESDecrypt(msg.data!)!, hyperSocket);
+                            else listener.OnTcpReceive(msg.data!, hyperSocket);
                         }
                     }
                     else hyperSocket.InitializeUdpClient(msg.data);
@@ -103,7 +103,7 @@ namespace ES.Network.HyperSocket
             if (hyperSocket.IsValid)
             {
                 if (hyperSocket.config.UseSSL && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 2)) listener!.OnUdpReceive(hyperSocket.ssl!.AESDecrypt(data)!, hyperSocket);
-                else listener!.OnUdpReceive(data, hyperSocket);
+                else listener.OnUdpReceive(data, hyperSocket);
             }
             else hyperSocket.VerifyServerData(data);
         }

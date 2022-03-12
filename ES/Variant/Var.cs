@@ -10,112 +10,185 @@ namespace ES.Variant
     /// <para>支持的数据位数:</para>
     /// <para>整型；长整型；单精度浮点型；布尔型；字符型；对象型(引用)</para>
     /// </summary>
-    public struct Var
+    public readonly struct Var
     {
         /// <summary>
         /// 空值
         /// </summary>
         public static readonly Var Empty = new Var();
+
+        private readonly VarType type = VarType.UNKNOWN;
+
+        private readonly int intValue = 0;
+        private readonly long longValue = 0L;
+        private readonly float floatValue = 0.0F;
+        private readonly string stringValue = "";
+        private readonly object? objectValue = null;
+        private readonly VarList? listValue = null;
+        private readonly VarMap? mapValue = null;
+
         /// <summary>
         /// 变量类型
         /// </summary>
-        public VarType Type { private set; get; } = VarType.UNKNOWN;
+        public readonly VarType Type => type;
 
-        private int intValue = 0;
-        private long longValue = 0L;
-        private float floatValue = 0F;
-        private string stringValue = "";
-        private object? objectValue = null;
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(VarType type, int value) { this.type = type; intValue = value; }
 
-        private VarList? listValue = null;
-        private VarMap? mapValue = null;
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(VarType type, long value) { this.type = type; longValue = value; }
+
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(VarType type, float value) { this.type = type; floatValue = value; }
+
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(string value) { type = VarType.STRING; stringValue = value; }
+
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(object value) { type = VarType.OBJECT; objectValue = value; }
+
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(VarList value) { type = VarType.VARLIST; listValue = value; }
+
+        /// <summary>
+        /// 可变变量
+        /// </summary>
+        public Var(VarMap value) { type = VarType.VARMAP; mapValue = value; }
 
         /// <summary>
         /// 对象
         /// </summary>
-        public object Object { get { CheckType(VarType.OBJECT); return objectValue!; } }
+        public object Object
+        {
+            get
+            {
+                if (type != VarType.OBJECT)
+                {
+                    throw new Exception($"Var type [{type}] To [OBJECT] Is Error.");
+                }
+                return objectValue ?? new object();
+            }
+        }
         /// <summary>
         /// 列表
         /// </summary>
-        public VarList List { get { CheckType(VarType.VARLIST); return listValue!; } }
+        public VarList List
+        {
+            get
+            {
+                if (type != VarType.VARLIST)
+                {
+                    throw new Exception($"Var type [{type}] To [VARLIST] Is Error.");
+                }
+                return listValue ?? new VarList();
+            }
+        }
         /// <summary>
         /// 字典
         /// </summary>
-        public VarMap Map { get { CheckType(VarType.VARMAP); return mapValue!; } }
+        public VarMap Map
+        {
+            get
+            {
+                if (type != VarType.VARMAP)
+                {
+                    throw new Exception($"Var type [{type}] To [VARMAP] Is Error.");
+                }
+                return mapValue ?? new VarMap();
+            }
+        }
 
+        /// <summary>
+        /// 枚举值
+        /// </summary>
+        /// <param name="value">字节型变量</param>
+        public static implicit operator Var(Enum value)
+            => new Var(VarType.INT32, Convert.ToInt32(value));
         /// <summary>
         /// 字节型可变变量
         /// </summary>
         /// <param name="value">字节型变量</param>
         public static implicit operator Var(byte value)
-            => new Var() { Type = VarType.INT32, intValue = value };
+            => new Var(VarType.INT32, value);
         /// <summary>
         /// 有符号字节型可变变量
         /// </summary>
         /// <param name="value">有符号字节型变量</param>
         public static implicit operator Var(sbyte value)
-            => new Var() { Type = VarType.INT32, intValue = value };
+            => new Var(VarType.INT32, value);
         /// <summary>
         /// 短整型可变变量
         /// </summary>
         /// <param name="value">短整型变量</param>
         public static implicit operator Var(short value)
-            => new Var() { Type = VarType.INT32, intValue = value };
+            => new Var(VarType.INT32, value);
         /// <summary>
         /// 无符号短整型可变变量
         /// </summary>
         /// <param name="value">无符号短整型变量</param>
         public static implicit operator Var(ushort value)
-            => new Var() { Type = VarType.INT32, intValue = value };
+            => new Var(VarType.INT32, value);
         /// <summary>
         /// 整型可变变量
         /// </summary>
         /// <param name="value">整型变量</param>
         public static implicit operator Var(int value)
-            => new Var() { Type = VarType.INT32, intValue = value };
+            => new Var(VarType.INT32, value);
         /// <summary>
         /// 无符号整型可变变量
         /// </summary>
         /// <param name="value">无符号整型变量</param>
         public static implicit operator Var(uint value)
-            => new Var() { Type = VarType.UINT32, intValue = (int)value };
+            => new Var(VarType.UINT32, (int)value);
         /// <summary>
         /// 长整型可变变量
         /// </summary>
         /// <param name="value">长整型变量</param>
         public static implicit operator Var(long value)
-            => new Var() { Type = VarType.INT64, longValue = value };
+            => new Var(VarType.INT64, value);
         /// <summary>
         /// 无符号长整型可变变量
         /// </summary>
         /// <param name="value">无符号长整型变量</param>
         public static implicit operator Var(ulong value)
-            => new Var() { Type = VarType.UINT64, longValue = (long)value };
+            => new Var(VarType.UINT64, (long)value);
         /// <summary>
         /// 单精度浮点型可变变量
         /// </summary>
         /// <param name="value">单精度浮点型变量</param>
         public static implicit operator Var(float value)
-            => new Var() { Type = VarType.FLOAT, floatValue = value };
+            => new Var(VarType.FLOAT, value);
         /// <summary>
         /// 双精度浮点型转单精度浮点型可变变量
         /// <para>不支持双精度浮点型，会丢失精度转为单精度浮点型</para>
         /// </summary>
         /// <param name="value">双精度浮点型变量</param>
         public static implicit operator Var(double value)
-            => new Var() { Type = VarType.FLOAT, floatValue = (float)value };
+            => new Var(VarType.FLOAT, (float)value);
         /// <summary>
         /// 布尔型可变变量
         /// </summary>
         /// <param name="value">布尔型变量</param>
         public static implicit operator Var(bool value)
-            => new Var() { Type = VarType.BOOL, intValue = value ? 1 : 0 };
+            => new Var(VarType.BOOL, value ? 1 : 0);
         /// <summary>
         /// 字符串型可变变量
         /// </summary>
         /// <param name="value">字符串型变量</param>
         public static implicit operator Var(string value)
-            => new Var() { Type = VarType.STRING, stringValue = value };
+            => new Var(value);
         /// <summary>
         /// 通过字节数组转可变变量
         /// </summary>
@@ -126,12 +199,84 @@ namespace ES.Variant
         }
 
         /// <summary>
-        /// 可变变量类型
+        /// 字节型可变变量
         /// </summary>
         /// <param name="value">可变变量</param>
-        public static implicit operator VarType(Var value)
+        public static implicit operator byte(Var value)
         {
-            return value.Type;
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return (byte)value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (byte)value.longValue;
+                case VarType.FLOAT:
+                    return (byte)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [BYTE] Is Error.");
+            }
+        }
+        /// <summary>
+        /// 有符号字节型可变变量
+        /// </summary>
+        /// <param name="value">可变变量</param>
+        public static implicit operator sbyte(Var value)
+        {
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return (sbyte)value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (sbyte)value.longValue;
+                case VarType.FLOAT:
+                    return (sbyte)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [SBYTE] Is Error.");
+            }
+        }
+        /// <summary>
+        /// 短整型可变变量
+        /// </summary>
+        /// <param name="value">可变变量</param>
+        public static implicit operator short(Var value)
+        {
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return (short)value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (short)value.longValue;
+                case VarType.FLOAT:
+                    return (short)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [INT16] Is Error.");
+            }
+        }
+        /// <summary>
+        /// 无符号短整型可变变量
+        /// </summary>
+        /// <param name="value">可变变量</param>
+        public static implicit operator ushort(Var value)
+        {
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return (ushort)value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (ushort)value.longValue;
+                case VarType.FLOAT:
+                    return (ushort)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [UINT16] Is Error.");
+            }
         }
         /// <summary>
         /// 整型可变变量
@@ -139,8 +284,19 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator int(Var value)
         {
-            value.CheckType(VarType.INT32);
-            return value.intValue;
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (int)value.longValue;
+                case VarType.FLOAT:
+                    return (int)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [INT32] Is Error.");
+            }
         }
         /// <summary>
         /// 无符号整型可变变量
@@ -148,8 +304,19 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator uint(Var value)
         {
-            value.CheckType(VarType.UINT32);
-            return (uint)value.intValue;
+            switch (value.type)
+            {
+                case VarType.INT32:
+                case VarType.UINT32:
+                    return (uint)value.intValue;
+                case VarType.INT64:
+                case VarType.UINT64:
+                    return (uint)value.longValue;
+                case VarType.FLOAT:
+                    return (uint)value.floatValue;
+                default:
+                    throw new Exception($"Var type [{value.type}] To [UINT32] Is Error.");
+            }
         }
         /// <summary>
         /// 长整型可变变量
@@ -157,16 +324,18 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator long(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                 case VarType.UINT32:
                     return value.intValue;
                 case VarType.INT64:
+                case VarType.UINT64:
                     return value.longValue;
+                case VarType.FLOAT:
+                    return (long)value.floatValue;
                 default:
-                    value.CheckType(VarType.INT64);
-                    return 0;
+                    throw new Exception($"Var type [{value.type}] To [INT64] Is Error.");
             }
         }
         /// <summary>
@@ -175,15 +344,18 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator ulong(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
+                case VarType.INT32:
                 case VarType.UINT32:
                     return (ulong)value.intValue;
+                case VarType.INT64:
                 case VarType.UINT64:
                     return (ulong)value.longValue;
+                case VarType.FLOAT:
+                    return (ulong)value.floatValue;
                 default:
-                    value.CheckType(VarType.UINT64);
-                    return 0;
+                    throw new Exception($"Var type [{value.type}] To [UINT64] Is Error.");
             }
         }
         /// <summary>
@@ -192,7 +364,7 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator float(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                 case VarType.UINT32:
@@ -203,8 +375,7 @@ namespace ES.Variant
                 case VarType.FLOAT:
                     return value.floatValue;
                 default:
-                    value.CheckType(VarType.FLOAT);
-                    return 0;
+                    throw new Exception($"Var type [{value.type}] To [FLOAT] Is Error.");
             }
         }
         /// <summary>
@@ -222,7 +393,8 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator bool(Var value)
         {
-            value.CheckType(VarType.BOOL);
+            if (value.type != VarType.BOOL)
+                throw new Exception($"Var type [{value.type}] To [BOOL] Is Error.");
             return value.intValue == 1;
         }
         /// <summary>
@@ -240,7 +412,7 @@ namespace ES.Variant
         /// <returns></returns>
         public override string ToString()
         {
-            switch (Type)
+            switch (type)
             {
                 case VarType.INT32:
                     return intValue.ToString();
@@ -258,10 +430,25 @@ namespace ES.Variant
                     return stringValue;
                 case VarType.OBJECT:
                     return objectValue?.ToString() ?? "";
-                default:
-                    CheckType(VarType.STRING);
+                case VarType.VARLIST:
+                    return listValue?.ToString() ?? "";
+                case VarType.VARMAP:
+                    return mapValue?.ToString() ?? "";
+                case VarType.UNKNOWN:
                     return "";
+                default:
+                    throw new Exception($"Var type [{type}] To [STRING] Is Error.");
             }
+        }
+
+        /// <summary>
+        /// 转枚举
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T ToEnum<T>() where T : Enum
+        {
+            return (T)Enum.ToObject(typeof(T), intValue);
         }
 
         /// <summary>
@@ -271,10 +458,10 @@ namespace ES.Variant
         /// <param name="value2">可变变量</param>
         public static Var operator +(Var value1, Var value2)
         {
-            switch (value1.Type)
+            switch (value1.type)
             {
                 case VarType.INT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.intValue + value2.intValue;
                         case VarType.UINT32: return value1.intValue + (uint)value2.intValue;
@@ -284,7 +471,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return (uint)value1.intValue + value2.intValue;
                         case VarType.UINT32: return (uint)value1.intValue + (uint)value2.intValue;
@@ -295,7 +482,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.longValue + value2.intValue;
                         case VarType.UINT32: return value1.longValue + (uint)value2.intValue;
@@ -305,7 +492,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UINT32: return (ulong)value1.longValue + (uint)value2.intValue;
                         case VarType.UINT64: return (ulong)value1.longValue + (ulong)value2.intValue;
@@ -314,7 +501,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.floatValue + value2.intValue;
                         case VarType.UINT32: return value1.floatValue + (uint)value2.intValue;
@@ -325,7 +512,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.STRING:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.ToString() + value2.intValue;
                         case VarType.UINT32: return value1.ToString() + (uint)value2.intValue;
@@ -336,8 +523,7 @@ namespace ES.Variant
                     }
                     break;
             }
-            value1.CheckType(value2.Type);
-            return 0;
+            throw new Exception($"Var type [{value1.type}] To [{value2.type}] Is Error.");
         }
 
         /// <summary>
@@ -347,10 +533,10 @@ namespace ES.Variant
         /// <param name="value2">可变变量</param>
         public static Var operator -(Var value1, Var value2)
         {
-            switch (value1.Type)
+            switch (value1.type)
             {
                 case VarType.INT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.intValue - value2.intValue;
                         case VarType.UINT32: return value1.intValue - (uint)value2.intValue;
@@ -359,7 +545,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return (uint)value1.intValue - value2.intValue;
                         case VarType.UINT32: return (uint)value1.intValue - (uint)value2.intValue;
@@ -369,7 +555,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.longValue - value2.intValue;
                         case VarType.UINT32: return value1.longValue - (uint)value2.intValue;
@@ -378,7 +564,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UINT32: return (ulong)value1.longValue - (uint)value2.intValue;
                         case VarType.UINT64: return (ulong)value1.longValue - (ulong)value2.intValue;
@@ -386,7 +572,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.floatValue - value2.intValue;
                         case VarType.UINT32: return value1.floatValue - (uint)value2.intValue;
@@ -396,8 +582,7 @@ namespace ES.Variant
                     }
                     break;
             }
-            value1.CheckType(value2.Type);
-            return 0;
+            throw new Exception($"Var type [{value1.type}] To [{value2.type}] Is Error.");
         }
 
         /// <summary>
@@ -407,10 +592,10 @@ namespace ES.Variant
         /// <param name="value2">可变变量</param>
         public static Var operator *(Var value1, Var value2)
         {
-            switch (value1.Type)
+            switch (value1.type)
             {
                 case VarType.INT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.intValue * value2.intValue;
                         case VarType.UINT32: return value1.intValue * (uint)value2.intValue;
@@ -419,7 +604,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return (uint)value1.intValue * value2.intValue;
                         case VarType.UINT32: return (uint)value1.intValue * (uint)value2.intValue;
@@ -429,7 +614,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.longValue * value2.intValue;
                         case VarType.UINT32: return value1.longValue * (uint)value2.intValue;
@@ -438,7 +623,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UINT32: return (ulong)value1.longValue * (uint)value2.intValue;
                         case VarType.UINT64: return (ulong)value1.longValue * (ulong)value2.intValue;
@@ -446,7 +631,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.floatValue * value2.intValue;
                         case VarType.UINT32: return value1.floatValue * (uint)value2.intValue;
@@ -456,8 +641,7 @@ namespace ES.Variant
                     }
                     break;
             }
-            value1.CheckType(value2.Type);
-            return 0;
+            throw new Exception($"Var type [{value1.type}] To [{value2.type}] Is Error.");
         }
 
         /// <summary>
@@ -467,10 +651,10 @@ namespace ES.Variant
         /// <param name="value2">可变变量</param>
         public static Var operator /(Var value1, Var value2)
         {
-            switch (value1.Type)
+            switch (value1.type)
             {
                 case VarType.INT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.intValue / value2.intValue;
                         case VarType.UINT32: return value1.intValue / (uint)value2.intValue;
@@ -479,7 +663,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return (uint)value1.intValue / value2.intValue;
                         case VarType.UINT32: return (uint)value1.intValue / (uint)value2.intValue;
@@ -489,7 +673,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.longValue / value2.intValue;
                         case VarType.UINT32: return value1.longValue / (uint)value2.intValue;
@@ -498,7 +682,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UINT32: return (ulong)value1.longValue / (uint)value2.intValue;
                         case VarType.UINT64: return (ulong)value1.longValue / (ulong)value2.intValue;
@@ -506,7 +690,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.floatValue / value2.intValue;
                         case VarType.UINT32: return value1.floatValue / (uint)value2.intValue;
@@ -516,8 +700,7 @@ namespace ES.Variant
                     }
                     break;
             }
-            value1.CheckType(value2.Type);
-            return 0;
+            throw new Exception($"Var type [{value1.type}] To [{value2.type}] Is Error.");
         }
 
         /// <summary>
@@ -526,7 +709,7 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static Var operator ++(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                 case VarType.UINT32:
@@ -537,7 +720,7 @@ namespace ES.Variant
                 case VarType.FLOAT:
                     return value.floatValue + 1;
                 default:
-                    throw new Exception($"Var type [{value.Type}] is error!");
+                    throw new Exception($"Var type [{value.type}] is error!");
             }
         }
         /// <summary>
@@ -546,7 +729,7 @@ namespace ES.Variant
         /// <param name="value">可变变量</param>
         public static Var operator --(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                 case VarType.UINT32:
@@ -557,7 +740,7 @@ namespace ES.Variant
                 case VarType.FLOAT:
                     return value.floatValue - 1;
                 default:
-                    throw new Exception($"Var type [{value.Type}] is error!");
+                    throw new Exception($"Var type [{value.type}] is error!");
             }
         }
 
@@ -568,16 +751,16 @@ namespace ES.Variant
         /// <param name="value2">可变变量2</param>
         public static bool operator ==(Var value1, Var value2)
         {
-            switch (value1.Type)
+            switch (value1.type)
             {
                 case VarType.UNKNOWN:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UNKNOWN: return true;
                         default: return false;
                     }
                 case VarType.INT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.intValue == value2.intValue;
                         case VarType.UINT32: return value1.intValue == (uint)value2.intValue;
@@ -586,7 +769,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT32:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return (uint)value1.intValue == value2.intValue;
                         case VarType.UINT32: return (uint)value1.intValue == (uint)value2.intValue;
@@ -596,7 +779,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.longValue == value2.intValue;
                         case VarType.UINT32: return value1.longValue == (uint)value2.intValue;
@@ -605,7 +788,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.UINT64:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.UINT32: return (ulong)value1.longValue == (uint)value2.intValue;
                         case VarType.UINT64: return (ulong)value1.longValue == (ulong)value2.longValue;
@@ -613,7 +796,7 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.INT32: return value1.floatValue == value2.intValue;
                         case VarType.UINT32: return value1.floatValue == (uint)value2.intValue;
@@ -623,26 +806,37 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.BOOL:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.BOOL: return value1.intValue == value2.intValue;
                     }
                     break;
                 case VarType.STRING:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.STRING: return value1.stringValue == value2.stringValue;
                     }
                     break;
                 case VarType.OBJECT:
-                    switch (value2.Type)
+                    switch (value2.type)
                     {
                         case VarType.OBJECT: return value1.objectValue == value2.objectValue;
                     }
                     break;
+                case VarType.VARLIST:
+                    switch (value2.type)
+                    {
+                        case VarType.VARLIST: return value1.listValue == value2.listValue;
+                    }
+                    break;
+                case VarType.VARMAP:
+                    switch (value2.type)
+                    {
+                        case VarType.VARMAP: return value1.mapValue == value2.mapValue;
+                    }
+                    break;
             }
-            value1.CheckType(value2.Type);
-            return false;
+            throw new Exception($"Var type [{value1.type}] To [{value2.type}] Is Error.");
         }
 
         /// <summary>
@@ -663,7 +857,7 @@ namespace ES.Variant
         public override bool Equals(object? obj)
         {
             return obj is Var var &&
-                   Type == var.Type &&
+                   type == var.type &&
                    intValue == var.intValue &&
                    longValue == var.longValue &&
                    floatValue == var.floatValue &&
@@ -679,39 +873,26 @@ namespace ES.Variant
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(Type, intValue, longValue, floatValue, stringValue, objectValue, listValue, mapValue);
+            return HashCode.Combine(type, intValue, longValue, floatValue, stringValue, objectValue, listValue, mapValue);
         }
 
         /// <summary>
         /// 设置对象类型
         /// </summary>
         /// <param name="value"></param>
-        public static Var ObjectVal(object value) { return new Var() { Type = VarType.OBJECT, objectValue = value }; }
+        public static Var ObjectVal(object value) { return new Var(value); }
 
         /// <summary>
         /// 设置列表类型
         /// </summary>
         /// <param name="list"></param>
-        public static Var ListVal(VarList list) { return new Var() { Type = VarType.VARLIST, listValue = list }; }
+        public static Var ListVal(VarList list) { return new Var(list); }
 
         /// <summary>
         /// 设置列表类型
         /// </summary>
         /// <param name="map"></param>
-        public static Var MapVal(VarMap map) { return new Var() { Type = VarType.VARMAP, mapValue = map }; }
-
-        /// <summary>
-        /// 检查类型
-        /// </summary>
-        /// <param name="toType"></param>
-        /// <exception cref="Exception"></exception>
-        private void CheckType(VarType toType)
-        {
-            if (Type != toType)
-            {
-                throw new Exception($"Var Type [{Type}] To [{toType}] Is Error");
-            }
-        }
+        public static Var MapVal(VarMap map) { return new Var(map); }
 
         /// <summary>
         /// 转字节数组
@@ -720,7 +901,7 @@ namespace ES.Variant
         public byte[] GetBytes()
         {
             byte[] bytes;
-            switch (Type)
+            switch (type)
             {
                 case VarType.INT32:
                     if (byte.MinValue <= intValue && intValue <= byte.MaxValue)
@@ -745,7 +926,7 @@ namespace ES.Variant
                         bytes[0] = (byte)VarType.INT32;
                         Buffer.BlockCopy(ByteHelper.GetBytes(intValue), 0, bytes, 1, 4);
                     }
-                    else throw new Exception($"Var type [{Type}] is not to bytes!");
+                    else throw new Exception($"Var type [{type}] is not to bytes!");
                     break;
                 case VarType.UINT32:
                     bytes = new byte[5];
@@ -799,13 +980,13 @@ namespace ES.Variant
                     }
                     break;
                 case VarType.VARLIST:
-                    byte[] listBytes = (listValue ?? VarList.New).GetBytes();
+                    byte[] listBytes = (listValue ?? new VarList()).GetBytes();
                     bytes = new byte[1 + listBytes.Length];
                     bytes[0] = (byte)VarType.VARLIST;
                     Buffer.BlockCopy(listBytes, 0, bytes, 1, listBytes.Length);
                     break;
                 case VarType.VARMAP:
-                    byte[] mapBytes = (mapValue ?? VarMap.New).GetBytes();
+                    byte[] mapBytes = (mapValue ?? new VarMap()).GetBytes();
                     bytes = new byte[1 + mapBytes.Length];
                     bytes[0] = (byte)VarType.VARMAP;
                     Buffer.BlockCopy(mapBytes, 0, bytes, 1, mapBytes.Length);
@@ -814,7 +995,7 @@ namespace ES.Variant
                     bytes = new byte[1] { (byte)VarType.UNKNOWN | 0xF0 };
                     break;
                 default:
-                    throw new Exception($"Var type [{Type}] is not to bytes!");
+                    throw new Exception($"Var type [{type}] is not to bytes!");
             }
             return bytes;
         }
@@ -828,8 +1009,8 @@ namespace ES.Variant
         /// <returns></returns>
         public static Var Parse(byte[] value, int startIndex, out int length)
         {
-            VarType Type = (VarType)(value[startIndex] & 0x0F);
-            switch (Type)
+            VarType type = (VarType)(value[startIndex] & 0x0F);
+            switch (type)
             {
                 case VarType.BYTE:
                     length = 2;
@@ -870,11 +1051,11 @@ namespace ES.Variant
                     else { strLen = value[startIndex + 1] << 24 | value[startIndex + 2] << 16 | value[startIndex + 3] << 8 | value[startIndex + 4]; length = strLen + 5; index = 5; }
                     return System.Text.Encoding.UTF8.GetString(value, startIndex + index, strLen);
                 case VarType.VARLIST:
-                    VarList list = VarList.Parse(value, startIndex + 1, out int listLen) ?? VarList.New;
+                    VarList list = VarList.Parse(value, startIndex + 1, out int listLen) ?? new VarList();
                     length = listLen + 1;
                     return ListVal(list);
                 case VarType.VARMAP:
-                    VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen) ?? VarMap.New;
+                    VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen) ?? new VarMap();
                     length = mapLen + 1;
                     return MapVal(map);
                 case VarType.UNKNOWN:
@@ -883,7 +1064,7 @@ namespace ES.Variant
                         return Empty;
                     throw new Exception($"Var UNKNOWN type is [{value[startIndex]}] error!");
                 default:
-                    throw new Exception($"Var type [{Type}] is error!");
+                    throw new Exception($"Var type [{type}] is error!");
             }
         }
 
