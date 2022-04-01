@@ -18,20 +18,20 @@ namespace Sample
 
         public Test_SimpleChatRoom()
         {
-            Console.WriteLine("[1]服务器 [2]客户端");
+            Log.Info("[1]服务器 [2]客户端");
             Console.Write("输入:");
             var input = Console.ReadLine();
             if (input == "1")
             {
-                Console.WriteLine("启动服务器");
+                Log.Info("启动服务器");
                 StartServer();
             }
             else if (input == "2")
             {
-                Console.WriteLine("启动客户端");
+                Log.Info("启动客户端");
                 StartClient();
             }
-            else Console.WriteLine("啥都没");
+            else Log.Info("啥都没");
         }
 
         public void StartServer()
@@ -51,7 +51,7 @@ namespace Sample
                 var jsonObj = new JObject();
                 jsonObj.Add("id", int.Parse(id));
                 jsonObj.Add("msg", str);
-                ((HyperSocket)client).SendUdp(jsonObj.AsBytes());
+                client.SendUdp(jsonObj.AsBytes());
             }
         }
 
@@ -59,26 +59,26 @@ namespace Sample
         {
             public void OnOpen(HyperSocket socket)
             {
-                Console.WriteLine($"连接服务器成功！聊天ID:{socket.SessionId}");
-                Console.WriteLine($"发送信息：聊天ID + 回车 + 消息，聊天ID等于0为群发消息");
-                Console.WriteLine($"例如：1 回车 HelloWorld");
+                Log.Info($"连接服务器成功！聊天ID:{socket.SessionId}");
+                Log.Info($"发送信息：聊天ID + 回车 + 消息，聊天ID等于0为群发消息");
+                Log.Info($"例如：1 回车 HelloWorld");
             }
 
             public void OnTcpReceive(byte[] data, HyperSocket socket)
             {
                 string str = Encoding.UTF8.GetString(data);
                 var jsonObj = str.AsJObject();
-                Console.WriteLine($"来自:{jsonObj["id"]}, 内容:{jsonObj["msg"]}");
+                Log.Info($"来自:{jsonObj["id"]}, 内容:{jsonObj["msg"]}");
             }
 
             public void OnUdpReceive(byte[] data, HyperSocket socket)
             {
-                Console.WriteLine($"消息发送{Encoding.UTF8.GetString(data)}");
+                Log.Info($"消息发送{Encoding.UTF8.GetString(data)}");
             }
 
             public void SocketError(HyperSocket socket, Exception ex)
             {
-                Console.WriteLine($"客户端错误:{ex.Message}");
+                Log.Info($"客户端错误:{ex.Message}");
             }
         }
 
@@ -88,13 +88,13 @@ namespace Sample
 
             public void OnClose(RemoteHyperSocket socket)
             {
-                Console.WriteLine($"客户端关闭:{socket.SessionId}");
+                Log.Info($"客户端关闭:{socket.SessionId}");
                 sockets.TryRemove(socket.SessionId, out _);
             }
 
             public void OnOpen(RemoteHyperSocket socket)
             {
-                Console.WriteLine($"聊天Id:{socket.SessionId}");
+                Log.Info($"聊天Id:{socket.SessionId}");
                 sockets.TryAdd(socket.SessionId, socket);
             }
 
@@ -128,9 +128,9 @@ namespace Sample
                 }
             }
 
-            public void SocketError(Exception ex)
+            public void SocketError(RemoteHyperSocket socket, Exception ex)
             {
-                Console.WriteLine($"客户端错误:{ex.Message}");
+                Log.Info($"客户端错误:{ex.Message}");
                 sockets.TryRemove(client.SessionId, out _);
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using System;
 
 namespace Sample
 {
@@ -9,22 +10,39 @@ namespace Sample
     {
         static void Main(string[] args)
         {
+            // sqlserver数据库测试
             // new Test_DBSqlServer();
-            // new Test_ESBuffer().test();
+            // mysql数据库测试
+            // new Test_DBMySql();
+            // 日志测试
             // new Test_Log();
+            // redis测试
             // new Test_Redis();
+            // 数据存储测试
             // new Test_EasyStorage();
+            // 时间流测试
             // new Test_Time();
+            // 随机数测试
             // new Test_RandomCode();
-            // new Test_SweetStream();
+            // 数据流测试
+            // new Test_SweetStream().Test1();
+            // 数据流性能测试
+            // BenchmarkRunner.Run<Test_SweetStream>();
+            // 超级套接字测试
             // new Test_HyperSocket();
-            // new Test_SimpleChatRoom();
+            // 简单聊天房测试
+            new Test_SimpleChatRoom();
+            // 不停服热更新测试
             // new Test_Hotfix();
+            // http服务测试
             // new Test_Http();
+            // 工具类测试
             // new Test_Utils();
-            new Test_Variant();
-            // new Test_MemoryRW();
-            
+            // 可变变量测试
+            // new Test_Variant();
+            // Json转对象测试
+            // new Test_Json2Object();
+
             Console.ReadLine();
         }
 

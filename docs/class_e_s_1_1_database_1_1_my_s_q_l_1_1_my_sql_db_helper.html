@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Database.MySQL.MySqlDbHelper类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.16.0</span>
+   </div>
+   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Database.MySQL.MySqlDbHelper类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>MySQL数据库访问助手  
+ <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#details">更多...</a></p>
+<div class="dynheader">
+类 ES.Database.MySQL.MySqlDbHelper 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.png" usemap="#ES.Database.MySQL.MySqlDbHelper_map" alt=""/>
+  <map id="ES.Database.MySQL.MySqlDbHelper_map" name="ES.Database.MySQL.MySqlDbHelper_map">
+<area href="interface_e_s_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Time.ITimeUpdate" shape="rect" coords="0,56,225,80"/>
+<area href="interface_e_s_1_1_database_1_1_i_db_helper.html" title="数据助手接口" alt="ES.Database.IDbHelper" shape="rect" coords="235,56,460,80"/>
+<area href="interface_e_s_1_1_time_1_1_i_sys_time.html" title="系统时间接口" alt="ES.Time.ISysTime" shape="rect" coords="235,0,460,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a52d8e67e122d0c00611c191c81b85bf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a52d8e67e122d0c00611c191c81b85bf4">MySqlDbHelper</a> (string address, string username, string password, uint port=3306, string? databaseName=null, uint minPoolSize=0, uint maxPoolSize=100, string? extraConfig=null)</td></tr>
+<tr class="memdesc:a52d8e67e122d0c00611c191c81b85bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">MySQL助手构造函数  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a52d8e67e122d0c00611c191c81b85bf4">更多...</a><br /></td></tr>
+<tr class="separator:a52d8e67e122d0c00611c191c81b85bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591fbd3cfa9b8fb0ee04709ca1ef45d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a591fbd3cfa9b8fb0ee04709ca1ef45d0">MySqlDbHelper</a> (string connectionString)</td></tr>
+<tr class="memdesc:a591fbd3cfa9b8fb0ee04709ca1ef45d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MySQL助手构造函数  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a591fbd3cfa9b8fb0ee04709ca1ef45d0">更多...</a><br /></td></tr>
+<tr class="separator:a591fbd3cfa9b8fb0ee04709ca1ef45d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e00ba43ae57db4bcdd1dc0a6d5e0ed2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a4e00ba43ae57db4bcdd1dc0a6d5e0ed2">MySqlDbHelper</a> (MySqlConnectionStringBuilder mySqlConnectionStringBuilder)</td></tr>
+<tr class="memdesc:a4e00ba43ae57db4bcdd1dc0a6d5e0ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">MySQL助手构造函数  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a4e00ba43ae57db4bcdd1dc0a6d5e0ed2">更多...</a><br /></td></tr>
+<tr class="separator:a4e00ba43ae57db4bcdd1dc0a6d5e0ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4644d2590b96d983043b29f7a546727e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a4644d2590b96d983043b29f7a546727e">SetExceptionListener</a> (<a class="el" href="interface_e_s_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html">IMySqlDbHelper</a> listener)</td></tr>
+<tr class="memdesc:a4644d2590b96d983043b29f7a546727e"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置异常监听  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a4644d2590b96d983043b29f7a546727e">更多...</a><br /></td></tr>
+<tr class="separator:a4644d2590b96d983043b29f7a546727e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288a380c9366f5d37f8c9d3fe8fc57af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a288a380c9366f5d37f8c9d3fe8fc57af">CheckConnected</a> ()</td></tr>
+<tr class="memdesc:a288a380c9366f5d37f8c9d3fe8fc57af"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查是否连接  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a288a380c9366f5d37f8c9d3fe8fc57af">更多...</a><br /></td></tr>
+<tr class="separator:a288a380c9366f5d37f8c9d3fe8fc57af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29a9e6bed496e5cdb32fd4d95f8d1b8d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a29a9e6bed496e5cdb32fd4d95f8d1b8d">GetConnectionString</a> ()</td></tr>
+<tr class="memdesc:a29a9e6bed496e5cdb32fd4d95f8d1b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库连接地址  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a29a9e6bed496e5cdb32fd4d95f8d1b8d">更多...</a><br /></td></tr>
+<tr class="separator:a29a9e6bed496e5cdb32fd4d95f8d1b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc08669d57ee37e94d230ccb35c6973"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_database_1_1_command_result.html">CommandResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a7cc08669d57ee37e94d230ccb35c6973">CommandSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:a7cc08669d57ee37e94d230ccb35c6973"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行查询SQL语句  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a7cc08669d57ee37e94d230ccb35c6973">更多...</a><br /></td></tr>
+<tr class="separator:a7cc08669d57ee37e94d230ccb35c6973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7af4324f1917839cfd99252f315f629"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#aa7af4324f1917839cfd99252f315f629">ExecuteSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:aa7af4324f1917839cfd99252f315f629"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行修改SQL语句  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#aa7af4324f1917839cfd99252f315f629">更多...</a><br /></td></tr>
+<tr class="separator:aa7af4324f1917839cfd99252f315f629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9208b99c63d91ae41c80dc93da81dd20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a9208b99c63d91ae41c80dc93da81dd20">PushSQL</a> (string sql, params object[] obj)</td></tr>
+<tr class="memdesc:a9208b99c63d91ae41c80dc93da81dd20"><td class="mdescLeft">&#160;</td><td class="mdescRight">压入SQL队列，等待统一顺序执行【异步】  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a9208b99c63d91ae41c80dc93da81dd20">更多...</a><br /></td></tr>
+<tr class="separator:a9208b99c63d91ae41c80dc93da81dd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e52caadbf4f8d81e78f6d412fbccf68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a5e52caadbf4f8d81e78f6d412fbccf68">Update</a> (int dt)</td></tr>
+<tr class="memdesc:a5e52caadbf4f8d81e78f6d412fbccf68"><td class="mdescLeft">&#160;</td><td class="mdescRight">通过时间流来更新通过队列执行的SQL  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a5e52caadbf4f8d81e78f6d412fbccf68">更多...</a><br /></td></tr>
+<tr class="separator:a5e52caadbf4f8d81e78f6d412fbccf68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7669dfd493306d4d94bfb7abb9ec73b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#ad7669dfd493306d4d94bfb7abb9ec73b">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:ad7669dfd493306d4d94bfb7abb9ec73b"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#ad7669dfd493306d4d94bfb7abb9ec73b">更多...</a><br /></td></tr>
+<tr class="separator:ad7669dfd493306d4d94bfb7abb9ec73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a5d454d0edbf6a232be807c85cf8282ce"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a5d454d0edbf6a232be807c85cf8282ce">Now</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5d454d0edbf6a232be807c85cf8282ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数据库时间  <a href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a5d454d0edbf6a232be807c85cf8282ce">更多...</a><br /></td></tr>
+<tr class="separator:a5d454d0edbf6a232be807c85cf8282ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interface_e_s_1_1_time_1_1_i_sys_time"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_e_s_1_1_time_1_1_i_sys_time')"><img src="closed.png" alt="-"/>&#160;属性 继承自 <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ES.Time.ISysTime</a></td></tr>
+<tr class="memitem:a6400d41b7bdec8694d6dec30f30ab52f inherit properties_interface_e_s_1_1_time_1_1_i_sys_time"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html#a6400d41b7bdec8694d6dec30f30ab52f">Now</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6400d41b7bdec8694d6dec30f30ab52f inherit properties_interface_e_s_1_1_time_1_1_i_sys_time"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取时间  <a href="interface_e_s_1_1_time_1_1_i_sys_time.html#a6400d41b7bdec8694d6dec30f30ab52f">更多...</a><br /></td></tr>
+<tr class="separator:a6400d41b7bdec8694d6dec30f30ab52f inherit properties_interface_e_s_1_1_time_1_1_i_sys_time"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>MySQL数据库访问助手 </p>
+<p>详情参考：https://mysqlconnector.net/ </p>
+<p>数据库异常可以通过 异常监听来获取</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a52d8e67e122d0c00611c191c81b85bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52d8e67e122d0c00611c191c81b85bf4">&#9670;&nbsp;</a></span>MySqlDbHelper() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Database.MySQL.MySqlDbHelper.MySqlDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>port</em> = <code>3306</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?&#160;</td>
+          <td class="paramname"><em>databaseName</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>minPoolSize</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>maxPoolSize</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string?&#160;</td>
+          <td class="paramname"><em>extraConfig</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MySQL助手构造函数 </p>
+<p>详情参考：https://mysqlconnector.net/ </p>
+<p>存在参数不需要再次在额外配置中设置</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>数据库地址</td></tr>
+    <tr><td class="paramname">username</td><td>数据库账号</td></tr>
+    <tr><td class="paramname">password</td><td>数据库密码</td></tr>
+    <tr><td class="paramname">port</td><td>数据库端口 默认端口为3306</td></tr>
+    <tr><td class="paramname">databaseName</td><td>数据库名称，默认为空</td></tr>
+    <tr><td class="paramname">minPoolSize</td><td>数据库池连接最小值，默认为0</td></tr>
+    <tr><td class="paramname">maxPoolSize</td><td>数据库池连接最大值，默认为100</td></tr>
+    <tr><td class="paramname">extraConfig</td><td>数据库额外配置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a591fbd3cfa9b8fb0ee04709ca1ef45d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591fbd3cfa9b8fb0ee04709ca1ef45d0">&#9670;&nbsp;</a></span>MySqlDbHelper() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Database.MySQL.MySqlDbHelper.MySqlDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>connectionString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MySQL助手构造函数 </p>
+<p>详情参考：https://mysqlconnector.net/ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectionString</td><td>连接配置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e00ba43ae57db4bcdd1dc0a6d5e0ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e00ba43ae57db4bcdd1dc0a6d5e0ed2">&#9670;&nbsp;</a></span>MySqlDbHelper() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ES.Database.MySQL.MySqlDbHelper.MySqlDbHelper </td>
+          <td>(</td>
+          <td class="paramtype">MySqlConnectionStringBuilder&#160;</td>
+          <td class="paramname"><em>mySqlConnectionStringBuilder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MySQL助手构造函数 </p>
+<p>详情参考：https://mysqlconnector.net/ </p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a288a380c9366f5d37f8c9d3fe8fc57af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a288a380c9366f5d37f8c9d3fe8fc57af">&#9670;&nbsp;</a></span>CheckConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Database.MySQL.MySqlDbHelper.CheckConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查是否连接 </p>
+<dl class="section return"><dt>返回</dt><dd>成功连接返回true</dd></dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#a100162f63f0ea383a91597e088973706">ES.Database.IDbHelper</a>.</p>
+
+</div>
+</div>
+<a id="a7cc08669d57ee37e94d230ccb35c6973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc08669d57ee37e94d230ccb35c6973">&#9670;&nbsp;</a></span>CommandSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_database_1_1_command_result.html">CommandResult</a> ES.Database.MySQL.MySqlDbHelper.CommandSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>执行查询SQL语句 </p>
+<p>SELECT适用和部分需要更新返回的SQL</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回成功与否</dd></dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#abc1df09f7e28c91fd5d62132d687782b">ES.Database.IDbHelper</a>.</p>
+
+</div>
+</div>
+<a id="aa7af4324f1917839cfd99252f315f629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7af4324f1917839cfd99252f315f629">&#9670;&nbsp;</a></span>ExecuteSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ES.Database.MySQL.MySqlDbHelper.ExecuteSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>执行修改SQL语句 </p>
+<p>非SELECT适用，只需要影响行数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回影响条数</dd></dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#ab766df5c4236fa43f19fa14154788b18">ES.Database.IDbHelper</a>.</p>
+
+</div>
+</div>
+<a id="a29a9e6bed496e5cdb32fd4d95f8d1b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a9e6bed496e5cdb32fd4d95f8d1b8d">&#9670;&nbsp;</a></span>GetConnectionString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Database.MySQL.MySqlDbHelper.GetConnectionString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取数据库连接地址 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#acc90b9d321138d97afa6e339075a7aaa">ES.Database.IDbHelper</a>.</p>
+
+</div>
+</div>
+<a id="a9208b99c63d91ae41c80dc93da81dd20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9208b99c63d91ae41c80dc93da81dd20">&#9670;&nbsp;</a></span>PushSQL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Database.MySQL.MySqlDbHelper.PushSQL </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>压入SQL队列，等待统一顺序执行【异步】 </p>
+<p>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</p>
+<p>脱离主线程由其他线程处理数据</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>执行SQL</td></tr>
+    <tr><td class="paramname">obj</td><td>格式化参数输入【类似string.Format】</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#a33e9cfb6f8495371de07249a13099c1c">ES.Database.IDbHelper</a>.</p>
+
+</div>
+</div>
+<a id="a4644d2590b96d983043b29f7a546727e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4644d2590b96d983043b29f7a546727e">&#9670;&nbsp;</a></span>SetExceptionListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Database.MySQL.MySqlDbHelper.SetExceptionListener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html">IMySqlDbHelper</a>&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置异常监听 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listener</td><td>异常监听器</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5e52caadbf4f8d81e78f6d412fbccf68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e52caadbf4f8d81e78f6d412fbccf68">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Database.MySQL.MySqlDbHelper.Update </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>通过时间流来更新通过队列执行的SQL </p>
+<p>固定周期为 1s</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html#a373e0fa7200a96bcb3b1365e0857c913">ES.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="ad7669dfd493306d4d94bfb7abb9ec73b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7669dfd493306d4d94bfb7abb9ec73b">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Database.MySQL.MySqlDbHelper.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html#a4ea08b748b5450e8614883d7526ca879">ES.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a5d454d0edbf6a232be807c85cf8282ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d454d0edbf6a232be807c85cf8282ce">&#9670;&nbsp;</a></span>Now</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime ES.Database.MySQL.MySqlDbHelper.Now</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取数据库时间 </p>
+<p>如果数据库异常导致查询失败，则默认返回DateTime.Now</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>MySqlDbHelper.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_database_1_1_my_s_q_l.html">MySQL</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html">MySqlDbHelper</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

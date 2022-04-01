@@ -14,6 +14,16 @@ namespace Sample
 
         public Test_Time()
         {
+            // 时间闹钟
+            TimeClock.Create(delegate(DateTime time) {
+                Log.Info($"Time Now Alarm Clock 1:{time}"); 
+            }, 2022, 1, 1, 0, 0, 0).Start(true);
+
+            TimeClock.Create(delegate (DateTime time)
+            {
+                Log.Info($"Time Now Alarm Clock 2:{time}");
+            }, "00:00:00").Start(true);
+
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
             // Close();
@@ -35,10 +45,10 @@ namespace Sample
             // 这个类根据类似Task设计思想开发
             // 但是他们还是有些区别，注意不管是这类函数操作中不要在包含一些特别耗时的操作
             // 比如说 Thread.Sleep 这种
-            TimeCaller caller = TimeCaller.Create(2000, 10000, true);
-            // 执行函数可以通过这个函数进行绑定，也可以在构造对象的时候写入
-            // 这个可以自行查看函数提示 我这边只是为了简单事例
-            caller.CallMethod((long count) => { Console.WriteLine("Hello TimeCaller"); });
+            TimeCaller caller = TimeCaller.Create(delegate { Log.Info("Hello TimeCaller"); },
+                2000, 10000, TimeCaller.Infinite).Start();
+            // 创建一个带守护的执行器
+            TimeCaller.Create(delegate { Log.Info("Hello TimeCaller 2"); }, 2000, 1600, TimeCaller.Infinite).Start(true);
 
             // 接下来就是贯穿在以上两个类的一个重要类
             // TimeFix 时间修正类 当然需要特殊处理时间循环的时候可以单独使用这个类
@@ -53,13 +63,13 @@ namespace Sample
             // 沉睡相应时间
             Thread.Sleep(periodNow);
             // 打印日志
-            Console.WriteLine("Hello TimeFix");
+            Log.Info("Hello TimeFix");
             // 如果在一个循环中 这个函数应该在循环的最后结束
             periodNow = timeFix.End();
             /* 至此第一次Thread循环结束 第二次开始 */
             timeFix.Begin();
             Thread.Sleep(periodNow);
-            Console.WriteLine("Hello TimeFix2");
+            Log.Info("Hello TimeFix2");
             periodNow = timeFix.End();
             /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
             
@@ -70,17 +80,6 @@ namespace Sample
             // 此处gc不会影响当前大括号的其他定时器，因为这个函数域还没结束
             GC.Collect();
         }
-
-        private void StartTempTime()
-        {
-            TimeCaller caller = TimeCaller.Create(1000, 10000, true);
-            // 执行函数可以通过这个函数进行绑定，也可以在构造对象的时候写入
-            // 这个可以自行查看函数提示 我这边只是为了简单事例
-            caller.CallMethod((long count) => { Console.WriteLine("Hello TimeCaller2"); });
-            // 时间流
-            for(int i = 0; i < 100; i++) new Time2();
-        }
-
 
         /// <summary>
         /// 可以从 timeFlowPeriod 直接获取周期时间
@@ -98,7 +97,7 @@ namespace Sample
             if (period1 >= 1000)
             {
                 period1 = 0;
-                Console.WriteLine($"Hello TimeFlow:[{dt}]{DateTime.Now:yyyy-MM-dd HH:mm:ss:fffffff}");
+                Log.Info($"Hello TimeFlow:[{dt}]{DateTime.Now:yyyy-MM-dd HH:mm:ss:fffffff}");
             }
             // Thread.Sleep(500);
         }
@@ -108,7 +107,7 @@ namespace Sample
         /// </summary>
         public void UpdateEnd()
         {
-            Console.WriteLine("TimeFlow End");
+            Log.Info("TimeFlow End");
         }
 
         private class Time2 : ITimeUpdate
@@ -129,7 +128,7 @@ namespace Sample
                 if (period1 >= 5000)
                 {
                     period1 = 0;
-                    Console.WriteLine("Hello TimeFlow2");
+                    Log.Info("Hello TimeFlow2");
                 }
             }
 

@@ -10,21 +10,21 @@ namespace Sample
     {
         public Test_RandomCode()
         {
-            Console.WriteLine("HighLowLetterAndNumberAndSymbol:");
-            Console.WriteLine(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLowLetterAndNumberAndSymbol));
-            Console.WriteLine("HighLowLetterAndNumber:");
-            Console.WriteLine(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLowLetterAndNumber));
-            Console.WriteLine("HighLetterAndNumber:");
-            Console.WriteLine(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLetterAndNumber));
-            Console.WriteLine("HighLetter:");
-            Console.WriteLine(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLetter));
-            Console.WriteLine("Number:");
-            Console.WriteLine(RandomCode.Generate(32, RandomCode.RandomCodeType.Number));
+            Log.Info("HighLowLetterAndNumberAndSymbol:");
+            Log.Info(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLowLetterAndNumberAndSymbol));
+            Log.Info("HighLowLetterAndNumber:");
+            Log.Info(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLowLetterAndNumber));
+            Log.Info("HighLetterAndNumber:");
+            Log.Info(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLetterAndNumber));
+            Log.Info("HighLetter:");
+            Log.Info(RandomCode.Generate(32, RandomCode.RandomCodeType.HighLetter));
+            Log.Info("Number:");
+            Log.Info(RandomCode.Generate(32, RandomCode.RandomCodeType.Number));
 
-            Console.WriteLine("Guid[no line]:");
-            Console.WriteLine(RandomCode.GenerateGuid(false));
-            Console.WriteLine("Guid:");
-            Console.WriteLine(RandomCode.GenerateGuid(true));
+            Log.Info("Guid[no line]:");
+            Log.Info(RandomCode.GenerateGuid(false));
+            Log.Info("Guid:");
+            Log.Info(RandomCode.GenerateGuid(true));
         }
     }
 }

@@ -13,16 +13,16 @@ namespace SampleDll
         protected override void Initialize()
         {
             // 两种相同作用
-            Console.WriteLine("IsFirstCreateAgent:" + self.IsFirstCreateAgent);
-            Console.WriteLine("isFirstCreate:" + IsFirstCreate);
+            Log.Info("IsFirstCreateAgent:" + self.IsFirstCreateAgent);
+            Log.Info("isFirstCreate:" + IsFirstCreate);
             // 先处理代理数据构造函数，在处理代理构造
-            Console.WriteLine(self.test);
+            Log.Info(self.test);
             TimeFlow.Create(this).Start();
         }
 
         public void Update(int deltaTime)
         {
-            if (copyCount % 1000 == 0) Console.WriteLine($"player1 count:{self.count++},copyCount:{copyCount},seed:{seed}");
+            if (copyCount % 1000 == 0) Log.Info($"player1 count:{self.count++},copyCount:{copyCount},seed:{seed}");
             copyCount += deltaTime;
         }
 

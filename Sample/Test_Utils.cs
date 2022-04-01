@@ -1,6 +1,5 @@
 ﻿using ES.Linq;
 using ES.Utils;
-using System;
 
 namespace Sample
 {
@@ -23,42 +22,42 @@ namespace Sample
             string test = AppConfig.Read("test");
             int test1 = AppConfig.Read<int>("test1");
             bool test2 = AppConfig.Read<bool>("test2");
-            Console.WriteLine($"test->{test}");
-            Console.WriteLine($"test1->{test1}");
-            Console.WriteLine($"test2->{test2}");
+            Log.Info($"test->{test}");
+            Log.Info($"test1->{test1}");
+            Log.Info($"test2->{test2}");
             // 此处读取第二层配置数据
             string tests2 = AppConfig.Read("testgroup", "test2");
             float tests3 = AppConfig.Read<float>("testgroup", "test3");
-            Console.WriteLine($"test2->{tests2}");
-            Console.WriteLine($"test3->{tests3}");
+            Log.Info($"test2->{tests2}");
+            Log.Info($"test3->{tests3}");
 
             // 获取有效字节
             // 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现
             // 所以这里的设定还是要看具体情况来 不一定适用所有情况
             // ByteHelper.GetValidLength 则是直接获取长度大小 而非返回数据
             byte[] bytes = ByteHelper.GetValidByte(new byte[] { 1, 2, 3, 4, 0, 0, 0 });
-            Console.WriteLine($"bytes len:{bytes.Length}");
+            Log.Info($"bytes len:{bytes.Length}");
 
             // 随机生成指定位数的字符串
             // 字符串将有数字与大小写字母组成
             string code = RandomCode.Generate(32);
-            Console.WriteLine($"code:{code}");
+            Log.Info($"code:{code}");
             
             // md5的封装
             string md5Str = MD5.Encrypt("helloworld");
-            Console.WriteLine($"helloworld:{md5Str}");
+            Log.Info($"helloworld:{md5Str}");
 
             // 获取此框架的版本信息
-            string versionStr = ES.Utils.Version.ToString();
-            Console.WriteLine($"es version:{versionStr}");
+            string versionStr = SystemInfo.FrameVersion;
+            Log.Info($"es version:{versionStr}");
 
             // 通过ini文件读取配置
             Ini.LoadParser("config.ini", true);
             Ini.LoadParser("config2.ini");
             Ini.ReplaceCurrentParsser("config.ini");
-            Console.WriteLine($"config filename name:{Ini.Current.GetValue("filename")}");
-            Console.WriteLine($"config section 1 option1:{Ini.Current.GetSectionValue("section 1", "option1").AsInt32()}");
-            Console.WriteLine($"config2 filename name:{Ini.Parsers("config2.ini").GetValue("filename")}");
+            Log.Info($"config filename name:{Ini.Current.GetValue("filename")}");
+            Log.Info($"config section 1 option1:{Ini.Current.GetSectionValue("section 1", "option1").AsBytes()}");
+            Log.Info($"config2 filename name:{Ini.Parsers("config2.ini").GetValue("filename")}");
         }
     }
 }

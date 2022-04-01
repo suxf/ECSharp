@@ -13,123 +13,106 @@ namespace Sample
     class Test_HyperSocket
     {
         static BaseHyperSocket[] sockets = new BaseHyperSocket[10000];
-        static TimeCaller[] timeCaller1 = new TimeCaller[10000];
         static TimeCaller[] timeCaller2 = new TimeCaller[10000];
         static Thread[] threads = new Thread[10000];
         static int index = 0;
-        static int num = 0;
-        static List<int> ssss = new List<int>();
+        static int num = 0; 
+        static HashSet<int> ssss = new HashSet<int>();
 
         static Random rd = new Random();
 
         public Test_HyperSocket()
         {
-            Console.WriteLine("[1]服务器 [2]客户端");
-            Console.Write("输入:");
-            var input = Console.ReadLine();
+            Log.Info("[1]服务器 [2]客户端");
+            var input = Log.ReadLine("输入:");
             if (input == "1")
             {
-                Console.WriteLine("启动服务器");
+                Log.Info("启动服务器");
                 StartServer(0);
             }
             else if (input == "2")
             {
-                Console.WriteLine("启动客户端");
-                for (int i = 1; i <= 100; i++) StartClient(i);
+                Log.Info("启动客户端");
+                for (int i = 1; i <= 300; i++) StartClient(i);
+                TimeCaller.Create(delegate
+                {
+                    Log.Info($"Connect Num:{num}");
+                }, 1000, 3000, TimeCaller.Infinite).Start(true);
+                Log.ReadLine();
+                for (int i = 1; i <= 300; i++)
+                {
+                    if (sockets[i] == null) continue;
+                    if(((HyperSocket)sockets[i]).Tag >= 1)
+                    {
+                        ((HyperSocket)sockets[i]).Close();
+                        Log.Info($"Close Client:{i}");
+                    }
+                }
             }
-            else Console.WriteLine("啥都没");
+            else Log.Info("啥都没");
         }
 
         public void StartServer(int i)
         {
             sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
+            TimeCaller.Create(delegate {
+                Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+            }, 1000, 3000, TimeCaller.Infinite).Start(true);
         }
 
         public void StartClient(int i)
         {
             //threads[i] = new Thread(delegate ()
+            // {
+            //Thread.Sleep(rd.Next(500, 5000));
+            TimeCaller.Create(delegate
             {
-                //Thread.Sleep(rd.Next(500, 5000));
+                Log.Debug($"Start Client:{i}");
                 sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
-            }//);
+                ((HyperSocket)sockets[i]).Tag = i;
+            }, rd.Next(1000, 5000), 0).Start(true);
+            //});
             //threads[i].Start();
-        }
-
-        class ClientListener : IHyperSocketClient
-        {
-            bool fff = false;
-       
-            public void SocketError(HyperSocket socket, Exception ex)
-            {
-                if (fff) --num;
-                Console.WriteLine($"Connect Num:{num}");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
-
-            public void OnOpen(HyperSocket socket)
-            {
-                // timeCaller1[i] = new TimeCaller(rd.Next(1000, 5000), rd.Next(500, 1000), true, -1, () =>
-                // {
-                // socket.SendTcp(1.ToString());
-                // });
-                fff = true;
-                Console.WriteLine($"Connect Num:{++num}");
-                // Console.WriteLine($"Connect OK:{socket.SessionId}");
-                timeCaller2[index++] = TimeCaller.Create((long count) =>
-                {
-                    ((HyperSocket)socket).SendUdp(count.ToString());
-                }, 1000, 50, true, -1);
-            }
-
-            int lastNum = 1;
-            public void OnTcpReceive(byte[] data, HyperSocket socket)
-            {
-                // Console.WriteLine("Svr:" + Encoding.UTF8.GetString(data));
-                if (data == null) { Console.WriteLine("************************************"); return; }
-                string str = Encoding.UTF8.GetString(data);
-                var deltaNum = int.Parse(str) - lastNum - 1;
-                lastNum = int.Parse(str);
-                // var num = int.Parse(str);
-                // if(num % 10000 == 0) Console.Clear();
-                // Console.WriteLine($"SocketID:{socket.SessionId}, TCP Num:{str}, Delta:{deltaNum}");
-                // socket.SendUdp((num + 1).ToString());
-            }
-
-            public void OnUdpReceive(byte[] data, HyperSocket socket)
-            {
-                // string str = Encoding.UTF8.GetString(data);
-                // var num = int.Parse(str);
-                // Console.WriteLine($"UDP Num:{str}");
-                // socket.SendUdp((num + 1).ToString());
-                // Console.WriteLine("Svr:" + Encoding.UTF8.GetString(data));
-            }
         }
 
         class ServerListener : IHyperSocketServer
         {
             public void OnClose(RemoteHyperSocket socket)
             {
-                if(ssss.Remove(socket.SessionId)) Console.WriteLine($"【OnClose】Connect Num:{ssss.Count}");
-                // Console.WriteLine($"Socket Session Close:{socket.SessionId}");
+                lock (ssss)
+                {
+                    if (ssss.Remove(socket.SessionId))
+                        Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                }
+                // Log.Info($"Socket Session Close:{socket.SessionId}");
             }
 
-            public void SocketError(Exception ex)
+            public void SocketError(RemoteHyperSocket socket, Exception ex)
             {
-                Console.WriteLine($"【OnError】Connect Message:{ex.Message}");
+                if (socket != null)
+                {
+                    lock (ssss)
+                    {
+                        if (ssss.Remove(socket.SessionId))
+                            Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                    }
+                }
+                Log.Exception(ex);
             }
 
             public void OnOpen(RemoteHyperSocket socket)
             {
-                ssss.Add(socket.SessionId);
-                Console.WriteLine($"【OnOpen】Connect Num:{ssss.Count}");
-                // Console.WriteLine($"Connect OK:{socket.SessionId}");
-                socket.Tag = 1;
+                lock (ssss)
+                {
+                    ssss.Add(socket.SessionId);
+                    Log.Info($"【OnOpen】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                }
+                // Log.Info($"Connect OK:{socket.SessionId}");
             }
 
             public void OnTcpReceive(byte[] data, RemoteHyperSocket socket)
             {
-                //Console.WriteLine(Encoding.UTF8.GetString(data));
+                //Log.Info(Encoding.UTF8.GetString(data));
                 socket.SendTcp(Encoding.UTF8.GetString(data));
                 // socket.SendTcp("1111");
                 // string str = Encoding.UTF8.GetString(data);
@@ -142,12 +125,12 @@ namespace Sample
                 // {
                 //     if ((int)socket.Tag + 2 != num)
                 //     {
-                //         Console.WriteLine($"SessionId TCP:{socket.SessionId}, Num:{num}");
+                //         Log.Info($"SessionId TCP:{socket.SessionId}, Num:{num}");
                 //     }
-                //     else { socket.Tag = num; Console.WriteLine($"SessionId TCP:{socket.SessionId}, OK"); }
+                //     else { socket.Tag = num; Log.Info($"SessionId TCP:{socket.SessionId}, OK"); }
                 //     socket.SendTcp((num + 1).ToString());
                 // }
-                // Console.WriteLine($"TCP.Cnt[{socket.SessionId}-{socket.GetRemoteIp()}]:" + Encoding.UTF8.GetString(data));
+                // Log.Info($"TCP.Cnt[{socket.SessionId}-{socket.GetRemoteIp()}]:" + Encoding.UTF8.GetString(data));
                 // socket.SendTcp("Hello World Svr 3:" + Interlocked.Increment(ref num));
                 // socket.SendUdp("Hello World Svr 4:" + Interlocked.Increment(ref num));
             }
@@ -162,15 +145,73 @@ namespace Sample
                 // }
                 // else
                 // {
-                //     if((int)socket.Tag + 2 != num) Console.WriteLine($"SessionId UDP:{socket.SessionId}, Num:{num}");
-                //     else { socket.Tag = num; Console.WriteLine($"SessionId UDP:{socket.SessionId}, OK"); }
+                //     if((int)socket.Tag + 2 != num) Log.Info($"SessionId UDP:{socket.SessionId}, Num:{num}");
+                //     else { socket.Tag = num; Log.Info($"SessionId UDP:{socket.SessionId}, OK"); }
                 //     socket.SendTcp((num + 1).ToString());
                 // }
-                //Console.WriteLine(Encoding.UTF8.GetString(data));
+                //Log.Info(Encoding.UTF8.GetString(data));
                 socket.SendTcp(Encoding.UTF8.GetString(data));
                 //socket.SendTcp("2222");
-                // Console.WriteLine($"UDP.Cnt[{socket.SessionId}-{socket.GetRemoteIp()}]:" + Encoding.UTF8.GetString(data));
+                // Log.Info($"UDP.Cnt[{socket.SessionId}-{socket.GetRemoteIp()}]:" + Encoding.UTF8.GetString(data));
                 // socket.SendUdp("Hello World Svr 5:" + Interlocked.Increment(ref num));
+            }
+        }
+
+        class ClientListener : IHyperSocketClient
+        {
+            bool fff = false;
+
+            public void SocketError(HyperSocket socket, Exception ex)
+            {
+                if (fff) Interlocked.Decrement(ref num);
+                Log.Info($"【SocketError】 Connect Num:{num}");
+                Log.Exception(ex);
+                sockets[socket.Tag] = null;
+                // Log.Warn($"【SocketError】 ReStart Client:{num}");
+                // TimeCaller.Create(delegate {
+                //     sockets[socket.Tag] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
+                //     // socket.Connect(); 
+                // }, rd.Next(1000, 3000)).Start(true);
+            }
+
+            public void OnOpen(HyperSocket socket)
+            {
+                // timeCaller1[i] = new TimeCaller(rd.Next(1000, 5000), rd.Next(500, 1000), true, -1, () =>
+                // {
+                // socket.SendTcp(1.ToString());
+                // });
+                fff = true;
+                Interlocked.Increment(ref num);
+                Log.Info($"【OnOpen】 Connect Num:{num}");
+                // Log.Info($"Connect OK:{socket.SessionId}");
+                timeCaller2[index++] = TimeCaller.Create((long count) =>
+                {
+                    // socket.SendUdp(count.ToString());
+                    socket.SendUdp(ES.Utils.RandomCode.Generate(rd.Next(0, 2048)));
+                }, 1000, 100, TimeCaller.Infinite).Start();
+            }
+
+            // int lastNum = 1;
+            public void OnTcpReceive(byte[] data, HyperSocket socket)
+            {
+                // Log.Info("Svr:" + Encoding.UTF8.GetString(data));
+                if (data == null) { Log.Info("************************************"); return; }
+                string str = Encoding.UTF8.GetString(data);
+                // var deltaNum = int.Parse(str) - lastNum - 1;
+                // lastNum = int.Parse(str);
+                // var num = int.Parse(str);
+                // if(num % 10000 == 0) Console.Clear();
+                // Log.Info($"SocketID:{socket.SessionId}, TCP Num:{str}, Delta:{deltaNum}");
+                // socket.SendUdp((num + 1).ToString());
+            }
+
+            public void OnUdpReceive(byte[] data, HyperSocket socket)
+            {
+                // string str = Encoding.UTF8.GetString(data);
+                // var num = int.Parse(str);
+                // Log.Info($"UDP Num:{str}");
+                // socket.SendUdp((num + 1).ToString());
+                // Log.Info("Svr:" + Encoding.UTF8.GetString(data));
             }
         }
     }

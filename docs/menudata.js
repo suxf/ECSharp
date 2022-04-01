@@ -49,7 +49,8 @@ var menudata={children:[
 {text:"t",url:"functions_t.html#index_t"},
 {text:"u",url:"functions_u.html#index_u"},
 {text:"v",url:"functions_v.html#index_v"},
-{text:"w",url:"functions_w.html#index_w"}]},
+{text:"w",url:"functions_w.html#index_w"},
+{text:"y",url:"functions_y.html#index_y"}]},
 {text:"函数",url:"functions_func.html",children:[
 {text:"a",url:"functions_func.html#index_a"},
 {text:"b",url:"functions_func_b.html#index_b"},
@@ -90,7 +91,8 @@ var menudata={children:[
 {text:"r",url:"functions_vars.html#index_r"},
 {text:"s",url:"functions_vars.html#index_s"},
 {text:"t",url:"functions_vars.html#index_t"},
-{text:"u",url:"functions_vars.html#index_u"}]},
+{text:"u",url:"functions_vars.html#index_u"},
+{text:"y",url:"functions_vars.html#index_y"}]},
 {text:"枚举",url:"functions_enum.html"},
 {text:"属性",url:"functions_prop.html",children:[
 {text:"a",url:"functions_prop.html#index_a"},
@@ -105,7 +107,6 @@ var menudata={children:[
 {text:"l",url:"functions_prop.html#index_l"},
 {text:"m",url:"functions_prop.html#index_m"},
 {text:"n",url:"functions_prop.html#index_n"},
-{text:"o",url:"functions_prop.html#index_o"},
 {text:"p",url:"functions_prop.html#index_p"},
 {text:"r",url:"functions_prop.html#index_r"},
 {text:"s",url:"functions_prop.html#index_s"},

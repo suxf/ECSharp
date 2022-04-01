@@ -15,7 +15,7 @@ namespace Sample
                 // 耗时测试
                 // ConsumeTime();
 
-                Console.WriteLine($"Is First Load:{HotfixMgr.IsFirstLoad}");
+                Log.Info($"Is First Load:{HotfixMgr.IsFirstLoad}");
 
                 // 回车重载测试
                 Console.ReadLine();
@@ -29,9 +29,9 @@ namespace Sample
         /// </summary>
         public void TestHotfix()
         {
-            Console.WriteLine($"=======>>TestHotfix 1");
+            Log.Info($"=======>>TestHotfix 1");
             HotfixMgr.Load("SampleDll", "SampleDll.Main", new string[] { "Hello World" }, "Main_Test");
-            Console.WriteLine($"=======>>TestHotfix 2");
+            Log.Info($"=======>>TestHotfix 2");
         }
 
         /// <summary>
@@ -45,33 +45,33 @@ namespace Sample
             Stopwatch watch = new Stopwatch();
             /* 性能测试 */
             // 第一次直接调用
-            Console.WriteLine("第一次直接调用开始~");
+            Log.Info("第一次直接调用开始~");
             watch.Reset();
             watch.Start();
             player.Test();
             watch.Stop();
-            Console.WriteLine($"第一次直接调用耗时1:{watch.Elapsed.TotalMilliseconds}ms");
+            Log.Info($"第一次直接调用耗时1:{watch.Elapsed.TotalMilliseconds}ms");
             // 第一次实测热更调用
-            Console.WriteLine("\n\n热更调用开始~");
+            Log.Info("\n\n热更调用开始~");
             watch.Reset();
             watch.Start();
             player.GetDynamicAgent().Test();
             watch.Stop();
-            Console.WriteLine($"第一次热更层耗时1:{watch.Elapsed.TotalMilliseconds}ms");
+            Log.Info($"第一次热更层耗时1:{watch.Elapsed.TotalMilliseconds}ms");
             // 第二次直接调用
-            Console.WriteLine("\n\n第二次直接调用开始~");
+            Log.Info("\n\n第二次直接调用开始~");
             watch.Reset();
             watch.Start();
             player.Test();
             watch.Stop();
-            Console.WriteLine($"第二次直接调用耗时2:{watch.Elapsed.TotalMilliseconds}ms");
+            Log.Info($"第二次直接调用耗时2:{watch.Elapsed.TotalMilliseconds}ms");
             // 第二次实测热更调用
-            Console.WriteLine("\n\n热更调用开始~");
+            Log.Info("\n\n热更调用开始~");
             watch.Reset();
             watch.Start();
             player.GetDynamicAgent().Test();
             watch.Stop();
-            Console.WriteLine($"第二次热更层耗时2:{watch.Elapsed.TotalMilliseconds}ms");
+            Log.Info($"第二次热更层耗时2:{watch.Elapsed.TotalMilliseconds}ms");
         }
     }
 
@@ -89,7 +89,7 @@ namespace Sample
         public void Test()
         {
             for (int i = 0; i < 10000000; i++) count++;
-            Console.WriteLine("直接调用计数:" + count);
+            Log.Info("直接调用计数:" + count);
         }
     }
 

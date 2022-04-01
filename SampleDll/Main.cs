@@ -19,7 +19,7 @@ namespace SampleDll
         static C c;
         public static void Main_Test(string[] args)
         {
-            Console.WriteLine($"Input args:{args[0]}, test_1:{test_1.Value++}");
+            Log.Info($"Input args:{args[0]}, test_1:{test_1.Value++}");
 
             player1 = AgentDataPivot.AddOrGetObject<Player1>("player1");
             b = new B();
@@ -38,17 +38,17 @@ namespace SampleDll
             watch.Start();
             player.GetAgent().Test();
             watch.Stop();
-            Console.WriteLine($"内部第一次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n");
+            Log.Info($"内部第一次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n");
             watch.Reset();
             watch.Start();
             player.GetAgent().Test();
             watch.Stop();
-            Console.WriteLine($"内部第二次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n\n");
+            Log.Info($"内部第二次热更层耗时3:{watch.Elapsed.TotalMilliseconds}ms\n\n");
         }
 
         public static void Test2(A obj1, A obj2)
         {
-            Console.WriteLine($"=======>>Test2 1");
+            Log.Info($"=======>>Test2 1");
             var ss = obj1.GetAbstractAgent<A_Agent>();
             ss.WriteHelloA();
             obj2.GetAbstractAgent<A_Agent>().WriteHelloA();
@@ -56,7 +56,7 @@ namespace SampleDll
             obj2.GetAbstractAgent<A_Agent>().Hello();
             obj1.GetAgent<B_Agent>().Hello();
             obj2.GetAgent<C_Agent>().Hello();
-            Console.WriteLine($"=======>>Test2 2");
+            Log.Info($"=======>>Test2 2");
         }
     }
 

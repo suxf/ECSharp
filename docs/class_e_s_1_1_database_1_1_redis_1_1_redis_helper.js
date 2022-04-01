@@ -80,5 +80,6 @@ var class_e_s_1_1_database_1_1_redis_1_1_redis_helper =
     [ "Unsubscribe", "class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#ac41d81ea8aae3ea596506979961de2a0", null ],
     [ "UnsubscribeAll", "class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#ab8c49f3287031f93ead2d29c42e125ee", null ],
     [ "DbIndex", "class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a563cbe524081b1e100e7900ccf4af776", null ],
+    [ "Now", "class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a6088ec64437101c96c4c1a0c7f323500", null ],
     [ "PrefixKey", "class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#ae06b635d9204c6cecc3cadb6582df372", null ]
 ];

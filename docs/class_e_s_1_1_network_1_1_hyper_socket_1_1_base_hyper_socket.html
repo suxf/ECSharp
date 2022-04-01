@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.15.16</span>
+   &#160;<span id="projectnumber">1.16.0</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -112,9 +112,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a51e26ee50ed8ad4219acd878affb0592"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a51e26ee50ed8ad4219acd878affb0592">Update</a> (int dt)</td></tr>
 <tr class="memdesc:a51e26ee50ed8ad4219acd878affb0592"><td class="mdescLeft">&#160;</td><td class="mdescRight">心跳检测  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a51e26ee50ed8ad4219acd878affb0592">更多...</a><br /></td></tr>
 <tr class="separator:a51e26ee50ed8ad4219acd878affb0592"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a9865df0e968bb6c9845f919c1f2bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a6a9865df0e968bb6c9845f919c1f2bb7">Close</a> ()</td></tr>
-<tr class="memdesc:a6a9865df0e968bb6c9845f919c1f2bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a6a9865df0e968bb6c9845f919c1f2bb7">更多...</a><br /></td></tr>
-<tr class="separator:a6a9865df0e968bb6c9845f919c1f2bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae69634577195e8ee5f4ca9d5e9f12fe1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#ae69634577195e8ee5f4ca9d5e9f12fe1">Close</a> ()</td></tr>
+<tr class="memdesc:ae69634577195e8ee5f4ca9d5e9f12fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭套接字  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#ae69634577195e8ee5f4ca9d5e9f12fe1">更多...</a><br /></td></tr>
+<tr class="separator:ae69634577195e8ee5f4ca9d5e9f12fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a801e8bffd7fd60aa11fc1fbf7c51bb3a"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a801e8bffd7fd60aa11fc1fbf7c51bb3a">UpdateEnd</a> ()</td></tr>
 <tr class="memdesc:a801e8bffd7fd60aa11fc1fbf7c51bb3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a801e8bffd7fd60aa11fc1fbf7c51bb3a">更多...</a><br /></td></tr>
 <tr class="separator:a801e8bffd7fd60aa11fc1fbf7c51bb3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,22 +150,32 @@ Public 属性</h2></td></tr>
 <p>在连接过程中因为握手是异步处理的，所以需要在接口中才能得到正确的连接对象</p>
 <p>如果仅仅是创建了对象后就发送消息等操作是无法正确应答的</p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a6a9865df0e968bb6c9845f919c1f2bb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a9865df0e968bb6c9845f919c1f2bb7">&#9670;&nbsp;</a></span>Close()</h2>
+<a id="ae69634577195e8ee5f4ca9d5e9f12fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae69634577195e8ee5f4ca9d5e9f12fe1">&#9670;&nbsp;</a></span>Close()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ES.Network.HyperSocket.BaseHyperSocket.Close </td>
+          <td class="memname">virtual void ES.Network.HyperSocket.BaseHyperSocket.Close </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>关闭套接字 </p>
+
+<p>被 <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a303df11b251c31617d1fb85e3caa5bc3">ES.Network.HyperSocket.HyperSocket</a> 重载.</p>
 
 </div>
 </div>

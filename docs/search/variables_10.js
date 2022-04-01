@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['tag_1073',['Tag',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a02b31d8ed61f7d6402d74a5bfd2c4d4c',1,'ES::Network::HyperSocket::RemoteHyperSocket']]],
-  ['target_1074',['Target',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a754c8ef77e801922ab1cce789dbffe6e',1,'ES.Network.Sockets.Client.BaseClientSocket.Target()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aa8007b5aef9af602d061acd4fcf08f6e',1,'ES.Network.Sockets.Server.RemoteConnection.Target()']]],
-  ['tcpreceivesize_1075',['TcpReceiveSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a93a2407cc8c4784629cba5a7e4aa8d47',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['type_1076',['Type',['../struct_e_s_1_1_variant_1_1_var.html#a67cfd393fd780b54dea84f88000665f0',1,'ES::Variant::Var']]]
+  ['tag_1134',['Tag',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html#a24a31b82bd375a4e9a865146e077e1d2',1,'ES.Network.HyperSocket.HyperSocket.Tag()'],['../class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html#a443e387ed4a5a8cf84b939c528d78778',1,'ES.Network.HyperSocket.RemoteHyperSocket.Tag()'],['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a66fe06438fdb9bae5da84eaccb77a1da',1,'ES.Network.Sockets.Client.ClientSocket.Tag()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a8d16c0ffd7a111ec6bda2693cc354601',1,'ES.Network.Sockets.Server.RemoteConnection.Tag()'],['../class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a6ead75d1968198a412135fc0671bb41e',1,'ES.Network.Websocket.RemoteConnection.Tag()']]],
+  ['tcpclients_1135',['TcpClients',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#aa9aff08707448ae9b658a9d668d2ff43',1,'ES::Network::Sockets::Server::ServerSocket']]],
+  ['tcpreceivesize_1136',['TcpReceiveSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a93a2407cc8c4784629cba5a7e4aa8d47',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['type_1137',['Type',['../struct_e_s_1_1_variant_1_1_var.html#a67cfd393fd780b54dea84f88000665f0',1,'ES::Variant::Var']]]
 ];

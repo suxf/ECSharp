@@ -6,5 +6,6 @@ var class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server =
     [ "GetUsedSocketCount", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a73887d9f19f24bc6b46804c9675fa3b2", null ],
     [ "StartServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a88b24dcc3ceb8f26825b33f2b5a01a19", null ],
     [ "UpdateEnd", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a841cf7e61f9f816258d661869453d95b", null ],
-    [ "connectMaxNum", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#adef5d3f9741a7bc637dad03e448334a7", null ]
+    [ "ConnectMaxNum", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#acfaa5b03719b4e9c98cee4b170252c3d", null ],
+    [ "RealTcpConnectedNum", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a73cfdfce6dbd3523af1ecfa489d997d0", null ]
 ];

@@ -1,0 +1,1198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ES.Time.TimeClock类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EasySharpFrame
+   &#160;<span id="projectnumber">1.16.0</span>
+   </div>
+   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_e_s_1_1_time_1_1_time_clock.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_s_1_1_time_1_1_time_clock-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">ES.Time.TimeClock类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>定时时钟  
+ <a href="class_e_s_1_1_time_1_1_time_clock.html#details">更多...</a></p>
+<div class="dynheader">
+类 ES.Time.TimeClock 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_e_s_1_1_time_1_1_time_clock.png" usemap="#ES.Time.TimeClock_map" alt=""/>
+  <map id="ES.Time.TimeClock_map" name="ES.Time.TimeClock_map">
+<area href="interface_e_s_1_1_time_1_1_i_time_update.html" title="时间流 更新接口" alt="ES.Time.ITimeUpdate" shape="rect" coords="0,0,130,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa1484a63ae92cf1a24f06c85d5a37423"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#aa1484a63ae92cf1a24f06c85d5a37423">Start</a> (bool isDaemon=false)</td></tr>
+<tr class="memdesc:aa1484a63ae92cf1a24f06c85d5a37423"><td class="mdescLeft">&#160;</td><td class="mdescRight">开始执行  <a href="class_e_s_1_1_time_1_1_time_clock.html#aa1484a63ae92cf1a24f06c85d5a37423">更多...</a><br /></td></tr>
+<tr class="separator:aa1484a63ae92cf1a24f06c85d5a37423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8b18c0498e241f7eb9f3e8925c0794"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#adb8b18c0498e241f7eb9f3e8925c0794">Cancel</a> ()</td></tr>
+<tr class="memdesc:adb8b18c0498e241f7eb9f3e8925c0794"><td class="mdescLeft">&#160;</td><td class="mdescRight">取消时间执行器任务  <a href="class_e_s_1_1_time_1_1_time_clock.html#adb8b18c0498e241f7eb9f3e8925c0794">更多...</a><br /></td></tr>
+<tr class="separator:adb8b18c0498e241f7eb9f3e8925c0794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96239f2a18d9d4077d3fb3400466c979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a96239f2a18d9d4077d3fb3400466c979">Update</a> (int deltaTime)</td></tr>
+<tr class="memdesc:a96239f2a18d9d4077d3fb3400466c979"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统调用  <a href="class_e_s_1_1_time_1_1_time_clock.html#a96239f2a18d9d4077d3fb3400466c979">更多...</a><br /></td></tr>
+<tr class="separator:a96239f2a18d9d4077d3fb3400466c979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8555a1723a966b64ced165712f73772"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac8555a1723a966b64ced165712f73772">UpdateEnd</a> ()</td></tr>
+<tr class="memdesc:ac8555a1723a966b64ced165712f73772"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止更新  <a href="class_e_s_1_1_time_1_1_time_clock.html#ac8555a1723a966b64ced165712f73772">更多...</a><br /></td></tr>
+<tr class="separator:ac8555a1723a966b64ced165712f73772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a18a079c28b64bd475ae217b714daa854"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a18a079c28b64bd475ae217b714daa854">Create</a> (Action&lt; DateTime &gt; handle, string time, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a18a079c28b64bd475ae217b714daa854"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a18a079c28b64bd475ae217b714daa854">更多...</a><br /></td></tr>
+<tr class="separator:a18a079c28b64bd475ae217b714daa854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34909eb587608b6256d4887fd3460350"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a34909eb587608b6256d4887fd3460350">Create</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a93fa72a90cbd9436fe5eb40e66d645a7">year</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">month</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a34909eb587608b6256d4887fd3460350"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a34909eb587608b6256d4887fd3460350">更多...</a><br /></td></tr>
+<tr class="separator:a34909eb587608b6256d4887fd3460350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f6d473f268628b63685f709a369354"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a03f6d473f268628b63685f709a369354">Create</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">month</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a03f6d473f268628b63685f709a369354"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a03f6d473f268628b63685f709a369354">更多...</a><br /></td></tr>
+<tr class="separator:a03f6d473f268628b63685f709a369354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad576fa126aef0e0e73d0ccf97a42501f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ad576fa126aef0e0e73d0ccf97a42501f">Create</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:ad576fa126aef0e0e73d0ccf97a42501f"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#ad576fa126aef0e0e73d0ccf97a42501f">更多...</a><br /></td></tr>
+<tr class="separator:ad576fa126aef0e0e73d0ccf97a42501f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd8e14b09036272de7a4aa4eeb9f162"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#adcd8e14b09036272de7a4aa4eeb9f162">Create</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:adcd8e14b09036272de7a4aa4eeb9f162"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#adcd8e14b09036272de7a4aa4eeb9f162">更多...</a><br /></td></tr>
+<tr class="separator:adcd8e14b09036272de7a4aa4eeb9f162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ccb6e8e260d5c89f9f785061f99f629"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a7ccb6e8e260d5c89f9f785061f99f629">CreateSync</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a93fa72a90cbd9436fe5eb40e66d645a7">year</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">month</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a7ccb6e8e260d5c89f9f785061f99f629"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a7ccb6e8e260d5c89f9f785061f99f629">更多...</a><br /></td></tr>
+<tr class="separator:a7ccb6e8e260d5c89f9f785061f99f629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246533c166897f1dd81b23c1181fdc42"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a246533c166897f1dd81b23c1181fdc42">CreateSync</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">month</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a246533c166897f1dd81b23c1181fdc42"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a246533c166897f1dd81b23c1181fdc42">更多...</a><br /></td></tr>
+<tr class="separator:a246533c166897f1dd81b23c1181fdc42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9295130464dbdda4e388229b6f31f261"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a9295130464dbdda4e388229b6f31f261">CreateSync</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a9295130464dbdda4e388229b6f31f261"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a9295130464dbdda4e388229b6f31f261">更多...</a><br /></td></tr>
+<tr class="separator:a9295130464dbdda4e388229b6f31f261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a250ee0b37a8f1faad9a050832885db66"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a250ee0b37a8f1faad9a050832885db66">CreateSync</a> (Action&lt; DateTime &gt; handle, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a>, int <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a>, bool isRepeat=false, <a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>? sysTime=null)</td></tr>
+<tr class="memdesc:a250ee0b37a8f1faad9a050832885db66"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步定时时钟  <a href="class_e_s_1_1_time_1_1_time_clock.html#a250ee0b37a8f1faad9a050832885db66">更多...</a><br /></td></tr>
+<tr class="separator:a250ee0b37a8f1faad9a050832885db66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad792f8542a63e7232e5a3336d4ec1d67"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ad792f8542a63e7232e5a3336d4ec1d67">CancelAllDaemonTimeClock</a> ()</td></tr>
+<tr class="memdesc:ad792f8542a63e7232e5a3336d4ec1d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">取消所有守护的时间执行器任务  <a href="class_e_s_1_1_time_1_1_time_clock.html#ad792f8542a63e7232e5a3336d4ec1d67">更多...</a><br /></td></tr>
+<tr class="separator:ad792f8542a63e7232e5a3336d4ec1d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:af2fd58f568a4d00fd02b5298ce4b818b"><td class="memItemLeft" align="right" valign="top">readonly bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#af2fd58f568a4d00fd02b5298ce4b818b">IsRepeat</a></td></tr>
+<tr class="memdesc:af2fd58f568a4d00fd02b5298ce4b818b"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否重复  <a href="class_e_s_1_1_time_1_1_time_clock.html#af2fd58f568a4d00fd02b5298ce4b818b">更多...</a><br /></td></tr>
+<tr class="separator:af2fd58f568a4d00fd02b5298ce4b818b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93fa72a90cbd9436fe5eb40e66d645a7"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a93fa72a90cbd9436fe5eb40e66d645a7">year</a></td></tr>
+<tr class="memdesc:a93fa72a90cbd9436fe5eb40e66d645a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">年  <a href="class_e_s_1_1_time_1_1_time_clock.html#a93fa72a90cbd9436fe5eb40e66d645a7">更多...</a><br /></td></tr>
+<tr class="separator:a93fa72a90cbd9436fe5eb40e66d645a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae744cfeeff5aa44b2c0eb29f0bc81a29"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">month</a></td></tr>
+<tr class="memdesc:ae744cfeeff5aa44b2c0eb29f0bc81a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">月  <a href="class_e_s_1_1_time_1_1_time_clock.html#ae744cfeeff5aa44b2c0eb29f0bc81a29">更多...</a><br /></td></tr>
+<tr class="separator:ae744cfeeff5aa44b2c0eb29f0bc81a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1012b3d6bd2bd10d9e9e771e7f4cae8d"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">day</a></td></tr>
+<tr class="memdesc:a1012b3d6bd2bd10d9e9e771e7f4cae8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">日  <a href="class_e_s_1_1_time_1_1_time_clock.html#a1012b3d6bd2bd10d9e9e771e7f4cae8d">更多...</a><br /></td></tr>
+<tr class="separator:a1012b3d6bd2bd10d9e9e771e7f4cae8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974f534354b3c9aa58f7e8982f68ce9d"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">hour</a></td></tr>
+<tr class="memdesc:a974f534354b3c9aa58f7e8982f68ce9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">时  <a href="class_e_s_1_1_time_1_1_time_clock.html#a974f534354b3c9aa58f7e8982f68ce9d">更多...</a><br /></td></tr>
+<tr class="separator:a974f534354b3c9aa58f7e8982f68ce9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3b6304e0ba20019d24579d881fb1342"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">minute</a></td></tr>
+<tr class="memdesc:ac3b6304e0ba20019d24579d881fb1342"><td class="mdescLeft">&#160;</td><td class="mdescRight">分  <a href="class_e_s_1_1_time_1_1_time_clock.html#ac3b6304e0ba20019d24579d881fb1342">更多...</a><br /></td></tr>
+<tr class="separator:ac3b6304e0ba20019d24579d881fb1342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f923fa5c19d1f86dc811373ae063c87"><td class="memItemLeft" align="right" valign="top">readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">second</a></td></tr>
+<tr class="memdesc:a3f923fa5c19d1f86dc811373ae063c87"><td class="mdescLeft">&#160;</td><td class="mdescRight">秒  <a href="class_e_s_1_1_time_1_1_time_clock.html#a3f923fa5c19d1f86dc811373ae063c87">更多...</a><br /></td></tr>
+<tr class="separator:a3f923fa5c19d1f86dc811373ae063c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a019df72be8cf5e624f17f72605fdfce7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a019df72be8cf5e624f17f72605fdfce7">IsCancel</a> =&gt; timeFlow.isTimeFlowStop</td></tr>
+<tr class="memdesc:a019df72be8cf5e624f17f72605fdfce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否已取消执行  <a href="class_e_s_1_1_time_1_1_time_clock.html#a019df72be8cf5e624f17f72605fdfce7">更多...</a><br /></td></tr>
+<tr class="separator:a019df72be8cf5e624f17f72605fdfce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a0d0a4ef75cce233cbe1516ee0d0b0853"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a0d0a4ef75cce233cbe1516ee0d0b0853">TriggerToday</a> = false<code> [get]</code></td></tr>
+<tr class="memdesc:a0d0a4ef75cce233cbe1516ee0d0b0853"><td class="mdescLeft">&#160;</td><td class="mdescRight">今日是否触发  <a href="class_e_s_1_1_time_1_1_time_clock.html#a0d0a4ef75cce233cbe1516ee0d0b0853">更多...</a><br /></td></tr>
+<tr class="separator:a0d0a4ef75cce233cbe1516ee0d0b0853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>定时时钟 </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="adb8b18c0498e241f7eb9f3e8925c0794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb8b18c0498e241f7eb9f3e8925c0794">&#9670;&nbsp;</a></span>Cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Time.TimeClock.Cancel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>取消时间执行器任务 </p>
+
+</div>
+</div>
+<a id="ad792f8542a63e7232e5a3336d4ec1d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad792f8542a63e7232e5a3336d4ec1d67">&#9670;&nbsp;</a></span>CancelAllDaemonTimeClock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ES.Time.TimeClock.CancelAllDaemonTimeClock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>取消所有守护的时间执行器任务 </p>
+
+</div>
+</div>
+<a id="ad576fa126aef0e0e73d0ccf97a42501f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad576fa126aef0e0e73d0ccf97a42501f">&#9670;&nbsp;</a></span>Create() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adcd8e14b09036272de7a4aa4eeb9f162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd8e14b09036272de7a4aa4eeb9f162">&#9670;&nbsp;</a></span>Create() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a03f6d473f268628b63685f709a369354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03f6d473f268628b63685f709a369354">&#9670;&nbsp;</a></span>Create() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">month</td><td>月</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a34909eb587608b6256d4887fd3460350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34909eb587608b6256d4887fd3460350">&#9670;&nbsp;</a></span>Create() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">year</td><td>年</td></tr>
+    <tr><td class="paramname">month</td><td>月</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a18a079c28b64bd475ae217b714daa854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a079c28b64bd475ae217b714daa854">&#9670;&nbsp;</a></span>Create() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Create </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">time</td><td>时间 格式：HH:mm::ss</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9295130464dbdda4e388229b6f31f261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9295130464dbdda4e388229b6f31f261">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.CreateSync </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个同步定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a250ee0b37a8f1faad9a050832885db66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a250ee0b37a8f1faad9a050832885db66">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.CreateSync </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个同步定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a246533c166897f1dd81b23c1181fdc42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a246533c166897f1dd81b23c1181fdc42">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.CreateSync </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isRepeat</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个同步定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">month</td><td>月</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">isRepeat</td><td>是否重复</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7ccb6e8e260d5c89f9f785061f99f629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccb6e8e260d5c89f9f785061f99f629">&#9670;&nbsp;</a></span>CreateSync() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.CreateSync </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; DateTime &gt;&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>second</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_e_s_1_1_time_1_1_i_sys_time.html">ISysTime</a>?&#160;</td>
+          <td class="paramname"><em>sysTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个同步定时时钟 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>需要被执行的函数</td></tr>
+    <tr><td class="paramname">year</td><td>年</td></tr>
+    <tr><td class="paramname">month</td><td>月</td></tr>
+    <tr><td class="paramname">day</td><td>日</td></tr>
+    <tr><td class="paramname">hour</td><td>时</td></tr>
+    <tr><td class="paramname">minute</td><td>分</td></tr>
+    <tr><td class="paramname">second</td><td>秒</td></tr>
+    <tr><td class="paramname">sysTime</td><td>系统时间获取接口</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa1484a63ae92cf1a24f06c85d5a37423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1484a63ae92cf1a24f06c85d5a37423">&#9670;&nbsp;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a> ES.Time.TimeClock.Start </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isDaemon</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>开始执行 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isDaemon</td><td>是否守护执行,守护执行后不再需要保存执行器对象</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a96239f2a18d9d4077d3fb3400466c979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96239f2a18d9d4077d3fb3400466c979">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Time.TimeClock.Update </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>系统调用 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html#a373e0fa7200a96bcb3b1365e0857c913">ES.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<a id="ac8555a1723a966b64ced165712f73772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8555a1723a966b64ced165712f73772">&#9670;&nbsp;</a></span>UpdateEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ES.Time.TimeClock.UpdateEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止更新 </p>
+
+<p>实现了 <a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html#a4ea08b748b5450e8614883d7526ca879">ES.Time.ITimeUpdate</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a1012b3d6bd2bd10d9e9e771e7f4cae8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1012b3d6bd2bd10d9e9e771e7f4cae8d">&#9670;&nbsp;</a></span>day</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.day</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>日 </p>
+
+</div>
+</div>
+<a id="a974f534354b3c9aa58f7e8982f68ce9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974f534354b3c9aa58f7e8982f68ce9d">&#9670;&nbsp;</a></span>hour</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.hour</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>时 </p>
+
+</div>
+</div>
+<a id="a019df72be8cf5e624f17f72605fdfce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a019df72be8cf5e624f17f72605fdfce7">&#9670;&nbsp;</a></span>IsCancel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Time.TimeClock.IsCancel =&gt; timeFlow.isTimeFlowStop</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>是否已取消执行 </p>
+
+</div>
+</div>
+<a id="af2fd58f568a4d00fd02b5298ce4b818b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2fd58f568a4d00fd02b5298ce4b818b">&#9670;&nbsp;</a></span>IsRepeat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly bool ES.Time.TimeClock.IsRepeat</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>是否重复 </p>
+
+</div>
+</div>
+<a id="ac3b6304e0ba20019d24579d881fb1342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3b6304e0ba20019d24579d881fb1342">&#9670;&nbsp;</a></span>minute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.minute</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>分 </p>
+
+</div>
+</div>
+<a id="ae744cfeeff5aa44b2c0eb29f0bc81a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae744cfeeff5aa44b2c0eb29f0bc81a29">&#9670;&nbsp;</a></span>month</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.month</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>月 </p>
+
+</div>
+</div>
+<a id="a3f923fa5c19d1f86dc811373ae063c87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f923fa5c19d1f86dc811373ae063c87">&#9670;&nbsp;</a></span>second</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.second</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>秒 </p>
+
+</div>
+</div>
+<a id="a93fa72a90cbd9436fe5eb40e66d645a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93fa72a90cbd9436fe5eb40e66d645a7">&#9670;&nbsp;</a></span>year</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int ES.Time.TimeClock.year</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>年 </p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a0d0a4ef75cce233cbe1516ee0d0b0853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d0a4ef75cce233cbe1516ee0d0b0853">&#9670;&nbsp;</a></span>TriggerToday</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ES.Time.TimeClock.TriggerToday = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>今日是否触发 </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>TimeClock.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_s.html">ES</a></li><li class="navelem"><a class="el" href="namespace_e_s_1_1_time.html">Time</a></li><li class="navelem"><a class="el" href="class_e_s_1_1_time_1_1_time_clock.html">TimeClock</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

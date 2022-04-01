@@ -3,7 +3,7 @@ var class_e_s_1_1_network_1_1_sockets_1_1_socket =
     [ "Socket", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a846414568cabf9a321f31c867395e276", null ],
     [ "Close", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a21cc68656116cf9288df529b0ab3d949", null ],
     [ "Connect", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a5b8ed40d74669af0dfe60b5eb53c7ad8", null ],
-    [ "GetSocket", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a840951666e236c0685870c8002609218", null ],
+    [ "GetSocket", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ad1663500c08cb0afe394447af7978265", null ],
     [ "AddressFamily", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a9922b320961a6b605f0beb0b7b7ece2c", null ],
     [ "Ip", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a6eb368c1347161fd5e9ee68b736eb759", null ],
     [ "IsClosed", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ac3a3d86dd1ff5e2abdbc6aea972f04ae", null ],

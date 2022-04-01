@@ -1,5 +1,6 @@
 ﻿using ES.Database.Redis;
 using StackExchange.Redis;
+using System;
 
 namespace Sample
 {
@@ -17,7 +18,8 @@ namespace Sample
             helper.Set("test", 111);
             // 取出值
             Log.Info("Test:" + helper.Get<int>("test"));
-
+            //获取数据库时间 如果获取不到默认获取程序本地时间
+            Log.Info("数据库时间:" + helper.Now);
             // 关于redis还有很多函数方法提供这里不再赘述，有兴趣可以看看源码
         }
 

@@ -31,7 +31,7 @@ namespace Sample
             // 通过json字节数组转为Json对象
             var jobj3 = bobj.AsJObject();
 
-            Console.WriteLine($"json:{sobj}");
+            Log.Info($"json:{sobj}");
         }
     }
 }

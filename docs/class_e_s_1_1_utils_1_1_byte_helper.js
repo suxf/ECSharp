@@ -11,8 +11,8 @@ var class_e_s_1_1_utils_1_1_byte_helper =
     [ "GetBytes", "class_e_s_1_1_utils_1_1_byte_helper.html#adc2ec8e889a9c3b27499c83fceb99a76", null ],
     [ "GetBytes", "class_e_s_1_1_utils_1_1_byte_helper.html#ab6bcd3c2527638abad91a1d986b6e21e", null ],
     [ "GetBytes", "class_e_s_1_1_utils_1_1_byte_helper.html#a4f469126b38d4eae9d16c3b0948377c3", null ],
-    [ "GetValidByte", "class_e_s_1_1_utils_1_1_byte_helper.html#ab30d2c9d41da4c39082e0a3aedba4e1d", null ],
-    [ "GetValidLength", "class_e_s_1_1_utils_1_1_byte_helper.html#a9f849c647c9e0ed376baab5a9bb9f260", null ],
+    [ "GetValidByte", "class_e_s_1_1_utils_1_1_byte_helper.html#a82673f4b8182562fa63e178240efcec0", null ],
+    [ "GetValidLength", "class_e_s_1_1_utils_1_1_byte_helper.html#ab1af24c6ae76b2b9b2e2f34fb1a0d663", null ],
     [ "Int64BitsToDouble", "class_e_s_1_1_utils_1_1_byte_helper.html#ab697e9c85b1a0d64b435499240a89e47", null ],
     [ "ToBoolean", "class_e_s_1_1_utils_1_1_byte_helper.html#a1adb1636b89437f11518993bdab4eb7f", null ],
     [ "ToChar", "class_e_s_1_1_utils_1_1_byte_helper.html#a16345c659c02ab023c58b3c7009e2cd3", null ],
@@ -24,5 +24,6 @@ var class_e_s_1_1_utils_1_1_byte_helper =
     [ "ToUInt16", "class_e_s_1_1_utils_1_1_byte_helper.html#adb234c06b3b781dca3bb167f2d4acdd6", null ],
     [ "ToUInt32", "class_e_s_1_1_utils_1_1_byte_helper.html#a9cb8fdcc101bd3b507c81c97d3aa1381", null ],
     [ "ToUInt64", "class_e_s_1_1_utils_1_1_byte_helper.html#a50ab84d3a4aa996ff6bfe1d00d6a2d98", null ],
+    [ "Empty", "class_e_s_1_1_utils_1_1_byte_helper.html#ad5ac4f96922fc63c8d8d7f5f12aa5928", null ],
     [ "IsLittleEndian", "class_e_s_1_1_utils_1_1_byte_helper.html#a2eed691466af65f9184152d86c9e358a", null ]
 ];

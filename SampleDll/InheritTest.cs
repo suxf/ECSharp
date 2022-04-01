@@ -33,7 +33,7 @@ namespace SampleDll
         {
             self.test1 += 20;
             self.test3 += " world B";
-            Console.WriteLine(self.test1 + "," + self.test2 + "," + self.test3);
+            Log.Info(self.test1 + "," + self.test2 + "," + self.test3);
         }
         protected override void Initialize()
         {
@@ -52,7 +52,7 @@ namespace SampleDll
         {
             self.test1 += 50;
             self.test4 += " world C";
-            Console.WriteLine(self.test1 + "," + self.test2 + "," + self.test4);
+            Log.Info(self.test1 + "," + self.test2 + "," + self.test4);
         }
         protected override void Initialize()
         {

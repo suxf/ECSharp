@@ -1,7 +1,7 @@
 # EasySharpFrame
 [![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
 [![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
-[![Platform](https://img.shields.io/badge/framework-.netcore3.1|.net^5.0-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![Platform](https://img.shields.io/badge/framework-.net5.0+-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/EasySharpFrame/blob/master/LICENSE)
 
@@ -12,15 +12,13 @@ Easy .NET Develop Frame.
 # 快速使用
 可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/EasySharpFrame)。
 
-# 框架版本
-| 版本 | 支持 |
-| ------------ | ------------ |
-| .Net 6.0 | √  |
-| .Net 5.0 | √  |
-| .Net Core 3.1 | √ |
-| .Net Framework 4.8 | × |
-
-注：从1.13.x版本后仅支持框架版本情况如上，主要是因为热更功能所需的框架功能在老版本中没有支持，在1.12.x及之前的版本基本上全框架版本都可以使用，不需要热更功能可以使用1.12.x版本。
+# 版本支持
+| 版本 | .Net6.0 | .Net5.0 | .NetCore3.1 | .NetFramework4.6.2 |
+| :-: | :-----: | :-----: |:----------: | :----------------: |
+| 1.13.0+ | √ | √ | √ | × |
+| 1.11.x - 1.12.0 | √ | √ | √ | √ |
+| 1.9.x - 1.10.x | × | × | √ | √ |
+| 1.7.x - 1.8.x  | × | × | √ | × |
 
 ### 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
 
@@ -148,7 +146,7 @@ class WebsocketHandle : IWebsocket
 ```csharp
 // 创建服务器
 var config = new HyperSocketConfig() { UseSSL = true };
-HyperSocket.CreateServer("127.0.0.1", 8888, 500, new ServerListener(), config);
+new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), config).StartServer();
 
 // 服务器监听接口
 class ServerListener : IHyperSocketServer
@@ -158,7 +156,7 @@ class ServerListener : IHyperSocketServer
         // 客户端关闭
     }
 
-    public void SocketError(Exception ex)
+    public void SocketError(RemoteHyperSocket socket, Exception ex)
     {
         // 连接异常
     }
@@ -181,7 +179,7 @@ class ServerListener : IHyperSocketServer
 ```
 ```csharp
 // 创建客户端
-HyperSocket.CreateClient("127.0.0.1", 8888, new ClientListener());
+new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
 
 // 客户端监听接口
 class ClientListener : IHyperSocketClient
@@ -208,14 +206,25 @@ class ClientListener : IHyperSocketClient
 }
 ```
 ### 4.TimeFlow<时间流>
-该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定周期的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类。
+该模块深度封装了原生Thread模块，可以快捷给每个类增加一个时间更新，类似Unity中组件的Update功能，模块以固定周期的速度进行刷新，并且经过多个项目及测试，在周期时间内最终循环时间很精准。另外 TimeCaller 是支持快速定制一个Scheduler定时器的功能类;TimeClock是一种可自定义现实时间的闹钟定时器功能。
 ```csharp
 class TimeDemo : ITimeUpdate
 {
     TimeFlow tf;
     public TimeDemo(){
+        // 时间流
         tf = TimeFlow.Create(this);
         tf.Start();
+
+        // 时间闹钟
+        TimeClock.Create(delegate(DateTime time) {
+            Log.Info($"Time Now Alarm Clock:{time}"); 
+        }, "00:00:00").Start(true);
+
+        // 时间执行器
+        TimeCaller.Create(delegate { 
+            Log.Info("Hello TimeCaller"); 
+        }, 2000, 1000, 3).Start();
     }
     
     // 可以从 TimeFlow.period 直接获取周期时间
@@ -245,7 +254,7 @@ Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例�
 
 ```csharp
 // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
-dbHelper = new SqlServerDbHelper("127.0.0.1", "sa", "123456", "db_test");
+SqlServerDbHelper dbHelper = new SqlServerDbHelper("127.0.0.1", "sa", "123456", "db_test");
 // 增加异常监听器 需要一个继承 ISQLServerDBHelper 接口
 dbHelper.SetExceptionListener(this);
 // 检测数据库连接是否成功调用 成功返回true
@@ -253,6 +262,8 @@ if (dbHelper.CheckConnected())
 {
     Console.WriteLine("数据库已连接");
 }
+//获取数据库时间 如果获取不到默认获取程序本地时间
+Log.Info("数据库时间:" + dbHelper.Now);
 // 普通查询调用
 var result = dbHelper.CommandSQL("SELECT * FROM tb_test");
 // 查询条数判断
@@ -265,7 +276,20 @@ if (result.EffectNum > 0)
 }
 ```
 ### 6.Mysql数据助手
-用到了或者如果用的人多了再补充~
+Mysql数据助手和Sqlserver数据库助手使用操作差不多，可参考第5项。
+```csharp
+// 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
+MySqlDbHelper dbHelper = new MySqlDbHelper("127.0.0.1", "root", "123456");
+// 增加异常监听器
+dbHelper.SetExceptionListener(this);
+// 检测数据库连接是否成功调用 成功返回true
+if (dbHelper.CheckConnected())
+{
+    Log.Info("数据库已连接");
+}
+//获取数据库时间 如果获取不到默认获取程序本地时间
+Log.Info("数据库时间:" + dbHelper.Now);
+```
 
 ### 7.Redis数据库助手
 简化Redis连接复杂度，快速连接Redis并且对数据进行高并发读写操作，对订阅功能进行简化操作，使订阅更加易用。
@@ -280,7 +304,7 @@ helper.Set("test", 1);
 var test = helper.Get<int>("test");
 ```
 ### 8.Log功能
-日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。Log类中提供日志前置配置参数，可以对日志进行自定义配置。
+日志功能就是解决服务器对各种记录数据的记录和输出，日志即可输出在控制窗口，也可以写入本地文件持久化储存，供后续查看。Log类中提供日志前置配置参数，可以对日志进行自定义配置，详见 LogConfig 类。
 ```csharp
 // 以下四个函数均为普通分级日志输出函数
 Log.Debug("debug is this");
@@ -289,21 +313,6 @@ Log.Warn("warn is this");
 Log.Error("error is this");
 // 此函数可以写在try catch中 用于打印异常问题
 Log.Exception(new System.Exception(), "exception is this");
-```
-```csharp
-/** 可配置变量 **/
-/** 配置修改建议在第一次调用Log前修改完成，避免出现奇怪的问题 **/
-// 日志控制台输出开关 默认开启
-Log.LOG_CONSOLE_OUTPUT = true;
-// 日志写入周期 单位 ms
-Log.LOG_PERIOD = 1000;
-// 日志写入文件后缀
-Log.LOG_FILE_SUFFIX = ".log";
-// 日志单个文件最多大小
-// 单位 byte 默认 50MB大小
-Log.LOG_UNIT_FILE_MAX_SIZE = 52428800;
-// 日志根路径
-Log.LOG_PATH = "./log/";
 ```
 ### 9.热更新功能
 支持服务器运行中可以进行逻辑更新的功能。当然，热更的实现，在各个语言上都是通过运行时反射实现的，所以一旦利用反射原理的功能都会逊色于原生直接调用。经过多次测试在千万次的简单循环下，初次加载可能会存在总量30~100毫秒的延迟；随之以后的调用则影响很小，循环总量和直接调用总量为2:1，也就是说在正常情况下，直接调用耗时1ms的操作，移植到热更新层也仅仅花费2ms左右，所以非密集型计算，耗时偏差基本可以忽略不计。
@@ -578,7 +587,42 @@ public class C_Agent : A_Agent, IAgent<C>
     }
 }
 ```
-### 10.其他
+### 10.可变变量
+以空间换更方便的数值传递操作，可变变量可以满足所有基础类型的变量存储和读取，并且配备列表、字典容器来提供批量存储，同时可以很方便的获取存储后的原始字节数组或序列化的数据，当然也可以重新反序列化成新的对象。
+```csharp
+Var a1 = (byte)1;
+Var a2 = (sbyte)-2;
+Var a3 = (ushort)3;
+Var a4 = (short)-4;
+Var a5 = 5U;
+Var a6 = -6;
+Var a7 = 7UL;
+Var a8 = -8L;
+Var a9 = 9.123456789F;
+Var a10 = 9.123456789987654321D;
+Var a11 = true;
+Var a12 = "hello world";
+Var a13 = TestEnum.B;
+Var a14 = new Var(new object());
+VarList list = new VarList();
+list.Add(a1);
+list.Add(a2);
+list.Add(a3);
+VarMap map = new VarMap();
+map.Add("a1", a1);
+map.Add("a2", a2);
+map.Add("a3", a3);
+map.Add("list", list);
+Var a15 = list;
+Var a16 = map;
+Var b1 = a1 > a2;
+Var b2 = a3 == a4;
+Var b3 = a6 % a3;
+Var b4 = a8 * a7;
+Var b5 = a9.ToString();
+Var b6 = a10.GetBytes();
+```
+### 11.其他
 其他小功能不再过多介绍，可以在使用的过程中慢慢查询API来获取使用细节。
 
 ```csharp
@@ -594,6 +638,10 @@ bool test2 = AppConfig.Read<bool>("test2");
 string test2 = AppConfig.Read("testgroup", "test2");
 float tests3 = AppConfig.Read<float>("testgroup", "test3");
 
+// 通过ini文件读取配置
+Ini.LoadParser("config.ini", true);
+Log.Info($"config filename name:{Ini.Current.GetValue("filename")}");
+
 // 获取有效字节
 // 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现
 // 所以这里的设定还是要看具体情况来 不一定适用所有情况
@@ -608,7 +656,9 @@ string code = RandomCode.Generate(32);
 string md5Str = MD5.Encrypt("helloworld");
 
 // 获取此框架的版本信息
-string versionStr = ES.Common.Utils.Version.ToString();
+string versionStr = ES.Utils.SystemInfo.FrameVersion;
+// 逻辑线程数
+int processorCount = ES.Utils.SystemInfo.ProcessorCount;
 ```
 
 # 引用声明
@@ -619,8 +669,13 @@ string versionStr = ES.Common.Utils.Version.ToString();
 1. [JamesNK/Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) 通用强大的Json格式化工具
 1. [StackExchange/StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) Redis数据库支持工具
 1. [dotnet/corefx](https://github.com/dotnet/corefx) 微软官方支持的SqlServer支持库
+1. [mysql-net/MySqlConnector](https://github.com/mysql-net/MySqlConnector) 高性能的MySql数据库连接支持库
 
-# 关于框架
+# 关于框架的由来
 最初是由工作和业余开发过程中遇到的问题慢慢汇聚出来的一些零零散散的工具类，经过一段时间整理重构和后续维护，才有了现在这个版本，在此之前使用此框架的项目也一直在线上跑着，总的来说是为了开发更加快速便捷才构建了这个框架。
+
+版本1.16.0是这个框架第二次较大的迭代，花了一些时间把整个框架能优化的地方都优化了（没发现的不算T_T），然后增加了一些原本就要增加但没时间弄的功能。这之后框架的更新又会以修复BUG和增加稳定性为主了，框架使用的技术一直都以新技术点为主，咱们就是说官方推荐用啥就用啥，不推荐的废弃的技术方案除非网上分析说暂时没有更好的性能替代才会使用。
+
+谢谢给这个项目打⭐的朋友，虽然目前只有不到百人，但这不影响我对这个框架的开发和更新，因为想着自己以后如果能够用到这个框架来开发更多的项目，也不失开发这个框架的初衷了。
 
 如果对这个项目比较感兴趣的朋友，希望能够给颗⭐支持一下~

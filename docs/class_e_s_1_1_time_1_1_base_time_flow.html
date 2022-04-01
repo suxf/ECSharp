@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.15.16</span>
+   &#160;<span id="projectnumber">1.16.0</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -108,9 +108,9 @@ Protected 成员函数</h2></td></tr>
 <tr class="memitem:aa42dfa87833f278d19cf72a7e9c92006"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_base_time_flow.html#aa42dfa87833f278d19cf72a7e9c92006">BaseTimeFlow</a> (<a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html">ITimeUpdate</a> timeUpdate, int fixedTime)</td></tr>
 <tr class="memdesc:aa42dfa87833f278d19cf72a7e9c92006"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 多线程处理逻辑  <a href="class_e_s_1_1_time_1_1_base_time_flow.html#aa42dfa87833f278d19cf72a7e9c92006">更多...</a><br /></td></tr>
 <tr class="separator:aa42dfa87833f278d19cf72a7e9c92006"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100c4de44d8cd560f6f2d2584177bc04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_base_time_flow.html#a100c4de44d8cd560f6f2d2584177bc04">BaseTimeFlow</a> (<a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html">ITimeUpdate</a> timeUpdate, int fixedTime, int tfIndex)</td></tr>
-<tr class="memdesc:a100c4de44d8cd560f6f2d2584177bc04"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 内部使用  <a href="class_e_s_1_1_time_1_1_base_time_flow.html#a100c4de44d8cd560f6f2d2584177bc04">更多...</a><br /></td></tr>
-<tr class="separator:a100c4de44d8cd560f6f2d2584177bc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a176351ce2a78a262a9e6f6877522a03f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_time_1_1_base_time_flow.html#a176351ce2a78a262a9e6f6877522a03f">BaseTimeFlow</a> (<a class="el" href="interface_e_s_1_1_time_1_1_i_time_update.html">ITimeUpdate</a> timeUpdate, int tfIndex, int fixedTime)</td></tr>
+<tr class="memdesc:a176351ce2a78a262a9e6f6877522a03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 内部使用  <a href="class_e_s_1_1_time_1_1_base_time_flow.html#a176351ce2a78a262a9e6f6877522a03f">更多...</a><br /></td></tr>
+<tr class="separator:a176351ce2a78a262a9e6f6877522a03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>时间流基类 </p>
@@ -156,8 +156,8 @@ Protected 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a100c4de44d8cd560f6f2d2584177bc04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a100c4de44d8cd560f6f2d2584177bc04">&#9670;&nbsp;</a></span>BaseTimeFlow() <span class="overload">[2/2]</span></h2>
+<a id="a176351ce2a78a262a9e6f6877522a03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a176351ce2a78a262a9e6f6877522a03f">&#9670;&nbsp;</a></span>BaseTimeFlow() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,13 +175,13 @@ Protected 成员函数</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fixedTime</em>, </td>
+          <td class="paramname"><em>tfIndex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tfIndex</em>&#160;</td>
+          <td class="paramname"><em>fixedTime</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,8 +200,8 @@ Protected 成员函数</h2></td></tr>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">timeUpdate</td><td></td></tr>
-    <tr><td class="paramname">fixedTime</td><td>修正时间</td></tr>
     <tr><td class="paramname">tfIndex</td><td>数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</td></tr>
+    <tr><td class="paramname">fixedTime</td><td>修正时间</td></tr>
   </table>
   </dd>
 </dl>

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['fieldnames_1197',['FieldNames',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#a27cfd1952c8c953480ed3c27f73be21a',1,'ES::Database::SQLServer::Linq::DataEntityRows']]],
-  ['firstrows_1198',['FirstRows',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#a53a48b9d587f07a4333684a22d4fa570',1,'ES::Database::SQLServer::ProcedureResult']]]
+  ['fieldnames_1262',['FieldNames',['../class_e_s_1_1_database_1_1_linq_1_1_data_entity_rows.html#a21b8ed65e689fd24bd1dbd5aeffda191',1,'ES::Database::Linq::DataEntityRows']]],
+  ['firstrows_1263',['FirstRows',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#a53a48b9d587f07a4333684a22d4fa570',1,'ES::Database::SQLServer::ProcedureResult']]],
+  ['frameversion_1264',['FrameVersion',['../class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b',1,'ES::Utils::SystemInfo']]]
 ];

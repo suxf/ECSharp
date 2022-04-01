@@ -1,6 +1,5 @@
 ﻿using ES.Database.Linq;
 using ES.Database.SQLServer;
-using ES.Database.SQLServer.Linq;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,7 +17,7 @@ namespace Sample
         SqlServerDbHelper dbHelper;
         public Test_DBSqlServer()
         {
-            Console.WriteLine("数据测试开始");
+            Log.Info("数据测试开始");
             // 数据库连接使用此函数即可简单创建 数据库的创建还提供更多重载方案，可以点入查看
             dbHelper = new SqlServerDbHelper("127.0.0.1", "sa", "123456", "db_test");
             // 增加异常监听器
@@ -26,12 +25,12 @@ namespace Sample
             // 检测数据库连接是否成功调用 成功返回true
             if (dbHelper.CheckConnected())
             {
-                Console.WriteLine("数据库已连接");
+                Log.Info("数据库已连接");
             }
             //获取数据库时间 如果获取不到默认获取程序本地时间
-            Console.WriteLine("数据库时间:" + dbHelper.Now);
+            Log.Info("数据库时间:" + dbHelper.Now);
 
-            Console.WriteLine("数据库测试结束");
+            Log.Info("数据库测试结束");
         }
 
 
@@ -51,7 +50,7 @@ namespace Sample
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
                 int id = (int)result.Rows[0]["id"];
-                Console.WriteLine($"id:{id}");
+                Log.Info($"id:{id}");
             }
 
             // 非查询sql调用
@@ -59,7 +58,7 @@ namespace Sample
             // 返回影响记录数量
             if (result2 > 0)
             {
-                Console.WriteLine("success");
+                Log.Info("success");
             }
 
             // 使用sql构建器来执行sql
@@ -72,7 +71,7 @@ namespace Sample
                 // 取出表一的相关数据
                 // 如果查询有多个select 可以通过result.dataSet取得
                 int id = (int)result5.Rows[0]["id"];
-                Console.WriteLine($"id:{id}");
+                Log.Info($"id:{id}");
             }
 
             // 存储过程调用
@@ -85,7 +84,7 @@ namespace Sample
             {
                 // 如果有select返回
                 var count = result4.Tables.Count;
-                Console.WriteLine($"count:{count}");
+                Log.Info($"count:{count}");
             }
 
             // 异步执行SQL
@@ -114,7 +113,7 @@ namespace Sample
             var content = row["content"];
             // 读取表id为100记录的content字段
             var content2 = row.GetObject<string>("content");
-            Console.WriteLine($"content:{content},{content2}");
+            Log.Info($"content:{content},{content2}");
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace Sample
             // 如果存在则为true 并且返回数据对象
             if (db.TryGetValue(100, out string value))
             {
-                Console.WriteLine($"value:{value}");
+                Log.Info($"value:{value}");
             }
 
             Console.ReadLine();
@@ -186,7 +185,7 @@ namespace Sample
             }
             // 根据主键查找某一个配置
             var config = loader.Find(1);
-            Console.WriteLine("config name:" + config.name);
+            Log.Info("config name:" + config.name);
             // 重新拉取所有配置
             loader.Reload();
         }

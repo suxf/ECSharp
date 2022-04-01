@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.15.16</span>
+   &#160;<span id="projectnumber">1.16.0</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -93,8 +93,8 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_utils_1_1_random_code.html#aba0fbbbdf2d167b2fdacfc232422be82">ES.Utils.RandomCode</a>
 </li>
 <li>Get()
-: <a class="el" href="class_e_s_1_1_data_1_1_storage_1_1_easy_storage.html#aae0783f8a9a017d5d93b82f046ff41b7">ES.Data.Storage.EasyStorage</a>
-, <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html#aca6d2053070901a4ac95faa9d37e88b8">ES.Network.Http.Linq.HttpRequestHelper</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html#aa2542d2125aec380631d80ef3ed1caf0">ES.Network.Http.Linq.HttpRequestHelper</a>
+, <a class="el" href="class_e_s_1_1_utils_1_1_local_storage.html#a3e98ca8ad2468f4e512c847403cedc56">ES.Utils.LocalStorage</a>
 </li>
 <li>Get&lt; T &gt;()
 : <a class="el" href="class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#acabfde936cd51704bea57fb1664d2dc1">ES.Database.Redis.RedisHelper</a>
@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a1179aafa66f49edc122fffbee8e13ac4">ES.Hotfix.AgentData</a>
 </li>
 <li>GetAll()
-: <a class="el" href="class_e_s_1_1_data_1_1_storage_1_1_easy_storage.html#ad268cd9c7f608f88f8036eedeff30865">ES.Data.Storage.EasyStorage</a>
+: <a class="el" href="class_e_s_1_1_utils_1_1_local_storage.html#ad67e97130920901ea60d82f04cd240de">ES.Utils.LocalStorage</a>
 </li>
 <li>GetAssembly()
 : <a class="el" href="class_e_s_1_1_hotfix_1_1_hotfix_mgr.html#a97ea2c8f4821713167009cb9cd74283a">ES.Hotfix.HotfixMgr</a>
@@ -130,7 +130,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#a2e9bbac7a73f911365e410f833c02f34">ES.Network.Websocket.RemoteConnection</a>
 </li>
 <li>GetConnectionString()
-: <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a80e60185e1084b64301b2180ef5c1c49">ES.Database.SQLServer.SqlServerDbHelper</a>
+: <a class="el" href="interface_e_s_1_1_database_1_1_i_db_helper.html#acc90b9d321138d97afa6e339075a7aaa">ES.Database.IDbHelper</a>
+, <a class="el" href="class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html#a29a9e6bed496e5cdb32fd4d95f8d1b8d">ES.Database.MySQL.MySqlDbHelper</a>
+, <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a80e60185e1084b64301b2180ef5c1c49">ES.Database.SQLServer.SqlServerDbHelper</a>
 </li>
 <li>GetDatabase()
 : <a class="el" href="class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#aef593a013656abb10b42c8846dc0cc32">ES.Database.Redis.RedisHelper</a>
@@ -139,8 +141,8 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_hotfix_1_1_agent_data.html#a09d00bed0565947e452039234e9db8d0">ES.Hotfix.AgentData</a>
 </li>
 <li>GetEnumerator()
-: <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_row.html#abf21270a00c1f20aba07c34de58a67f8">ES.Database.SQLServer.Linq.DataEntityRow</a>
-, <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_rows.html#ac2141e32c1ae24e07ee55e7f630b755d">ES.Database.SQLServer.Linq.DataEntityRows</a>
+: <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_data_entity_row.html#a19550acf33110324676f3a53d86430e8">ES.Database.Linq.DataEntityRow</a>
+, <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_data_entity_rows.html#a38d9f8977103f3c7db66d8c059859069">ES.Database.Linq.DataEntityRows</a>
 </li>
 <li>GetHashCode()
 : <a class="el" href="struct_e_s_1_1_variant_1_1_var.html#a6ce476fc3de8b2e13416e9507c945b3c">ES.Variant.Var</a>
@@ -150,8 +152,11 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 , <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_request.html#a512d01b6ad64fff0982b1f028e04f780">ES.Network.Http.HttpRequest</a>
 , <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_response.html#a9030551c6561424395cec2922e6b324a">ES.Network.Http.HttpResponse</a>
 </li>
+<li>GetKey()
+: <a class="el" href="class_e_s_1_1_utils_1_1_aes_crypto.html#a5d892363bc8286269478f861363aeb92">ES.Utils.AesCrypto</a>
+</li>
 <li>GetObject&lt; T &gt;()
-: <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_linq_1_1_data_entity_row.html#a5e63de44a435e7dfb5616dc00fb45a7a">ES.Database.SQLServer.Linq.DataEntityRow</a>
+: <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_data_entity_row.html#abffec7335eb8389628bc8ae5754ee41b">ES.Database.Linq.DataEntityRow</a>
 </li>
 <li>GetParams
 : <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_request.html#a81fc716ebcf43da803a37280271fb64c">ES.Network.Http.HttpRequest</a>
@@ -182,7 +187,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetSocket()
 : <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a8c0cab1148f47db1afb9395c645c8b7f">ES.Network.HyperSocket.HyperSocketServer</a>
-, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a840951666e236c0685870c8002609218">ES.Network.Sockets.Socket</a>
+, <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ad1663500c08cb0afe394447af7978265">ES.Network.Sockets.Socket</a>
 </li>
 <li>GetSocketGuid()
 : <a class="el" href="class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html#ab8c7ccfe35a37cea90ef4b69bbf6477f">ES.Network.Websocket.RemoteConnection</a>
@@ -194,10 +199,10 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a73887d9f19f24bc6b46804c9675fa3b2">ES.Network.HyperSocket.HyperSocketServer</a>
 </li>
 <li>GetValidByte()
-: <a class="el" href="class_e_s_1_1_utils_1_1_byte_helper.html#ab30d2c9d41da4c39082e0a3aedba4e1d">ES.Utils.ByteHelper</a>
+: <a class="el" href="class_e_s_1_1_utils_1_1_byte_helper.html#a82673f4b8182562fa63e178240efcec0">ES.Utils.ByteHelper</a>
 </li>
 <li>GetValidLength()
-: <a class="el" href="class_e_s_1_1_utils_1_1_byte_helper.html#a9f849c647c9e0ed376baab5a9bb9f260">ES.Utils.ByteHelper</a>
+: <a class="el" href="class_e_s_1_1_utils_1_1_byte_helper.html#ab1af24c6ae76b2b9b2e2f34fb1a0d663">ES.Utils.ByteHelper</a>
 </li>
 <li>GetValue
 : <a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_request.html#aa7ed844587214f76165ac87b306cc81e">ES.Network.Http.HttpRequest</a>

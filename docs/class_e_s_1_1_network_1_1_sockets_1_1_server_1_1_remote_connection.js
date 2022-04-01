@@ -1,13 +1,13 @@
 var class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection =
 [
     [ "Destroy", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a570512258e07457b0c94ff52c488eec9", null ],
-    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aadee33a8b81bb8a153d97448d7d39bd1", null ],
-    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a52c32e3e92e037c580d89645960b31f1", null ],
+    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a2ae67129b2d82820d4f6355585dd1bf8", null ],
+    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a27d65c4c69480ae5edce39cbfb7b382c", null ],
     [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a4c923c37c66ed8d5b9c3c34653ecb8d4", null ],
-    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ab5b2f19e6321c6b16145238b443dcbda", null ],
-    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a28700fa186e1668e907d7d0143eb471f", null ],
+    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a9116ddca786458743c0290691c57852f", null ],
+    [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ae65a09084cce7bebdbb3e1432c4ef665", null ],
     [ "Send", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a7e59135bd4cd17df08b6f92fb389b4f0", null ],
-    [ "Target", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aa8007b5aef9af602d061acd4fcf08f6e", null ],
+    [ "Tag", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a8d16c0ffd7a111ec6bda2693cc354601", null ],
     [ "ConnectDateTime", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a061ab5210042689ae3fc338805aa86ef", null ],
     [ "HasConnected", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a04eda263aea44314d193e7a79f244521", null ],
     [ "IsAlive", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a965906f267acd110dd181a54234518d5", null ],

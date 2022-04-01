@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['ip_1043',['ip',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a68d77c64622e060e32dcb7e11b5e65bd',1,'ES::Network::HyperSocket::BaseHyperSocket']]],
-  ['isalive_1044',['IsAlive',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a3028bcc337a3a3e677efbfb17f4c90b5',1,'ES::Network::HyperSocket::BaseHyperSocket']]],
-  ['isfirstcreateagent_1045',['IsFirstCreateAgent',['../class_e_s_1_1_hotfix_1_1_agent_data.html#ae370477ef7630fe94e6004db6dfaeea5',1,'ES::Hotfix::AgentData']]],
-  ['islittleendian_1046',['IsLittleEndian',['../class_e_s_1_1_utils_1_1_byte_helper.html#a2eed691466af65f9184152d86c9e358a',1,'ES::Utils::ByteHelper']]],
-  ['isrecving_1047',['isRecving',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_base_client_socket.html#a7657c0525daf36fc0b3d6f86831a158a',1,'ES::Network::Sockets::Client::BaseClientSocket']]],
-  ['isrepeat_1048',['isRepeat',['../class_e_s_1_1_time_1_1_time_caller.html#a610b7b4e076772a1b340c48a8d422104',1,'ES::Time::TimeCaller']]],
-  ['isservermode_1049',['IsServerMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a08b1fef7337e477ee1c9c0492508c6a6',1,'ES::Network::HyperSocket::BaseHyperSocket']]]
+  ['infinite_1096',['Infinite',['../class_e_s_1_1_time_1_1_time_caller.html#ac146e652505359a0f0faf7fbd8454a4a',1,'ES::Time::TimeCaller']]],
+  ['ip_1097',['ip',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a68d77c64622e060e32dcb7e11b5e65bd',1,'ES::Network::HyperSocket::BaseHyperSocket']]],
+  ['isalive_1098',['IsAlive',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a3028bcc337a3a3e677efbfb17f4c90b5',1,'ES::Network::HyperSocket::BaseHyperSocket']]],
+  ['iscancel_1099',['IsCancel',['../class_e_s_1_1_time_1_1_time_caller.html#a59a261aa1669a34265836227f9a6a652',1,'ES.Time.TimeCaller.IsCancel()'],['../class_e_s_1_1_time_1_1_time_clock.html#a019df72be8cf5e624f17f72605fdfce7',1,'ES.Time.TimeClock.IsCancel()']]],
+  ['isfirstcreateagent_1100',['IsFirstCreateAgent',['../class_e_s_1_1_hotfix_1_1_agent_data.html#ae370477ef7630fe94e6004db6dfaeea5',1,'ES::Hotfix::AgentData']]],
+  ['islittleendian_1101',['IsLittleEndian',['../class_e_s_1_1_utils_1_1_byte_helper.html#a2eed691466af65f9184152d86c9e358a',1,'ES::Utils::ByteHelper']]],
+  ['isrecving_1102',['isRecving',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a147e73f06a273138009e40e755c1c4ad',1,'ES::Network::Sockets::Client::ClientSocket']]],
+  ['isrepeat_1103',['IsRepeat',['../class_e_s_1_1_time_1_1_time_clock.html#af2fd58f568a4d00fd02b5298ce4b818b',1,'ES::Time::TimeClock']]],
+  ['isservermode_1104',['IsServerMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html#a08b1fef7337e477ee1c9c0492508c6a6',1,'ES::Network::HyperSocket::BaseHyperSocket']]]
 ];
