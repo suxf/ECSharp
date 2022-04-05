@@ -22,13 +22,12 @@ namespace ES.Network.HyperSocket
         /// 无网络数据更新次数  【kcp优化方案】
         /// </summary>
         private int noNetDataCount = 0;
-        private readonly object m_lock = new object();
 
         private bool isClosed = false;
 
         private readonly BaseTimeFlow timeFlow;
 
-        internal KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcp listener)
+        public KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcp listener)
         {
             kcp = new Kcp(conv, this);
             if (kcpMode == KcpMode.Normal) kcp.NoDelay(0, 40, 0, 0);
@@ -46,25 +45,37 @@ namespace ES.Network.HyperSocket
         /// 上层kcp发射
         /// </summary>
         /// <param name="data"></param>
-        internal void Send(Span<byte> data)
+        public void Send(Span<byte> data)
         {
-            if (isClosed) return;
-            kcp.Send(data);
-            lock (m_lock) nextUpdateTime = DateTime.UtcNow;
-            Interlocked.Exchange(ref noNetDataCount, 0);
+            lock(kcp)
+            {
+                if (isClosed) return;
+                kcp.Send(data);
+                nextUpdateTime = DateTime.UtcNow;
+                noNetDataCount = 0;
+            }
         }
 
         /// <summary>
         /// 上层kcp接收
         /// </summary>
         /// <param name="data"></param>
-        internal void Recv(Span<byte> data)
+        public void Recv(Span<byte> data)
         {
-            if (isClosed) return;
-            kcp.Input(data);
-            CheckRecv();
-            lock (m_lock) nextUpdateTime = DateTime.UtcNow;
-            Interlocked.Exchange(ref noNetDataCount, 0);
+            lock(kcp)
+            {
+                if (isClosed) return;
+                kcp.Input(data);
+                int len;
+                // 检查接收
+                while ((len = kcp.PeekSize()) > 0)
+                {
+                    var buffer = new byte[len];
+                    if (kcp.Recv(buffer) > 0) kcpListener.OnReceive(buffer);
+                }
+                nextUpdateTime = DateTime.UtcNow;
+                noNetDataCount = 0;
+            }
         }
 
         /// <summary>
@@ -80,23 +91,13 @@ namespace ES.Network.HyperSocket
                 kcpListener.OnSend(buffer.Memory.Slice(0, avalidLength).ToArray());
         }
 
-        /// <summary>
-        /// 检查接收
-        /// </summary>
-        private void CheckRecv()
+        public void CloseKcp()
         {
-            int len;
-            while ((len = kcp.PeekSize()) > 0)
+            lock(kcp)
             {
-                var buffer = new byte[len];
-                if (kcp.Recv(buffer) > 0) kcpListener.OnReceive(buffer);
+                isClosed = true;
+                timeFlow.CloseTimeFlowES();
             }
-        }
-
-        internal void CloseKcp()
-        {
-            isClosed = true;
-            timeFlow.CloseTimeFlowES();
         }
 
         /// <summary>
@@ -105,14 +106,13 @@ namespace ES.Network.HyperSocket
         /// <param name="dt"></param>
         public void Update(int dt)
         {
-            if (isClosed) return;
-            // 更新周期10ms 此处次数大于100 则为 1s 无数据跳出
-            if (noNetDataCount >= 100) return;
-            Interlocked.Increment(ref noNetDataCount);
-
-            var utc = DateTime.UtcNow;
-            lock (m_lock)
+            lock (kcp)
             {
+                if (isClosed) return;
+                // 更新周期10ms 此处次数大于100 则为 1s 无数据跳出
+                if (noNetDataCount >= 100) return;
+                ++noNetDataCount;
+                DateTime utc = DateTime.UtcNow;
                 if (nextUpdateTime <= utc)
                 {
                     kcp.Update(utc);
@@ -126,7 +126,7 @@ namespace ES.Network.HyperSocket
         /// </summary>
         public void UpdateEnd()
         {
-            kcp.Dispose();
+            lock (kcp) kcp.Dispose();
         }
     }
 }

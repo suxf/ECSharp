@@ -14,8 +14,6 @@ namespace Sample
     {
         static BaseHyperSocket[] sockets = new BaseHyperSocket[10000];
         static TimeCaller[] timeCaller2 = new TimeCaller[10000];
-        static Thread[] threads = new Thread[10000];
-        static int index = 0;
         static int num = 0; 
         static HashSet<int> ssss = new HashSet<int>();
 
@@ -166,7 +164,11 @@ namespace Sample
                 if (fff) Interlocked.Decrement(ref num);
                 Log.Info($"【SocketError】 Connect Num:{num}");
                 Log.Exception(ex);
-                sockets[socket.Tag] = null;
+                if (socket.Tag.IsNumber())
+                {
+                    timeCaller2[socket.Tag]?.Cancel();
+                    sockets[socket.Tag] = null;
+                }
                 // Log.Warn($"【SocketError】 ReStart Client:{num}");
                 // TimeCaller.Create(delegate {
                 //     sockets[socket.Tag] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
@@ -184,7 +186,7 @@ namespace Sample
                 Interlocked.Increment(ref num);
                 Log.Info($"【OnOpen】 Connect Num:{num}");
                 // Log.Info($"Connect OK:{socket.SessionId}");
-                timeCaller2[index++] = TimeCaller.Create((long count) =>
+                timeCaller2[socket.Tag] = TimeCaller.Create((long count) =>
                 {
                     // socket.SendUdp(count.ToString());
                     socket.SendUdp(ES.Utils.RandomCode.Generate(rd.Next(0, 2048)));

@@ -120,18 +120,26 @@ namespace ES.Network.Http
         {
             try
             {
-                var tcpListener = ar.AsyncState as TcpListener;
-                if (tcpListener == null)
+                TcpListener? tcpListener = ar.AsyncState as TcpListener;
+                TcpClient? tcpClient = null;
+                Stream? stream = null;
+                try
                 {
-                    listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
-                    return;
+                    // 结束异步
+                    tcpClient = tcpListener?.EndAcceptTcpClient(ar);
+                    // 获取流
+                    stream = tcpClient?.GetStream();
                 }
-                // 结束异步
-                TcpClient tcpClient = tcpListener.EndAcceptTcpClient(ar);
-                // 以取得所有需要的参数 继续监听下一个请求
-                listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
-                // 获取流
-                Stream stream = tcpClient.GetStream();
+                catch(Exception ex)
+                {
+                    httpInvoke.HttpException(null, ex);
+                }
+                finally
+                {
+                    // 以取得所有需要的参数 继续监听下一个请求
+                    listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
+                }
+                if (tcpClient == null || stream == null) return;
                 try
                 {
                     // 处理加密

@@ -10,8 +10,8 @@ namespace ES.Time
     internal class TimeFlowThread
     {
         private Thread? thread;
-        private List<BaseTimeFlow> timeFlows = new List<BaseTimeFlow>();
-        private ConcurrentBag<BaseTimeFlow> waitTimeFlows = new ConcurrentBag<BaseTimeFlow>();
+        private readonly List<BaseTimeFlow> timeFlows = new List<BaseTimeFlow>();
+        private readonly ConcurrentBag<BaseTimeFlow> waitAddTimeFlows = new ConcurrentBag<BaseTimeFlow>();
         internal int Index { private set; get; } = -1;
         /// <summary>
         /// 正在更新状态值
@@ -35,24 +35,18 @@ namespace ES.Time
         internal TimeFlowThread(int index)
         {
             Index = index;
+            Start();
         }
 
-        internal void Start()
+        private void Start()
         {
-            try
+            if (!IsRunning)
             {
-                if (!IsRunning)
-                {
-                    IsRunning = true;
-                    IsPausePushTask = false;
-                    thread = new Thread(UpdateHandle);
-                    thread.IsBackground = true;
-                    thread.Start();
-                }
-            }
-            catch
-            {
-                Start();
+                IsRunning = true;
+                IsPausePushTask = false;
+                thread = new Thread(UpdateHandle);
+                thread.IsBackground = true;
+                thread.Start();
             }
         }
 
@@ -64,36 +58,43 @@ namespace ES.Time
 
         internal void Push(BaseTimeFlow timeFlow)
         {
-            waitTimeFlows.Add(timeFlow);
+            waitAddTimeFlows.Add(timeFlow);
         }
-
+        
+        /*
         internal void CheckThreadSafe()
         {
             if (IsRunning && thread != null)
             {
-                // 阻塞挂起
-                if (thread.ThreadState == ThreadState.WaitSleepJoin) { thread.Interrupt(); }
-                // 已经停止的
-                else if (thread.ThreadState == ThreadState.Aborted || !thread.IsAlive) { Close(); }
+                try
+                {
+                    // 阻塞挂起
+                    if (thread.ThreadState == ThreadState.WaitSleepJoin) { thread.Interrupt(); }
+                    // 已经停止的
+                    else if (thread.ThreadState == ThreadState.Aborted || !thread.IsAlive) { Close(); }
+                }
+                catch { }
 
                 // 检测阻塞超时 10s
                 Interlocked.Increment(ref threadBlockTimeOutCount);
                 if (threadBlockTimeOutCount >= 10)
                 {
                     Interlocked.Exchange(ref threadBlockTimeOutCount, 0);
-                    BaseTimeFlow[] temp;
-                    temp = timeFlows.ToArray();
+                    // BaseTimeFlow[] temp;
+                    // temp = timeFlows.ToArray();
                     // 超时终止当前线程并切换线程
                     Close();
                     // 创建新的时间线
-                    var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
-                    for (int i = 0, len = temp.Length; i < len; i++)
-                    {
-                        if (temp[i].IsTimeUpdateActive()) TimeFlowManager.Instance.PushTimeFlow(temp[i], index);
-                    }
+                    // var index = TimeFlowManager.Instance.CreateExtraTimeFlow();
+                    // for (int i = 0, len = temp.Length; i < len; i++)
+                    // {
+                    //     if (temp[i].IsTimeUpdateActive()) TimeFlowManager.Instance.PushTimeFlow(temp[i], index);
+                    // }
+                    Start();
                 }
             }
         }
+        */
 
         /// <summary>
         /// 更新句柄
@@ -102,53 +103,69 @@ namespace ES.Time
         /// </summary>
         private void UpdateHandle()
         {
-            // 时间补偿助手
-            // TimeFix timeFixHelper = new TimeFix(TimeFlowManager.timeFlowPeriod);
             // 闲置处理时间计数
-            int idlHandleTimeCount = 0;
+            // int idlHandleTimeCount = 0;
+            /*
             // 计算句柄超出间隔次数 
             int mathHandleTimeCount = 0;
             // 重置计算句柄超出间隔次数计数
             int mathHandleTimeResetCount = 0;
             // 暂停推送任务计数 超出1分钟尝试重新接管线程
             int pausePushTaskCount = 0;
-            // 总体目标运行间隔时间
-            int totalAllPeriod;
             // 转移其他线程组
             BaseTimeFlow[]? moveOtherThreadFlow = null;
+            // 总体目标运行间隔时间
+            int totalAllPeriod;
+            */
+            List<BaseTimeFlow> waitRmv = new List<BaseTimeFlow>();
             // 耗时监视器
             var watch = new System.Diagnostics.Stopwatch();
             watch.Start();
-            // int currentPeriod = TimeFlowManager.timeFlowPeriod;
             while (IsRunning)
             {
-                // timeFixHelper.Begin();
-                int totalTime = 0;
-                int len = timeFlows.Count;
-                totalAllPeriod = 0;
-                for (int i = len - 1; i >= 0; i--)
-                {
-                    BaseTimeFlow tf = timeFlows[i];
-                    if (tf.IsTimeUpdateActive())
-                    {
-                        if (tf.isTimeFlowStop)
-                        {
-                            timeFlows.RemoveAt(i);
-                            tf.UpdateEndES();
-                        }
-                        else if (!tf.isTimeFlowPause)
-                        {
-                            totalAllPeriod += tf.fixedTime;
-                            tf.UpdateES(watch.Elapsed.TotalSeconds);
-                            totalTime += tf.lastUseTime;
-                        }
-                    }
-                }
-                // 重置超时检测
                 Interlocked.Exchange(ref threadBlockTimeOutCount, 0);
 
+                // 加入新的时间流
+#if !UNITY_2020_1_OR_NEWER
+                if (!waitAddTimeFlows.IsEmpty)
+                {
+                    timeFlows.AddRange(waitAddTimeFlows);
+                    waitAddTimeFlows.Clear();
+                }
+#else
+				if(!waitAddTimeFlows.IsEmpty) 
+                {
+                    timeFlows.AddRange(waitAddTimeFlows);
+                    waitAddTimeFlows.ClearAll();
+                }
+#endif
+
+                // timeFixHelper.Begin();
+                // int totalTime = 0;
+                // totalAllPeriod = 0;
+                foreach (var tf in timeFlows)
+                {
+                    if (!tf.IsTimeUpdateActive()) continue;
+                    if (tf.isTimeFlowStop)
+                    {
+                        waitRmv.Add(tf);
+                        tf.UpdateEndES();
+                        continue;
+                    }
+                    if (tf.isTimeFlowPause) continue;
+                    // totalAllPeriod += tf.fixedTime;
+                    tf.UpdateES(watch.Elapsed.TotalSeconds);
+                    // totalTime += tf.lastUseTime;
+                }
+                foreach (var rmvtf in waitRmv)
+                {
+                    timeFlows.Remove(rmvtf);
+                }
+                waitRmv.Clear();
+
+                /*
                 // 无任务进行则关闭
-                if (len <= 0)
+                if (timeFlows.Count <= 0)
                 {
                     // 超出闲置时间跳出循环
                     if (++idlHandleTimeCount >= 1000000) break;
@@ -207,22 +224,12 @@ namespace ES.Time
                     }
                     moveOtherThreadFlow = null;
                 }
-
-                // 加入新的时间流
-                timeFlows.AddRange(waitTimeFlows);
-#if !UNITY_2020_1_OR_NEWER
-                waitTimeFlows.Clear();
-#else
-				waitTimeFlows.ClearAll();
-#endif
+                */
 
                 // 精度调整
                 if (isHighPrecisionMode) Thread.Yield();
                 else Thread.Sleep(1);
-                // currentPeriod = timeFixHelper.End();
             }
-            // 线程结束时则重置为false
-            timeFlows.Clear();
         }
 
         /// <summary>
@@ -232,7 +239,6 @@ namespace ES.Time
         /// <returns></returns>
         internal bool CloseByObj(ITimeUpdate timeUpdate)
         {
-            if (timeFlows == null) return false;
             for (int i = 0, len = timeFlows.Count; i < len; i++)
             {
                 if (timeFlows[i].CloseByObj(timeUpdate)) return true;
@@ -244,6 +250,13 @@ namespace ES.Time
         internal void Close()
         {
             IsRunning = false;
+            try
+            {
+#pragma warning disable SYSLIB0006 // 类型或成员已过时
+                if (thread != null && thread.IsAlive) thread.Abort();
+#pragma warning restore SYSLIB0006 // 类型或成员已过时
+            }
+            catch { }
             IsPausePushTask = true;
             thread = null;
         }

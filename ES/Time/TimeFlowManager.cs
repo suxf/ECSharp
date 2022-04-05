@@ -27,10 +27,12 @@ namespace ES.Time
         /// </summary>
         private readonly TimeFlowThread[] kernelTimeFlowThreads;
 
+        /*
         /// <summary>
         /// 监控线程
         /// </summary>
         private readonly Thread timeFlowThreadMoniter;
+        */
 
         /// <summary>
         /// 私有构造
@@ -49,10 +51,12 @@ namespace ES.Time
                 else timeFlowThreads.Add(new TimeFlowThread(i));
             }
 
+            /*
             // 检测线程启动
             timeFlowThreadMoniter = new Thread(UpdateCheckTimeFlowThread);
             timeFlowThreadMoniter.IsBackground = true;
             timeFlowThreadMoniter.Start();
+            */
         }
 
         /// <summary>
@@ -88,19 +92,16 @@ namespace ES.Time
             {
                 return;
             }
-
-            // 如果线程没有启动则启动
-            timeFlowThread.Start();
             // 压入操作
             timeFlowThread.Push(tf);
         }
 
-        internal int CreateExtraTimeFlow()
-        {
-            var len = timeFlowThreads.Count;
-            timeFlowThreads.Add(new TimeFlowThread(len));
-            return len;
-        }
+        // internal int CreateExtraTimeFlow()
+        // {
+        //     var len = timeFlowThreads.Count;
+        //     timeFlowThreads.Add(new TimeFlowThread(len));
+        //     return len;
+        // }
 
         /// <summary>
         /// 通过对象关闭时间流
@@ -122,6 +123,7 @@ namespace ES.Time
             return false;
         }
 
+        /*
         /// <summary>
         /// 更新检查阻塞线程并重启
         /// <para>检测周期为线程睡眠 1 秒</para>
@@ -135,18 +137,16 @@ namespace ES.Time
                     // 睡眠
                     Thread.Sleep(1000);
                     foreach (var thread in kernelTimeFlowThreads)
-                    {
                         thread.CheckThreadSafe();
-                    }
                     foreach (var thread in timeFlowThreads)
-                    {
                         thread.CheckThreadSafe();
-                    }
                 }
                 catch { }
             }
         }
+        */
 
+        /*
         /// <summary>
         /// 销毁所有更新
         /// <para>本次程序运行结束前都无法使用。建议只有在即将关闭前调用</para>
@@ -154,13 +154,10 @@ namespace ES.Time
         internal void Destroy()
         {
             foreach (var thread in kernelTimeFlowThreads)
-            {
                 thread.Close();
-            }
             foreach (var thread in timeFlowThreads)
-            {
                 thread.Close();
-            }
         }
+        */
     }
 }

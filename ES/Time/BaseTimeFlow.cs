@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 
 namespace ES.Time
@@ -21,8 +20,8 @@ namespace ES.Time
         /// </summary>
         internal bool isTimeFlowStop = false;
 
-        private readonly Stopwatch stopwatch = new Stopwatch();
-        internal int lastUseTime = 0;
+        // private readonly Stopwatch stopwatch = new Stopwatch();
+        // internal int lastUseTime = 0;
 
         private readonly WeakReference<ITimeUpdate> reference;
 
@@ -46,6 +45,8 @@ namespace ES.Time
         /// 首次更新
         /// </summary>
         private bool firstUpdate = true;
+
+        private bool IsIdle = true;
 
         /// <summary>
         /// 构造函数 多线程处理逻辑
@@ -125,6 +126,7 @@ namespace ES.Time
             isTimeFlowStop = true;
         }
 
+        /*
         /// <summary>
         /// 关闭程序中所有时间流
         /// <para>调用此函数，在此次进程中无法再次启动</para>
@@ -133,6 +135,7 @@ namespace ES.Time
         {
             TimeFlowManager.Instance.Destroy();
         }
+        */
 
         /// <summary>
         /// 通过对象关闭时间流
@@ -155,8 +158,8 @@ namespace ES.Time
         /// <param name="dt"></param>
         internal void UpdateES(double dt)
         {
-            stopwatch.Start();
-            var nanoDt = (long)(dt * 1000000000L);
+            // stopwatch.Start();
+            long nanoDt = (long)dt * 1000000000L;
             if (reference.TryGetTarget(out var iTimeUpdate))
             {
                 // 首次处理忽略之前的值
@@ -167,19 +170,35 @@ namespace ES.Time
                 }
                 var temp = nanoDt - consumeTime;
                 // 正常更新
-                if (fixedTime == 0) iTimeUpdate.Update((int)(temp / 1000000L));
-                else
+                if (IsIdle)
                 {
-                    // 修正更新
-                    var consumeFixedTime = notConsumeFixedTime + temp;
-                    notConsumeFixedTime = consumeFixedTime % fixedNanoTime;
-                    var count = consumeFixedTime / fixedNanoTime;
-                    for (int i = 0; i < count; i++) iTimeUpdate.Update(fixedTime);
+                    IsIdle = false;
+                    if (fixedTime == 0)
+                    {
+                        ThreadPool.QueueUserWorkItem(delegate
+                        {
+                            iTimeUpdate.Update((int)(temp / 1000000L));
+                            IsIdle = true;
+                        });
+                    }
+                    else
+                    {
+                        // 修正更新
+                        var consumeFixedTime = notConsumeFixedTime + temp;
+                        notConsumeFixedTime = consumeFixedTime % fixedNanoTime;
+                        var count = consumeFixedTime / fixedNanoTime;
+                        ThreadPool.QueueUserWorkItem(delegate
+                        {
+                            for (int i = 0; i < count; i++)
+                                iTimeUpdate.Update(fixedTime);
+                            IsIdle = true;
+                        });
+                    }
+                    consumeTime = nanoDt;
                 }
             }
-            consumeTime = nanoDt;
-            Interlocked.Exchange(ref lastUseTime, (int)stopwatch.ElapsedMilliseconds);
-            stopwatch.Reset();
+            // Interlocked.Exchange(ref lastUseTime, (int)stopwatch.ElapsedMilliseconds);
+            // stopwatch.Reset();
         }
 
         /// <summary>
@@ -187,7 +206,13 @@ namespace ES.Time
         /// </summary>
         internal void UpdateEndES()
         {
-            if (reference.TryGetTarget(out var iTimeUpdate)) iTimeUpdate.UpdateEnd();
+            if (reference.TryGetTarget(out var iTimeUpdate))
+            {
+                ThreadPool.QueueUserWorkItem(delegate
+                {
+                    iTimeUpdate.UpdateEnd();
+                });
+            }
         }
     }
 }

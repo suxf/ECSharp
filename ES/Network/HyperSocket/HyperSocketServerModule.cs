@@ -217,7 +217,8 @@ namespace ES.Network.HyperSocket
                     hashlist.Add(remote.hashCode);
                     remote.isVaildHyperSocket = false;
                 }
-                remote.Tag += dt;
+                if(remote.Tag.IsNull()) remote.Tag = dt;
+                else remote.Tag += dt;
             }
             foreach (var hash in hashlist)
             {

@@ -22,8 +22,9 @@
 
         /// <summary>
         /// 高精度模式
+        /// <para>高精度模式会侵占所有CPU性能，但运算精度。</para>
         /// </summary>
-        public bool IsHighPrecisionMode { get { return TimeFlowThread.isHighPrecisionMode; } }
+        public static bool IsHighPrecisionMode { get { return TimeFlowThread.isHighPrecisionMode; } }
 
         /// <summary>
         /// 构造函数 多线程处理逻辑
@@ -99,6 +100,7 @@
             CloseTimeFlowES();
         }
 
+        /*
         /// <summary>
         /// 关闭程序中所有时间流
         /// <para>调用此函数，在此次进程中无法再次启动</para>
@@ -107,5 +109,6 @@
         {
             CloseAllTimeFlowES();
         }
+        */
     }
 }

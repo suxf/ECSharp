@@ -15,8 +15,9 @@ namespace Sample
         public Test_Time()
         {
             // 时间闹钟
-            TimeClock.Create(delegate(DateTime time) {
-                Log.Info($"Time Now Alarm Clock 1:{time}"); 
+            TimeClock.Create(delegate (DateTime time)
+            {
+                Log.Info($"Time Now Alarm Clock 1:{time}");
             }, 2022, 1, 1, 0, 0, 0).Start(true);
 
             TimeClock.Create(delegate (DateTime time)
@@ -27,8 +28,6 @@ namespace Sample
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
             // Close();
-            // 同样需要关闭一切进程中的更新可以使用此类的静态函数
-            // TimeFlow.CloseAll();
             // 如果只是暂停的话 那么可以调用
             // Pause();
             // 再次恢复时间更新
@@ -72,13 +71,12 @@ namespace Sample
             Log.Info("Hello TimeFix2");
             periodNow = timeFix.End();
             /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
-            
 
             // 临时变量 测试时间流自动停止
             // StartTempTime();
             // 需要gc回收一下
             // 此处gc不会影响当前大括号的其他定时器，因为这个函数域还没结束
-            GC.Collect();
+            // GC.Collect();
         }
 
         /// <summary>
@@ -99,7 +97,6 @@ namespace Sample
                 period1 = 0;
                 Log.Info($"Hello TimeFlow:[{dt}]{DateTime.Now:yyyy-MM-dd HH:mm:ss:fffffff}");
             }
-            // Thread.Sleep(500);
         }
 
         /// <summary>
