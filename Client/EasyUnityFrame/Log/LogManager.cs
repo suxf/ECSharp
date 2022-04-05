@@ -161,12 +161,12 @@ namespace ES.Log
             {
                 case LogType.DEBUG:
 #if !UNITY_2020_1_OR_NEWER
-					if (Console.ForegroundColor != LogConfig.FOREGROUND_DEBUG_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
+                    if (Console.ForegroundColor != LogConfig.FOREGROUND_DEBUG_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
                     if (Console.BackgroundColor != LogConfig.BACKGROUND_DEBUG_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
 #else
 					UnityEngine.Debug.Log(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
-#endif                    
-					break;
+#endif
+                    break;
                 case LogType.INFO:
 #if !UNITY_2020_1_OR_NEWER
                     if (Console.ForegroundColor != LogConfig.FOREGROUND_INFO_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
@@ -174,7 +174,7 @@ namespace ES.Log
 #else
 					UnityEngine.Debug.Log(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-					break;
+                    break;
                 case LogType.WARN:
 #if !UNITY_2020_1_OR_NEWER
                     if (Console.ForegroundColor != LogConfig.FOREGROUND_WARN_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
@@ -182,7 +182,7 @@ namespace ES.Log
 #else
 					UnityEngine.Debug.LogWarning(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-				    break;
+                    break;
                 case LogType.ERROR:
 #if !UNITY_2020_1_OR_NEWER
                     if (Console.ForegroundColor != LogConfig.FOREGROUND_ERROR_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
@@ -190,7 +190,7 @@ namespace ES.Log
 #else
 					UnityEngine.Debug.LogError(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-					break;
+                    break;
                 case LogType.FATAL:
 #if !UNITY_2020_1_OR_NEWER
                     if (Console.ForegroundColor != LogConfig.FOREGROUND_EXCEPTION_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
@@ -198,7 +198,7 @@ namespace ES.Log
 #else
 					UnityEngine.Debug.LogAssertion(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-					break;
+                    break;
                 case LogType.INPUT:
 #if !UNITY_2020_1_OR_NEWER
                     if (Console.ForegroundColor != LogConfig.FOREGROUND_INPUT_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_INPUT_COLOR;
@@ -206,12 +206,12 @@ namespace ES.Log
 #else
 					UnityEngine.Debug.Log(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-					break;
+                    break;
             }
 #if !UNITY_2020_1_OR_NEWER
             Console.WriteLine(log.log + $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? " <" + log.stack + ">" : " ")}");
 #endif
-		}
+        }
 
         /// <summary>
         /// 停止更新

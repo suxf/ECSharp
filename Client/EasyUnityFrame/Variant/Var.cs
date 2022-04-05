@@ -655,10 +655,34 @@ namespace ES.Variant
         {
 #if !UNITY_2020_1_OR_NEWER
             return HashCode.Combine(type, intValue, longValue, doubleValue, stringValue, objectValue, listValue, mapValue);
-#else 
+#else
 			return type.GetHashCode() ^ intValue.GetHashCode() ^ longValue.GetHashCode() ^ doubleValue.GetHashCode() ^ stringValue.GetHashCode() ^ objectValue.GetHashCode() ^ listValue.GetHashCode() ^ mapValue.GetHashCode();
 #endif
-		}
+        }
+
+        /// <summary>
+        /// 是否为空类型
+        /// </summary>
+        public bool IsNull()
+        {
+            return type == VarType.NULL;
+        }
+
+        /// <summary>
+        /// 是否为数字类型
+        /// </summary>
+        public bool IsNumber()
+        {
+            return type == VarType.INT32 || type == VarType.UINT32 || type == VarType.INT64 || type == VarType.UINT64 || type == VarType.FLOAT || type == VarType.DOUBLE;
+        }
+
+        /// <summary>
+        /// 是否为字符串类型
+        /// </summary>
+        public bool IsString()
+        {
+            return type == VarType.STRING;
+        }
 
         /// <summary>
         /// 转字节数组
