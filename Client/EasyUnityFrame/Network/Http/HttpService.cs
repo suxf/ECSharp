@@ -130,7 +130,7 @@ namespace ES.Network.Http
                     // 获取流
                     stream = tcpClient?.GetStream();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     httpInvoke.HttpException(null, ex);
                 }

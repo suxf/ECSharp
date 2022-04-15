@@ -27,17 +27,12 @@
         public static bool IsHighPrecisionMode { get { return TimeFlowThread.isHighPrecisionMode; } }
 
         /// <summary>
-        /// 构造函数 多线程处理逻辑
-        /// </summary>
-        private TimeFlow(ITimeUpdate timeUpdate, int fixedTime) : base(timeUpdate, fixedTime) { }
-
-        /// <summary>
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="timeUpdate"></param>
-        /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
+        /// <param name="isSync">同步标记</param>
         /// <param name="fixedTime">修正时间</param>
-        private TimeFlow(ITimeUpdate timeUpdate, int tfIndex, int fixedTime) : base(timeUpdate, tfIndex, fixedTime) { }
+        private TimeFlow(ITimeUpdate timeUpdate, bool isSync, int fixedTime) : base(timeUpdate, isSync, fixedTime) { }
 
         /// <summary>
         /// 创建一个时间流
@@ -46,7 +41,7 @@
         /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
         public static TimeFlow Create(ITimeUpdate timeUpdate, int period = 10)
         {
-            return new TimeFlow(timeUpdate, period);
+            return new TimeFlow(timeUpdate, false, period);
         }
 
         /// <summary>
@@ -57,7 +52,7 @@
         /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
         public static TimeFlow CreateSync(ITimeUpdate timeUpdate, int period = 10)
         {
-            return new TimeFlow(timeUpdate, 2, period);
+            return new TimeFlow(timeUpdate, true, period);
         }
 
         /// <summary>

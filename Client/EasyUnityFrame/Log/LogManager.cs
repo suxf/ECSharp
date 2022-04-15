@@ -58,7 +58,7 @@ namespace ES.Log
                 Directory.CreateDirectory(LogConfig.LOG_PATH);
             }
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 1);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 1*/);
             timeFlow.StartTimeFlowES();
         }
 

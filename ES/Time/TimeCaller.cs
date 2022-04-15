@@ -53,18 +53,15 @@ namespace ES.Time
         /// <param name="periodTime">每次周期时间【第二次之后开始执行的延迟时间】，单位ms</param>
         /// <param name="repeatNum">重复次数，值为 -1 时 无限循环，默认 1 次</param>
         /// <param name="handle">需要被执行的函数</param>
-        /// <param name="tfIndex">时间流索引</param>
-        private TimeCaller(int delayTime, int periodTime, long repeatNum, Action<long> handle, int tfIndex = -1)
+        /// <param name="isSync">同步标记</param>
+        private TimeCaller(int delayTime, int periodTime, long repeatNum, Action<long> handle, bool isSync)
         {
             this.delayTime = delayTime;
             this.periodTime = periodTime;
             this.repeatNum = repeatNum;
             this.handle = handle;
 
-            if (tfIndex == -1)
-                timeFlow = BaseTimeFlow.CreateTimeFlow(this);
-            else
-                timeFlow = BaseTimeFlow.CreateTimeFlow(this, tfIndex);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, isSync);
         }
 
         /// <summary>
@@ -76,7 +73,7 @@ namespace ES.Time
         /// <param name="repeatNum">重复次数，值为 -1 时 无限循环，默认 1 次</param>
         public static TimeCaller Create(Action<long> handle, int delayTime, int periodTime = 0, long repeatNum = 1)
         {
-            return new TimeCaller(delayTime, periodTime, repeatNum, handle);
+            return new TimeCaller(delayTime, periodTime, repeatNum, handle, false);
         }
 
         /// <summary>
@@ -88,7 +85,7 @@ namespace ES.Time
         /// <param name="repeatNum">重复次数，值为 -1 时 无限循环，默认 1 次</param>
         public static TimeCaller CreateSync(Action<long> handle, int delayTime, int periodTime = 0, long repeatNum = 1)
         {
-            return new TimeCaller(delayTime, periodTime, repeatNum, handle, 2);
+            return new TimeCaller(delayTime, periodTime, repeatNum, handle, true);
         }
 
         /// <summary>
@@ -119,9 +116,9 @@ namespace ES.Time
         {
             lock (timeCallers)
             {
-                foreach (var t in timeCallers)
+                for (int i = 0, len = timeCallers.Count; i < len; i++)
                 {
-                    t.Cancel();
+                    timeCallers[i].Cancel();
                 }
                 timeCallers.Clear();
             }

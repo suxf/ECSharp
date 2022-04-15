@@ -54,7 +54,7 @@ namespace ES.Hotfix
         static HotfixMgr()
         {
             updateCheck = new UpdateCheck();
-            tf = BaseTimeFlow.CreateTimeFlow(updateCheck, 0);
+            tf = BaseTimeFlow.CreateTimeFlow(updateCheck/*, 0*/);
             tf.StartTimeFlowES();
         }
 
@@ -128,9 +128,9 @@ namespace ES.Hotfix
                 lock (agentRefs)
                 {
                     // 先暂停时间流
-                    foreach (var item in agentRefs)
+                    for (int i = 0, len = agentRefs.Count; i < len; i++)
                     {
-                        if (item.TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
+                        if (agentRefs[i].TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
                         {
                             // 处理时间流代理停止
                             TimeFlowManager.Instance.CloseByObj((ITimeUpdate)agentRef._agent);

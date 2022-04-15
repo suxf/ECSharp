@@ -81,8 +81,8 @@ namespace ES.Time
         /// <param name="second">秒</param>
         /// <param name="isRepeat">是否重复</param>
         /// <param name="sysTime">获取时间接口</param>
-        /// <param name="tfIndex">时间流索引</param>
-        private TimeClock(Action<DateTime> handle, int year, int month, int day, int hour, int minute, int second, bool isRepeat, ISysTime? sysTime, int tfIndex = -1)
+        /// <param name="isSync">同步标记</param>
+        private TimeClock(Action<DateTime> handle, int year, int month, int day, int hour, int minute, int second, bool isRepeat, ISysTime? sysTime, bool isSync)
         {
             IsRepeat = isRepeat;
             this.handle = handle;
@@ -94,14 +94,9 @@ namespace ES.Time
             this.hour = hour;
             this.minute = minute;
             this.second = second;
-
             // 获取当前时
             lastHour = DateTime.Now.Hour;
-
-            if (tfIndex == -1)
-                timeFlow = BaseTimeFlow.CreateTimeFlow(this);
-            else
-                timeFlow = BaseTimeFlow.CreateTimeFlow(this, tfIndex);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, isSync);
         }
 
         /// <summary>
@@ -114,7 +109,7 @@ namespace ES.Time
         public static TimeClock Create(Action<DateTime> handle, string time, bool isRepeat = false, ISysTime? sysTime = null)
         {
             DateTime dtTime = Convert.ToDateTime(time);
-            return new TimeClock(handle, -1, -1, -1, dtTime.Hour, dtTime.Minute, dtTime.Second, isRepeat, sysTime);
+            return new TimeClock(handle, -1, -1, -1, dtTime.Hour, dtTime.Minute, dtTime.Second, isRepeat, sysTime, false);
         }
 
         /// <summary>
@@ -130,7 +125,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock Create(Action<DateTime> handle, int year, int month, int day, int hour, int minute, int second, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, year, month, day, hour, minute, second, false, sysTime);
+            return new TimeClock(handle, year, month, day, hour, minute, second, false, sysTime, false);
         }
 
         /// <summary>
@@ -146,7 +141,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock Create(Action<DateTime> handle, int month, int day, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, month, day, hour, minute, second, isRepeat, sysTime);
+            return new TimeClock(handle, -1, month, day, hour, minute, second, isRepeat, sysTime, false);
         }
 
         /// <summary>
@@ -161,7 +156,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock Create(Action<DateTime> handle, int day, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, -1, day, hour, minute, second, isRepeat, sysTime);
+            return new TimeClock(handle, -1, -1, day, hour, minute, second, isRepeat, sysTime, false);
         }
 
         /// <summary>
@@ -175,7 +170,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock Create(Action<DateTime> handle, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, -1, -1, hour, minute, second, isRepeat, sysTime);
+            return new TimeClock(handle, -1, -1, -1, hour, minute, second, isRepeat, sysTime, false);
         }
 
         /// <summary>
@@ -191,7 +186,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock CreateSync(Action<DateTime> handle, int year, int month, int day, int hour, int minute, int second, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, year, month, day, hour, minute, second, false, sysTime, 2);
+            return new TimeClock(handle, year, month, day, hour, minute, second, false, sysTime, true);
         }
 
         /// <summary>
@@ -207,7 +202,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock CreateSync(Action<DateTime> handle, int month, int day, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, month, day, hour, minute, second, isRepeat, sysTime, 2);
+            return new TimeClock(handle, -1, month, day, hour, minute, second, isRepeat, sysTime, true);
         }
 
         /// <summary>
@@ -222,7 +217,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock CreateSync(Action<DateTime> handle, int day, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, -1, day, hour, minute, second, isRepeat, sysTime, 2);
+            return new TimeClock(handle, -1, -1, day, hour, minute, second, isRepeat, sysTime, true);
         }
 
         /// <summary>
@@ -236,7 +231,7 @@ namespace ES.Time
         /// <param name="sysTime">系统时间获取接口</param>
         public static TimeClock CreateSync(Action<DateTime> handle, int hour, int minute, int second, bool isRepeat = false, ISysTime? sysTime = null)
         {
-            return new TimeClock(handle, -1, -1, -1, hour, minute, second, isRepeat, sysTime, 2);
+            return new TimeClock(handle, -1, -1, -1, hour, minute, second, isRepeat, sysTime, true);
         }
 
         /// <summary>
@@ -267,9 +262,9 @@ namespace ES.Time
         {
             lock (timeClocks)
             {
-                foreach (var t in timeClocks)
+                for (int i = 0, len = timeClocks.Count; i < len; i++)
                 {
-                    t.Cancel();
+                    timeClocks[i].Cancel();
                 }
                 timeClocks.Clear();
             }

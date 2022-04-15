@@ -73,7 +73,7 @@ namespace ES.Database.SQLServer
             builder.MaxPoolSize = maxPoolSize;
             builder.IntegratedSecurity = false;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 
@@ -86,7 +86,7 @@ namespace ES.Database.SQLServer
         {
             builder = new SqlConnectionStringBuilder(connectionString);
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 
@@ -98,7 +98,7 @@ namespace ES.Database.SQLServer
         {
             builder = sqlConnectionStringBuilder;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 

@@ -118,7 +118,7 @@ namespace ES.Database.Linq
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 

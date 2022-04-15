@@ -1,7 +1,6 @@
 var class_e_s_1_1_time_1_1_time_flow =
 [
     [ "Close", "class_e_s_1_1_time_1_1_time_flow.html#ac95008ac606be31f632a950e31b8bc1f", null ],
-    [ "CloseAll", "class_e_s_1_1_time_1_1_time_flow.html#ae5e5f39193fa09ec0fbc3952f7c250d1", null ],
     [ "Create", "class_e_s_1_1_time_1_1_time_flow.html#aa257aee80110f93b28b5e0d95f0e7f0d", null ],
     [ "CreateSync", "class_e_s_1_1_time_1_1_time_flow.html#aebcbc0c27c3f70f4461eff3ebe2a715e", null ],
     [ "Pause", "class_e_s_1_1_time_1_1_time_flow.html#ad807b779a3287a14a0671c7ee118b3f0", null ],

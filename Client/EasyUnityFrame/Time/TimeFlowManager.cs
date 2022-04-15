@@ -1,6 +1,5 @@
 ﻿using ES.Utils;
 using System.Collections.Concurrent;
-using System.Threading;
 
 namespace ES.Time
 {
@@ -25,7 +24,7 @@ namespace ES.Time
         /// <summary>
         /// 核心时间流控制线程
         /// </summary>
-        private readonly TimeFlowThread[] kernelTimeFlowThreads;
+        private readonly TimeFlowThread kernelTimeFlowThread;
 
         /*
         /// <summary>
@@ -39,16 +38,13 @@ namespace ES.Time
         /// </summary>
         private TimeFlowManager()
         {
-            // 最大处理任务线程数量 标准公式为 核心数 * 2 + 2 因为检测线程占用 1 个，所以此处只加了 1 个
-            int MAX_HANDLE_TASK_THREAD = SystemInfo.ProcessorCount * 2 + 1;
-            // 不足四线程则改为4线程
-            if (MAX_HANDLE_TASK_THREAD < 4) MAX_HANDLE_TASK_THREAD = 4;
+            // 最大处理任务线程数量 标准公式为 核心数 * 2 + 2
+            int MAX_HANDLE_TASK_THREAD = SystemInfo.ProcessorCount * 2 + 2;
+            kernelTimeFlowThread = new TimeFlowThread(0);
             timeFlowThreads = new ConcurrentBag<TimeFlowThread>();
-            kernelTimeFlowThreads = new TimeFlowThread[3];
-            for (int i = 0; i < MAX_HANDLE_TASK_THREAD; i++)
+            for (int i = 1; i < MAX_HANDLE_TASK_THREAD; i++)
             {
-                if (i < 3) kernelTimeFlowThreads[i] = new TimeFlowThread(i);
-                else timeFlowThreads.Add(new TimeFlowThread(i));
+                timeFlowThreads.Add(new TimeFlowThread(i));
             }
 
             /*
@@ -63,16 +59,19 @@ namespace ES.Time
         /// 压入一个时间流继承对象
         /// </summary>
         /// <param name="tf"></param>
-        /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分 2 单线程同步update</param>
-        internal void PushTimeFlow(BaseTimeFlow tf, int tfIndex = -1)
+        /// <param name="isSync">同步标记</param>
+        internal void PushTimeFlow(BaseTimeFlow tf, bool isSync)
         {
             // 查找适用的时间流存储器
             int minQueueTaskTfCount = int.MaxValue;
             TimeFlowThread? timeFlowThread = null;
 
-            if (tfIndex == -1 || tfIndex >= 3)
+            if (isSync)
             {
-                // 按单核算 最高为4 索引位最高为3 否则会出问题
+                timeFlowThread = kernelTimeFlowThread;
+            }
+            else
+            {
                 foreach (var thread in timeFlowThreads)
                 {
                     var count = thread.GetTaskCount();
@@ -82,10 +81,6 @@ namespace ES.Time
                         timeFlowThread = thread;
                     }
                 }
-            }
-            else
-            {
-                timeFlowThread = kernelTimeFlowThreads[tfIndex];
             }
 
             if (timeFlowThread == null && !timeFlowThreads.TryPeek(out timeFlowThread))
@@ -110,11 +105,9 @@ namespace ES.Time
         /// <returns></returns>
         internal bool CloseByObj(ITimeUpdate timeUpdate)
         {
-            foreach (var thread in kernelTimeFlowThreads)
-            {
-                if (thread.CloseByObj(timeUpdate)) return true;
-                else continue;
-            }
+            if (kernelTimeFlowThread.CloseByObj(timeUpdate))
+                return true;
+
             foreach (var thread in timeFlowThreads)
             {
                 if (thread.CloseByObj(timeUpdate)) return true;

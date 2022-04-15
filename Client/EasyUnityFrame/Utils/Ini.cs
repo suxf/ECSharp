@@ -167,5 +167,57 @@ namespace ES.Utils
 
             return true;
         }
+
+        /// <summary>
+        /// Current的值
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <returns></returns>
+        public static string? GetValue(string key)
+        {
+            return Current.GetSectionValue("", key);
+        }
+
+        /// <summary>
+        /// Current的值
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static string GetValue(string key, string defaultValue)
+        {
+            return Current.GetValue(key) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// Current的值
+        /// </summary>
+        /// <param name="section">节选</param>
+        /// <param name="key">键名</param>
+        /// <returns></returns>
+        public static string? GetSectionValue(string section, string key)
+        {
+            if (Current.map.TryGetValue(section, out var value) && value.TryGetValue(key, out var v))
+            {
+                return v;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Current的值
+        /// </summary>
+        /// <param name="section">节选</param>
+        /// <param name="key">键名</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static string GetSectionValue(string section, string key, string defaultValue)
+        {
+            if (Current.map.TryGetValue(section, out var value) && value.TryGetValue(key, out var v))
+            {
+                return v;
+            }
+            return defaultValue;
+        }
     }
 }

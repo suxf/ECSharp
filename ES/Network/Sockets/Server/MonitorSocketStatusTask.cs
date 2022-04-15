@@ -26,7 +26,7 @@ namespace ES.Network.Sockets.Server
         {
             SetTimeout(timeout);
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 

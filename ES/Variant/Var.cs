@@ -40,7 +40,7 @@ namespace ES.Variant
         /// <summary>
         /// 变量类型
         /// </summary>
-        public readonly VarType Type => type;
+        public VarType Type => type;
 
 #if !UNITY_2020_1_OR_NEWER
         /// <summary>

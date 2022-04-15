@@ -50,7 +50,7 @@ namespace ES.Database.Linq
             this.syncPeriod = syncPeriod;
             this.condition = !string.IsNullOrEmpty(condition) ? (condition + " AND ") : "";
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 

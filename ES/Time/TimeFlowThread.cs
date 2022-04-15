@@ -35,19 +35,11 @@ namespace ES.Time
         internal TimeFlowThread(int index)
         {
             Index = index;
-            Start();
-        }
-
-        private void Start()
-        {
-            if (!IsRunning)
-            {
-                IsRunning = true;
-                IsPausePushTask = false;
-                thread = new Thread(UpdateHandle);
-                thread.IsBackground = true;
-                thread.Start();
-            }
+            IsRunning = true;
+            IsPausePushTask = false;
+            thread = new Thread(UpdateHandle);
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         internal int GetTaskCount()
@@ -60,7 +52,7 @@ namespace ES.Time
         {
             waitAddTimeFlows.Add(timeFlow);
         }
-        
+
         /*
         internal void CheckThreadSafe()
         {
@@ -139,12 +131,12 @@ namespace ES.Time
                     waitAddTimeFlows.ClearAll();
                 }
 #endif
-
                 // timeFixHelper.Begin();
                 // int totalTime = 0;
                 // totalAllPeriod = 0;
-                foreach (var tf in timeFlows)
+                for (int i = 0, len = timeFlows.Count; i < len; i++)
                 {
+                    var tf = timeFlows[i];
                     if (!tf.IsTimeUpdateActive()) continue;
                     if (tf.isTimeFlowStop)
                     {
@@ -157,9 +149,9 @@ namespace ES.Time
                     tf.UpdateES(watch.Elapsed.TotalSeconds);
                     // totalTime += tf.lastUseTime;
                 }
-                foreach (var rmvtf in waitRmv)
+                for (int i = 0, len = waitRmv.Count; i < len; i++)
                 {
-                    timeFlows.Remove(rmvtf);
+                    timeFlows.Remove(waitRmv[i]);
                 }
                 waitRmv.Clear();
 

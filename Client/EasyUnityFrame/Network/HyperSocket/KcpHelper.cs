@@ -2,7 +2,6 @@
 using System;
 using System.Buffers;
 using System.Net.Sockets.Kcp;
-using System.Threading;
 
 namespace ES.Network.HyperSocket
 {
@@ -37,7 +36,7 @@ namespace ES.Network.HyperSocket
 
             kcpListener = listener;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, -1, 10);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this, false, 10);
             timeFlow.StartTimeFlowES();
         }
 
@@ -47,7 +46,7 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void Send(Span<byte> data)
         {
-            lock(kcp)
+            lock (kcp)
             {
                 if (isClosed) return;
                 kcp.Send(data);
@@ -62,7 +61,7 @@ namespace ES.Network.HyperSocket
         /// <param name="data"></param>
         public void Recv(Span<byte> data)
         {
-            lock(kcp)
+            lock (kcp)
             {
                 if (isClosed) return;
                 kcp.Input(data);
@@ -93,7 +92,7 @@ namespace ES.Network.HyperSocket
 
         public void CloseKcp()
         {
-            lock(kcp)
+            lock (kcp)
             {
                 isClosed = true;
                 timeFlow.CloseTimeFlowES();

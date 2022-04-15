@@ -72,7 +72,7 @@ namespace ES.Database.MySQL
             builder.MinimumPoolSize = minPoolSize;
             builder.MaximumPoolSize = maxPoolSize;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 
@@ -85,7 +85,7 @@ namespace ES.Database.MySQL
         {
             builder = new MySqlConnectionStringBuilder(connectionString);
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 
@@ -97,7 +97,7 @@ namespace ES.Database.MySQL
         {
             builder = mySqlConnectionStringBuilder;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, 0);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, 0*/);
             timeFlow.StartTimeFlowES();
         }
 

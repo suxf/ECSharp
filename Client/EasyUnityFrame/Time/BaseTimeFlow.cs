@@ -46,48 +46,41 @@ namespace ES.Time
         /// </summary>
         private bool firstUpdate = true;
 
+        /// <summary>
+        /// 空闲标记
+        /// </summary>
         private bool IsIdle = true;
 
         /// <summary>
-        /// 构造函数 多线程处理逻辑
-        /// <para>继承此类的对象会分配在多个线程下运行，需要单线程请使用SyncTimeFlow类</para>
+        /// 同步标记
         /// </summary>
-        protected BaseTimeFlow(ITimeUpdate timeUpdate, int fixedTime)
-        {
-            this.fixedTime = fixedTime;
-            if (this.fixedTime <= 0) this.fixedTime = 0;
-            else fixedNanoTime = fixedTime * 1000000L;
-            reference = new WeakReference<ITimeUpdate>(timeUpdate);
-            TimeFlowManager.Instance.PushTimeFlow(this);
-        }
+        private readonly bool IsSync = false;
 
         /// <summary>
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="timeUpdate"></param>
-        /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
+        /// <param name="isSync">同步标记</param>
         /// <param name="fixedTime">修正时间</param>
-        protected BaseTimeFlow(ITimeUpdate timeUpdate, int tfIndex, int fixedTime)
+        protected BaseTimeFlow(ITimeUpdate timeUpdate, bool isSync, int fixedTime)
         {
+            IsSync = isSync;
             this.fixedTime = fixedTime;
             if (this.fixedTime <= 0) this.fixedTime = 0;
             else fixedNanoTime = fixedTime * 1000000L;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
-            TimeFlowManager.Instance.PushTimeFlow(this, tfIndex);
+            TimeFlowManager.Instance.PushTimeFlow(this, isSync);
         }
 
         /// <summary>
         /// 创建基础时间流
         /// </summary>
         /// <param name="timeUpdate"></param>
-        /// <param name="tfIndex">数组前两个线程是给框架使用，0负责数据部分 1负责文件部分</param>
+        /// <param name="isSync">同步标记</param>
         /// <param name="fixedTime">修正时间</param>
-        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, int tfIndex = -1, int fixedTime = 10)
+        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, bool isSync = false, int fixedTime = 10)
         {
-            if (tfIndex == -1)
-                return new BaseTimeFlow(timeUpdate, fixedTime);
-            else
-                return new BaseTimeFlow(timeUpdate, tfIndex, fixedTime);
+            return new BaseTimeFlow(timeUpdate, isSync, fixedTime);
         }
 
         /// <summary>
@@ -175,11 +168,19 @@ namespace ES.Time
                     IsIdle = false;
                     if (fixedTime == 0)
                     {
-                        ThreadPool.QueueUserWorkItem(delegate
+                        if (IsSync)
                         {
                             iTimeUpdate.Update((int)(temp / 1000000L));
                             IsIdle = true;
-                        });
+                        }
+                        else
+                        {
+                            ThreadPool.QueueUserWorkItem(delegate
+                            {
+                                iTimeUpdate.Update((int)(temp / 1000000L));
+                                IsIdle = true;
+                            });
+                        }
                     }
                     else
                     {
@@ -187,12 +188,21 @@ namespace ES.Time
                         var consumeFixedTime = notConsumeFixedTime + temp;
                         notConsumeFixedTime = consumeFixedTime % fixedNanoTime;
                         var count = consumeFixedTime / fixedNanoTime;
-                        ThreadPool.QueueUserWorkItem(delegate
+                        if (IsSync)
                         {
                             for (int i = 0; i < count; i++)
                                 iTimeUpdate.Update(fixedTime);
                             IsIdle = true;
-                        });
+                        }
+                        else
+                        {
+                            ThreadPool.QueueUserWorkItem(delegate
+                            {
+                                for (int i = 0; i < count; i++)
+                                    iTimeUpdate.Update(fixedTime);
+                                IsIdle = true;
+                            });
+                        }
                     }
                     consumeTime = nanoDt;
                 }

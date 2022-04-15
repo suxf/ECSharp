@@ -217,12 +217,12 @@ namespace ES.Network.HyperSocket
                     hashlist.Add(remote.hashCode);
                     remote.isVaildHyperSocket = false;
                 }
-                if(remote.Tag.IsNull()) remote.Tag = dt;
+                if (remote.Tag.IsNull()) remote.Tag = dt;
                 else remote.Tag += dt;
             }
-            foreach (var hash in hashlist)
+            for (int i = 0, len = hashlist.Count; i < len; i++)
             {
-                if (TcpClients.TryGetValue(hash, out var remote))
+                if (TcpClients.TryGetValue(hashlist[i], out var remote))
                 {
                     remote.Destroy();
                 }

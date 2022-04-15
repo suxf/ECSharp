@@ -102,8 +102,9 @@ namespace ES.Variant
         public JArray ToJson()
         {
             JArray json = new JArray();
-            foreach (var value in this)
+            for (int i = 0, len = Count; i < len; i++)
             {
+                var value = this[i];
                 switch (value.Type)
                 {
                     case VarType.INT32: json.Add((int)value); break;
@@ -137,8 +138,9 @@ namespace ES.Variant
         public static VarList Parse(JArray json)
         {
             VarList list = new VarList();
-            foreach (var value in json)
+            for (int i = 0, len = json.Count; i < len; i++)
             {
+                var value = json[i];
                 if (value == null) continue;
                 switch (value.Type)
                 {

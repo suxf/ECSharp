@@ -1129,9 +1129,9 @@ namespace ES.Database.Redis
         private List<T> ConvetList<T>(RedisValue[] values)
         {
             List<T> result = new List<T>();
-            foreach (var item in values)
+            for (int i = 0, len = values.Length; i < len; i++)
             {
-                var model = ConvertObj<T>(item);
+                var model = ConvertObj<T>(values[i]);
                 result.Add(model);
             }
             return result;

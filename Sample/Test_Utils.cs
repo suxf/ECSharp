@@ -55,7 +55,7 @@ namespace Sample
             Ini.LoadParser("config.ini", true);
             Ini.LoadParser("config2.ini");
             Ini.ReplaceCurrentParsser("config.ini");
-            Log.Info($"config filename name:{Ini.Current.GetValue("filename")}");
+            Log.Info($"config filename name:{Ini.GetValue("filename")}");
             Log.Info($"config section 1 option1:{Ini.Current.GetSectionValue("section 1", "option1").AsBytes()}");
             Log.Info($"config2 filename name:{Ini.Parsers("config2.ini").GetValue("filename")}");
         }

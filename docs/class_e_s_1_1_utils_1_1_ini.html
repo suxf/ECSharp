@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.16.0</span>
+   &#160;<span id="projectnumber">1.16.2</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -113,6 +113,18 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_ini.html','');
 <tr class="memitem:ab7c5f9ca75f81d91219a7ba5361aa4b2"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_ini.html#ab7c5f9ca75f81d91219a7ba5361aa4b2">LoadParser</a> (string filePath, bool isAbsolutePath=false)</td></tr>
 <tr class="memdesc:ab7c5f9ca75f81d91219a7ba5361aa4b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据路径加载解释器  <a href="class_e_s_1_1_utils_1_1_ini.html#ab7c5f9ca75f81d91219a7ba5361aa4b2">更多...</a><br /></td></tr>
 <tr class="separator:ab7c5f9ca75f81d91219a7ba5361aa4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b10c6cf3aa6385ccb2162d37aacd5e"><td class="memItemLeft" align="right" valign="top">static ? string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_ini.html#a17b10c6cf3aa6385ccb2162d37aacd5e">GetValue</a> (string key)</td></tr>
+<tr class="memdesc:a17b10c6cf3aa6385ccb2162d37aacd5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current的值  <a href="class_e_s_1_1_utils_1_1_ini.html#a17b10c6cf3aa6385ccb2162d37aacd5e">更多...</a><br /></td></tr>
+<tr class="separator:a17b10c6cf3aa6385ccb2162d37aacd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a42febd5ea26d2aec53e846f92c1e3"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_ini.html#ad9a42febd5ea26d2aec53e846f92c1e3">GetValue</a> (string key, string defaultValue)</td></tr>
+<tr class="memdesc:ad9a42febd5ea26d2aec53e846f92c1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current的值  <a href="class_e_s_1_1_utils_1_1_ini.html#ad9a42febd5ea26d2aec53e846f92c1e3">更多...</a><br /></td></tr>
+<tr class="separator:ad9a42febd5ea26d2aec53e846f92c1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af522e45570c5263d63150a78ac025cf2"><td class="memItemLeft" align="right" valign="top">static ? string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_ini.html#af522e45570c5263d63150a78ac025cf2">GetSectionValue</a> (string section, string key)</td></tr>
+<tr class="memdesc:af522e45570c5263d63150a78ac025cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current的值  <a href="class_e_s_1_1_utils_1_1_ini.html#af522e45570c5263d63150a78ac025cf2">更多...</a><br /></td></tr>
+<tr class="separator:af522e45570c5263d63150a78ac025cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64cade05ce7ffbb5aa40c665964d8b8a"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_ini.html#a64cade05ce7ffbb5aa40c665964d8b8a">GetSectionValue</a> (string section, string key, string defaultValue)</td></tr>
+<tr class="memdesc:a64cade05ce7ffbb5aa40c665964d8b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current的值  <a href="class_e_s_1_1_utils_1_1_ini.html#a64cade05ce7ffbb5aa40c665964d8b8a">更多...</a><br /></td></tr>
+<tr class="separator:a64cade05ce7ffbb5aa40c665964d8b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 属性</h2></td></tr>
@@ -123,6 +135,186 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_ini.html','');
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>ini文件读取 </p>
 </div><h2 class="groupheader">成员函数说明</h2>
+<a id="af522e45570c5263d63150a78ac025cf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af522e45570c5263d63150a78ac025cf2">&#9670;&nbsp;</a></span>GetSectionValue() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ? string ES.Utils.Ini.GetSectionValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>section</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">section</td><td>节选</td></tr>
+    <tr><td class="paramname">key</td><td>键名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a64cade05ce7ffbb5aa40c665964d8b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64cade05ce7ffbb5aa40c665964d8b8a">&#9670;&nbsp;</a></span>GetSectionValue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string ES.Utils.Ini.GetSectionValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>section</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>defaultValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">section</td><td>节选</td></tr>
+    <tr><td class="paramname">key</td><td>键名</td></tr>
+    <tr><td class="paramname">defaultValue</td><td>默认值</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a17b10c6cf3aa6385ccb2162d37aacd5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b10c6cf3aa6385ccb2162d37aacd5e">&#9670;&nbsp;</a></span>GetValue() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ? string ES.Utils.Ini.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>键名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ad9a42febd5ea26d2aec53e846f92c1e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a42febd5ea26d2aec53e846f92c1e3">&#9670;&nbsp;</a></span>GetValue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string ES.Utils.Ini.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>defaultValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current的值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>键名</td></tr>
+    <tr><td class="paramname">defaultValue</td><td>默认值</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="ab7c5f9ca75f81d91219a7ba5361aa4b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab7c5f9ca75f81d91219a7ba5361aa4b2">&#9670;&nbsp;</a></span>LoadParser()</h2>
 

@@ -5,6 +5,9 @@ var struct_e_s_1_1_variant_1_1_var =
     [ "Equals", "struct_e_s_1_1_variant_1_1_var.html#a105c088d53f131f86df8e53c58f9bc35", null ],
     [ "GetBytes", "struct_e_s_1_1_variant_1_1_var.html#a871d608eb558c377fbeb0a529480dcb4", null ],
     [ "GetHashCode", "struct_e_s_1_1_variant_1_1_var.html#a6ce476fc3de8b2e13416e9507c945b3c", null ],
+    [ "IsNull", "struct_e_s_1_1_variant_1_1_var.html#a1add3d84d25084bf2c7eab9c8ce4ced6", null ],
+    [ "IsNumber", "struct_e_s_1_1_variant_1_1_var.html#a829e053dd764e9b2641e67a091765a05", null ],
+    [ "IsString", "struct_e_s_1_1_variant_1_1_var.html#ac464a24740e4d9a7c7d10719ef082c53", null ],
     [ "operator bool", "struct_e_s_1_1_variant_1_1_var.html#a0f09b441989992b120de04d0ee2acf25", null ],
     [ "operator byte", "struct_e_s_1_1_variant_1_1_var.html#aae7fe7509b1d66498041b6380e5e13c8", null ],
     [ "operator double", "struct_e_s_1_1_variant_1_1_var.html#a21f9178d87e4f055c858428aabaee789", null ],
@@ -62,5 +65,5 @@ var struct_e_s_1_1_variant_1_1_var =
     [ "List", "struct_e_s_1_1_variant_1_1_var.html#a4134f9c8cf144b98943917be599f2f82", null ],
     [ "Map", "struct_e_s_1_1_variant_1_1_var.html#ae26cf2bdbf5e87a2b40c17b570aa3204", null ],
     [ "Object", "struct_e_s_1_1_variant_1_1_var.html#a2dc72827dfad7f6aba67465d4bed1c31", null ],
-    [ "Type", "struct_e_s_1_1_variant_1_1_var.html#a67cfd393fd780b54dea84f88000665f0", null ]
+    [ "Type", "struct_e_s_1_1_variant_1_1_var.html#a083e98d8b2ea43a2c09fb6509af3fc11", null ]
 ];
