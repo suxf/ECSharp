@@ -36,7 +36,7 @@ namespace ES.Network.HyperSocket
 
             kcpListener = listener;
 
-            timeFlow = BaseTimeFlow.CreateTimeFlow(this, false, 10);
+            timeFlow = BaseTimeFlow.CreateTimeFlow(this/*, false, 10*/);
             timeFlow.StartTimeFlowES();
         }
 

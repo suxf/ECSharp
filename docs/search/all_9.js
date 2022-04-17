@@ -13,7 +13,7 @@ var searchData=
   ['ihypersocketserver_266',['IHyperSocketServer',['../interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html',1,'ES::Network::HyperSocket']]],
   ['imysqldbhelper_267',['IMySqlDbHelper',['../interface_e_s_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html',1,'ES::Database::MySQL']]],
   ['infinite_268',['Infinite',['../class_e_s_1_1_time_1_1_time_caller.html#ac146e652505359a0f0faf7fbd8454a4a',1,'ES::Time::TimeCaller']]],
-  ['info_269',['Info',['../class_log.html#a0292fd04601f4339191468651ac51e2c',1,'Log.Info()'],['../namespace_e_s_1_1_log.html#adfbbcaad3011c33ae6d9424aeb9dd843a551b723eafd6a31d444fcb2f5920fbd3',1,'ES.Log.INFO()']]],
+  ['info_269',['Info',['../class_log.html#a0292fd04601f4339191468651ac51e2c',1,'Log.Info(string log)'],['../class_log.html#a6ef2b10f4fad1cf71cfd42f52315a760',1,'Log.Info(params string[] logs)'],['../namespace_e_s_1_1_log.html#adfbbcaad3011c33ae6d9424aeb9dd843a551b723eafd6a31d444fcb2f5920fbd3',1,'ES.Log.INFO()']]],
   ['ini_270',['Ini',['../class_e_s_1_1_utils_1_1_ini.html',1,'ES::Utils']]],
   ['iniparser_271',['IniParser',['../class_e_s_1_1_utils_1_1_ini_1_1_ini_parser.html',1,'ES::Utils::Ini']]],
   ['init_272',['Init',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a3f94978a319abc8da043973a45ecc024',1,'ES.Network.Sockets.Client.ClientSocket.Init()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a02700cd325e0494a6948ed09375af288',1,'ES.Network.Sockets.Server.ServerSocket.Init()']]],

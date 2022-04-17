@@ -20,41 +20,32 @@ namespace ES.Time
         /// </summary>
         internal bool isTimeFlowStop = false;
 
-        // private readonly Stopwatch stopwatch = new Stopwatch();
-        // internal int lastUseTime = 0;
-
+        /// <summary>
+        /// 更新接口
+        /// </summary>
         private readonly WeakReference<ITimeUpdate> reference;
 
         /// <summary>
         /// 耗时监视器累积时间 此处内部转换为纳秒整型
         /// </summary>
-        private long consumeTime = 0;
+        internal double consumeTime = 0;
         /// <summary>
         /// 未消耗的修正时间 此处内部转换为纳秒整型
         /// </summary>
-        private long notConsumeFixedTime = 0;
+        private double notConsumeFixedTime = 0;
         /// <summary>
         /// 修正时间 毫秒整型
         /// </summary>
-        internal readonly int fixedTime = 0;
+        private readonly int fixedTime = 0;
         /// <summary>
-        /// 修正时间 此处内部转换为纳秒整型
+        /// 修正时间 秒
         /// </summary>
-        private readonly long fixedNanoTime = 0;
-        /// <summary>
-        /// 首次更新
-        /// </summary>
-        private bool firstUpdate = true;
+        private readonly double fixedSecTime = 0.0;
 
         /// <summary>
         /// 空闲标记
         /// </summary>
         private bool IsIdle = true;
-
-        /// <summary>
-        /// 同步标记
-        /// </summary>
-        private readonly bool IsSync = false;
 
         /// <summary>
         /// 构造函数 内部使用
@@ -64,10 +55,8 @@ namespace ES.Time
         /// <param name="fixedTime">修正时间</param>
         protected BaseTimeFlow(ITimeUpdate timeUpdate, bool isSync, int fixedTime)
         {
-            IsSync = isSync;
-            this.fixedTime = fixedTime;
-            if (this.fixedTime <= 0) this.fixedTime = 0;
-            else fixedNanoTime = fixedTime * 1000000L;
+            this.fixedTime = fixedTime < 1 ? 1 : fixedTime;
+            fixedSecTime = fixedTime / 1000.0;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
             TimeFlowManager.Instance.PushTimeFlow(this, isSync);
         }
@@ -119,17 +108,6 @@ namespace ES.Time
             isTimeFlowStop = true;
         }
 
-        /*
-        /// <summary>
-        /// 关闭程序中所有时间流
-        /// <para>调用此函数，在此次进程中无法再次启动</para>
-        /// </summary>
-        internal static void CloseAllTimeFlowES()
-        {
-            TimeFlowManager.Instance.Destroy();
-        }
-        */
-
         /// <summary>
         /// 通过对象关闭时间流
         /// </summary>
@@ -149,66 +127,65 @@ namespace ES.Time
         /// 内部 更新
         /// </summary>
         /// <param name="dt"></param>
+        internal void UpdateSyncES(double dt)
+        {
+            if (!reference.TryGetTarget(out var iTimeUpdate))
+                return;
+            if (!IsIdle)
+                return;
+            IsIdle = false;
+            double period = dt - consumeTime;
+            double consumeFixedTime = notConsumeFixedTime + period;
+            int count = (int)(consumeFixedTime / fixedSecTime);
+            if (count <= 0)
+            {
+                IsIdle = true;
+                return;
+            }
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                iTimeUpdate.Update(fixedTime * count);
+                notConsumeFixedTime = consumeFixedTime % fixedSecTime;
+                consumeTime = dt;
+                IsIdle = true;
+            });
+        }
+
+        /// <summary>
+        /// 内部 更新
+        /// </summary>
+        /// <param name="dt"></param>
         internal void UpdateES(double dt)
         {
-            // stopwatch.Start();
-            long nanoDt = (long)dt * 1000000000L;
+            if (!reference.TryGetTarget(out var iTimeUpdate))
+                return;
+            // 正常更新
+            if (!IsIdle)
+                return;
+            IsIdle = false;
+            double period = dt - consumeTime;
+            double consumeFixedTime = notConsumeFixedTime + period;
+            int count = (int)(consumeFixedTime / fixedSecTime);
+            if (count <= 0)
+            {
+                IsIdle = true;
+                return;
+            }
+            iTimeUpdate.Update(fixedTime * count);
+            notConsumeFixedTime = consumeFixedTime % fixedSecTime;
+            consumeTime = dt;
+            IsIdle = true;
+        }
+
+        /// <summary>
+        /// 内部 停止更新
+        /// </summary>
+        internal void UpdateSyncEndES()
+        {
             if (reference.TryGetTarget(out var iTimeUpdate))
             {
-                // 首次处理忽略之前的值
-                if (firstUpdate)
-                {
-                    firstUpdate = false;
-                    consumeTime = nanoDt;
-                }
-                var temp = nanoDt - consumeTime;
-                // 正常更新
-                if (IsIdle)
-                {
-                    IsIdle = false;
-                    if (fixedTime == 0)
-                    {
-                        if (IsSync)
-                        {
-                            iTimeUpdate.Update((int)(temp / 1000000L));
-                            IsIdle = true;
-                        }
-                        else
-                        {
-                            ThreadPool.QueueUserWorkItem(delegate
-                            {
-                                iTimeUpdate.Update((int)(temp / 1000000L));
-                                IsIdle = true;
-                            });
-                        }
-                    }
-                    else
-                    {
-                        // 修正更新
-                        var consumeFixedTime = notConsumeFixedTime + temp;
-                        notConsumeFixedTime = consumeFixedTime % fixedNanoTime;
-                        var count = consumeFixedTime / fixedNanoTime;
-                        if (IsSync)
-                        {
-                            for (int i = 0; i < count; i++)
-                                iTimeUpdate.Update(fixedTime);
-                            IsIdle = true;
-                        }
-                        else
-                        {
-                            ThreadPool.QueueUserWorkItem(delegate
-                            {
-                                for (int i = 0; i < count; i++)
-                                    iTimeUpdate.Update(fixedTime);
-                                IsIdle = true;
-                            });
-                        }
-                    }
-                    consumeTime = nanoDt;
-                }
+                iTimeUpdate.UpdateEnd();
             }
-            // Interlocked.Exchange(ref lastUseTime, (int)stopwatch.ElapsedMilliseconds);
-            // stopwatch.Reset();
         }
 
         /// <summary>

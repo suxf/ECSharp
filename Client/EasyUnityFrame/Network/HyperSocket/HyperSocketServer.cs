@@ -43,7 +43,7 @@ namespace ES.Network.HyperSocket
         /// 实际TCP套接字连接数量
         /// <para>此数量 ServerSocket 类中获得,为实际连接到服务中连接数量</para>
         /// </summary>
-        public int RealTcpConnectedNum => TcpServer.ConnectedNum;
+        public int ConnectedCount => TcpServer.ConnectedNum;
 
         /// <summary>
         /// 创建一个服务器超级套接字
@@ -146,10 +146,11 @@ namespace ES.Network.HyperSocket
             return data.ToArray();
         }
 
+        /*
         /// <summary>
         /// 返回使用的远程套接字数量
         /// <para>遍历被占用的数组的计数</para>
-        /// <para>获取准确连接数使用 RealTcpConnectedNum 变量</para>
+        /// <para>获取准确连接数使用 ConnectedCount 变量</para>
         /// </summary>
         /// <returns></returns>
         public int GetUsedSocketCount()
@@ -161,6 +162,7 @@ namespace ES.Network.HyperSocket
             }
             return count;
         }
+        */
 
         /// <summary>
         /// 返回未使用的远程套接字索引

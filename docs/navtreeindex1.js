@@ -135,12 +135,11 @@ var NAVTREEINDEX1 =
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38":[1,0,0,4,1,2,3],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ad0c0a3ca21241cde61ac0e127ffd39c3":[1,0,0,4,1,2,7],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html":[1,0,0,4,1,3],
+"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a428d93e95c96fdaf6525abb0d07bbced":[1,0,0,4,1,3,5],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a5a2b4d26923b7dee0530383cdf767438":[1,0,0,4,1,3,0],
-"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a73887d9f19f24bc6b46804c9675fa3b2":[1,0,0,4,1,3,3],
-"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a73cfdfce6dbd3523af1ecfa489d997d0":[1,0,0,4,1,3,7],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a79bff9b2710997b5fced970c57a87b2d":[1,0,0,4,1,3,1],
-"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a841cf7e61f9f816258d661869453d95b":[1,0,0,4,1,3,5],
-"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a88b24dcc3ceb8f26825b33f2b5a01a19":[1,0,0,4,1,3,4],
+"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a841cf7e61f9f816258d661869453d95b":[1,0,0,4,1,3,4],
+"class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a88b24dcc3ceb8f26825b33f2b5a01a19":[1,0,0,4,1,3,3],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#a8c0cab1148f47db1afb9395c645c8b7f":[1,0,0,4,1,3,2],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html#acfaa5b03719b4e9c98cee4b170252c3d":[1,0,0,4,1,3,6],
 "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html":[1,0,0,4,1,6],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a6eb368c1347161fd5e9ee68b736eb759":[1,0,0,4,2,2,5],
 "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a846414568cabf9a321f31c867395e276":[1,0,0,4,2,2,0],
 "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a9922b320961a6b605f0beb0b7b7ece2c":[1,0,0,4,2,2,4],
-"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ac3a3d86dd1ff5e2abdbc6aea972f04ae":[1,0,0,4,2,2,6]
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ac3a3d86dd1ff5e2abdbc6aea972f04ae":[1,0,0,4,2,2,6],
+"class_e_s_1_1_network_1_1_sockets_1_1_socket.html#ad1663500c08cb0afe394447af7978265":[1,0,0,4,2,2,3]
 };

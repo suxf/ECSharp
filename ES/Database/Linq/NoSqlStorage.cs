@@ -4,7 +4,6 @@ using ES.Time;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using System.Threading;
 
 namespace ES.Database.Linq
 {
@@ -178,8 +177,7 @@ namespace ES.Database.Linq
         /// </summary>
         public void Flush()
         {
-            Interlocked.Exchange(ref syncPeriodNow, syncPeriod);
-            Update(0);
+            Update(syncPeriod);
         }
 
         /// <summary>

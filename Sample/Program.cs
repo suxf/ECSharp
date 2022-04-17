@@ -21,7 +21,7 @@ namespace Sample
             // 数据存储测试
             // new Test_EasyStorage();
             // 时间流测试
-            new Test_Time();
+            // new Test_Time();
             // 随机数测试
             // new Test_RandomCode();
             // 数据流测试
@@ -29,7 +29,7 @@ namespace Sample
             // 数据流性能测试
             // BenchmarkRunner.Run<Test_SweetStream>();
             // 超级套接字测试
-            // new Test_HyperSocket();
+            new Test_HyperSocket();
             // 简单聊天房测试
             // new Test_SimpleChatRoom();
             // 不停服热更新测试

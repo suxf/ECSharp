@@ -21,7 +21,7 @@ namespace Sample
 
         public Test_HyperSocket()
         {
-            Log.Info("[1]服务器 [2]客户端");
+            Log.Info("[1]服务器 [2]并发启动客户端 [3]顺序启动客户端");
             var input = Log.ReadLine("输入:");
             if (input == "1")
             {
@@ -30,7 +30,7 @@ namespace Sample
             }
             else if (input == "2")
             {
-                Log.Info("启动客户端");
+                Log.Info("并发启动客户端");
                 for (int i = 1; i <= 300; i++) StartClient(i);
                 TimeCaller.Create(delegate
                 {
@@ -47,6 +47,31 @@ namespace Sample
                     }
                 }
             }
+            else if (input == "3")
+            {
+                Log.Info("顺序启动客户端");
+                for (int i = 1; i <= 300; i++)
+                {
+                    Log.Debug($"Start Client:", i.ToString());
+                    sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
+                    ((HyperSocket)sockets[i]).Tag = i;
+                    Thread.Sleep(100);
+                }
+                TimeCaller.Create(delegate
+                {
+                    Log.Info($"Connect Num:{num}");
+                }, 1000, 3000, TimeCaller.Infinite).Start(true);
+                Log.ReadLine();
+                for (int i = 1; i <= 300; i++)
+                {
+                    if (sockets[i] == null) continue;
+                    if (((HyperSocket)sockets[i]).Tag >= 1)
+                    {
+                        ((HyperSocket)sockets[i]).Close();
+                        Log.Info($"Close Client:{i}");
+                    }
+                }
+            }
             else Log.Info("啥都没");
         }
 
@@ -54,7 +79,7 @@ namespace Sample
         {
             sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
             TimeCaller.Create(delegate {
-                Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
             }, 1000, 3000, TimeCaller.Infinite).Start(true);
         }
 
@@ -80,7 +105,7 @@ namespace Sample
                 lock (ssss)
                 {
                     if (ssss.Remove(socket.SessionId))
-                        Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                        Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
                 }
                 // Log.Info($"Socket Session Close:{socket.SessionId}");
             }
@@ -92,7 +117,7 @@ namespace Sample
                     lock (ssss)
                     {
                         if (ssss.Remove(socket.SessionId))
-                            Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                            Log.Warn($"【OnClose】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
                     }
                 }
                 Log.Exception(ex);
@@ -103,7 +128,7 @@ namespace Sample
                 lock (ssss)
                 {
                     ssss.Add(socket.SessionId);
-                    Log.Info($"【OnOpen】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).RealTcpConnectedNum}, Num3:{((HyperSocketServer)sockets[0]).GetUsedSocketCount()}");
+                    Log.Info($"【OnOpen】Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
                 }
                 // Log.Info($"Connect OK:{socket.SessionId}");
             }

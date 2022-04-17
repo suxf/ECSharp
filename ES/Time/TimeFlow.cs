@@ -94,16 +94,5 @@
         {
             CloseTimeFlowES();
         }
-
-        /*
-        /// <summary>
-        /// 关闭程序中所有时间流
-        /// <para>调用此函数，在此次进程中无法再次启动</para>
-        /// </summary>
-        public static void CloseAll()
-        {
-            CloseAllTimeFlowES();
-        }
-        */
     }
 }

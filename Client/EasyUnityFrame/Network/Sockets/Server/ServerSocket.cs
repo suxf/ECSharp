@@ -402,7 +402,7 @@ namespace ES.Network.Sockets.Server
 					client.RBuffer.Decode(e.Buffer.AsSpan().Slice(e.Offset, e.BytesTransferred));
 #endif
                     client.TriggerSocketInvoke();
-                    bool willRaiseEvent = client.Socket.ReceiveAsync(e);
+                    bool willRaiseEvent = client.Socket?.ReceiveAsync(e) ?? true;
                     if (willRaiseEvent) return;
                 }
                 catch (Exception ex)

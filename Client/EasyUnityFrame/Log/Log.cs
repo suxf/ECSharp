@@ -34,12 +34,40 @@ public static class Log
     }
 
     /// <summary>
+    /// 调试性 日志
+    /// </summary>
+    /// <param name="logs">日志数据</param>
+    public static void Debug(params string[] logs)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        for (int i = 0, len = logs.Length; i < len; i++)
+        {
+            sb.Append(logs[i]);
+        }
+        WriteLine(ES.Log.LogType.DEBUG, sb.ToString());
+    }
+
+    /// <summary>
     /// 信息性 日志
     /// </summary>
     /// <param name="log">日志数据</param>
     public static void Info(string log)
     {
         WriteLine(ES.Log.LogType.INFO, log);
+    }
+
+    /// <summary>
+    /// 信息性 日志
+    /// </summary>
+    /// <param name="logs">日志数据</param>
+    public static void Info(params string[] logs)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        for (int i = 0, len = logs.Length; i < len; i++)
+        {
+            sb.Append(logs[i]);
+        }
+        WriteLine(ES.Log.LogType.INFO, sb.ToString());
     }
 
     /// <summary>
@@ -52,12 +80,40 @@ public static class Log
     }
 
     /// <summary>
+    /// 警告性 日志
+    /// </summary>
+    /// <param name="logs">日志数据</param>
+    public static void Warn(params string[] logs)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        for (int i = 0, len = logs.Length; i < len; i++)
+        {
+            sb.Append(logs[i]);
+        }
+        WriteLine(ES.Log.LogType.WARN, sb.ToString());
+    }
+
+    /// <summary>
     /// 错误性 日志
     /// </summary>
     /// <param name="log">日志数据</param>
     public static void Error(string log)
     {
         WriteLine(ES.Log.LogType.ERROR, log);
+    }
+
+    /// <summary>
+    /// 错误性 日志
+    /// </summary>
+    /// <param name="logs">日志数据</param>
+    public static void Error(params string[] logs)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        for (int i = 0, len = logs.Length; i < len; i++)
+        {
+            sb.Append(logs[i]);
+        }
+        WriteLine(ES.Log.LogType.ERROR, sb.ToString());
     }
 
     /// <summary>
