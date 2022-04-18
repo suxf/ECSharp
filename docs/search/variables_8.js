@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kcpmode_1108',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
-  ['kcpwinsize_1109',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
+  ['kcpmode_1116',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['kcpwinsize_1117',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
 ];

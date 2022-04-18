@@ -25,6 +25,12 @@ namespace Sample
                 Log.Info($"Time Now Alarm Clock 2:{time}");
             }, "00:00:00").Start(true);
 
+            // 测试同步和异步
+            TimeCaller.Create(delegate { Log.Info("1"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
+            TimeCaller.Create(delegate { Log.Info("2"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
+            TimeCaller.CreateSync(delegate { Log.Info("aa"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
+            TimeCaller.CreateSync(delegate { Log.Info("bb"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
+            return;
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
             // Close();

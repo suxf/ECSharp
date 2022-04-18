@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ES.Utils
+﻿namespace ES.Utils
 {
     /// <summary>
     /// 系统信息
@@ -8,13 +6,36 @@ namespace ES.Utils
     public static class SystemInfo
     {
         /// <summary>
-        /// 获取框架版本
+        /// 系统版本
         /// </summary>
-        /// <returns></returns>
-        public static string FrameVersion { get; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "";
+        public static string SystemVersion { get; } = System.Environment.OSVersion.ToString();
+        /// <summary>
+        /// DotNet版本
+        /// </summary>
+        public static string DotNetVersion { get; } = System.Environment.Version.ToString();
+        /// <summary>
+        /// 用户名称
+        /// </summary>
+        public static string UserName { get; } = System.Environment.UserName;
+        /// <summary>
+        /// 当前执行路径
+        /// </summary>
+        public static string Path { get; } = System.Environment.CurrentDirectory;
+        /// <summary>
+        /// 应用名称
+        /// </summary>
+        public static string AppName { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name?.ToString() ?? "";
+        /// <summary>
+        /// 应用版本
+        /// </summary>
+        public static string AppVersion { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? "";
+        /// <summary>
+        /// 框架版本
+        /// </summary>
+        public static string FrameVersion { get; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? "";
         /// <summary>
         /// 逻辑线程数
         /// </summary>
-        public static int ProcessorCount { get; } = Environment.ProcessorCount;
+        public static int ProcessorCount { get; } = System.Environment.ProcessorCount;
     }
 }

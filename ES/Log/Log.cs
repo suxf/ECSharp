@@ -8,7 +8,17 @@
 public static class Log
 #pragma warning restore CA1050 // 在命名空间中声明类型
 {
-    static object m_lock = new object();
+    private static readonly object m_lock = new object();
+
+#if !UNITY_2020_1_OR_NEWER
+    /// <summary>
+    /// 静态构造
+    /// </summary>
+    static Log()
+    {
+        SystemInfo();
+    }
+#endif
 
     /// <summary>
     /// 输入性 日志
@@ -128,6 +138,37 @@ public static class Log
     }
 
     /// <summary>
+    /// 打印系统环境信息日志
+    /// </summary>
+#if UNITY_2020_1_OR_NEWER
+    [UnityEngine.RuntimeInitializeOnLoadMethod]
+#endif
+    private static void SystemInfo()
+    {
+        Info("===================================================================");
+        Info("* System  Version   : ", ES.Utils.SystemInfo.SystemVersion);
+        Info("* DotNet  Version   : ", ES.Utils.SystemInfo.DotNetVersion);
+#if !UNITY_2020_1_OR_NEWER
+        Info("* ESFrame Version   : ", ES.Utils.SystemInfo.FrameVersion);
+        Info("* App Name          : ", ES.Utils.SystemInfo.AppName);
+        Info("* App Version       : ", ES.Utils.SystemInfo.AppVersion);
+#endif
+        Info("* App Execute Path  : ", ES.Utils.SystemInfo.Path);
+        Info("* Login  User  Name : ", ES.Utils.SystemInfo.UserName);
+        Info("* Logical Processor : ", ES.Utils.SystemInfo.ProcessorCount.ToString());
+        Info("===================================================================");
+    }
+
+    /// <summary>
+    /// 防止系统线程结束
+    /// </summary>
+    public static void PreventSystemQuit()
+    {
+        Info("Prevent System Thread Quit...");
+        System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
+    }
+
+    /// <summary>
     /// 写入日志
     /// </summary>
     /// <param name="type">日志类型</param>
@@ -144,7 +185,10 @@ public static class Log
             if (frame != null)
             {
                 var method = frame.GetMethod();
-                logInfo.stack = (method?.DeclaringType?.FullName ?? "UnknowClassType") + ":" + (method?.Name ?? "UnknowMethod");
+                string typeStr = method?.DeclaringType?.FullName ?? "UnknowClassType";
+                string methodStr = method?.Name ?? "UnknowMethod";
+
+                if (typeStr != "Log") logInfo.stack = typeStr + ":" + methodStr;
             }
         }
         if (!ES.Log.LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)

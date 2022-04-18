@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.16.4</span>
+   &#160;<span id="projectnumber">1.16.6</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -96,16 +96,106 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_system_info.ht
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 属性</h2></td></tr>
-<tr class="memitem:a55d83e072898a17fcec6de3dea60262b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b">FrameVersion</a> = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? &quot;&quot;<code> [get]</code></td></tr>
-<tr class="memdesc:a55d83e072898a17fcec6de3dea60262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取框架版本  <a href="class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b">更多...</a><br /></td></tr>
+<tr class="memitem:a6f59df498cc0d5f264c297fd20760285"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a6f59df498cc0d5f264c297fd20760285">SystemVersion</a> = System.Environment.OSVersion.ToString()<code> [get]</code></td></tr>
+<tr class="memdesc:a6f59df498cc0d5f264c297fd20760285"><td class="mdescLeft">&#160;</td><td class="mdescRight">系统版本  <a href="class_e_s_1_1_utils_1_1_system_info.html#a6f59df498cc0d5f264c297fd20760285">更多...</a><br /></td></tr>
+<tr class="separator:a6f59df498cc0d5f264c297fd20760285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a242c6e7234e8f662d85b28808690ce7f"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a242c6e7234e8f662d85b28808690ce7f">DotNetVersion</a> = System.Environment.Version.ToString()<code> [get]</code></td></tr>
+<tr class="memdesc:a242c6e7234e8f662d85b28808690ce7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">DotNet版本  <a href="class_e_s_1_1_utils_1_1_system_info.html#a242c6e7234e8f662d85b28808690ce7f">更多...</a><br /></td></tr>
+<tr class="separator:a242c6e7234e8f662d85b28808690ce7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7e9a1c7e1238fc8faaacdfc41f5c82"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a7c7e9a1c7e1238fc8faaacdfc41f5c82">UserName</a> = System.Environment.UserName<code> [get]</code></td></tr>
+<tr class="memdesc:a7c7e9a1c7e1238fc8faaacdfc41f5c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">用户名称  <a href="class_e_s_1_1_utils_1_1_system_info.html#a7c7e9a1c7e1238fc8faaacdfc41f5c82">更多...</a><br /></td></tr>
+<tr class="separator:a7c7e9a1c7e1238fc8faaacdfc41f5c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ee4334a9ab65819d3b550247cb957cc"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a0ee4334a9ab65819d3b550247cb957cc">Path</a> = System.Environment.CurrentDirectory<code> [get]</code></td></tr>
+<tr class="memdesc:a0ee4334a9ab65819d3b550247cb957cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">当前执行路径  <a href="class_e_s_1_1_utils_1_1_system_info.html#a0ee4334a9ab65819d3b550247cb957cc">更多...</a><br /></td></tr>
+<tr class="separator:a0ee4334a9ab65819d3b550247cb957cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6cfaffba49624874d0bdb769b9651c7"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#ad6cfaffba49624874d0bdb769b9651c7">AppName</a> = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name?.ToString() ?? &quot;&quot;<code> [get]</code></td></tr>
+<tr class="memdesc:ad6cfaffba49624874d0bdb769b9651c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">应用名称  <a href="class_e_s_1_1_utils_1_1_system_info.html#ad6cfaffba49624874d0bdb769b9651c7">更多...</a><br /></td></tr>
+<tr class="separator:ad6cfaffba49624874d0bdb769b9651c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a209c033447430f27a8ddaf90b7d561b2"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a209c033447430f27a8ddaf90b7d561b2">AppVersion</a> = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? &quot;&quot;<code> [get]</code></td></tr>
+<tr class="memdesc:a209c033447430f27a8ddaf90b7d561b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">应用版本  <a href="class_e_s_1_1_utils_1_1_system_info.html#a209c033447430f27a8ddaf90b7d561b2">更多...</a><br /></td></tr>
+<tr class="separator:a209c033447430f27a8ddaf90b7d561b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d83e072898a17fcec6de3dea60262b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b">FrameVersion</a> = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? &quot;&quot;<code> [get]</code></td></tr>
+<tr class="memdesc:a55d83e072898a17fcec6de3dea60262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">框架版本  <a href="class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b">更多...</a><br /></td></tr>
 <tr class="separator:a55d83e072898a17fcec6de3dea60262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a646563e57c5c26232bf07f487c3e9f17"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a646563e57c5c26232bf07f487c3e9f17">ProcessorCount</a> = Environment.ProcessorCount<code> [get]</code></td></tr>
+<tr class="memitem:a646563e57c5c26232bf07f487c3e9f17"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_utils_1_1_system_info.html#a646563e57c5c26232bf07f487c3e9f17">ProcessorCount</a> = System.Environment.ProcessorCount<code> [get]</code></td></tr>
 <tr class="memdesc:a646563e57c5c26232bf07f487c3e9f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">逻辑线程数  <a href="class_e_s_1_1_utils_1_1_system_info.html#a646563e57c5c26232bf07f487c3e9f17">更多...</a><br /></td></tr>
 <tr class="separator:a646563e57c5c26232bf07f487c3e9f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>系统信息 </p>
 </div><h2 class="groupheader">属性说明</h2>
+<a id="ad6cfaffba49624874d0bdb769b9651c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6cfaffba49624874d0bdb769b9651c7">&#9670;&nbsp;</a></span>AppName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.AppName = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name?.ToString() ?? &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>应用名称 </p>
+
+</div>
+</div>
+<a id="a209c033447430f27a8ddaf90b7d561b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a209c033447430f27a8ddaf90b7d561b2">&#9670;&nbsp;</a></span>AppVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.AppVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>应用版本 </p>
+
+</div>
+</div>
+<a id="a242c6e7234e8f662d85b28808690ce7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a242c6e7234e8f662d85b28808690ce7f">&#9670;&nbsp;</a></span>DotNetVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.DotNetVersion = System.Environment.Version.ToString()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DotNet版本 </p>
+
+</div>
+</div>
 <a id="a55d83e072898a17fcec6de3dea60262b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a55d83e072898a17fcec6de3dea60262b">&#9670;&nbsp;</a></span>FrameVersion</h2>
 
@@ -116,7 +206,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_system_info.ht
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string ES.Utils.SystemInfo.FrameVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? &quot;&quot;</td>
+          <td class="memname">string ES.Utils.SystemInfo.FrameVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? &quot;&quot;</td>
         </tr>
       </table>
   </td>
@@ -126,8 +216,31 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_system_info.ht
 </table>
 </div><div class="memdoc">
 
-<p>获取框架版本 </p>
-<dl class="section return"><dt>返回</dt><dd></dd></dl>
+<p>框架版本 </p>
+
+</div>
+</div>
+<a id="a0ee4334a9ab65819d3b550247cb957cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee4334a9ab65819d3b550247cb957cc">&#9670;&nbsp;</a></span>Path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.Path = System.Environment.CurrentDirectory</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>当前执行路径 </p>
 
 </div>
 </div>
@@ -141,7 +254,7 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_system_info.ht
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int ES.Utils.SystemInfo.ProcessorCount = Environment.ProcessorCount</td>
+          <td class="memname">int ES.Utils.SystemInfo.ProcessorCount = System.Environment.ProcessorCount</td>
         </tr>
       </table>
   </td>
@@ -152,6 +265,54 @@ $(document).ready(function(){initNavTree('class_e_s_1_1_utils_1_1_system_info.ht
 </div><div class="memdoc">
 
 <p>逻辑线程数 </p>
+
+</div>
+</div>
+<a id="a6f59df498cc0d5f264c297fd20760285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f59df498cc0d5f264c297fd20760285">&#9670;&nbsp;</a></span>SystemVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.SystemVersion = System.Environment.OSVersion.ToString()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>系统版本 </p>
+
+</div>
+</div>
+<a id="a7c7e9a1c7e1238fc8faaacdfc41f5c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7e9a1c7e1238fc8faaacdfc41f5c82">&#9670;&nbsp;</a></span>UserName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ES.Utils.SystemInfo.UserName = System.Environment.UserName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>用户名称 </p>
 
 </div>
 </div>

@@ -142,13 +142,10 @@ namespace ES.Time
                 IsIdle = true;
                 return;
             }
-            ThreadPool.QueueUserWorkItem(delegate
-            {
-                iTimeUpdate.Update(fixedTime * count);
-                notConsumeFixedTime = consumeFixedTime % fixedSecTime;
-                consumeTime = dt;
-                IsIdle = true;
-            });
+            notConsumeFixedTime = consumeFixedTime % fixedSecTime;
+            consumeTime = dt;
+            iTimeUpdate.Update(fixedTime * count);
+            IsIdle = true;
         }
 
         /// <summary>
@@ -171,10 +168,13 @@ namespace ES.Time
                 IsIdle = true;
                 return;
             }
-            iTimeUpdate.Update(fixedTime * count);
             notConsumeFixedTime = consumeFixedTime % fixedSecTime;
             consumeTime = dt;
-            IsIdle = true;
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                iTimeUpdate.Update(fixedTime * count);
+                IsIdle = true;
+            });
         }
 
         /// <summary>

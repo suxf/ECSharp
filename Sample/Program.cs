@@ -29,7 +29,7 @@ namespace Sample
             // 数据流性能测试
             // BenchmarkRunner.Run<Test_SweetStream>();
             // 超级套接字测试
-            new Test_HyperSocket();
+            // new Test_HyperSocket();
             // 简单聊天房测试
             // new Test_SimpleChatRoom();
             // 不停服热更新测试
@@ -37,13 +37,13 @@ namespace Sample
             // http服务测试
             // new Test_Http();
             // 工具类测试
-            // new Test_Utils();
+            new Test_Utils();
             // 可变变量测试
             // new Test_Variant();
             // Json转对象测试
             // new Test_Json2Object();
 
-            Console.ReadLine();
+            Log.PreventSystemQuit();
         }
 
     }
