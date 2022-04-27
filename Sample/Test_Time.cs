@@ -1,4 +1,5 @@
-﻿using ES.Time;
+﻿using ES;
+using ES.Time;
 using System;
 using System.Threading;
 
@@ -26,11 +27,10 @@ namespace Sample
             }, "00:00:00").Start(true);
 
             // 测试同步和异步
-            TimeCaller.Create(delegate { Log.Info("1"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
-            TimeCaller.Create(delegate { Log.Info("2"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
-            TimeCaller.CreateSync(delegate { Log.Info("aa"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
-            TimeCaller.CreateSync(delegate { Log.Info("bb"); Thread.Sleep(5000); }, 0, 100, -1).Start(true);
-            return;
+            TimeCaller.Create(delegate { Log.Info("1"); }, 0, 5000, -1).Start(true);
+            TimeCaller.Create(delegate { Log.Info("2"); }, 0, 5000, -1).Start(true);
+            TimeCaller.CreateSync(delegate { Log.Info("aa"); }, 0, 5000, -1).Start(true);
+            TimeCaller.CreateSync(delegate { Log.Info("bb"); }, 0, 5000, -1).Start(true);
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
             // Close();
@@ -54,35 +54,6 @@ namespace Sample
                 2000, 10000, TimeCaller.Infinite).Start();
             // 创建一个带守护的执行器
             TimeCaller.Create(delegate { Log.Info("Hello TimeCaller 2"); }, 2000, 1600, TimeCaller.Infinite).Start(true);
-
-            // 接下来就是贯穿在以上两个类的一个重要类
-            // TimeFix 时间修正类 当然需要特殊处理时间循环的时候可以单独使用这个类
-            // 只需要告诉这个对象 想要的循环时间周期即可完成必要的时间修补
-            // 注意此类没有沉睡Sleep函数 所以等待需要自己处理
-            int periodNow = 1000;
-            TimeFix timeFix = new TimeFix(1000);
-
-            /* 这里我没有写Thread 那么就认为这个Thread开始 */
-            // 如果在一个循环中 这个函数应该就在循环的最开始处
-            timeFix.Begin();
-            // 沉睡相应时间
-            Thread.Sleep(periodNow);
-            // 打印日志
-            Log.Info("Hello TimeFix");
-            // 如果在一个循环中 这个函数应该在循环的最后结束
-            periodNow = timeFix.End();
-            /* 至此第一次Thread循环结束 第二次开始 */
-            timeFix.Begin();
-            Thread.Sleep(periodNow);
-            Log.Info("Hello TimeFix2");
-            periodNow = timeFix.End();
-            /* 以此循环往复 而periodNow的值会根据每次的耗时不同进行不断的修正 */
-
-            // 临时变量 测试时间流自动停止
-            // StartTempTime();
-            // 需要gc回收一下
-            // 此处gc不会影响当前大括号的其他定时器，因为这个函数域还没结束
-            // GC.Collect();
         }
 
         /// <summary>

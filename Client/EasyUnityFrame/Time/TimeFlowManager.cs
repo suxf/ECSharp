@@ -1,46 +1,39 @@
 ﻿using ES.Utils;
+using System.Diagnostics;
 
 namespace ES.Time
 {
     /// <summary>
     /// 时间流 管理器
     /// </summary>
-    internal class TimeFlowManager
+    internal static class TimeFlowManager
     {
-        /// <summary>
-        /// 静态单例
-        /// </summary>
-        private static TimeFlowManager? instance = null;
-        /// <summary>
-        /// 获取单例对象
-        /// </summary>
-        internal static TimeFlowManager Instance { get { if (instance == null) instance = new TimeFlowManager(); return instance; } }
-
-        /// <summary>
-        /// 时间流控制线程
-        /// </summary>
-        private readonly TimeFlowThread[] threads;
-
         /// <summary>
         /// 最大处理任务线程数量 为逻辑处理器数量
         /// </summary>
         private readonly static int MAX_HANDLE_TASK_THREAD = SystemInfo.ProcessorCount;
 
         /// <summary>
-        /// 私有构造
+        /// 时间流控制线程
         /// </summary>
-        private TimeFlowManager()
-        {
-            // 加一保留一个同步线程
-            threads = new TimeFlowThread[MAX_HANDLE_TASK_THREAD + 1];
-        }
+        private readonly static TimeFlowThread[] threads = new TimeFlowThread[MAX_HANDLE_TASK_THREAD + 1];
+
+        /// <summary>
+        /// 秒表器
+        /// </summary>
+        private readonly static Stopwatch stopwatch = Stopwatch.StartNew();
+
+        /// <summary>
+        /// 程序运行总时长
+        /// </summary>
+        internal static long TotalRunTime => stopwatch.ElapsedMilliseconds;
 
         /// <summary>
         /// 压入一个时间流继承对象
         /// </summary>
         /// <param name="tf"></param>
         /// <param name="isSync">同步标记</param>
-        internal void PushTimeFlow(BaseTimeFlow tf, bool isSync)
+        internal static void PushTimeFlow(BaseTimeFlow tf, bool isSync)
         {
             // 同步线程
             if (isSync)
@@ -65,6 +58,11 @@ namespace ES.Time
                     break;
                 }
                 var count = threads[i].GetTaskCount();
+                if (count <= 100)
+                {
+                    thread = threads[i];
+                    break;
+                }
                 if (count < minQueueTaskTfCount)
                 {
                     minQueueTaskTfCount = count;
@@ -79,7 +77,7 @@ namespace ES.Time
         /// </summary>
         /// <param name="timeUpdate"></param>
         /// <returns></returns>
-        internal bool CloseByObj(ITimeUpdate timeUpdate)
+        internal static bool CloseByObj(ITimeUpdate timeUpdate)
         {
             for (int i = 0; i <= MAX_HANDLE_TASK_THREAD; i++)
             {

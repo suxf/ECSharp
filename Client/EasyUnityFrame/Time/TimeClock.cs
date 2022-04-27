@@ -309,7 +309,7 @@ namespace ES.Time
             // 今天已触发
             TriggerToday = true;
             // 执行函数
-            handle?.Invoke(now);
+            handle(now);
             if (!IsRepeat)
             {
                 timeFlow.CloseTimeFlowES();

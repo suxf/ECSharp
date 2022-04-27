@@ -1,4 +1,5 @@
-﻿using ES.Hotfix;
+﻿using ES;
+using ES.Hotfix;
 using Sample;
 using System;
 using System.Diagnostics;

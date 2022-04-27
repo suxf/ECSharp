@@ -1,4 +1,5 @@
 ﻿#if !UNITY_2020_1_OR_NEWER
+using ES.Alias.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;

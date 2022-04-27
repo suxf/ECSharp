@@ -17,7 +17,7 @@ namespace ES.Network.Http
         /// <summary>
         /// Http监听器
         /// </summary>
-        private TcpListener listener;
+        private readonly TcpListener listener;
         /// <summary>
         /// HTTP访问回调委托
         /// </summary>
@@ -82,11 +82,12 @@ namespace ES.Network.Http
         /// <summary>
         /// 开启服务器
         /// </summary>
-        public void StartServer()
+        /// <param name="backlog">并发数量 默认:10</param>
+        public void StartServer(int backlog = 10)
         {
             try
             {
-                listener.Start();
+                listener.Start(backlog);
                 listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
             }
             catch (Exception ex)
@@ -121,59 +122,70 @@ namespace ES.Network.Http
             try
             {
                 TcpListener? tcpListener = ar.AsyncState as TcpListener;
-                TcpClient? tcpClient = null;
-                Stream? stream = null;
+                if (tcpListener == null) return;
+                // 结束异步
+                TcpClient tcpClient = tcpListener.EndAcceptTcpClient(ar);
+                // 以取得所有需要的参数 继续监听下一个请求
+                listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
                 try
                 {
-                    // 结束异步
-                    tcpClient = tcpListener?.EndAcceptTcpClient(ar);
                     // 获取流
-                    stream = tcpClient?.GetStream();
+                    var networkStream = tcpClient.GetStream();
+                    if (networkStream == null)
+                        return;
+
+                    Stream? stream = null;
+                    SslStream? sslStream = null;
+                    try
+                    {
+                        // 处理加密
+                        if (certificate != null)
+                        {
+                            sslStream = new SslStream(networkStream);
+                            sslStream.AuthenticateAsServer(certificate, false, SslProtocols.Tls, true);
+                            sslStream.ReadTimeout = 10000;
+                            sslStream.WriteTimeout = 10000;
+                            stream = sslStream;
+                        }
+                        else
+                        {
+                            stream = networkStream;
+                        }
+                        if (stream == null)
+                            return;
+                        // 处理回调
+                        if (httpInvoke != null && tcpClient.ReceiveBufferSize > 0)
+                        {
+                            HttpRequest request = new HttpRequest(stream, tcpClient.ReceiveBufferSize);
+                            try
+                            {
+                                HttpResponse response = new HttpResponse(stream);
+                                // 处理
+                                httpInvoke.OnRequest(request, response);
+                                // 发送
+                                response.Send();
+                            }
+                            catch (Exception ex)
+                            {
+                                httpInvoke.HttpException(request, ex);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        httpInvoke.HttpException(null, ex);
+                    }
+                    finally
+                    {
+                        networkStream.Close();
+                        sslStream?.Close();
+                        tcpClient.Close();
+                    }
                 }
                 catch (Exception ex)
                 {
                     httpInvoke.HttpException(null, ex);
                 }
-                finally
-                {
-                    // 以取得所有需要的参数 继续监听下一个请求
-                    listener.BeginAcceptTcpClient(new AsyncCallback(GetContextCallBack), listener);
-                }
-                if (tcpClient == null || stream == null) return;
-                try
-                {
-                    // 处理加密
-                    if (certificate != null)
-                    {
-                        SslStream sslStream = new SslStream(stream);
-                        sslStream.AuthenticateAsServer(certificate, false, SslProtocols.Tls, true);
-                        sslStream.ReadTimeout = 10000;
-                        sslStream.WriteTimeout = 10000;
-                        stream = sslStream;
-                    }
-                    // 处理回调
-                    if (httpInvoke != null)
-                    {
-                        HttpRequest request = new HttpRequest(stream, tcpClient.ReceiveBufferSize);
-                        try
-                        {
-                            HttpResponse response = new HttpResponse(stream);
-                            // 处理
-                            httpInvoke.OnRequest(request, response);
-                            // 发送
-                            response.Send();
-                        }
-                        catch (Exception ex)
-                        {
-                            httpInvoke.HttpException(request, ex);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    httpInvoke.HttpException(null, ex);
-                }
-                stream.Close();
             }
             catch (Exception ex)
             {

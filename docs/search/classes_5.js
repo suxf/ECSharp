@@ -1,20 +1,13 @@
 var searchData=
 [
-  ['iagent_678',['IAgent',['../interface_e_s_1_1_hotfix_1_1_i_agent.html',1,'ES::Hotfix']]],
-  ['idbhelper_679',['IDbHelper',['../interface_e_s_1_1_database_1_1_i_db_helper.html',1,'ES::Database']]],
-  ['ihttp_680',['IHttp',['../interface_e_s_1_1_network_1_1_http_1_1_i_http.html',1,'ES::Network::Http']]],
-  ['ihttpvisitor_681',['IHttpVisitor',['../interface_e_s_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor.html',1,'ES::Network::Http::Linq']]],
-  ['ihypersocketclient_682',['IHyperSocketClient',['../interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html',1,'ES::Network::HyperSocket']]],
-  ['ihypersocketserver_683',['IHyperSocketServer',['../interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html',1,'ES::Network::HyperSocket']]],
-  ['imysqldbhelper_684',['IMySqlDbHelper',['../interface_e_s_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html',1,'ES::Database::MySQL']]],
-  ['ini_685',['Ini',['../class_e_s_1_1_utils_1_1_ini.html',1,'ES::Utils']]],
-  ['iniparser_686',['IniParser',['../class_e_s_1_1_utils_1_1_ini_1_1_ini_parser.html',1,'ES::Utils::Ini']]],
-  ['iredisevent_687',['IRedisEvent',['../interface_e_s_1_1_database_1_1_redis_1_1_i_redis_event.html',1,'ES::Database::Redis']]],
-  ['iremotesocket_688',['IRemoteSocket',['../interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html',1,'ES::Network::Sockets::Server']]],
-  ['iserversocket_689',['IServerSocket',['../interface_e_s_1_1_network_1_1_sockets_1_1_server_1_1_i_server_socket.html',1,'ES::Network::Sockets::Server']]],
-  ['isocket_690',['ISocket',['../interface_e_s_1_1_network_1_1_sockets_1_1_client_1_1_i_socket.html',1,'ES::Network::Sockets::Client']]],
-  ['isqlserverdbhelper_691',['ISqlServerDbHelper',['../interface_e_s_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html',1,'ES::Database::SQLServer']]],
-  ['isystime_692',['ISysTime',['../interface_e_s_1_1_time_1_1_i_sys_time.html',1,'ES::Time']]],
-  ['itimeupdate_693',['ITimeUpdate',['../interface_e_s_1_1_time_1_1_i_time_update.html',1,'ES::Time']]],
-  ['iwebsocket_694',['IWebsocket',['../interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html',1,'ES::Network::Websocket']]]
+  ['hotfixmgr_683',['HotfixMgr',['../class_e_s_1_1_hotfix_1_1_hotfix_mgr.html',1,'ES::Hotfix']]],
+  ['httpheader_684',['HttpHeader',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html',1,'ES::Network::Http']]],
+  ['httprequest_685',['HttpRequest',['../class_e_s_1_1_network_1_1_http_1_1_http_request.html',1,'ES::Network::Http']]],
+  ['httprequesthelper_686',['HttpRequestHelper',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html',1,'ES::Network::Http::Linq']]],
+  ['httpresponse_687',['HttpResponse',['../class_e_s_1_1_network_1_1_http_1_1_http_response.html',1,'ES::Network::Http']]],
+  ['httpservice_688',['HttpService',['../class_e_s_1_1_network_1_1_http_1_1_http_service.html',1,'ES::Network::Http']]],
+  ['httpvisitor_689',['HttpVisitor',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html',1,'ES::Network::Http::Linq']]],
+  ['hypersocket_690',['HyperSocket',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html',1,'ES::Network::HyperSocket']]],
+  ['hypersocketconfig_691',['HyperSocketConfig',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html',1,'ES::Network::HyperSocket']]],
+  ['hypersocketserver_692',['HyperSocketServer',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html',1,'ES::Network::HyperSocket']]]
 ];

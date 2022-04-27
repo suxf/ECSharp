@@ -196,7 +196,7 @@ namespace ES.Network.HyperSocket
             }
             remote.isValid = true;
             if (remote.tcpConn != null) remote.tcpConn.isVaildHyperSocket = true;
-            var str = server.rsa != null ? ("1" + server.config.SSLMode + server.rsa.PublicKey) : "0";
+            var str = server.rsa != null ? $"1{server.config.SSLMode}{server.rsa.PublicKey}" : "0";
             remote.SendKcp(Encoding.UTF8.GetBytes(str));
         }
 

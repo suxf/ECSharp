@@ -249,6 +249,7 @@ namespace ES.Variant
             while (size > 0)
             {
                 list.Add(Var.Parse(data, startIndex, out int varLen));
+                if (varLen == 0) break;
                 startIndex += varLen;
                 size -= varLen;
             }

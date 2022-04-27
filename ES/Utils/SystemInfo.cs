@@ -37,5 +37,11 @@
         /// 逻辑线程数
         /// </summary>
         public static int ProcessorCount { get; } = System.Environment.ProcessorCount;
+        /// <summary>
+        /// 程序总运行时间(毫秒)
+        /// <para>实际时间是从调用框架功能开始计算</para>
+        /// <para>内部使用 Stopwatch 类实现</para>
+        /// </summary>
+        public static long TotalRunTime => Time.TimeFlowManager.TotalRunTime;
     }
 }

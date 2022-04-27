@@ -139,7 +139,7 @@ namespace ES.Network.Sockets
             }
             catch (Exception ex)
             {
-                global::Log.Exception(ex, "Socket Connect");
+                Log.Exception(ex, "Socket Connect");
                 return false;
             }
         }

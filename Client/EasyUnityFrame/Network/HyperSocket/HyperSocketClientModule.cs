@@ -24,7 +24,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
-        internal long heartCheckTimeOut = DateTime.UtcNow.Ticks;
+        internal long heartCheckTimeOut = Time.TimeFlowManager.TotalRunTime;
         /// <summary>
         /// 第一次接受到pong消息
         /// </summary>
@@ -69,7 +69,7 @@ namespace ES.Network.HyperSocket
 
                 if (msg.data.Compare(BaseHyperSocket.HeartPongBytes))
                 {
-                    Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
+                    Interlocked.Exchange(ref heartCheckTimeOut, Time.TimeFlowManager.TotalRunTime);
                     if (!hasFirstRecvPong)
                     {
                         hasFirstRecvPong = true;

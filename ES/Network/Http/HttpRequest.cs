@@ -53,6 +53,9 @@ namespace ES.Network.Http
         /// </summary>
         private readonly Stream handler;
 
+        private static readonly string newLine = Environment.NewLine;
+        private static readonly string newLineTwo = Environment.NewLine + Environment.NewLine;
+
         /// <summary>
         /// 构建http请求对象
         /// </summary>
@@ -63,7 +66,7 @@ namespace ES.Network.Http
             handler = stream;
             bytes = new byte[size];
             var data = GetRequestData(handler);
-            var rows = Regex.Split(data, Environment.NewLine);
+            var rows = Regex.Split(data, newLine);
 
             //Request URL & Method & Version
             var first = Regex.Split(rows[0], @"(\s+)")
@@ -98,9 +101,9 @@ namespace ES.Network.Http
             {
                 do
                 {
-                    length = stream.Read(bytes, 0, bytes.Length);
+                    length = stream.Read(bytes, 0, size);
                     Body += Encoding.UTF8.GetString(bytes, 0, length);
-                } while (Body.Length != length);
+                } while (length > 0 && Body.Length != length);
             }
 
             // 获取get数据
@@ -164,8 +167,7 @@ namespace ES.Network.Http
             {
                 length = stream.Read(bytes, 0, bytes.Length);
                 data += Encoding.UTF8.GetString(bytes, 0, length);
-            } while (length > 0 && !data.Contains("\r\n\r\n"));
-
+            } while (length > 0 && !data.Contains(newLineTwo));
             return data;
         }
 
@@ -174,7 +176,7 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="rows"></param>
         /// <returns></returns>
-        private string GetRequestBody(IEnumerable<string> rows)
+        private static string GetRequestBody(IEnumerable<string> rows)
         {
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
             if (target == null) return "";
@@ -187,7 +189,7 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="rows"></param>
         /// <returns></returns>
-        private Dictionary<string, string> GetRequestHeaders(IEnumerable<string> rows)
+        private static Dictionary<string, string> GetRequestHeaders(IEnumerable<string> rows)
         {
             if (!rows.Any()) return new Dictionary<string, string>();
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
@@ -202,11 +204,11 @@ namespace ES.Network.Http
         /// </summary>
         /// <param name="row"></param>
         /// <returns></returns>
-        private Dictionary<string, string> GetRequestParameters(string row)
+        private static Dictionary<string, string> GetRequestParameters(string row)
         {
             if (string.IsNullOrEmpty(row)) return new Dictionary<string, string>();
             var kvs = Regex.Split(row, "&");
-            if (kvs == null || kvs.Count() <= 0) return new Dictionary<string, string>();
+            if (kvs == null || kvs.Length <= 0) return new Dictionary<string, string>();
             return kvs.ToDictionary(e => Regex.Split(e, "=")[0], e => { var p = Regex.Split(e, "="); return p.Length > 1 ? p[1] : ""; });
         }
     }

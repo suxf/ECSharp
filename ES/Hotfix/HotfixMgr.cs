@@ -70,7 +70,7 @@ namespace ES.Hotfix
         /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
         public static bool Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
         {
-            if (isLoading /*|| loadTime > DateTime.Now.AddSeconds(-3)*/) return false;
+            if (isLoading) return false;
             isLoading = true;
             if (++loadCount >= 2) IsFirstLoad = false;
             // LmBinder.ResetEvent.Reset();
@@ -133,7 +133,7 @@ namespace ES.Hotfix
                         if (agentRefs[i].TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
                         {
                             // 处理时间流代理停止
-                            TimeFlowManager.Instance.CloseByObj((ITimeUpdate)agentRef._agent);
+                            TimeFlowManager.CloseByObj((ITimeUpdate)agentRef._agent);
                         }
                     }
                     // 后重置所有代理

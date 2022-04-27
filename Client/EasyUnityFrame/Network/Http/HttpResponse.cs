@@ -102,7 +102,7 @@ namespace ES.Network.Http
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append("HTTP/1.1 " + StatusCode + "\r\n");
+            builder.Append($"HTTP/1.1 {StatusCode}\r\n");
 
             foreach (var item in headers) builder.AppendLine($"{item.Key}:{item.Value}");
 

@@ -2,6 +2,7 @@
 using ES.Hotfix;
 using Sample;
 using System;
+using ES;
 
 namespace SampleDll
 {

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ES.Alias.Collections;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -221,6 +222,7 @@ namespace ES.Variant
                 Var value = Var.Parse(data, startIndex, out int valueLen);
                 startIndex += valueLen;
                 map.Add(key, value);
+                if (keyLen + valueLen == 0) break;
                 size = size - keyLen - valueLen;
             }
             if (data[startIndex] != (byte)map.Count)

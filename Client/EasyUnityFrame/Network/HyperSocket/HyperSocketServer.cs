@@ -1,4 +1,5 @@
-﻿using ES.Network.Sockets;
+﻿using ES.Alias.Collections;
+using ES.Network.Sockets;
 using ES.Utils;
 using System;
 
@@ -208,8 +209,8 @@ namespace ES.Network.HyperSocket
             if (heartCheckPeriod > 0)
                 return;
             heartCheckPeriod = config.HeartCheckPeriod;
-            long ticks1 = DateTime.UtcNow.AddMilliseconds(-config.HeartTimeOut).Ticks;
-            long ticks2 = DateTime.UtcNow.AddSeconds(-3).Ticks;
+            long ticks1 = Time.TimeFlowManager.TotalRunTime - config.HeartTimeOut;
+            long ticks2 = Time.TimeFlowManager.TotalRunTime - 3000;
             foreach (var item in remoteSockets)
             {
                 var remote = item.Value;

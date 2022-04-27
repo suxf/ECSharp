@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['foreground_5fdebug_5fcolor_1096',['FOREGROUND_DEBUG_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#a799ebf7fe7b611e56dbe10da72128800',1,'ES::Log::LogConfig']]],
-  ['foreground_5ferror_5fcolor_1097',['FOREGROUND_ERROR_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#aece9672fa33bef39eeedf847bddccc85',1,'ES::Log::LogConfig']]],
-  ['foreground_5fexception_5fcolor_1098',['FOREGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#a00af6d6d3ca9cf8c8a7837a179826a37',1,'ES::Log::LogConfig']]],
-  ['foreground_5finfo_5fcolor_1099',['FOREGROUND_INFO_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#af5fb638e78de40541ff4d6e71c3e77cc',1,'ES::Log::LogConfig']]],
-  ['foreground_5finput_5fcolor_1100',['FOREGROUND_INPUT_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#a43efa1f19e2a0374f6bb4d8858a3d6c1',1,'ES::Log::LogConfig']]],
-  ['foreground_5fwarn_5fcolor_1101',['FOREGROUND_WARN_COLOR',['../class_e_s_1_1_log_1_1_log_config.html#aeb8a1bf80e86def447f24afe447d7c2b',1,'ES::Log::LogConfig']]]
+  ['foreground_5fdebug_5fcolor_1105',['FOREGROUND_DEBUG_COLOR',['../class_e_s_1_1_log_config.html#a73105faf17879e16e7733174a5806b3a',1,'ES::LogConfig']]],
+  ['foreground_5ferror_5fcolor_1106',['FOREGROUND_ERROR_COLOR',['../class_e_s_1_1_log_config.html#a1ecc02a4e457d7bcf07a85f7d3d11004',1,'ES::LogConfig']]],
+  ['foreground_5fexception_5fcolor_1107',['FOREGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_log_config.html#a6150aea36b647187143cb6683783a80a',1,'ES::LogConfig']]],
+  ['foreground_5finfo_5fcolor_1108',['FOREGROUND_INFO_COLOR',['../class_e_s_1_1_log_config.html#ac46bed36aed33c2f7a12ace4a59f15cb',1,'ES::LogConfig']]],
+  ['foreground_5finput_5fcolor_1109',['FOREGROUND_INPUT_COLOR',['../class_e_s_1_1_log_config.html#a411847c2056e6fa1d25d3bde8630c589',1,'ES::LogConfig']]],
+  ['foreground_5fwarn_5fcolor_1110',['FOREGROUND_WARN_COLOR',['../class_e_s_1_1_log_config.html#a411fee5e536b9cede6aa79b72bf1cec7',1,'ES::LogConfig']]]
 ];

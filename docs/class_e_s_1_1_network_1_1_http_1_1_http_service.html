@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.16.6</span>
+   &#160;<span id="projectnumber">1.16.8</span>
    </div>
    <div id="projectbrief">一个让.NET开发更简单的框架。</div>
   </td>
@@ -102,9 +102,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:ab0a5be04477487174720ba8cd0070b51"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#ab0a5be04477487174720ba8cd0070b51">HttpService</a> (string ipAddress, int port, <a class="el" href="interface_e_s_1_1_network_1_1_http_1_1_i_http.html">IHttp</a> invoke, X509Certificate2? certificate=null)</td></tr>
 <tr class="memdesc:ab0a5be04477487174720ba8cd0070b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#ab0a5be04477487174720ba8cd0070b51">更多...</a><br /></td></tr>
 <tr class="separator:ab0a5be04477487174720ba8cd0070b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a497a395a445adb555966cc6583f3b40a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#a497a395a445adb555966cc6583f3b40a">StartServer</a> ()</td></tr>
-<tr class="memdesc:a497a395a445adb555966cc6583f3b40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">开启服务器  <a href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#a497a395a445adb555966cc6583f3b40a">更多...</a><br /></td></tr>
-<tr class="separator:a497a395a445adb555966cc6583f3b40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7500a1b6b8c0625d1fa99ace59e5e94d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#a7500a1b6b8c0625d1fa99ace59e5e94d">StartServer</a> (int backlog=10)</td></tr>
+<tr class="memdesc:a7500a1b6b8c0625d1fa99ace59e5e94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">开启服务器  <a href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#a7500a1b6b8c0625d1fa99ace59e5e94d">更多...</a><br /></td></tr>
+<tr class="separator:a7500a1b6b8c0625d1fa99ace59e5e94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab82ae2d41150f4f06f62944cfe8e4586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#ab82ae2d41150f4f06f62944cfe8e4586">SetHttpInvoke</a> (<a class="el" href="interface_e_s_1_1_network_1_1_http_1_1_i_http.html">IHttp</a> invoke)</td></tr>
 <tr class="memdesc:ab82ae2d41150f4f06f62944cfe8e4586"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置HTTP委托  <a href="class_e_s_1_1_network_1_1_http_1_1_http_service.html#ab82ae2d41150f4f06f62944cfe8e4586">更多...</a><br /></td></tr>
 <tr class="separator:ab82ae2d41150f4f06f62944cfe8e4586"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,8 +288,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a497a395a445adb555966cc6583f3b40a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a497a395a445adb555966cc6583f3b40a">&#9670;&nbsp;</a></span>StartServer()</h2>
+<a id="a7500a1b6b8c0625d1fa99ace59e5e94d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7500a1b6b8c0625d1fa99ace59e5e94d">&#9670;&nbsp;</a></span>StartServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,13 +297,20 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="memname">void ES.Network.Http.HttpService.StartServer </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>backlog</em> = <code>10</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>开启服务器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">backlog</td><td>并发数量 默认:10</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

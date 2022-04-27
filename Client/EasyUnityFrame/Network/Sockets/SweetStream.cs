@@ -200,16 +200,8 @@ namespace ES.Network.Sockets
         /// </summary>
         public byte[]? TakeStreamBuffer()
         {
-            if (!originalQueue.IsEmpty)
-            {
-                byte[]? result;
-                do
-                {
-                    if (originalQueue.TryDequeue(out result)) return result;
-                    else return null;
-                } while (result != null);
-            }
-            return null;
+            if (originalQueue.TryDequeue(out var result)) return result;
+            else return null;
         }
     }
 }

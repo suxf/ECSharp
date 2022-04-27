@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using BenchmarkDotNet.Attributes;
+using ES;
 
 namespace Sample
 {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logtype_1154',['LogType',['../namespace_e_s_1_1_log.html#adfbbcaad3011c33ae6d9424aeb9dd843',1,'ES::Log']]]
+  ['logtype_1164',['LogType',['../namespace_e_s.html#a982a16cfe98ec7980bcbf12f87288796',1,'ES']]]
 ];

@@ -27,17 +27,18 @@ var hierarchy =
     [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ],
     [ "ES.Database.CommandResult", "class_e_s_1_1_database_1_1_command_result.html", null ],
     [ "ConcurrentDictionary", null, [
-      [ "ConcurrentMap< TKey, TValue >", "class_concurrent_map.html", null ]
+      [ "ES.Alias.Collections.ConcurrentMap< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ]
     ] ],
     [ "ES.Linq.ConcurrentLinq", "class_e_s_1_1_linq_1_1_concurrent_linq.html", null ],
-    [ "ConcurrentMap< int, ES.Network.Sockets.Server.RemoteConnection >", "class_concurrent_map.html", null ],
-    [ "ConcurrentMap< ushort, ES.Network.HyperSocket.RemoteHyperSocket?>", "class_concurrent_map.html", null ],
+    [ "ES.Alias.Collections.ConcurrentMap< int, ES.Network.Sockets.Server.RemoteConnection >", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ],
+    [ "ES.Alias.Collections.ConcurrentMap< ushort, ES.Network.HyperSocket.RemoteHyperSocket?>", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ],
     [ "ES.Database.Linq.ConfigLoader< T >", "class_e_s_1_1_database_1_1_linq_1_1_config_loader.html", null ],
     [ "ES.Database.Linq.DataEntity< T >", "class_e_s_1_1_database_1_1_linq_1_1_data_entity.html", null ],
     [ "ES.Linq.DateTimeLinq", "class_e_s_1_1_linq_1_1_date_time_linq.html", null ],
     [ "Dictionary", null, [
-      [ "Map< TKey, TValue >", "class_map.html", null ]
+      [ "ES.Alias.Collections.Map< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ]
     ] ],
+    [ "ES.Event", "class_e_s_1_1_event.html", null ],
     [ "ES.Hotfix.HotfixMgr", "class_e_s_1_1_hotfix_1_1_hotfix_mgr.html", null ],
     [ "ES.Network.Http.HttpHeader", "class_e_s_1_1_network_1_1_http_1_1_http_header.html", [
       [ "ES.Network.Http.HttpRequest", "class_e_s_1_1_network_1_1_http_1_1_http_request.html", null ],
@@ -95,12 +96,12 @@ var hierarchy =
       [ "ES.Variant.VarList", "class_e_s_1_1_variant_1_1_var_list.html", null ]
     ] ],
     [ "ES.Utils.LocalStorage", "class_e_s_1_1_utils_1_1_local_storage.html", null ],
-    [ "Log", "class_log.html", null ],
-    [ "ES.Log.LogConfig", "class_e_s_1_1_log_1_1_log_config.html", null ],
-    [ "Map< string, ES.Utils.Ini.IniParser >", "class_map.html", null ],
-    [ "Map< string, Map< string, string > >", "class_map.html", null ],
-    [ "Map< string, T >", "class_map.html", null ],
-    [ "Map< Var, Var >", "class_map.html", [
+    [ "ES.Log", "class_e_s_1_1_log.html", null ],
+    [ "ES.LogConfig", "class_e_s_1_1_log_config.html", null ],
+    [ "ES.Alias.Collections.Map< string, ES.Utils.Ini.IniParser >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< string, Map< string, string > >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< string, T >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< Var, Var >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", [
       [ "ES.Variant.VarMap", "class_e_s_1_1_variant_1_1_var_map.html", null ]
     ] ],
     [ "ES.Utils.MD5", "class_e_s_1_1_utils_1_1_m_d5.html", null ],
@@ -119,7 +120,6 @@ var hierarchy =
     [ "ES.Linq.StringLinq", "class_e_s_1_1_linq_1_1_string_linq.html", null ],
     [ "ES.Network.Sockets.SweetStream", "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html", null ],
     [ "ES.Utils.SystemInfo", "class_e_s_1_1_utils_1_1_system_info.html", null ],
-    [ "ES.Time.TimeFix", "class_e_s_1_1_time_1_1_time_fix.html", null ],
     [ "ES.Variant.Var", "struct_e_s_1_1_variant_1_1_var.html", null ],
     [ "ES.Network.Websocket.WebsocketService", "class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html", null ]
 ];

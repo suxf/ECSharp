@@ -1,4 +1,5 @@
-﻿using ES.Database.Linq;
+﻿using ES;
+using ES.Database.Linq;
 using ES.Database.MySQL;
 using System;
 using System.Data;

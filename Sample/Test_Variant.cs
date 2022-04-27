@@ -1,6 +1,6 @@
-﻿using ES.Variant;
+﻿using ES;
+using ES.Variant;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Diagnostics;
 
 namespace Sample
@@ -33,13 +33,13 @@ namespace Sample
             }
             Var oo4 = false;
             oo3 = oo4 == false;
-
+            /*
             Var q1 = 2.0;
             Var q2 = Var.Empty;
             q1 = q1 / q2;
             q1 += 100;
             byte q3 = q1;
-
+            */
             VarList varlist1 = new VarList() + 123123 + 21323 + "fafasfasf" + "324gsg";
             varlist1 += "gewtt";
             varlist1 += "gewtt";

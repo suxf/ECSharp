@@ -142,16 +142,20 @@ namespace ES.Time
                 if (delayTimeNow < delayTime)
                     return;
                 isFirstCall = false;
-                handle?.Invoke(++repeatNumNow);
+                handle(++repeatNumNow);
                 return;
             }
 
             periodTimeNow += deltaTime;
-            if (periodTimeNow < periodTime)
+            int count = periodTimeNow / periodTime;
+            if (count == 0)
                 return;
 
-            periodTimeNow = 0;
-            handle?.Invoke(++repeatNumNow);
+            periodTimeNow %= periodTime;
+            for (int i = 0; i < count; i++)
+            {
+                handle(++repeatNumNow);
+            }
         }
 
         /// <summary>

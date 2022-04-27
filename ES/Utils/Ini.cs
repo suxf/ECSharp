@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ES.Alias.Collections;
+using System;
 using System.IO;
 
 namespace ES.Utils
@@ -112,7 +113,7 @@ namespace ES.Utils
         {
             if (!isAbsolutePath)
             {
-                filePath = Environment.CurrentDirectory + @"\" + filePath;
+                filePath = @$"{Environment.CurrentDirectory}\{filePath}";
             }
             if (!File.Exists(filePath))
                 return false;
@@ -129,14 +130,14 @@ namespace ES.Utils
                     if (string.IsNullOrEmpty(str))
                         continue;
                     str = str.Trim();
-                    if (str.StartsWith(";"))
+                    if (str.StartsWith(';'))
                         continue;
-                    if (str.StartsWith("[") && str.EndsWith("]"))
+                    if (str.StartsWith('[') && str.EndsWith(']'))
                     {
                         section = str.Remove(str.Length - 1, 1).Remove(0, 1);
                         continue;
                     }
-                    if (!str.Contains("="))
+                    if (!str.Contains('='))
                         continue;
                     ReadOnlySpan<string> pair = str.Split('=');
                     if (pair.Length != 2)

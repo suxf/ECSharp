@@ -28,19 +28,19 @@ namespace ES.Time
         /// <summary>
         /// 耗时监视器累积时间 此处内部转换为纳秒整型
         /// </summary>
-        internal double consumeTime = 0;
+        internal long consumeTime = 0;
         /// <summary>
         /// 未消耗的修正时间 此处内部转换为纳秒整型
         /// </summary>
-        private double notConsumeFixedTime = 0;
+        private long notConsumeFixedTime = 0;
         /// <summary>
         /// 修正时间 毫秒整型
         /// </summary>
-        private readonly int fixedTime = 0;
+        private readonly long fixedTime = 0;
         /// <summary>
-        /// 修正时间 秒
+        /// 当前增量时间
         /// </summary>
-        private readonly double fixedSecTime = 0.0;
+        private int currentDeltaTime = 0;
 
         /// <summary>
         /// 空闲标记
@@ -55,10 +55,9 @@ namespace ES.Time
         /// <param name="fixedTime">修正时间</param>
         protected BaseTimeFlow(ITimeUpdate timeUpdate, bool isSync, int fixedTime)
         {
-            this.fixedTime = fixedTime < 1 ? 1 : fixedTime;
-            fixedSecTime = fixedTime / 1000.0;
+            this.fixedTime = fixedTime < TimeFlowThread.Interval ? TimeFlowThread.Interval : fixedTime;
             reference = new WeakReference<ITimeUpdate>(timeUpdate);
-            TimeFlowManager.Instance.PushTimeFlow(this, isSync);
+            TimeFlowManager.PushTimeFlow(this, isSync);
         }
 
         /// <summary>
@@ -67,18 +66,9 @@ namespace ES.Time
         /// <param name="timeUpdate"></param>
         /// <param name="isSync">同步标记</param>
         /// <param name="fixedTime">修正时间</param>
-        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, bool isSync = false, int fixedTime = 10)
+        internal static BaseTimeFlow CreateTimeFlow(ITimeUpdate timeUpdate, bool isSync = false, int fixedTime = 1)
         {
             return new BaseTimeFlow(timeUpdate, isSync, fixedTime);
-        }
-
-        /// <summary>
-        /// 索引是否还在
-        /// </summary>
-        /// <returns></returns>
-        internal bool IsTimeUpdateActive()
-        {
-            return reference.TryGetTarget(out _);
         }
 
         /// <summary>
@@ -126,55 +116,74 @@ namespace ES.Time
         /// <summary>
         /// 内部 更新
         /// </summary>
-        /// <param name="dt"></param>
-        internal void UpdateSyncES(double dt)
+        internal void UpdateSyncES()
         {
-            if (!reference.TryGetTarget(out var iTimeUpdate))
+            if (isTimeFlowStop)
+                return;
+            if (isTimeFlowPause)
                 return;
             if (!IsIdle)
                 return;
             IsIdle = false;
-            double period = dt - consumeTime;
-            double consumeFixedTime = notConsumeFixedTime + period;
-            int count = (int)(consumeFixedTime / fixedSecTime);
+            long ticks = TimeFlowManager.TotalRunTime;
+            long period = ticks - consumeTime;
+            long consumeFixedTime = notConsumeFixedTime + period;
+            long count = consumeFixedTime / fixedTime;
             if (count <= 0)
             {
                 IsIdle = true;
                 return;
             }
-            notConsumeFixedTime = consumeFixedTime % fixedSecTime;
-            consumeTime = dt;
-            iTimeUpdate.Update(fixedTime * count);
+            notConsumeFixedTime = consumeFixedTime % fixedTime;
+            consumeTime = ticks;
+            if (!reference.TryGetTarget(out var iTimeUpdate))
+            {
+                // 查不到引用则关闭此对象
+                CloseTimeFlowES();
+                return;
+            }
+            iTimeUpdate.Update((int)(fixedTime * count));
             IsIdle = true;
         }
 
         /// <summary>
         /// 内部 更新
         /// </summary>
-        /// <param name="dt"></param>
-        internal void UpdateES(double dt)
+        internal void UpdateES()
         {
-            if (!reference.TryGetTarget(out var iTimeUpdate))
+            if (isTimeFlowStop)
+                return;
+            if (isTimeFlowPause)
                 return;
             // 正常更新
             if (!IsIdle)
                 return;
             IsIdle = false;
-            double period = dt - consumeTime;
-            double consumeFixedTime = notConsumeFixedTime + period;
-            int count = (int)(consumeFixedTime / fixedSecTime);
+            long ticks = TimeFlowManager.TotalRunTime;
+            long period = ticks - consumeTime;
+            long consumeFixedTime = notConsumeFixedTime + period;
+            long count = consumeFixedTime / fixedTime;
             if (count <= 0)
             {
                 IsIdle = true;
                 return;
             }
-            notConsumeFixedTime = consumeFixedTime % fixedSecTime;
-            consumeTime = dt;
-            ThreadPool.QueueUserWorkItem(delegate
+            notConsumeFixedTime = consumeFixedTime % fixedTime;
+            consumeTime = ticks;
+            currentDeltaTime = (int)(fixedTime * count);
+            ThreadPool.QueueUserWorkItem(UpdateWork, this, true);
+        }
+
+        private static void UpdateWork(BaseTimeFlow flow)
+        {
+            if (!flow.reference.TryGetTarget(out var iTimeUpdate))
             {
-                iTimeUpdate.Update(fixedTime * count);
-                IsIdle = true;
-            });
+                // 查不到引用则关闭此对象
+                flow.CloseTimeFlowES();
+                return;
+            }
+            iTimeUpdate.Update(flow.currentDeltaTime);
+            flow.IsIdle = true;
         }
 
         /// <summary>
@@ -183,9 +192,7 @@ namespace ES.Time
         internal void UpdateSyncEndES()
         {
             if (reference.TryGetTarget(out var iTimeUpdate))
-            {
                 iTimeUpdate.UpdateEnd();
-            }
         }
 
         /// <summary>
@@ -193,13 +200,13 @@ namespace ES.Time
         /// </summary>
         internal void UpdateEndES()
         {
-            if (reference.TryGetTarget(out var iTimeUpdate))
-            {
-                ThreadPool.QueueUserWorkItem(delegate
-                {
-                    iTimeUpdate.UpdateEnd();
-                });
-            }
+            ThreadPool.QueueUserWorkItem(UpdateEndWork, this, true);
+        }
+
+        private static void UpdateEndWork(BaseTimeFlow flow)
+        {
+            if (flow.reference.TryGetTarget(out var iTimeUpdate))
+                iTimeUpdate.UpdateEnd();
         }
     }
 }

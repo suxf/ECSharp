@@ -259,13 +259,12 @@ namespace ES.Network.Sockets.Client
         /// </summary>
         private void TriggerSocketInvoke()
         {
-            var sb = RBuffer.TakeStreamBuffer();
-            while (sb != null)
+            do
             {
+                var sb = RBuffer.TakeStreamBuffer();
+                if (sb == null) return;
                 socketInvoke?.OnReceivedCompleted(new SocketMsg(0, sb, this));
-                // 提取下一个
-                sb = RBuffer.TakeStreamBuffer();
-            }
+            } while (true);
         }
 
         /// <summary>

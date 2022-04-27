@@ -198,7 +198,7 @@ namespace ES.Network.Sockets.Server
         {
             do
             {
-                byte[]? sb = RBuffer?.TakeStreamBuffer();
+                var sb = RBuffer.TakeStreamBuffer();
                 if (sb == null) return;
                 SocketInvoke?.OnReceivedCompleted(new RemoteSocketMsg(0, sb, this));
             } while (true);

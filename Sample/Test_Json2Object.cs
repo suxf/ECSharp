@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ES.Alias.Collections;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Sample

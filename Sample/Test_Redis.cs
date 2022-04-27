@@ -1,4 +1,5 @@
-﻿using ES.Database.Redis;
+﻿using ES;
+using ES.Database.Redis;
 using StackExchange.Redis;
 using System;
 

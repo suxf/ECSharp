@@ -71,6 +71,7 @@ namespace ES.Network.HyperSocket
                 {
                     var buffer = new byte[len];
                     if (kcp.Recv(buffer) > 0) kcpListener.OnReceive(buffer);
+                    else break;
                 }
                 nextUpdateTime = DateTime.UtcNow;
                 noNetDataCount = 0;

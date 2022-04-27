@@ -16,41 +16,73 @@
 
         /// <summary>
         /// 时间流停止开关
-        /// <para>只读 通过 Close/CloseAll 函数修改</para>
+        /// <para>只读 通过 Close 函数修改</para>
         /// </summary>
         public bool IsStop { get { return isTimeFlowStop; } }
 
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
-        /// 高精度模式
-        /// <para>高精度模式会侵占所有CPU性能，但运算精度。</para>
+        /// 时间流更新间隔
+        /// <para>默认为 TimeInterval.Interval_16ms </para>
         /// </summary>
-        public static bool IsHighPrecisionMode { get { return TimeFlowThread.isHighPrecisionMode; } }
+        public static TimeInterval TimeInterval
+        {
+            get { return (TimeInterval)TimeFlowThread.Interval; }
+            set { TimeFlowThread.Interval = (int)value; }
+        }
+#endif
 
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
         /// 构造函数 内部使用
         /// </summary>
         /// <param name="timeUpdate"></param>
         /// <param name="isSync">同步标记</param>
-        /// <param name="fixedTime">修正时间</param>
+        /// <param name="fixedTime">修正时间, 不能低于 TimeInterval </param>
+#else
+        /// <summary>
+        /// 构造函数 内部使用
+        /// </summary>
+        /// <param name="timeUpdate"></param>
+        /// <param name="isSync">同步标记</param>
+        /// <param name="fixedTime">修正时间, 不能低于 Unity设置的更新间隔周期 </param>
+#endif
         private TimeFlow(ITimeUpdate timeUpdate, bool isSync, int fixedTime) : base(timeUpdate, isSync, fixedTime) { }
 
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
         /// 创建一个时间流
         /// </summary>
         /// <param name="timeUpdate">更新回调接口</param>
-        /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
-        public static TimeFlow Create(ITimeUpdate timeUpdate, int period = 10)
+        /// <param name="period">刷新周期 单位：毫秒 [不能低于 TimeInterval]</param>
+#else
+        /// <summary>
+        /// 创建一个时间流
+        /// </summary>
+        /// <param name="timeUpdate">更新回调接口</param>
+        /// <param name="period">刷新周期 单位：毫秒 [不能低于 Unity设置的更新间隔周期]</param>
+#endif
+        public static TimeFlow Create(ITimeUpdate timeUpdate, int period = 0)
         {
             return new TimeFlow(timeUpdate, false, period);
         }
 
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
         /// 创建一个同步时间流
         /// <para>通过此函数创建的时间流将始终都处于一个线程运行</para>
         /// </summary>
         /// <param name="timeUpdate">更新回调接口</param>
-        /// <param name="period">刷新周期 单位：毫秒 [值如果是0为实时刷新，将不受周期修正，需要自行平衡时间，大于0的情况刷新间隔固定为此值]</param>
-        public static TimeFlow CreateSync(ITimeUpdate timeUpdate, int period = 10)
+        /// <param name="period">刷新周期 单位：毫秒 [不能低于 TimeInterval]</param>
+#else
+        /// <summary>
+        /// 创建一个同步时间流
+        /// <para>通过此函数创建的时间流将始终都处于一个线程运行</para>
+        /// </summary>
+        /// <param name="timeUpdate">更新回调接口</param>
+        /// <param name="period">刷新周期 单位：毫秒 [不能低于 Unity设置的更新间隔周期]</param>
+#endif
+        public static TimeFlow CreateSync(ITimeUpdate timeUpdate, int period = 0)
         {
             return new TimeFlow(timeUpdate, true, period);
         }
@@ -70,19 +102,6 @@
         public void Pause()
         {
             SetTimeFlowPauseES(true);
-        }
-
-        /// <summary>
-        /// 设置高精度模式
-        /// <para>在某些情况的服务中需要毫秒级无误差支持可打开此项</para>
-        /// <para>在机器设备支持的情况下可支持毫秒无误差更新，具体视执行函数体内容而定</para>
-        /// <para>此模式会占用更多的CPU资源，低精度不占用CPU资源，但会存在毫秒误差，不过结果趋向是相同的</para>
-        /// <para>默认是低精度模式，可在任何时间变更精度模式，要注意精度模式是影响整个框架的所有更新模式</para>
-        /// </summary>
-        /// <param name="state">打开状态</param>
-        public static void SetHighPrecisionMode(bool state)
-        {
-            TimeFlowThread.isHighPrecisionMode = state;
         }
 
         /// <summary>

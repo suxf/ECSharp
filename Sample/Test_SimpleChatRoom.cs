@@ -5,6 +5,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Text;
 using ES.Linq;
+using ES;
 
 namespace Sample
 {

@@ -46,7 +46,7 @@ namespace ES.Network.HyperSocket
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
-        internal long heartCheckTimeOut = DateTime.UtcNow.Ticks;
+        internal long heartCheckTimeOut = Time.TimeFlowManager.TotalRunTime;
 
         internal AesCrypto? aes;
 
@@ -78,7 +78,7 @@ namespace ES.Network.HyperSocket
         internal bool SendPong()
         {
             if (tcpConn == null) return false;
-            System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, DateTime.UtcNow.Ticks);
+            System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, Time.TimeFlowManager.TotalRunTime);
             return tcpConn.Send(SessionId, BaseHyperSocket.HeartPongBytes);
         }
 

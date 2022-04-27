@@ -1,5 +1,6 @@
 var class_e_s_1_1_utils_1_1_system_info =
 [
+    [ "TotalRunTime", "class_e_s_1_1_utils_1_1_system_info.html#a98601ea339885350e4b3bc0a9034a517", null ],
     [ "AppName", "class_e_s_1_1_utils_1_1_system_info.html#ad6cfaffba49624874d0bdb769b9651c7", null ],
     [ "AppVersion", "class_e_s_1_1_utils_1_1_system_info.html#a209c033447430f27a8ddaf90b7d561b2", null ],
     [ "DotNetVersion", "class_e_s_1_1_utils_1_1_system_info.html#a242c6e7234e8f662d85b28808690ce7f", null ],

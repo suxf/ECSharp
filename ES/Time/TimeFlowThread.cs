@@ -8,31 +8,46 @@ namespace ES.Time
     /// </summary>
     internal class TimeFlowThread
     {
-        private Thread? thread;
+        private readonly Thread thread;
+        private readonly ManualResetEventSlim waitHandle;
         private readonly List<BaseTimeFlow> timeFlows = new List<BaseTimeFlow>();
         private readonly List<BaseTimeFlow> waitAddTimeFlows = new List<BaseTimeFlow>();
+
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
-        /// 正在更新状态值
+        /// 时间间隔
         /// </summary>
-        internal bool IsRunning = false;
+        private static int interval = (int)TimeInterval.Interval_16ms;
+#else
+        /// <summary>
+        /// 时间间隔
+        /// </summary>
+        private static readonly int interval = (int)(UnityEngine.Time.fixedDeltaTime * 1000);
+#endif
+
+        /// <summary>
+        /// 时间间隔
+        /// </summary>
+        internal static int Interval
+        {
+            get { return interval; }
+#if !UNITY_2020_1_OR_NEWER
+            set { interval = value; }
+#endif
+        }
 
         /// <summary>
         /// 同步标记
         /// </summary>
         private readonly bool isSync = false;
 
-        /// <summary>
-        /// 高精度模式
-        /// </summary>
-        internal static bool isHighPrecisionMode = false;
-
         internal TimeFlowThread(bool isSync)
         {
             this.isSync = isSync;
-            IsRunning = true;
+            waitHandle = new ManualResetEventSlim(false);
             thread = new Thread(UpdateHandle);
             thread.IsBackground = true;
-            thread.Start();
+            thread.Start(this);
         }
 
         internal int GetTaskCount()
@@ -47,54 +62,53 @@ namespace ES.Time
 
         /// <summary>
         /// 更新句柄
-        /// 这个地方要优化，在原基础线程优化方案上改成自动增长的模式，检测线程里工作线数量与处理时长的比例是否对称和目标延迟是否对等，否则增加新的线程并且移动到新线程中
-        /// 以及线程超时优化
         /// </summary>
-        private void UpdateHandle()
+        private static void UpdateHandle(object? obj)
         {
+            TimeFlowThread? t = obj as TimeFlowThread;
+            if (t == null)
+                return;
+
             List<BaseTimeFlow> waitRmv = new List<BaseTimeFlow>();
-            // 耗时监视器
-            var watch = new System.Diagnostics.Stopwatch();
-            watch.Start();
-            while (IsRunning)
+            while (true)
             {
                 // 加入新的时间流
-                if (waitAddTimeFlows.Count > 0)
+                if (t.waitAddTimeFlows.Count > 0)
                 {
                     BaseTimeFlow[]? tfArray;
-                    lock (waitAddTimeFlows)
+                    lock (t.waitAddTimeFlows)
                     {
-                        tfArray = waitAddTimeFlows.ToArray();
-                        waitAddTimeFlows.Clear();
+                        tfArray = t.waitAddTimeFlows.ToArray();
+                        t.waitAddTimeFlows.Clear();
                     }
                     for (int i = 0, len = tfArray.Length; i < len; i++)
                     {
-                        tfArray[i].consumeTime = watch.Elapsed.TotalSeconds;
-                        timeFlows.Add(tfArray[i]);
+                        tfArray[i].consumeTime = TimeFlowManager.TotalRunTime;
+                        t.timeFlows.Add(tfArray[i]);
                     }
                 }
-                for (int i = 0, len = timeFlows.Count; i < len; i++)
+                for (int i = 0, len = t.timeFlows.Count; i < len; i++)
                 {
-                    var tf = timeFlows[i];
-                    if (!tf.IsTimeUpdateActive() || tf.isTimeFlowStop)
+                    var tf = t.timeFlows[i];
+                    if (tf.isTimeFlowStop)
                     {
                         waitRmv.Add(tf);
-                        if (isSync) tf.UpdateSyncEndES();
+                        if (t.isSync) tf.UpdateSyncEndES();
                         else tf.UpdateEndES();
                         continue;
                     }
                     if (tf.isTimeFlowPause) continue;
-                    if (isSync) tf.UpdateSyncES(watch.Elapsed.TotalSeconds);
-                    else tf.UpdateES(watch.Elapsed.TotalSeconds);
+                    if (t.isSync) tf.UpdateSyncES();
+                    else tf.UpdateES();
                 }
                 for (int i = 0, len = waitRmv.Count; i < len; i++)
                 {
-                    timeFlows.Remove(waitRmv[i]);
+                    t.timeFlows.Remove(waitRmv[i]);
+                    // 优化清空逻辑
+                    if (i == len - 1) waitRmv.Clear();
                 }
-                waitRmv.Clear();
-                // 精度调整
-                if (isHighPrecisionMode) Thread.Yield();
-                else Thread.Sleep(1);
+                // 睡眠
+                t.waitHandle.Wait(interval);
             }
         }
 
@@ -111,19 +125,6 @@ namespace ES.Time
                 else continue;
             }
             return false;
-        }
-
-        internal void Close()
-        {
-            IsRunning = false;
-            try
-            {
-#pragma warning disable SYSLIB0006 // 类型或成员已过时
-                if (thread != null && thread.IsAlive) thread.Abort();
-#pragma warning restore SYSLIB0006 // 类型或成员已过时
-            }
-            catch { }
-            thread = null;
         }
     }
 }

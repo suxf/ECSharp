@@ -42,7 +42,7 @@ namespace ES.Hotfix
         {
             if (!objects.TryGetValue(key, out var value))
             {
-                var obj = action.Invoke();
+                var obj = action();
                 objects.TryAdd(key, obj);
                 return obj;
             }
