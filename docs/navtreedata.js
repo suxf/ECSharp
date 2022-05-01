@@ -25,6 +25,7 @@ var NAVTREE =
   [ "EasySharpFrame", "index.html", [
     [ "包函数", "namespacemembers.html", [
       [ "全部", "namespacemembers.html", null ],
+      [ "函数", "namespacemembers_func.html", null ],
       [ "枚举", "namespacemembers_enum.html", null ]
     ] ],
     [ "类", "annotated.html", [
@@ -45,9 +46,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_e_s_1_1_linq_1_1_concurrent_linq.html",
-"class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#addb2c5799cefb5ee043b271d756244d7",
-"functions_l.html"
+"class_e_s_1_1_linq_1_1_byte_linq.html#ad73431d3abce3bef5974a34d98ac774c",
+"class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#acb8a7129720afab3c9137156f5860fc1",
+"functions_func_t.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

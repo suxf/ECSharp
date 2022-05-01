@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace ES.Database.SQLServer
@@ -42,4 +41,3 @@ namespace ES.Database.SQLServer
         public bool IsCompleted { internal set; get; }
     }
 }
-#endif

@@ -27,10 +27,10 @@ namespace Sample
             }, "00:00:00").Start(true);
 
             // 测试同步和异步
-            TimeCaller.Create(delegate { Log.Info("1"); }, 0, 5000, -1).Start(true);
-            TimeCaller.Create(delegate { Log.Info("2"); }, 0, 5000, -1).Start(true);
-            TimeCaller.CreateSync(delegate { Log.Info("aa"); }, 0, 5000, -1).Start(true);
-            TimeCaller.CreateSync(delegate { Log.Info("bb"); }, 0, 5000, -1).Start(true);
+            TimeCaller.Create(static delegate () { Log.Info("1"); }, 0, 5000, -1).Start(true);
+            TimeCaller.Create(static delegate (){ Log.Info("2"); }, 0, 5000, -1).Start(true);
+            TimeCaller.CreateSync(static delegate () { Log.Info("aa"); }, 0, 5000, -1).Start(true);
+            TimeCaller.CreateSync(static delegate () { Log.Info("bb"); }, 0, 5000, -1).Start(true);
             // 假设我们有特殊的需求需要关闭此对象的更新可以调用
             // 如果可能尽可能在不再使用时调用此函数
             // Close();
@@ -50,10 +50,10 @@ namespace Sample
             // 这个类根据类似Task设计思想开发
             // 但是他们还是有些区别，注意不管是这类函数操作中不要在包含一些特别耗时的操作
             // 比如说 Thread.Sleep 这种
-            TimeCaller caller = TimeCaller.Create(delegate { Log.Info("Hello TimeCaller"); },
+            TimeCaller caller = TimeCaller.Create(static delegate (){ Log.Info("Hello TimeCaller"); },
                 2000, 10000, TimeCaller.Infinite).Start();
             // 创建一个带守护的执行器
-            TimeCaller.Create(delegate { Log.Info("Hello TimeCaller 2"); }, 2000, 1600, TimeCaller.Infinite).Start(true);
+            TimeCaller.Create(static delegate () { Log.Info("Hello TimeCaller 2"); }, 2000, 1600, TimeCaller.Infinite).Start(true);
         }
 
         /// <summary>

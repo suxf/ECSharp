@@ -1,4 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
+﻿#if !NET462 && !NETSTANDARD2_0
 using System;
 using System.Collections.Concurrent;
 

@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using ES.Time;
+﻿using ES.Time;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -59,7 +58,11 @@ namespace ES.Database.MySQL
         public MySqlDbHelper(string address, string username, string password, uint port = 3306, string? databaseName = null, uint minPoolSize = 0, uint maxPoolSize = 100, string? extraConfig = null)
         {
             if (!string.IsNullOrEmpty(extraConfig))
+#if !NET462 && !NETSTANDARD2_0
                 builder = new MySqlConnectionStringBuilder(extraConfig);
+#else
+                builder = new MySqlConnectionStringBuilder(extraConfig!);
+#endif
             else
                 builder = new MySqlConnectionStringBuilder();
             builder.Server = address;
@@ -271,4 +274,3 @@ namespace ES.Database.MySQL
         }
     }
 }
-#endif

@@ -33,7 +33,7 @@ namespace Sample
             {
                 Log.Info("并发启动客户端");
                 for (int i = 1; i <= 300; i++) StartClient(i);
-                TimeCaller.Create(delegate
+                TimeCaller.Create(static delegate ()
                 {
                     Log.Info($"Connect Num:{num}");
                 }, 1000, 3000, TimeCaller.Infinite).Start(true);
@@ -58,7 +58,7 @@ namespace Sample
                     ((HyperSocket)sockets[i]).Tag = i;
                     Thread.Sleep(100);
                 }
-                TimeCaller.Create(delegate
+                TimeCaller.Create(static delegate ()
                 {
                     Log.Info($"Connect Num:{num}");
                 }, 1000, 3000, TimeCaller.Infinite).Start(true);
@@ -79,7 +79,7 @@ namespace Sample
         public void StartServer(int i)
         {
             sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
-            TimeCaller.Create(delegate {
+            TimeCaller.Create(delegate () {
                 Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
             }, 1000, 3000, TimeCaller.Infinite).Start(true);
         }
@@ -89,7 +89,7 @@ namespace Sample
             //threads[i] = new Thread(delegate ()
             // {
             //Thread.Sleep(rd.Next(500, 5000));
-            TimeCaller.Create(delegate
+            TimeCaller.Create(delegate ()
             {
                 Log.Debug($"Start Client:{i}");
                 sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
@@ -212,7 +212,7 @@ namespace Sample
                 Interlocked.Increment(ref num);
                 Log.Info($"【OnOpen】 Connect Num:{num}");
                 // Log.Info($"Connect OK:{socket.SessionId}");
-                timeCaller2[socket.Tag] = TimeCaller.Create((long count) =>
+                timeCaller2[socket.Tag] = TimeCaller.Create(delegate ()
                 {
                     // socket.SendUdp(count.ToString());
                     socket.SendUdp(ES.Utils.RandomCode.Generate(rd.Next(0, 2048)));

@@ -26,6 +26,7 @@ namespace Sample
             Log.Info("[11]\thttp服务测试");
             Log.Info("[12]\t工具类测试");
             Log.Info("[13]\t可变变量测试");
+            Log.Info("[14]\t事件测试");
             string optionId = Log.ReadLine("选择要测试的功能序号:");
             switch (optionId)
             {
@@ -55,6 +56,8 @@ namespace Sample
                 case "12": new Test_Utils(); break;
                 // 可变变量测试
                 case "13": new Test_Variant(); break;
+                // 事件测试
+                case "14": new Test_Event(); break;
             }
             System.Threading.Thread.Sleep(-1);
         }

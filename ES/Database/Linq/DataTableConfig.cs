@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.Data;
 
 namespace ES.Database.Linq
@@ -37,4 +36,3 @@ namespace ES.Database.Linq
         protected override object SetPrimaryKey(JToken token) => new object();
     }
 }
-#endif

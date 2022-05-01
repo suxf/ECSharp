@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using System;
+﻿using System;
 
 namespace ES.Database.Linq
 {
@@ -46,4 +45,3 @@ namespace ES.Database.Linq
         }
     }
 }
-#endif

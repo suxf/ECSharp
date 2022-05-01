@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using ES.Time;
+﻿using ES.Time;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -243,4 +242,3 @@ namespace ES.Database.Linq
         }
     }
 }
-#endif

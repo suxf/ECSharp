@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using ES.Time;
+﻿using ES.Time;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -1145,4 +1144,3 @@ namespace ES.Database.Redis
         #endregion 辅助方法
     }
 }
-#endif

@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 
 namespace ES.Database.Redis
 {
@@ -46,4 +45,3 @@ namespace ES.Database.Redis
         void OnInternalError(object sender, InternalErrorEventArgs e);
     }
 }
-#endif

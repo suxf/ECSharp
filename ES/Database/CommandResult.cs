@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using System.Data;
+﻿using System.Data;
 
 namespace ES.Database
 {
@@ -28,4 +27,3 @@ namespace ES.Database
         public DataSet? DataSet { internal set; get; }
     }
 }
-#endif

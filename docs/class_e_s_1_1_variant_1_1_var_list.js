@@ -20,5 +20,6 @@ var class_e_s_1_1_variant_1_1_var_list =
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a58827c016aff0cfbd06e158b1ee02ab5", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a1ba6260dcd551237ad64cb690369a75c", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_list.html#a2a9e060837a8d2e7740714352ecb16ad", null ],
+    [ "New", "class_e_s_1_1_variant_1_1_var_list.html#a4d562a3141b2c4d5293cd6a82bd4916a", null ],
     [ "this[int index]", "class_e_s_1_1_variant_1_1_var_list.html#a0af2f885618f44aa14f7149bc57e039d", null ]
 ];

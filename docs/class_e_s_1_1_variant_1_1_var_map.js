@@ -16,5 +16,6 @@ var class_e_s_1_1_variant_1_1_var_map =
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_map.html#abaf24cffb405bfa839858061c3e18853", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_map.html#a047b0bf3e57709b45533378ce78a3be2", null ],
     [ "TryParse", "class_e_s_1_1_variant_1_1_var_map.html#a9bd0eee07663c0987958dfe8371aebcb", null ],
+    [ "New", "class_e_s_1_1_variant_1_1_var_map.html#ac6701dc9eeac79add9e241cc447365df", null ],
     [ "this[Var key]", "class_e_s_1_1_variant_1_1_var_map.html#a8c1ea78b9ec578d7ac59b53bedc8320e", null ]
 ];

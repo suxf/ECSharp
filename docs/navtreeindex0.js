@@ -3,6 +3,7 @@ var NAVTREEINDEX0 =
 "annotated.html":[1,0],
 "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html":[1,0,0,0,0,0],
 "class_e_s_1_1_alias_1_1_collections_1_1_map.html":[1,0,0,0,0,1],
+"class_e_s_1_1_command.html":[1,0,0,8],
 "class_e_s_1_1_database_1_1_command_result.html":[1,0,0,1,4],
 "class_e_s_1_1_database_1_1_command_result.html#a4a0a2bcb2b81e9b962807ef6f0269c75":[1,0,0,1,4,3],
 "class_e_s_1_1_database_1_1_command_result.html#a4b357b9a08a1e34bd4c3659b6ad96f84":[1,0,0,1,4,2],
@@ -212,7 +213,7 @@ var NAVTREEINDEX0 =
 "class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ae5d27a3c0f1061947a585c06eab10ca8":[1,0,0,1,3,3,9],
 "class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#aeacfac759d5eb5e9b7f200a9f90243b3":[1,0,0,1,3,3,18],
 "class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#af58ee01996e55fc91430a78e67e7f9bc":[1,0,0,1,3,3,2],
-"class_e_s_1_1_event.html":[1,0,0,8],
+"class_e_s_1_1_event.html":[1,0,0,9],
 "class_e_s_1_1_hotfix_1_1_abstract_agent.html":[1,0,0,2,0],
 "class_e_s_1_1_hotfix_1_1_abstract_agent.html#a32f6d5525fa50a0d4ba6fdc66827f543":[1,0,0,2,0,1],
 "class_e_s_1_1_hotfix_1_1_abstract_agent.html#aaf8cf01686db6829a9c7791adf1c7446":[1,0,0,2,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_e_s_1_1_linq_1_1_base64_linq.html#a7cf9d06f33af298c955e28be911111f4":[1,0,0,3,0,0],
 "class_e_s_1_1_linq_1_1_base64_linq.html#a8b6a6288b5584efb0af54b2b8e415bc4":[1,0,0,3,0,1],
 "class_e_s_1_1_linq_1_1_byte_linq.html":[1,0,0,3,1],
-"class_e_s_1_1_linq_1_1_byte_linq.html#a54e92fb68ceb815828d4cf678f11b86e":[1,0,0,3,1,1],
-"class_e_s_1_1_linq_1_1_byte_linq.html#ad73431d3abce3bef5974a34d98ac774c":[1,0,0,3,1,0]
+"class_e_s_1_1_linq_1_1_byte_linq.html#a54e92fb68ceb815828d4cf678f11b86e":[1,0,0,3,1,1]
 };

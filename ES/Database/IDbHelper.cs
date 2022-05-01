@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using ES.Time;
+﻿using ES.Time;
 
 namespace ES.Database
 {
@@ -48,4 +47,3 @@ namespace ES.Database
         void PushSQL(string sql, params object[] obj);
     }
 }
-#endif

@@ -25,6 +25,10 @@ var hierarchy =
     [ "ES.Utils.ByteHelper", "class_e_s_1_1_utils_1_1_byte_helper.html", null ],
     [ "ES.Linq.ByteLinq", "class_e_s_1_1_linq_1_1_byte_linq.html", null ],
     [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ],
+    [ "ES.Command< TKey, TResult >", "class_e_s_1_1_command.html", null ],
+    [ "ES.Command< TKey, TResult, TValue1 >", "class_e_s_1_1_command.html", null ],
+    [ "ES.Command< TKey, TResult, TValue1, TValue2 >", "class_e_s_1_1_command.html", null ],
+    [ "ES.Command< TKey, TResult, TValue1, TValue2, TValue3 >", "class_e_s_1_1_command.html", null ],
     [ "ES.Database.CommandResult", "class_e_s_1_1_database_1_1_command_result.html", null ],
     [ "ConcurrentDictionary", null, [
       [ "ES.Alias.Collections.ConcurrentMap< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ]
@@ -38,7 +42,10 @@ var hierarchy =
     [ "Dictionary", null, [
       [ "ES.Alias.Collections.Map< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ]
     ] ],
-    [ "ES.Event", "class_e_s_1_1_event.html", null ],
+    [ "ES.Event< TKey >", "class_e_s_1_1_event.html", null ],
+    [ "ES.Event< TKey, TValue1 >", "class_e_s_1_1_event.html", null ],
+    [ "ES.Event< TKey, TValue1, TValue2 >", "class_e_s_1_1_event.html", null ],
+    [ "ES.Event< TKey, TValue1, TValue2, TValue3 >", "class_e_s_1_1_event.html", null ],
     [ "ES.Hotfix.HotfixMgr", "class_e_s_1_1_hotfix_1_1_hotfix_mgr.html", null ],
     [ "ES.Network.Http.HttpHeader", "class_e_s_1_1_network_1_1_http_1_1_http_header.html", [
       [ "ES.Network.Http.HttpRequest", "class_e_s_1_1_network_1_1_http_1_1_http_request.html", null ],
@@ -101,15 +108,27 @@ var hierarchy =
     [ "ES.Alias.Collections.Map< string, ES.Utils.Ini.IniParser >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
     [ "ES.Alias.Collections.Map< string, Map< string, string > >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
     [ "ES.Alias.Collections.Map< string, T >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< TKey, FuncData >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< TKey, List< FuncData > >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< TKey1, Map< TKey2, FuncData > >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
+    [ "ES.Alias.Collections.Map< TKey1, Map< TKey2, List< FuncData > > >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ],
     [ "ES.Alias.Collections.Map< Var, Var >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", [
       [ "ES.Variant.VarMap", "class_e_s_1_1_variant_1_1_var_map.html", null ]
     ] ],
     [ "ES.Utils.MD5", "class_e_s_1_1_utils_1_1_m_d5.html", null ],
+    [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1, TValue2, TValue3 >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1, TValue2 >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiCommand< TKey1, TKey2, TResult >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1 >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiEvent< TKey1, TKey2 >", "class_e_s_1_1_multi_event.html", null ],
+    [ "ES.MultiEvent< TKey1, TKey2, TValue1 >", "class_e_s_1_1_multi_event.html", null ],
+    [ "ES.MultiEvent< TKey1, TKey2, TValue1, TValue2 >", "class_e_s_1_1_multi_event.html", null ],
+    [ "ES.MultiEvent< TKey1, TKey2, TValue1, TValue2, TValue3 >", "class_e_s_1_1_multi_event.html", null ],
     [ "ES.Database.SQLServer.Parameter", "class_e_s_1_1_database_1_1_s_q_l_server_1_1_parameter.html", null ],
     [ "ES.Database.SQLServer.ProcedureResult", "class_e_s_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", null ],
     [ "ES.Utils.RandomCode", "class_e_s_1_1_utils_1_1_random_code.html", null ],
-    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
     [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
+    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
     [ "ES.Network.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
     [ "ES.Network.Sockets.Server.RemoteSocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html", null ],
     [ "ES.Utils.RsaCrypto", "class_e_s_1_1_utils_1_1_rsa_crypto.html", null ],

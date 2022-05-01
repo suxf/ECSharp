@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using ES.Alias.Collections;
+﻿using ES.Alias.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;
@@ -90,7 +89,11 @@ namespace ES.Database.Linq
                         T temp = new T();
                         temp.SetESConfig(item);
                         temp.SetESPrimaryKey(item);
+#if !NET462 && !NETSTANDARD2_0
                         tempConfigs.TryAdd(temp.PrimaryKey, temp);
+#else
+                        tempConfigs.Add(temp.PrimaryKey, temp);
+#endif
                     }
                     System.Threading.Interlocked.Exchange(ref configs, tempConfigs);
                 }
@@ -114,11 +117,14 @@ namespace ES.Database.Linq
                     T temp = new T();
                     temp.SetESConfig(jItem);
                     temp.SetESPrimaryKey(jItem);
+#if !NET462 && !NETSTANDARD2_0
                     tempConfigs.TryAdd(temp.PrimaryKey, temp);
+#else
+                    tempConfigs.Add(temp.PrimaryKey, temp);
+#endif
                 }
                 System.Threading.Interlocked.Exchange(ref configs, tempConfigs);
             }
         }
     }
 }
-#endif

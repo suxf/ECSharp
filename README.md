@@ -1,7 +1,7 @@
 # EasySharpFrame
 [![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
 [![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
-[![Platform](https://img.shields.io/badge/framework-.net5.0+-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
+[![Platform](https://img.shields.io/badge/framework-.net-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/EasySharpFrame/blob/master/LICENSE)
 
@@ -13,19 +13,20 @@ Easy .NET Develop Frame.
 可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/EasySharpFrame)。
 
 # 版本支持
-| 版本 | .Net6.0 | .Net5.0 | .NetCore3.1 | .NetFramework4.6.2 |
-| :-: | :-----: | :-----: |:----------: | :----------------: |
-| 1.13.0+ | √ | √ | √ | × |
-| 1.11.x - 1.12.0 | √ | √ | √ | √ |
-| 1.9.x - 1.10.x | × | × | √ | √ |
-| 1.7.x - 1.8.x  | × | × | √ | × |
+| 版本 | .Net6.0 | .Net5.0 | .NetCore3.1 | .NetFramework4.6.2 | .NetStandard2.0 |
+| :-: | :-----: | :-----: |:----------: | :----------------: | :------------: |
+| 1.17.0+ | √ | √ | √ | √ | √ |
+| 1.13.0+ | √ | √ | √ | × | × |
+| 1.11.x - 1.12.0 | √ | √ | √ | √ | × |
+| 1.9.x - 1.10.x | × | × | √ | √ | × |
+| 1.7.x - 1.8.x  | × | × | √ | × | × |
 
 ### 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
 
 # 目录介绍
 | 目录 | 备注 |
 | ------------ | ------------ |
-| Client | 客户端框架支持(目前只更新了Unity版本)  |
+| Client | 客户端框架支持(暂时只有Unity版本)  |
 | docs | [在线API文档](https://suxf.github.io/EasySharpFrame) |
 | ES | 框架主工程 |
 | Sample | 框架测试样本工程 |
@@ -222,7 +223,7 @@ class TimeDemo : ITimeUpdate
         }, "00:00:00").Start(true);
 
         // 时间执行器
-        TimeCaller.Create(delegate { 
+        TimeCaller.Create(static delegate { 
             Log.Info("Hello TimeCaller"); 
         }, 2000, 1000, 3).Start();
     }
@@ -622,7 +623,33 @@ Var b4 = a8 * a7;
 Var b5 = a9.ToString();
 Var b6 = a10.GetBytes();
 ```
-### 11.其他
+### 11.事件与命令
+本模块主要负责特定事件的函数触发，使用泛型自定义多种参数的事件或者命令，来在特定的场合和逻辑中触发相关函数调用。其中，命令模式支持同步等待功能，可以支持异步事件转同步执行。
+```csharp
+// 新建事件
+Event<int> event1 = new Event<int>();
+// 添加事件
+event1.Add(1, static () => { /* 执行事件回调 */ });
+// 触发事件
+event1.Call(1);
+
+// 新建多级事件
+MultiEvent<string, int> event2 = new MultiEvent<string, int>();
+// 添加事件
+event2.Add("test", 1, static () => { /* 执行事件回调 */ });
+// 触发事件
+event2.Call("test", 1);
+
+// 新建命令
+Command<string, string> command = new Command<string, string>();
+// 添加命令
+command.Add("test1", static (object obj) => { return ""; });
+// 触发事件
+command.Call("test1");
+// 添加等待命令 此处执行被阻塞 可以在其他线程中被触发后继续执行
+string str = command.AddWaitCall("test2", static (object obj) => {return "Hello World"; });
+```
+### 12.其他
 其他小功能不再过多介绍，可以在使用的过程中慢慢查询API来获取使用细节。
 
 ```csharp

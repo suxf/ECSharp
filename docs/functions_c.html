@@ -26,9 +26,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EasySharpFrame
-   &#160;<span id="projectnumber">1.16.8</span>
+   &#160;<span id="projectnumber">1.17.0</span>
    </div>
-   <div id="projectbrief">一个让.NET开发更简单的框架。</div>
+   <div id="projectbrief">这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！</div>
   </td>
  </tr>
  </tbody>
@@ -86,6 +86,12 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 <div class="textblock">这里列出了所有类成员，并附带类的详细说明:</div>
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>Call()
+: <a class="el" href="class_e_s_1_1_command.html#a31e5fb61195686bb48edba5cb64daa95">ES.Command&lt; TKey, TResult, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_event.html#a591e63405f25fda5e43fb5cb6ab5d327">ES.Event&lt; TKey, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_multi_command.html#aad4fe6f1513e19c61a5a3485d7bfb8d5">ES.MultiCommand&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_multi_event.html#ac323de4a9deca51161f723582e7fec7f">ES.MultiEvent&lt; TKey1, TKey2, TValue1, TValue2, TValue3 &gt;</a>
+</li>
 <li>Cancel()
 : <a class="el" href="class_e_s_1_1_time_1_1_time_caller.html#a24398467057c3510988ad2e04feaf2f5">ES.Time.TimeCaller</a>
 , <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#adb8b18c0498e241f7eb9f3e8925c0794">ES.Time.TimeClock</a>
@@ -109,19 +115,20 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#affeba68cd0093c5481f57b2f63be7859">ES.Network.Sockets.Server.ServerSocket</a>
 </li>
 <li>Clear()
-: <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_no_sql_storage.html#a08fdd4d8d5a3df530f298b5130aa8943">ES.Database.Linq.NoSqlStorage&lt; T, U &gt;</a>
+: <a class="el" href="class_e_s_1_1_command.html#aacd862eb1230da41d4d31832f705377f">ES.Command&lt; TKey, TResult, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_no_sql_storage.html#a08fdd4d8d5a3df530f298b5130aa8943">ES.Database.Linq.NoSqlStorage&lt; T, U &gt;</a>
+, <a class="el" href="class_e_s_1_1_event.html#aeccf041f7dc5e3611bd89878b7c812c1">ES.Event&lt; TKey, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_multi_command.html#a3e42e79a3fe9056bd5e70936768f018b">ES.MultiCommand&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;</a>
+, <a class="el" href="class_e_s_1_1_multi_event.html#a1ea2256d384e7c99377331847593813c">ES.MultiEvent&lt; TKey1, TKey2, TValue1, TValue2, TValue3 &gt;</a>
 </li>
 <li>ClearAll&lt; T &gt;()
 : <a class="el" href="class_e_s_1_1_linq_1_1_concurrent_linq.html#ad522fbc5ec5b9343d90f9b855d4459f4">ES.Linq.ConcurrentLinq</a>
 </li>
 <li>ClientSocket()
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#afc772d669c659583c6d0980fbcdc97c3">ES.Network.Sockets.Client.ClientSocket</a>
+: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0cdd3213a957ab00a89ea8853e341e05">ES.Network.Sockets.Client.ClientSocket</a>
 </li>
 <li>clientSocket
 : <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a5b6eb062c53812a010d9c1e6dc5cf696">ES.Network.Sockets.Client.ClientSocket</a>
-</li>
-<li>ClientSocket()
-: <a class="el" href="class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0cdd3213a957ab00a89ea8853e341e05">ES.Network.Sockets.Client.ClientSocket</a>
 </li>
 <li>Close()
 : <a class="el" href="class_e_s_1_1_database_1_1_redis_1_1_redis_helper.html#a1ccfa8dfeeaebd3bb4c3f169253a0a9b">ES.Database.Redis.RedisHelper</a>
@@ -222,9 +229,9 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 </li>
 <li>Create()
 : <a class="el" href="class_e_s_1_1_database_1_1_linq_1_1_sql_builder.html#ae36538eed734cfc6866c8c13554d18c1">ES.Database.Linq.SqlBuilder</a>
-, <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_parameter.html#a9b2db040e8beb94c1a87fc623dfdc586">ES.Database.SQLServer.Parameter</a>
-, <a class="el" href="class_e_s_1_1_time_1_1_time_caller.html#abca375de185b7b0db21922f8b8056c36">ES.Time.TimeCaller</a>
-, <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#adcd8e14b09036272de7a4aa4eeb9f162">ES.Time.TimeClock</a>
+, <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_parameter.html#acfd29dacce1ee913723ace0008bcaf92">ES.Database.SQLServer.Parameter</a>
+, <a class="el" href="class_e_s_1_1_time_1_1_time_caller.html#afc197198751b0c79c6e32b58e0b60058">ES.Time.TimeCaller</a>
+, <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a03f6d473f268628b63685f709a369354">ES.Time.TimeClock</a>
 , <a class="el" href="class_e_s_1_1_time_1_1_time_flow.html#af4c170f67eb0e26cb4870f03e62dac15">ES.Time.TimeFlow</a>
 </li>
 <li>CreateBuilder()
@@ -240,8 +247,8 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 : <a class="el" href="class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#a1c00c1053600731548138c472d3a0419">ES.Database.SQLServer.SqlServerDbHelper</a>
 </li>
 <li>CreateSync()
-: <a class="el" href="class_e_s_1_1_time_1_1_time_caller.html#a5628238552f4ff008db69d8f03e97cae">ES.Time.TimeCaller</a>
-, <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a246533c166897f1dd81b23c1181fdc42">ES.Time.TimeClock</a>
+: <a class="el" href="class_e_s_1_1_time_1_1_time_caller.html#a3c131f854b4dbc143a45e42beb48d095">ES.Time.TimeCaller</a>
+, <a class="el" href="class_e_s_1_1_time_1_1_time_clock.html#a250ee0b37a8f1faad9a050832885db66">ES.Time.TimeClock</a>
 , <a class="el" href="class_e_s_1_1_time_1_1_time_flow.html#aac13b4c09963928cf1cce6d605f7c544">ES.Time.TimeFlow</a>
 </li>
 <li>CreateTransaction()

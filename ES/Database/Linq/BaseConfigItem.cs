@@ -1,5 +1,4 @@
-﻿#if !UNITY_2020_1_OR_NEWER
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.Data;
 
 namespace ES.Database.Linq
@@ -80,4 +79,3 @@ namespace ES.Database.Linq
         protected abstract void SetConfig(JToken token);
     }
 }
-#endif
