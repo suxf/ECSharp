@@ -1,4 +1,5 @@
-﻿using ES.Network.Http;
+﻿using ES;
+using ES.Network.Http;
 using ES.Network.Http.Linq;
 using System;
 
@@ -38,13 +39,16 @@ namespace Sample
         {
             public void Index(HttpRequest request, HttpResponse response)
             {
+                Log.Debug("Index Visit");
                 // 首页根访问
-                if (!request.GetParams.TryGetValue("text", out var text)) text = "text no content";
-                response.Write("Index:" + text);
+                if (!request.GetParams.TryGetValue("text", out var text1)) text1 = "get text no content";
+                if (!request.PostParams.TryGetValue("text", out var text2)) text2 = "post text no content";
+                response.Write($"Index \nGet:{text1}\nPost:{text2}");
             }
             
             public void Hello(HttpRequest request, HttpResponse response)
             {
+                Log.Debug("Hello Visit");
                 response.Write("Hello World:" + request.PostValue);
             }
 

@@ -154,48 +154,48 @@ namespace ES
             {
                 case LogType.DEBUG:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_DEBUG_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_DEBUG_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_DEBUG_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
+                    if (LogConfig.BACKGROUND_DEBUG_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_DEBUG_COLOR;
 #else
 					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
                     break;
                 case LogType.INFO:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_INFO_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_INFO_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_INFO_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
+                    if (LogConfig.BACKGROUND_INFO_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INFO_COLOR;
 #else
 					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
                     break;
                 case LogType.WARN:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_WARN_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_WARN_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_WARN_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
+                    if (LogConfig.BACKGROUND_WARN_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_WARN_COLOR;
 #else
 					UnityEngine.Debug.LogWarning($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
                     break;
                 case LogType.ERROR:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_ERROR_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_ERROR_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_ERROR_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
+                    if (LogConfig.BACKGROUND_ERROR_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_ERROR_COLOR;
 #else
 					UnityEngine.Debug.LogError($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
                     break;
                 case LogType.FATAL:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_EXCEPTION_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_EXCEPTION_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_EXCEPTION_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
+                    if (LogConfig.BACKGROUND_EXCEPTION_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_EXCEPTION_COLOR;
 #else
 					UnityEngine.Debug.LogAssertion($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
                     break;
                 case LogType.INPUT:
 #if !UNITY_2020_1_OR_NEWER
-                    if (Console.ForegroundColor != LogConfig.FOREGROUND_INPUT_COLOR) Console.ForegroundColor = LogConfig.FOREGROUND_INPUT_COLOR;
-                    if (Console.BackgroundColor != LogConfig.BACKGROUND_INPUT_COLOR) Console.BackgroundColor = LogConfig.BACKGROUND_INPUT_COLOR;
+                    Console.ForegroundColor = LogConfig.FOREGROUND_INPUT_COLOR;
+                    if (LogConfig.BACKGROUND_INPUT_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INPUT_COLOR;
 #else
 					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
 #endif
@@ -203,6 +203,7 @@ namespace ES
             }
 #if !UNITY_2020_1_OR_NEWER
             Console.WriteLine($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+            Console.ResetColor();
 #endif
         }
 

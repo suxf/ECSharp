@@ -59,7 +59,7 @@ namespace ES.Network.Http
         public HttpResponse Write(string content, Encoding? encoding = null)
         {
             //初始化内容
-            encoding = encoding ?? Encoding.UTF8;
+            encoding ??= Encoding.UTF8;
             return Write(encoding.GetBytes(content), encoding);
         }
 

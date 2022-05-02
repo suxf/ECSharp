@@ -130,11 +130,9 @@ namespace ES.Network.Http
                 try
                 {
                     // 获取流
-                    var networkStream = tcpClient.GetStream();
+                    NetworkStream networkStream = tcpClient.GetStream();
                     if (networkStream == null)
                         return;
-
-                    Stream? stream = null;
                     SslStream? sslStream = null;
                     try
                     {
@@ -143,23 +141,16 @@ namespace ES.Network.Http
                         {
                             sslStream = new SslStream(networkStream);
                             sslStream.AuthenticateAsServer(certificate, false, SslProtocols.Tls, true);
-                            sslStream.ReadTimeout = 10000;
-                            sslStream.WriteTimeout = 10000;
-                            stream = sslStream;
+                            // sslStream.ReadTimeout = 10000;
+                            // sslStream.WriteTimeout = 10000;
                         }
-                        else
-                        {
-                            stream = networkStream;
-                        }
-                        if (stream == null)
-                            return;
                         // 处理回调
-                        if (httpInvoke != null && tcpClient.ReceiveBufferSize > 0)
+                        if (httpInvoke != null)
                         {
-                            HttpRequest request = new HttpRequest(stream, tcpClient.ReceiveBufferSize);
+                            HttpRequest request = new HttpRequest(networkStream, sslStream, tcpClient);
                             try
                             {
-                                HttpResponse response = new HttpResponse(stream);
+                                HttpResponse response = new HttpResponse(networkStream);
                                 // 处理
                                 httpInvoke.OnRequest(request, response);
                                 // 发送

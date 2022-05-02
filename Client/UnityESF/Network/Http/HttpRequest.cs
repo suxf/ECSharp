@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Security;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -49,9 +51,9 @@ namespace ES.Network.Http
         /// </summary>
         private readonly byte[] bytes;
         /// <summary>
-        /// 数据流句柄
+        /// 连接客户端
         /// </summary>
-        private readonly Stream handler;
+        private readonly TcpClient tcpClient;
 
         private static readonly string newLine = Environment.NewLine;
         private static readonly string newLineTwo = Environment.NewLine + Environment.NewLine;
@@ -59,15 +61,19 @@ namespace ES.Network.Http
         /// <summary>
         /// 构建http请求对象
         /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="size"></param>
-        internal HttpRequest(Stream stream, int size)
+        /// <param name="networkStream"></param>
+        /// <param name="sslStream"></param>
+        /// <param name="tcpClient"></param>
+        internal HttpRequest(NetworkStream networkStream, SslStream? sslStream, TcpClient tcpClient)
         {
-            handler = stream;
-            bytes = new byte[size];
-            var data = GetRequestData(handler);
-            var rows = Regex.Split(data, newLine);
-
+            this.tcpClient = tcpClient;
+            bytes = new byte[tcpClient.ReceiveBufferSize];
+            string data = "";
+            if(sslStream != null)
+                data = GetRequestData(sslStream);
+            else
+                data = GetRequestData(networkStream);
+            string[] rows = Regex.Split(data, newLine);
             //Request URL & Method & Version
             var first = Regex.Split(rows[0], @"(\s+)")
                 .Where(e => e.Trim() != "")
@@ -96,16 +102,16 @@ namespace ES.Network.Http
             headers = GetRequestHeaders(rows);
             //Request Body
             Body = GetRequestBody(rows);
-            var contentLength = GetHeader(RequestHeaders.ContentLength);
+            string? contentLength = GetHeader(RequestHeaders.ContentLength);
             if (int.TryParse(contentLength, out var length) && Body.Length != length)
             {
                 do
                 {
-                    length = stream.Read(bytes, 0, size);
+                    if(sslStream != null) length = sslStream.Read(bytes, 0, bytes.Length);
+                    else length = networkStream.Read(bytes, 0, bytes.Length);
                     Body += Encoding.UTF8.GetString(bytes, 0, length);
-                } while (length > 0 && Body.Length != length);
+                } while (length > 0 && tcpClient.Available > 0 && Body.Length != length);
             }
-
             // 获取get数据
             if (RawUrl.Contains('?'))
             {
@@ -127,9 +133,9 @@ namespace ES.Network.Http
         /// 获取请求对象流
         /// </summary>
         /// <returns></returns>
-        public Stream GetRequestStream()
+        public TcpClient GetTcpClient()
         {
-            return handler;
+            return tcpClient;
         }
 
         /// <summary>
@@ -157,7 +163,6 @@ namespace ES.Network.Http
         /// <summary>
         /// 获取请求数据
         /// </summary>
-        /// <param name="stream"></param>
         /// <returns></returns>
         private string GetRequestData(Stream stream)
         {
@@ -167,7 +172,7 @@ namespace ES.Network.Http
             {
                 length = stream.Read(bytes, 0, bytes.Length);
                 data += Encoding.UTF8.GetString(bytes, 0, length);
-            } while (length > 0 && !data.Contains(newLineTwo));
+            } while (length > 0 && tcpClient.Available > 0 && !data.Contains(newLineTwo));
             return data;
         }
 

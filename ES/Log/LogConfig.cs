@@ -56,7 +56,7 @@
         /// <summary>
         /// 调试性 日志字体颜色
         /// </summary>
-        public static System.ConsoleColor FOREGROUND_DEBUG_COLOR = System.ConsoleColor.DarkGray;
+        public static System.ConsoleColor FOREGROUND_DEBUG_COLOR = System.ConsoleColor.Gray;
         /// <summary>
         /// 信息性 日志字体颜色
         /// </summary>
@@ -80,26 +80,26 @@
         /// <summary>
         /// 信息性 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_INFO_COLOR = System.ConsoleColor.Black;
+        public static System.ConsoleColor? BACKGROUND_INFO_COLOR = null;
         /// <summary>
         /// 调试性 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_DEBUG_COLOR = System.ConsoleColor.Black;
+        public static System.ConsoleColor? BACKGROUND_DEBUG_COLOR = null;
         /// <summary>
         /// 警告性 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_WARN_COLOR = System.ConsoleColor.Black;
+        public static System.ConsoleColor? BACKGROUND_WARN_COLOR = null;
         /// <summary>
         /// 错误性 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_ERROR_COLOR = System.ConsoleColor.Black;
+        public static System.ConsoleColor? BACKGROUND_ERROR_COLOR = null;
         /// <summary>
         /// 异常 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_EXCEPTION_COLOR = System.ConsoleColor.DarkRed;
+        public static System.ConsoleColor? BACKGROUND_EXCEPTION_COLOR = System.ConsoleColor.DarkRed;
         /// <summary>
         /// 输入 日志字体背景颜色
         /// </summary>
-        public static System.ConsoleColor BACKGROUND_INPUT_COLOR = System.ConsoleColor.Black;
+        public static System.ConsoleColor? BACKGROUND_INPUT_COLOR = null;
     }
 }
