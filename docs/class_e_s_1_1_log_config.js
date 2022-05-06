@@ -1,11 +1,11 @@
 var class_e_s_1_1_log_config =
 [
-    [ "BACKGROUND_DEBUG_COLOR", "class_e_s_1_1_log_config.html#a5c378c4d75439f92a7bf4bd1ff709bd3", null ],
-    [ "BACKGROUND_ERROR_COLOR", "class_e_s_1_1_log_config.html#a838a14514269fb49c7e1a7d81acd1687", null ],
-    [ "BACKGROUND_EXCEPTION_COLOR", "class_e_s_1_1_log_config.html#aa517966e27f86f624f7f4a7dfd6ad867", null ],
-    [ "BACKGROUND_INFO_COLOR", "class_e_s_1_1_log_config.html#af3d113cb46785cad4369e65f8b592694", null ],
-    [ "BACKGROUND_INPUT_COLOR", "class_e_s_1_1_log_config.html#ac7065c9d3bfcaa8918400abf521fafbb", null ],
-    [ "BACKGROUND_WARN_COLOR", "class_e_s_1_1_log_config.html#a916056ab9002f65e1835f5883c65ee9e", null ],
+    [ "BACKGROUND_DEBUG_COLOR", "class_e_s_1_1_log_config.html#a48cc6366c953a152a124b99ddf51427e", null ],
+    [ "BACKGROUND_ERROR_COLOR", "class_e_s_1_1_log_config.html#ac0342fe021d03b1abdc86d58f36e975a", null ],
+    [ "BACKGROUND_EXCEPTION_COLOR", "class_e_s_1_1_log_config.html#a50cfd3e39e3c97031e2de66073e95865", null ],
+    [ "BACKGROUND_INFO_COLOR", "class_e_s_1_1_log_config.html#aeb8c03e463154916cef4587d52df42d9", null ],
+    [ "BACKGROUND_INPUT_COLOR", "class_e_s_1_1_log_config.html#aa1b27b7b55756166b87728f58da571fe", null ],
+    [ "BACKGROUND_WARN_COLOR", "class_e_s_1_1_log_config.html#a5769ce0ab21cd7f55a2257e05b6362ab", null ],
     [ "CONSOLE_OUTPUT_LOG_TYPE", "class_e_s_1_1_log_config.html#a9751dc66083146118cbb48072360c97a", null ],
     [ "FOREGROUND_DEBUG_COLOR", "class_e_s_1_1_log_config.html#a73105faf17879e16e7733174a5806b3a", null ],
     [ "FOREGROUND_ERROR_COLOR", "class_e_s_1_1_log_config.html#a1ecc02a4e457d7bcf07a85f7d3d11004", null ],

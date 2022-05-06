@@ -1,6 +1,5 @@
 ﻿using ES.Network.Http.Linq;
 using System;
-using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;

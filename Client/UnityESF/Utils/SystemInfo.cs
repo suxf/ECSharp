@@ -22,13 +22,13 @@
         /// </summary>
         public static string Path { get; } = System.Environment.CurrentDirectory;
         /// <summary>
-        /// 应用名称
+        /// 进程名称
         /// </summary>
-        public static string AppName { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name?.ToString() ?? "";
+        public static string ProcessName { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name?.ToString() ?? "";
         /// <summary>
-        /// 应用版本
+        /// 进程版本
         /// </summary>
-        public static string AppVersion { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? "";
+        public static string ProcessVersion { get; } = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!.ToString().Length - 2) ?? "";
         /// <summary>
         /// 框架版本
         /// </summary>

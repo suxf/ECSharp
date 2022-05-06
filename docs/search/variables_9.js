@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['list_1164',['List',['../struct_e_s_1_1_variant_1_1_var.html#a4134f9c8cf144b98943917be599f2f82',1,'ES::Variant::Var']]],
-  ['log_5fconsole_5fasync_5foutput_1165',['LOG_CONSOLE_ASYNC_OUTPUT',['../class_e_s_1_1_log_config.html#aa5b5c7b6bdcd656662d9f3b7c3da341c',1,'ES::LogConfig']]],
-  ['log_5fconsole_5fstack_5ftrace_5foutput_1166',['LOG_CONSOLE_STACK_TRACE_OUTPUT',['../class_e_s_1_1_log_config.html#a7ffec5d9ecb0c01fd58f24af66e67b11',1,'ES::LogConfig']]],
-  ['log_5ffile_5fstack_5ftrace_5foutput_1167',['LOG_FILE_STACK_TRACE_OUTPUT',['../class_e_s_1_1_log_config.html#a5f77c2d43fe078e6ac64b8da28582994',1,'ES::LogConfig']]],
-  ['log_5ffile_5fsuffix_1168',['LOG_FILE_SUFFIX',['../class_e_s_1_1_log_config.html#a0c546113c17762732ac0ccbe51f00480',1,'ES::LogConfig']]],
-  ['log_5fpath_1169',['LOG_PATH',['../class_e_s_1_1_log_config.html#a6c90b01b10ee0c3c8f4abb5cf00b52a7',1,'ES::LogConfig']]],
-  ['log_5fperiod_1170',['LOG_PERIOD',['../class_e_s_1_1_log_config.html#af5a8575ff265beacdd33b2ecde951abc',1,'ES::LogConfig']]],
-  ['log_5funit_5ffile_5fmax_5fsize_1171',['LOG_UNIT_FILE_MAX_SIZE',['../class_e_s_1_1_log_config.html#a54062c422ee515c13ee277966cbb3b18',1,'ES::LogConfig']]]
+  ['kcpmode_1182',['kcpMode',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#ac002fffd902064cfe96e7c9bf5b65a38',1,'ES::Network::HyperSocket::HyperSocketConfig']]],
+  ['kcpwinsize_1183',['KcpWinSize',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html#a647343f1b5b47fcf2386ce160f7b6651',1,'ES::Network::HyperSocket::HyperSocketConfig']]]
 ];

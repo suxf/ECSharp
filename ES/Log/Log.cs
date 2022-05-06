@@ -16,8 +16,7 @@
         /// <returns></returns>
         public static string ReadLine(string log = "")
         {
-            System.Console.ForegroundColor = System.ConsoleColor.White;
-            System.Console.BackgroundColor = System.ConsoleColor.Black;
+            System.Console.ResetColor();
             if (log != "") System.Console.Write(log);
             string input = System.Console.ReadLine() ?? "";
             System.Console.ResetColor();
@@ -37,13 +36,19 @@
         /// <summary>
         /// 调试性 日志
         /// </summary>
+        /// <param name="log">日志数据</param>
+        public static void Debug(object? log) => Debug(log?.ToString() ?? "null");
+
+        /// <summary>
+        /// 调试性 日志
+        /// </summary>
         /// <param name="logs">日志数据</param>
-        public static void Debug(params string[] logs)
+        public static void Debug(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             for (int i = 0, len = logs.Length; i < len; i++)
             {
-                sb.Append(logs[i]);
+                sb.Append(logs[i] ?? "null");
             }
             LogManager.WriteLine(LogType.DEBUG, sb.ToString());
         }
@@ -60,13 +65,19 @@
         /// <summary>
         /// 信息性 日志
         /// </summary>
+        /// <param name="log">日志数据</param>
+        public static void Info(object? log) => Info(log?.ToString() ?? "null");
+
+        /// <summary>
+        /// 信息性 日志
+        /// </summary>
         /// <param name="logs">日志数据</param>
-        public static void Info(params string[] logs)
+        public static void Info(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             for (int i = 0, len = logs.Length; i < len; i++)
             {
-                sb.Append(logs[i]);
+                sb.Append(logs[i] ?? "null");
             }
             LogManager.WriteLine(LogType.INFO, sb.ToString());
         }
@@ -83,13 +94,19 @@
         /// <summary>
         /// 警告性 日志
         /// </summary>
+        /// <param name="log">日志数据</param>
+        public static void Warn(object? log) => Warn(log?.ToString() ?? "null");
+
+        /// <summary>
+        /// 警告性 日志
+        /// </summary>
         /// <param name="logs">日志数据</param>
-        public static void Warn(params string[] logs)
+        public static void Warn(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             for (int i = 0, len = logs.Length; i < len; i++)
             {
-                sb.Append(logs[i]);
+                sb.Append(logs[i] ?? "null");
             }
             LogManager.WriteLine(LogType.WARN, sb.ToString());
         }
@@ -106,13 +123,19 @@
         /// <summary>
         /// 错误性 日志
         /// </summary>
+        /// <param name="log">日志数据</param>
+        public static void Error(object? log) => Error(log?.ToString() ?? "null");
+
+        /// <summary>
+        /// 错误性 日志
+        /// </summary>
         /// <param name="logs">日志数据</param>
-        public static void Error(params string[] logs)
+        public static void Error(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             for (int i = 0, len = logs.Length; i < len; i++)
             {
-                sb.Append(logs[i]);
+                sb.Append(logs[i] ?? "null");
             }
             LogManager.WriteLine(LogType.ERROR, sb.ToString());
         }
@@ -125,6 +148,32 @@
         public static void Exception(System.Exception ex, string log = "")
         {
             string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", log, ex.Message, ex.TargetSite, ex.StackTrace);
+            LogManager.WriteLine(LogType.FATAL, data);
+        }
+
+        /// <summary>
+        /// 异常 日志
+        /// </summary>
+        /// <param name="ex">异常对象</param>
+        /// <param name="log">日志内容</param>
+        public static void Exception(System.Exception ex, object? log)
+        {
+            Exception(ex, log?.ToString() ?? "null");
+        }
+
+        /// <summary>
+        /// 异常 日志
+        /// </summary>
+        /// <param name="ex">异常对象</param>
+        /// <param name="logs">日志内容</param>
+        public static void Exception(System.Exception ex, params object?[] logs)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            for (int i = 0, len = logs.Length; i < len; i++)
+            {
+                sb.Append(logs[i] ?? "null");
+            }
+            string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", sb, ex.Message, ex.TargetSite, ex.StackTrace);
             LogManager.WriteLine(LogType.FATAL, data);
         }
     }

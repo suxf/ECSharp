@@ -64,22 +64,42 @@ namespace ES
 #endif
         private static void SystemInfo()
         {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+#if !UNITY_2020_1_OR_NEWER
+            sb.Append("name: ");
+            sb.Append(Utils.SystemInfo.ProcessName);
+            sb.Append("; version: ");
+            sb.Append(Utils.SystemInfo.ProcessVersion);
+            sb.Append("; es: ");
+            sb.Append(Utils.SystemInfo.FrameVersion);
+#endif
+            sb.Append("; dotnet: ");
+            sb.Append(Utils.SystemInfo.DotNetVersion);
+            sb.Append("; path: ");
+            sb.Append(Utils.SystemInfo.Path);
+            sb.Append("; system: ");
+            sb.Append(Utils.SystemInfo.SystemVersion);
+            sb.Append("; user: ");
+            sb.Append(Utils.SystemInfo.UserName);
+            sb.Append("; logicthreads: ");
+            sb.Append(Utils.SystemInfo.ProcessorCount);
             bool LOG_CONSOLE_STACK_TRACE_OUTPUT = LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT;
             bool LOG_FILE_STACK_TRACE_OUTPUT = LogConfig.LOG_FILE_STACK_TRACE_OUTPUT;
             LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = false;
             LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = false;
-            Log.Info("===================================================================");
-            Log.Info("* System  Version: ", Utils.SystemInfo.SystemVersion);
-            Log.Info("* DotNet  Version: ", Utils.SystemInfo.DotNetVersion);
-#if !UNITY_2020_1_OR_NEWER
-            Log.Info("* ESFrame Version: ", Utils.SystemInfo.FrameVersion);
-            Log.Info("* Process Name   : ", Utils.SystemInfo.AppName);
-            Log.Info("* Process Version: ", Utils.SystemInfo.AppVersion);
-#endif
-            Log.Info("* Process Path   : ", Utils.SystemInfo.Path);
-            Log.Info("* Login   User   : ", Utils.SystemInfo.UserName);
-            Log.Info("* Logic Processor: ", Utils.SystemInfo.ProcessorCount.ToString());
-            Log.Info("===================================================================");
+            Log.Info(sb);
+            //            Log.Info("===================================================================");
+            //            Log.Info("* System  Version: ", Utils.SystemInfo.SystemVersion);
+            //            Log.Info("* DotNet  Version: ", Utils.SystemInfo.DotNetVersion);
+            //#if !UNITY_2020_1_OR_NEWER
+            //            Log.Info("* ESFrame Version: ", Utils.SystemInfo.FrameVersion);
+            //            Log.Info("* Process Name   : ", Utils.SystemInfo.ProcessName);
+            //            Log.Info("* Process Version: ", Utils.SystemInfo.ProcessVersion);
+            //#endif
+            //            Log.Info("* Process Path   : ", Utils.SystemInfo.Path);
+            //            Log.Info("* Login   User   : ", Utils.SystemInfo.UserName);
+            //            Log.Info("* Logic Processor: ", Utils.SystemInfo.ProcessorCount);
+            //            Log.Info("===================================================================");
             LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = LOG_CONSOLE_STACK_TRACE_OUTPUT;
             LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = LOG_FILE_STACK_TRACE_OUTPUT;
         }

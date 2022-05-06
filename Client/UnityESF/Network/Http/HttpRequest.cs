@@ -69,7 +69,7 @@ namespace ES.Network.Http
             this.tcpClient = tcpClient;
             bytes = new byte[tcpClient.ReceiveBufferSize];
             string data = "";
-            if(sslStream != null)
+            if (sslStream != null)
                 data = GetRequestData(sslStream);
             else
                 data = GetRequestData(networkStream);
@@ -107,7 +107,7 @@ namespace ES.Network.Http
             {
                 do
                 {
-                    if(sslStream != null) length = sslStream.Read(bytes, 0, bytes.Length);
+                    if (sslStream != null) length = sslStream.Read(bytes, 0, bytes.Length);
                     else length = networkStream.Read(bytes, 0, bytes.Length);
                     Body += Encoding.UTF8.GetString(bytes, 0, length);
                 } while (length > 0 && tcpClient.Available > 0 && Body.Length != length);

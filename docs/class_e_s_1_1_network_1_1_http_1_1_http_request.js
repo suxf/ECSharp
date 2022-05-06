@@ -1,7 +1,7 @@
 var class_e_s_1_1_network_1_1_http_1_1_http_request =
 [
     [ "GetHeader", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#a512d01b6ad64fff0982b1f028e04f780", null ],
-    [ "GetRequestStream", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#a4c67f680b1b21243551a35d0592f4587", null ],
+    [ "GetTcpClient", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#ae83bbf721302a78e0a6d9b8f2b63b831", null ],
     [ "SetHeader", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#a9e4b830033739d1af94ed8c9ac65e4c1", null ],
     [ "GetParams", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#a81fc716ebcf43da803a37280271fb64c", null ],
     [ "GetValue", "class_e_s_1_1_network_1_1_http_1_1_http_request.html#aa7ed844587214f76165ac87b306cc81e", null ],

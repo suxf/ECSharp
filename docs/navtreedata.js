@@ -47,8 +47,8 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "class_e_s_1_1_linq_1_1_byte_linq.html#ad73431d3abce3bef5974a34d98ac774c",
-"class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#acb8a7129720afab3c9137156f5860fc1",
-"functions_func_t.html"
+"class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a63ff806b4253d2da7284773a6820714e",
+"functions_func_m.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
