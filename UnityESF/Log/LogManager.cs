@@ -72,8 +72,9 @@ namespace ES
             sb.Append(Utils.SystemInfo.ProcessVersion);
             sb.Append("; es: ");
             sb.Append(Utils.SystemInfo.FrameVersion);
+            sb.Append("; ");
 #endif
-            sb.Append("; dotnet: ");
+            sb.Append("dotnet: ");
             sb.Append(Utils.SystemInfo.DotNetVersion);
             sb.Append("; path: ");
             sb.Append(Utils.SystemInfo.Path);
