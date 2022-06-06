@@ -5,12 +5,10 @@ using System.Text;
 namespace ES.Linq
 {
     /// <summary>
-    /// JSON工具助手 基于Newtonsoft.Json开源框架
     /// 拓展方法类
-    /// <para>此类用于拓展一些对象上的方法</para>
-    /// <para>便于更快捷的开发</para>
+    /// <para>JSON工具助手 基于Newtonsoft.Json开源框架</para>
     /// </summary>
-    public static class JsonLinq
+    public static partial class EsLinq
     {
         /// <summary>
         /// 通过json字节流新建Json对象

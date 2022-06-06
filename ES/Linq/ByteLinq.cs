@@ -4,12 +4,10 @@ using System.Text;
 namespace ES.Linq
 {
     /// <summary>
-    /// Byte数组比较
     /// 拓展方法类
-    /// <para>此类用于拓展一些对象上的方法</para>
-    /// <para>便于更快捷的开发</para>
+    /// <para>Byte数组比较</para>
     /// </summary>
-    public static class ByteLinq
+    public static partial class EsLinq
     {
         /// <summary>
         /// 比较字节数组
@@ -22,6 +20,7 @@ namespace ES.Linq
             ReadOnlySpan<byte> sb1 = b1;
             ReadOnlySpan<byte> sb2 = b2;
             int result = 0;
+
             if (sb1.Length != sb2.Length)
                 result = sb1.Length - sb2.Length;
             else
@@ -39,6 +38,7 @@ namespace ES.Linq
                     }
                 }
             }
+
             return result == 0;
         }
 

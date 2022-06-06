@@ -87,7 +87,8 @@ namespace ES.Database.Linq
             {
                 if (rows.TryGetValue(key, out DataEntityRow? value))
                     return value;
-                else return null;
+                else
+                    return null;
             }
         }
 
@@ -105,15 +106,19 @@ namespace ES.Database.Linq
             TableName = tableName;
             PrimaryKey = primaryKey;
             FieldNames = fieldNames;
+
             foreach (DataRow? dataRow in collection)
             {
-                if (dataRow == null) continue;
+                if (dataRow == null)
+                    continue;
+
                 DataEntityRow dataObject = new DataEntityRow(this);
                 foreach (object? column in dataRow.Table.Columns)
                 {
                     if (column == null) continue;
                     dataObject.data.TryAdd(column.ToString()!, dataRow[column.ToString()!]);
                 }
+
                 rows.TryAdd(dataRow[primaryKey], dataObject);
             }
 
@@ -154,6 +159,7 @@ namespace ES.Database.Linq
         {
             if (sec <= 0) sec = 1;
             sec *= 1000;
+
             foreach (var item in rows)
             {
                 DataEntityRow dataItem = item.Value;
@@ -171,6 +177,7 @@ namespace ES.Database.Linq
             {
                 var Value = rows[Key];
                 DataEntityRow dataItem = Value;
+
                 // 已改变需要更新
                 if (dataItem.bChangeState)
                 {
@@ -178,6 +185,7 @@ namespace ES.Database.Linq
                     dataItem.bChangeState = false;
                     Interlocked.Exchange(ref dataItem.expiredTime, 0);
                     StringBuilder value = new StringBuilder();
+
                     lock (dataItem.listChangeColumns)
                     {
                         foreach (var data in dataItem.data)
@@ -189,7 +197,9 @@ namespace ES.Database.Linq
                         }
                         dataItem.listChangeColumns.Clear();
                     }
-                    if (value.Length > 0) DBHelper.CommandSQL("UPDATE {0} SET {1} WHERE {2}='{3}'", TableName, value.Remove(value.Length - 1, 1).ToString(), PrimaryKey, Key);
+
+                    if (value.Length > 0)
+                        DBHelper.CommandSQL("UPDATE {0} SET {1} WHERE {2}='{3}'", TableName, value.Remove(value.Length - 1, 1).ToString(), PrimaryKey, Key);
                 }
                 else if (dataItem.bReadState)
                 {

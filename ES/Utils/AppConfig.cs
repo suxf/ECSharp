@@ -51,7 +51,9 @@ namespace ES.Utils
         /// <returns></returns>
         public static string? Read(string name)
         {
-            if (doc == null && !Reload()) return null;
+            if (doc == null && !Reload())
+                return null;
+
             return root?.Element(name)?.Value;
         }
 
@@ -67,7 +69,9 @@ namespace ES.Utils
 		public static T Read<T>(string name)
 #endif
         {
-            if (doc == null && !Reload()) return default;
+            if (doc == null && !Reload())
+                return default;
+
             return (T)Convert.ChangeType(root?.Element(name)?.Value, typeof(T))!;
         }
 
@@ -79,7 +83,9 @@ namespace ES.Utils
         /// <returns></returns>
         public static string? Read(string group, string name)
         {
-            if (doc == null && !Reload()) return null;
+            if (doc == null && !Reload())
+                return null;
+
             return root?.Element(group)?.Element(name)?.Value;
         }
 
@@ -96,7 +102,9 @@ namespace ES.Utils
 		public static T Read<T>(string group, string name)
 #endif
         {
-            if (doc == null && !Reload()) return default;
+            if (doc == null && !Reload())
+                return default;
+
             return (T)Convert.ChangeType(root?.Element(group)?.Element(name)?.Value, typeof(T))!;
         }
     }

@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['alias_787',['Alias',['../namespace_e_s_1_1_alias.html',1,'ES']]],
-  ['client_788',['Client',['../namespace_e_s_1_1_network_1_1_sockets_1_1_client.html',1,'ES::Network::Sockets']]],
-  ['collections_789',['Collections',['../namespace_e_s_1_1_alias_1_1_collections.html',1,'ES::Alias']]],
+  ['alias_786',['Alias',['../namespace_e_s_1_1_alias.html',1,'ES']]],
+  ['client_787',['Client',['../namespace_e_s_1_1_network_1_1_sockets_1_1_client.html',1,'ES::Network::Sockets']]],
+  ['collections_788',['Collections',['../namespace_e_s_1_1_alias_1_1_collections.html',1,'ES::Alias']]],
+  ['crypto_789',['Crypto',['../namespace_e_s_1_1_crypto.html',1,'ES']]],
   ['database_790',['Database',['../namespace_e_s_1_1_database.html',1,'ES']]],
   ['es_791',['ES',['../namespace_e_s.html',1,'']]],
   ['hotfix_792',['Hotfix',['../namespace_e_s_1_1_hotfix.html',1,'ES']]],
   ['http_793',['Http',['../namespace_e_s_1_1_network_1_1_http.html',1,'ES::Network']]],
-  ['hypersocket_794',['HyperSocket',['../namespace_e_s_1_1_network_1_1_hyper_socket.html',1,'ES::Network']]],
+  ['hypersocket_794',['HyperSocket',['../namespace_e_s_1_1_network_1_1_sockets_1_1_hyper_socket.html',1,'ES::Network::Sockets']]],
   ['linq_795',['Linq',['../namespace_e_s_1_1_database_1_1_linq.html',1,'ES.Database.Linq'],['../namespace_e_s_1_1_linq.html',1,'ES.Linq'],['../namespace_e_s_1_1_network_1_1_http_1_1_linq.html',1,'ES.Network.Http.Linq']]],
   ['mysql_796',['MySQL',['../namespace_e_s_1_1_database_1_1_my_s_q_l.html',1,'ES::Database']]],
   ['network_797',['Network',['../namespace_e_s_1_1_network.html',1,'ES']]],

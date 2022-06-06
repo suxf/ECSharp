@@ -17,7 +17,10 @@
         public static string ReadLine(string log = "")
         {
             System.Console.ResetColor();
-            if (log != "") System.Console.Write(log);
+
+            if (log != "")
+                System.Console.Write(log);
+
             string input = System.Console.ReadLine() ?? "";
             System.Console.ResetColor();
             LogManager.WriteLine(LogType.INPUT, log + input);
@@ -46,10 +49,12 @@
         public static void Debug(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
             for (int i = 0, len = logs.Length; i < len; i++)
             {
                 sb.Append(logs[i] ?? "null");
             }
+
             LogManager.WriteLine(LogType.DEBUG, sb.ToString());
         }
 
@@ -75,10 +80,12 @@
         public static void Info(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
             for (int i = 0, len = logs.Length; i < len; i++)
             {
                 sb.Append(logs[i] ?? "null");
             }
+
             LogManager.WriteLine(LogType.INFO, sb.ToString());
         }
 
@@ -103,11 +110,13 @@
         /// <param name="logs">日志数据</param>
         public static void Warn(params object?[] logs)
         {
+
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             for (int i = 0, len = logs.Length; i < len; i++)
             {
                 sb.Append(logs[i] ?? "null");
             }
+
             LogManager.WriteLine(LogType.WARN, sb.ToString());
         }
 
@@ -133,10 +142,12 @@
         public static void Error(params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
             for (int i = 0, len = logs.Length; i < len; i++)
             {
                 sb.Append(logs[i] ?? "null");
             }
+
             LogManager.WriteLine(LogType.ERROR, sb.ToString());
         }
 
@@ -169,10 +180,12 @@
         public static void Exception(System.Exception ex, params object?[] logs)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
             for (int i = 0, len = logs.Length; i < len; i++)
             {
                 sb.Append(logs[i] ?? "null");
             }
+
             string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", sb, ex.Message, ex.TargetSite, ex.StackTrace);
             LogManager.WriteLine(LogType.FATAL, data);
         }

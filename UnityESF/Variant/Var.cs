@@ -1,6 +1,7 @@
 ﻿using ES.Utils;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ES.Variant
 {
@@ -15,246 +16,238 @@ namespace ES.Variant
         /// </summary>
         public static readonly Var Empty = new Var();
 
-#if !UNITY_2020_1_OR_NEWER
-        private readonly VarType type = VarType.NULL;
-
-        private readonly int intValue = 0;
-        private readonly long longValue = 0L;
-        private readonly double doubleValue = 0.0D;
-        private readonly string stringValue = "";
-        private readonly object? objectValue = null;
-        private readonly VarList? listValue = null;
-        private readonly VarMap? mapValue = null;
-#else
-        private readonly VarType type;
-
-        private readonly int intValue;
-        private readonly long longValue;
-        private readonly double doubleValue;
-        private readonly string stringValue;
-        private readonly object? objectValue;
-        private readonly VarList? listValue;
-        private readonly VarMap? mapValue;
-#endif
-
         /// <summary>
         /// 变量类型
         /// </summary>
         public VarType Type => type;
 
-#if !UNITY_2020_1_OR_NEWER
         /// <summary>
-        /// 空变量
+        /// 对象
         /// </summary>
-        public Var() { type = VarType.NULL; }
-#endif
+        public object Object => objectValue!;
+        /// <summary>
+        /// 列表
+        /// </summary>
+        public VarList List => listValue!;
+        /// <summary>
+        /// 字典
+        /// </summary>
+        public VarMap Map => mapValue!;
+
+        /// <summary>
+        /// 值类型变量
+        /// </summary>
+        public Var(ValueType value)
+        {
+            intValue = 0;
+            longValue = 0L;
+            doubleValue = 0.0D;
+            stringValue = null;
+            listValue = null;
+            mapValue = null;
+
+            type = VarType.STRUCT;
+            objectValue = value;
+        }
 
         /// <summary>
         /// 对象变量
         /// </summary>
         public Var(object value)
         {
-            type = VarType.OBJECT;
-            objectValue = value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             longValue = 0L;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.OBJECT;
+            objectValue = value;
+        }
+
+        /// <summary>
+        /// 枚举可变变量
+        /// </summary>
+        public Var(Enum value)
+        {
+            longValue = 0L;
+            doubleValue = 0.0D;
+            stringValue = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
+
+            type = VarType.INT32;
+            intValue = Convert.ToInt32(value);
         }
 
         /// <summary>
         /// 整型可变变量
         /// </summary>
-        private Var(int value)
+        public Var(int value)
         {
-            type = VarType.INT32;
-            intValue = value;
-#if UNITY_2017_1_OR_NEWER
             longValue = 0L;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.INT32;
+            intValue = value;
         }
 
         /// <summary>
         /// 无符号整型可变变量
         /// </summary>
-        private Var(uint value)
+        public Var(uint value)
         {
-            type = VarType.UINT32;
-            intValue = (int)value;
-#if UNITY_2017_1_OR_NEWER
             longValue = 0L;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.UINT32;
+            intValue = (int)value;
         }
 
         /// <summary>
         /// 长整型可变变量
         /// </summary>
-        private Var(long value)
+        public Var(long value)
         {
-            type = VarType.INT64;
-            longValue = value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.INT64;
+            longValue = value;
         }
 
         /// <summary>
         /// 无符号长整型可变变量
         /// </summary>
-        private Var(ulong value)
+        public Var(ulong value)
         {
-            type = VarType.UINT64;
-            longValue = (long)value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.UINT64;
+            longValue = (long)value;
         }
 
         /// <summary>
         /// 单精度浮点型可变变量
         /// </summary>
-        private Var(float value)
+        public Var(float value)
         {
-            type = VarType.FLOAT;
-            doubleValue = value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             longValue = 0L;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.FLOAT;
+            doubleValue = value;
         }
 
         /// <summary>
         /// 双精度浮点型可变变量
         /// </summary>
-        private Var(double value)
+        public Var(double value)
         {
-            type = VarType.DOUBLE;
-            doubleValue = value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             longValue = 0L;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
             mapValue = null;
-#endif
+
+            type = VarType.DOUBLE;
+            doubleValue = value;
         }
 
         /// <summary>
         /// 布尔型可变变量
         /// </summary>
-        private Var(bool value)
+        public Var(bool value)
         {
+            longValue = 0L;
+            doubleValue = 0.0D;
+            stringValue = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
+
             type = VarType.BOOL;
             intValue = value ? 1 : 0;
-#if UNITY_2017_1_OR_NEWER
-            longValue = 0L;
-            doubleValue = 0.0D;
-            stringValue = "";
-            objectValue = null;
-            listValue = null;
-            mapValue = null;
-#endif
         }
 
         /// <summary>
         /// 可变变量
         /// </summary>
-        private Var(string value)
+        public Var(string value)
         {
+            intValue = 0;
+            longValue = 0L;
+            doubleValue = 0.0D;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
+
             type = VarType.STRING;
             stringValue = value;
-#if UNITY_2017_1_OR_NEWER
-            intValue = 0;
-            longValue = 0L;
-            doubleValue = 0.0D;
-            objectValue = null;
-            listValue = null;
-            mapValue = null;
-#endif
         }
 
         /// <summary>
         /// 可变变量
         /// </summary>
-        private Var(VarList value)
+        public Var(VarList value)
         {
+            intValue = 0;
+            longValue = 0L;
+            doubleValue = 0.0D;
+            stringValue = null;
+            objectValue = null;
+            mapValue = null;
+
             type = VarType.VARLIST;
             listValue = value;
-#if UNITY_2017_1_OR_NEWER
-            intValue = 0;
-            longValue = 0L;
-            doubleValue = 0.0D;
-            stringValue = "";
-            objectValue = null;
-            mapValue = null;
-#endif
         }
 
         /// <summary>
         /// 可变变量
         /// </summary>
-        private Var(VarMap value)
+        public Var(VarMap value)
         {
-            type = VarType.VARMAP;
-            mapValue = value;
-#if UNITY_2017_1_OR_NEWER
             intValue = 0;
             longValue = 0L;
             doubleValue = 0.0D;
-            stringValue = "";
+            stringValue = null;
             objectValue = null;
             listValue = null;
-#endif
-        }
 
-        /// <summary>
-        /// 对象
-        /// </summary>
-        public object Object => objectValue ?? new object();
-        /// <summary>
-        /// 列表
-        /// </summary>
-        public VarList List => listValue ?? new VarList();
-        /// <summary>
-        /// 字典
-        /// </summary>
-        public VarMap Map => mapValue ?? new VarMap();
+            type = VarType.VARMAP;
+            mapValue = value;
+        }
 
         /// <summary>
         /// 枚举值变量
         /// </summary>
         /// <param name="value">字节型变量</param>
         public static implicit operator Var(Enum value)
-            => new Var(Convert.ToInt32(value));
+            => new Var(value);
         /// <summary>
         /// 字节型变量
         /// </summary>
@@ -339,14 +332,6 @@ namespace ES.Variant
         /// <param name="value">字符串型变量</param>
         public static implicit operator Var(VarMap value)
             => new Var(value);
-        /// <summary>
-        /// 通过字节数组转可变变量
-        /// </summary>
-        /// <param name="value">可变变量的字节数组</param>
-        public static implicit operator Var(byte[] value)
-        {
-            return Parse(value, out _);
-        }
 
         /// <summary>
         /// 字节型变量
@@ -607,7 +592,8 @@ namespace ES.Variant
                 case VarType.BOOL:
                     return (intValue == 1).ToString();
                 case VarType.STRING:
-                    return stringValue;
+                    return stringValue ?? "";
+                case VarType.STRUCT:
                 case VarType.OBJECT:
                     return objectValue?.ToString() ?? "";
                 case VarType.VARLIST:
@@ -662,7 +648,7 @@ namespace ES.Variant
 #if !UNITY_2020_1_OR_NEWER && !NET462 && !NETSTANDARD2_0
             return HashCode.Combine(type, intValue, longValue, doubleValue, stringValue, objectValue, listValue, mapValue);
 #else
-			return type.GetHashCode() ^ intValue.GetHashCode() ^ longValue.GetHashCode() ^ doubleValue.GetHashCode() ^ stringValue.GetHashCode() ^ objectValue?.GetHashCode() ?? 0 ^ listValue?.GetHashCode() ?? 0 ^ mapValue?.GetHashCode() ?? 0;
+			return type.GetHashCode() ^ intValue.GetHashCode() ^ longValue.GetHashCode() ^ doubleValue.GetHashCode() ^ stringValue?.GetHashCode() ?? 0 ^ objectValue?.GetHashCode() ?? 0 ^ listValue?.GetHashCode() ?? 0 ^ mapValue?.GetHashCode() ?? 0;
 #endif
         }
 
@@ -708,19 +694,19 @@ namespace ES.Variant
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.INT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((short)intValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((short)intValue), 0, bytes, 1, 2);
                     }
                     else if (ushort.MinValue <= intValue && intValue <= ushort.MaxValue)
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.UINT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((ushort)intValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((ushort)intValue), 0, bytes, 1, 2);
                     }
                     else
                     {
                         bytes = new byte[5];
                         bytes[0] = (byte)VarType.INT32;
-                        Buffer.BlockCopy(ByteHelper.GetBytes(intValue), 0, bytes, 1, 4);
+                        Buffer.BlockCopy(ByteConverter.GetBytes(intValue), 0, bytes, 1, 4);
                     }
                     break;
                 case VarType.UINT32:
@@ -731,13 +717,13 @@ namespace ES.Variant
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.UINT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((ushort)uintValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((ushort)uintValue), 0, bytes, 1, 2);
                     }
                     else
                     {
                         bytes = new byte[5];
                         bytes[0] = (byte)VarType.UINT32;
-                        Buffer.BlockCopy(ByteHelper.GetBytes(uintValue), 0, bytes, 1, 4);
+                        Buffer.BlockCopy(ByteConverter.GetBytes(uintValue), 0, bytes, 1, 4);
                     }
                     break;
                 case VarType.INT64:
@@ -749,31 +735,31 @@ namespace ES.Variant
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.INT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((short)longValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((short)longValue), 0, bytes, 1, 2);
                     }
                     else if (ushort.MinValue <= longValue && longValue <= ushort.MaxValue)
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.UINT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((ushort)longValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((ushort)longValue), 0, bytes, 1, 2);
                     }
                     else if (int.MinValue <= longValue && longValue <= int.MaxValue)
                     {
                         bytes = new byte[5];
                         bytes[0] = (byte)VarType.INT32;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((int)longValue), 0, bytes, 1, 4);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((int)longValue), 0, bytes, 1, 4);
                     }
                     else if (uint.MinValue <= longValue && longValue <= uint.MaxValue)
                     {
                         bytes = new byte[5];
                         bytes[0] = (byte)VarType.UINT32;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((uint)longValue), 0, bytes, 1, 4);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((uint)longValue), 0, bytes, 1, 4);
                     }
                     else
                     {
                         bytes = new byte[9];
                         bytes[0] = (byte)VarType.INT64;
-                        Buffer.BlockCopy(ByteHelper.GetBytes(longValue), 0, bytes, 1, 8);
+                        Buffer.BlockCopy(ByteConverter.GetBytes(longValue), 0, bytes, 1, 8);
                     }
                     break;
                 case VarType.UINT64:
@@ -784,19 +770,19 @@ namespace ES.Variant
                     {
                         bytes = new byte[3];
                         bytes[0] = (byte)VarType.UINT16;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((ushort)ulongValue), 0, bytes, 1, 2);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((ushort)ulongValue), 0, bytes, 1, 2);
                     }
                     else if (uint.MinValue <= ulongValue && ulongValue <= uint.MaxValue)
                     {
                         bytes = new byte[5];
                         bytes[0] = (byte)VarType.UINT32;
-                        Buffer.BlockCopy(ByteHelper.GetBytes((uint)ulongValue), 0, bytes, 1, 4);
+                        Buffer.BlockCopy(ByteConverter.GetBytes((uint)ulongValue), 0, bytes, 1, 4);
                     }
                     else
                     {
                         bytes = new byte[9];
                         bytes[0] = (byte)VarType.UINT64;
-                        Buffer.BlockCopy(ByteHelper.GetBytes(ulongValue), 0, bytes, 1, 8);
+                        Buffer.BlockCopy(ByteConverter.GetBytes(ulongValue), 0, bytes, 1, 8);
                     }
                     break;
                 case VarType.FLOAT:
@@ -812,31 +798,31 @@ namespace ES.Variant
                         {
                             bytes = new byte[3];
                             bytes[0] = (byte)VarType.INT16;
-                            Buffer.BlockCopy(ByteHelper.GetBytes((short)longVal), 0, bytes, 1, 2);
+                            Buffer.BlockCopy(ByteConverter.GetBytes((short)longVal), 0, bytes, 1, 2);
                         }
                         else if (ushort.MinValue <= longVal && longVal <= ushort.MaxValue)
                         {
                             bytes = new byte[3];
                             bytes[0] = (byte)VarType.UINT16;
-                            Buffer.BlockCopy(ByteHelper.GetBytes((ushort)longVal), 0, bytes, 1, 2);
+                            Buffer.BlockCopy(ByteConverter.GetBytes((ushort)longVal), 0, bytes, 1, 2);
                         }
                         else if (int.MinValue <= longVal && longVal <= int.MaxValue)
                         {
                             bytes = new byte[5];
                             bytes[0] = (byte)VarType.INT32;
-                            Buffer.BlockCopy(ByteHelper.GetBytes((int)longVal), 0, bytes, 1, 4);
+                            Buffer.BlockCopy(ByteConverter.GetBytes((int)longVal), 0, bytes, 1, 4);
                         }
                         else if (uint.MinValue <= longVal && longVal <= uint.MaxValue)
                         {
                             bytes = new byte[5];
                             bytes[0] = (byte)VarType.UINT32;
-                            Buffer.BlockCopy(ByteHelper.GetBytes((uint)longVal), 0, bytes, 1, 4);
+                            Buffer.BlockCopy(ByteConverter.GetBytes((uint)longVal), 0, bytes, 1, 4);
                         }
                         else
                         {
                             bytes = new byte[9];
                             bytes[0] = (byte)VarType.INT64;
-                            Buffer.BlockCopy(ByteHelper.GetBytes(longVal), 0, bytes, 1, 8);
+                            Buffer.BlockCopy(ByteConverter.GetBytes(longVal), 0, bytes, 1, 8);
                         }
                     }
                     else
@@ -845,13 +831,13 @@ namespace ES.Variant
                         {
                             bytes = new byte[5];
                             bytes[0] = (byte)VarType.FLOAT;
-                            Buffer.BlockCopy(ByteHelper.GetBytes((float)doubleValue), 0, bytes, 1, 4);
+                            Buffer.BlockCopy(ByteConverter.GetBytes((float)doubleValue), 0, bytes, 1, 4);
                         }
                         else
                         {
                             bytes = new byte[9];
                             bytes[0] = (byte)VarType.DOUBLE;
-                            Buffer.BlockCopy(ByteHelper.GetBytes(doubleValue), 0, bytes, 1, 8);
+                            Buffer.BlockCopy(ByteConverter.GetBytes(doubleValue), 0, bytes, 1, 8);
                         }
                     }
                     break;
@@ -859,6 +845,11 @@ namespace ES.Variant
                     bytes = new byte[1] { (byte)((byte)VarType.BOOL | (intValue == 1 ? 0x10 : 0x00)) };
                     break;
                 case VarType.STRING:
+                    if (stringValue == null)
+                    {
+                        bytes = ByteConverter.Empty;
+                        break;
+                    }
                     byte[] strBytes = System.Text.Encoding.UTF8.GetBytes(stringValue);
                     int strlen = strBytes.Length;
                     if (strlen <= byte.MaxValue)
@@ -901,11 +892,60 @@ namespace ES.Variant
                     bytes[0] = (byte)VarType.VARMAP;
                     Buffer.BlockCopy(mapBytes, 0, bytes, 1, maplen);
                     break;
+                case VarType.STRUCT:
+                    if (objectValue == null) bytes = new byte[1] { (byte)VarType.NULL | 0xF0 };
+                    else
+                    {
+                        string typeName = VarObjectMgr.RegisterObjectType(objectValue);
+                        int typeNameSize = typeName.Length;
+                        int size = Marshal.SizeOf(objectValue);
+                        IntPtr bufferIntPtr = Marshal.AllocHGlobal(size);
+                        try
+                        {
+                            Marshal.StructureToPtr(objectValue, bufferIntPtr, false);
+                            if (size <= byte.MaxValue)
+                            {
+                                bytes = new byte[3 + size + typeNameSize];
+                                bytes[0] = (byte)VarType.STRUCT | 0x10;
+                                bytes[1] = (byte)size;
+                                bytes[2] = (byte)typeNameSize;
+                                Buffer.BlockCopy(System.Text.Encoding.UTF8.GetBytes(typeName), 0, bytes, 3, typeNameSize);
+                                Marshal.Copy(bufferIntPtr, bytes, 3 + typeNameSize, size);
+                            }
+                            else if (size <= short.MaxValue)
+                            {
+                                bytes = new byte[4 + size + typeNameSize];
+                                bytes[0] = (byte)VarType.STRUCT | 0x20;
+                                bytes[1] = (byte)(size >> 8);
+                                bytes[2] = (byte)size;
+                                bytes[3] = (byte)typeNameSize;
+                                Buffer.BlockCopy(System.Text.Encoding.UTF8.GetBytes(typeName), 0, bytes, 4, typeNameSize);
+                                Marshal.Copy(bufferIntPtr, bytes, 4 + typeNameSize, size);
+                            }
+                            else
+                            {
+                                bytes = new byte[6 + size + typeNameSize];
+                                bytes[0] = (byte)VarType.STRUCT | 0x30;
+                                bytes[1] = (byte)(size >> 24);
+                                bytes[2] = (byte)(size >> 16);
+                                bytes[3] = (byte)(size >> 8);
+                                bytes[4] = (byte)size;
+                                bytes[5] = (byte)typeNameSize;
+                                Buffer.BlockCopy(System.Text.Encoding.UTF8.GetBytes(typeName), 0, bytes, 6, typeNameSize);
+                                Marshal.Copy(bufferIntPtr, bytes, 6 + typeNameSize, size);
+                            }
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(bufferIntPtr);
+                        }
+                    }
+                    break;
                 case VarType.NULL:
                     bytes = new byte[1] { (byte)VarType.NULL | 0xF0 };
                     break;
                 default:
-                    bytes = ByteHelper.Empty;
+                    bytes = ByteConverter.Empty;
                     break;
             }
             return bytes;
@@ -937,28 +977,28 @@ namespace ES.Variant
                     return (sbyte)bytesSpan[startIndex + 1];
                 case VarType.INT16:
                     length = 3;
-                    return ByteHelper.ToInt16(value, startIndex + 1);
+                    return ByteConverter.ToInt16(value, startIndex + 1);
                 case VarType.UINT16:
                     length = 3;
-                    return ByteHelper.ToUInt16(value, startIndex + 1);
+                    return ByteConverter.ToUInt16(value, startIndex + 1);
                 case VarType.INT32:
                     length = 5;
-                    return ByteHelper.ToInt32(value, startIndex + 1);
+                    return ByteConverter.ToInt32(value, startIndex + 1);
                 case VarType.UINT32:
                     length = 5;
-                    return ByteHelper.ToUInt32(value, startIndex + 1);
+                    return ByteConverter.ToUInt32(value, startIndex + 1);
                 case VarType.INT64:
                     length = 9;
-                    return ByteHelper.ToInt64(value, startIndex + 1);
+                    return ByteConverter.ToInt64(value, startIndex + 1);
                 case VarType.UINT64:
                     length = 9;
-                    return ByteHelper.ToUInt64(value, startIndex + 1);
+                    return ByteConverter.ToUInt64(value, startIndex + 1);
                 case VarType.FLOAT:
                     length = 5;
-                    return ByteHelper.ToSingle(value, startIndex + 1);
+                    return ByteConverter.ToSingle(value, startIndex + 1);
                 case VarType.DOUBLE:
                     length = 9;
-                    return ByteHelper.ToDouble(value, startIndex + 1);
+                    return ByteConverter.ToDouble(value, startIndex + 1);
                 case VarType.BOOL:
                     length = 1;
                     return (bytesSpan[startIndex] & 0xF0) == 0x10;
@@ -978,6 +1018,35 @@ namespace ES.Variant
                     VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen) ?? new VarMap();
                     length = mapLen + 1;
                     return map;
+                case VarType.STRUCT:
+                    int tag2 = bytesSpan[startIndex] & 0xF0;
+                    int size;
+                    int typeNameSize;
+                    int index2;
+                    if (tag2 == 0x10) { size = bytesSpan[startIndex + 1]; typeNameSize = bytesSpan[startIndex + 2]; length = size + 3 + typeNameSize; index2 = 3; }
+                    else if (tag2 == 0x20) { size = bytesSpan[startIndex + 1] << 8 | bytesSpan[startIndex + 2]; typeNameSize = bytesSpan[startIndex + 3]; length = size + 4 + typeNameSize; index2 = 4; }
+                    else { size = bytesSpan[startIndex + 1] << 24 | bytesSpan[startIndex + 2] << 16 | bytesSpan[startIndex + 3] << 8 | bytesSpan[startIndex + 4]; typeNameSize = bytesSpan[startIndex + 5]; length = size + 6 + typeNameSize; index2 = 6; }
+                    string typeName = System.Text.Encoding.UTF8.GetString(value, startIndex + index2, typeNameSize);
+                    Type? varObjType = VarObjectMgr.GetTypeByName(typeName);
+                    if (varObjType == null)
+                    {
+                        return Empty;
+                    }
+                    IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
+                    try
+                    {
+                        Marshal.Copy(value, startIndex + index2 + typeNameSize, allocIntPtr, size);
+                        ValueType? structure = Marshal.PtrToStructure(allocIntPtr, varObjType) as ValueType;
+                        if (structure == null)
+                        {
+                            return Empty;
+                        }
+                        return new Var(structure);
+                    }
+                    finally
+                    {
+                        Marshal.FreeHGlobal(allocIntPtr);
+                    }
                 case VarType.NULL:
                     length = ((bytesSpan[startIndex] & 0xF0) == 0xF0) ? 1 : 0;
                     return Empty;

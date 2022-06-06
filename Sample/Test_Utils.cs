@@ -1,4 +1,5 @@
 ﻿using ES;
+using ES.Crypto;
 using ES.Linq;
 using ES.Utils;
 
@@ -36,12 +37,12 @@ namespace Sample
             // 此判定依据是在某索引位为0开始 往后4位皆为0 则认为后续数据无效实现
             // 所以这里的设定还是要看具体情况来 不一定适用所有情况
             // ByteHelper.GetValidLength 则是直接获取长度大小 而非返回数据
-            byte[] bytes = ByteHelper.GetValidByte(new byte[] { 1, 2, 3, 4, 0, 0, 0 });
+            byte[] bytes = ByteConverter.GetValidByte(new byte[] { 1, 2, 3, 4, 0, 0, 0 });
             Log.Info($"bytes len:{bytes.Length}");
 
             // 随机生成指定位数的字符串
             // 字符串将有数字与大小写字母组成
-            string code = RandomCode.Generate(32);
+            string code = Randomizer.Generate(32);
             Log.Info($"code:{code}");
             
             // md5的封装

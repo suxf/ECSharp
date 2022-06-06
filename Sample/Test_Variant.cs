@@ -1,4 +1,5 @@
 ﻿using ES;
+using ES.Utils;
 using ES.Variant;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
@@ -11,15 +12,19 @@ namespace Sample
         B,
         C,
     }
+
     /// <summary>
     /// 可变变量测试
     /// </summary>
-    class Test_Variant
+    public class Test_Variant
     {
         public Test_Variant()
         {
+            // BenchmarkDotNet.Running.BenchmarkRunner.Run<Test_Variant>();
+
             TestAll();
             TestNum();
+            TestObject();
 
             Var enumValue = TestEnum.C;
             TestEnum enumValue2 = enumValue.ToEnum<TestEnum>();
@@ -59,7 +64,7 @@ namespace Sample
 
             Var uu = 255;
             byte[] uu2 = uu.GetBytes();
-            Var uu3 = uu2;
+            Var uu3 = Var.Parse(uu2);
             uu3 *= uu3 + uu3 / 32;
 
             uu = 66810;
@@ -78,11 +83,11 @@ namespace Sample
 
             Var cc = 230;
             var buff = cc.GetBytes();
-            Var bb = buff;
+            Var bb = Var.Parse(buff);
             Var dd = Var.Parse(buff, out var len);
             cc = "ffffffffffffffffffffffffffffffffffffffffffffffaasdasd";
             var bb1 = cc.GetBytes();
-            bb = bb1;
+            bb = Var.Parse(bb1);
 
             byte sf = 1;
             Var sff = sf;
@@ -111,13 +116,11 @@ namespace Sample
             // t = false;
             Log.Info($"{t}");
 
-            for (int i = 0; i < 10; i++)
-            {
-                Calc();
-                Log.Info($"test index:{i}\n");
-            }
-
-
+            // for (int i = 0; i < 10; i++)
+            // {
+            //     Calc();
+            //     Log.Info($"test index:{i}\n");
+            // }
         }
 
         public void Calc()
@@ -271,18 +274,18 @@ namespace Sample
 
         private void TestAll()
         {
-            Var a1 = (byte)1;
-            Var a2 = (sbyte)-2;
-            Var a3 = (ushort)3;
-            Var a4 = (short)-4;
-            Var a5 = 5U;
-            Var a6 = -6;
+            Var a1 = (byte)Randomizer.Random.Next(byte.MinValue, byte.MaxValue);
+            Var a2 = (sbyte)Randomizer.Random.Next(sbyte.MinValue, sbyte.MaxValue);
+            Var a3 = (ushort)Randomizer.Random.Next(ushort.MinValue, ushort.MaxValue);
+            Var a4 = (short)Randomizer.Random.Next(short.MinValue, short.MaxValue);
+            Var a5 = (ushort)Randomizer.Random.Next(ushort.MinValue, ushort.MaxValue);
+            Var a6 = Randomizer.Random.Next(int.MinValue, int.MaxValue);
             Var a7 = 7UL;
             Var a8 = -8L;
-            Var a9 = 9.123456789F;
-            Var a10 = 9.123456789987654321D;
+            Var a9 = (float)Randomizer.Random.NextDouble();
+            Var a10 = (double)Randomizer.Random.NextDouble();
             Var a11 = true;
-            Var a12 = "hello world";
+            Var a12 = Randomizer.Generate(32, Randomizer.RandomCodeType.HighLowLetterAndNumberAndSymbol);
             Var a13 = TestEnum.B;
             Var a14 = new Var(new object());
             VarList list = new VarList();
@@ -324,7 +327,69 @@ namespace Sample
             Var b3 = a6 % a3;
             Var b4 = a8 * a7;
             Var b5 = a9.ToString();
-            Var b6 = a10.GetBytes();
+            Var b6 = Var.Parse(a10.GetBytes());
+        }
+
+        private void TestObject()
+        {
+            Test1.TestA a = new Test1.TestA() { name = "test", info = new Test1.TestB() };
+            a.info.x = 100.12f;
+            a.info.y = 230;
+            a.info.sex = true;
+            // 单一变量
+            Var user = new Var(a);
+            byte[] data = user.GetBytes();
+
+            VarObjectMgr.RegisterObjectType<Test2.TestA>();
+            Var copyUser = Var.Parse(data);
+
+            // 列表
+            VarList list = VarList.New + new Var(a);
+            byte[] listData = list.GetBytes();
+
+            VarObjectMgr.RegisterObjectType<Test2.TestA>();
+            VarList copyList = VarList.Parse(listData);
+        }
+
+        [BenchmarkDotNet.Attributes.Benchmark]
+        public void TestEffect()
+        {
+            for (int i = 0; i < 10000; i++)
+            {
+                TestAll();
+            }
+        }
+    }
+
+    namespace Test1
+    {
+        struct TestA
+        {
+            public string name;
+            public TestB info;
+        }
+
+        struct TestB
+        {
+            public float x;
+            public float y;
+            public bool sex;
+        }
+    }
+
+    namespace Test2
+    {
+        struct TestA
+        {
+            public string name;
+            public TestB info;
+        }
+
+        struct TestB
+        {
+            public float x;
+            public float y;
+            public bool sex;
         }
     }
 }

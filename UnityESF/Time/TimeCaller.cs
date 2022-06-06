@@ -143,7 +143,9 @@ namespace ES.Time
         /// <returns></returns>
         public TimeCaller Start(bool isDaemon = false)
         {
-            if (isDaemon) lock (timeCallers) timeCallers.Add(this);
+            if (isDaemon)
+                lock (timeCallers)
+                    timeCallers.Add(this);
 
             timeFlow.StartTimeFlowES();
             return this;
@@ -157,7 +159,9 @@ namespace ES.Time
         /// <returns></returns>
         public TimeCaller Start(object? parameter, bool isDaemon = false)
         {
-            if (isDaemon) lock (timeCallers) timeCallers.Add(this);
+            if (isDaemon)
+                lock (timeCallers)
+                    timeCallers.Add(this);
 
             this.parameter = parameter;
 
@@ -203,10 +207,15 @@ namespace ES.Time
             if (isFirstCall)
             {
                 delayTimeNow += deltaTime;
+
                 if (delayTimeNow < delayTime)
                     return;
+
                 isFirstCall = false;
-                if (repeatNum != -1) ++repeatNumNow;
+
+                if (repeatNum != -1)
+                    ++repeatNumNow;
+
                 handle?.Invoke();
                 handleWithParam?.Invoke(parameter);
                 return;
@@ -225,7 +234,8 @@ namespace ES.Time
             periodTimeNow %= periodTime;
             for (int i = 0; i < count; i++)
             {
-                if (repeatNum != -1) ++repeatNumNow;
+                if (repeatNum != -1)
+                    ++repeatNumNow;
                 handle?.Invoke();
                 handleWithParam?.Invoke(parameter);
             }

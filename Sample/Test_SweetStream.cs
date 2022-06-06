@@ -21,7 +21,7 @@ namespace Sample
 
             for (int i = 1; i <= 1000; i++)
             {
-                byte[] b = SweetStream.Encode(Encoding.UTF8.GetBytes(RandomCode.Generate(new Random().Next(0, 2048)))).ToArray();
+                byte[] b = SweetStream.Encode(Encoding.UTF8.GetBytes(ES.Utils.Randomizer.Generate(new System.Random().Next(0, 2048)))).ToArray();
                 // byte[] b = sw.Encode(Encoding.UTF8.GetBytes("a"));
                 int size = 128 - memoryStream.ToArray().Length;
                 if (size > 0)

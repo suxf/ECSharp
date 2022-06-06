@@ -63,6 +63,7 @@ namespace ES.Network.Sockets
                 }
                 else
                     mySocketAsyncEventArgs = new MySocketAsyncEventArgsEx(userToken, socket, this);
+
                 argsList.Add(mySocketAsyncEventArgs);
             }
 

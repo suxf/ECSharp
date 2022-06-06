@@ -4,12 +4,10 @@ using System.Text;
 namespace ES.Linq
 {
     /// <summary>
-    /// base64编码\解码构造器
     /// 拓展方法类
-    /// <para>此类用于拓展一些对象上的方法</para>
-    /// <para>便于更快捷的开发</para>
+    /// <para>base64编码\解码构造器</para>
     /// </summary>
-    public static class Base64Linq
+    public static partial class EsLinq
     {
         /// <summary>
         /// 将正常字符串转化为base64编码字符串

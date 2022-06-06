@@ -32,9 +32,14 @@ namespace ES.Network.Http
         /// <returns></returns>
         public string? GetHeader(string fieldName)
         {
-            if (string.IsNullOrEmpty(fieldName)) return null;
+            if (string.IsNullOrEmpty(fieldName))
+                return null;
+
             var hasKey = headers.ContainsKey(fieldName);
-            if (!hasKey) return null;
+
+            if (!hasKey)
+                return null;
+
             return headers[fieldName];
         }
 
@@ -45,9 +50,14 @@ namespace ES.Network.Http
         /// <param name="value"></param>
         public void SetHeader(string fieldName, string value)
         {
-            if (string.IsNullOrEmpty(fieldName)) return;
+            if (string.IsNullOrEmpty(fieldName))
+                return;
+
             var hasKey = headers.ContainsKey(fieldName);
-            if (!hasKey) headers.Add(fieldName, value);
+
+            if (!hasKey)
+                headers.Add(fieldName, value);
+
             headers[fieldName] = value;
         }
     }

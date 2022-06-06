@@ -104,7 +104,6 @@ namespace ES.Network.Websocket
         {
             if (websocketSvr != null)
                 websocketSvr.Dispose();
-            // websocketSvr = null;
         }
 
     }

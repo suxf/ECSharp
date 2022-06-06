@@ -132,7 +132,9 @@ namespace ES.Database.Linq
             {
                 string[] kvStrs;
                 kvStrs = new string[fields.Length];
+
                 for (int i = 0, len = kvStrs.Length; i < len; i++) kvStrs[i] = $"[{fields[i]}] = '{values[i]}'";
+
                 return dBHelper.ExecuteSQL($"UPDATE {tableName} SET {string.Join(",", kvStrs)} WHERE {conditions};");
             }
             return -1;

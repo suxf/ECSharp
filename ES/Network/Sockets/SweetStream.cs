@@ -18,7 +18,7 @@ namespace ES.Network.Sockets
         /// <summary>
         /// 原始数据 解析缓冲区
         /// </summary>
-        private byte[] decodeBuffer = ByteHelper.Empty;
+        private byte[] decodeBuffer = ByteConverter.Empty;
         /// <summary>
         /// 原始数据队列
         /// </summary>
@@ -30,12 +30,13 @@ namespace ES.Network.Sockets
         /// <param name="buffer">接受到的数据流</param>
         public void Decode(ReadOnlySpan<byte> buffer)
         {
-            var rbuffer = ByteHelper.GetValidByte(buffer);
+            var rbuffer = ByteConverter.GetValidByte(buffer);
             // 如果接受的数据为空 则直接跳出
-            if (rbuffer == null || rbuffer.Length <= 0) return;
+            if (rbuffer == null || rbuffer.Length <= 0)
+                return;
 
             // 赋值解析
-            if (decodeBuffer == ByteHelper.Empty) decodeBuffer = rbuffer;
+            if (decodeBuffer == ByteConverter.Empty) decodeBuffer = rbuffer;
             else
             {
                 int dbLen = decodeBuffer.Length;
@@ -70,7 +71,7 @@ namespace ES.Network.Sockets
                 decodeBuffer = new byte[oldLen];
                 Buffer.BlockCopy(msByte, index, decodeBuffer, 0, oldLen);
             }
-            else decodeBuffer = ByteHelper.Empty;
+            else decodeBuffer = ByteConverter.Empty;
         }
 
         /// <summary>
@@ -84,7 +85,7 @@ namespace ES.Network.Sockets
             if (len + 2 - index < OUTSOURCING_SIZE)
             {
                 isOutRange = false;
-                result = ByteHelper.Empty;
+                result = ByteConverter.Empty;
                 return false;
             }
 
@@ -94,7 +95,7 @@ namespace ES.Network.Sockets
             if (buffer[k++] != 0xAA || buffer[k++] != 0x01)
             {
                 isOutRange = false;
-                result = ByteHelper.Empty;
+                result = ByteConverter.Empty;
                 return false;
             }
 
@@ -112,7 +113,7 @@ namespace ES.Network.Sockets
             if ((byte)((sblen + 0x88) & 0x0F) != (verifyCmdNet & 0x0F))
             {
                 isOutRange = false;
-                result = ByteHelper.Empty;
+                result = ByteConverter.Empty;
                 return false;
             }
 
@@ -126,7 +127,7 @@ namespace ES.Network.Sockets
             {
                 // 优化实现 当已经捕获到数据长度后，说明数据段已确认，如果不足则直接跳过不再循环
                 isOutRange = true;
-                result = ByteHelper.Empty;
+                result = ByteConverter.Empty;
                 return false;
             }
 

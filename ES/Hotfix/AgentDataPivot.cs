@@ -31,6 +31,7 @@ namespace ES.Hotfix
                 objects.TryAdd(key, obj);
                 return obj;
             }
+
             return (T)value;
         }
 
@@ -46,6 +47,7 @@ namespace ES.Hotfix
                 objects.TryAdd(key, obj);
                 return obj;
             }
+
             return (T)value;
         }
 
@@ -71,6 +73,7 @@ namespace ES.Hotfix
                 structs.TryAdd(key, obj);
                 return obj;
             }
+
             return (StructValue<T>)value;
         }
 

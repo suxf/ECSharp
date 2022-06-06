@@ -57,7 +57,8 @@ namespace ES.Time
 
         internal void Push(BaseTimeFlow timeFlow)
         {
-            lock (waitAddTimeFlows) waitAddTimeFlows.Add(timeFlow);
+            lock (waitAddTimeFlows)
+                waitAddTimeFlows.Add(timeFlow);
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace ES.Time
                         tfArray = t.waitAddTimeFlows.ToArray();
                         t.waitAddTimeFlows.Clear();
                     }
+
                     for (int i = 0, len = tfArray.Length; i < len; i++)
                     {
                         tfArray[i].consumeTime = TimeFlowManager.TotalRunTime;
@@ -97,15 +99,22 @@ namespace ES.Time
                         else tf.UpdateEndES();
                         continue;
                     }
-                    if (tf.isTimeFlowPause) continue;
-                    if (t.isSync) tf.UpdateSyncES();
-                    else tf.UpdateES();
+
+                    if (tf.isTimeFlowPause)
+                        continue;
+
+                    if (t.isSync)
+                        tf.UpdateSyncES();
+                    else
+                        tf.UpdateES();
                 }
                 for (int i = 0, len = waitRmv.Count; i < len; i++)
                 {
                     t.timeFlows.Remove(waitRmv[i]);
+
                     // 优化清空逻辑
-                    if (i == len - 1) waitRmv.Clear();
+                    if (i == len - 1)
+                        waitRmv.Clear();
                 }
                 // 睡眠
                 t.waitHandle.Wait(interval);
@@ -121,8 +130,10 @@ namespace ES.Time
         {
             for (int i = 0, len = timeFlows.Count; i < len; i++)
             {
-                if (timeFlows[i].CloseByObj(timeUpdate)) return true;
-                else continue;
+                if (timeFlows[i].CloseByObj(timeUpdate))
+                    return true;
+                else
+                    continue;
             }
             return false;
         }

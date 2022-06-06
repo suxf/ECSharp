@@ -37,8 +37,11 @@ namespace ES.Database.MySQL
             get
             {
                 var result = CommandSQL("select now()");
-                if (result.EffectNum == 1) return (DateTime)result.Rows![0][0];
-                else return DateTime.Now;
+
+                if (result.EffectNum == 1)
+                    return (DateTime)result.Rows![0][0];
+                else
+                    return DateTime.Now;
             }
         }
 
@@ -65,13 +68,19 @@ namespace ES.Database.MySQL
 #endif
             else
                 builder = new MySqlConnectionStringBuilder();
+
             builder.Server = address;
             builder.Port = port;
             builder.UserID = username;
             builder.Password = password;
+
             if (!string.IsNullOrEmpty(databaseName)) builder.Database = databaseName;
+
             builder.Pooling = true;
-            if (minPoolSize > maxPoolSize) minPoolSize = maxPoolSize;
+
+            if (minPoolSize > maxPoolSize)
+                minPoolSize = maxPoolSize;
+
             builder.MinimumPoolSize = minPoolSize;
             builder.MaximumPoolSize = maxPoolSize;
 
@@ -129,6 +138,7 @@ namespace ES.Database.MySQL
                 {
                     if (listener != null) listener.CheckConnectedException(this, ex);
                     else throw;
+
                     return false;
                 }
                 return conn.State == ConnectionState.Open;
@@ -175,6 +185,7 @@ namespace ES.Database.MySQL
                         dataAdapter.SelectCommand = sqlCommand;
                         result.DataSet = new DataSet();
                         dataAdapter.Fill(result.DataSet);
+
                         if (result.DataSet.Tables.Count == 0)
                         {
                             result.EffectNum = 0;
@@ -262,7 +273,14 @@ namespace ES.Database.MySQL
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;
-                lock (SQLQueue) { foreach (var sql in SQLQueue) ExecuteSQL(sql); SQLQueue.Clear(); }
+                lock (SQLQueue)
+                {
+                    while (SQLQueue.Count > 0)
+                    {
+                        string sql = SQLQueue.Dequeue();
+                        ExecuteSQL(sql);
+                    }
+                }
             }
         }
 

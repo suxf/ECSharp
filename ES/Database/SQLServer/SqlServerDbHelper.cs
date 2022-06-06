@@ -39,8 +39,11 @@ namespace ES.Database.SQLServer
             get
             {
                 var result = CommandSQL("SELECT GETDATE()");
-                if (result.EffectNum == 1) return (DateTime)result.Rows![0][0];
-                else return DateTime.Now;
+
+                if (result.EffectNum == 1)
+                    return (DateTime)result.Rows![0][0];
+                else
+                    return DateTime.Now;
             }
         }
 
@@ -62,10 +65,13 @@ namespace ES.Database.SQLServer
                 builder = new SqlConnectionStringBuilder(extraConfig);
             else
                 builder = new SqlConnectionStringBuilder();
+
             builder.DataSource = address;
             builder.UserID = username;
             builder.Password = password;
+
             if (!string.IsNullOrEmpty(databaseName)) builder.InitialCatalog = databaseName;
+
             builder.Pooling = true;
             if (minPoolSize > maxPoolSize) minPoolSize = maxPoolSize;
             builder.MinPoolSize = minPoolSize;
@@ -184,9 +190,11 @@ namespace ES.Database.SQLServer
                             dataAdapter.SelectCommand = sqlCommand;
                             DataSet myDataSet = new DataSet();
                             dataAdapter.Fill(myDataSet);
+
                             result.ReturnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
                             result.SqlParameters = sqlCommand.Parameters;
                             result.Tables = myDataSet.Tables;
+
                             if (result.Tables.Count > 0) result.FirstRows = result.Tables[0].Rows;
                         }
                     }
@@ -196,7 +204,9 @@ namespace ES.Database.SQLServer
             {
                 result.ReturnValue = -1;
                 result.IsCompleted = false;
-                if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
+
+                if (listener != null)
+                    listener.ProcedureException(this, procedure, sqlParameters, ex);
                 else throw;
             }
             return result;
@@ -264,6 +274,7 @@ namespace ES.Database.SQLServer
                             dataAdapter.SelectCommand = sqlCommand;
                             result.DataSet = new DataSet();
                             dataAdapter.Fill(result.DataSet);
+
                             if (result.DataSet.Tables.Count > 0)
                             {
                                 result.Tables = result.DataSet.Tables;
@@ -416,8 +427,23 @@ namespace ES.Database.SQLServer
             if (periodUpdate >= 1000)
             {
                 periodUpdate = 0;
-                lock (SQLQueue) { foreach (var sql in SQLQueue) ExecuteSQL(sql); SQLQueue.Clear(); }
-                lock (ProcedureQueue) { foreach (var pr in ProcedureQueue) Procedure(pr.procedure, pr.sqlParameters); ProcedureQueue.Clear(); }
+                lock (SQLQueue)
+                {
+                    while (SQLQueue.Count > 0)
+                    {
+                        string sql = SQLQueue.Dequeue();
+                        ExecuteSQL(sql);
+                    }
+                }
+
+                lock (ProcedureQueue)
+                {
+                    while (ProcedureQueue.Count > 0)
+                    {
+                        ProcedureCmd pr = ProcedureQueue.Dequeue();
+                        Procedure(pr.procedure, pr.sqlParameters);
+                    }
+                }
             }
         }
 

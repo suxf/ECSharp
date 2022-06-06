@@ -1,5 +1,6 @@
 ﻿using ES.Alias.Collections;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ES
 {
@@ -61,7 +62,9 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey key, COMMAND_FUNC<TResult> func, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             funcMap.Add(key, new FuncData() { repeat = repeat, func = func });
         }
 
@@ -74,7 +77,9 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult> func, object? parameter, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             funcMap.Add(key, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
         }
 
@@ -95,10 +100,35 @@ namespace ES
             {
                 v1.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v1.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v1.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key">指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey key, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+            if (v1.waitMap == null)
+            {
+                v1.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v1.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v1.result);
         }
 
         /// <summary>
@@ -111,11 +141,14 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.repeat > 0) --v1.repeat;
+
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func();
             if (v1.func2 != null) v1.result = v1.func2(v1.parameter);
             return v1.result;
@@ -130,16 +163,20 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
+
             if (v1.waitMap == null || !v1.waitMap.TryGetValue(waitId, out var waitData))
             {
                 return;
             }
+
             v1.waitMap.Remove(waitId);
+
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func();
             if (v1.func2 != null) v1.result = v1.func2(waitData.parameter ?? v1.parameter);
             waitData.waitHandle.Set();
@@ -215,14 +252,41 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.waitMap == null)
             {
                 v1.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v1.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v1.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key">指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey key, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v1.waitMap == null)
+            {
+                v1.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v1.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v1.result);
         }
 
         /// <summary>
@@ -236,11 +300,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1);
             if (v1.func2 != null) v1.result = v1.func2(v1.parameter, value1);
             return v1.result;
@@ -256,16 +322,19 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
+
             if (v1.waitMap == null || !v1.waitMap.TryGetValue(waitId, out var waitData))
             {
                 return;
             }
+
             v1.waitMap.Remove(waitId);
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1);
             if (v1.func2 != null) v1.result = v1.func2(waitData.parameter ?? v1.parameter, value1);
             waitData.waitHandle.Set();
@@ -341,14 +410,41 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.waitMap == null)
             {
                 v1.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v1.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v1.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key">指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey key, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v1.waitMap == null)
+            {
+                v1.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v1.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v1.result);
         }
 
         /// <summary>
@@ -363,11 +459,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1, value2);
             if (v1.func2 != null) v1.result = v1.func2(v1.parameter, value1, value2);
             return v1.result;
@@ -388,12 +486,14 @@ namespace ES
             {
                 return;
             }
+
             v1.waitMap.Remove(waitId);
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1, value2);
             if (v1.func2 != null) v1.result = v1.func2(waitData.parameter ?? v1.parameter, value1, value2);
             waitData.waitHandle.Set();
@@ -469,14 +569,41 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.waitMap == null)
             {
                 v1.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v1.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v1.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key">指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey key, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v1.waitMap == null)
+            {
+                v1.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v1.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v1.result);
         }
 
         /// <summary>
@@ -492,11 +619,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1, value2, value3);
             if (v1.func2 != null) v1.result = v1.func2(v1.parameter, value1, value2, value3);
             return v1.result;
@@ -514,16 +643,19 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
+
             if (v1.waitMap == null || !v1.waitMap.TryGetValue(waitId, out var waitData))
             {
                 return;
             }
+
             v1.waitMap.Remove(waitId);
             if (v1.repeat > 0) --v1.repeat;
             if (v1.repeat == 0)
             {
                 funcMap.Remove(key);
             }
+
             if (v1.func != null) v1.result = v1.func(value1, value2, value3);
             if (v1.func2 != null) v1.result = v1.func2(waitData.parameter ?? v1.parameter, value1, value2, value3);
             waitData.waitHandle.Set();
@@ -570,7 +702,9 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult> func, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
@@ -589,12 +723,14 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult> func, object? parameter, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
         }
 
@@ -612,14 +748,42 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.waitMap == null)
             {
                 v2.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v2.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v2.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey1 key1, TKey2 key2, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v2.waitMap == null)
+            {
+                v2.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v2.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v2.result);
         }
 
         /// <summary>
@@ -633,11 +797,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func();
             if (v2.func2 != null) v2.result = v2.func2(v2.parameter);
             return v2.result;
@@ -653,14 +819,17 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
+
             if (v2.waitMap == null || !v2.waitMap.TryGetValue(waitId, out var waitData))
                 return;
+
             v2.waitMap.Remove(waitId);
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func();
             if (v2.func2 != null) v2.result = v2.func2(waitData.parameter ?? v2.parameter);
             waitData.waitHandle.Set();
@@ -675,6 +844,7 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
+
             return v1.Remove(key2);
         }
 
@@ -710,12 +880,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1> func, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func = func });
         }
 
@@ -729,12 +902,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1> func, object? parameter, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
         }
 
@@ -752,14 +928,42 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.waitMap == null)
             {
                 v2.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v2.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v2.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey1 key1, TKey2 key2, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v2.waitMap == null)
+            {
+                v2.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v2.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v2.result);
         }
 
         /// <summary>
@@ -774,11 +978,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1);
             if (v2.func2 != null) v2.result = v2.func2(v2.parameter, value1);
             return v2.result;
@@ -795,14 +1001,17 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
+
             if (v2.waitMap == null || !v2.waitMap.TryGetValue(waitId, out var waitData))
                 return;
+
             v2.waitMap.Remove(waitId);
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1);
             if (v2.func2 != null) v2.result = v2.func2(waitData.parameter ?? v2.parameter, value1);
             waitData.waitHandle.Set();
@@ -817,6 +1026,7 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
+
             return v1.Remove(key2);
         }
 
@@ -852,12 +1062,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1, TValue2> func, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func = func });
         }
 
@@ -871,12 +1084,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2> func, object? parameter, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
         }
 
@@ -894,14 +1110,42 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.waitMap == null)
             {
                 v2.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v2.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v2.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey1 key1, TKey2 key2, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v2.waitMap == null)
+            {
+                v2.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v2.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v2.result);
         }
 
         /// <summary>
@@ -917,11 +1161,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1, value2);
             if (v2.func2 != null) v2.result = v2.func2(v2.parameter, value1, value2);
             return v2.result;
@@ -939,14 +1185,17 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
+
             if (v2.waitMap == null || !v2.waitMap.TryGetValue(waitId, out var waitData))
                 return;
+
             v2.waitMap.Remove(waitId);
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1, value2);
             if (v2.func2 != null) v2.result = v2.func2(waitData.parameter ?? v2.parameter, value1, value2);
             waitData.waitHandle.Set();
@@ -961,6 +1210,7 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
+
             return v1.Remove(key2);
         }
 
@@ -996,12 +1246,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1, TValue2, TValue3> func, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func = func });
         }
 
@@ -1015,12 +1268,15 @@ namespace ES
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
         public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2, TValue3> func, object? parameter, int repeat = -1)
         {
-            if (repeat == 0) return;
+            if (repeat == 0)
+                return;
+
             if (!funcMap.TryGetValue(key1, out var v1))
             {
                 v1 = new Map<TKey2, FuncData>();
                 funcMap.Add(key1, v1);
             }
+
             v1.Add(key2, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
         }
 
@@ -1038,14 +1294,42 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.waitMap == null)
             {
                 v2.waitMap = new Map<int, WaitData>();
             }
+
             WaitData waitData = new WaitData() { parameter = parameter };
             v2.waitMap.Add(waitId, waitData);
             waitData.waitHandle.Wait(waitTimeout);
             return v2.result;
+        }
+
+        /// <summary>
+        /// 异步等待执行指令
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        /// <param name="waitId">等待ID</param>
+        /// <param name="parameter">传入参数，此处不为空会覆盖添加处的参数值</param>
+        /// <param name="waitTimeout">超时时间 默认 -1 永不超时</param>
+        public Task<TResult?> WaitCallAsync(TKey1 key1, TKey2 key2, int waitId, object? parameter = null, int waitTimeout = -1)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return Task.FromResult<TResult?>(default);
+            }
+
+            if (v2.waitMap == null)
+            {
+                v2.waitMap = new Map<int, WaitData>();
+            }
+
+            WaitData waitData = new WaitData() { parameter = parameter };
+            v2.waitMap.Add(waitId, waitData);
+            waitData.waitHandle.Wait(waitTimeout);
+            return Task.FromResult(v2.result);
         }
 
         /// <summary>
@@ -1062,11 +1346,13 @@ namespace ES
             {
                 return default;
             }
+
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1, value2, value3);
             if (v2.func2 != null) v2.result = v2.func2(v2.parameter, value1, value2, value3);
             return v2.result;
@@ -1085,14 +1371,17 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
+
             if (v2.waitMap == null || !v2.waitMap.TryGetValue(waitId, out var waitData))
                 return;
+
             v2.waitMap.Remove(waitId);
             if (v2.repeat > 0) --v2.repeat;
             if (v2.repeat == 0)
             {
                 v1.Remove(key2);
             }
+
             if (v2.func != null) v2.result = v2.func(value1, value2, value3);
             if (v2.func2 != null) v2.result = v2.func2(waitData.parameter ?? v2.parameter, value1, value2, value3);
             waitData.waitHandle.Set();
@@ -1107,6 +1396,7 @@ namespace ES
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
+
             return v1.Remove(key2);
         }
 

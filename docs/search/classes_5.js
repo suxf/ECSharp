@@ -7,7 +7,7 @@ var searchData=
   ['httpresponse_717',['HttpResponse',['../class_e_s_1_1_network_1_1_http_1_1_http_response.html',1,'ES::Network::Http']]],
   ['httpservice_718',['HttpService',['../class_e_s_1_1_network_1_1_http_1_1_http_service.html',1,'ES::Network::Http']]],
   ['httpvisitor_719',['HttpVisitor',['../class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html',1,'ES::Network::Http::Linq']]],
-  ['hypersocket_720',['HyperSocket',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html',1,'ES::Network::HyperSocket']]],
-  ['hypersocketconfig_721',['HyperSocketConfig',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html',1,'ES::Network::HyperSocket']]],
-  ['hypersocketserver_722',['HyperSocketServer',['../class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html',1,'ES::Network::HyperSocket']]]
+  ['hypersocket_720',['HyperSocket',['../class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html',1,'ES::Network::Sockets::HyperSocket']]],
+  ['hypersocketconfig_721',['HyperSocketConfig',['../class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_config.html',1,'ES::Network::Sockets::HyperSocket']]],
+  ['hypersocketserver_722',['HyperSocketServer',['../class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_server.html',1,'ES::Network::Sockets::HyperSocket']]]
 ];

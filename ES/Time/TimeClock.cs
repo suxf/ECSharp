@@ -241,7 +241,9 @@ namespace ES.Time
         /// <returns></returns>
         public TimeClock Start(bool isDaemon = false)
         {
-            if (isDaemon) lock (timeClocks) timeClocks.Add(this);
+            if (isDaemon)
+                lock (timeClocks)
+                    timeClocks.Add(this);
 
             timeFlow.StartTimeFlowES();
             return this;
@@ -266,6 +268,7 @@ namespace ES.Time
                 {
                     timeClocks[i].Cancel();
                 }
+
                 timeClocks.Clear();
             }
         }
@@ -277,9 +280,11 @@ namespace ES.Time
         public void Update(int deltaTime)
         {
             unitPeriod += deltaTime;
+
             // 每一秒执行一次
             if (unitPeriod < 1000)
                 return;
+
             unitPeriod = 0;
             DateTime now = sysTime.Now;
 
@@ -296,20 +301,27 @@ namespace ES.Time
 
             if (year != -1 && now.Year != year)
                 return;
+
             if (month != -1 && now.Month != month)
                 return;
+
             if (day != -1 && now.Day != day)
                 return;
+
             if (now.Hour != hour)
                 return;
+
             if (now.Minute != minute)
                 return;
+
             if (now.Second < second)
                 return;
+
             // 今天已触发
             TriggerToday = true;
             // 执行函数
             handle(now);
+
             if (!IsRepeat)
             {
                 timeFlow.CloseTimeFlowES();
@@ -321,7 +333,8 @@ namespace ES.Time
         /// </summary>
         public void UpdateEnd()
         {
-            lock (timeClocks) timeClocks.Remove(this);
+            lock (timeClocks)
+                timeClocks.Remove(this);
         }
 
         private class SysTime : ISysTime

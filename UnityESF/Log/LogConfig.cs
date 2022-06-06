@@ -25,9 +25,13 @@
         /// </summary>
         public static bool LOG_FILE_STACK_TRACE_OUTPUT = true;
         /// <summary>
-        /// 控制台输出日志类型
+        /// 控制台输出最小日志类型 默认：调试性日志
         /// </summary>
         public static LogType CONSOLE_OUTPUT_LOG_TYPE = LogType.DEBUG;
+        /// <summary>
+        /// 文件输出最小日志类型 默认：信息性日志
+        /// </summary>
+        public static LogType FILE_OUTPUT_LOG_TYPE = LogType.INFO;
         /// <summary>
         /// 日志写入周期 单位 ms
         /// </summary>

@@ -149,6 +149,33 @@ namespace ES.Network.Sockets.Server
         /// <summary>
         /// 发送数据
         /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(Var buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(VarList buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(VarMap buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
         /// <param name="sessionId">会话ID</param>
         /// <param name="buffer">数据</param>
         public bool Send(ushort sessionId, ReadOnlySpan<byte> buffer)
@@ -199,9 +226,13 @@ namespace ES.Network.Sockets.Server
             do
             {
                 var sb = RBuffer.TakeStreamBuffer();
-                if (sb == null) return;
+
+                if (sb == null)
+                    return;
+
                 SocketInvoke?.OnReceivedCompleted(new RemoteSocketMsg(0, sb, this));
-            } while (true);
+            }
+            while (true);
         }
 
         /// <summary>

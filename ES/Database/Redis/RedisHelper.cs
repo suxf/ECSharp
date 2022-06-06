@@ -34,12 +34,14 @@ namespace ES.Database.Redis
             get
             {
                 long[] timeSpans = (long[])Do(db => db.Execute("TIME", Array.Empty<object>()));
+
                 if (timeSpans.Length == 2)
                 {
                     DateTime dateTimeStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                     return dateTimeStart.AddSeconds(timeSpans[0])/*.AddTicks(timeSpans[1] * 10)*/.ToLocalTime();
                 }
-                else return DateTime.Now;
+                else
+                    return DateTime.Now;
             }
         }
 

@@ -40,8 +40,10 @@ namespace ES.Utils
         /// <returns></returns>
         public static JToken? Get(string key)
         {
-            if (GetAll().ContainsKey(key)) return GetAll()[key];
-            else return default;
+            if (GetAll().ContainsKey(key))
+                return GetAll()[key];
+            else
+                return default;
         }
 
         /// <summary>
@@ -51,8 +53,11 @@ namespace ES.Utils
         /// <param name="value"></param>
         public static void Set(string key, JToken value)
         {
-            if (GetAll().ContainsKey(key)) GetAll()[key] = value;
-            else GetAll().Add(key, value);
+            if (GetAll().ContainsKey(key))
+                GetAll()[key] = value;
+            else
+                GetAll().Add(key, value);
+
             // 写入数据
             WriteData(JsonConvert.SerializeObject(GetAll()), "default.json");
         }
@@ -66,7 +71,8 @@ namespace ES.Utils
         public static void WriteData(string data, string fileName, string path = ".\\")
         {
             // 创建目录
-            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
             FileStream fs = new FileStream(path + fileName, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
@@ -87,7 +93,9 @@ namespace ES.Utils
         public static string? ReadData(string fileName, string path = ".\\")
         {
             // 查看是否为空
-            if (!File.Exists(path + fileName)) return null;
+            if (!File.Exists(path + fileName))
+                return null;
+
             // 开始读取
             FileStream fs = new FileStream(path + fileName, FileMode.Open);
             StreamReader sw = new StreamReader(fs);

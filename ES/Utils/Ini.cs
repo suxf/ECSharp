@@ -52,6 +52,7 @@ namespace ES.Utils
                 {
                     return v;
                 }
+
                 return null;
             }
 
@@ -68,6 +69,7 @@ namespace ES.Utils
                 {
                     return v;
                 }
+
                 return defaultValue;
             }
         }
@@ -88,6 +90,7 @@ namespace ES.Utils
         {
             if (map.TryGetValue(fileName, out var parse))
                 return parse;
+
             return empty;
         }
         /// <summary>
@@ -102,6 +105,7 @@ namespace ES.Utils
                 Current = parse;
                 return true;
             }
+
             return false;
         }
         /// <summary>
@@ -116,6 +120,7 @@ namespace ES.Utils
             {
                 filePath = @$"{Environment.CurrentDirectory}\{filePath}";
             }
+
             if (!File.Exists(filePath))
                 return false;
 
@@ -128,12 +133,15 @@ namespace ES.Utils
                 while (!sr.EndOfStream)
                 {
                     string? str = sr.ReadLine();
+
                     if (string.IsNullOrEmpty(str))
                         continue;
+
                     str = str.Trim();
 #if !NET462 && !NETSTANDARD2_0
                     if (str.StartsWith(';'))
                         continue;
+
                     if (str.StartsWith('[') && str.EndsWith(']'))
                     {
 #else
@@ -147,6 +155,7 @@ namespace ES.Utils
                     }
                     if (!str.Contains('='))
                         continue;
+
                     ReadOnlySpan<string> pair = str.Split('=');
                     if (pair.Length != 2)
                         continue;
@@ -210,6 +219,7 @@ namespace ES.Utils
             {
                 return v;
             }
+
             return null;
         }
 
@@ -226,6 +236,7 @@ namespace ES.Utils
             {
                 return v;
             }
+
             return defaultValue;
         }
     }

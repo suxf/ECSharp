@@ -205,7 +205,10 @@ namespace ES.Variant
             for (int i = 0, len = Count; i < len; i++)
             {
                 var b = this[i].GetBytes();
-                if (b.Length == 0) continue;
+
+                if (b.Length == 0)
+                    continue;
+
                 size += b.Length;
                 bs[i + 1] = b;
             }
@@ -214,12 +217,14 @@ namespace ES.Variant
             byte[] bytes = new byte[size + 3];
             bytes[0] = (byte)VarType.VARLIST_HEAD;
             int index = 1;
+
             for (int j = 0, len2 = bs.Length; j < len2; j++)
             {
                 var bLen = bs[j].Length;
                 Buffer.BlockCopy(bs[j], 0, bytes, index, bLen);
                 index += bLen;
             }
+
             if (Count > byte.MaxValue)
                 throw new Exception($"Var List Max Count 255, Now Count Is {Count}!");
             bytes[index++] = (byte)Count;
@@ -241,12 +246,14 @@ namespace ES.Variant
                 length = 0;
                 return null;
             }
+
             int size = Var.Parse(data, startIndex + 1, out int sizeLen);
             if (data[startIndex + size + sizeLen + 2] != (byte)VarType.VARLIST_END)
             {
                 length = 0;
                 return null;
             }
+
             startIndex += 1;
             length = size + 3 + sizeLen;
             startIndex += sizeLen;
@@ -254,10 +261,14 @@ namespace ES.Variant
             while (size > 0)
             {
                 list.Add(Var.Parse(data, startIndex, out int varLen));
-                if (varLen == 0) break;
+
+                if (varLen == 0)
+                    break;
+
                 startIndex += varLen;
                 size -= varLen;
             }
+
             if (data[startIndex] != (byte)list.Count)
             {
                 length = 0;

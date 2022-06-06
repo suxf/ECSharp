@@ -1,10 +1,11 @@
-﻿using ES.Time;
-using ES.Network.HyperSocket;
+﻿using ES;
+using ES.Network.Sockets.HyperSocket;
+using ES.Time;
+using ES.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using ES;
 
 namespace Sample
 {
@@ -15,10 +16,8 @@ namespace Sample
     {
         static BaseHyperSocket[] sockets = new BaseHyperSocket[10000];
         static TimeCaller[] timeCaller2 = new TimeCaller[10000];
-        static int num = 0; 
+        static int num = 0;
         static HashSet<int> ssss = new HashSet<int>();
-
-        static Random rd = new Random();
 
         public Test_HyperSocket()
         {
@@ -41,7 +40,7 @@ namespace Sample
                 for (int i = 1; i <= 300; i++)
                 {
                     if (sockets[i] == null) continue;
-                    if(((HyperSocket)sockets[i]).Tag >= 1)
+                    if (((HyperSocket)sockets[i]).Tag >= 1)
                     {
                         ((HyperSocket)sockets[i]).Close();
                         Log.Info($"Close Client:{i}");
@@ -79,7 +78,8 @@ namespace Sample
         public void StartServer(int i)
         {
             sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
-            TimeCaller.Create(delegate () {
+            TimeCaller.Create(delegate ()
+            {
                 Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
             }, 1000, 3000, TimeCaller.Infinite).Start(true);
         }
@@ -94,7 +94,7 @@ namespace Sample
                 Log.Debug($"Start Client:{i}");
                 sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
                 ((HyperSocket)sockets[i]).Tag = i;
-            }, rd.Next(1000, 5000), 0).Start(true);
+            }, Randomizer.Random.Next(1000, 5000), 0).Start(true);
             //});
             //threads[i].Start();
         }
@@ -215,7 +215,7 @@ namespace Sample
                 timeCaller2[socket.Tag] = TimeCaller.Create(delegate ()
                 {
                     // socket.SendUdp(count.ToString());
-                    socket.SendUdp(ES.Utils.RandomCode.Generate(rd.Next(0, 2048)));
+                    socket.SendUdp(Randomizer.Generate(Randomizer.Random.Next(0, 2048)));
                 }, 1000, 100, TimeCaller.Infinite).Start();
             }
 

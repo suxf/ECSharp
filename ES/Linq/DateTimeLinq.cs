@@ -3,12 +3,10 @@
 namespace ES.Linq
 {
     /// <summary>
-    /// DateTime拓展
     /// 拓展方法类
-    /// <para>此类用于拓展一些对象上的方法</para>
-    /// <para>便于更快捷的开发</para>
+    /// <para>DateTime拓展</para>
     /// </summary>
-    public static class DateTimeLinq
+    public static partial class EsLinq
     {
         /// <summary>
         /// 转换为毫秒单位时间戳

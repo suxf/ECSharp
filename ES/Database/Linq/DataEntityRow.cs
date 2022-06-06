@@ -36,19 +36,27 @@ namespace ES.Database.Linq
             get
             {
                 bReadState = true;
-                if (expiredTime >= realExpiredTime) ReloadDB();
+
+                if (expiredTime >= realExpiredTime)
+                    ReloadDB();
+
                 if (data.TryGetValue(key, out object? value))
                     return value;
-                else return null;
+                else
+                    return null;
             }
 
             set
             {
                 bChangeState = true;
-                if (expiredTime >= realExpiredTime) ReloadDB();
+
+                if (expiredTime >= realExpiredTime)
+                    ReloadDB();
+
                 lock (listChangeColumns)
                     if (!listChangeColumns.Contains(key))
                         listChangeColumns.Add(key);
+
                 data.AddOrUpdate(key, value!, (k, v) => value!);
             }
         }
@@ -81,10 +89,13 @@ namespace ES.Database.Linq
         {
             Interlocked.Exchange(ref expiredTime, 0);
             CommandResult result = parent.DBHelper.CommandSQL("SELECT {0} FROM {1} WHERE {2}='{3}'", parent.FieldNames, parent.TableName, parent.PrimaryKey, data[parent.PrimaryKey]);
+
             if (result != null && result.Rows != null && result.EffectNum > 0)
             {
                 DataRow row = result.Rows[0];
+
                 data.Clear();
+
                 foreach (object? column in row.Table.Columns)
                 {
                     if (column == null) continue;

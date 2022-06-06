@@ -121,7 +121,10 @@ namespace ES.Network.Http
             try
             {
                 TcpListener? tcpListener = ar.AsyncState as TcpListener;
-                if (tcpListener == null) return;
+
+                if (tcpListener == null)
+                    return;
+
                 // 结束异步
                 TcpClient tcpClient = tcpListener.EndAcceptTcpClient(ar);
                 // 以取得所有需要的参数 继续监听下一个请求
@@ -130,8 +133,10 @@ namespace ES.Network.Http
                 {
                     // 获取流
                     NetworkStream networkStream = tcpClient.GetStream();
+
                     if (networkStream == null)
                         return;
+
                     SslStream? sslStream = null;
                     try
                     {

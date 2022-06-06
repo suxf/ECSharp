@@ -3,12 +3,10 @@
 namespace ES.Linq
 {
     /// <summary>
-    /// Concurrent系列拓展
     /// 拓展方法类
-    /// <para>此类用于拓展一些对象上的方法</para>
-    /// <para>便于更快捷的开发</para>
+    /// <para>Concurrent系列拓展</para>
     /// </summary>
-    public static class ConcurrentLinq
+    public static partial class EsLinq
     {
         /// <summary>
         /// 清空 拓展方法提供

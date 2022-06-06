@@ -64,7 +64,8 @@ namespace ES.Hotfix
         /// </summary>
         internal void CreateAsyncAgent()
         {
-            if (isAutoCreate) Task.Run(CreateAgent);
+            if (isAutoCreate)
+                Task.Run(CreateAgent);
         }
 
         /// <summary>
@@ -79,8 +80,11 @@ namespace ES.Hotfix
                     if (isCreated) return;
 
                     isCreated = true;
+
                     // 修改第一次创建状态标记
-                    if (++createAgentCount >= 2) isFirstCreateAgent = false;
+                    if (++createAgentCount >= 2)
+                        isFirstCreateAgent = false;
+
                     Interlocked.Exchange(ref _agent, new T() { __self = data });
                     _agent.InitializeES(isFirstCreateAgent);
                 }
@@ -99,8 +103,11 @@ namespace ES.Hotfix
                     if (isCreated) return;
 
                     isCreated = true;
+
                     // 修改第一次创建状态标记
-                    if (++createAgentCount >= 2) isFirstCreateAgent = false;
+                    if (++createAgentCount >= 2)
+                        isFirstCreateAgent = false;
+
                     // 此处有问题带有一个参数的构造函数无法正确使用GetAgent 暂时舍弃 后期有其他方案再修复
                     // object newAgent = null;
                     // var constructors = agentType.GetConstructors();
@@ -119,6 +126,7 @@ namespace ES.Hotfix
                         newAgent.__self = agentData;
                         newAgent.InitializeES(isFirstCreateAgent);
                     }
+
                     // 处理值拷贝
                     if (_agent != null && isCopyValue)
                     {
@@ -128,18 +136,22 @@ namespace ES.Hotfix
                         {
                             var newField = fields[i];
                             var oldField = oldAgentType.GetField(newField.Name);
+
                             if (newField.GetType() == oldField?.GetType() && !newField.IsInitOnly)
                                 newField.SetValue(newAgent, oldField.GetValue(_agent));
                         }
+
                         var properties = agentType.GetProperties();
                         for (int i = 0, len = properties.Length; i < len; i++)
                         {
                             var newProperty = properties[i];
                             var oldProperty = oldAgentType.GetProperty(newProperty.Name);
+
                             if (newProperty.GetType() == oldProperty?.GetType() && newProperty.CanWrite)
                                 newProperty.SetValue(newAgent, oldProperty.GetValue(_agent));
                         }
                     }
+
                     // 替换代理
                     Interlocked.Exchange(ref _agent, newAgent);
                 }

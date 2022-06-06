@@ -26,6 +26,7 @@ namespace ES.Variant
             {
                 if (TryGetValue(key, out Var value))
                     return value;
+
                 return Var.Empty;
             }
             set { base[key] = value; }
@@ -64,7 +65,7 @@ namespace ES.Variant
             foreach (var item in this)
             {
                 Var key = item.Key;
-                if (key.Type == VarType.NULL || key.Type == VarType.OBJECT
+                if (key.Type == VarType.NULL || key.Type == VarType.STRUCT || key.Type == VarType.OBJECT
                     || key.Type == VarType.VARLIST || key.Type == VarType.VARMAP)
                     continue;
 
@@ -106,7 +107,10 @@ namespace ES.Variant
             {
                 var key = kv.Key;
                 var value = kv.Value;
-                if (key == null || value == null) continue;
+
+                if (key == null || value == null)
+                    continue;
+
                 switch (value.Type)
                 {
                     case JTokenType.Integer: map.Add(key, (int)value); break;
@@ -129,7 +133,10 @@ namespace ES.Variant
         public static VarMap? Parse(string json)
         {
             JObject? jsonObj = JsonConvert.DeserializeObject<JObject>(json);
-            if (jsonObj == null) return null;
+
+            if (jsonObj == null)
+                return null;
+
             return Parse(jsonObj);
         }
 
@@ -168,8 +175,10 @@ namespace ES.Variant
                 bs[i] = new byte[2][];
                 bs[i][0] = pair.Key.GetBytes();
                 bs[i][1] = pair.Value.GetBytes();
+
                 if (bs[i][0].Length == 0 || bs[i][1].Length == 0)
                     continue;
+
                 size += bs[i][0].Length + bs[i][1].Length;
                 i += 1;
             }
@@ -189,8 +198,10 @@ namespace ES.Variant
                     index += bLen;
                 }
             }
+
             if (Count > byte.MaxValue)
                 throw new Exception($"Var Map Max Count 255, Now Count Is {Count}!");
+
             bytes[index++] = (byte)Count;
             bytes[index] = (byte)VarType.VARMAP_END;
             return bytes;
@@ -210,12 +221,14 @@ namespace ES.Variant
                 length = 0;
                 return null;
             }
+
             int size = Var.Parse(data, startIndex + 1, out int sizeLen);
             if (data[startIndex + size + sizeLen + 2] != (byte)VarType.VARMAP_END)
             {
                 length = 0;
                 return null;
             }
+
             startIndex += 1;
             length = size + 3 + sizeLen;
             startIndex += sizeLen;
@@ -227,9 +240,13 @@ namespace ES.Variant
                 Var value = Var.Parse(data, startIndex, out int valueLen);
                 startIndex += valueLen;
                 map.Add(key, value);
-                if (keyLen + valueLen == 0) break;
+
+                if (keyLen + valueLen == 0)
+                    break;
+
                 size = size - keyLen - valueLen;
             }
+
             if (data[startIndex] != (byte)map.Count)
             {
                 length = 0;

@@ -70,11 +70,17 @@ namespace ES.Hotfix
         /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
         public static bool Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
         {
-            if (isLoading) return false;
+            if (isLoading)
+                return false;
+
             isLoading = true;
-            if (++loadCount >= 2) IsFirstLoad = false;
+            if (++loadCount >= 2)
+                IsFirstLoad = false;
+
             // LmBinder.ResetEvent.Reset();
-            if (args == null) args = new string[0];
+            if (args == null)
+                args = Array.Empty<string>();
+
             // 简单的处理了一下可能携带的后缀格式
             assemblyFileName = assemblyFileName.Replace(".dll", "");
             var dllName = assemblyFileName + ".dll";
@@ -82,28 +88,48 @@ namespace ES.Hotfix
             // 处理开始
             FileStream? fsRead = null;
             FileStream? pdbRead = null;
+
             try
             {
-                if (!File.Exists(dllName)) throw new NullReferenceException($"[{assemblyFileName}] file is not found!");
+                if (!File.Exists(dllName))
+                    throw new NullReferenceException($"[{assemblyFileName}] file is not found!");
+
                 fsRead = new FileStream(dllName, FileMode.Open);
-                if (File.Exists(pdbName)) pdbRead = new FileStream(pdbName, FileMode.Open);
+
+                if (File.Exists(pdbName))
+                    pdbRead = new FileStream(pdbName, FileMode.Open);
+
                 int fsLen = (int)fsRead.Length;
-                if (fsLen <= 0) throw new NullReferenceException($"Assembly file is empty!");
+
+                if (fsLen <= 0)
+                    throw new NullReferenceException($"Assembly file is empty!");
+
                 // 取得临时数据
                 var tempDllAssemblyLoader = new AssemblyLoader(fsRead, pdbRead);
-                if (!tempDllAssemblyLoader.IsAlive) throw new NullReferenceException($"Assembly is not alive!");
+
+                if (!tempDllAssemblyLoader.IsAlive)
+                    throw new NullReferenceException($"Assembly is not alive!");
+
                 // 最终绑定对象
                 var assembly = tempDllAssemblyLoader.GetAssembly();
                 var typeInfo = assembly.GetType(classFullName);
-                if (typeInfo == null) throw new NullReferenceException($"[{classFullName}] class is not found!");
+                if (typeInfo == null)
+                    throw new NullReferenceException($"[{classFullName}] class is not found!");
+
                 var methodInfo = typeInfo.GetMethod(entryMethodName, BindingFlags.Public | BindingFlags.Static);
-                if (methodInfo == null) throw new NullReferenceException($"[{entryMethodName}] public static method is not found!");
-                if (methodInfo.GetParameters().Length != 1) throw new NullReferenceException($"[{entryMethodName}] method has not one args!");
+
+                if (methodInfo == null)
+                    throw new NullReferenceException($"[{entryMethodName}] public static method is not found!");
+
+                if (methodInfo.GetParameters().Length != 1)
+                    throw new NullReferenceException($"[{entryMethodName}] method has not one args!");
+
                 // 处理代理类字典
                 var agentTypeMapTemp = new ConcurrentDictionary<Type, Type>();
                 var allTypes = assembly.GetTypes();
                 var abstractAgentType = typeof(AbstractAgent);
                 var iAgentType = typeof(IAgent<>);
+
                 for (int i = 0, len = allTypes.Length; i < len; i++)
                 {
                     var type = allTypes[i];
@@ -118,12 +144,14 @@ namespace ES.Hotfix
                             break;
                         }
                     }
+
                     if (interfaceType != null && abstractAgentType.IsAssignableFrom(type))
                     {
                         agentTypeMapTemp.TryAdd(interfaceType.GetGenericArguments()[0], type);
                     }
                 }
                 Interlocked.Exchange(ref agentTypeMap, agentTypeMapTemp);
+
                 // 处理代理索引
                 lock (agentRefs)
                 {
@@ -136,6 +164,7 @@ namespace ES.Hotfix
                             TimeFlowManager.CloseByObj((ITimeUpdate)agentRef._agent);
                         }
                     }
+
                     // 后重置所有代理
                     for (int i = agentRefs.Count - 1; i >= 0; i--)
                     {
@@ -151,45 +180,31 @@ namespace ES.Hotfix
                         else agentRefs.RemoveAt(i);
                     }
                 }
-                // 拷贝入口函数所在类的所有静态成员变量和属性
-                // if (keepMainValue && assemblyLoader != null)
-                // {
-                //     var oldTypeInfo = assemblyLoader.GetAssembly().GetType(classFullName);
-                //     var fields = typeInfo.GetFields(BindingFlags.Public | BindingFlags.Static);
-                //     var properties = typeInfo.GetProperties(BindingFlags.Public | BindingFlags.Static);
-                //     for (int i = 0, len = fields.Length; i < len; i++)
-                //     {
-                //         var newField = fields[i];
-                //         var oldField = oldTypeInfo.GetField(newField.Name);
-                //         if (newField.GetType() == oldField.GetType() && !newField.IsInitOnly)
-                //             newField.SetValue(typeInfo, oldField.GetValue(oldTypeInfo));
-                //     }
-                //     for (int i = 0, len = properties.Length; i < len; i++)
-                //     {
-                //         var newProperty = properties[i];
-                //         var oldProperty = oldTypeInfo.GetProperty(newProperty.Name);
-                //         if (newProperty.GetType() == oldProperty.GetType() && newProperty.CanWrite)
-                //             newProperty.SetValue(typeInfo, oldProperty.GetValue(oldTypeInfo));
-                //     }
-                // }
-                var waitDestroyLoader = assemblyLoader;
-                // 调用入口函数
-                methodInfo.Invoke(Interlocked.Exchange(ref assemblyLoader, tempDllAssemblyLoader), new object[] { args });
+
+                // 十秒后销毁旧的程序集
+                TimeCaller.Create(static (object? obj) =>
+                {
+                    var loader = obj as AssemblyLoader;
+                    if (loader != null)
+                    {
+                        loader.Unload();
+                        loader = null;
+                    }
+                }, 10000).Start(assemblyLoader, true);
+
                 // 程序域转换
-                if (waitDestroyLoader != null && waitDestroyLoader.IsAlive) waitDestroyLoader.Unload();
-                if (fsRead != null) fsRead.Close();
-                if (pdbRead != null) pdbRead.Close();
+                methodInfo.Invoke(Interlocked.Exchange(ref assemblyLoader, tempDllAssemblyLoader), new object[] { args });
             }
             catch
             {
-                if (fsRead != null) fsRead.Close();
-                if (pdbRead != null) pdbRead.Close();
                 throw;
             }
             finally
             {
                 isLoading = false;
                 // 没有执行成功需要关闭写入锁
+                if (fsRead != null) fsRead.Close();
+                if (pdbRead != null) pdbRead.Close();
             }
             return true;
         }
@@ -227,7 +242,8 @@ namespace ES.Hotfix
         /// <param name="agentRef"></param>
         internal static void AddAgentRef(AgentRef agentRef)
         {
-            lock (agentRefs) agentRefs.Add(new WeakReference<AgentRef>(agentRef));
+            lock (agentRefs)
+                agentRefs.Add(new WeakReference<AgentRef>(agentRef));
         }
 
         private class UpdateCheck : ITimeUpdate
@@ -244,9 +260,11 @@ namespace ES.Hotfix
                 if (periodTime <= 0)
                 {
                     periodTime = int.MaxValue;
+
                     lock (agentRefs)
                         for (int i = agentRefs.Count - 1; i >= 0; i--)
                             if (!agentRefs[i].TryGetTarget(out _)) agentRefs.RemoveAt(i);
+
                     return;
                 }
                 if (periodTime == int.MaxValue)
@@ -261,6 +279,7 @@ namespace ES.Hotfix
                             periodTime = 10000;
                             return;
                         }
+
                         var ratio = lastAgentRefCount * 1.0f / currentAgentRefCount;
                         // 比例增加第一次 周期1s
                         if (ratio == 0) periodTime = 1000;
@@ -338,14 +357,15 @@ namespace ES.Hotfix
 
                 public AssemblyProtectContext(Stream stream, Stream? pdbStream) : base(true)
                 {
-                    if (pdbStream == null) assembly = LoadFromStream(stream);
-                    else assembly = LoadFromStream(stream, pdbStream);
+                    if (pdbStream == null)
+                        assembly = LoadFromStream(stream);
+                    else
+                        assembly = LoadFromStream(stream, pdbStream);
                 }
 
                 public void UnloadAssembly()
                 {
                     Unload();
-                    // assembly = null; 
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace ES.Network.Websocket
         /// <summary>
         /// 字节消息
         /// </summary>
-        public byte[] Buffer { get; internal set; } = Utils.ByteHelper.Empty;
+        public byte[] Buffer { get; internal set; } = Utils.ByteConverter.Empty;
 
         /// <summary>
         /// 连接对象是否有效
@@ -59,6 +59,33 @@ namespace ES.Network.Websocket
         {
             if (Socket != null && Socket.IsAvailable) { Socket.Send(message); return true; }
             else return false;
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="message">字节消息</param>
+        public bool Send(Var message)
+        {
+            return Send(message.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="message">字节消息</param>
+        public bool Send(VarList message)
+        {
+            return Send(message.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="message">字节消息</param>
+        public bool Send(VarMap message)
+        {
+            return Send(message.GetBytes());
         }
 
         /// <summary>

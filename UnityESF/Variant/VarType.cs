@@ -66,6 +66,10 @@
         /// 字典
         /// </summary>
         VARMAP = 0x0E,
+        /// <summary>
+        /// 结构体
+        /// </summary>
+        STRUCT = 0x0F,
 
         /// <summary>
         /// 值字典 头

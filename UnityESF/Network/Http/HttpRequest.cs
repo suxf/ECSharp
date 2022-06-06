@@ -69,15 +69,19 @@ namespace ES.Network.Http
             this.tcpClient = tcpClient;
             bytes = new byte[tcpClient.ReceiveBufferSize];
             string data = "";
+
             if (sslStream != null)
                 data = GetRequestData(sslStream);
             else
                 data = GetRequestData(networkStream);
+
             string[] rows = Regex.Split(data, newLine);
+
             //Request URL & Method & Version
             var first = Regex.Split(rows[0], @"(\s+)")
                 .Where(e => e.Trim() != "")
                 .ToArray();
+
             if (first.Length > 0)
             {
                 switch (first[0])
@@ -93,8 +97,12 @@ namespace ES.Network.Http
                     default: Method = HttpMethodType.UNKNOWN; break;
                 }
             }
-            if (first.Length > 1) RawUrl = Uri.UnescapeDataString(first[1]);
-            if (first.Length > 2) ProtocolVersion = first[2];
+
+            if (first.Length > 1)
+                RawUrl = Uri.UnescapeDataString(first[1]);
+
+            if (first.Length > 2)
+                ProtocolVersion = first[2];
 
             // 判定是不是安全连接
             IsSSL = ProtocolVersion.ToLower().IndexOf("https") != -1;
@@ -107,10 +115,14 @@ namespace ES.Network.Http
             {
                 do
                 {
-                    if (sslStream != null) length = sslStream.Read(bytes, 0, bytes.Length);
-                    else length = networkStream.Read(bytes, 0, bytes.Length);
+                    if (sslStream != null)
+                        length = sslStream.Read(bytes, 0, bytes.Length);
+                    else
+                        length = networkStream.Read(bytes, 0, bytes.Length);
+
                     Body += Encoding.UTF8.GetString(bytes, 0, length);
-                } while (length > 0 && tcpClient.Available > 0 && Body.Length != length);
+                }
+                while (length > 0 && tcpClient.Available > 0 && Body.Length != length);
             }
             // 获取get数据
             if (RawUrl.Contains('?'))
@@ -172,7 +184,8 @@ namespace ES.Network.Http
             {
                 length = stream.Read(bytes, 0, bytes.Length);
                 data += Encoding.UTF8.GetString(bytes, 0, length);
-            } while (length > 0 && tcpClient.Available > 0 && !data.Contains(newLineTwo));
+            }
+            while (length > 0 && tcpClient.Available > 0 && !data.Contains(newLineTwo));
             return data;
         }
 
@@ -184,7 +197,10 @@ namespace ES.Network.Http
         private static string GetRequestBody(IEnumerable<string> rows)
         {
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
-            if (target == null) return "";
+
+            if (target == null)
+                return "";
+
             var range = Enumerable.Range(target.Index + 1, rows.Count() - target.Index - 1);
             return string.Join(Environment.NewLine, range.Select(e => rows.ElementAt(e)).ToArray());
         }
@@ -196,10 +212,15 @@ namespace ES.Network.Http
         /// <returns></returns>
         private static Dictionary<string, string> GetRequestHeaders(IEnumerable<string> rows)
         {
-            if (!rows.Any()) return new Dictionary<string, string>();
+            if (!rows.Any())
+                return new Dictionary<string, string>();
+
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
             var length = target == null ? rows.Count() - 1 : target.Index;
-            if (length <= 1) return new Dictionary<string, string>();
+
+            if (length <= 1)
+                return new Dictionary<string, string>();
+
             var range = Enumerable.Range(1, length - 1);
             return range.Select(e => rows.ElementAt(e)).ToDictionary(e => e.Split(':')[0], e => e.Split(':')[1].Trim());
         }
@@ -211,9 +232,14 @@ namespace ES.Network.Http
         /// <returns></returns>
         private static Dictionary<string, string> GetRequestParameters(string row)
         {
-            if (string.IsNullOrEmpty(row)) return new Dictionary<string, string>();
+            if (string.IsNullOrEmpty(row))
+                return new Dictionary<string, string>();
+
             var kvs = Regex.Split(row, "&");
-            if (kvs == null || kvs.Length <= 0) return new Dictionary<string, string>();
+
+            if (kvs == null || kvs.Length <= 0)
+                return new Dictionary<string, string>();
+
             return kvs.ToDictionary(e => Regex.Split(e, "=")[0], e => { var p = Regex.Split(e, "="); return p.Length > 1 ? p[1] : ""; });
         }
     }

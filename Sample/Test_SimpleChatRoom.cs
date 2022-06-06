@@ -1,11 +1,10 @@
-﻿using ES.Utils;
-using ES.Network.HyperSocket;
+﻿using ES;
+using ES.Linq;
+using ES.Network.Sockets.HyperSocket;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
 using System.Text;
-using ES.Linq;
-using ES;
 
 namespace Sample
 {
@@ -110,14 +109,14 @@ namespace Sample
                 jsonObj.Add("id", socket.SessionId);
                 jsonObj.Add("msg", jsondata["msg"]);
                 var buffer = jsonObj.AsBytes();
-                if(jsondata["id"].ToString() == "0")
+                if (jsondata["id"].ToString() == "0")
                 {
-                    foreach (var item in sockets) if(item.Key != socket.SessionId) item.Value.SendTcp(buffer);
+                    foreach (var item in sockets) if (item.Key != socket.SessionId) item.Value.SendTcp(buffer);
                     socket.SendUdp("(群)成功");
                 }
                 else
                 {
-                    if(sockets.TryGetValue(int.Parse(jsondata["id"].ToString()), out var value))
+                    if (sockets.TryGetValue(int.Parse(jsondata["id"].ToString()), out var value))
                     {
                         value.SendTcp(buffer);
                         socket.SendUdp("成功");

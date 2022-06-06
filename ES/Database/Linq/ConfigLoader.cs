@@ -33,6 +33,7 @@ namespace ES.Database.Linq
             configs = new Map<string, T>();
             this.dBHelper = dBHelper;
             this.sql = sql;
+
             Reload();
         }
 
@@ -45,6 +46,7 @@ namespace ES.Database.Linq
         {
             configs = new Map<string, T>();
             this.jsonFileName = jsonFileName;
+
             Reload();
         }
 
@@ -56,8 +58,11 @@ namespace ES.Database.Linq
         public T? Find(object value)
         {
             string cval = value.ToString() ?? "";
-            if (configs.ContainsKey(cval)) return configs[cval];
-            else return null;
+
+            if (configs.ContainsKey(cval))
+                return configs[cval];
+            else
+                return null;
         }
 
         /// <summary>
@@ -89,18 +94,22 @@ namespace ES.Database.Linq
                         T temp = new T();
                         temp.SetESConfig(item);
                         temp.SetESPrimaryKey(item);
+
 #if !NET462 && !NETSTANDARD2_0
                         tempConfigs.TryAdd(temp.PrimaryKey, temp);
 #else
                         tempConfigs.Add(temp.PrimaryKey, temp);
 #endif
                     }
+
                     System.Threading.Interlocked.Exchange(ref configs, tempConfigs);
                 }
             }
             else if (jsonFileName != "")
             {
-                if (!File.Exists(jsonFileName)) return;
+                if (!File.Exists(jsonFileName))
+                    return;
+
                 JArray? jData = null;
                 using (StreamReader file = File.OpenText(jsonFileName))
                 {
@@ -109,7 +118,10 @@ namespace ES.Database.Linq
                         jData = (JArray)JToken.ReadFrom(reader);
                     }
                 }
-                if (jData == null) return;
+
+                if (jData == null)
+                    return;
+
                 Map<string, T> tempConfigs = new Map<string, T>();
                 for (int i = 0, len = jData.Count; i < len; i++)
                 {
@@ -117,12 +129,14 @@ namespace ES.Database.Linq
                     T temp = new T();
                     temp.SetESConfig(jItem);
                     temp.SetESPrimaryKey(jItem);
+
 #if !NET462 && !NETSTANDARD2_0
                     tempConfigs.TryAdd(temp.PrimaryKey, temp);
 #else
                     tempConfigs.Add(temp.PrimaryKey, temp);
 #endif
                 }
+
                 System.Threading.Interlocked.Exchange(ref configs, tempConfigs);
             }
         }

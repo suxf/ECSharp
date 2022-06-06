@@ -1,4 +1,5 @@
 ﻿using ES.Time;
+using ES.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -48,7 +49,7 @@ namespace ES
         static LogManager()
         {
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
-            logId = new Random().Next(100, 999).ToString();
+            logId = Randomizer.Random.Next(100, 999).ToString();
             timeFlow = BaseTimeFlow.CreateTimeFlow(logWriteUpdate);
             timeFlow.StartTimeFlowES();
 #if !UNITY_2020_1_OR_NEWER
@@ -84,23 +85,12 @@ namespace ES
             sb.Append(Utils.SystemInfo.UserName);
             sb.Append("; logicthreads: ");
             sb.Append(Utils.SystemInfo.ProcessorCount);
+
             bool LOG_CONSOLE_STACK_TRACE_OUTPUT = LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT;
             bool LOG_FILE_STACK_TRACE_OUTPUT = LogConfig.LOG_FILE_STACK_TRACE_OUTPUT;
             LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = false;
             LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = false;
             Log.Info(sb);
-            //            Log.Info("===================================================================");
-            //            Log.Info("* System  Version: ", Utils.SystemInfo.SystemVersion);
-            //            Log.Info("* DotNet  Version: ", Utils.SystemInfo.DotNetVersion);
-            //#if !UNITY_2020_1_OR_NEWER
-            //            Log.Info("* ESFrame Version: ", Utils.SystemInfo.FrameVersion);
-            //            Log.Info("* Process Name   : ", Utils.SystemInfo.ProcessName);
-            //            Log.Info("* Process Version: ", Utils.SystemInfo.ProcessVersion);
-            //#endif
-            //            Log.Info("* Process Path   : ", Utils.SystemInfo.Path);
-            //            Log.Info("* Login   User   : ", Utils.SystemInfo.UserName);
-            //            Log.Info("* Logic Processor: ", Utils.SystemInfo.ProcessorCount);
-            //            Log.Info("===================================================================");
             LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = LOG_CONSOLE_STACK_TRACE_OUTPUT;
             LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = LOG_FILE_STACK_TRACE_OUTPUT;
         }
@@ -116,18 +106,22 @@ namespace ES
             logInfo.time = DateTime.Now;
             logInfo.type = type;
             logInfo.data = log;
+
             if (LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT || LogConfig.LOG_FILE_STACK_TRACE_OUTPUT)
             {
                 var frame = new StackTrace().GetFrame(2);
                 var method = frame?.GetMethod();
+
                 if (method != null && method.DeclaringType != null)
                     logInfo.stack = $"{method.DeclaringType.FullName}:{method.Name}";
             }
+
             if (!LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
             {
                 FormatLog(ref logInfo);
                 lock (m_lock) OutputLog(ref logInfo);
             }
+
             // 压入队列
             logWriteUpdate.Enqueue(logInfo);
         }
@@ -171,6 +165,7 @@ namespace ES
         {
             if (log.type < LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
                 return;
+
             switch (log.type)
             {
                 case LogType.DEBUG:
@@ -242,10 +237,15 @@ namespace ES
             /// </summary>
             private int periodNow = 0;
 
+            /// <summary>
+            /// 压入日志队列
+            /// </summary>
+            /// <param name="log"></param>
             public void Enqueue(LogInfo log)
             {
                 logInfos.Enqueue(log);
             }
+
             /// <summary>
             /// 系统调用
             /// </summary>
@@ -256,26 +256,35 @@ namespace ES
                 if (periodNow >= LogConfig.LOG_PERIOD)
                 {
                     periodNow -= LogConfig.LOG_PERIOD;
+
                     // 如果没有日志则不处理
-                    if (logInfos.IsEmpty) return;
+                    if (logInfos.IsEmpty)
+                        return;
+
                     // 创建目录
                     if (!Directory.Exists(LogConfig.LOG_PATH))
                     {
                         Directory.CreateDirectory(LogConfig.LOG_PATH);
                     }
+
                     string dateStr = DateTime.Now.ToString("yyyy_MM_dd/");
                     // 创建当日目录
                     if (!Directory.Exists(LogConfig.LOG_PATH + dateStr))
                     {
                         Directory.CreateDirectory(LogConfig.LOG_PATH + dateStr);
                     }
+
                     string filename = string.Format(DateTime.Now.ToString("{4}yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX, LogConfig.LOG_PATH);
-                    if (!File.Exists(filename)) fileInfo = null;
+
+                    if (!File.Exists(filename))
+                        fileInfo = null;
+
                     // 检查文件
                     if (fileInfo == null)
                         fileInfo = new FileInfo(filename);
                     else
                         fileInfo.Refresh();
+
                     if (fileInfo.Exists)
                     {
                         if (fileInfo.Length > LogConfig.LOG_UNIT_FILE_MAX_SIZE)
@@ -303,7 +312,11 @@ namespace ES
                                 FormatLog(ref log);
                                 OutputLog(ref log);
                             }
-                            sw.WriteLine($"{log.log}{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+
+                            if (log.type >= LogConfig.FILE_OUTPUT_LOG_TYPE)
+                            {
+                                sw.WriteLine($"{log.log}{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                            }
                         }
                     }
                 }

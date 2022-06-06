@@ -7,6 +7,7 @@ var class_e_s_1_1_log_config =
     [ "BACKGROUND_INPUT_COLOR", "class_e_s_1_1_log_config.html#aa1b27b7b55756166b87728f58da571fe", null ],
     [ "BACKGROUND_WARN_COLOR", "class_e_s_1_1_log_config.html#a5769ce0ab21cd7f55a2257e05b6362ab", null ],
     [ "CONSOLE_OUTPUT_LOG_TYPE", "class_e_s_1_1_log_config.html#a9751dc66083146118cbb48072360c97a", null ],
+    [ "FILE_OUTPUT_LOG_TYPE", "class_e_s_1_1_log_config.html#aebcc4481eb815cee0d230d5c04f3cd79", null ],
     [ "FOREGROUND_DEBUG_COLOR", "class_e_s_1_1_log_config.html#a73105faf17879e16e7733174a5806b3a", null ],
     [ "FOREGROUND_ERROR_COLOR", "class_e_s_1_1_log_config.html#a1ecc02a4e457d7bcf07a85f7d3d11004", null ],
     [ "FOREGROUND_EXCEPTION_COLOR", "class_e_s_1_1_log_config.html#a6150aea36b647187143cb6683783a80a", null ],

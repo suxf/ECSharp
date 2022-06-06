@@ -1015,6 +1015,11 @@
                         return left.stringValue == right.stringValue;
                     else
                         return false;
+                case VarType.STRUCT:
+                    if (right.type == VarType.STRUCT)
+                        return left.objectValue == right.objectValue;
+                    else
+                        return false;
                 case VarType.OBJECT:
                     if (right.type == VarType.OBJECT)
                         return left.objectValue == right.objectValue;

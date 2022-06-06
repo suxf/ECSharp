@@ -120,28 +120,35 @@ namespace ES.Time
         {
             if (isTimeFlowStop)
                 return;
+
             if (isTimeFlowPause)
                 return;
+
             if (!IsIdle)
                 return;
+
             IsIdle = false;
             long ticks = TimeFlowManager.TotalRunTime;
             long period = ticks - consumeTime;
             long consumeFixedTime = notConsumeFixedTime + period;
             long count = consumeFixedTime / fixedTime;
+
             if (count <= 0)
             {
                 IsIdle = true;
                 return;
             }
+
             notConsumeFixedTime = consumeFixedTime % fixedTime;
             consumeTime = ticks;
+
             if (!reference.TryGetTarget(out var iTimeUpdate))
             {
                 // 查不到引用则关闭此对象
                 CloseTimeFlowES();
                 return;
             }
+
             iTimeUpdate.Update((int)(fixedTime * count));
             IsIdle = true;
         }
@@ -153,21 +160,26 @@ namespace ES.Time
         {
             if (isTimeFlowStop)
                 return;
+
             if (isTimeFlowPause)
                 return;
+
             // 正常更新
             if (!IsIdle)
                 return;
+
             IsIdle = false;
             long ticks = TimeFlowManager.TotalRunTime;
             long period = ticks - consumeTime;
             long consumeFixedTime = notConsumeFixedTime + period;
             long count = consumeFixedTime / fixedTime;
+
             if (count <= 0)
             {
                 IsIdle = true;
                 return;
             }
+
             notConsumeFixedTime = consumeFixedTime % fixedTime;
             consumeTime = ticks;
             currentDeltaTime = (int)(fixedTime * count);

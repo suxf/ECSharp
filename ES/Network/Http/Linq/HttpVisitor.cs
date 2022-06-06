@@ -65,12 +65,17 @@ namespace ES.Network.Http.Linq
 #else
 			var url = request.RawUrl.Split('?')[0];
 #endif
-            if (url.Length >= 1) url = url[0] == '/' ? url.Substring(1) : url;
-            if (url.Length >= 1) url = url[url.Length - 1] == '/' ? url.Substring(0, url.Length - 1) : url;
+            if (url.Length >= 1)
+                url = url[0] == '/' ? url.Substring(1) : url;
+
+            if (url.Length >= 1)
+                url = url[url.Length - 1] == '/' ? url.Substring(0, url.Length - 1) : url;
+
             if (commandList.TryGetValue(url, out Request? value))
             {
                 or = value;
             }
+
             if (or != null)
             {
                 try

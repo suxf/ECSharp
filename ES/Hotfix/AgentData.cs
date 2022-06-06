@@ -30,10 +30,12 @@ namespace ES.Hotfix
         public AgentData()
         {
             var type = GetType();
+
             if (type.IsDefined(typeof(NotCreateAgentAttribute), false))
                 _ref = new AgentRef(null, false, null);
             else
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
+
             HotfixMgr.AddAgentRef(_ref);
             _ref.CreateAsyncAgent();
         }
@@ -50,6 +52,7 @@ namespace ES.Hotfix
                 _ref = new AgentRef(type, type.IsDefined(typeof(KeepAgentValueAttribute), false), this);
             }
             else _ref = new AgentRef(null, false, null);
+
             HotfixMgr.AddAgentRef(_ref);
             _ref.CreateAsyncAgent();
         }
@@ -63,8 +66,10 @@ namespace ES.Hotfix
             if (_ref.isAutoCreate)
             {
                 _ref.CreateAgent();
+
                 if (_ref._agent != null)
                     return;
+
                 // 如果创建失败则过1毫秒后尝试 一共尝试10次
                 for (int i = 0; i < 10; i++)
                 {
@@ -73,6 +78,7 @@ namespace ES.Hotfix
                     if (_ref._agent != null)
                         return;
                 }
+
                 throw new System.Exception("Create Agent fail by try 10 times!");
             }
         }

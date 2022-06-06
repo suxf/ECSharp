@@ -43,6 +43,7 @@ namespace ES.Time
                 {
                     threads[0] = new TimeFlowThread(true);
                 }
+
                 threads[0].Push(tf);
                 return;
             }
@@ -50,6 +51,7 @@ namespace ES.Time
             // 查找适用的时间流存储器
             int minQueueTaskTfCount = int.MaxValue;
             TimeFlowThread? thread = null;
+
             for (int i = 1; i <= MAX_HANDLE_TASK_THREAD; i++)
             {
                 if (threads[i] == null)
@@ -57,12 +59,15 @@ namespace ES.Time
                     thread = threads[i] = new TimeFlowThread(false);
                     break;
                 }
+
                 var count = threads[i].GetTaskCount();
+
                 if (count <= 100)
                 {
                     thread = threads[i];
                     break;
                 }
+
                 if (count < minQueueTaskTfCount)
                 {
                     minQueueTaskTfCount = count;
@@ -81,9 +86,12 @@ namespace ES.Time
         {
             for (int i = 0; i <= MAX_HANDLE_TASK_THREAD; i++)
             {
-                if (threads[i] != null && threads[i].CloseByObj(timeUpdate)) return true;
-                else continue;
+                if (threads[i] != null && threads[i].CloseByObj(timeUpdate))
+                    return true;
+                else
+                    continue;
             }
+
             return false;
         }
     }

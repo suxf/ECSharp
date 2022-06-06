@@ -60,6 +60,8 @@ namespace Sample
                 }
                 Log.ReadLine(">> 回车清空控制台并进入下一次测试!");
                 System.Console.Clear();
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
             }
         }
     }

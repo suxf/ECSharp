@@ -84,8 +84,6 @@ namespace ES.Network.Sockets.Server
         /// </summary>
         private bool isRunning = false;
 
-        private object m_lock = new object();
-
         /// <summary>
         /// 新建套接字服务管理对象
         /// </summary>
@@ -154,6 +152,7 @@ namespace ES.Network.Sockets.Server
                 // preallocate pool of System.Net.Sockets.SocketAsyncEventArgs objects 
                 // Pre -allocate a set of reusable System.Net.Sockets.SocketAsyncEventArgs
                 MySocketAsyncEventArgs readWriteEventArg = new MySocketAsyncEventArgs(this, serverSocket, this);
+
                 // 如果是报文结构则 初始化终端节点
                 if (socketType == SocketType.Stream)
                 {
@@ -161,7 +160,9 @@ namespace ES.Network.Sockets.Server
                     readWriteEventArg.UserToken = remoteClient;
                     remoteClient.readWriteEventArg = readWriteEventArg;
                 }
-                else readWriteEventArg.RemoteEndPoint = serverSocket.endPoint;
+                else
+                    readWriteEventArg.RemoteEndPoint = serverSocket.endPoint;
+
                 // assign a byte buffer from the buffer pool to the SocketAsyncEventArg object
                 bufferManager.SetBuffer(readWriteEventArg);
                 // add SocketAsyncEventArg to the pool
@@ -182,8 +183,10 @@ namespace ES.Network.Sockets.Server
         private void StartServer()
         {
             isRunning = true;
+
             if (serverSocket.SocketType == SocketType.Stream)
                 StartAccept(null);
+
             if (serverSocket.SocketType == SocketType.Dgram)
                 StartAcceptReceiveFrom();
         }
@@ -196,6 +199,7 @@ namespace ES.Network.Sockets.Server
         {
             if (serverSocket.SocketType == SocketType.Stream)
                 return TcpClients.Count;
+
             // else if (serverSocket.socketType == SocketType.Dgram)
             //    return remoteUDPClients.Count;
             // else
@@ -210,6 +214,7 @@ namespace ES.Network.Sockets.Server
         {
             if (serverSocket.SocketType == SocketType.Stream)
                 return TcpClients.ContainsKey(client.hashCode);
+
             // else if (serverSocket.socketType == SocketType.Dgram)
             //     return remoteUDPClients.Values.Contains(client);
             return false;
@@ -221,7 +226,9 @@ namespace ES.Network.Sockets.Server
         /// <param name="client">指定客户端对象</param>
         internal void RemoveExistClient(RemoteConnection client)
         {
-            if (serverSocket.SocketType != SocketType.Stream) return;
+            if (serverSocket.SocketType != SocketType.Stream)
+                return;
+
             if (!TcpClients.ContainsKey(client.hashCode))
             {
                 return;
@@ -239,8 +246,11 @@ namespace ES.Network.Sockets.Server
                 // Log.Exception(ex, "ServerConnection", "CloseClientSocket", "Socket");
                 socketInvoke?.SocketException(client, ex);
             }
+
             // 断开连接回调
-            if (socketStatusListener != null) socketStatusListener.OnClose(client);
+            if (socketStatusListener != null)
+                socketStatusListener.OnClose(client);
+
             // decrement the counter keeping track of the total number of clients connected to the server
             Interlocked.Decrement(ref numConnectedSockets);
             // Free the SocketAsyncEventArg so they can be reused by another client
@@ -295,7 +305,9 @@ namespace ES.Network.Sockets.Server
                 try
                 {
                     bool willRaiseEvent = serverSocket.AcceptAsync(acceptEventArg);
-                    if (!willRaiseEvent) ProcessAccept(acceptEventArg, false);
+
+                    if (!willRaiseEvent)
+                        ProcessAccept(acceptEventArg, false);
                     else return;
                 }
                 catch (Exception ex)
@@ -333,7 +345,9 @@ namespace ES.Network.Sockets.Server
                 readWritePool.Add(e);
                 e.AcceptSocket.Close();
                 // Accept the next connection request
-                if (isFirst) StartAccept(e);
+                if (isFirst)
+                    StartAccept(e);
+
                 return;
             }
             try
@@ -349,7 +363,9 @@ namespace ES.Network.Sockets.Server
 
                 // As soon as the client is connected, post a receive to the connection
                 bool willRaiseEvent = socket.ReceiveAsync(readEventArgs);
-                if (!willRaiseEvent) ProcessReceive(readEventArgs);
+
+                if (!willRaiseEvent)
+                    ProcessReceive(readEventArgs);
 
                 Interlocked.Increment(ref numConnectedSockets);
             }
@@ -359,7 +375,8 @@ namespace ES.Network.Sockets.Server
                 client.Destroy();
             }
 
-            if (isFirst) StartAccept(e);
+            if (isFirst)
+                StartAccept(e);
         }
 
         /// <summary>
@@ -384,7 +401,9 @@ namespace ES.Network.Sockets.Server
                 }
 
                 // 重置超时标记
-                if (monitorSocketStatusTask != null) Interlocked.Exchange(ref client.timeoutCount, 0);
+                if (monitorSocketStatusTask != null)
+                    Interlocked.Exchange(ref client.timeoutCount, 0);
+
                 // increment the count of the total bytes receive by the server
                 // Interlocked.Add(ref totalBytesRead, e.BytesTransferred);
                 // log.Info("ProcessReceive", "The server has read a total of {0} bytes", totalBytesRead);
@@ -404,7 +423,9 @@ namespace ES.Network.Sockets.Server
 #endif
                     client.TriggerSocketInvoke();
                     bool willRaiseEvent = client.Socket?.ReceiveAsync(e) ?? true;
-                    if (willRaiseEvent) return;
+
+                    if (willRaiseEvent)
+                        return;
                 }
                 catch (Exception ex)
                 {
@@ -428,13 +449,18 @@ namespace ES.Network.Sockets.Server
                 {
                     return;
                 }
+
                 maxNumberAcceptedClients.WaitOne();
                 Interlocked.Increment(ref numConnectedSockets);
+
                 try
                 {
                     bool willRaiseEvent = serverSocket.ReceiveFromAsync(readEventArgs);
-                    if (!willRaiseEvent) ProcessReceiveFrom(readEventArgs, false);
-                    else return;
+
+                    if (!willRaiseEvent)
+                        ProcessReceiveFrom(readEventArgs, false);
+                    else
+                        return;
                 }
                 catch (Exception ex)
                 {
@@ -465,7 +491,8 @@ namespace ES.Network.Sockets.Server
 
                 maxNumberAcceptedClients.Release();
 
-                if (isFirst) StartAcceptReceiveFrom();
+                if (isFirst)
+                    StartAcceptReceiveFrom();
                 return;
             }
             // 重置超时标记
@@ -487,7 +514,8 @@ namespace ES.Network.Sockets.Server
                 Interlocked.Decrement(ref numConnectedSockets);
                 readWritePool.Add(e);
                 maxNumberAcceptedClients.Release();
-                if (isFirst) StartAcceptReceiveFrom();
+                if (isFirst)
+                    StartAcceptReceiveFrom();
                 return;
             }
 
@@ -505,7 +533,8 @@ namespace ES.Network.Sockets.Server
             // Free the SocketAsyncEventArg so they can be reused by another client
             readWritePool.Add(e);
             maxNumberAcceptedClients.Release();
-            if (isFirst) StartAcceptReceiveFrom();
+            if (isFirst)
+                StartAcceptReceiveFrom();
         }
 
         /// <summary>
@@ -541,6 +570,7 @@ namespace ES.Network.Sockets.Server
         private static bool ProcessSend(System.Net.Sockets.SocketAsyncEventArgs e)
         {
             ((MySocketAsyncEventArgsEx)e).Push();
+
             if (e.SocketError == System.Net.Sockets.SocketError.Success)
             {
                 // done echoing data back to the client
@@ -551,6 +581,7 @@ namespace ES.Network.Sockets.Server
             {
                 (e.UserToken as RemoteConnection)?.Destroy();
             }
+
             return false;
         }
 
@@ -565,10 +596,12 @@ namespace ES.Network.Sockets.Server
         /// <returns></returns>
         internal bool SendAsyncEvent(RemoteConnection client, ushort sessionId, ReadOnlySpan<byte> buffer, int offset, int count)
         {
-            if (client.Socket == null) return false;
+            if (client.Socket == null)
+                return false;
 
             // 重置超时标记
-            if (monitorSocketStatusTask != null) Interlocked.Exchange(ref client.timeoutCount, 0);
+            if (monitorSocketStatusTask != null)
+                Interlocked.Exchange(ref client.timeoutCount, 0);
 
             // 数据打包
             ReadOnlySpan<byte> data = null;
@@ -587,8 +620,10 @@ namespace ES.Network.Sockets.Server
             {
                 // 数据发送
                 var SEAE = client.sendEventArgs?.Pop();
+
                 if (SEAE == null)
                     return false;
+
                 if (client.Socket.SocketType == SocketType.Stream)
                 {
                     var mData = SweetStream.Encode(data);
@@ -643,9 +678,15 @@ namespace ES.Network.Sockets.Server
         public void CloseServer()
         {
             isRunning = false;
-            foreach (var item in TcpClients) item.Value.Destroy();
+
+            foreach (var item in TcpClients)
+                item.Value.Destroy();
+
             TcpClients.Clear();
-            if (!serverSocket.IsClosed) serverSocket.Close();
+
+            if (!serverSocket.IsClosed)
+                serverSocket.Close();
+
             monitorSocketStatusTask?.Close();
         }
     }

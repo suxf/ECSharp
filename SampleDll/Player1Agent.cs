@@ -1,15 +1,16 @@
-﻿using ES.Time;
+﻿using ES;
 using ES.Hotfix;
+using ES.Time;
+using ES.Utils;
 using Sample;
-using System;
-using ES;
 
 namespace SampleDll
 {
     public class Player1Agent : Agent<Player1>, ITimeUpdate
     {
         public int copyCount = 0;
-        private readonly int seed = new Random().Next(9999);
+        public int period = 0;
+        private readonly int seed = Randomizer.Random.Next(9999);
 
         protected override void Initialize()
         {
@@ -23,8 +24,12 @@ namespace SampleDll
 
         public void Update(int deltaTime)
         {
-            if (copyCount % 1000 == 0) Log.Info($"player1 count:{self.count++},copyCount:{copyCount},seed:{seed}");
-            copyCount += deltaTime;
+            period += deltaTime;
+            if (period >= 1000)
+            {
+                period = 0;
+                Log.Info($"player1 count:{self.count++},copyCount:{copyCount++},seed:{seed}");
+            }
         }
 
         public void UpdateEnd()

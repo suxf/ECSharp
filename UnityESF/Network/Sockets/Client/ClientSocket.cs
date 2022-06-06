@@ -123,6 +123,33 @@ namespace ES.Network.Sockets.Client
         }
 
         /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(Var buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(VarList buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="buffer">数据</param>
+        public bool Send(VarMap buffer)
+        {
+            return Send(buffer.GetBytes());
+        }
+
+        /// <summary>
         /// 发送数据(utf8字符串数据)
         /// </summary>
         /// <param name="utf8str">数据</param>
@@ -166,6 +193,7 @@ namespace ES.Network.Sockets.Client
                 return SendBuffer(/*sessionId,*/ buffer, offset, count);
             else if (clientSocket.SocketType == SocketType.Dgram)
                 return SendBufferTo(sessionId, buffer, offset, count);
+
             return false;
         }
 
@@ -177,8 +205,10 @@ namespace ES.Network.Sockets.Client
             try
             {
                 Socket? ts = result.AsyncState as Socket;
+
                 if (ts == null)
                     return;
+
                 int len = ts.EndReceive(result);
                 if (len > 0)
                 {
@@ -191,6 +221,7 @@ namespace ES.Network.Sockets.Client
                     // 如果等于0说明断开连接
                     return;
                 }
+
                 //清空数据，重新开始异步接收
                 int blen = buffer.Length;
                 Array.Clear(buffer, 0, blen);
@@ -212,6 +243,7 @@ namespace ES.Network.Sockets.Client
                 Socket? ts = result.AsyncState as Socket;
                 if (ts == null)
                     return;
+
                 int len = ts.EndReceive(result);
                 if (len > 0)
                 {
@@ -232,6 +264,7 @@ namespace ES.Network.Sockets.Client
                     // 如果等于0说明断开连接
                     return;
                 }
+
                 System.Net.EndPoint endPoint = clientSocket.endPoint;
                 //清空数据，重新开始异步接收
                 int blen = buffer.Length;
@@ -289,11 +322,14 @@ namespace ES.Network.Sockets.Client
                 {
                     mBuffer = SweetStream.Encode(buffer.Slice(offset, count));
                 }
+
                 if (mBuffer.IsEmpty)
                     return false;
+
                 var args = sendEventArgs.Pop();
                 if (args == null)
                     return false;
+
 #if !UNITY_2020_1_OR_NEWER && !NET462 && !NETSTANDARD2_0
                 args.SetBuffer(mBuffer);
 #else
@@ -332,10 +368,12 @@ namespace ES.Network.Sockets.Client
             {
                 if (buffer.IsEmpty)
                     return false;
+
                 int len = buffer.Length;
                 var args = sendEventArgs.Pop();
                 if (args == null)
                     return false;
+
                 int slen = 3 + len;
                 byte[] sendBuffer = new byte[slen];
                 /* 会话ID 高位 */
@@ -350,6 +388,7 @@ namespace ES.Network.Sockets.Client
                 Buffer.BlockCopy(buffer.ToArray(), 0, sendBuffer, 3, len);
                 args.SetBuffer(sendBuffer, 0, slen);
                 var willRaiseEvent = clientSocket.SendToAsync(args);
+
                 if (!willRaiseEvent)
                     return ProcessSend(args);
                 else
@@ -433,7 +472,9 @@ namespace ES.Network.Sockets.Client
         /// </summary>
         public void Close()
         {
-            if (!isRecving) return;
+            if (!isRecving)
+                return;
+
             isRecving = false;
             sendEventArgs.Destroy();
             Tag = Var.Empty;

@@ -3,7 +3,7 @@ var hierarchy =
     [ "ES.Hotfix.AbstractAgent", "class_e_s_1_1_hotfix_1_1_abstract_agent.html", [
       [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
     ] ],
-    [ "ES.Utils.AesCrypto", "class_e_s_1_1_utils_1_1_aes_crypto.html", null ],
+    [ "ES.Crypto.AesCrypto", "class_e_s_1_1_crypto_1_1_aes_crypto.html", null ],
     [ "ES.Hotfix.AgentData", "class_e_s_1_1_hotfix_1_1_agent_data.html", null ],
     [ "ES.Hotfix.AgentDataPivot", "class_e_s_1_1_hotfix_1_1_agent_data_pivot.html", null ],
     [ "ES.Utils.AppConfig", "class_e_s_1_1_utils_1_1_app_config.html", null ],
@@ -11,7 +11,6 @@ var hierarchy =
       [ "ES.Hotfix.KeepAgentValueAttribute", "class_e_s_1_1_hotfix_1_1_keep_agent_value_attribute.html", null ],
       [ "ES.Hotfix.NotCreateAgentAttribute", "class_e_s_1_1_hotfix_1_1_not_create_agent_attribute.html", null ]
     ] ],
-    [ "ES.Linq.Base64Linq", "class_e_s_1_1_linq_1_1_base64_linq.html", null ],
     [ "ES.Database.Linq.BaseConfigItem", "class_e_s_1_1_database_1_1_linq_1_1_base_config_item.html", [
       [ "ES.Database.Linq.DataTableConfig", "class_e_s_1_1_database_1_1_linq_1_1_data_table_config.html", null ],
       [ "ES.Database.Linq.JsonConfig", "class_e_s_1_1_database_1_1_linq_1_1_json_config.html", null ]
@@ -22,8 +21,7 @@ var hierarchy =
     [ "ES.Time.BaseTimeFlow", "class_e_s_1_1_time_1_1_base_time_flow.html", [
       [ "ES.Time.TimeFlow", "class_e_s_1_1_time_1_1_time_flow.html", null ]
     ] ],
-    [ "ES.Utils.ByteHelper", "class_e_s_1_1_utils_1_1_byte_helper.html", null ],
-    [ "ES.Linq.ByteLinq", "class_e_s_1_1_linq_1_1_byte_linq.html", null ],
+    [ "ES.Utils.ByteConverter", "class_e_s_1_1_utils_1_1_byte_converter.html", null ],
     [ "ES.Network.Sockets.Client.ClientSocket", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ],
     [ "ES.Command< TKey, TResult >", "class_e_s_1_1_command.html", null ],
     [ "ES.Command< TKey, TResult, TValue1 >", "class_e_s_1_1_command.html", null ],
@@ -33,15 +31,14 @@ var hierarchy =
     [ "ConcurrentDictionary", null, [
       [ "ES.Alias.Collections.ConcurrentMap< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ]
     ] ],
-    [ "ES.Linq.ConcurrentLinq", "class_e_s_1_1_linq_1_1_concurrent_linq.html", null ],
     [ "ES.Alias.Collections.ConcurrentMap< int, ES.Network.Sockets.Server.RemoteConnection >", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ],
-    [ "ES.Alias.Collections.ConcurrentMap< ushort, ES.Network.HyperSocket.RemoteHyperSocket?>", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ],
+    [ "ES.Alias.Collections.ConcurrentMap< ushort, ES.Network.Sockets.HyperSocket.RemoteHyperSocket?>", "class_e_s_1_1_alias_1_1_collections_1_1_concurrent_map.html", null ],
     [ "ES.Database.Linq.ConfigLoader< T >", "class_e_s_1_1_database_1_1_linq_1_1_config_loader.html", null ],
     [ "ES.Database.Linq.DataEntity< T >", "class_e_s_1_1_database_1_1_linq_1_1_data_entity.html", null ],
-    [ "ES.Linq.DateTimeLinq", "class_e_s_1_1_linq_1_1_date_time_linq.html", null ],
     [ "Dictionary", null, [
       [ "ES.Alias.Collections.Map< TKey, TValue >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", null ]
     ] ],
+    [ "ES.Linq.EsLinq", "class_e_s_1_1_linq_1_1_es_linq.html", null ],
     [ "ES.Event< TKey >", "class_e_s_1_1_event.html", null ],
     [ "ES.Event< TKey, TValue1 >", "class_e_s_1_1_event.html", null ],
     [ "ES.Event< TKey, TValue1, TValue2 >", "class_e_s_1_1_event.html", null ],
@@ -53,7 +50,7 @@ var hierarchy =
     ] ],
     [ "ES.Network.Http.Linq.HttpRequestHelper", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_request_helper.html", null ],
     [ "ES.Network.Http.HttpService", "class_e_s_1_1_network_1_1_http_1_1_http_service.html", null ],
-    [ "ES.Network.HyperSocket.HyperSocketConfig", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_config.html", null ],
+    [ "ES.Network.Sockets.HyperSocket.HyperSocketConfig", "class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_config.html", null ],
     [ "ES.Hotfix.IAgent< T >", "interface_e_s_1_1_hotfix_1_1_i_agent.html", [
       [ "ES.Hotfix.Agent< T >", "class_e_s_1_1_hotfix_1_1_agent.html", null ]
     ] ],
@@ -67,8 +64,8 @@ var hierarchy =
       [ "ES.Network.Http.Linq.HttpVisitor", "class_e_s_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html", null ]
     ] ],
     [ "ES.Network.Http.Linq.IHttpVisitor", "interface_e_s_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor.html", null ],
-    [ "ES.Network.HyperSocket.IHyperSocketClient", "interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_client.html", null ],
-    [ "ES.Network.HyperSocket.IHyperSocketServer", "interface_e_s_1_1_network_1_1_hyper_socket_1_1_i_hyper_socket_server.html", null ],
+    [ "ES.Network.Sockets.HyperSocket.IHyperSocketClient", "interface_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_i_hyper_socket_client.html", null ],
+    [ "ES.Network.Sockets.HyperSocket.IHyperSocketServer", "interface_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_i_hyper_socket_server.html", null ],
     [ "ES.Database.MySQL.IMySqlDbHelper", "interface_e_s_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html", null ],
     [ "ES.Utils.Ini", "class_e_s_1_1_utils_1_1_ini.html", null ],
     [ "ES.Utils.Ini.IniParser", "class_e_s_1_1_utils_1_1_ini_1_1_ini_parser.html", null ],
@@ -89,16 +86,15 @@ var hierarchy =
       [ "ES.Database.Linq.NoSqlStorage< T, U >", "class_e_s_1_1_database_1_1_linq_1_1_no_sql_storage.html", null ],
       [ "ES.Database.MySQL.MySqlDbHelper", "class_e_s_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html", null ],
       [ "ES.Database.SQLServer.SqlServerDbHelper", "class_e_s_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html", null ],
-      [ "ES.Network.HyperSocket.BaseHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_base_hyper_socket.html", [
-        [ "ES.Network.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket.html", null ],
-        [ "ES.Network.HyperSocket.HyperSocketServer", "class_e_s_1_1_network_1_1_hyper_socket_1_1_hyper_socket_server.html", null ]
+      [ "ES.Network.Sockets.HyperSocket.BaseHyperSocket", "class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_base_hyper_socket.html", [
+        [ "ES.Network.Sockets.HyperSocket.HyperSocket", "class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html", null ],
+        [ "ES.Network.Sockets.HyperSocket.HyperSocketServer", "class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_server.html", null ]
       ] ],
       [ "ES.Network.Sockets.Server.MonitorSocketStatusTask", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_monitor_socket_status_task.html", null ],
       [ "ES.Time.TimeCaller", "class_e_s_1_1_time_1_1_time_caller.html", null ],
       [ "ES.Time.TimeClock", "class_e_s_1_1_time_1_1_time_clock.html", null ]
     ] ],
     [ "ES.Network.Websocket.IWebsocket", "interface_e_s_1_1_network_1_1_websocket_1_1_i_websocket.html", null ],
-    [ "ES.Linq.JsonLinq", "class_e_s_1_1_linq_1_1_json_linq.html", null ],
     [ "List", null, [
       [ "ES.Variant.VarList", "class_e_s_1_1_variant_1_1_var_list.html", null ]
     ] ],
@@ -116,30 +112,30 @@ var hierarchy =
     [ "ES.Alias.Collections.Map< Var, Var >", "class_e_s_1_1_alias_1_1_collections_1_1_map.html", [
       [ "ES.Variant.VarMap", "class_e_s_1_1_variant_1_1_var_map.html", null ]
     ] ],
-    [ "ES.Utils.MD5", "class_e_s_1_1_utils_1_1_m_d5.html", null ],
+    [ "ES.Crypto.MD5", "class_e_s_1_1_crypto_1_1_m_d5.html", null ],
     [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1 >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiCommand< TKey1, TKey2, TResult >", "class_e_s_1_1_multi_command.html", null ],
     [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1, TValue2 >", "class_e_s_1_1_multi_command.html", null ],
     [ "ES.MultiCommand< TKey1, TKey2, TResult, TValue1, TValue2, TValue3 >", "class_e_s_1_1_multi_command.html", null ],
-    [ "ES.MultiCommand< TKey1, TKey2, TResult >", "class_e_s_1_1_multi_command.html", null ],
+    [ "ES.MultiEvent< TKey1, TKey2, TValue1 >", "class_e_s_1_1_multi_event.html", null ],
     [ "ES.MultiEvent< TKey1, TKey2 >", "class_e_s_1_1_multi_event.html", null ],
     [ "ES.MultiEvent< TKey1, TKey2, TValue1, TValue2 >", "class_e_s_1_1_multi_event.html", null ],
-    [ "ES.MultiEvent< TKey1, TKey2, TValue1 >", "class_e_s_1_1_multi_event.html", null ],
     [ "ES.MultiEvent< TKey1, TKey2, TValue1, TValue2, TValue3 >", "class_e_s_1_1_multi_event.html", null ],
     [ "ES.Database.SQLServer.Parameter", "class_e_s_1_1_database_1_1_s_q_l_server_1_1_parameter.html", null ],
     [ "ES.Database.SQLServer.ProcedureResult", "class_e_s_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", null ],
-    [ "ES.Utils.RandomCode", "class_e_s_1_1_utils_1_1_random_code.html", null ],
-    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
+    [ "ES.Utils.Randomizer", "class_e_s_1_1_utils_1_1_randomizer.html", null ],
     [ "ES.Network.Websocket.RemoteConnection", "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],
-    [ "ES.Network.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
+    [ "ES.Network.Sockets.Server.RemoteConnection", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
+    [ "ES.Network.Sockets.HyperSocket.RemoteHyperSocket", "class_e_s_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_remote_hyper_socket.html", null ],
     [ "ES.Network.Sockets.Server.RemoteSocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_socket_msg.html", null ],
-    [ "ES.Utils.RsaCrypto", "class_e_s_1_1_utils_1_1_rsa_crypto.html", null ],
+    [ "ES.Crypto.RsaCrypto", "class_e_s_1_1_crypto_1_1_rsa_crypto.html", null ],
     [ "ES.Network.Sockets.Server.ServerSocket", "class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html", null ],
     [ "ES.Network.Sockets.Socket", "class_e_s_1_1_network_1_1_sockets_1_1_socket.html", null ],
     [ "ES.Network.Sockets.Client.SocketMsg", "class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_socket_msg.html", null ],
     [ "ES.Database.Linq.SqlBuilder", "class_e_s_1_1_database_1_1_linq_1_1_sql_builder.html", null ],
-    [ "ES.Linq.StringLinq", "class_e_s_1_1_linq_1_1_string_linq.html", null ],
     [ "ES.Network.Sockets.SweetStream", "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html", null ],
     [ "ES.Utils.SystemInfo", "class_e_s_1_1_utils_1_1_system_info.html", null ],
     [ "ES.Variant.Var", "struct_e_s_1_1_variant_1_1_var.html", null ],
+    [ "ES.Variant.VarObjectMgr", "class_e_s_1_1_variant_1_1_var_object_mgr.html", null ],
     [ "ES.Network.Websocket.WebsocketService", "class_e_s_1_1_network_1_1_websocket_1_1_websocket_service.html", null ]
 ];
