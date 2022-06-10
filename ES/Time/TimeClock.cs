@@ -284,8 +284,8 @@ namespace ES.Time
             // 每一秒执行一次
             if (unitPeriod < 1000)
                 return;
+            unitPeriod -= 1000;
 
-            unitPeriod = 0;
             DateTime now = sysTime.Now;
 
             if (now.Hour != lastHour)

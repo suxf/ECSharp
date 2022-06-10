@@ -67,23 +67,23 @@ namespace ES
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 #if !UNITY_2020_1_OR_NEWER
-            sb.Append("name: ");
+            sb.Append("process:");
             sb.Append(Utils.SystemInfo.ProcessName);
-            sb.Append("; version: ");
+            sb.Append("; version:");
             sb.Append(Utils.SystemInfo.ProcessVersion);
-            sb.Append("; es: ");
+            sb.Append("; esf:");
             sb.Append(Utils.SystemInfo.FrameVersion);
             sb.Append("; ");
 #endif
-            sb.Append("dotnet: ");
+            sb.Append(".net:");
             sb.Append(Utils.SystemInfo.DotNetVersion);
-            sb.Append("; path: ");
+            sb.Append("; path:");
             sb.Append(Utils.SystemInfo.Path);
-            sb.Append("; system: ");
+            sb.Append("; sys:");
             sb.Append(Utils.SystemInfo.SystemVersion);
-            sb.Append("; user: ");
+            sb.Append("; user:");
             sb.Append(Utils.SystemInfo.UserName);
-            sb.Append("; logicthreads: ");
+            sb.Append("; cores:");
             sb.Append(Utils.SystemInfo.ProcessorCount);
 
             bool LOG_CONSOLE_STACK_TRACE_OUTPUT = LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT;
@@ -304,9 +304,11 @@ namespace ES
 
                     using (StreamWriter sw = fileInfo.AppendText())
                     {
+                        int runCount = TimeFlowThread.UtilMsMaxHandleCount;
                         // 写入日志
-                        while (logInfos.TryDequeue(out LogInfo log))
+                        while (runCount > 0 && logInfos.TryDequeue(out LogInfo log))
                         {
+                            --runCount;
                             if (LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
                             {
                                 FormatLog(ref log);

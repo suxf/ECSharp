@@ -426,11 +426,14 @@ namespace ES.Database.SQLServer
             periodUpdate += dt;
             if (periodUpdate >= 1000)
             {
-                periodUpdate = 0;
+                periodUpdate -= 1000;
+
+                int runCount = TimeFlowThread.UtilMsMaxHandleCount;
                 lock (SQLQueue)
                 {
-                    while (SQLQueue.Count > 0)
+                    while (runCount > 0 && SQLQueue.Count > 0)
                     {
+                        --runCount;
                         string sql = SQLQueue.Dequeue();
                         ExecuteSQL(sql);
                     }
@@ -438,8 +441,9 @@ namespace ES.Database.SQLServer
 
                 lock (ProcedureQueue)
                 {
-                    while (ProcedureQueue.Count > 0)
+                    while (runCount > 0 && ProcedureQueue.Count > 0)
                     {
+                        --runCount;
                         ProcedureCmd pr = ProcedureQueue.Dequeue();
                         Procedure(pr.procedure, pr.sqlParameters);
                     }

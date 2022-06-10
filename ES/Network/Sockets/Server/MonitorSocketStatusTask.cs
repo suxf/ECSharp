@@ -98,7 +98,7 @@ namespace ES.Network.Sockets.Server
             periodNow += dt;
             if (periodNow >= 1000)
             {
-                periodNow = 0;
+                periodNow -= 1000;
                 TimeoutTaskCallback();
             }
         }

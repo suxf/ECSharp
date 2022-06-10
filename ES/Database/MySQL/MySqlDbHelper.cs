@@ -272,11 +272,14 @@ namespace ES.Database.MySQL
             periodUpdate += dt;
             if (periodUpdate >= 1000)
             {
-                periodUpdate = 0;
+                periodUpdate -= 1000;
+
+                int runCount = TimeFlowThread.UtilMsMaxHandleCount;
                 lock (SQLQueue)
                 {
-                    while (SQLQueue.Count > 0)
+                    while (runCount > 0 && SQLQueue.Count > 0)
                     {
+                        --runCount;
                         string sql = SQLQueue.Dequeue();
                         ExecuteSQL(sql);
                     }

@@ -202,7 +202,8 @@ namespace ES.Network.Sockets.HyperSocket
             if (heartCheckPeriod > 0)
                 return;
 
-            heartCheckPeriod = config.HeartCheckPeriod;
+            heartCheckPeriod += config.HeartCheckPeriod;
+
             long ticks1 = Time.TimeFlowManager.TotalRunTime - config.HeartTimeOut;
             long ticks2 = Time.TimeFlowManager.TotalRunTime - 3000;
             foreach (var item in remoteSockets)

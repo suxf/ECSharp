@@ -210,28 +210,33 @@ namespace ES.Database.Linq
             syncPeriodNow += deltaTime;
             if (syncPeriodNow >= syncPeriod)
             {
-                syncPeriodNow = 0;
+                syncPeriodNow -= syncPeriod;
 
-                while (keyInsertQueue.TryDequeue(out T? key))
+                int runCount = TimeFlowThread.UtilMsMaxHandleCount;
+
+                while (runCount > 0 && keyInsertQueue.TryDequeue(out T? key))
                 {
                     if (keyValues.TryGetValue(key, out U? value))
                     {
+                        --runCount;
                         dBHelper.ExecuteSQL($"INSERT {tableName} ({keyName}, [{valueName}]) VALUES ('{key}', '{value}')");
                     }
                 }
 
-                while (keyUpdateQueue.TryDequeue(out T? key))
+                while (runCount > 0 && keyUpdateQueue.TryDequeue(out T? key))
                 {
                     if (keyValues.TryGetValue(key, out U? value))
                     {
+                        --runCount;
                         dBHelper.ExecuteSQL($"UPDATE {tableName} SET [{valueName}] = '{value}' WHERE {condition} {keyName}='{key}'");
                     }
                 }
 
-                while (keyDeleteQueue.TryDequeue(out T? key))
+                while (runCount > 0 && keyDeleteQueue.TryDequeue(out T? key))
                 {
                     if (keyValues.TryRemove(key, out _))
                     {
+                        --runCount;
                         dBHelper.ExecuteSQL($"DELETE FROM {tableName} WHERE {condition} {keyName}='{key}'");
                     }
                 }

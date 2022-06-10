@@ -37,6 +37,11 @@ namespace ES.Time
         }
 
         /// <summary>
+        /// 单位毫秒最大处理数量
+        /// </summary>
+        internal static int UtilMsMaxHandleCount = Interval * 10 > 0 ? Interval * 10 : 1;
+
+        /// <summary>
         /// 同步标记
         /// </summary>
         private readonly bool isSync = false;

@@ -236,11 +236,9 @@ namespace ES.Database.Linq
             period += dt;
             if (period >= realPeriod)
             {
-                period = 0;
+                period -= realPeriod;
                 // 执行更新
-                {
-                    UpdateDBHandle(realPeriod);
-                }
+                UpdateDBHandle(realPeriod);
             }
         }
 

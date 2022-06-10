@@ -4,10 +4,10 @@
     <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netframework462;netstandard2.0</TargetFrameworks>
     <AssemblyName>ES</AssemblyName>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Authors>枫</Authors>
-    <Description>让开发变得更加简单。</Description>
+    <Authors>suxf</Authors>
+    <Description>Simple Development!</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.17.3</Version>
+    <Version>1.17.4</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
@@ -24,6 +24,7 @@
     <NoWarn>1701;1702;IDE0017;IDE0063;IDE0066;IDE0090;IDE0019;SYSLIB0014;</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,6 +37,13 @@
     <DocumentationFile>bin\release\ES.xml</DocumentationFile>
     <OutputPath>bin\release\</OutputPath>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Fleck" Version="1.2.0" />

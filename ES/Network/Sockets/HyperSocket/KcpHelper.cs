@@ -112,6 +112,7 @@ namespace ES.Network.Sockets.HyperSocket
                 // 更新周期10ms 此处次数大于100 则为 1s 无数据跳出
                 if (noNetDataCount >= 100) return;
                 ++noNetDataCount;
+
                 DateTime utc = DateTime.UtcNow;
                 if (nextUpdateTime <= utc)
                 {

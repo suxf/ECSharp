@@ -27,7 +27,7 @@ namespace SampleDll
             period += deltaTime;
             if (period >= 1000)
             {
-                period = 0;
+                period -= 1000;
                 Log.Info($"player1 count:{self.count++},copyCount:{copyCount++},seed:{seed}");
             }
         }

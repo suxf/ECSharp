@@ -71,7 +71,7 @@ namespace Sample
             // 这里我们每1秒执行一次
             if (period1 >= 1000)
             {
-                period1 = 0;
+                period1 -= 1000;
                 Log.Info($"Hello TimeFlow:[{dt}]{DateTime.Now:yyyy-MM-dd HH:mm:ss:fffffff}");
             }
         }
@@ -101,7 +101,7 @@ namespace Sample
                 // 这里我们每5秒执行一次
                 if (period1 >= 5000)
                 {
-                    period1 = 0;
+                    period1 -= 5000;
                     Log.Info("Hello TimeFlow2");
                 }
             }
