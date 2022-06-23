@@ -12,6 +12,11 @@ namespace Sample
 {
     public class Test_SweetStream
     {
+        public Test_SweetStream()
+        {
+            Test1();
+        }
+
         [Benchmark]
         public void Test1()
         {
@@ -21,7 +26,7 @@ namespace Sample
 
             for (int i = 1; i <= 1000; i++)
             {
-                byte[] b = SweetStream.Encode(Encoding.UTF8.GetBytes(ES.Utils.Randomizer.Generate(new System.Random().Next(0, 2048)))).ToArray();
+                byte[] b = SweetStream.Encode(Encoding.UTF8.GetBytes(ES.Utils.Randomizer.Generate(new System.Random().Next(0, 128)))).ToArray();
                 // byte[] b = sw.Encode(Encoding.UTF8.GetBytes("a"));
                 int size = 128 - memoryStream.ToArray().Length;
                 if (size > 0)
@@ -51,12 +56,12 @@ namespace Sample
 
             int count = 0;
             byte[] r = sw.TakeStreamBuffer();
-            do
+            while (r != null)
             {
                 count++;
-                // Log.Info(Encoding.UTF8.GetString(r));
+                Log.Info(Encoding.UTF8.GetString(r));
                 r = sw.TakeStreamBuffer();
-            } while (r != null);
+            } 
             Log.Info("all:" + count);
         }
 

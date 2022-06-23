@@ -32,7 +32,6 @@ namespace ES.Network.Sockets.HyperSocket
         /// </summary>
         internal readonly static byte[] SignSecurityBytes = new byte[] { 0x01, 0x02, 0x02 };
 
-
         /// <summary>
         /// 是否为服务器模式
         /// </summary>

@@ -7,7 +7,7 @@
     <Authors>suxf</Authors>
     <Description>Simple Development!</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.17.4</Version>
+    <Version>1.17.5</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>

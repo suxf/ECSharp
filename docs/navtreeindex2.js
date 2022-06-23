@@ -52,7 +52,7 @@ var NAVTREEINDEX2 =
 "class_e_s_1_1_network_1_1_sockets_1_1_socket.html#aee35375d55ac45809c5fcc20cb5015c5":[1,0,0,5,1,3,8],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html":[1,0,0,5,1,4],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a0071294f2c91e6f6143c79c4c0bac818":[1,0,0,5,1,4,0],
-"class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a8061a274a23641ff69a05ccae05705ed":[1,0,0,5,1,4,3],
+"class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a13eecf950c4e7d3cc08258ab06dd0b85":[1,0,0,5,1,4,3],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a94f32010a0cf18f6cc7ab3a96fbb44e2":[1,0,0,5,1,4,2],
 "class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#ac572cdbb12cb26f37ab35245d0dbc706":[1,0,0,5,1,4,1],
 "class_e_s_1_1_network_1_1_websocket_1_1_remote_connection.html":[1,0,0,5,2,1],

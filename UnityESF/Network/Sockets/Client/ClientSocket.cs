@@ -70,7 +70,7 @@ namespace ES.Network.Sockets.Client
         public ClientSocket(string ip, int port, int numMaxBufferSize)
         {
             clientSocket = new Socket(ip, port);
-            this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
+            this.numMaxBufferSize = numMaxBufferSize + SweetStream.PACKAGE_MAX_SIZE;
             buffer = new byte[this.numMaxBufferSize];
             RBuffer = new SweetStream();
 
@@ -86,7 +86,7 @@ namespace ES.Network.Sockets.Client
         public ClientSocket(Socket esfSocket, int numMaxBufferSize)
         {
             clientSocket = esfSocket;
-            this.numMaxBufferSize = numMaxBufferSize + SweetStream.OUTSOURCING_SIZE;
+            this.numMaxBufferSize = numMaxBufferSize + SweetStream.PACKAGE_MAX_SIZE;
             buffer = new byte[this.numMaxBufferSize];
             RBuffer = new SweetStream();
 

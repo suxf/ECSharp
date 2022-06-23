@@ -100,7 +100,7 @@ namespace ES.Network.Sockets.Server
             // totalBytesRead = 0;
             // numConnectedSockets = 0;
             this.numMaxConnections = numMaxConnections;
-            this.receiveBufferSize = receiveBufferSize + SweetStream.OUTSOURCING_SIZE;
+            this.receiveBufferSize = receiveBufferSize + SweetStream.PACKAGE_MAX_SIZE;
 
             // allocate buffers such that the maximum number of sockets can have one outstanding read and 
             // write posted to the socket simultaneously  
@@ -123,7 +123,7 @@ namespace ES.Network.Sockets.Server
             // totalBytesRead = 0;
             // numConnectedSockets = 0;
             this.numMaxConnections = numMaxConnections;
-            this.receiveBufferSize = receiveBufferSize + SweetStream.OUTSOURCING_SIZE;
+            this.receiveBufferSize = receiveBufferSize + SweetStream.PACKAGE_MAX_SIZE;
 
             // allocate buffers such that the maximum number of sockets can have one outstanding read and 
             // write posted to the socket simultaneously  

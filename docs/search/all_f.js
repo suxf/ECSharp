@@ -51,6 +51,5 @@ var searchData=
   ['operator_5e_465',['operator^',['../struct_e_s_1_1_variant_1_1_var.html#ae461f87d84fdae8b95e259186e52679a',1,'ES::Variant::Var']]],
   ['operator_7c_466',['operator|',['../struct_e_s_1_1_variant_1_1_var.html#a3cd7cd55fc70c71edefe60f348d94471',1,'ES::Variant::Var']]],
   ['operator_7e_467',['operator~',['../struct_e_s_1_1_variant_1_1_var.html#a5229ded486390c9cce3a6cfe1b64072f',1,'ES::Variant::Var']]],
-  ['options_468',['OPTIONS',['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158a164dd62adb30ca051b5289672a572f9b',1,'ES::Network::Http']]],
-  ['outsourcing_5fsize_469',['OUTSOURCING_SIZE',['../class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a8061a274a23641ff69a05ccae05705ed',1,'ES::Network::Sockets::SweetStream']]]
+  ['options_468',['OPTIONS',['../namespace_e_s_1_1_network_1_1_http.html#a78ed01fc289ed9ff22c1b05343ebe158a164dd62adb30ca051b5289672a572f9b',1,'ES::Network::Http']]]
 ];

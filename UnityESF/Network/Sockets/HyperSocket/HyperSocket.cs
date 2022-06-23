@@ -342,7 +342,8 @@ namespace ES.Network.Sockets.HyperSocket
             if (heartCheckPeriod > 0)
                 return;
 
-            heartCheckPeriod = config.HeartSendPeriod;
+            heartCheckPeriod += config.HeartSendPeriod;
+
             if (tcpClient.heartCheckTimeOut < Time.TimeFlowManager.TotalRunTime - config.HeartTimeOut)
             {
                 Close(new Exception("Heart Time Out!"));
