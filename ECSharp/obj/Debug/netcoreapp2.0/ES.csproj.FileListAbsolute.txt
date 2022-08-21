@@ -1,5 +1,0 @@
-E:\EasySharpFrame\ES\obj\Debug\netcoreapp2.0\ES.csproj.AssemblyReference.cache
-E:\EasySharpFrame\ES\obj\Debug\netcoreapp2.0\ES.GeneratedMSBuildEditorConfig.editorconfig
-E:\EasySharpFrame\ES\obj\Debug\netcoreapp2.0\ES.AssemblyInfoInputs.cache
-E:\EasySharpFrame\ES\obj\Debug\netcoreapp2.0\ES.AssemblyInfo.cs
-E:\EasySharpFrame\ES\obj\Debug\netcoreapp2.0\ES.csproj.CoreCompileInputs.cache
