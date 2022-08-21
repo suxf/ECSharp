@@ -1,29 +1,31 @@
 /*
-@licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2019 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of version 2 of the GNU General Public License as published by
-the Free Software Foundation
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
   [ "EasySharpFrame", "index.html", [
-    [ "包函数", "namespacemembers.html", [
+    [ "包成员", "namespacemembers.html", [
       [ "全部", "namespacemembers.html", null ],
       [ "函数", "namespacemembers_func.html", null ],
       [ "枚举", "namespacemembers_enum.html", null ]
@@ -46,9 +48,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#ad3ae4e7d4d69e11b00a09b1b6d173702",
-"class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a4f9ea72f34ed596f139c13a965147653",
-"functions_e.html"
+"class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html#ace2e764ba1a10e52ca482658a702e0a7",
+"class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#aeb25be6cdfc3d156753064e8a7082daa",
+"class_e_c_sharp_1_1_utils_1_1_byte_converter.html#ad5bb3c812c41a0c20e2385fc7fbf1e70",
+"struct_e_c_sharp_1_1_variant_1_1_var.html#aa4f3d13c9b68678df5bbbb4d737c9932"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

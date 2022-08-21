@@ -1,6 +1,6 @@
-﻿using ES;
-using ES.Database.Linq;
-using ES.Database.MySQL;
+﻿using ECSharp;
+using ECSharp.Database.Linq;
+using ECSharp.Database.MySQL;
 using System;
 using System.Data;
 

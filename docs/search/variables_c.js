@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['new_1201',['New',['../class_e_s_1_1_variant_1_1_var_list.html#a4d562a3141b2c4d5293cd6a82bd4916a',1,'ES.Variant.VarList.New()'],['../class_e_s_1_1_variant_1_1_var_map.html#ac6701dc9eeac79add9e241cc447365df',1,'ES.Variant.VarMap.New()']]],
-  ['nummaxbuffersize_1202',['numMaxBufferSize',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#aefde08ab65c517b67472f677e6444b4d',1,'ES::Network::Sockets::Client::ClientSocket']]]
+  ['object_0',['Object',['../struct_e_c_sharp_1_1_variant_1_1_var.html#aa8a22e4c7e6c0b4d90422f22d87a1f2a',1,'ECSharp::Variant::Var']]]
 ];

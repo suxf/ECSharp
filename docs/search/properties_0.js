@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addressfamily_1352',['AddressFamily',['../class_e_s_1_1_network_1_1_sockets_1_1_socket.html#a9922b320961a6b605f0beb0b7b7ece2c',1,'ES::Network::Sockets::Socket']]]
+  ['_5fself_0',['_self',['../class_e_c_sharp_1_1_hotfix_1_1_abstract_agent.html#a25b4e210d4501264e16e03d0ecbc8e58',1,'ECSharp::Hotfix::AbstractAgent']]]
 ];

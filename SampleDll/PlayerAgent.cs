@@ -1,9 +1,9 @@
-﻿using ES.Time;
-using ES.Hotfix;
+﻿using ECSharp.Time;
+using ECSharp.Hotfix;
 using Sample;
 using System;
 using System.Diagnostics;
-using ES;
+using ECSharp;
 
 namespace SampleDll
 {

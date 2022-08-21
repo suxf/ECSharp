@@ -1,0 +1,683 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ECSharp.Network.Sockets.Server.RemoteConnection类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.0</span>
+   </div>
+   <div id="projectbrief">这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ECSharp.Network.Sockets.Server.RemoteConnection类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>远程客户端连接  
+ <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5792ddfdd08cec5b7edbb31905eb2f9d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a5792ddfdd08cec5b7edbb31905eb2f9d">Send</a> (ReadOnlySpan&lt; byte &gt; buffer)</td></tr>
+<tr class="memdesc:a5792ddfdd08cec5b7edbb31905eb2f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a5792ddfdd08cec5b7edbb31905eb2f9d">更多...</a><br /></td></tr>
+<tr class="separator:a5792ddfdd08cec5b7edbb31905eb2f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a890278e4c87b80b6186dbb0b52d15548"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a890278e4c87b80b6186dbb0b52d15548">Send</a> (string utf8str)</td></tr>
+<tr class="memdesc:a890278e4c87b80b6186dbb0b52d15548"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a890278e4c87b80b6186dbb0b52d15548">更多...</a><br /></td></tr>
+<tr class="separator:a890278e4c87b80b6186dbb0b52d15548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9890a9eee2e1c460eb1bff498318b62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ac9890a9eee2e1c460eb1bff498318b62">Send</a> (<a class="el" href="struct_e_c_sharp_1_1_variant_1_1_var.html">Var</a> buffer)</td></tr>
+<tr class="memdesc:ac9890a9eee2e1c460eb1bff498318b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ac9890a9eee2e1c460eb1bff498318b62">更多...</a><br /></td></tr>
+<tr class="separator:ac9890a9eee2e1c460eb1bff498318b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d2ba1815d66d5c0d1015b1a91b2a95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a41d2ba1815d66d5c0d1015b1a91b2a95">Send</a> (<a class="el" href="class_e_c_sharp_1_1_variant_1_1_var_list.html">VarList</a> buffer)</td></tr>
+<tr class="memdesc:a41d2ba1815d66d5c0d1015b1a91b2a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a41d2ba1815d66d5c0d1015b1a91b2a95">更多...</a><br /></td></tr>
+<tr class="separator:a41d2ba1815d66d5c0d1015b1a91b2a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae2b43f1c93c286598dbad2541389310"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aae2b43f1c93c286598dbad2541389310">Send</a> (<a class="el" href="class_e_c_sharp_1_1_variant_1_1_var_map.html">VarMap</a> buffer)</td></tr>
+<tr class="memdesc:aae2b43f1c93c286598dbad2541389310"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aae2b43f1c93c286598dbad2541389310">更多...</a><br /></td></tr>
+<tr class="separator:aae2b43f1c93c286598dbad2541389310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607901ba7339009f1b2e580b9977913e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a607901ba7339009f1b2e580b9977913e">Send</a> (ushort sessionId, ReadOnlySpan&lt; byte &gt; buffer)</td></tr>
+<tr class="memdesc:a607901ba7339009f1b2e580b9977913e"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a607901ba7339009f1b2e580b9977913e">更多...</a><br /></td></tr>
+<tr class="separator:a607901ba7339009f1b2e580b9977913e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d9db2f924560c0609207ee2d9f1565"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a41d9db2f924560c0609207ee2d9f1565">Send</a> (ReadOnlySpan&lt; byte &gt; buffer, int offset, int count)</td></tr>
+<tr class="memdesc:a41d9db2f924560c0609207ee2d9f1565"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a41d9db2f924560c0609207ee2d9f1565">更多...</a><br /></td></tr>
+<tr class="separator:a41d9db2f924560c0609207ee2d9f1565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac3cfd5b198700e1a4551cf2e09f802"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a7ac3cfd5b198700e1a4551cf2e09f802">Send</a> (ushort sessionId, string utf8str)</td></tr>
+<tr class="memdesc:a7ac3cfd5b198700e1a4551cf2e09f802"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据(utf8字符串数据)  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a7ac3cfd5b198700e1a4551cf2e09f802">更多...</a><br /></td></tr>
+<tr class="separator:a7ac3cfd5b198700e1a4551cf2e09f802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a323f91477ab4a959b63e0952e4e48"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aa7a323f91477ab4a959b63e0952e4e48">Send</a> (ushort sessionId, ReadOnlySpan&lt; byte &gt; buffer, int offset, int count)</td></tr>
+<tr class="memdesc:aa7a323f91477ab4a959b63e0952e4e48"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#aa7a323f91477ab4a959b63e0952e4e48">更多...</a><br /></td></tr>
+<tr class="separator:aa7a323f91477ab4a959b63e0952e4e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a323740c4d5f6bdfd34755dc576112eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a323740c4d5f6bdfd34755dc576112eff">Destroy</a> ()</td></tr>
+<tr class="memdesc:a323740c4d5f6bdfd34755dc576112eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁当前对象并且从服务器列表中删除  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a323740c4d5f6bdfd34755dc576112eff">更多...</a><br /></td></tr>
+<tr class="separator:a323740c4d5f6bdfd34755dc576112eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a16a6284977142a9c1e5a4629d2a8b301"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_e_c_sharp_1_1_variant_1_1_var.html">Var</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a16a6284977142a9c1e5a4629d2a8b301">Tag</a> = Var.Null</td></tr>
+<tr class="memdesc:a16a6284977142a9c1e5a4629d2a8b301"><td class="mdescLeft">&#160;</td><td class="mdescRight">用户绑定对象(TCP模式)  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a16a6284977142a9c1e5a4629d2a8b301">更多...</a><br /></td></tr>
+<tr class="separator:a16a6284977142a9c1e5a4629d2a8b301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:af7bab01cb591c78d78134a98dffe1240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html">ServerSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#af7bab01cb591c78d78134a98dffe1240">SocketSvrMgr</a><code> [get, protected set]</code></td></tr>
+<tr class="memdesc:af7bab01cb591c78d78134a98dffe1240"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接服务控制对象  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#af7bab01cb591c78d78134a98dffe1240">更多...</a><br /></td></tr>
+<tr class="separator:af7bab01cb591c78d78134a98dffe1240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47914d5be9514b1ff27b0e210c523ddb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a47914d5be9514b1ff27b0e210c523ddb">RBuffer</a> = new <a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a>()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a47914d5be9514b1ff27b0e210c523ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">数据包缓存  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a47914d5be9514b1ff27b0e210c523ddb">更多...</a><br /></td></tr>
+<tr class="separator:a47914d5be9514b1ff27b0e210c523ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0274823e1a235b3d96fcdb75c91ba4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a4d0274823e1a235b3d96fcdb75c91ba4">HasConnected</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4d0274823e1a235b3d96fcdb75c91ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接状态  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a4d0274823e1a235b3d96fcdb75c91ba4">更多...</a><br /></td></tr>
+<tr class="separator:a4d0274823e1a235b3d96fcdb75c91ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6259d2322846474325596233640fe359"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html">IRemoteSocket</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a6259d2322846474325596233640fe359">SocketInvoke</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a6259d2322846474325596233640fe359"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步接受信息委托回调  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a6259d2322846474325596233640fe359">更多...</a><br /></td></tr>
+<tr class="separator:a6259d2322846474325596233640fe359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f1edfacc849f6360a93d6de5212179a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a3f1edfacc849f6360a93d6de5212179a">Socket</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a3f1edfacc849f6360a93d6de5212179a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESF.Socket  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a3f1edfacc849f6360a93d6de5212179a">更多...</a><br /></td></tr>
+<tr class="separator:a3f1edfacc849f6360a93d6de5212179a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad418e83b075ec29bbbea83c6419597bd"><td class="memItemLeft" align="right" valign="top">System.Net.Sockets.? SocketAsyncEventArgs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ad418e83b075ec29bbbea83c6419597bd">ReceiveEventArgs</a> = null<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:ad418e83b075ec29bbbea83c6419597bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">接受事件参数  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#ad418e83b075ec29bbbea83c6419597bd">更多...</a><br /></td></tr>
+<tr class="separator:ad418e83b075ec29bbbea83c6419597bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c60d66001745073cef12e5d91ff4774"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a3c60d66001745073cef12e5d91ff4774">ConnectDateTime</a> = DateTime.MinValue<code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a3c60d66001745073cef12e5d91ff4774"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接时间  <a href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a3c60d66001745073cef12e5d91ff4774">更多...</a><br /></td></tr>
+<tr class="separator:a3c60d66001745073cef12e5d91ff4774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >远程客户端连接 </p>
+<p >TCP模式下 主动推送数据直接保存</p>
+<p >UDP模式下 主动推送需要调用CloneUDPConnection()保存使用</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a323740c4d5f6bdfd34755dc576112eff" name="a323740c4d5f6bdfd34755dc576112eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a323740c4d5f6bdfd34755dc576112eff">&#9670;&nbsp;</a></span>Destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ECSharp.Network.Sockets.Server.RemoteConnection.Destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>销毁当前对象并且从服务器列表中删除 </p>
+
+</div>
+</div>
+<a id="a5792ddfdd08cec5b7edbb31905eb2f9d" name="a5792ddfdd08cec5b7edbb31905eb2f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5792ddfdd08cec5b7edbb31905eb2f9d">&#9670;&nbsp;</a></span>Send() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">ReadOnlySpan&lt; byte &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41d9db2f924560c0609207ee2d9f1565" name="a41d9db2f924560c0609207ee2d9f1565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d9db2f924560c0609207ee2d9f1565">&#9670;&nbsp;</a></span>Send() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">ReadOnlySpan&lt; byte &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+    <tr><td class="paramname">offset</td><td>数据偏移</td></tr>
+    <tr><td class="paramname">count</td><td>数据大小</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a890278e4c87b80b6186dbb0b52d15548" name="a890278e4c87b80b6186dbb0b52d15548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a890278e4c87b80b6186dbb0b52d15548">&#9670;&nbsp;</a></span>Send() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a607901ba7339009f1b2e580b9977913e" name="a607901ba7339009f1b2e580b9977913e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a607901ba7339009f1b2e580b9977913e">&#9670;&nbsp;</a></span>Send() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReadOnlySpan&lt; byte &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa7a323f91477ab4a959b63e0952e4e48" name="aa7a323f91477ab4a959b63e0952e4e48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7a323f91477ab4a959b63e0952e4e48">&#9670;&nbsp;</a></span>Send() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReadOnlySpan&lt; byte &gt;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+    <tr><td class="paramname">offset</td><td>数据偏移</td></tr>
+    <tr><td class="paramname">count</td><td>数据大小</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7ac3cfd5b198700e1a4551cf2e09f802" name="a7ac3cfd5b198700e1a4551cf2e09f802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac3cfd5b198700e1a4551cf2e09f802">&#9670;&nbsp;</a></span>Send() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype">ushort&#160;</td>
+          <td class="paramname"><em>sessionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>utf8str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据(utf8字符串数据) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>会话ID</td></tr>
+    <tr><td class="paramname">utf8str</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac9890a9eee2e1c460eb1bff498318b62" name="ac9890a9eee2e1c460eb1bff498318b62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9890a9eee2e1c460eb1bff498318b62">&#9670;&nbsp;</a></span>Send() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_e_c_sharp_1_1_variant_1_1_var.html">Var</a>&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41d2ba1815d66d5c0d1015b1a91b2a95" name="a41d2ba1815d66d5c0d1015b1a91b2a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d2ba1815d66d5c0d1015b1a91b2a95">&#9670;&nbsp;</a></span>Send() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_e_c_sharp_1_1_variant_1_1_var_list.html">VarList</a>&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aae2b43f1c93c286598dbad2541389310" name="aae2b43f1c93c286598dbad2541389310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2b43f1c93c286598dbad2541389310">&#9670;&nbsp;</a></span>Send() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.Send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_e_c_sharp_1_1_variant_1_1_var_map.html">VarMap</a>&#160;</td>
+          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>数据</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a16a6284977142a9c1e5a4629d2a8b301" name="a16a6284977142a9c1e5a4629d2a8b301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a6284977142a9c1e5a4629d2a8b301">&#9670;&nbsp;</a></span>Tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_e_c_sharp_1_1_variant_1_1_var.html">Var</a> ECSharp.Network.Sockets.Server.RemoteConnection.Tag = Var.Null</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>用户绑定对象(TCP模式) </p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a3c60d66001745073cef12e5d91ff4774" name="a3c60d66001745073cef12e5d91ff4774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c60d66001745073cef12e5d91ff4774">&#9670;&nbsp;</a></span>ConnectDateTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DateTime ECSharp.Network.Sockets.Server.RemoteConnection.ConnectDateTime = DateTime.MinValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接时间 </p>
+
+</div>
+</div>
+<a id="a4d0274823e1a235b3d96fcdb75c91ba4" name="a4d0274823e1a235b3d96fcdb75c91ba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0274823e1a235b3d96fcdb75c91ba4">&#9670;&nbsp;</a></span>HasConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ECSharp.Network.Sockets.Server.RemoteConnection.HasConnected</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接状态 </p>
+
+</div>
+</div>
+<a id="a47914d5be9514b1ff27b0e210c523ddb" name="a47914d5be9514b1ff27b0e210c523ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47914d5be9514b1ff27b0e210c523ddb">&#9670;&nbsp;</a></span>RBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a> ECSharp.Network.Sockets.Server.RemoteConnection.RBuffer = new <a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_sweet_stream.html">SweetStream</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>数据包缓存 </p>
+
+</div>
+</div>
+<a id="ad418e83b075ec29bbbea83c6419597bd" name="ad418e83b075ec29bbbea83c6419597bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad418e83b075ec29bbbea83c6419597bd">&#9670;&nbsp;</a></span>ReceiveEventArgs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">System.Net.Sockets.? SocketAsyncEventArgs ECSharp.Network.Sockets.Server.RemoteConnection.ReceiveEventArgs = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>接受事件参数 </p>
+
+</div>
+</div>
+<a id="a3f1edfacc849f6360a93d6de5212179a" name="a3f1edfacc849f6360a93d6de5212179a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f1edfacc849f6360a93d6de5212179a">&#9670;&nbsp;</a></span>Socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_socket.html">Socket</a>? ECSharp.Network.Sockets.Server.RemoteConnection.Socket = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ESF.Socket </p>
+
+</div>
+</div>
+<a id="a6259d2322846474325596233640fe359" name="a6259d2322846474325596233640fe359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6259d2322846474325596233640fe359">&#9670;&nbsp;</a></span>SocketInvoke</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html">IRemoteSocket</a>? ECSharp.Network.Sockets.Server.RemoteConnection.SocketInvoke = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>异步接受信息委托回调 </p>
+
+</div>
+</div>
+<a id="af7bab01cb591c78d78134a98dffe1240" name="af7bab01cb591c78d78134a98dffe1240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7bab01cb591c78d78134a98dffe1240">&#9670;&nbsp;</a></span>SocketSvrMgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html">ServerSocket</a> ECSharp.Network.Sockets.Server.RemoteConnection.SocketSvrMgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接服务控制对象 </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>Sockets/Server/RemoteConnection.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_c_sharp.html">ECSharp</a></li><li class="navelem"><a class="el" href="namespace_e_c_sharp_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="namespace_e_c_sharp_1_1_network_1_1_sockets.html">Sockets</a></li><li class="navelem"><a class="el" href="namespace_e_c_sharp_1_1_network_1_1_sockets_1_1_server.html">Server</a></li><li class="navelem"><a class="el" href="class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html">RemoteConnection</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

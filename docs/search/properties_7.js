@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hasconnected_1370',['HasConnected',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a8d84ed5fb6d850fb996743d122624b5b',1,'ES.Network.Sockets.Client.ClientSocket.HasConnected()'],['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a04eda263aea44314d193e7a79f244521',1,'ES.Network.Sockets.Server.RemoteConnection.HasConnected()']]]
+  ['getparams_0',['GetParams',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_request.html#a87f989e0694d8ebd0dc3a26bcead72be',1,'ECSharp::Network::Http::HttpRequest']]],
+  ['getvalue_1',['GetValue',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_request.html#adfe4e3bcf403584ed1a4ce0e2b2e3a51',1,'ECSharp::Network::Http::HttpRequest']]]
 ];

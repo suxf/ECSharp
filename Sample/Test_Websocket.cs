@@ -1,4 +1,4 @@
-﻿using ES.Network.Websocket;
+﻿using ECSharp.Network.Websocket;
 using System;
 
 namespace Sample

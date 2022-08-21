@@ -1,5 +1,4 @@
-﻿using ES.Alias.Collections;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Sample
@@ -8,7 +7,7 @@ namespace Sample
     {
         public Test_Json2Object()
         {
-            Map<int, ClassA> configA = new Map<int, ClassA>();
+            Dictionary<int, ClassA> configA = new Dictionary<int, ClassA>();
             ClassA classA = new ClassA();
             classA.Id = 1;
             classA.Name = "test";
@@ -28,7 +27,7 @@ namespace Sample
             configA.Add(123, classA);
             string json = JsonConvert.SerializeObject(configA);
 
-            Map<int, ClassA> config = JsonConvert.DeserializeObject<Map<int, ClassA>>(json);
+            Dictionary<int, ClassA> config = JsonConvert.DeserializeObject<Dictionary<int, ClassA>>(json);
         }
 
         public class ClassA
@@ -37,7 +36,7 @@ namespace Sample
             public string Name;
             public string Description;
             public List<ClassB> Children = new List<ClassB>();
-            public Map<string, ClassA> Props = new Map<string, ClassA>();
+            public Dictionary<string, ClassA> Props = new Dictionary<string, ClassA>();
         }
 
         public class ClassB

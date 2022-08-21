@@ -1,0 +1,13 @@
+E:\EasySharpFrame\ES\bin\release\net6.0\ES.deps.json
+E:\EasySharpFrame\ES\bin\release\net6.0\ES.dll
+E:\EasySharpFrame\ES\bin\release\net6.0\ES.pdb
+E:\EasySharpFrame\ES\bin\release\net6.0\ES.xml
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.csproj.AssemblyReference.cache
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.GeneratedMSBuildEditorConfig.editorconfig
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.AssemblyInfoInputs.cache
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.AssemblyInfo.cs
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.csproj.CoreCompileInputs.cache
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.dll
+E:\EasySharpFrame\ES\obj\Release\net6.0\ref\ES.dll
+E:\EasySharpFrame\ES\obj\Release\net6.0\ES.pdb
+E:\EasySharpFrame\ES\obj\Release\net6.0\refint\ES.dll

@@ -1,6 +1,6 @@
-﻿using ES;
-using ES.Utils;
-using ES.Variant;
+﻿using ECSharp;
+using ECSharp.Utils;
+using ECSharp.Variant;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 
@@ -60,7 +60,7 @@ namespace Sample
 
             uint hhh = 1;
             Var hhhh = hhh;
-            uint hh = hhhh;
+            uint hh = (uint)hhhh;
 
             Var uu = 255;
             byte[] uu2 = uu.GetBytes();
@@ -76,10 +76,10 @@ namespace Sample
             int sss = ssf.GetHashCode();
             int sss2 = uu.GetHashCode();
 
-            byte[] yyy = Var.Empty.GetBytes();
+            byte[] yyy = Var.Null.GetBytes();
             Var yyy2 = Var.Parse(yyy, out var len222);
 
-            bool g = Var.Empty.Equals(sss);
+            bool g = Var.Null.Equals(sss);
 
             Var cc = 230;
             var buff = cc.GetBytes();

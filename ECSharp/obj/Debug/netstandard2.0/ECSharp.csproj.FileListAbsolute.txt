@@ -1,0 +1,11 @@
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.csproj.AssemblyReference.cache
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.AssemblyInfoInputs.cache
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.AssemblyInfo.cs
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.csproj.CoreCompileInputs.cache
+D:\Projects\ECSharp\ECSharp\bin\debug\netstandard2.0\ECSharp.deps.json
+D:\Projects\ECSharp\ECSharp\bin\debug\netstandard2.0\ECSharp.dll
+D:\Projects\ECSharp\ECSharp\bin\debug\netstandard2.0\ECSharp.pdb
+D:\Projects\ECSharp\ECSharp\bin\debug\netstandard2.0\ES.xml
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.dll
+D:\Projects\ECSharp\ECSharp\obj\Debug\netstandard2.0\ECSharp.pdb

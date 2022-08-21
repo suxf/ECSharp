@@ -1,6 +1,6 @@
-﻿using ES;
-using ES.Network.Http;
-using ES.Network.Http.Linq;
+﻿using ECSharp;
+using ECSharp.Network.Http;
+using ECSharp.Network.Http.Linq;
 using System;
 
 namespace Sample

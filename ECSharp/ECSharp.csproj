@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netframework462;netstandard2.0</TargetFrameworks>
+    <AssemblyName>ECSharp</AssemblyName>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Authors>suxf</Authors>
+    <Description>Simple Development!</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.18.0</Version>
+    <Company>Fyenet Inc.</Company>
+    <Copyright>Fyenet Inc.</Copyright>
+    <PackageId>ECSharp</PackageId>
+    <PackageTags>C#,.Net,Server,Http,Hotfix,Socket,Sql,Mssql,Sqlserver,Redis,Websocket</PackageTags>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseFile></PackageLicenseFile>
+    <RepositoryUrl>https://github.com/suxf/ECSharp</RepositoryUrl>
+    <Product>ECSharp</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;IDE0017;IDE0063;IDE0066;IDE0090;IDE0019;SYSLIB0014;</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\debug\ES.xml</DocumentationFile>
+    <OutputPath>bin\debug\</OutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\release\ES.xml</DocumentationFile>
+    <OutputPath>bin\release\</OutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.2.0" />
+    <PackageReference Include="Kcp" Version="2.3.0" />
+    <PackageReference Include="MySqlConnector" Version="2.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.5.43" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+</Project>

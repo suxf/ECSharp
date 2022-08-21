@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['debug_867',['Debug',['../class_e_s_1_1_log.html#a92c02e85f605be6ad573e9fc7124a169',1,'ES.Log.Debug(string log)'],['../class_e_s_1_1_log.html#a885b344e84cc45d1cd8d0a873654c814',1,'ES.Log.Debug(object? log)'],['../class_e_s_1_1_log.html#af63c5e3a81e1221c47b6c90bada9e10c',1,'ES.Log.Debug(params object?[] logs)']]],
-  ['decode_868',['Decode',['../class_e_s_1_1_network_1_1_sockets_1_1_sweet_stream.html#a0071294f2c91e6f6143c79c4c0bac818',1,'ES::Network::Sockets::SweetStream']]],
-  ['decrypt_869',['Decrypt',['../class_e_s_1_1_crypto_1_1_aes_crypto.html#a010704202956b127e4af82fda74e0b25',1,'ES.Crypto.AesCrypto.Decrypt()'],['../class_e_s_1_1_crypto_1_1_rsa_crypto.html#a5263111754678a7f85f4a42b6850af1b',1,'ES.Crypto.RsaCrypto.Decrypt()']]],
-  ['delete_870',['Delete',['../class_e_s_1_1_database_1_1_linq_1_1_sql_builder.html#a9dc6fb4965c0bf309fe4992f023381ee',1,'ES::Database::Linq::SqlBuilder']]],
-  ['deletekey_871',['DeleteKey',['../class_e_s_1_1_database_1_1_linq_1_1_no_sql_storage.html#ae45b137d36379699d3344a3f96377b9a',1,'ES::Database::Linq::NoSqlStorage']]],
-  ['deleteobject_872',['DeleteObject',['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#ad3ae4e7d4d69e11b00a09b1b6d173702',1,'ES::Hotfix::AgentDataPivot']]],
-  ['deletestruct_873',['DeleteStruct',['../class_e_s_1_1_hotfix_1_1_agent_data_pivot.html#ad12bfec1c6d79e512c0fe3e6d07d444b',1,'ES::Hotfix::AgentDataPivot']]],
-  ['destroy_874',['Destroy',['../class_e_s_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a570512258e07457b0c94ff52c488eec9',1,'ES::Network::Sockets::Server::RemoteConnection']]],
-  ['doubletoint64bits_875',['DoubleToInt64Bits',['../class_e_s_1_1_utils_1_1_byte_converter.html#ab62bd9b50f1e41c4ec6cede2ca2ab23b',1,'ES::Utils::ByteConverter']]]
+  ['debug_0',['Debug',['../class_e_c_sharp_1_1_log.html#a2c74787013fd95fd79ef3b25af2b90da',1,'ECSharp.Log.Debug(string log)'],['../class_e_c_sharp_1_1_log.html#a01aa79de26f5df49fec97599c998f1dc',1,'ECSharp.Log.Debug(object? log)'],['../class_e_c_sharp_1_1_log.html#afd5b504c600f6675693fa361767dad23',1,'ECSharp.Log.Debug(params object?[] logs)']]],
+  ['decode_1',['Decode',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_sweet_stream.html#a0f07ee9cdbaf0f9dd0a952217dd18336',1,'ECSharp::Network::Sockets::SweetStream']]],
+  ['decrypt_2',['Decrypt',['../class_e_c_sharp_1_1_crypto_1_1_a_e_s.html#a88d1cc3a04b378899d3785316190495f',1,'ECSharp.Crypto.AES.Decrypt()'],['../class_e_c_sharp_1_1_crypto_1_1_r_s_a.html#a2d3fca850044c47809560d2aa294613b',1,'ECSharp.Crypto.RSA.Decrypt()']]],
+  ['delete_3',['Delete',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a793648d0eebf4605a994cff8a9bc1e3f',1,'ECSharp::Database::Linq::SqlBuilder']]],
+  ['deletekey_4',['DeleteKey',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_no_sql_storage.html#a8e5612c6efc865672c822ee65284a443',1,'ECSharp::Database::Linq::NoSqlStorage']]],
+  ['deleteobject_5',['DeleteObject',['../class_e_c_sharp_1_1_hotfix_1_1_agent_data_pivot.html#a8ffebaa0380e7201c9412a8b8ac94322',1,'ECSharp::Hotfix::AgentDataPivot']]],
+  ['deletestruct_6',['DeleteStruct',['../class_e_c_sharp_1_1_hotfix_1_1_agent_data_pivot.html#a793a13d9977386d723eb7d06aa526244',1,'ECSharp::Hotfix::AgentDataPivot']]],
+  ['destroy_7',['Destroy',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html#a323740c4d5f6bdfd34755dc576112eff',1,'ECSharp::Network::Sockets::Server::RemoteConnection']]],
+  ['doubletoint64bits_8',['DoubleToInt64Bits',['../class_e_c_sharp_1_1_utils_1_1_byte_converter.html#a48d7fc6c1249da65e8446772eb558856',1,'ECSharp::Utils::ByteConverter']]]
 ];

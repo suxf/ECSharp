@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EasySharpFrame</id>
+    <version>1.17.2</version>
+    <authors>枫</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <description>让开发变得更加简单。</description>
+    <copyright>Fyenet Inc.</copyright>
+    <tags>C#,.Net,Server,Http,Hotfix,Socket,Sql,Mssql,Sqlserver,Redis,Websocket</tags>
+    <repository type="git" url="https://github.com/suxf/EasySharpFrame" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Kcp" version="2.3.0" exclude="Build,Analyzers" />
+        <dependency id="MySqlConnector" version="2.1.8" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.5.43" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Kcp" version="2.3.0" exclude="Build,Analyzers" />
+        <dependency id="MySqlConnector" version="2.1.8" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.5.43" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Kcp" version="2.3.0" exclude="Build,Analyzers" />
+        <dependency id="MySqlConnector" version="2.1.8" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.5.43" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Kcp" version="2.3.0" exclude="Build,Analyzers" />
+        <dependency id="MySqlConnector" version="2.1.8" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.5.43" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Kcp" version="2.3.0" exclude="Build,Analyzers" />
+        <dependency id="MySqlConnector" version="2.1.8" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.5.43" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\EasySharpFrame\ES\bin\release\net5.0\ES.dll" target="lib\net5.0\ES.dll" />
+    <file src="E:\EasySharpFrame\ES\bin\release\net5.0\ES.xml" target="lib\net5.0\ES.xml" />
+    <file src="E:\EasySharpFrame\ES\bin\release\net6.0\ES.dll" target="lib\net6.0\ES.dll" />
+    <file src="E:\EasySharpFrame\ES\bin\release\net6.0\ES.xml" target="lib\net6.0\ES.xml" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netcoreapp3.1\ES.dll" target="lib\netcoreapp3.1\ES.dll" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netcoreapp3.1\ES.xml" target="lib\netcoreapp3.1\ES.xml" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netframework462\ES.dll" target="lib\net462\ES.dll" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netframework462\ES.xml" target="lib\net462\ES.xml" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netstandard2.0\ES.dll" target="lib\netstandard2.0\ES.dll" />
+    <file src="E:\EasySharpFrame\ES\bin\release\netstandard2.0\ES.xml" target="lib\netstandard2.0\ES.xml" />
+  </files>
+</package>

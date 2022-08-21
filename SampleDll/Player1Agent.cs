@@ -1,7 +1,7 @@
-﻿using ES;
-using ES.Hotfix;
-using ES.Time;
-using ES.Utils;
+﻿using ECSharp;
+using ECSharp.Hotfix;
+using ECSharp.Time;
+using ECSharp.Utils;
 using Sample;
 
 namespace SampleDll

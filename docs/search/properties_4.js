@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['effectnum_1363',['EffectNum',['../class_e_s_1_1_database_1_1_command_result.html#a754b17c8a43f753a34eff1e173f132d0',1,'ES::Database::CommandResult']]],
-  ['encoding_1364',['Encoding',['../class_e_s_1_1_network_1_1_http_1_1_http_header.html#aea3080258db164adbe5149bb7b86b5ce',1,'ES::Network::Http::HttpHeader']]]
+  ['dataset_0',['DataSet',['../class_e_c_sharp_1_1_database_1_1_command_result.html#a22fc96e10a4ac6ae21aaf03321289d74',1,'ECSharp::Database::CommandResult']]],
+  ['dotnetversion_1',['DotNetVersion',['../class_e_c_sharp_1_1_utils_1_1_system_info.html#a70e530154bd370990fb97b34cf0e4508',1,'ECSharp::Utils::SystemInfo']]]
 ];

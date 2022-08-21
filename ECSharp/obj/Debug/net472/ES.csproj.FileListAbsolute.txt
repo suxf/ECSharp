@@ -1,0 +1,4 @@
+E:\EasySharpFrame\EasySharpFrame\ES\obj\Debug\net472\ES.csproj.AssemblyReference.cache
+E:\EasySharpFrame\EasySharpFrame\ES\obj\Debug\net472\ES.AssemblyInfoInputs.cache
+E:\EasySharpFrame\EasySharpFrame\ES\obj\Debug\net472\ES.AssemblyInfo.cs
+E:\EasySharpFrame\EasySharpFrame\ES\obj\Debug\net472\ES.csproj.CoreCompileInputs.cache

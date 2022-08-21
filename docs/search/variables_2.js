@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['background_5fdebug_5fcolor_1146',['BACKGROUND_DEBUG_COLOR',['../class_e_s_1_1_log_config.html#a48cc6366c953a152a124b99ddf51427e',1,'ES::LogConfig']]],
-  ['background_5ferror_5fcolor_1147',['BACKGROUND_ERROR_COLOR',['../class_e_s_1_1_log_config.html#ac0342fe021d03b1abdc86d58f36e975a',1,'ES::LogConfig']]],
-  ['background_5fexception_5fcolor_1148',['BACKGROUND_EXCEPTION_COLOR',['../class_e_s_1_1_log_config.html#a50cfd3e39e3c97031e2de66073e95865',1,'ES::LogConfig']]],
-  ['background_5finfo_5fcolor_1149',['BACKGROUND_INFO_COLOR',['../class_e_s_1_1_log_config.html#aeb8c03e463154916cef4587d52df42d9',1,'ES::LogConfig']]],
-  ['background_5finput_5fcolor_1150',['BACKGROUND_INPUT_COLOR',['../class_e_s_1_1_log_config.html#aa1b27b7b55756166b87728f58da571fe',1,'ES::LogConfig']]],
-  ['background_5fwarn_5fcolor_1151',['BACKGROUND_WARN_COLOR',['../class_e_s_1_1_log_config.html#a5769ce0ab21cd7f55a2257e05b6362ab',1,'ES::LogConfig']]],
-  ['buffer_1152',['buffer',['../class_e_s_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a0844d97c6261bd7b7e0c31156782a750',1,'ES::Network::Sockets::Client::ClientSocket']]]
+  ['clientsocket_0',['clientSocket',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#aeb25be6cdfc3d156753064e8a7082daa',1,'ECSharp::Network::Sockets::Client::ClientSocket']]],
+  ['cntlistener_1',['cntListener',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a5914e1e2fed0c2f52f6146d4f3fee7f0',1,'ECSharp::Network::Sockets::HyperSocket::HyperSocket']]],
+  ['config_2',['config',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_base_hyper_socket.html#a0cf0eb77f75fddb1699d26631da66981',1,'ECSharp::Network::Sockets::HyperSocket::BaseHyperSocket']]],
+  ['connectmaxnum_3',['ConnectMaxNum',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_server.html#ae5ec5dd4a4aba5556da4d220692bc2e9',1,'ECSharp::Network::Sockets::HyperSocket::HyperSocketServer']]],
+  ['console_5foutput_5flog_5ftype_4',['CONSOLE_OUTPUT_LOG_TYPE',['../class_e_c_sharp_1_1_log_config.html#ac8eef09624a7c5d0702743cb8812588d',1,'ECSharp::LogConfig']]]
 ];

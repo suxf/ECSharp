@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ES\ES.csproj" />
+    <ProjectReference Include="..\ECSharp\ECSharp.csproj" />
   </ItemGroup>
 
 </Project>

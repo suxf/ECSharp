@@ -1,5 +1,5 @@
-﻿using ES;
-using ES.Utils;
+﻿using ECSharp;
+using ECSharp.Utils;
 
 namespace Sample
 {

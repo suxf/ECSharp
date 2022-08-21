@@ -1,5 +1,5 @@
-﻿using ES;
-using ES.Database.Redis;
+﻿using ECSharp;
+using ECSharp.Database.Redis;
 using StackExchange.Redis;
 using System;
 

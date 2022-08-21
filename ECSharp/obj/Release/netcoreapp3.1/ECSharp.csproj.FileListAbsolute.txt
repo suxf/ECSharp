@@ -1,0 +1,11 @@
+D:\Projects\ECSharp\ECSharp\bin\release\netcoreapp3.1\ECSharp.deps.json
+D:\Projects\ECSharp\ECSharp\bin\release\netcoreapp3.1\ECSharp.dll
+D:\Projects\ECSharp\ECSharp\bin\release\netcoreapp3.1\ECSharp.pdb
+D:\Projects\ECSharp\ECSharp\bin\release\netcoreapp3.1\ES.xml
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.csproj.AssemblyReference.cache
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.AssemblyInfoInputs.cache
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.AssemblyInfo.cs
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.csproj.CoreCompileInputs.cache
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.dll
+D:\Projects\ECSharp\ECSharp\obj\Release\netcoreapp3.1\ECSharp.pdb

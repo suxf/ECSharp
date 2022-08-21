@@ -1,0 +1,10 @@
+E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp3.0\ES.deps.json
+E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp3.0\ES.dll
+E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp3.0\ES.pdb
+E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp3.0\ES.xml
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.csprojAssemblyReference.cache
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.AssemblyInfoInputs.cache
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.AssemblyInfo.cs
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.csproj.CoreCompileInputs.cache
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.dll
+E:\EasySharpFrameProject\EasySharpFrame\ES\obj\Release\netcoreapp3.0\ES.pdb

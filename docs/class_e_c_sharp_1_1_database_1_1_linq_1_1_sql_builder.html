@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EasySharpFrame: ECSharp.Database.Linq.SqlBuilder类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.0</span>
+   </div>
+   <div id="projectbrief">这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ECSharp.Database.Linq.SqlBuilder类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>SQL语句构建器  
+ <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#details">更多...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af2e7469c93389a50f4e377a351424345"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#af2e7469c93389a50f4e377a351424345">Top</a> (int topCount)</td></tr>
+<tr class="memdesc:af2e7469c93389a50f4e377a351424345"><td class="mdescLeft">&#160;</td><td class="mdescRight">顶部数量  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#af2e7469c93389a50f4e377a351424345">更多...</a><br /></td></tr>
+<tr class="separator:af2e7469c93389a50f4e377a351424345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32e8a24bdcfb7cbe6a82c7a2a5dd6c91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a32e8a24bdcfb7cbe6a82c7a2a5dd6c91">Fields</a> (params string[] fields)</td></tr>
+<tr class="memdesc:a32e8a24bdcfb7cbe6a82c7a2a5dd6c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">字段  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a32e8a24bdcfb7cbe6a82c7a2a5dd6c91">更多...</a><br /></td></tr>
+<tr class="separator:a32e8a24bdcfb7cbe6a82c7a2a5dd6c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44e2955190a95410e98588eec980d23a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a44e2955190a95410e98588eec980d23a">Values</a> (params object[] values)</td></tr>
+<tr class="memdesc:a44e2955190a95410e98588eec980d23a"><td class="mdescLeft">&#160;</td><td class="mdescRight">值  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a44e2955190a95410e98588eec980d23a">更多...</a><br /></td></tr>
+<tr class="separator:a44e2955190a95410e98588eec980d23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eda6c8c3c30b5376308f926f2260f40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a1eda6c8c3c30b5376308f926f2260f40">Table</a> (string tableName)</td></tr>
+<tr class="memdesc:a1eda6c8c3c30b5376308f926f2260f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">表名  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a1eda6c8c3c30b5376308f926f2260f40">更多...</a><br /></td></tr>
+<tr class="separator:a1eda6c8c3c30b5376308f926f2260f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767b40728854e060ad56fdfabea12fa6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a767b40728854e060ad56fdfabea12fa6">Where</a> (string conditions)</td></tr>
+<tr class="memdesc:a767b40728854e060ad56fdfabea12fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">条件  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a767b40728854e060ad56fdfabea12fa6">更多...</a><br /></td></tr>
+<tr class="separator:a767b40728854e060ad56fdfabea12fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc96b2fcaf41ef1ebfda71c57604862c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_command_result.html">CommandResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#acc96b2fcaf41ef1ebfda71c57604862c">Select</a> (bool isLock=true)</td></tr>
+<tr class="memdesc:acc96b2fcaf41ef1ebfda71c57604862c"><td class="mdescLeft">&#160;</td><td class="mdescRight">查询  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#acc96b2fcaf41ef1ebfda71c57604862c">更多...</a><br /></td></tr>
+<tr class="separator:acc96b2fcaf41ef1ebfda71c57604862c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf064ad2605554dfdaef512292cadca1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_c_sharp_1_1_database_1_1_command_result.html">CommandResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#aaf064ad2605554dfdaef512292cadca1">Insert</a> ()</td></tr>
+<tr class="memdesc:aaf064ad2605554dfdaef512292cadca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">插入  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#aaf064ad2605554dfdaef512292cadca1">更多...</a><br /></td></tr>
+<tr class="separator:aaf064ad2605554dfdaef512292cadca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4345ed9af5dabb801e1084f30ae884"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#adb4345ed9af5dabb801e1084f30ae884">Update</a> ()</td></tr>
+<tr class="memdesc:adb4345ed9af5dabb801e1084f30ae884"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#adb4345ed9af5dabb801e1084f30ae884">更多...</a><br /></td></tr>
+<tr class="separator:adb4345ed9af5dabb801e1084f30ae884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793648d0eebf4605a994cff8a9bc1e3f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a793648d0eebf4605a994cff8a9bc1e3f">Delete</a> ()</td></tr>
+<tr class="memdesc:a793648d0eebf4605a994cff8a9bc1e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a793648d0eebf4605a994cff8a9bc1e3f">更多...</a><br /></td></tr>
+<tr class="separator:a793648d0eebf4605a994cff8a9bc1e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a4e3f0a94d40f21e9c0a5977aec5e0d7f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a4e3f0a94d40f21e9c0a5977aec5e0d7f">Create</a> (<a class="el" href="interface_e_c_sharp_1_1_database_1_1_i_db_helper.html">IDbHelper</a> dBHelper)</td></tr>
+<tr class="memdesc:a4e3f0a94d40f21e9c0a5977aec5e0d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个构造器  <a href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html#a4e3f0a94d40f21e9c0a5977aec5e0d7f">更多...</a><br /></td></tr>
+<tr class="separator:a4e3f0a94d40f21e9c0a5977aec5e0d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >SQL语句构建器 </p>
+<p >适合简单的语句构建</p>
+<p >可以帮助开发者减少拼写sql语句带来的不便</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a4e3f0a94d40f21e9c0a5977aec5e0d7f" name="a4e3f0a94d40f21e9c0a5977aec5e0d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e3f0a94d40f21e9c0a5977aec5e0d7f">&#9670;&nbsp;</a></span>Create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_e_c_sharp_1_1_database_1_1_i_db_helper.html">IDbHelper</a>&#160;</td>
+          <td class="paramname"><em>dBHelper</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个构造器 </p>
+<p >需要传入一个非空数据库助手实例对象</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dBHelper</td><td>数据库助手实例</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a793648d0eebf4605a994cff8a9bc1e3f" name="a793648d0eebf4605a994cff8a9bc1e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793648d0eebf4605a994cff8a9bc1e3f">&#9670;&nbsp;</a></span>Delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ECSharp.Database.Linq.SqlBuilder.Delete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>删除 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a32e8a24bdcfb7cbe6a82c7a2a5dd6c91" name="a32e8a24bdcfb7cbe6a82c7a2a5dd6c91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e8a24bdcfb7cbe6a82c7a2a5dd6c91">&#9670;&nbsp;</a></span>Fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Fields </td>
+          <td>(</td>
+          <td class="paramtype">params string[]&#160;</td>
+          <td class="paramname"><em>fields</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>字段 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fields</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aaf064ad2605554dfdaef512292cadca1" name="aaf064ad2605554dfdaef512292cadca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf064ad2605554dfdaef512292cadca1">&#9670;&nbsp;</a></span>Insert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_command_result.html">CommandResult</a> ECSharp.Database.Linq.SqlBuilder.Insert </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>插入 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="acc96b2fcaf41ef1ebfda71c57604862c" name="acc96b2fcaf41ef1ebfda71c57604862c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc96b2fcaf41ef1ebfda71c57604862c">&#9670;&nbsp;</a></span>Select()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_command_result.html">CommandResult</a> ECSharp.Database.Linq.SqlBuilder.Select </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isLock</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>查询 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isLock</td><td>是否锁（NOLOCK) 默认有锁</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a1eda6c8c3c30b5376308f926f2260f40" name="a1eda6c8c3c30b5376308f926f2260f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eda6c8c3c30b5376308f926f2260f40">&#9670;&nbsp;</a></span>Table()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Table </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>tableName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表名 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tableName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af2e7469c93389a50f4e377a351424345" name="af2e7469c93389a50f4e377a351424345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e7469c93389a50f4e377a351424345">&#9670;&nbsp;</a></span>Top()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Top </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>topCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>顶部数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">topCount</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="adb4345ed9af5dabb801e1084f30ae884" name="adb4345ed9af5dabb801e1084f30ae884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb4345ed9af5dabb801e1084f30ae884">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ECSharp.Database.Linq.SqlBuilder.Update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新 </p>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a44e2955190a95410e98588eec980d23a" name="a44e2955190a95410e98588eec980d23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44e2955190a95410e98588eec980d23a">&#9670;&nbsp;</a></span>Values()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Values </td>
+          <td>(</td>
+          <td class="paramtype">params object[]&#160;</td>
+          <td class="paramname"><em>values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>值 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a767b40728854e060ad56fdfabea12fa6" name="a767b40728854e060ad56fdfabea12fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767b40728854e060ad56fdfabea12fa6">&#9670;&nbsp;</a></span>Where()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a> ECSharp.Database.Linq.SqlBuilder.Where </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>conditions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>条件 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conditions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd></dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>SqlBuilder.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_e_c_sharp.html">ECSharp</a></li><li class="navelem"><a class="el" href="namespace_e_c_sharp_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="namespace_e_c_sharp_1_1_database_1_1_linq.html">Linq</a></li><li class="navelem"><a class="el" href="class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html">SqlBuilder</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

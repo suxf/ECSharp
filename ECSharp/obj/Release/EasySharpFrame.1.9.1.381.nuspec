@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EasySharpFrame</id>
+    <version>1.9.1.381</version>
+    <authors>Fyenet Inc.</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">GPL-3.0-only</license>
+    <licenseUrl>https://licenses.nuget.org/GPL-3.0-only</licenseUrl>
+    <projectUrl>http://easysharpframe.fyenet.com/</projectUrl>
+    <description>Easy .NET CORE Develop Frame.</description>
+    <releaseNotes>bug fixes</releaseNotes>
+    <copyright>Fyenet Inc.</copyright>
+    <tags>C#,.Net CORE,Easy Develop,Server,Client</tags>
+    <repository url="https://github.com/suxf/EasySharpFrame" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Fleck" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.1.58" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp2.1">
+        <dependency id="Fleck" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.1.58" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.8.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\net462\ES.dll" target="lib\net462\ES.dll" />
+    <file src="E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\net462\ES.xml" target="lib\net462\ES.xml" />
+    <file src="E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp2.1\ES.dll" target="lib\netcoreapp2.1\ES.dll" />
+    <file src="E:\EasySharpFrameProject\EasySharpFrame\ES\bin\release\netcoreapp2.1\ES.xml" target="lib\netcoreapp2.1\ES.xml" />
+  </files>
+</package>

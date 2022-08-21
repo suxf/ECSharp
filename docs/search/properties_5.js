@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['fieldnames_1365',['FieldNames',['../class_e_s_1_1_database_1_1_linq_1_1_data_entity_rows.html#a21b8ed65e689fd24bd1dbd5aeffda191',1,'ES::Database::Linq::DataEntityRows']]],
-  ['firstrows_1366',['FirstRows',['../class_e_s_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html#a53a48b9d587f07a4333684a22d4fa570',1,'ES::Database::SQLServer::ProcedureResult']]],
-  ['frameversion_1367',['FrameVersion',['../class_e_s_1_1_utils_1_1_system_info.html#a55d83e072898a17fcec6de3dea60262b',1,'ES::Utils::SystemInfo']]]
+  ['effectnum_0',['EffectNum',['../class_e_c_sharp_1_1_database_1_1_command_result.html#a1062a00793495e8d7b67829288d9fcaa',1,'ECSharp::Database::CommandResult']]],
+  ['encoding_1',['Encoding',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#a98af2bcbc8378310c41ffa2a10673b76',1,'ECSharp::Network::Http::HttpHeader']]]
 ];

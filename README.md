@@ -1,16 +1,16 @@
-# EasySharpFrame
-[![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
-[![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
+# ECSharp (原:EasySharpFrame)
+[![Nuget](https://img.shields.io/nuget/v/ECSharp?style=float)](https://www.nuget.org/packages/ECSharp)
+[![Nuget](https://img.shields.io/nuget/dt/ECSharp?style=float)](https://www.nuget.org/stats/packages/ECSharp?groupby=Version)
 [![Platform](https://img.shields.io/badge/framework-.net-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
-[![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/EasySharpFrame/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/suxf/ECSharp?style=float)](https://github.com/suxf/ECSharp/blob/master/LICENSE)
 
 Easy .NET Develop Frame.
 
 这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！
 
 # 快速使用
-可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/EasySharpFrame)。
+可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/ECSharp)。
 
 # 版本支持
 | 版本 | .Net6.0 | .Net5.0 | .NetCore3.1 | .NetFramework4.6.2 | .NetStandard2.0 |
@@ -19,13 +19,13 @@ Easy .NET Develop Frame.
 | 1.13 | √ | √ | √ | × | × |
 | 1.11 | √ | √ | √ | √ | × |
 
-### 更新历史 [查看](https://github.com/suxf/EasySharpFrame/blob/master/UPDATE.md)
+### 更新历史 [查看](https://github.com/suxf/ECSharp/blob/master/UPDATE.md)
 
 # 目录介绍
 | 目录 | 备注 |
 | ------------ | ------------ |
 | UnityESF | Unity框架支持 |
-| docs | [在线API文档](https://suxf.github.io/EasySharpFrame) |
+| docs | [在线API文档](https://suxf.github.io/ECSharp) |
 | ES | 框架主工程 |
 | Sample | 框架测试样本工程 |
 | SampleDll | 框架热更模块测试样本工程 |
@@ -241,7 +241,7 @@ class TimeDemo : ITimeUpdate
 }
 ```
 ### 5.Sqlserver数据库助手
-Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/EasySharpFrame/blob/master/Sample/Test_DBSqlServer.cs)
+Sqlserver相关操作比较多，更多可直接查看Sample中书写的样例：[查看链接](https://github.com/suxf/ECSharp/blob/master/Sample/Test_DBSqlServer.cs)
 
 助手目前有以下几种功能：
 - 数据库连接：简化连接操作步骤
@@ -702,4 +702,4 @@ int processorCount = ES.Utils.SystemInfo.ProcessorCount;
 1. [mysql-net/MySqlConnector](https://github.com/mysql-net/MySqlConnector) 高性能的MySql数据库连接支持库
 
 # 关于框架
-ESF是为了解决服务器与服务器，服务器与客户端之间交互问题而设计的，减少了大量前期开发准备工作，可以更加快速的进入业务逻辑开发阶段。主要包含了数据库连接(Sqlserver,Mysql,Redis)功能，网络(Http,Socket,Websocket)功能，时间执行功能，事件命令功能，日志功能，加密(Aes,Rsa,Md5)功能，服务器级代码逻辑热更新功能，可变结构体变量功能以及其他各种辅助开发的工具类。
+ECSharp是为了解决服务器与服务器，服务器与客户端之间交互问题而设计的，减少了大量前期开发准备工作，可以更加快速的进入业务逻辑开发阶段。主要包含了数据库连接(Sqlserver,Mysql,Redis)功能，网络(Http,Socket,Websocket)功能，时间执行功能，事件命令功能，日志功能，加密(Aes,Rsa,Md5)功能，服务器级代码逻辑热更新功能，可变结构体变量功能以及其他各种辅助开发的工具类。

@@ -1,6 +1,6 @@
-﻿using ES;
-using ES.Linq;
-using ES.Network.Sockets.HyperSocket;
+﻿using ECSharp;
+using ECSharp.Linq;
+using ECSharp.Network.Sockets.HyperSocket;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;

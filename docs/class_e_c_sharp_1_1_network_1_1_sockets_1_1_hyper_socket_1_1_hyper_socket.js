@@ -1,0 +1,25 @@
+var class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket =
+[
+    [ "HyperSocket", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a6e0d36c7812b81c02f8cfe7ebacabb84", null ],
+    [ "Close", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#ac91365c6ba1b179361f9ad76682b7972", null ],
+    [ "Connect", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#ac28280ea8b8bd6cffc5a8265079d70ef", null ],
+    [ "Send", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a5a74e87c2fc3c761c3ec361cfca1555f", null ],
+    [ "Send", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a1f1309b86e1b3bc0cb7e546d4db96f23", null ],
+    [ "Send", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a5b6a92eea80e2638e3f0fce54b604b89", null ],
+    [ "Send", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a8f744a13d0089c14ec989570b121d68c", null ],
+    [ "Send", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a290faffbf9793351049c2303c22962b8", null ],
+    [ "SendTcp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#abff22602bfa5e6e71b979dff1e452b3d", null ],
+    [ "SendTcp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a73f4510143744291ae1120ef8f9eb113", null ],
+    [ "SendTcp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a7281b67f1bf49cdc028300c959fa003b", null ],
+    [ "SendTcp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a343a4051a2f49bb8ce312948c4398737", null ],
+    [ "SendTcp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#aa1e038b1cd0c51c49399f7595badbc3f", null ],
+    [ "SendUdp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a9667fbc7dc61f553e340f9ad9ab351de", null ],
+    [ "SendUdp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a3c3cc131f5e1f7d0a31212c0fd54c468", null ],
+    [ "SendUdp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a3c90f4d6c964caae062310d6669dd470", null ],
+    [ "SendUdp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a3aea04456b011da3d1ab7733d0994fcf", null ],
+    [ "SendUdp", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#ae4aa72656d85b1b854647d34cbd92970", null ],
+    [ "UpdateEnd", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#af9a225de3d988cf1ed0048146b3ca366", null ],
+    [ "cntListener", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a5914e1e2fed0c2f52f6146d4f3fee7f0", null ],
+    [ "SessionId", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a048ff26a0859bc95e045160166d3aeb8", null ],
+    [ "Tag", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket.html#a8921c286cc8d50b84585b8e35fe7af37", null ]
+];
