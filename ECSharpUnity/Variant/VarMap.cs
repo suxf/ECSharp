@@ -27,7 +27,7 @@ namespace ECSharp.Variant
                 if (TryGetValue(key, out Var value))
                     return value;
 
-                return Var.Empty;
+                return Var.Null;
             }
             set { base[key] = value; }
         }
@@ -73,14 +73,12 @@ namespace ECSharp.Variant
                 switch (value.Type)
                 {
                     case VarType.INT32: json.Add(key.ToString(), (int)value); break;
-                    // case VarType.UINT32: json.Add(key.ToString(), (uint)value); break;
                     case VarType.INT64: json.Add(key.ToString(), (long)value); break;
-                    // case VarType.UINT64: json.Add(key.ToString(), (ulong)value); break;
                     case VarType.FLOAT: json.Add(key.ToString(), (float)value); break;
                     case VarType.BOOL: json.Add(key.ToString(), (bool)value); break;
                     case VarType.STRING: json.Add(key.ToString(), (string)value); break;
-                    case VarType.VARLIST: json.Add(key.ToString(), value.List.ToJson()); break;
-                    case VarType.VARMAP: json.Add(key.ToString(), value.Map.ToJson()); break;
+                    case VarType.VARLIST: json.Add(key.ToString(), value.List!.ToJson()); break;
+                    case VarType.VARMAP: json.Add(key.ToString(), value.Map!.ToJson()); break;
                 }
             }
             return json;

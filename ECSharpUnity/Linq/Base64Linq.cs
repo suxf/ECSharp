@@ -7,7 +7,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>base64编码\解码构造器</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class Base64Linq
     {
         /// <summary>
         /// 将正常字符串转化为base64编码字符串

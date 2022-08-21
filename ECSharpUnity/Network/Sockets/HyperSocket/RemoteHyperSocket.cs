@@ -42,7 +42,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <summary>
         /// 与远程对象捆绑标记
         /// </summary>
-        public Var Tag = Var.Empty;
+        public Var Tag = Var.Null;
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
@@ -389,7 +389,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
             IsAlive = false;
             isValid = false;
             isConnecting = false;
-            Tag = Var.Empty;
+            Tag = Var.Null;
         }
     }
 }

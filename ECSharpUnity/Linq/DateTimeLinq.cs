@@ -6,7 +6,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>DateTime拓展</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class DateTimeLinq
     {
         /// <summary>
         /// 转换为毫秒单位时间戳

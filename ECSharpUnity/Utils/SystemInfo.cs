@@ -20,7 +20,7 @@
         /// <summary>
         /// 当前执行路径
         /// </summary>
-        public static string Path { get; } = System.Environment.CurrentDirectory;
+        public static string Path { get; } = System.Environment.CurrentDirectory + "\\";
         /// <summary>
         /// 进程名称
         /// </summary>

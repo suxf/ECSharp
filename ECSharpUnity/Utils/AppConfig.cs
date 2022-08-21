@@ -26,15 +26,15 @@ namespace ECSharp.Utils
         /// </summary>
         public static bool Reload()
         {
-            if (File.Exists($"./{Process.GetCurrentProcess().ProcessName}.config"))
+            if (File.Exists($"{SystemInfo.Path}{Process.GetCurrentProcess().ProcessName}.config"))
             {
-                doc = XDocument.Load($"./{Process.GetCurrentProcess().ProcessName}.config");
+                doc = XDocument.Load($"{SystemInfo.Path}{Process.GetCurrentProcess().ProcessName}.config");
                 root = doc.Root;
                 return true;
             }
-            else if (File.Exists($"./{Process.GetCurrentProcess().ProcessName}.dll.config"))
+            else if (File.Exists($"{SystemInfo.Path}{Process.GetCurrentProcess().ProcessName}.dll.config"))
             {
-                doc = XDocument.Load($"./{Process.GetCurrentProcess().ProcessName}.dll.config");
+                doc = XDocument.Load($"{SystemInfo.Path}{Process.GetCurrentProcess().ProcessName}.dll.config");
                 root = doc.Root;
                 return true;
             }

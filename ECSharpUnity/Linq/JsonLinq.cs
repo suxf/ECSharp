@@ -8,7 +8,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>JSON工具助手 基于Newtonsoft.Json开源框架</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class JsonLinq
     {
         /// <summary>
         /// 通过json字节流新建Json对象

@@ -26,7 +26,7 @@ namespace ECSharp.Variant
             {
                 if (0 <= index && index < Count)
                     return base[index];
-                return Var.Empty;
+                return Var.Null;
             }
             set { base[index] = value; }
         }
@@ -113,14 +113,12 @@ namespace ECSharp.Variant
                 switch (value.Type)
                 {
                     case VarType.INT32: json.Add((int)value); break;
-                    // case VarType.UINT32: json.Add((uint)value); break;
                     case VarType.INT64: json.Add((long)value); break;
-                    // case VarType.UINT64: json.Add((ulong)value); break;
                     case VarType.FLOAT: json.Add((float)value); break;
                     case VarType.BOOL: json.Add((bool)value); break;
                     case VarType.STRING: json.Add((string)value); break;
-                    case VarType.VARLIST: json.Add(value.List.ToJson()); break;
-                    case VarType.VARMAP: json.Add(value.Map.ToJson()); break;
+                    case VarType.VARLIST: json.Add(value.List!.ToJson()); break;
+                    case VarType.VARMAP: json.Add(value.Map!.ToJson()); break;
                 }
             }
             return json;

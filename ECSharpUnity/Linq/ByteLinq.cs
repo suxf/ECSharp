@@ -7,7 +7,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>Byte数组比较</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class ByteLinq
     {
         /// <summary>
         /// 比较字节数组

@@ -1,9 +1,10 @@
 ﻿using ECSharp.Crypto;
-using ECSharp.Linq;
+using ECSharp;
 using ECSharp.Variant;
 using System;
 using System.Linq;
 using System.Text;
+using ECSharp.Linq;
 
 namespace ECSharp.Network.Sockets.HyperSocket
 {
@@ -37,7 +38,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <summary>
         /// 连接标识
         /// </summary>
-        public Var Tag = Var.Empty;
+        public Var Tag = Var.Null;
 
         /// <summary>
         /// 已经关闭
@@ -371,7 +372,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
             isClosed = true;
             base.Close();
             cntListener.SocketError(this, ex);
-            Tag = Var.Empty;
+            Tag = Var.Null;
         }
 
         /// <summary>

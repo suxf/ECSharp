@@ -118,7 +118,7 @@ namespace ECSharp.Utils
         {
             if (!isAbsolutePath)
             {
-                filePath = @$"{Environment.CurrentDirectory}\{filePath}";
+                filePath = @$"{SystemInfo.Path}{filePath}";
             }
 
             if (!File.Exists(filePath))

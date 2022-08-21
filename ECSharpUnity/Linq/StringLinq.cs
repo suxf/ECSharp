@@ -6,7 +6,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>字符串转其他类型拓展</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class StringLinq
     {
         /// <summary>
         /// 转为UTF-8编码的字节数组

@@ -79,8 +79,10 @@ namespace ECSharp.Utils
         /// <param name="data">数据内容</param>
         /// <param name="fileName">文件名和后缀类型，这里不需要带路径</param>
         /// <param name="path">路径[路径最后需要包含斜杠]，默认当前程序根目录</param>
-        public static void WriteData(string data, string fileName, string path = ".\\")
+        public static void WriteData(string data, string fileName, string path = "")
         {
+            if (path == "") path = SystemInfo.Path;
+            
             // 创建目录
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -101,8 +103,10 @@ namespace ECSharp.Utils
         /// </summary>
         /// <param name="fileName">文件名和后缀类型，这里不需要带路径</param>
         /// <param name="path">路径[路径最后需要包含斜杠]，默认当前程序根目录</param>
-        public static string? ReadData(string fileName, string path = ".\\")
+        public static string? ReadData(string fileName, string path = "")
         {
+            if (path == "") path = SystemInfo.Path;
+
             // 查看是否为空
             if (!File.Exists(path + fileName))
                 return null;

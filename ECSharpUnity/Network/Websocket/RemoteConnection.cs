@@ -17,7 +17,7 @@ namespace ECSharp.Network.Websocket
         /// <summary>
         /// 用户自定义标识 绑定对象
         /// </summary>
-        public Var Tag = Var.Empty;
+        public Var Tag = Var.Null;
         /// <summary>
         /// 字符消息
         /// </summary>

@@ -29,7 +29,7 @@ namespace ECSharp.Network.Sockets.Client
         /// <summary>
         /// 用户绑定对象
         /// </summary>
-        public Var Tag = Var.Empty;
+        public Var Tag = Var.Null;
 
         /// <summary>
         /// 解析缓存
@@ -477,7 +477,7 @@ namespace ECSharp.Network.Sockets.Client
 
             isRecving = false;
             sendEventArgs.Destroy();
-            Tag = Var.Empty;
+            Tag = Var.Null;
             clientSocket.Close();
         }
     }

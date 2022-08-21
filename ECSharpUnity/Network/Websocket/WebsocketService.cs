@@ -67,7 +67,7 @@ namespace ECSharp.Network.Websocket
                     if (remoteConnections.TryRemove(socket.ConnectionInfo.Id, out var conn))
                     {
                         invoke.OnClose(conn);
-                        conn.Tag = Variant.Var.Empty;
+                        conn.Tag = Variant.Var.Null;
                         conn.Message = "";
                     }
                 };

@@ -6,7 +6,7 @@ namespace ECSharp.Linq
     /// 拓展方法类
     /// <para>Concurrent系列拓展</para>
     /// </summary>
-    public static partial class EsLinq
+    public static class ConcurrentLinq
     {
         /// <summary>
         /// 清空 拓展方法提供

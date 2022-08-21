@@ -34,7 +34,7 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\release\ES.xml</DocumentationFile>
+    <DocumentationFile>bin\release\ECSharp.xml</DocumentationFile>
     <OutputPath>bin\release\</OutputPath>
   </PropertyGroup>
   

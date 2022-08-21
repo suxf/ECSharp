@@ -46,7 +46,7 @@ namespace ECSharp.Network.Sockets.Server
         /// <summary>
         /// 用户绑定对象(TCP模式)
         /// </summary>
-        public Var Tag = Var.Empty;
+        public Var Tag = Var.Null;
 
         /// <summary>
         /// 哈希
@@ -252,7 +252,7 @@ namespace ECSharp.Network.Sockets.Server
             // 重置
             ReceiveEventArgs = null;
             lock (this) Socket = null;
-            Tag = Var.Empty;
+            Tag = Var.Null;
             hySocket = null;
         }
     }
