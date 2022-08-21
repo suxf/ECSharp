@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "ECSharp/1.18.0": {
+      "ECSharp/1.18.1": {
         "dependencies": {
           "Fleck": "1.2.0",
-          "Kcp": "2.3.0",
-          "MySqlConnector": "2.1.8",
+          "Kcp": "2.4.0",
+          "MySqlConnector": "2.1.12",
           "Newtonsoft.Json": "13.0.1",
-          "StackExchange.Redis": "2.5.43",
+          "StackExchange.Redis": "2.6.48",
           "System.Data.SqlClient": "4.8.3"
         },
         "runtime": {
@@ -27,11 +27,11 @@
           }
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "runtime": {
           "lib/netstandard2.1/Kcp.dll": {
-            "assemblyVersion": "2.3.0.0",
-            "fileVersion": "2.3.0.0"
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
           }
         }
       },
@@ -75,14 +75,14 @@
           }
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "5.0.1"
         },
         "runtime": {
           "lib/netcoreapp3.1/MySqlConnector.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.8.0"
+            "fileVersion": "2.1.12.0"
           }
         }
       },
@@ -139,7 +139,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "dependencies": {
           "Pipelines.Sockets.Unofficial": "2.2.2",
           "System.Diagnostics.PerformanceCounter": "5.0.0"
@@ -147,7 +147,7 @@
         "runtime": {
           "lib/netcoreapp3.1/StackExchange.Redis.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.5.43.42402"
+            "fileVersion": "2.6.48.48654"
           }
         }
       },
@@ -345,7 +345,7 @@
     }
   },
   "libraries": {
-    "ECSharp/1.18.0": {
+    "ECSharp/1.18.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -357,12 +357,12 @@
       "path": "fleck/1.2.0",
       "hashPath": "fleck.1.2.0.nupkg.sha512"
     },
-    "Kcp/2.3.0": {
+    "Kcp/2.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cegDiYxgyQ9aVGOpEuVTNMhb4P7Sfc4lUnZmlC2Mj5QVuvnglVU2ol3yTWZyQDDkmV2F8qzgF3OkAmbY3cwSPw==",
-      "path": "kcp/2.3.0",
-      "hashPath": "kcp.2.3.0.nupkg.sha512"
+      "sha512": "sha512-SZgAETLQ2KbSoby2syGuEwOGG7X4iG6bOT6aST5MLxnmVkCBLnKBXDy8rxbrAMbFTSb9F5Z4p0Guwe7XtJ4Dng==",
+      "path": "kcp/2.4.0",
+      "hashPath": "kcp.2.4.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",
@@ -385,12 +385,12 @@
       "path": "microsoft.win32.systemevents/5.0.0",
       "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
     },
-    "MySqlConnector/2.1.8": {
+    "MySqlConnector/2.1.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
-      "path": "mysqlconnector/2.1.8",
-      "hashPath": "mysqlconnector.2.1.8.nupkg.sha512"
+      "sha512": "sha512-XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
+      "path": "mysqlconnector/2.1.12",
+      "hashPath": "mysqlconnector.2.1.12.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
@@ -434,12 +434,12 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
     },
-    "StackExchange.Redis/2.5.43": {
+    "StackExchange.Redis/2.6.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YQ38jVbX1b5mBi6lizESou+NpV6QZpeo6ofRR6qeuqJ8ePOmhcwhje3nDTNIGEkfPSK0sLuF6pR5rtFyq2F46g==",
-      "path": "stackexchange.redis/2.5.43",
-      "hashPath": "stackexchange.redis.2.5.43.nupkg.sha512"
+      "sha512": "sha512-T0rLGogyT6Zny+IMrDx1Z8r4nA3B0C7EVo5SHNjzT4ndOn9aGKe5K7KTVx0y41WaWmfSWpaX7HrPl0tfZ4zuUw==",
+      "path": "stackexchange.redis/2.6.48",
+      "hashPath": "stackexchange.redis.2.6.48.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/5.0.0": {
       "type": "package",

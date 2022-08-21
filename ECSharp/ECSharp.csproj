@@ -7,10 +7,10 @@
     <Authors>suxf</Authors>
     <Description>Simple Development!</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.18.0</Version>
+    <Version>1.18.1</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
-    <PackageId>ECSharp</PackageId>
+    <PackageId>EasySharpFrame</PackageId>
     <PackageTags>C#,.Net,Server,Http,Hotfix,Socket,Sql,Mssql,Sqlserver,Redis,Websocket</PackageTags>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseFile></PackageLicenseFile>
@@ -47,10 +47,10 @@
 
   <ItemGroup>
     <PackageReference Include="Fleck" Version="1.2.0" />
-    <PackageReference Include="Kcp" Version="2.3.0" />
-    <PackageReference Include="MySqlConnector" Version="2.1.8" />
+    <PackageReference Include="Kcp" Version="2.4.0" />
+    <PackageReference Include="MySqlConnector" Version="2.1.12" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="StackExchange.Redis" Version="2.5.43" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.48" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 

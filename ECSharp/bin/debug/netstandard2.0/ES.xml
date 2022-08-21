@@ -8678,3 +8678,514 @@
         </member>
     </members>
 </doc>
+System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="left">可变变量</param>
+            <param name="right">位移量</param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_LessThan(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_GreaterThan(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_LessThanOrEqual(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_GreaterThanOrEqual(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_Equality(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="M:ECSharp.Variant.Var.op_Inequality(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+        </member>
+        <member name="T:ECSharp.Variant.VarException">
+            <summary>
+            可变变量异常
+            </summary>
+        </member>
+        <member name="M:ECSharp.Variant.VarException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:ECSharp.Variant.VarList">
+            <summary>
+            可变变量列表
+            </summary>
+        </member>
+        <member name="P:ECSharp.Variant.VarList.New">
+            <summary>
+            新建一个可变变量列表
+            </summary>
+        </member>
+        <member name="P:ECSharp.Variant.VarList.Item(System.Int32)">
+            <summary>
+            根据索引安全获取值
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Merge(ECSharp.Variant.VarList)">
+            <summary>
+            合并可变变量列表
+            </summary>
+            <param name="varlist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Add(ECSharp.Variant.Var)">
+            <summary>
+            增加一个可变变量
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Add(ECSharp.Variant.Var[])">
+            <summary>
+            增加多个可变变量
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.op_Addition(ECSharp.Variant.VarList,ECSharp.Variant.VarList)">
+            <summary>
+            追加可变列表
+            </summary>
+            <param name="varlist"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.op_Addition(ECSharp.Variant.VarList,ECSharp.Variant.VarMap)">
+            <summary>
+            追加可变字典
+            </summary>
+            <param name="varlist"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.op_Addition(ECSharp.Variant.VarList,ECSharp.Variant.Var)">
+            <summary>
+            增加可变变量
+            </summary>
+            <param name="varlist"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.ToJson">
+            <summary>
+            转json对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.ToString">
+            <summary>
+            转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(Newtonsoft.Json.Linq.JArray)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(System.String)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.TryParse(System.String,ECSharp.Variant.VarList@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.GetBytes">
+            <summary>
+            获取字节数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(System.Byte[],System.Int32@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(System.Byte[],System.Int32)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.Parse(System.Byte[])">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.TryParse(System.Byte[],System.Int32,ECSharp.Variant.VarList@,System.Int32@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="list"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.TryParse(System.Byte[],ECSharp.Variant.VarList@,System.Int32@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="list"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.TryParse(System.Byte[],System.Int32,ECSharp.Variant.VarList@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarList.TryParse(System.Byte[],ECSharp.Variant.VarList@)">
+            <summary>
+            转列表
+            </summary>
+            <param name="data"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ECSharp.Variant.VarMap">
+            <summary>
+            可变变量字典
+            </summary>
+        </member>
+        <member name="P:ECSharp.Variant.VarMap.New">
+            <summary>
+            新建一个可变变量字典
+            </summary>
+        </member>
+        <member name="P:ECSharp.Variant.VarMap.Item(ECSharp.Variant.Var)">
+            <summary>
+            根据键名安全获取键值
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Merge(ECSharp.Variant.VarMap)">
+            <summary>
+            合并可变变量字典
+            </summary>
+            <param name="varmap"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Add(ECSharp.Variant.Var,ECSharp.Variant.Var)">
+            <summary>
+            增加一个可变变量对
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.ToJson">
+            <summary>
+            转Json对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.ToString">
+            <summary>
+            转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(System.String)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.TryParse(System.String,ECSharp.Variant.VarMap@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="json"></param>
+            <param name="map"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.GetBytes">
+            <summary>
+            获取字节数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(System.Byte[],System.Int32@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(System.Byte[],System.Int32)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.Parse(System.Byte[])">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.TryParse(System.Byte[],System.Int32,ECSharp.Variant.VarMap@,System.Int32@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="map"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.TryParse(System.Byte[],ECSharp.Variant.VarMap@,System.Int32@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="map"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.TryParse(System.Byte[],System.Int32,ECSharp.Variant.VarMap@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="startIndex"></param>
+            <param name="map"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECSharp.Variant.VarMap.TryParse(System.Byte[],ECSharp.Variant.VarMap@)">
+            <summary>
+            转字典
+            </summary>
+            <param name="data"></param>
+            <param name="map"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ECSharp.Variant.VarObjectMgr">
+            <summary>
+            可变对象管理器
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarObjectMgr.varObjectTypePairs">
+            <summary>
+            通过字节转可变变量
+            </summary>
+        </member>
+        <member name="M:ECSharp.Variant.VarObjectMgr.RegisterObjectType``1">
+            <summary>
+            注册对象类型
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ECSharp.Variant.VarObjectMgr.RegisterObjectType(System.Object)">
+            <summary>
+            注册对象类型
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:ECSharp.Variant.VarObjectMgr.GetTypeByName(System.String)">
+            <summary>
+            通过名称获取类型
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ECSharp.Variant.VarType">
+            <summary>
+            可变变量类型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.NULL">
+            <summary>
+            空值
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.BYTE">
+            <summary>
+            字节型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.SBYTE">
+            <summary>
+            有符号字节型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.INT16">
+            <summary>
+            短整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.UINT16">
+            <summary>
+            无符号短整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.INT32">
+            <summary>
+            整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.UINT32">
+            <summary>
+            无符号整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.INT64">
+            <summary>
+            长整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.UINT64">
+            <summary>
+            无符号长整型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.FLOAT">
+            <summary>
+            单精度浮点型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.DOUBLE">
+            <summary>
+            双精度浮点型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.BOOL">
+            <summary>
+            布尔型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.STRING">
+            <summary>
+            字符串型
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARLIST">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARMAP">
+            <summary>
+            字典
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.STRUCT">
+            <summary>
+            结构体
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARMAP_HEAD">
+            <summary>
+            值字典 头
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARMAP_END">
+            <summary>
+            值字典 结尾
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARLIST_HEAD">
+            <summary>
+            值列表 头
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.VARLIST_END">
+            <summary>
+            值列表 结尾
+            </summary>
+        </member>
+        <member name="F:ECSharp.Variant.VarType.OBJECT">
+            <summary>
+            对象
+            </summary>
+        </member>
+    </members>
+</doc>

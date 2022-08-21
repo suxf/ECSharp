@@ -33,9 +33,9 @@ namespace ECSharp.Database.Redis
         {
             get
             {
-                long[] timeSpans = (long[])Do(db => db.Execute("TIME", Array.Empty<object>()));
+                long[]? timeSpans = (long[]?)Do(db => db.Execute("TIME", Array.Empty<object>()));
 
-                if (timeSpans.Length == 2)
+                if (timeSpans != null && timeSpans.Length == 2)
                 {
                     DateTime dateTimeStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                     return dateTimeStart.AddSeconds(timeSpans[0])/*.AddTicks(timeSpans[1] * 10)*/.ToLocalTime();
@@ -150,7 +150,7 @@ namespace ECSharp.Database.Redis
         public bool StringSet(List<KeyValuePair<RedisKey, RedisValue>> keyValues)
         {
             List<KeyValuePair<RedisKey, RedisValue>> newkeyValues =
-                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key), p.Value)).ToList();
+                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key!), p.Value)).ToList();
             return Do(db => db.StringSet(newkeyValues.ToArray()));
         }
 
@@ -218,7 +218,7 @@ namespace ECSharp.Database.Redis
         /// </summary>
         /// <param name="key">Redis Key</param>
         /// <returns></returns>
-        public string StringGet(string key)
+        public string? StringGet(string key)
         {
             key = AddSysCustomKey(key);
             return Do(db => db.StringGet(key));
@@ -258,7 +258,7 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T Get<T>(string key)
+        public T? Get<T>(string key)
         {
             key = AddSysCustomKey(key);
             return Do(db => ConvertObj<T>(db.StringGet(key)));
@@ -271,7 +271,7 @@ namespace ECSharp.Database.Redis
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public T Get<T>(string key, T defaultValue)
+        public T? Get<T>(string key, T defaultValue)
         {
             key = AddSysCustomKey(key);
             return Do(delegate (IDatabase db)
@@ -331,7 +331,7 @@ namespace ECSharp.Database.Redis
         public async Task<bool> StringSetAsync(List<KeyValuePair<RedisKey, RedisValue>> keyValues)
         {
             List<KeyValuePair<RedisKey, RedisValue>> newkeyValues =
-                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key), p.Value)).ToList();
+                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key!), p.Value)).ToList();
             return await Do(db => db.StringSetAsync(newkeyValues.ToArray()));
         }
 
@@ -355,7 +355,7 @@ namespace ECSharp.Database.Redis
         /// </summary>
         /// <param name="key">Redis Key</param>
         /// <returns></returns>
-        public async Task<string> StringGetAsync(string key)
+        public async Task<string?> StringGetAsync(string key)
         {
             key = AddSysCustomKey(key);
             return await Do(db => db.StringGetAsync(key));
@@ -378,10 +378,10 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<T> GetAsync<T>(string key)
+        public async Task<T?> GetAsync<T>(string key)
         {
             key = AddSysCustomKey(key);
-            string result = await Do(db => db.StringGetAsync(key));
+            string? result = await Do(db => db.StringGetAsync(key));
             return ConvertObj<T>(result);
         }
 
@@ -478,12 +478,12 @@ namespace ECSharp.Database.Redis
         /// <param name="key"></param>
         /// <param name="dataKey"></param>
         /// <returns></returns>
-        public T HashGet<T>(string key, string dataKey)
+        public T? HashGet<T>(string key, string dataKey)
         {
             key = AddSysCustomKey(key);
             return Do(db =>
             {
-                string value = db.HashGet(key, dataKey);
+                string? value = db.HashGet(key, dataKey);
                 return ConvertObj<T>(value);
             });
         }
@@ -595,10 +595,10 @@ namespace ECSharp.Database.Redis
         /// <param name="key"></param>
         /// <param name="dataKey"></param>
         /// <returns></returns>
-        public async Task<T> HashGeAsync<T>(string key, string dataKey)
+        public async Task<T?> HashGeAsync<T>(string key, string dataKey)
         {
             key = AddSysCustomKey(key);
-            string value = await Do(db => db.HashGetAsync(key, dataKey));
+            string? value = await Do(db => db.HashGetAsync(key, dataKey));
             return ConvertObj<T>(value);
         }
 
@@ -692,7 +692,7 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T ListRightPop<T>(string key)
+        public T? ListRightPop<T>(string key)
         {
             key = AddSysCustomKey(key);
             return Do(db =>
@@ -720,7 +720,7 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T ListLeftPop<T>(string key)
+        public T? ListLeftPop<T>(string key)
         {
             key = AddSysCustomKey(key);
             return Do(db =>
@@ -785,7 +785,7 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<T> ListRightPopAsync<T>(string key)
+        public async Task<T?> ListRightPopAsync<T>(string key)
         {
             key = AddSysCustomKey(key);
             var value = await Do(db => db.ListRightPopAsync(key));
@@ -810,7 +810,7 @@ namespace ECSharp.Database.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<T> ListLeftPopAsync<T>(string key)
+        public async Task<T?> ListLeftPopAsync<T>(string key)
         {
             key = AddSysCustomKey(key);
             var value = await Do(db => db.ListLeftPopAsync(key));
@@ -1118,13 +1118,19 @@ namespace ECSharp.Database.Redis
             return result;
         }
 
-        private T ConvertObj<T>(RedisValue value)
+        private T? ConvertObj<T>(RedisValue? value)
         {
+            if (value == null)
+            {
+                return default;
+            }
+
             if (typeof(T).Name.Equals(typeof(string).Name))
             {
                 return JsonConvert.DeserializeObject<T>($"'{value}'")!;
             }
-            return JsonConvert.DeserializeObject<T>(value)!;
+            
+            return JsonConvert.DeserializeObject<T>(value!);
         }
 
         private List<T> ConvetList<T>(RedisValue[] values)
@@ -1132,8 +1138,11 @@ namespace ECSharp.Database.Redis
             List<T> result = new List<T>();
             for (int i = 0, len = values.Length; i < len; i++)
             {
-                var model = ConvertObj<T>(values[i]);
-                result.Add(model);
+                T? model = ConvertObj<T>(values[i]);
+                if (model != null)
+                {
+                    result.Add(model);
+                }
             }
             return result;
         }

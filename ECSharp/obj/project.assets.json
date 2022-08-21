@@ -11,7 +11,7 @@
           "lib/netcoreapp2.0/Fleck.dll": {}
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/Kcp.dll": {}
@@ -66,7 +66,7 @@
           }
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "5.0.1"
@@ -134,7 +134,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "type": "package",
         "dependencies": {
           "Pipelines.Sockets.Unofficial": "2.2.2",
@@ -340,7 +340,7 @@
           "lib/net45/Fleck.dll": {}
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.4",
@@ -368,7 +368,7 @@
           "lib/net461/Microsoft.Bcl.AsyncInterfaces.dll": {}
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "dependencies": {
           "System.Buffers": "4.5.1",
@@ -407,7 +407,7 @@
           "lib/net461/Pipelines.Sockets.Unofficial.dll": {}
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
@@ -634,7 +634,7 @@
           "lib/netstandard2.0/Fleck.dll": {}
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.4",
@@ -693,7 +693,7 @@
           }
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "dependencies": {
           "System.Buffers": "4.5.1",
@@ -779,7 +779,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "type": "package",
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "5.0.0",
@@ -985,7 +985,7 @@
           "lib/netcoreapp2.0/Fleck.dll": {}
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "type": "package",
         "compile": {
           "lib/net5.0/Kcp.dll": {}
@@ -1040,7 +1040,7 @@
           }
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "compile": {
           "lib/net5.0/MySqlConnector.dll": {}
@@ -1105,7 +1105,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "type": "package",
         "dependencies": {
           "Pipelines.Sockets.Unofficial": "2.2.2",
@@ -1302,13 +1302,13 @@
           "lib/netcoreapp2.0/Fleck.dll": {}
         }
       },
-      "Kcp/2.3.0": {
+      "Kcp/2.4.0": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Kcp.dll": {}
+          "lib/net6.0/Kcp.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Kcp.dll": {}
+          "lib/net6.0/Kcp.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/5.0.0": {
@@ -1357,7 +1357,7 @@
           }
         }
       },
-      "MySqlConnector/2.1.8": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "compile": {
           "lib/net6.0/MySqlConnector.dll": {}
@@ -1422,7 +1422,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.5.43": {
+      "StackExchange.Redis/2.6.48": {
         "type": "package",
         "dependencies": {
           "Pipelines.Sockets.Unofficial": "2.2.2",
@@ -1626,19 +1626,22 @@
         "lib/netstandard2.0/Fleck.dll"
       ]
     },
-    "Kcp/2.3.0": {
-      "sha512": "cegDiYxgyQ9aVGOpEuVTNMhb4P7Sfc4lUnZmlC2Mj5QVuvnglVU2ol3yTWZyQDDkmV2F8qzgF3OkAmbY3cwSPw==",
+    "Kcp/2.4.0": {
+      "sha512": "SZgAETLQ2KbSoby2syGuEwOGG7X4iG6bOT6aST5MLxnmVkCBLnKBXDy8rxbrAMbFTSb9F5Z4p0Guwe7XtJ4Dng==",
       "type": "package",
-      "path": "kcp/2.3.0",
+      "path": "kcp/2.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
-        "kcp.2.3.0.nupkg.sha512",
+        "kcp.2.4.0.nupkg.sha512",
         "kcp.nuspec",
         "lib/net5.0/Kcp.dll",
         "lib/net5.0/Kcp.pdb",
         "lib/net5.0/Kcp.xml",
+        "lib/net6.0/Kcp.dll",
+        "lib/net6.0/Kcp.pdb",
+        "lib/net6.0/Kcp.xml",
         "lib/netstandard1.1/Kcp.dll",
         "lib/netstandard1.1/Kcp.pdb",
         "lib/netstandard1.1/Kcp.xml",
@@ -1824,10 +1827,10 @@
         "version.txt"
       ]
     },
-    "MySqlConnector/2.1.8": {
-      "sha512": "CVJ0w9PbUnBS3lfOII1J15DshAnJgKqkrvKfkTSiUerPjJpSAfv7LJR5aJNnzj+LdFw2grekguVe1kedp6LMyA==",
+    "MySqlConnector/2.1.12": {
+      "sha512": "XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
       "type": "package",
-      "path": "mysqlconnector/2.1.8",
+      "path": "mysqlconnector/2.1.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1849,7 +1852,7 @@
         "lib/netstandard2.1/MySqlConnector.dll",
         "lib/netstandard2.1/MySqlConnector.xml",
         "logo.png",
-        "mysqlconnector.2.1.8.nupkg.sha512",
+        "mysqlconnector.2.1.12.nupkg.sha512",
         "mysqlconnector.nuspec"
       ]
     },
@@ -2094,10 +2097,10 @@
         "version.txt"
       ]
     },
-    "StackExchange.Redis/2.5.43": {
-      "sha512": "YQ38jVbX1b5mBi6lizESou+NpV6QZpeo6ofRR6qeuqJ8ePOmhcwhje3nDTNIGEkfPSK0sLuF6pR5rtFyq2F46g==",
+    "StackExchange.Redis/2.6.48": {
+      "sha512": "T0rLGogyT6Zny+IMrDx1Z8r4nA3B0C7EVo5SHNjzT4ndOn9aGKe5K7KTVx0y41WaWmfSWpaX7HrPl0tfZ4zuUw==",
       "type": "package",
-      "path": "stackexchange.redis/2.5.43",
+      "path": "stackexchange.redis/2.6.48",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2111,7 +2114,7 @@
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.5.43.nupkg.sha512",
+        "stackexchange.redis.2.6.48.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },
@@ -3050,43 +3053,43 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Fleck >= 1.2.0",
-      "Kcp >= 2.3.0",
-      "MySqlConnector >= 2.1.8",
+      "Kcp >= 2.4.0",
+      "MySqlConnector >= 2.1.12",
       "Newtonsoft.Json >= 13.0.1",
-      "StackExchange.Redis >= 2.5.43",
+      "StackExchange.Redis >= 2.6.48",
       "System.Data.SqlClient >= 4.8.3"
     ],
     ".NETFramework,Version=v4.6.2": [
       "Fleck >= 1.2.0",
-      "Kcp >= 2.3.0",
-      "MySqlConnector >= 2.1.8",
+      "Kcp >= 2.4.0",
+      "MySqlConnector >= 2.1.12",
       "Newtonsoft.Json >= 13.0.1",
-      "StackExchange.Redis >= 2.5.43",
+      "StackExchange.Redis >= 2.6.48",
       "System.Data.SqlClient >= 4.8.3"
     ],
     ".NETStandard,Version=v2.0": [
       "Fleck >= 1.2.0",
-      "Kcp >= 2.3.0",
-      "MySqlConnector >= 2.1.8",
+      "Kcp >= 2.4.0",
+      "MySqlConnector >= 2.1.12",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 13.0.1",
-      "StackExchange.Redis >= 2.5.43",
+      "StackExchange.Redis >= 2.6.48",
       "System.Data.SqlClient >= 4.8.3"
     ],
     "net5.0": [
       "Fleck >= 1.2.0",
-      "Kcp >= 2.3.0",
-      "MySqlConnector >= 2.1.8",
+      "Kcp >= 2.4.0",
+      "MySqlConnector >= 2.1.12",
       "Newtonsoft.Json >= 13.0.1",
-      "StackExchange.Redis >= 2.5.43",
+      "StackExchange.Redis >= 2.6.48",
       "System.Data.SqlClient >= 4.8.3"
     ],
     "net6.0": [
       "Fleck >= 1.2.0",
-      "Kcp >= 2.3.0",
-      "MySqlConnector >= 2.1.8",
+      "Kcp >= 2.4.0",
+      "MySqlConnector >= 2.1.12",
       "Newtonsoft.Json >= 13.0.1",
-      "StackExchange.Redis >= 2.5.43",
+      "StackExchange.Redis >= 2.6.48",
       "System.Data.SqlClient >= 4.8.3"
     ]
   },
@@ -3094,10 +3097,10 @@
     "C:\\Users\\su_xf\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.18.0",
+    "version": "1.18.1",
     "restore": {
       "projectUniqueName": "D:\\Projects\\ECSharp\\ECSharp\\ECSharp.csproj",
-      "projectName": "ECSharp",
+      "projectName": "EasySharpFrame",
       "projectPath": "D:\\Projects\\ECSharp\\ECSharp\\ECSharp.csproj",
       "packagesPath": "C:\\Users\\su_xf\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\ECSharp\\ECSharp\\obj\\",
@@ -3156,11 +3159,11 @@
           },
           "Kcp": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.8, )"
+            "version": "[2.1.12, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -3168,7 +3171,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.5.43, )"
+            "version": "[2.6.48, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",
@@ -3201,11 +3204,11 @@
           },
           "Kcp": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.8, )"
+            "version": "[2.1.12, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -3213,7 +3216,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.5.43, )"
+            "version": "[2.6.48, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",
@@ -3246,11 +3249,11 @@
           },
           "Kcp": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.8, )"
+            "version": "[2.1.12, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -3258,7 +3261,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.5.43, )"
+            "version": "[2.6.48, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",
@@ -3291,11 +3294,11 @@
           },
           "Kcp": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.8, )"
+            "version": "[2.1.12, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -3303,7 +3306,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.5.43, )"
+            "version": "[2.6.48, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",
@@ -3321,11 +3324,11 @@
           },
           "Kcp": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.8, )"
+            "version": "[2.1.12, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -3339,7 +3342,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.5.43, )"
+            "version": "[2.6.48, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",

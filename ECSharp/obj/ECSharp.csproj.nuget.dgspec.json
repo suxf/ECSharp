@@ -5,10 +5,10 @@
   },
   "projects": {
     "D:\\Projects\\ECSharp\\ECSharp\\ECSharp.csproj": {
-      "version": "1.18.0",
+      "version": "1.18.1",
       "restore": {
         "projectUniqueName": "D:\\Projects\\ECSharp\\ECSharp\\ECSharp.csproj",
-        "projectName": "ECSharp",
+        "projectName": "EasySharpFrame",
         "projectPath": "D:\\Projects\\ECSharp\\ECSharp\\ECSharp.csproj",
         "packagesPath": "C:\\Users\\su_xf\\.nuget\\packages\\",
         "outputPath": "D:\\Projects\\ECSharp\\ECSharp\\obj\\",
@@ -67,11 +67,11 @@
             },
             "Kcp": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[2.4.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.1.8, )"
+              "version": "[2.1.12, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -79,7 +79,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.5.43, )"
+              "version": "[2.6.48, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -112,11 +112,11 @@
             },
             "Kcp": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[2.4.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.1.8, )"
+              "version": "[2.1.12, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -124,7 +124,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.5.43, )"
+              "version": "[2.6.48, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -157,11 +157,11 @@
             },
             "Kcp": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[2.4.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.1.8, )"
+              "version": "[2.1.12, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -169,7 +169,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.5.43, )"
+              "version": "[2.6.48, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -202,11 +202,11 @@
             },
             "Kcp": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[2.4.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.1.8, )"
+              "version": "[2.1.12, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -214,7 +214,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.5.43, )"
+              "version": "[2.6.48, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -232,11 +232,11 @@
             },
             "Kcp": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[2.4.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.1.8, )"
+              "version": "[2.1.12, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",
@@ -250,7 +250,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.5.43, )"
+              "version": "[2.6.48, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

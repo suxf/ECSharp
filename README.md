@@ -1,9 +1,9 @@
 # ECSharp (原:EasySharpFrame)
-[![Nuget](https://img.shields.io/nuget/v/ECSharp?style=float)](https://www.nuget.org/packages/ECSharp)
-[![Nuget](https://img.shields.io/nuget/dt/ECSharp?style=float)](https://www.nuget.org/stats/packages/ECSharp?groupby=Version)
+[![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/ECSharp)
+[![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/ECSharp?groupby=Version)
 [![Platform](https://img.shields.io/badge/framework-.net-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
-[![GitHub](https://img.shields.io/github/license/suxf/ECSharp?style=float)](https://github.com/suxf/ECSharp/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/ECSharp/blob/master/LICENSE)
 
 Easy .NET Develop Frame.
 

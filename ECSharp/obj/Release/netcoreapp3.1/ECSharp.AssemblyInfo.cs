@@ -15,11 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Fyenet Inc.")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Simple Development!")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.18.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.18.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.18.1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.18.1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ECSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ECSharp")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.18.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.18.1.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/suxf/ECSharp")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
