@@ -1,10 +1,9 @@
+.vs
+.svn
+Doxyfile
 ECSharp/bin
 ECSharp/obj
 Sample/bin
 Sample/obj
 SampleDll/bin
 SampleDll/obj
-.vs
-.svn
-Doxyfile
-更新计划.txt
