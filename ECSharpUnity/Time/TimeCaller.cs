@@ -144,8 +144,12 @@ namespace ECSharp.Time
         public TimeCaller Start(bool isDaemon = false)
         {
             if (isDaemon)
+            {
                 lock (timeCallers)
+                {
                     timeCallers.Add(this);
+                }
+            }
 
             timeFlow.StartTimeFlowES();
             return this;
@@ -160,8 +164,12 @@ namespace ECSharp.Time
         public TimeCaller Start(object? parameter, bool isDaemon = false)
         {
             if (isDaemon)
+            {
                 lock (timeCallers)
+                {
                     timeCallers.Add(this);
+                }
+            }
 
             this.parameter = parameter;
 
@@ -182,6 +190,11 @@ namespace ECSharp.Time
         /// </summary>
         public static void CancelAllDaemonTimeCalls()
         {
+            if (timeCallers.Count <= 0)
+            {
+                return;
+            }
+
             lock (timeCallers)
             {
                 for (int i = 0, len = timeCallers.Count; i < len; i++)

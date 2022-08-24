@@ -15,7 +15,7 @@ namespace ECSharp.Database.Linq
         private readonly IDbHelper? dBHelper = null;
 
         private readonly string jsonFileName = "";
-        
+
         private Dictionary<string, T> configs;
         /// <summary>
         /// 配置集合

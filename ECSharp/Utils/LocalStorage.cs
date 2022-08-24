@@ -82,7 +82,7 @@ namespace ECSharp.Utils
         public static void WriteData(string data, string fileName, string path = "")
         {
             if (path == "") path = SystemInfo.Path;
-            
+
             // 创建目录
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);

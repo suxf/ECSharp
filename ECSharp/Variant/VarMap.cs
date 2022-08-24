@@ -198,7 +198,7 @@ namespace ECSharp.Variant
             }
 
             if (Count > byte.MaxValue)
-                throw new Exception($"Var Map Max Count 255, Now Count Is {Count}!");
+                throw new VarException($"Var Map Max Count 255, Now Count Is {Count}!");
 
             bytes[index++] = (byte)Count;
             bytes[index] = (byte)VarType.VARMAP_END;

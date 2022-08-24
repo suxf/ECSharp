@@ -48,7 +48,7 @@
         /// <summary>
         /// 日志根路径
         /// </summary>
-        public static string LOG_PATH = "./log/";
+        public static string LOG_PATH = Utils.SystemInfo.Path + "logs/";
         /// <summary>
         /// 调试性 日志字体颜色
         /// </summary>

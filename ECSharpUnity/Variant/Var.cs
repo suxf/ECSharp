@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ECSharp.Utils;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using ECSharp.Utils;
 
 namespace ECSharp.Variant
 {

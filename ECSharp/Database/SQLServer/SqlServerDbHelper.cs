@@ -429,23 +429,30 @@ namespace ECSharp.Database.SQLServer
                 periodUpdate -= 1000;
 
                 int runCount = TimeFlowThread.UtilMsMaxHandleCount;
-                lock (SQLQueue)
+
+                if (runCount > 0 && SQLQueue.Count > 0)
                 {
-                    while (runCount > 0 && SQLQueue.Count > 0)
+                    lock (SQLQueue)
                     {
-                        --runCount;
-                        string sql = SQLQueue.Dequeue();
-                        ExecuteSQL(sql);
+                        while (runCount > 0 && SQLQueue.Count > 0)
+                        {
+                            --runCount;
+                            string sql = SQLQueue.Dequeue();
+                            ExecuteSQL(sql);
+                        }
                     }
                 }
 
-                lock (ProcedureQueue)
+                if (runCount > 0 && ProcedureQueue.Count > 0)
                 {
-                    while (runCount > 0 && ProcedureQueue.Count > 0)
+                    lock (ProcedureQueue)
                     {
-                        --runCount;
-                        ProcedureCmd pr = ProcedureQueue.Dequeue();
-                        Procedure(pr.procedure, pr.sqlParameters);
+                        while (runCount > 0 && ProcedureQueue.Count > 0)
+                        {
+                            --runCount;
+                            ProcedureCmd pr = ProcedureQueue.Dequeue();
+                            Procedure(pr.procedure, pr.sqlParameters);
+                        }
                     }
                 }
             }

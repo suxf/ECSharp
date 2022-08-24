@@ -242,8 +242,12 @@ namespace ECSharp.Time
         public TimeClock Start(bool isDaemon = false)
         {
             if (isDaemon)
+            {
                 lock (timeClocks)
+                {
                     timeClocks.Add(this);
+                }
+            }
 
             timeFlow.StartTimeFlowES();
             return this;
@@ -262,6 +266,8 @@ namespace ECSharp.Time
         /// </summary>
         public static void CancelAllDaemonTimeClock()
         {
+            if (timeClocks.Count <= 0) return;
+
             lock (timeClocks)
             {
                 for (int i = 0, len = timeClocks.Count; i < len; i++)
@@ -334,7 +340,9 @@ namespace ECSharp.Time
         public void UpdateEnd()
         {
             lock (timeClocks)
+            {
                 timeClocks.Remove(this);
+            }
         }
 
         private class SysTime : ISysTime

@@ -53,9 +53,16 @@ namespace ECSharp.Database.Linq
                 if (expiredTime >= realExpiredTime)
                     ReloadDB();
 
-                lock (listChangeColumns)
-                    if (!listChangeColumns.Contains(key))
-                        listChangeColumns.Add(key);
+                if (!listChangeColumns.Contains(key))
+                {
+                    lock (listChangeColumns)
+                    {
+                        if (!listChangeColumns.Contains(key))
+                        {
+                            listChangeColumns.Add(key);
+                        }
+                    }
+                }
 
                 data.AddOrUpdate(key, value!, (k, v) => value!);
             }

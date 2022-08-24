@@ -1,10 +1,9 @@
 ﻿using ECSharp.Crypto;
-using ECSharp;
+using ECSharp.Linq;
 using ECSharp.Variant;
 using System;
 using System.Linq;
 using System.Text;
-using ECSharp.Linq;
 
 namespace ECSharp.Network.Sockets.HyperSocket
 {

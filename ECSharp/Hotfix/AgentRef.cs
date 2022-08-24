@@ -96,11 +96,18 @@ namespace ECSharp.Hotfix
         /// </summary>
         internal void CreateAgent()
         {
-            if (!isCreated && type != null && HotfixMgr.agentTypeMap.TryGetValue(type, out var agentType))
+            if (!isCreated && type != null && HotfixMgr.agentTypeMap.ContainsKey(type))
             {
                 lock (m_lock)
                 {
                     if (isCreated) return;
+
+                    if (type == null) return;
+
+                    if (!HotfixMgr.agentTypeMap.TryGetValue(type, out var agentType))
+                    {
+                        return;
+                    }
 
                     isCreated = true;
 

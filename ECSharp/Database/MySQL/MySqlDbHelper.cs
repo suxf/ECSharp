@@ -275,13 +275,17 @@ namespace ECSharp.Database.MySQL
                 periodUpdate -= 1000;
 
                 int runCount = TimeFlowThread.UtilMsMaxHandleCount;
-                lock (SQLQueue)
+
+                if (runCount > 0 && SQLQueue.Count > 0)
                 {
-                    while (runCount > 0 && SQLQueue.Count > 0)
+                    lock (SQLQueue)
                     {
-                        --runCount;
-                        string sql = SQLQueue.Dequeue();
-                        ExecuteSQL(sql);
+                        while (runCount > 0 && SQLQueue.Count > 0)
+                        {
+                            --runCount;
+                            string sql = SQLQueue.Dequeue();
+                            ExecuteSQL(sql);
+                        }
                     }
                 }
             }

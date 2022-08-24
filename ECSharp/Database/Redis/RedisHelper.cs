@@ -1129,7 +1129,7 @@ namespace ECSharp.Database.Redis
             {
                 return JsonConvert.DeserializeObject<T>($"'{value}'")!;
             }
-            
+
             return JsonConvert.DeserializeObject<T>(value!);
         }
 

@@ -46,6 +46,8 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <param name="data"></param>
         public void Send(Span<byte> data)
         {
+            if (isClosed) return;
+
             lock (kcp)
             {
                 if (isClosed) return;
@@ -61,6 +63,8 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <param name="data"></param>
         public void Recv(Span<byte> data)
         {
+            if (isClosed) return;
+
             lock (kcp)
             {
                 if (isClosed) return;
@@ -106,6 +110,8 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <param name="dt"></param>
         public void Update(int dt)
         {
+            if (isClosed) return;
+
             lock (kcp)
             {
                 if (isClosed) return;

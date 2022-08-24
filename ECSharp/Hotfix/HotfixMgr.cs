@@ -152,32 +152,35 @@ namespace ECSharp.Hotfix
                 }
                 Interlocked.Exchange(ref agentTypeMap, agentTypeMapTemp);
 
-                // 处理代理索引
-                lock (agentRefs)
+                if (agentRefs.Count > 0)
                 {
-                    // 先暂停时间流
-                    for (int i = 0, len = agentRefs.Count; i < len; i++)
+                    // 处理代理索引
+                    lock (agentRefs)
                     {
-                        if (agentRefs[i].TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
+                        // 先暂停时间流
+                        for (int i = 0, len = agentRefs.Count; i < len; i++)
                         {
-                            // 处理时间流代理停止
-                            TimeFlowManager.CloseByObj((ITimeUpdate)agentRef._agent);
-                        }
-                    }
-
-                    // 后重置所有代理
-                    for (int i = agentRefs.Count - 1; i >= 0; i--)
-                    {
-                        if (agentRefs[i].TryGetTarget(out var agentRef))
-                        {
-                            agentRef.isCreated = false;
-                            if (agentRef.isAutoCreate)
+                            if (agentRefs[i].TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
                             {
-                                agentRef.CreateAsyncAgent();
+                                // 处理时间流代理停止
+                                TimeFlowManager.CloseByObj((ITimeUpdate)agentRef._agent);
                             }
-                            else agentRef._agent = null;
                         }
-                        else agentRefs.RemoveAt(i);
+
+                        // 后重置所有代理
+                        for (int i = agentRefs.Count - 1; i >= 0; i--)
+                        {
+                            if (agentRefs[i].TryGetTarget(out var agentRef))
+                            {
+                                agentRef.isCreated = false;
+                                if (agentRef.isAutoCreate)
+                                {
+                                    agentRef.CreateAsyncAgent();
+                                }
+                                else agentRef._agent = null;
+                            }
+                            else agentRefs.RemoveAt(i);
+                        }
                     }
                 }
 
@@ -243,7 +246,9 @@ namespace ECSharp.Hotfix
         internal static void AddAgentRef(AgentRef agentRef)
         {
             lock (agentRefs)
+            {
                 agentRefs.Add(new WeakReference<AgentRef>(agentRef));
+            }
         }
 
         private class UpdateCheck : ITimeUpdate
@@ -261,14 +266,33 @@ namespace ECSharp.Hotfix
                 {
                     periodTime = int.MaxValue;
 
-                    lock (agentRefs)
-                        for (int i = agentRefs.Count - 1; i >= 0; i--)
-                            if (!agentRefs[i].TryGetTarget(out _)) agentRefs.RemoveAt(i);
+                    if (agentRefs.Count > 0)
+                    {
+                        lock (agentRefs)
+                        {
+                            for (int i = agentRefs.Count - 1; i >= 0; i--)
+                            {
+                                if (!agentRefs[i].TryGetTarget(out _))
+                                {
+                                    agentRefs.RemoveAt(i);
+                                }
+                            }
+                        }
+                    }
 
                     return;
                 }
                 if (periodTime == int.MaxValue)
                 {
+                    var currentAgentRefCountUnsafe = agentRefs.Count;
+                    // 特殊情况是当前没有引用按照正常10s一次的周期检测
+                    if (currentAgentRefCountUnsafe <= 0)
+                    {
+                        lastAgentRefCount = currentAgentRefCountUnsafe;
+                        periodTime = 10000;
+                        return;
+                    }
+
                     lock (agentRefs)
                     {
                         var currentAgentRefCount = agentRefs.Count;

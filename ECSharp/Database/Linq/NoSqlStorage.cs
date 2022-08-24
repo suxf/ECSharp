@@ -1,5 +1,4 @@
-﻿using ECSharp;
-using ECSharp.Linq;
+﻿using ECSharp.Linq;
 using ECSharp.Time;
 using System;
 using System.Collections.Concurrent;

@@ -63,7 +63,9 @@ namespace ECSharp.Time
         internal void Push(BaseTimeFlow timeFlow)
         {
             lock (waitAddTimeFlows)
+            {
                 waitAddTimeFlows.Add(timeFlow);
+            }
         }
 
         /// <summary>
