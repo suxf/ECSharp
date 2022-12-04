@@ -1,4 +1,7 @@
-﻿using System.Data.SqlClient;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using System.Data.SqlClient;
 
 namespace ECSharp.Database.SQLServer
 {

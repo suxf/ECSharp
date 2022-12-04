@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using System.Net;
 
 namespace ECSharp.Network.Sockets
 {

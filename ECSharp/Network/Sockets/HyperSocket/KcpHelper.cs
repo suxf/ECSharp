@@ -1,4 +1,7 @@
-﻿using ECSharp.Time;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Time;
 using System;
 using System.Buffers;
 using System.Net.Sockets.Kcp;
@@ -10,13 +13,13 @@ namespace ECSharp.Network.Sockets.HyperSocket
     /// </summary>
     internal class KcpHelper : ITimeUpdate, IKcpCallback
     {
-        private readonly Kcp kcp;
+        private readonly SimpleSegManager.Kcp kcp;
 
         private readonly IKcp kcpListener;
         /// <summary>
         /// 下次更新时间 【kcp优化方案】
         /// </summary>
-        private DateTime nextUpdateTime = DateTime.UtcNow;
+        private DateTimeOffset nextUpdateTime = DateTimeOffset.UtcNow;
         /// <summary>
         /// 无网络数据更新次数  【kcp优化方案】
         /// </summary>
@@ -28,7 +31,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
 
         public KcpHelper(uint conv, int mtu, int winSize, KcpMode kcpMode, IKcp listener)
         {
-            kcp = new Kcp(conv, this);
+            kcp = new SimpleSegManager.Kcp(conv, this);
             if (kcpMode == KcpMode.Normal) kcp.NoDelay(0, 40, 0, 0);
             else if (kcpMode == KcpMode.Fast) kcp.NoDelay(1, 10, 2, 1);
             kcp.WndSize(winSize, winSize);
@@ -119,7 +122,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 if (noNetDataCount >= 100) return;
                 ++noNetDataCount;
 
-                DateTime utc = DateTime.UtcNow;
+                DateTimeOffset utc = DateTimeOffset.UtcNow;
                 if (nextUpdateTime <= utc)
                 {
                     kcp.Update(utc);

@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using System;
 using System.Text;
 
 namespace ECSharp.Linq

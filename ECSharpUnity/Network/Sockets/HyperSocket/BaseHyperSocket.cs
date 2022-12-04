@@ -1,4 +1,7 @@
-﻿using ECSharp.Time;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Time;
 
 namespace ECSharp.Network.Sockets.HyperSocket
 {

@@ -1,4 +1,7 @@
-﻿namespace ECSharp.Variant
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+namespace ECSharp.Variant
 {
     /// <summary>
     /// 可变变量类型

@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -111,8 +114,8 @@ namespace ECSharp.Variant
 
                 switch (value.Type)
                 {
-                    case JTokenType.Integer: map.Add(key, (int)value); break;
-                    case JTokenType.Float: map.Add(key, (float)value); break;
+                    case JTokenType.Integer: map.Add(key, (long)value); break;
+                    case JTokenType.Float: map.Add(key, (double)value); break;
                     case JTokenType.Boolean: map.Add(key, (bool)value); break;
                     case JTokenType.Array: map.Add(key, VarList.Parse((JArray)value)); break;
                     case JTokenType.Object: map.Add(key, Parse((JObject)value)); break;

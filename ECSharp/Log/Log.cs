@@ -1,4 +1,7 @@
-﻿namespace ECSharp
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+namespace ECSharp
 {
     /// <summary>
     /// 日志类

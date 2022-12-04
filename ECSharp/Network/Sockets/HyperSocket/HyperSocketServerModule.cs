@@ -1,4 +1,7 @@
-﻿using ECSharp.Linq;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Linq;
 using ECSharp.Network.Sockets.Server;
 using System;
 using System.Collections.Generic;
