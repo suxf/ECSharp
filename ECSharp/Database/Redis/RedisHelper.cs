@@ -1,4 +1,7 @@
-﻿using ECSharp.Time;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Time;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -79,12 +82,12 @@ namespace ECSharp.Database.Redis
         public void AddEventListener(IRedisEvent listener)
         {
             //注册如下事件
-            multiplexer.ConnectionFailed += listener.OnConnectionFailed!;
-            multiplexer.ConnectionRestored += listener.OnConnectionRestored!;
-            multiplexer.ErrorMessage += listener.OnErrorMessage!;
-            multiplexer.ConfigurationChanged += listener.OnConfigurationChanged!;
-            multiplexer.HashSlotMoved += listener.OnHashSlotMoved!;
-            multiplexer.InternalError += listener.OnInternalError!;
+            multiplexer.ConnectionFailed += listener.OnConnectionFailed;
+            multiplexer.ConnectionRestored += listener.OnConnectionRestored;
+            multiplexer.ErrorMessage += listener.OnErrorMessage;
+            multiplexer.ConfigurationChanged += listener.OnConfigurationChanged;
+            multiplexer.HashSlotMoved += listener.OnHashSlotMoved;
+            multiplexer.InternalError += listener.OnInternalError;
         }
 
         #region String
@@ -150,7 +153,7 @@ namespace ECSharp.Database.Redis
         public bool StringSet(List<KeyValuePair<RedisKey, RedisValue>> keyValues)
         {
             List<KeyValuePair<RedisKey, RedisValue>> newkeyValues =
-                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key!), p.Value)).ToList();
+                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key), p.Value)).ToList();
             return Do(db => db.StringSet(newkeyValues.ToArray()));
         }
 
@@ -331,7 +334,7 @@ namespace ECSharp.Database.Redis
         public async Task<bool> StringSetAsync(List<KeyValuePair<RedisKey, RedisValue>> keyValues)
         {
             List<KeyValuePair<RedisKey, RedisValue>> newkeyValues =
-                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key!), p.Value)).ToList();
+                keyValues.Select(p => new KeyValuePair<RedisKey, RedisValue>(AddSysCustomKey(p.Key), p.Value)).ToList();
             return await Do(db => db.StringSetAsync(newkeyValues.ToArray()));
         }
 
@@ -1101,8 +1104,12 @@ namespace ECSharp.Database.Redis
 
         #region 辅助方法
 
-        private string AddSysCustomKey(string oldKey)
+        private string AddSysCustomKey(string? oldKey)
         {
+            if(oldKey == null)
+            {
+                return "";
+            }
             return PrefixKey + oldKey;
         }
 
@@ -1114,23 +1121,33 @@ namespace ECSharp.Database.Redis
 
         private string ConvertJson<T>(T value)
         {
-            string result = value is string ? value.ToString()! : JsonConvert.SerializeObject(value);
-            return result;
+            if (value == null)
+            {
+                return "";
+            }
+
+            if (value is string str)
+            {
+                return str;
+            }
+
+            return JsonConvert.SerializeObject(value);
         }
 
-        private T? ConvertObj<T>(RedisValue? value)
+        private static T? ConvertObj<T>(RedisValue? value)
         {
-            if (value == null)
+            string? str = (string?)value;
+            if (str == null)
             {
                 return default;
             }
 
             if (typeof(T).Name.Equals(typeof(string).Name))
             {
-                return JsonConvert.DeserializeObject<T>($"'{value}'")!;
+                return JsonConvert.DeserializeObject<T>($"'{str}'");
             }
 
-            return JsonConvert.DeserializeObject<T>(value!);
+            return JsonConvert.DeserializeObject<T>(str);
         }
 
         private List<T> ConvetList<T>(RedisValue[] values)

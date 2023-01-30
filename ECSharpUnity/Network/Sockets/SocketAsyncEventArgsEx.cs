@@ -1,4 +1,7 @@
-﻿#if UNITY_2017_1_OR_NEWER || NET462 || NETSTANDARD2_0 
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+#if UNITY_2020_1_OR_NEWER || NET462 || NETSTANDARD2_0 
 using ECSharp.Linq;
 #endif
 using ECSharp.Utils;

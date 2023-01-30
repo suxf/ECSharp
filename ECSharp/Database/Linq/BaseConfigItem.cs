@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using Newtonsoft.Json.Linq;
 using System.Data;
 
 namespace ECSharp.Database.Linq

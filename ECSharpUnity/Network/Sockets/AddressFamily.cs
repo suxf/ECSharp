@@ -1,4 +1,7 @@
-﻿namespace ECSharp.Network.Sockets
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+namespace ECSharp.Network.Sockets
 {
     /// <summary>
     /// 地址簇

@@ -1,4 +1,7 @@
-﻿namespace ECSharp.Time
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+namespace ECSharp.Time
 {
     /// <summary>
     /// 时间流 

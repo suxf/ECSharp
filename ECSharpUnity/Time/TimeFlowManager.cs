@@ -1,4 +1,7 @@
-﻿using ECSharp.Utils;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Utils;
 using System.Diagnostics;
 
 namespace ECSharp.Time

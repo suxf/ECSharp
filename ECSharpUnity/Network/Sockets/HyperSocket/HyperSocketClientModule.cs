@@ -1,4 +1,7 @@
-﻿using ECSharp.Linq;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Linq;
 using ECSharp.Network.Sockets.Client;
 using System;
 using System.Threading;
@@ -94,7 +97,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 if (hyperSocket.aes != null
                     && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1))
                 {
-                    var dataSSL = hyperSocket.aes.Decrypt(msg.data!);
+                    var dataSSL = hyperSocket.aes.Decrypt(msg.data);
                     if (dataSSL != null)
                         listener.OnTcpReceive(dataSSL, hyperSocket);
                 }

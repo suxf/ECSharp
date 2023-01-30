@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
 

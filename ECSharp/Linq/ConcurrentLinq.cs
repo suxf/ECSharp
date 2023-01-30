@@ -1,4 +1,7 @@
-﻿using System.Collections.Concurrent;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using System.Collections.Concurrent;
 
 namespace ECSharp.Linq
 {

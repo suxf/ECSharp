@@ -1,4 +1,7 @@
-﻿using ECSharp.Linq;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Linq;
 using ECSharp.Time;
 using System;
 using System.Collections.Concurrent;
@@ -144,7 +147,12 @@ namespace ECSharp.Database.Linq
                 var result = dBHelper.CommandSQL($"SELECT TOP 1 [{valueName}] FROM {tableName} WHERE {condition} {keyName}='{key}'");
                 if (result.EffectNum > 0)
                 {
-                    var val = (U)result.Rows![0][valueName];
+                    if (result.Rows == null)
+                    {
+                        return false;
+                    }
+                    
+                    var val = (U)result.Rows[0][valueName];
                     keyValues.AddOrUpdate(key, value, (k, v) => value);
 
                     if (!keyUpdateQueue.Contains(key) && !val.Equals(value))

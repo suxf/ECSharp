@@ -1,4 +1,7 @@
-﻿using ECSharp.Database.Linq;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Database.Linq;
 using ECSharp.Time;
 using System;
 using System.Collections.Generic;
@@ -40,8 +43,8 @@ namespace ECSharp.Database.SQLServer
             {
                 var result = CommandSQL("SELECT GETDATE()");
 
-                if (result.EffectNum == 1)
-                    return (DateTime)result.Rows![0][0];
+                if (result.EffectNum == 1 && result.Rows != null)
+                    return (DateTime)result.Rows[0][0];
                 else
                     return DateTime.Now;
             }

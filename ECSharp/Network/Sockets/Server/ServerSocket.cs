@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -521,7 +524,10 @@ namespace ECSharp.Network.Sockets.Server
             ushort sessionId = (ushort)(((bufferSpan[0] & 0xFF) << 8) | (bufferSpan[1] & 0xFF));
             try
             {
-                socketInvoke?.OnReceivedCompleted(new RemoteSocketMsg(sessionId, bufferSpan.Slice(3, bufferSpan.Length - 3).ToArray(), e.RemoteEndPoint!));
+                if(e.RemoteEndPoint != null)
+                {
+                    socketInvoke?.OnReceivedCompleted(new RemoteSocketMsg(sessionId, bufferSpan.Slice(3, bufferSpan.Length - 3).ToArray(), e.RemoteEndPoint));
+                }
             }
             catch (Exception ex)
             {

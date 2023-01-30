@@ -11,7 +11,7 @@ namespace SampleDll
     /// </summary>
     public abstract class A_Agent : AbstractAgent, IAgent<A>
     {
-        public A self => _self as A;
+        public new A self => (A)base.self;
         public void WriteHelloA()
         {
             self.test1 += 100;
@@ -29,7 +29,7 @@ namespace SampleDll
     /// </summary>
     public class B_Agent : A_Agent, IAgent<B>
     {
-        public new B self => _self as B;
+        public new B self => (B)base.self;
         public override void Hello()
         {
             self.test1 += 20;
@@ -48,7 +48,7 @@ namespace SampleDll
     /// </summary>
     public class C_Agent : A_Agent, IAgent<C>
     {
-        public new C self => _self as C;
+        public new C self => (C)base.self;
         public override void Hello()
         {
             self.test1 += 50;

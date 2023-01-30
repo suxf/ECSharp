@@ -66,20 +66,6 @@ namespace ECSharp.Hotfix
             if (_ref.isAutoCreate)
             {
                 _ref.CreateAgent();
-
-                if (_ref._agent != null)
-                    return;
-
-                // 如果创建失败则过1毫秒后尝试 一共尝试10次
-                for (int i = 0; i < 10; i++)
-                {
-                    System.Threading.Thread.Yield();
-                    _ref.CreateAgent();
-                    if (_ref._agent != null)
-                        return;
-                }
-
-                throw new System.Exception("Create Agent fail by try 10 times!");
             }
         }
 
@@ -91,7 +77,7 @@ namespace ECSharp.Hotfix
         public dynamic GetDynamicAgent()
         {
             CreateAgent();
-            return _ref._agent!;
+            return _ref.GetAgent()!;
         }
 
         /// <summary>
@@ -101,7 +87,7 @@ namespace ECSharp.Hotfix
         public T GetAgent<T>() where T : AbstractAgent, new()
         {
             _ref.CreateAgent<T>(this);
-            return (T)_ref._agent!;
+            return (T)_ref.GetAgent()!;
         }
 
         /// <summary>
@@ -111,7 +97,7 @@ namespace ECSharp.Hotfix
         public T GetAbstractAgent<T>() where T : AbstractAgent
         {
             CreateAgent();
-            return (T)_ref._agent!;
+            return (T)_ref.GetAgent()!;
         }
     }
 }

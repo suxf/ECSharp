@@ -23,9 +23,9 @@ namespace SampleDll
             Log.Info($"Input args:{args[0]}, test_1:{test_1.Value++}");
 
             player1 = AgentDataPivot.AddOrGetObject<Player1>("player1");
-            b = new B();
-            c = new C();
-            Test2(b, c);
+            // b = new B();
+            // c = new C();
+            // Test2(b, c);
         }
 
         public static void Main_Test1(string[] args)

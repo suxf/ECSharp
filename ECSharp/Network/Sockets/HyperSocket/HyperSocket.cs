@@ -1,4 +1,7 @@
-﻿using ECSharp.Crypto;
+﻿#if UNITY_2020_1_OR_NEWER
+#nullable enable
+#endif
+using ECSharp.Crypto;
 using ECSharp.Linq;
 using ECSharp.Variant;
 using System;
