@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
@@ -66,23 +63,16 @@ namespace ECSharp.Utils
         /// <typeparam name="T"></typeparam>
         /// <param name="name"></param>
         /// <returns></returns>
+#if !UNITY_2020_1_OR_NEWER
         public static T? Read<T>(string name)
+#else
+		public static T Read<T>(string name)
+#endif
         {
             if (doc == null && !Reload())
                 return default;
 
-            if(root == null)
-            {
-                return default;
-            }
-
-            var element = root.Element(name);
-            if (element == null)
-            {
-                return default;
-            }
-
-            return (T?)Convert.ChangeType(element.Value, typeof(T));
+            return (T)Convert.ChangeType(root?.Element(name)?.Value, typeof(T))!;
         }
 
         /// <summary>
@@ -96,24 +86,7 @@ namespace ECSharp.Utils
             if (doc == null && !Reload())
                 return null;
 
-            if (root == null)
-            {
-                return null;
-            }
-
-            var elementGroup = root.Element(group);
-            if (elementGroup == null)
-            {
-                return null;
-            }
-
-            var element = elementGroup.Element(name);
-            if (element == null)
-            {
-                return null;
-            }
-
-            return element.Value;
+            return root?.Element(group)?.Element(name)?.Value;
         }
 
         /// <summary>
@@ -123,29 +96,16 @@ namespace ECSharp.Utils
         /// <param name="group"></param>
         /// <param name="name"></param>
         /// <returns></returns>
+#if !UNITY_2020_1_OR_NEWER
         public static T? Read<T>(string group, string name)
+#else
+		public static T Read<T>(string group, string name)
+#endif
         {
             if (doc == null && !Reload())
                 return default;
 
-            if (root == null)
-            {
-                return default;
-            }
-
-            var elementGroup = root.Element(group);
-            if (elementGroup == null)
-            {
-                return default;
-            }
-
-            var element = elementGroup.Element(name);
-            if (element == null)
-            {
-                return default;
-            }
-
-            return (T)Convert.ChangeType(element.Value, typeof(T));
+            return (T)Convert.ChangeType(root?.Element(group)?.Element(name)?.Value, typeof(T))!;
         }
     }
 }

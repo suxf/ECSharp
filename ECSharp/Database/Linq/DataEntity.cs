@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using System;
+﻿using System;
 
 namespace ECSharp.Database.Linq
 {
@@ -34,11 +31,11 @@ namespace ECSharp.Database.Linq
         /// <summary>
         /// 值
         /// </summary>
-        public T? Value
+        public T Value
         {
             get
             {
-                return (T?)parent[Name];
+                return (T)parent[Name]!;
             }
 
             set

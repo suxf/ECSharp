@@ -20,12 +20,15 @@ namespace ECSharp.Hotfix
         /// <summary>
         /// 动态数据对象
         /// </summary>
-        internal AgentData? _self;
+        internal AgentData? __self;
 
         /// <summary>
-        /// 动态数据对象
+        /// 获取代理数据动态类型
+        /// <para>一般配合IAgent接口使用</para>
         /// </summary>
-        public AgentData self => _self!;
+#pragma warning disable IDE1006 // 命名样式
+        protected object? _self => __self;
+#pragma warning restore IDE1006 // 命名样式
 
         /// <summary>
         /// 初始化函数

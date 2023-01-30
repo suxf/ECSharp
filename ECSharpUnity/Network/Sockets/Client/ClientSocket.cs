@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Variant;
+﻿using ECSharp.Variant;
 using System;
 using System.IO;
 using System.Net.Sockets;

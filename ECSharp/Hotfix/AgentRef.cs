@@ -11,10 +11,14 @@ namespace ECSharp.Hotfix
     internal class AgentRef
     {
         /// <summary>
+        /// 代理索引是否被创建
+        /// </summary>
+        internal bool isCreated = false;
+        /// <summary>
         /// 代理
         /// <para>通过代理可以执行关于类的函数</para>
         /// </summary>
-        private AbstractAgent? agent;
+        internal AbstractAgent? _agent;
         /// <summary>
         /// 代理数据类型
         /// </summary>
@@ -61,9 +65,7 @@ namespace ECSharp.Hotfix
         internal void CreateAsyncAgent()
         {
             if (isAutoCreate)
-            {
                 Task.Run(CreateAgent);
-            }
         }
 
         /// <summary>
@@ -71,24 +73,20 @@ namespace ECSharp.Hotfix
         /// </summary>
         internal void CreateAgent<T>(AgentData data) where T : AbstractAgent, new()
         {
-            if (agent == null)
+            if (!isCreated)
             {
                 lock (m_lock)
                 {
-                    if (agent != null)
-                    {
-                        return;
-                    }
+                    if (isCreated) return;
+
+                    isCreated = true;
 
                     // 修改第一次创建状态标记
                     if (++createAgentCount >= 2)
-                    {
                         isFirstCreateAgent = false;
-                    }
 
-                    var newAgent = new T() { _self = data };
-                    newAgent.InitializeES(isFirstCreateAgent);
-                    Interlocked.Exchange(ref agent, newAgent);
+                    Interlocked.Exchange(ref _agent, new T() { __self = data });
+                    _agent.InitializeES(isFirstCreateAgent);
                 }
             }
         }
@@ -98,40 +96,48 @@ namespace ECSharp.Hotfix
         /// </summary>
         internal void CreateAgent()
         {
-            if (agent == null && type != null && HotfixMgr.agentTypeMap.ContainsKey(type))
+            if (!isCreated && type != null && HotfixMgr.agentTypeMap.ContainsKey(type))
             {
                 lock (m_lock)
                 {
-                    if (agent != null)
-                    {
-                        return;
-                    }
+                    if (isCreated) return;
 
-                    if (type == null)
-                    {
-                        return;
-                    }
+                    if (type == null) return;
 
                     if (!HotfixMgr.agentTypeMap.TryGetValue(type, out var agentType))
                     {
                         return;
                     }
 
+                    isCreated = true;
+
                     // 修改第一次创建状态标记
                     if (++createAgentCount >= 2)
                         isFirstCreateAgent = false;
 
+                    // 此处有问题带有一个参数的构造函数无法正确使用GetAgent 暂时舍弃 后期有其他方案再修复
+                    // object newAgent = null;
+                    // var constructors = agentType.GetConstructors();
+                    // for (int i = 0, len = constructors.Length; i < len; i++)
+                    // {
+                    //     var constructor = constructors[i];
+                    //     var parameters = constructor.GetParameters();
+                    //     if (parameters.Length == 1 && parameters[0].ParameterType == type)
+                    //         newAgent = Activator.CreateInstance(agentType, agentData);
+                    //     else
+                    //         newAgent = Activator.CreateInstance(agentType);
+                    // }
                     var newAgent = Activator.CreateInstance(agentType) as AbstractAgent;
                     if (newAgent != null)
                     {
-                        newAgent._self = agentData;
+                        newAgent.__self = agentData;
                         newAgent.InitializeES(isFirstCreateAgent);
                     }
 
                     // 处理值拷贝
-                    if (agent != null && isCopyValue)
+                    if (_agent != null && isCopyValue)
                     {
-                        var oldAgentType = agent.GetType();
+                        var oldAgentType = _agent.GetType();
                         var fields = agentType.GetFields();
                         for (int i = 0, len = fields.Length; i < len; i++)
                         {
@@ -139,7 +145,7 @@ namespace ECSharp.Hotfix
                             var oldField = oldAgentType.GetField(newField.Name);
 
                             if (newField.GetType() == oldField?.GetType() && !newField.IsInitOnly)
-                                newField.SetValue(newAgent, oldField.GetValue(agent));
+                                newField.SetValue(newAgent, oldField.GetValue(_agent));
                         }
 
                         var properties = agentType.GetProperties();
@@ -149,49 +155,12 @@ namespace ECSharp.Hotfix
                             var oldProperty = oldAgentType.GetProperty(newProperty.Name);
 
                             if (newProperty.GetType() == oldProperty?.GetType() && newProperty.CanWrite)
-                                newProperty.SetValue(newAgent, oldProperty.GetValue(agent));
+                                newProperty.SetValue(newAgent, oldProperty.GetValue(_agent));
                         }
                     }
 
                     // 替换代理
-                    Interlocked.Exchange(ref agent, newAgent);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 获取代理
-        /// </summary>
-        /// <returns></returns>
-        internal AbstractAgent? GetAgent()
-        {
-            if(agent == null)
-            {
-                lock (m_lock)
-                {
-                    if (agent == null)
-                    {
-                        CreateAgent();
-                    }
-                }
-            }
-            return agent;
-        }
-
-        /// <summary>
-        /// 获取代理
-        /// </summary>
-        /// <returns></returns>
-        internal void ResetAgent()
-        {
-            if (agent != null)
-            {
-                lock (m_lock)
-                {
-                    if (agent != null)
-                    {
-                        Interlocked.Exchange(ref agent, null);
-                    }
+                    Interlocked.Exchange(ref _agent, newAgent);
                 }
             }
         }

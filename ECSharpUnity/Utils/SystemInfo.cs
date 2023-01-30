@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-namespace ECSharp.Utils
+﻿namespace ECSharp.Utils
 {
     /// <summary>
     /// 系统信息

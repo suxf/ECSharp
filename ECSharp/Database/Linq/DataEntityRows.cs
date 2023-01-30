@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Time;
+﻿using ECSharp.Time;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -119,9 +116,7 @@ namespace ECSharp.Database.Linq
                 foreach (object? column in dataRow.Table.Columns)
                 {
                     if (column == null) continue;
-                    var str = column.ToString();
-                    if (str == null) continue;
-                    dataObject.data.TryAdd(str, dataRow[str]);
+                    dataObject.data.TryAdd(column.ToString()!, dataRow[column.ToString()!]);
                 }
 
                 rows.TryAdd(dataRow[primaryKey], dataObject);

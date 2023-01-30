@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-namespace ECSharp
+﻿namespace ECSharp
 {
     /// <summary>
     /// 日志配置

@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-namespace ECSharp.Network.Sockets.HyperSocket
+﻿namespace ECSharp.Network.Sockets.HyperSocket
 {
     /// <summary>
     /// 超级套接字配置

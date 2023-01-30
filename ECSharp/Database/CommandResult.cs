@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using System.Data;
+﻿using System.Data;
 
 namespace ECSharp.Database
 {

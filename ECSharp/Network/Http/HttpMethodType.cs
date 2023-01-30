@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-namespace ECSharp.Network.Http
+﻿namespace ECSharp.Network.Http
 {
     /// <summary>
     /// http访问方法类型

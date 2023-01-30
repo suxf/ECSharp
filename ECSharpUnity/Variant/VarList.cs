@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,20 +29,6 @@ namespace ECSharp.Variant
                 return Var.Null;
             }
             set { base[index] = value; }
-        }
-
-        /// <summary>
-        /// 根据索引安全获取值
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public Var this[Enum index]
-        {
-            get
-            {
-                return this[Convert.ToInt32(index)];
-            }
-            set { base[Convert.ToInt32(index)] = value; }
         }
 
         /// <summary>
@@ -164,8 +147,8 @@ namespace ECSharp.Variant
                 if (value == null) continue;
                 switch (value.Type)
                 {
-                    case JTokenType.Integer: list.Add((long)value); break;
-                    case JTokenType.Float: list.Add((double)value); break;
+                    case JTokenType.Integer: list.Add((int)value); break;
+                    case JTokenType.Float: list.Add((float)value); break;
                     case JTokenType.Boolean: list.Add((bool)value); break;
                     case JTokenType.Array: list.Add(Parse((JArray)value)); break;
                     case JTokenType.Object: list.Add(VarMap.Parse((JObject)value)); break;

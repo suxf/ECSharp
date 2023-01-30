@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Time;
+﻿using ECSharp.Time;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -41,8 +38,8 @@ namespace ECSharp.Database.MySQL
             {
                 var result = CommandSQL("select now()");
 
-                if (result.EffectNum == 1 && result.Rows != null)
-                    return (DateTime)result.Rows[0][0];
+                if (result.EffectNum == 1)
+                    return (DateTime)result.Rows![0][0];
                 else
                     return DateTime.Now;
             }
@@ -63,8 +60,12 @@ namespace ECSharp.Database.MySQL
         /// <param name="extraConfig">数据库额外配置</param>
         public MySqlDbHelper(string address, string username, string password, uint port = 3306, string? databaseName = null, uint minPoolSize = 0, uint maxPoolSize = 100, string? extraConfig = null)
         {
-            if (extraConfig != null && !string.IsNullOrEmpty(extraConfig))
+            if (!string.IsNullOrEmpty(extraConfig))
+#if !NET462 && !NETSTANDARD2_0
                 builder = new MySqlConnectionStringBuilder(extraConfig);
+#else
+                builder = new MySqlConnectionStringBuilder(extraConfig!);
+#endif
             else
                 builder = new MySqlConnectionStringBuilder();
 

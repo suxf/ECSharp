@@ -48,11 +48,6 @@ namespace ECSharp.Hotfix
         /// </summary>
         private readonly static UpdateCheck updateCheck;
 
-        private static string _assemblyFileName = "";
-        private static string _classFullName = "";
-        private static string[]? _args = null;
-        private static string _entryMethodName = "";
-
         /// <summary>
         /// 创建一个热更管理器
         /// </summary>
@@ -64,52 +59,27 @@ namespace ECSharp.Hotfix
         }
 
         /// <summary>
-        /// 加载最后一次成功使用的配置
-        /// <para>如果第一次未加载或加载失败，则本次调用无效</para>
-        /// </summary>
-        /// <returns></returns>
-        public static void LoadLast()
-        {
-            if (_assemblyFileName == "")
-            {
-                return;
-            }
-
-            if (_classFullName == "")
-            {
-                return;
-            }
-
-            Load(_assemblyFileName, _classFullName, _args, _entryMethodName);
-        }
-
-        /// <summary>
         /// 载入热更新模块
         /// <para>读取不能保证所有情况都是正常的，建议用try-catch捕获异常，以确保未正确替换，还能保持旧环境继续运行</para>
-        /// <para>默认主入口包含一个静态Main函数 public static void Main(string[] args){}</para>
+        /// <para>主入口包含一个静态Main函数 public static void Main(string[] args){}</para>
         /// </summary>
         /// <param name="assemblyFileName">程序集文件名(后缀小写或不写且程序集需要在运行根目录下)</param>
         /// <param name="classFullName">含有 public static void Main(string[] args){} 程序集下热更模块主入口类全称(即命名空间和类名)</param>
         /// <param name="args">传入热更层字符串数组</param>
         /// <param name="entryMethodName">入口函数名称，默认不指定为 Main</param>
         /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
-        public static void Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
+        public static bool Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
         {
             if (isLoading)
-            {
-                return;
-            }
+                return false;
 
             isLoading = true;
             if (++loadCount >= 2)
-            {
                 IsFirstLoad = false;
-            }
 
+            // LmBinder.ResetEvent.Reset();
             if (args == null)
-            {
                 args = Array.Empty<string>();
-            }
 
             // 简单的处理了一下可能携带的后缀格式
             assemblyFileName = assemblyFileName.Replace(".dll", "");
@@ -122,56 +92,43 @@ namespace ECSharp.Hotfix
             try
             {
                 if (!File.Exists(dllName))
-                {
                     throw new NullReferenceException($"[{assemblyFileName}] file is not found!");
-                }
 
                 fsRead = new FileStream(dllName, FileMode.Open);
 
                 if (File.Exists(pdbName))
-                {
                     pdbRead = new FileStream(pdbName, FileMode.Open);
-                }
 
                 int fsLen = (int)fsRead.Length;
 
                 if (fsLen <= 0)
-                {
                     throw new NullReferenceException($"Assembly file is empty!");
-                }
 
                 // 取得临时数据
                 var tempDllAssemblyLoader = new AssemblyLoader(fsRead, pdbRead);
 
                 if (!tempDllAssemblyLoader.IsAlive)
-                {
                     throw new NullReferenceException($"Assembly is not alive!");
-                }
 
                 // 最终绑定对象
                 var assembly = tempDllAssemblyLoader.GetAssembly();
                 var typeInfo = assembly.GetType(classFullName);
                 if (typeInfo == null)
-                {
                     throw new NullReferenceException($"[{classFullName}] class is not found!");
-                }
 
                 var methodInfo = typeInfo.GetMethod(entryMethodName, BindingFlags.Public | BindingFlags.Static);
 
                 if (methodInfo == null)
-                {
                     throw new NullReferenceException($"[{entryMethodName}] public static method is not found!");
-                }
 
                 if (methodInfo.GetParameters().Length != 1)
-                {
                     throw new NullReferenceException($"[{entryMethodName}] method has not one args!");
-                }
 
                 // 处理代理类字典
                 var agentTypeMapTemp = new ConcurrentDictionary<Type, Type>();
                 var allTypes = assembly.GetTypes();
                 var abstractAgentType = typeof(AbstractAgent);
+                var iAgentType = typeof(IAgent<>);
 
                 for (int i = 0, len = allTypes.Length; i < len; i++)
                 {
@@ -203,14 +160,10 @@ namespace ECSharp.Hotfix
                         // 先暂停时间流
                         for (int i = 0, len = agentRefs.Count; i < len; i++)
                         {
-                            if (agentRefs[i].TryGetTarget(out var agentRef))
+                            if (agentRefs[i].TryGetTarget(out var agentRef) && agentRef._agent != null && agentRef._agent is ITimeUpdate)
                             {
-                                var agent = agentRef.GetAgent();
-                                if (agent != null && agent is ITimeUpdate tu)
-                                {
-                                    // 处理时间流代理停止
-                                    TimeFlowManager.CloseByObj(tu);
-                                }
+                                // 处理时间流代理停止
+                                TimeFlowManager.CloseByObj((ITimeUpdate)agentRef._agent);
                             }
                         }
 
@@ -219,11 +172,12 @@ namespace ECSharp.Hotfix
                         {
                             if (agentRefs[i].TryGetTarget(out var agentRef))
                             {
-                                agentRef.ResetAgent();
+                                agentRef.isCreated = false;
                                 if (agentRef.isAutoCreate)
                                 {
                                     agentRef.CreateAsyncAgent();
                                 }
+                                else agentRef._agent = null;
                             }
                             else agentRefs.RemoveAt(i);
                         }
@@ -255,20 +209,16 @@ namespace ECSharp.Hotfix
                 if (fsRead != null) fsRead.Close();
                 if (pdbRead != null) pdbRead.Close();
             }
-
-            _assemblyFileName = assemblyFileName;
-            _classFullName = classFullName;
-            _entryMethodName = entryMethodName;
-            _args = args;
+            return true;
         }
 
         /// <summary>
         /// 获取版本
         /// </summary>
         /// <returns></returns>
-        public static Version? GetVersion()
+        public static Version GetVersion()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version;
+            return Assembly.GetExecutingAssembly().GetName().Version!;
         }
 
         /// <summary>

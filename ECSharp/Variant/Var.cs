@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Utils;
+﻿using ECSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -471,7 +468,22 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public override bool Equals(object? obj)
         {
-            return obj is Var var && var == this;
+            return obj is Var var &&
+                   Type == var.Type &&
+                   intValue == var.intValue &&
+                   longValue == var.longValue &&
+                   floatValue == var.floatValue &&
+                   doubleValue == var.doubleValue &&
+                   stringValue == var.stringValue &&
+#if !NET462 && !NETSTANDARD2_0
+                   EqualityComparer<object>.Default.Equals(Object, var.Object) &&
+                   EqualityComparer<VarList>.Default.Equals(List, var.List) &&
+                   EqualityComparer<VarMap>.Default.Equals(Map, var.Map);
+#else
+                    EqualityComparer<object>.Default.Equals(Object!, var.Object!) &&
+                    EqualityComparer<VarList>.Default.Equals(List!, var.List!) &&
+                    EqualityComparer<VarMap>.Default.Equals(Map!, var.Map!);
+#endif
         }
 
         /// <summary>

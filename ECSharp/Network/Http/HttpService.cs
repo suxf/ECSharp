@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Network.Http.Linq;
+﻿using ECSharp.Network.Http.Linq;
 using System;
 using System.Net;
 using System.Net.Security;
@@ -147,7 +144,7 @@ namespace ECSharp.Network.Http
                         if (certificate != null)
                         {
                             sslStream = new SslStream(networkStream);
-                            sslStream.AuthenticateAsServer(certificate, false, SslProtocols.Tls12, true);
+                            sslStream.AuthenticateAsServer(certificate, false, SslProtocols.Tls, true);
                             // sslStream.ReadTimeout = 10000;
                             // sslStream.WriteTimeout = 10000;
                         }

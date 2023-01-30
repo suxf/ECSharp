@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(OutDir)\$(MSBuildProjectName).dll ..\$(MSBuildProjectName.Replace('Dll', ''))\bin\$(Configuration)\$(TargetFramework)\ | copy $(OutDir)\$(MSBuildProjectName).pdb ..\$(MSBuildProjectName.Replace('Dll', ''))\bin\$(Configuration)\$(TargetFramework)\" />
+    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;copy .\$(OutDir)$(TargetName).* ..\Sample\bin\Debug\net5.0\&#xD;&#xA;)" />
   </Target>
 
 </Project>

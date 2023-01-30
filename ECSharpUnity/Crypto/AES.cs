@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Utils;
+﻿using ECSharp.Utils;
 using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using System.Text;

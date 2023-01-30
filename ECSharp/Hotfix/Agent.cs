@@ -19,22 +19,15 @@ namespace ECSharp.Hotfix
     /// <typeparam name="T">代理数据类型</typeparam>
     public abstract class Agent<T> : AbstractAgent, IAgent<T> where T : AgentData
     {
-        private T? __self;
+        /// <summary>
+        /// 隐藏代理对象
+        /// </summary>
+        private T? ___self = null;
         /// <summary>
         /// 代理类对象
         /// <para>通过此对象可以获取代理数据的对象，相当于this的用法</para>
         /// </summary>
-        public new T self
-        {
-            get
-            {
-                if(__self == null)
-                {
-                    __self = (T)base.self;
-                }
-                return __self;
-            }
-        }
+        public T self { get { if (___self == null) ___self = __self as T; return ___self!; } }
     }
 }
 #endif

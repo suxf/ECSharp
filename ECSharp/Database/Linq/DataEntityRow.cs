@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -67,12 +64,7 @@ namespace ECSharp.Database.Linq
                     }
                 }
 
-                if(value == null)
-                {
-                    return;
-                }
-
-                data.AddOrUpdate(key, value, (k, v) => value);
+                data.AddOrUpdate(key, value!, (k, v) => value!);
             }
         }
 
@@ -114,9 +106,7 @@ namespace ECSharp.Database.Linq
                 foreach (object? column in row.Table.Columns)
                 {
                     if (column == null) continue;
-                    var str = column.ToString();
-                    if (str == null) continue;
-                    data.TryAdd(str, row[str]);
+                    data.TryAdd(column.ToString()!, row[column.ToString()!]);
                 }
             }
         }

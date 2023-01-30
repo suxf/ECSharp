@@ -14,7 +14,6 @@ var searchData=
   ['listrightpopasync_3c_20t_20_3e_11',['ListRightPopAsync&lt; T &gt;',['../class_e_c_sharp_1_1_database_1_1_redis_1_1_redis_helper.html#a5efc0b0ad920116ed4a5de32567141e6',1,'ECSharp::Database::Redis::RedisHelper']]],
   ['listrightpush_3c_20t_20_3e_12',['ListRightPush&lt; T &gt;',['../class_e_c_sharp_1_1_database_1_1_redis_1_1_redis_helper.html#a79e22507d73d62cc200de6062c171c55',1,'ECSharp::Database::Redis::RedisHelper']]],
   ['listrightpushasync_3c_20t_20_3e_13',['ListRightPushAsync&lt; T &gt;',['../class_e_c_sharp_1_1_database_1_1_redis_1_1_redis_helper.html#ac246da29af21e04911d28e3b9eaafd78',1,'ECSharp::Database::Redis::RedisHelper']]],
-  ['load_14',['Load',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_rows.html#ab78d43f35a0c4c53dda6721fe9958e19',1,'ECSharp.Database.Linq.DataEntityRows.Load()'],['../class_e_c_sharp_1_1_hotfix_1_1_hotfix_mgr.html#a3a773c975844784c38ddea380cb3db2a',1,'ECSharp.Hotfix.HotfixMgr.Load(string assemblyFileName, string classFullName, string[]? args=null, string entryMethodName=&quot;Main&quot;)']]],
-  ['loadlast_15',['LoadLast',['../class_e_c_sharp_1_1_hotfix_1_1_hotfix_mgr.html#acd71052f0d8b395785d8fd5ddc24772b',1,'ECSharp::Hotfix::HotfixMgr']]],
-  ['loadparser_16',['LoadParser',['../class_e_c_sharp_1_1_utils_1_1_ini.html#a58e2001b7efddfc47c84568cfc1f34ac',1,'ECSharp::Utils::Ini']]]
+  ['load_14',['Load',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_rows.html#ab78d43f35a0c4c53dda6721fe9958e19',1,'ECSharp.Database.Linq.DataEntityRows.Load()'],['../class_e_c_sharp_1_1_hotfix_1_1_hotfix_mgr.html#abfd50dfc6e8636c4b18f6e18fa9fcc37',1,'ECSharp.Hotfix.HotfixMgr.Load()']]],
+  ['loadparser_15',['LoadParser',['../class_e_c_sharp_1_1_utils_1_1_ini.html#a58e2001b7efddfc47c84568cfc1f34ac',1,'ECSharp::Utils::Ini']]]
 ];

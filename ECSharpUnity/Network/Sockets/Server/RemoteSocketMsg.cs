@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using ECSharp.Linq;
+﻿using ECSharp.Linq;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Text;

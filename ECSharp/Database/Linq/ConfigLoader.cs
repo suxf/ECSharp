@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Data;
@@ -90,23 +87,21 @@ namespace ECSharp.Database.Linq
                 if (result.EffectNum >= 0)
                 {
                     Dictionary<string, T> tempConfigs = new Dictionary<string, T>();
-                    if(result.Rows != null)
+                    foreach (DataRow? item in result.Rows!)
                     {
-                        foreach (DataRow? item in result.Rows)
-                        {
-                            if (item == null) continue;
+                        if (item == null) continue;
 
-                            T temp = new T();
-                            temp.SetESConfig(item);
-                            temp.SetESPrimaryKey(item);
+                        T temp = new T();
+                        temp.SetESConfig(item);
+                        temp.SetESPrimaryKey(item);
 
 #if !NET462 && !NETSTANDARD2_0
-                            tempConfigs.TryAdd(temp.PrimaryKey, temp);
+                        tempConfigs.TryAdd(temp.PrimaryKey, temp);
 #else
                         tempConfigs.Add(temp.PrimaryKey, temp);
 #endif
-                        }
                     }
+
                     System.Threading.Interlocked.Exchange(ref configs, tempConfigs);
                 }
             }

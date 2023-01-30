@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 
@@ -25,16 +22,14 @@ namespace ECSharp.Utils
         /// <returns></returns>
         public static JObject GetAll()
         {
-            if (jsonCache != null)
-            {
-                return jsonCache;
-            }
+            if (jsonCache != null) return jsonCache;
             var data = ReadData("default.json");
-            if (data == null || data == "")
-            {
-                return new JObject();
-            }
+            if (string.IsNullOrWhiteSpace(data)) data = "{}";
+#if !NET462 && !NETSTANDARD2_0
             jsonCache = JsonConvert.DeserializeObject<JObject>(data) ?? new JObject();
+#else
+            jsonCache = JsonConvert.DeserializeObject<JObject>(data!) ?? new JObject();
+#endif
             return jsonCache;
         }
 

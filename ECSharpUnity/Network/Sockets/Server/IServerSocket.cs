@@ -1,7 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
-namespace ECSharp.Network.Sockets.Server
+﻿namespace ECSharp.Network.Sockets.Server
 {
     /// <summary>
     /// 套接字状态监听回调
