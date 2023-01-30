@@ -97,7 +97,6 @@ var menudata={children:[
 {text:"y",url:"functions_vars.html#index_y"}]},
 {text:"枚举",url:"functions_enum.html"},
 {text:"属性",url:"functions_prop.html",children:[
-{text:"_",url:"functions_prop.html#index__5F"},
 {text:"a",url:"functions_prop.html#index_a"},
 {text:"b",url:"functions_prop.html#index_b"},
 {text:"c",url:"functions_prop.html#index_c"},

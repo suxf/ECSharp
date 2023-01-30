@@ -21,5 +21,6 @@ var class_e_c_sharp_1_1_variant_1_1_var_list =
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_list.html#a57d1e815d5a985edb70aa85bba975baf", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_list.html#a7ff4cedf6cb2e14cc814a96eda902b5b", null ],
     [ "New", "class_e_c_sharp_1_1_variant_1_1_var_list.html#a37e9eab5664a5e3e221e03f687fa53e1", null ],
+    [ "this[Enum index]", "class_e_c_sharp_1_1_variant_1_1_var_list.html#a5c611155e47f7be0cb1b96304856a237", null ],
     [ "this[int index]", "class_e_c_sharp_1_1_variant_1_1_var_list.html#ac36c5ef42a1378f1eac7b09b3a6d9cf1", null ]
 ];
