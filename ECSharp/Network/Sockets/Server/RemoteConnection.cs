@@ -119,7 +119,7 @@ namespace ECSharp.Network.Sockets.Server
             ReceiveEventArgs = new System.Net.Sockets.SocketAsyncEventArgs();
             ReceiveEventArgs.UserToken = this;
 
-            ConnectDateTime = DateTime.Now;
+            ConnectDateTime = LocalTime.Now;
             RBuffer = new SweetStream();
             IsAlive = true;
             timeoutCount = 0;

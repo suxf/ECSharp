@@ -125,6 +125,7 @@ var annotated_dup =
       ] ],
       [ "Command", "class_e_c_sharp_1_1_command.html", "class_e_c_sharp_1_1_command" ],
       [ "Event", "class_e_c_sharp_1_1_event.html", "class_e_c_sharp_1_1_event" ],
+      [ "LocalTime", "class_e_c_sharp_1_1_local_time.html", "class_e_c_sharp_1_1_local_time" ],
       [ "Log", "class_e_c_sharp_1_1_log.html", "class_e_c_sharp_1_1_log" ],
       [ "LogConfig", "class_e_c_sharp_1_1_log_config.html", "class_e_c_sharp_1_1_log_config" ],
       [ "MultiCommand", "class_e_c_sharp_1_1_multi_command.html", "class_e_c_sharp_1_1_multi_command" ],

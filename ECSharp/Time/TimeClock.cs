@@ -98,7 +98,7 @@ namespace ECSharp.Time
             this.minute = minute;
             this.second = second;
             // 获取当前时
-            lastHour = DateTime.Now.Hour;
+            lastHour = LocalTime.Now.Hour;
             timeFlow = BaseTimeFlow.CreateTimeFlow(this, isSync);
         }
 
@@ -350,7 +350,7 @@ namespace ECSharp.Time
 
         private class SysTime : ISysTime
         {
-            public DateTime Now => DateTime.Now;
+            public DateTime Now => LocalTime.Now;
         }
     }
 }

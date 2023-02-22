@@ -93,6 +93,7 @@ var hierarchy =
       [ "ECSharp.Variant.VarList", "class_e_c_sharp_1_1_variant_1_1_var_list.html", null ]
     ] ],
     [ "ECSharp.Utils.LocalStorage", "class_e_c_sharp_1_1_utils_1_1_local_storage.html", null ],
+    [ "ECSharp.LocalTime", "class_e_c_sharp_1_1_local_time.html", null ],
     [ "ECSharp.Log", "class_e_c_sharp_1_1_log.html", null ],
     [ "ECSharp.LogConfig", "class_e_c_sharp_1_1_log_config.html", null ],
     [ "ECSharp.Crypto.MD5", "class_e_c_sharp_1_1_crypto_1_1_m_d5.html", null ],

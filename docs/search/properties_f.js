@@ -9,6 +9,7 @@ var searchData=
   ['this_5bstring_20key_5d_6',['this[string key]',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_row.html#ab33aecd797e7f7581009346eb746e244',1,'ECSharp::Database::Linq::DataEntityRow']]],
   ['this_5bvar_20key_5d_7',['this[Var key]',['../class_e_c_sharp_1_1_variant_1_1_var_map.html#a4065ed91496455d71b6ee62fd4b96a38',1,'ECSharp::Variant::VarMap']]],
   ['timeinterval_8',['TimeInterval',['../class_e_c_sharp_1_1_time_1_1_time_flow.html#a45ef8159a486887fa7572583554d0e62',1,'ECSharp::Time::TimeFlow']]],
-  ['totalruntime_9',['TotalRunTime',['../class_e_c_sharp_1_1_utils_1_1_system_info.html#aeade8d2839bdfa221472b1dbcb77542e',1,'ECSharp::Utils::SystemInfo']]],
-  ['triggertoday_10',['TriggerToday',['../class_e_c_sharp_1_1_time_1_1_time_clock.html#a7c49dfcba957623987b71a269dc125ed',1,'ECSharp::Time::TimeClock']]]
+  ['timestamp_9',['TimeStamp',['../class_e_c_sharp_1_1_local_time.html#a6132d54e7e928b2af6a196edd59963ff',1,'ECSharp::LocalTime']]],
+  ['totalruntime_10',['TotalRunTime',['../class_e_c_sharp_1_1_utils_1_1_system_info.html#aeade8d2839bdfa221472b1dbcb77542e',1,'ECSharp::Utils::SystemInfo']]],
+  ['triggertoday_11',['TriggerToday',['../class_e_c_sharp_1_1_time_1_1_time_clock.html#a7c49dfcba957623987b71a269dc125ed',1,'ECSharp::Time::TimeClock']]]
 ];

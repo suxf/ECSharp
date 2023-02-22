@@ -22,22 +22,16 @@ namespace ECSharp.Time
         private readonly static TimeFlowThread[] threads = new TimeFlowThread[MAX_HANDLE_TASK_THREAD + 1];
 
         /// <summary>
-        /// 秒表器
-        /// </summary>
-        private readonly static Stopwatch stopwatch = Stopwatch.StartNew();
-
-        /// <summary>
-        /// 程序运行总时长
-        /// </summary>
-        internal static long TotalRunTime => stopwatch.ElapsedMilliseconds;
-
-        /// <summary>
         /// 压入一个时间流继承对象
         /// </summary>
         /// <param name="tf"></param>
         /// <param name="isSync">同步标记</param>
         internal static void PushTimeFlow(BaseTimeFlow tf, bool isSync)
         {
+#if UNITY_WEBGL
+            isSync = true;
+#endif
+
             // 同步线程
             if (isSync)
             {
@@ -97,5 +91,15 @@ namespace ECSharp.Time
 
             return false;
         }
+
+#if UNITY_WEBGL
+        internal static void OnUnityUpdate()
+        {
+            if (threads[0] != null)
+            {
+                threads[0].OnUnityUpdate(threads[0]);
+            }
+        }
+#endif
     }
 }

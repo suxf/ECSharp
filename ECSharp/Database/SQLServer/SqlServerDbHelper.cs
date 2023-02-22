@@ -35,7 +35,7 @@ namespace ECSharp.Database.SQLServer
 
         /// <summary>
         /// 获取数据库时间
-        /// <para>如果数据库异常导致查询失败，则默认返回DateTime.Now</para>
+        /// <para>如果数据库异常导致查询失败，则默认返回LocalTime.Now</para>
         /// </summary>
         public DateTime Now
         {
@@ -46,7 +46,7 @@ namespace ECSharp.Database.SQLServer
                 if (result.EffectNum == 1 && result.Rows != null)
                     return (DateTime)result.Rows[0][0];
                 else
-                    return DateTime.Now;
+                    return LocalTime.Now;
             }
         }
 

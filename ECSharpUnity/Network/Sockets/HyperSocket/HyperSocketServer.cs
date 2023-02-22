@@ -207,8 +207,8 @@ namespace ECSharp.Network.Sockets.HyperSocket
 
             heartCheckPeriod += config.HeartCheckPeriod;
 
-            long ticks1 = Time.TimeFlowManager.TotalRunTime - config.HeartTimeOut;
-            long ticks2 = Time.TimeFlowManager.TotalRunTime - 3000;
+            long ticks1 = Utils.SystemInfo.TotalRunTime - config.HeartTimeOut;
+            long ticks2 = Utils.SystemInfo.TotalRunTime - 3000;
             foreach (var item in remoteSockets)
             {
                 var remote = item.Value;

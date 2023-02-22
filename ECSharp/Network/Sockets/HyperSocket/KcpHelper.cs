@@ -55,7 +55,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
             {
                 if (isClosed) return;
                 kcp.Send(data);
-                nextUpdateTime = DateTime.UtcNow;
+                nextUpdateTime = LocalTime.UtcNow;
                 noNetDataCount = 0;
             }
         }
@@ -80,7 +80,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                     if (kcp.Recv(buffer) > 0) kcpListener.OnReceive(buffer);
                     else break;
                 }
-                nextUpdateTime = DateTime.UtcNow;
+                nextUpdateTime = LocalTime.UtcNow;
                 noNetDataCount = 0;
             }
         }

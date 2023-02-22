@@ -347,7 +347,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
 
             heartCheckPeriod += config.HeartSendPeriod;
 
-            if (tcpClient.heartCheckTimeOut < Time.TimeFlowManager.TotalRunTime - config.HeartTimeOut)
+            if (tcpClient.heartCheckTimeOut < Utils.SystemInfo.TotalRunTime - config.HeartTimeOut)
             {
                 Close(new Exception("Heart Time Out!"));
                 return;

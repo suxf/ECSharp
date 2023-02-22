@@ -14,5 +14,6 @@ var searchData=
   ['upgrade_11',['Upgrade',['../namespace_e_c_sharp_1_1_network_1_1_http.html#afb0e1942657297237a2102239b421b52af683581d3e75f05f9d9215f9b4696cef',1,'ECSharp.Network.Http.Upgrade()'],['../namespace_e_c_sharp_1_1_network_1_1_http.html#a3b4ed06f431b2ef6cc0982a95414d45daf683581d3e75f05f9d9215f9b4696cef',1,'ECSharp.Network.Http.Upgrade()']]],
   ['useragent_12',['UserAgent',['../namespace_e_c_sharp_1_1_network_1_1_http.html#afb0e1942657297237a2102239b421b52a7a1c9344ffcbe2316169f2cbbc867973',1,'ECSharp::Network::Http']]],
   ['username_13',['UserName',['../class_e_c_sharp_1_1_utils_1_1_system_info.html#a9827e167411a3a4897f88d61850dcc8c',1,'ECSharp::Utils::SystemInfo']]],
-  ['usessl_14',['UseSSL',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_config.html#ac39514446c57136283429821cd4c026a',1,'ECSharp::Network::Sockets::HyperSocket::HyperSocketConfig']]]
+  ['usessl_14',['UseSSL',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_hyper_socket_config.html#ac39514446c57136283429821cd4c026a',1,'ECSharp::Network::Sockets::HyperSocket::HyperSocketConfig']]],
+  ['utcnow_15',['UtcNow',['../class_e_c_sharp_1_1_local_time.html#a7dde71c370b40c912f6ac1d5a9c0fb70',1,'ECSharp::LocalTime']]]
 ];

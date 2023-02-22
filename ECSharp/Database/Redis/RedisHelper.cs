@@ -30,7 +30,7 @@ namespace ECSharp.Database.Redis
 
         /// <summary>
         /// 获取数据库时间
-        /// <para>如果数据库异常导致查询失败，则默认返回DateTime.Now</para>
+        /// <para>如果数据库异常导致查询失败，则默认返回LocalTime.Now</para>
         /// </summary>
         public DateTime Now
         {
@@ -44,7 +44,7 @@ namespace ECSharp.Database.Redis
                     return dateTimeStart.AddSeconds(timeSpans[0])/*.AddTicks(timeSpans[1] * 10)*/.ToLocalTime();
                 }
                 else
-                    return DateTime.Now;
+                    return LocalTime.Now;
             }
         }
 
@@ -142,7 +142,7 @@ namespace ECSharp.Database.Redis
         public bool StringSet(string key, string value, DateTime expiryTime)
         {
             key = AddSysCustomKey(key);
-            return Do(db => db.StringSet(key, value, expiryTime - DateTime.Now));
+            return Do(db => db.StringSet(key, value, expiryTime - LocalTime.Now));
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace ECSharp.Database.Redis
         {
             key = AddSysCustomKey(key);
             string json = ConvertJson(obj);
-            return Do(db => db.StringSet(key, json, expiryTime - DateTime.Now));
+            return Do(db => db.StringSet(key, json, expiryTime - LocalTime.Now));
         }
 
         /// <summary>

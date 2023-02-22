@@ -21,26 +21,31 @@ namespace ECSharp
         /// 文件信息
         /// </summary>
         private static FileInfo? fileInfo = null;
+
         /// <summary>
-        /// 日志ID
+        /// 日期时间字符串
         /// </summary>
-        private static readonly string logId;
+        private static string dateTimeStr = "";
         /// <summary>
-        /// 日志索引，如果单个时间内日志太大则分开
+        /// 时间字符串
         /// </summary>
-        private static int logIndex = 0;
+        private static string timeStr = "";
+
         /// <summary>
         /// 进程名称
         /// </summary>
-        private static readonly string proccessName = "";
+        private static readonly string proccessName = "program";
+
         /// <summary>
         /// 时间流
         /// </summary>
         private static readonly BaseTimeFlow timeFlow;
+
         /// <summary>
         /// 日志写入线程
         /// </summary>
         private static readonly LogWriteUpdate logWriteUpdate = new LogWriteUpdate();
+        
         /// <summary>
         /// 锁
         /// </summary>
@@ -51,10 +56,17 @@ namespace ECSharp
         /// </summary>
         static LogManager()
         {
+            // 创建目录
+            if (!Directory.Exists(LogConfig.LOG_PATH))
+            {
+                Directory.CreateDirectory(LogConfig.LOG_PATH);
+            }
+#if !UNITY_WEBGL
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
-            logId = Randomizer.Random.Next(100, 999).ToString();
+#endif
             timeFlow = BaseTimeFlow.CreateTimeFlow(logWriteUpdate);
             timeFlow.StartTimeFlowES();
+
 #if !UNITY_2020_1_OR_NEWER
             SystemInfo();
 #endif
@@ -64,7 +76,7 @@ namespace ECSharp
         /// 打印系统环境信息日志
         /// </summary>
 #if UNITY_2020_1_OR_NEWER
-    [UnityEngine.RuntimeInitializeOnLoadMethod]
+        [UnityEngine.RuntimeInitializeOnLoadMethod]
 #endif
         private static void SystemInfo()
         {
@@ -77,6 +89,11 @@ namespace ECSharp
             sb.Append("; esf:");
             sb.Append(Utils.SystemInfo.FrameVersion);
             sb.Append("; ");
+#endif
+#if UNITY_WEBGL
+            var obj = new UnityEngine.GameObject("ECSharpRuntime");
+            obj.AddComponent<ECSharpScript>();
+            UnityEngine.Object.DontDestroyOnLoad(obj);
 #endif
             sb.Append(".net:");
             sb.Append(Utils.SystemInfo.DotNetVersion);
@@ -106,7 +123,7 @@ namespace ECSharp
         internal static void WriteLine(LogType type, string log)
         {
             LogInfo logInfo = new LogInfo();
-            logInfo.time = DateTime.Now;
+            logInfo.time = LocalTime.Now;
             logInfo.type = type;
             logInfo.data = log;
 
@@ -264,20 +281,20 @@ namespace ECSharp
                     if (logInfos.IsEmpty)
                         return;
 
-                    // 创建目录
-                    if (!Directory.Exists(LogConfig.LOG_PATH))
+                    if(LocalTime.Now.ToString("yyyy_MM_dd") != dateTimeStr)
                     {
-                        Directory.CreateDirectory(LogConfig.LOG_PATH);
+                        dateTimeStr = LocalTime.Now.ToString("yyyy_MM_dd");
+                        timeStr = LocalTime.Now.ToString("HH_mm_ss_fff");
                     }
 
-                    string dateStr = DateTime.Now.ToString("yyyy_MM_dd/");
-                    // 创建当日目录
-                    if (!Directory.Exists(LogConfig.LOG_PATH + dateStr))
-                    {
-                        Directory.CreateDirectory(LogConfig.LOG_PATH + dateStr);
-                    }
+                    // string dateStr = datetime.ToString("yyyy_MM_dd/");
+                    // // 创建当日目录
+                    // if (!Directory.Exists(LogConfig.LOG_PATH + dateStr))
+                    // {
+                    //     Directory.CreateDirectory(LogConfig.LOG_PATH + dateStr);
+                    // }
 
-                    string filename = string.Format(DateTime.Now.ToString("{4}yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX, LogConfig.LOG_PATH);
+                    string filename = $"{LogConfig.LOG_PATH}{proccessName}_{dateTimeStr}_{timeStr}{LogConfig.LOG_FILE_SUFFIX}";
 
                     if (!File.Exists(filename))
                         fileInfo = null;
@@ -292,7 +309,8 @@ namespace ECSharp
                     {
                         if (fileInfo.Length > LogConfig.LOG_UNIT_FILE_MAX_SIZE)
                         {
-                            fileInfo = new FileInfo(string.Format(DateTime.Now.ToString("{4}yyyy_MM_dd/{2}_HH_{0}_{1}{3}"), ++logIndex, logId, proccessName, LogConfig.LOG_FILE_SUFFIX, LogConfig.LOG_PATH));
+                            timeStr = LocalTime.Now.ToString("HH_mm_ss_fff");
+                            fileInfo = new FileInfo($"{LogConfig.LOG_PATH}{proccessName}_{dateTimeStr}_{timeStr}{LogConfig.LOG_FILE_SUFFIX}");
                             FileStream fs = fileInfo.Create();
                             fs.Close();
                             fileInfo.Refresh();

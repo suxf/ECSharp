@@ -1,6 +1,7 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+
 namespace ECSharp.Utils
 {
     /// <summary>
@@ -45,6 +46,6 @@ namespace ECSharp.Utils
         /// <para>实际时间是从调用框架功能开始计算</para>
         /// <para>内部使用 Stopwatch 类实现</para>
         /// </summary>
-        public static long TotalRunTime => Time.TimeFlowManager.TotalRunTime;
+        public static long TotalRunTime => LocalTime.ElapsedMilliseconds;
     }
 }

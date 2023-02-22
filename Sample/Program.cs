@@ -27,6 +27,7 @@ namespace Sample
                 Log.Info("[13]\t可变变量测试");
                 Log.Info("[14]\t事件测试");
                 Log.Info("[15]\t流体测试");
+                Log.Info("[16]\t本地时间性能测试");
                 string optionId = Log.ReadLine("选择要测试的功能序号:");
                 switch (optionId)
                 {
@@ -60,6 +61,8 @@ namespace Sample
                     case "14": new Test_Event(); break;
                     // 流体测试
                     case "15": new Test_SweetStream(); break;
+                    // 本地时间性能测试
+                    case "16": new Test_LocalTime(); break;
                 }
                 Log.ReadLine(">> 回车清空控制台并进入下一次测试!");
                 System.Console.Clear();

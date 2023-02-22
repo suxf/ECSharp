@@ -45,13 +45,17 @@ namespace ECSharp
         public static string LOG_FILE_SUFFIX = ".log";
         /// <summary>
         /// 日志单个文件最多大小
-        /// 单位 byte 默认 50MB大小
+        /// 单位 byte 默认 10MB大小
         /// </summary>
-        public static long LOG_UNIT_FILE_MAX_SIZE = 52428800;
+        public static long LOG_UNIT_FILE_MAX_SIZE = 1048576;
         /// <summary>
         /// 日志根路径
         /// </summary>
+#if UNITY_2020_1_OR_NEWER
+        public static string LOG_PATH = UnityEngine.Application.persistentDataPath + "/logs/"; 
+#else
         public static string LOG_PATH = Utils.SystemInfo.Path + "logs/";
+#endif
         /// <summary>
         /// 调试性 日志字体颜色
         /// </summary>

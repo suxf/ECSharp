@@ -131,7 +131,7 @@ namespace ECSharp.Time
                 return;
 
             IsIdle = false;
-            long ticks = TimeFlowManager.TotalRunTime;
+            long ticks = Utils.SystemInfo.TotalRunTime;
             long period = ticks - consumeTime;
             long consumeFixedTime = notConsumeFixedTime + period;
             long count = consumeFixedTime / fixedTime;
@@ -172,7 +172,7 @@ namespace ECSharp.Time
                 return;
 
             IsIdle = false;
-            long ticks = TimeFlowManager.TotalRunTime;
+            long ticks = Utils.SystemInfo.TotalRunTime;
             long period = ticks - consumeTime;
             long consumeFixedTime = notConsumeFixedTime + period;
             long count = consumeFixedTime / fixedTime;

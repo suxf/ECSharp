@@ -49,7 +49,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
-        internal long heartCheckTimeOut = Time.TimeFlowManager.TotalRunTime;
+        internal long heartCheckTimeOut = Utils.SystemInfo.TotalRunTime;
 
         internal AES? aes;
 
@@ -85,7 +85,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
             if (tcpConn == null)
                 return false;
 
-            System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, Time.TimeFlowManager.TotalRunTime);
+            System.Threading.Interlocked.Exchange(ref heartCheckTimeOut, Utils.SystemInfo.TotalRunTime);
             return tcpConn.Send(SessionId, BaseHyperSocket.HeartPongBytes);
         }
 

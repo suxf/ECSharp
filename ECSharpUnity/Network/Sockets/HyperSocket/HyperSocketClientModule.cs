@@ -26,7 +26,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
         /// <summary>
         /// 心跳检测超时累计
         /// </summary>
-        internal long heartCheckTimeOut = Time.TimeFlowManager.TotalRunTime;
+        internal long heartCheckTimeOut = Utils.SystemInfo.TotalRunTime;
         /// <summary>
         /// 第一次接受到pong消息
         /// </summary>
@@ -73,7 +73,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
 
                 if (msg.data.Compare(BaseHyperSocket.HeartPongBytes))
                 {
-                    Interlocked.Exchange(ref heartCheckTimeOut, Time.TimeFlowManager.TotalRunTime);
+                    Interlocked.Exchange(ref heartCheckTimeOut, Utils.SystemInfo.TotalRunTime);
                     if (!hasFirstRecvPong)
                     {
                         hasFirstRecvPong = true;
