@@ -1,6 +1,7 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,15 +15,15 @@ namespace ECSharp
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1>(TValue1 value1);
+    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1>(TValue1? value1);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1, in TValue2>(TValue1 value1, TValue2 value2);
+    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1, in TValue2>(TValue1? value1, TValue2? value2);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1, in TValue2, in TValue3>(TValue1 value1, TValue2 value2, TValue3 value3);
+    public delegate TResult? COMMAND_FUNC<out TResult, in TValue1, in TValue2, in TValue3>(TValue1? value1, TValue2? value2, TValue3? value3);
 
     /// <summary>
     /// 委托函数
@@ -31,15 +32,15 @@ namespace ECSharp
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1>(object? target, TValue1 value1);
+    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1>(object? target, TValue1? value1);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1, in TValue2>(object? target, TValue1 value1, TValue2 value2);
+    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1, in TValue2>(object? target, TValue1? value1, TValue2? value2);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1, in TValue2, in TValue3>(object? target, TValue1 value1, TValue2 value2, TValue3 value3);
+    public delegate TResult? COMMAND_FUNC_WITH_PARAMETER<out TResult, in TValue1, in TValue2, in TValue3>(object? target, TValue1? value1, TValue2? value2, TValue3? value3);
 
     internal class WaitData { public ManualResetEventSlim waitHandle = new ManualResetEventSlim(false); public object? parameter; }
 
@@ -48,7 +49,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Command<TKey, TResult> where TKey : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey, FuncData> funcMap = new Dictionary<TKey, FuncData>();
 
         private int waitIndex = 0;
@@ -63,7 +64,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC<TResult> func, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC<TResult?> func, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -78,7 +79,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult> func, object? parameter, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -186,10 +187,78 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC<TResult?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
         /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func2 == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func2 == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
+        /// </summary>
         /// <param name="key">指令名</param>
-        public bool Remove(TKey key)
+        public bool Clear(TKey key)
         {
             return funcMap.Remove(key);
         }
@@ -208,7 +277,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Command<TKey, TResult, TValue1> where TKey : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey, FuncData> funcMap = new Dictionary<TKey, FuncData>();
 
         private int waitIndex = 0;
@@ -223,7 +292,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC<TResult, TValue1> func, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC<TResult?, TValue1?> func, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func = func });
@@ -236,7 +305,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1> func, object? parameter, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
@@ -297,7 +366,7 @@ namespace ECSharp
         /// </summary>
         /// <param name="key">指令名</param>
         /// <param name="value1">传入值</param>
-        public TResult? Call(TKey key, TValue1 value1)
+        public TResult? Call(TKey key, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -321,7 +390,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="waitId">等待ID</param>
         /// <param name="value1">传入值</param>
-        public void Call(TKey key, int waitId, TValue1 value1)
+        public void Call(TKey key, int waitId, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
@@ -344,10 +413,78 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC<TResult?, TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
         /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func2 == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func2 == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
+        /// </summary>
         /// <param name="key">指令名</param>
-        public bool Remove(TKey key)
+        public bool Clear(TKey key)
         {
             return funcMap.Remove(key);
         }
@@ -366,7 +503,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Command<TKey, TResult, TValue1, TValue2> where TKey : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1, TValue2>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?, TValue2?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey, FuncData> funcMap = new Dictionary<TKey, FuncData>();
 
         private int waitIndex = 0;
@@ -381,7 +518,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC<TResult, TValue1, TValue2> func, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC<TResult?, TValue1?, TValue2?> func, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func = func });
@@ -394,7 +531,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2> func, object? parameter, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
@@ -456,7 +593,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public TResult? Call(TKey key, TValue1 value1, TValue2 value2)
+        public TResult? Call(TKey key, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -481,7 +618,7 @@ namespace ECSharp
         /// <param name="waitId">等待ID</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public void Call(TKey key, int waitId, TValue1 value1, TValue2 value2)
+        public void Call(TKey key, int waitId, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
@@ -503,10 +640,78 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC<TResult?, TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
         /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func2 == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func2 == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
+        /// </summary>
         /// <param name="key">指令名</param>
-        public bool Remove(TKey key)
+        public bool Clear(TKey key)
         {
             return funcMap.Remove(key);
         }
@@ -525,7 +730,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Command<TKey, TResult, TValue1, TValue2, TValue3> where TKey : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1, TValue2, TValue3>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2, TValue3>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey, FuncData> funcMap = new Dictionary<TKey, FuncData>();
 
         private int waitIndex = 0;
@@ -540,7 +745,7 @@ namespace ECSharp
         /// <param name="key">指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC<TResult, TValue1, TValue2, TValue3> func, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func = func });
@@ -553,7 +758,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2, TValue3> func, object? parameter, int repeat = -1)
+        public void Add(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0) return;
             funcMap.Add(key, new FuncData() { repeat = repeat, func2 = func, parameter = parameter });
@@ -616,7 +821,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public TResult? Call(TKey key, TValue1 value1, TValue2 value2, TValue3 value3)
+        public TResult? Call(TKey key, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -642,7 +847,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public void Call(TKey key, int waitId, TValue1 value1, TValue2 value2, TValue3 value3)
+        public void Call(TKey key, int waitId, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
                 return;
@@ -665,10 +870,78 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
         /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey key, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            if (v1.func2 == func)
+            {
+                funcMap.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                if (v1.Value.func2 == func)
+                {
+                    funcMap.Remove(v1.Key);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
+        /// </summary>
         /// <param name="key">指令名</param>
-        public bool Remove(TKey key)
+        public bool Clear(TKey key)
         {
             return funcMap.Remove(key);
         }
@@ -687,7 +960,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiCommand<TKey1, TKey2, TResult> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, FuncData>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, FuncData>>();
 
         private int waitIndex = 0;
@@ -703,7 +976,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult> func, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?> func, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -724,7 +997,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult> func, object? parameter, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -839,11 +1112,85 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func2 == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func2 == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
         /// </summary>
         /// <param name="key1">一级指令名</param>
         /// <param name="key2">二级指令名</param>
-        public bool Remove(TKey1 key1, TKey2 key2)
+        public bool Clear(TKey1 key1, TKey2 key2)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
@@ -865,7 +1212,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiCommand<TKey1, TKey2, TResult, TValue1> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, FuncData>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, FuncData>>();
 
         private int waitIndex = 0;
@@ -881,7 +1228,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1> func, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1?> func, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -903,7 +1250,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1> func, object? parameter, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -975,7 +1322,7 @@ namespace ECSharp
         /// <param name="key1">一级指令名</param>
         /// <param name="key2">二级指令名</param>
         /// <param name="value1">传入值</param>
-        public TResult? Call(TKey1 key1, TKey2 key2, TValue1 value1)
+        public TResult? Call(TKey1 key1, TKey2 key2, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
             {
@@ -1000,7 +1347,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="waitId">等待ID</param>
         /// <param name="value1">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1 value1)
+        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
@@ -1021,11 +1368,85 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func2 == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func2 == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
         /// </summary>
         /// <param name="key1">一级指令名</param>
         /// <param name="key2">二级指令名</param>
-        public bool Remove(TKey1 key1, TKey2 key2)
+        public bool Clear(TKey1 key1, TKey2 key2)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
@@ -1047,7 +1468,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiCommand<TKey1, TKey2, TResult, TValue1, TValue2> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1, TValue2>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?, TValue2?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, FuncData>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, FuncData>>();
 
         private int waitIndex = 0;
@@ -1063,7 +1484,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1, TValue2> func, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1?, TValue2?> func, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -1085,7 +1506,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2> func, object? parameter, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -1158,7 +1579,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public TResult? Call(TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2)
+        public TResult? Call(TKey1 key1, TKey2 key2, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
             {
@@ -1184,7 +1605,7 @@ namespace ECSharp
         /// <param name="waitId">等待ID</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1 value1, TValue2 value2)
+        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
@@ -1205,11 +1626,85 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1, TValue2> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1, TValue2> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1, TValue2> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func2 == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1, TValue2> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func2 == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
         /// </summary>
         /// <param name="key1">一级指令名</param>
         /// <param name="key2">二级指令名</param>
-        public bool Remove(TKey1 key1, TKey2 key2)
+        public bool Clear(TKey1 key1, TKey2 key2)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;
@@ -1231,7 +1726,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiCommand<TKey1, TKey2, TResult, TValue1, TValue2, TValue3> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult, TValue1, TValue2, TValue3>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2, TValue3>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
+        private class FuncData { public TResult? result; public COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?>? func; public COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?>? func2; public int repeat; public object? parameter; public Dictionary<int, WaitData>? waitMap; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, FuncData>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, FuncData>>();
 
         private int waitIndex = 0;
@@ -1247,7 +1742,7 @@ namespace ECSharp
         /// <param name="key2">二级指令名</param>
         /// <param name="func">委托函数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult, TValue1, TValue2, TValue3> func, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -1269,7 +1764,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="parameter">传入参数</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult, TValue1, TValue2, TValue3> func, object? parameter, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func, object? parameter, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -1343,7 +1838,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public TResult? Call(TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2, TValue3 value3)
+        public TResult? Call(TKey1 key1, TKey2 key2, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
             {
@@ -1370,7 +1865,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1 value1, TValue2 value2, TValue3 value3)
+        public void Call(TKey1 key1, TKey2 key2, int waitId, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
                 return;
@@ -1391,11 +1886,85 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定指令
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1) || !v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            if (v2.func2 == func)
+            {
+                v1.Remove(key2);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除指令
+        /// </summary>
+        public void Remove(COMMAND_FUNC_WITH_PARAMETER<TResult?, TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap)
+            {
+                foreach (var v2 in v1.Value)
+                {
+                    if (v2.Value.func2 == func)
+                    {
+                        v1.Value.Remove(v2.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定指令
         /// </summary>
         /// <param name="key1">一级指令名</param>
         /// <param name="key2">二级指令名</param>
-        public bool Remove(TKey1 key1, TKey2 key2)
+        public bool Clear(TKey1 key1, TKey2 key2)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
                 return false;

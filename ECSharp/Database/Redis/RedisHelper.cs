@@ -1,6 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
+﻿#if !UNITY_2020_1_OR_NEWER
 using ECSharp.Time;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -1172,3 +1170,5 @@ namespace ECSharp.Database.Redis
         #endregion 辅助方法
     }
 }
+
+#endif

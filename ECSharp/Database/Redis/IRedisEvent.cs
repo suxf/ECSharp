@@ -1,6 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
+﻿#if !UNITY_2020_1_OR_NEWER
 using StackExchange.Redis;
 
 namespace ECSharp.Database.Redis
@@ -48,3 +46,5 @@ namespace ECSharp.Database.Redis
         void OnInternalError(object? sender, InternalErrorEventArgs e);
     }
 }
+
+#endif

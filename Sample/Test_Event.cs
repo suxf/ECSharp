@@ -24,6 +24,8 @@ namespace Sample
             event1.Add(10, static (string str) => { Log.Info("事件测试2:" + str); }, 2);
             event1.Add(10, static (string str) => { Log.Info("事件测试3:" + str); }, -1);
             event1.Add(10, static (string str) => { Log.Info("事件测试4:" + str); }, 1, 1);
+            event1.Add(10, TestAction_Event);
+            // event1.Remove(TestAction_Event);
             event1.Add(10, static (object s, string str) => { Log.Info("事件测试4:" + s); }, testStr, 1);
             Log.Info("3秒后触发");
             // 3秒后触发
@@ -63,12 +65,26 @@ namespace Sample
             string str = "Your";
             command.Add("test1", static () => { Log.Info("回调处理成功 command 1"); return ""; });
             command.Add("test2", static () => { Log.Info("回调处理成功 Wait command 2"); return "World"; });
+            command.Add("test3", TestAction_CMD);
+            // command.Remove(TestAction_CMD);
+            command.Call("test3");
             str = command.WaitCall("test2", waitId1);
             Log.Info("测试成功: Hello " + str);
 
             multiCommand.Add("key1", "key2", static () => { Log.Info("回调处理成功 Wait MultiCommand"); return 1; });
             int code = multiCommand.WaitCall("key1", "key2", waitId2);
             Log.Info("MultiCommand 代码：" + code);
+        }
+
+        public void TestAction_Event(string str)
+        {
+            Log.Info("TestAction_Event:" + str);
+        }
+
+        public string TestAction_CMD()
+        {
+            Log.Info("TestAction_CMD");
+            return "TestAction";
         }
     }
 }

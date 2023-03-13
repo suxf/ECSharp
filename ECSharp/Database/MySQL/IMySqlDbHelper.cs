@@ -1,6 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
+﻿#if !UNITY_2020_1_OR_NEWER
 using System;
 
 namespace ECSharp.Database.MySQL
@@ -26,3 +24,5 @@ namespace ECSharp.Database.MySQL
         void CommandSQLException(MySqlDbHelper helper, string sql, Exception exception);
     }
 }
+
+#endif

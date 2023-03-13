@@ -1,6 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
+﻿#if !UNITY_2020_1_OR_NEWER
 using System;
 using System.Data.SqlClient;
 
@@ -36,3 +34,5 @@ namespace ECSharp.Database.SQLServer
         void ProcedureException(SqlServerDbHelper helper, string procedure, SqlParameter[] sqlParameters, Exception exception);
     }
 }
+
+#endif

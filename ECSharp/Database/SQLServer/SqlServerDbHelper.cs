@@ -1,6 +1,4 @@
-﻿#if UNITY_2020_1_OR_NEWER
-#nullable enable
-#endif
+﻿#if !UNITY_2020_1_OR_NEWER
 using ECSharp.Database.Linq;
 using ECSharp.Time;
 using System;
@@ -469,3 +467,4 @@ namespace ECSharp.Database.SQLServer
         }
     }
 }
+#endif

@@ -12,15 +12,15 @@ namespace ECSharp
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC<in TValue1>(TValue1 value1);
+    public delegate void EVENT_FUNC<in TValue1>(TValue1? value1);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC<in TValue1, in TValue2>(TValue1 value1, TValue2 value2);
+    public delegate void EVENT_FUNC<in TValue1, in TValue2>(TValue1? value1, TValue2? value2);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC<in TValue1, in TValue2, in TValue3>(TValue1 value1, TValue2 value2, TValue3 value3);
+    public delegate void EVENT_FUNC<in TValue1, in TValue2, in TValue3>(TValue1? value1, TValue2? value2, TValue3? value3);
 
     /// <summary>
     /// 委托函数
@@ -29,15 +29,15 @@ namespace ECSharp
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1>(object? parameter, TValue1 value1);
+    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1>(object? parameter, TValue1? value1);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1, in TValue2>(object? parameter, TValue1 value1, TValue2 value2);
+    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1, in TValue2>(object? parameter, TValue1? value1, TValue2? value2);
     /// <summary>
     /// 委托函数
     /// </summary>
-    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1, in TValue2, in TValue3>(object? parameter, TValue1 value1, TValue2 value2, TValue3 value3);
+    public delegate void EVENT_FUNC_WITH_PARAMETER<in TValue1, in TValue2, in TValue3>(object? parameter, TValue1? value1, TValue2? value2, TValue3? value3);
 
     /// <summary>
     /// 事件
@@ -128,6 +128,93 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC_WITH_PARAMETER func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func2 == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func2 == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key">事件名</param>
+        public bool Clear(TKey key)
+        {
+            return funcMap.Remove(key);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -141,7 +228,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Event<TKey, TValue1> where TKey : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey, List<FuncData>> funcMap = new Dictionary<TKey, List<FuncData>>();
 
         /// <summary>
@@ -151,7 +238,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC<TValue1> func, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC<TValue1?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -174,7 +261,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -194,7 +281,7 @@ namespace ECSharp
         /// </summary>
         /// <param name="key">事件名</param>
         /// <param name="value1">传入值</param>
-        public void Call(TKey key, TValue1 value1)
+        public void Call(TKey key, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -226,6 +313,93 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC<TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func2 == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func2 == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key">事件名</param>
+        public bool Clear(TKey key)
+        {
+            return funcMap.Remove(key);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -239,7 +413,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Event<TKey, TValue1, TValue2> where TKey : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1, TValue2>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?, TValue2?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey, List<FuncData>> funcMap = new Dictionary<TKey, List<FuncData>>();
 
         /// <summary>
@@ -249,7 +423,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC<TValue1, TValue2> func, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC<TValue1?, TValue2?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -272,7 +446,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -293,7 +467,7 @@ namespace ECSharp
         /// <param name="key">事件名</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public void Call(TKey key, TValue1 value1, TValue2 value2)
+        public void Call(TKey key, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -323,6 +497,93 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC<TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func2 == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func2 == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key">事件名</param>
+        public bool Clear(TKey key)
+        {
+            return funcMap.Remove(key);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -336,7 +597,7 @@ namespace ECSharp
     /// </summary>
     public sealed class Event<TKey, TValue1, TValue2, TValue3> where TKey : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1, TValue2, TValue3>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2, TValue3>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?, TValue2?, TValue3?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey, List<FuncData>> funcMap = new Dictionary<TKey, List<FuncData>>();
 
         /// <summary>
@@ -346,7 +607,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC<TValue1, TValue2, TValue3> func, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC<TValue1?, TValue2?, TValue3?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -369,7 +630,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2, TValue3> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -391,7 +652,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public void Call(TKey key, TValue1 value1, TValue2 value2, TValue3 value3)
+        public void Call(TKey key, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key, out var v1))
             {
@@ -420,6 +681,93 @@ namespace ECSharp
             {
                 v1.Remove(list[i]);
             }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC<TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey key, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key, out var v1))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v1.Count; i < len; i++)
+            {
+                if (v1[i].func2 == func)
+                {
+                    v1.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                for (int i = v1.Count - 1; i >= 0; i--)
+                {
+                    if (v1[i].func2 == func)
+                    {
+                        v1.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key">事件名</param>
+        public bool Clear(TKey key)
+        {
+            return funcMap.Remove(key);
         }
 
         /// <summary>
@@ -540,6 +888,113 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func2 == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func2 == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        public bool Clear(TKey1 key1, TKey2 key2)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+                return false;
+
+            return v1.Remove(key2);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -553,7 +1008,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiEvent<TKey1, TKey2, TValue1> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>>();
 
         /// <summary>
@@ -564,7 +1019,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1> func, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -594,7 +1049,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -621,7 +1076,7 @@ namespace ECSharp
         /// <param name="key1">一级事件名</param>
         /// <param name="key2">二级事件名</param>
         /// <param name="value1">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, TValue1 value1)
+        public void Call(TKey1 key1, TKey2 key2, TValue1? value1 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
             {
@@ -658,6 +1113,113 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func2 == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func2 == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        public bool Clear(TKey1 key1, TKey2 key2)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+                return false;
+
+            return v1.Remove(key2);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -671,7 +1233,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiEvent<TKey1, TKey2, TValue1, TValue2> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1, TValue2>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?, TValue2?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>>();
 
         /// <summary>
@@ -682,7 +1244,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1, TValue2> func, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?, TValue2?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -712,7 +1274,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -740,7 +1302,7 @@ namespace ECSharp
         /// <param name="key2">二级事件名</param>
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2)
+        public void Call(TKey1 key1, TKey2 key2, TValue1? value1 = default, TValue2? value2 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
             {
@@ -777,6 +1339,113 @@ namespace ECSharp
         }
 
         /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func2 == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func2 == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        public bool Clear(TKey1 key1, TKey2 key2)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+                return false;
+
+            return v1.Remove(key2);
+        }
+
+        /// <summary>
         /// 清空
         /// </summary>
         public void Clear()
@@ -790,7 +1459,7 @@ namespace ECSharp
     /// </summary>
     public sealed class MultiEvent<TKey1, TKey2, TValue1, TValue2, TValue3> where TKey1 : notnull where TKey2 : notnull
     {
-        private class FuncData { public EVENT_FUNC<TValue1, TValue2, TValue3>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2, TValue3>? func2; public object? parameter; public int priority; public int repeat; }
+        private class FuncData { public EVENT_FUNC<TValue1?, TValue2?, TValue3?>? func; public EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?>? func2; public object? parameter; public int priority; public int repeat; }
         private readonly Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>> funcMap = new Dictionary<TKey1, Dictionary<TKey2, List<FuncData>>>();
 
         /// <summary>
@@ -801,7 +1470,7 @@ namespace ECSharp
         /// <param name="func">委托函数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1, TValue2, TValue3> func, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?, TValue2?, TValue3?> func, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -831,7 +1500,7 @@ namespace ECSharp
         /// <param name="parameter">传入参数</param>
         /// <param name="priority">优先级 越高越先执行</param>
         /// <param name="repeat">重复次数 默认 -1 无限重复</param>
-        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1, TValue2, TValue3> func, object? parameter, int priority = 0, int repeat = -1)
+        public void Add(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func, object? parameter, int priority = 0, int repeat = -1)
         {
             if (repeat == 0)
                 return;
@@ -859,7 +1528,7 @@ namespace ECSharp
         /// <param name="value1">传入值</param>
         /// <param name="value2">传入值</param>
         /// <param name="value3">传入值</param>
-        public void Call(TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2, TValue3 value3)
+        public void Call(TKey1 key1, TKey2 key2, TValue1? value1 = default, TValue2? value2 = default, TValue3? value3 = default)
         {
             if (!funcMap.TryGetValue(key1, out var v1))
             {
@@ -893,6 +1562,113 @@ namespace ECSharp
             {
                 v2.Remove(list[i]);
             }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC<TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC<TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件
+        /// </summary>
+        public bool Remove(TKey1 key1, TKey2 key2, EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+            {
+                return false;
+            }
+
+            if (!v1.TryGetValue(key2, out var v2))
+            {
+                return false;
+            }
+
+            for (int i = 0, len = v2.Count; i < len; i++)
+            {
+                if (v2[i].func2 == func)
+                {
+                    v2.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除事件
+        /// </summary>
+        public void Remove(EVENT_FUNC_WITH_PARAMETER<TValue1?, TValue2?, TValue3?> func)
+        {
+            foreach (var v1 in funcMap.Values)
+            {
+                foreach (var v2 in v1.Values)
+                {
+                    for (int i = v2.Count - 1; i >= 0; i--)
+                    {
+                        if (v2[i].func2 == func)
+                        {
+                            v2.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空指定事件
+        /// </summary>
+        /// <param name="key1">一级指令名</param>
+        /// <param name="key2">二级指令名</param>
+        public bool Clear(TKey1 key1, TKey2 key2)
+        {
+            if (!funcMap.TryGetValue(key1, out var v1))
+                return false;
+
+            return v1.Remove(key2);
         }
 
         /// <summary>
