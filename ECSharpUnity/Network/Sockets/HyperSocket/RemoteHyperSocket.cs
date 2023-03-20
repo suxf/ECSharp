@@ -69,7 +69,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
         internal RemoteHyperSocket(ushort sessionId, HyperSocketServer hyperSocketServer, HyperSocketConfig config)
         {
             if (config.UseSSL)
-                aes = new AES();
+                aes = new AES(false);
 
             server = hyperSocketServer;
             SessionId = sessionId;

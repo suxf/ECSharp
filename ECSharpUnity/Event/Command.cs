@@ -1,7 +1,6 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

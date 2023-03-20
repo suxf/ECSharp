@@ -29,6 +29,37 @@ namespace ECSharp.Utils
         public static readonly byte[] Empty = Array.Empty<byte>();
 
         /// <summary>
+        /// 数组填充有效长度
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="requiredLength"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        static byte[] PadValidLength(byte[] data, int requiredLength)
+        {
+            if (data.Length == requiredLength)
+            {
+                return data;
+            }
+
+            if (data.Length > requiredLength)
+            {
+                throw new ArgumentException("Key length is already greater than or equal to the required length.");
+            }
+
+            byte[] paddedKey = new byte[requiredLength];
+            Buffer.BlockCopy(data, 0, paddedKey, 0, data.Length);
+
+            // Fill the remaining bytes with the padding character (0x00)
+            for (int i = data.Length; i < requiredLength; i++)
+            {
+                paddedKey[i] = 0x00;
+            }
+
+            return paddedKey;
+        }
+
+        /// <summary>
         /// 获取byte的实际长度
         /// <para>数组中有连续9个字节连续为0的情况</para>
         /// <para>原理 默认基础类型字节占用情况最大为8个</para>

@@ -616,9 +616,7 @@ namespace ECSharp.Network.Sockets.Server
             }
             else if (offset > 0)
             {
-                var data1 = new byte[count];
-                Buffer.BlockCopy(buffer.ToArray(), offset, data1, 0, count);
-                data = data1;
+                data = buffer.Slice(offset, count);
             }
 
             try

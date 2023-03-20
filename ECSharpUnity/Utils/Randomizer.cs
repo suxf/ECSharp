@@ -2,6 +2,7 @@
 #nullable enable
 #endif
 using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ECSharp.Utils
@@ -135,6 +136,28 @@ namespace ECSharp.Utils
                 return Guid.NewGuid().ToString();
             else
                 return Guid.NewGuid().ToString("N");
+        }
+
+        /// <summary>
+        /// 生成随机字节数组
+        /// </summary>
+        /// <param name="len">需要的长度</param>
+        /// <param name="ultra">极限求值,具备更高的随机性</param>
+        /// <returns></returns>
+        public static byte[] GenerateBytes(int len, bool ultra = false)
+        {
+            byte[] bytes = new byte[len];
+
+            if (ultra)
+            {
+                RandomNumberGenerator.Create().GetBytes(bytes);
+            }
+            else
+            {
+                _rand.NextBytes(bytes);
+            }
+            
+            return bytes;
         }
     }
 }

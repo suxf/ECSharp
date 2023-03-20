@@ -4,6 +4,7 @@
 using ECSharp.Variant;
 using System;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -58,10 +59,10 @@ namespace ECSharp.Network.Sockets.Client
         /// 发送事件参数
         /// </summary>
         internal SocketAsyncEventArgsEx sendEventArgs;
-        /// <summary>
-        /// 读写参数
-        /// </summary>
-        private readonly MySocketAsyncEventArgs readWriteEventArg;
+        // /// <summary>
+        // /// 读写参数
+        // /// </summary>
+        // private readonly MySocketAsyncEventArgs readWriteEventArg;
 
         /// <summary>
         /// 构造函数
@@ -78,7 +79,7 @@ namespace ECSharp.Network.Sockets.Client
             RBuffer = new SweetStream();
 
             sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, this);
-            readWriteEventArg = new MySocketAsyncEventArgs(clientSocket, clientSocket.endPoint, this);
+            // readWriteEventArg = new MySocketAsyncEventArgs(clientSocket, clientSocket.endPoint, this);
         }
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace ECSharp.Network.Sockets.Client
             RBuffer = new SweetStream();
 
             sendEventArgs = new SocketAsyncEventArgsEx(clientSocket, clientSocket.endPoint, this);
-            readWriteEventArg = new MySocketAsyncEventArgs(clientSocket, clientSocket.endPoint, this);
+            // readWriteEventArg = new MySocketAsyncEventArgs(clientSocket, clientSocket.endPoint, this);
         }
 
         /// <summary>
@@ -247,17 +248,15 @@ namespace ECSharp.Network.Sockets.Client
                 if (ts == null)
                     return;
 
-                int len = ts.EndReceive(result);
+                EndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
+                int len = ts.EndReceiveFrom(result, ref remoteEP);
                 if (len > 0)
                 {
                     result.AsyncWaitHandle.Close();
                     if ((byte)(buffer[0] + buffer[1] + 0x66) == buffer[2])
                     {
                         ushort sessionId = (ushort)(((buffer[0] & 0xFF) << 8) | (buffer[1] & 0xFF));
-                        int dlen = numMaxBufferSize - 3;
-                        byte[] data = new byte[dlen];
-                        Buffer.BlockCopy(buffer, 3, data, 0, dlen);
-                        socketInvoke?.OnReceivedCompleted(new SocketMsg(sessionId, data, this));
+                        socketInvoke?.OnReceivedCompleted(new SocketMsg(sessionId, buffer.AsMemory(3, numMaxBufferSize - 3), this));
                     }
                     // rBuffer.Decode(buffer);
                     // TriggerSocketInvoke();

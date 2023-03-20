@@ -288,9 +288,9 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 var publicKey = str.Substring(2);
                 config.UseSSL = true;
                 config.SSLMode = int.Parse(str.ElementAt(1).ToString());
-                aes = new AES();
+                aes = new AES(false);
                 rsa = new RSA(publicKey);
-                tcpClient.Send(SessionId, rsa.Encrypt(aes.GetKey().AsBytes()));
+                tcpClient.Send(SessionId, rsa.Encrypt(aes.GetKeyBytes()));
             }
             else
             {
@@ -320,7 +320,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 ushort udpPort = (ushort)(((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
                 SessionId = (ushort)(((data[2] & 0xFF) << 8) | (data[3] & 0xFF));
                 UdpPort = udpPort;
-                udpClient = new HyperSocketClientModule(ip, udpPort, (int)config.UdpReceiveSize, ProtocolType.Udp, (HyperSocket)this, cntListener);
+                udpClient = new HyperSocketClientModule(ip, udpPort, (int)config.UdpReceiveSize, ProtocolType.Udp, this, cntListener);
 
                 // 返回验证UDP连接
                 if (!udpClient.Init(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp, udpClient))

@@ -3,6 +3,7 @@
 #endif
 using ECSharp.Linq;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Text;
 
 namespace ECSharp.Network.Sockets.Client
@@ -19,7 +20,11 @@ namespace ECSharp.Network.Sockets.Client
         /// <summary>
         /// 网络数据
         /// </summary>
-        public readonly byte[] data;
+        public Span<byte> Data => data.Span;
+        /// <summary>
+        /// 网络原始数据
+        /// </summary>
+        private readonly Memory<byte> data;
         /// <summary>
         /// 发送者
         /// </summary>
@@ -31,7 +36,7 @@ namespace ECSharp.Network.Sockets.Client
         /// <param name="sessionId"></param>
         /// <param name="data"></param>
         /// <param name="sender"></param>
-        public SocketMsg(ushort sessionId, byte[] data, ClientSocket sender)
+        public SocketMsg(ushort sessionId, Memory<byte> data, ClientSocket sender)
         {
             this.sessionId = sessionId;
             this.data = data;
@@ -45,7 +50,7 @@ namespace ECSharp.Network.Sockets.Client
         /// <returns>json对象</returns>
         public JObject? AsJObject()
         {
-            return Encoding.UTF8.GetString(data).AsJObject();
+            return Encoding.UTF8.GetString(data.ToArray()).AsJObject();
         }
 
         /// <summary>
@@ -55,7 +60,7 @@ namespace ECSharp.Network.Sockets.Client
         /// <returns>json数组</returns>
         public JArray? AsArray()
         {
-            return Encoding.UTF8.GetString(data).AsJArray();
+            return Encoding.UTF8.GetString(data.ToArray()).AsJArray();
         }
     }
 }

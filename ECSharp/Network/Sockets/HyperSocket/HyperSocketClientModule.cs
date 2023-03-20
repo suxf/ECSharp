@@ -55,7 +55,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
 
         public void OnReceivedCompleted(SocketMsg msg)
         {
-            if (hyperSocket == null || msg.data == null || hyperSocket.isClosed)
+            if (hyperSocket == null || msg.Data.IsEmpty || hyperSocket.isClosed)
             {
                 msg.sender.Close();
                 return;
@@ -67,11 +67,11 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 if (!hyperSocket.IsValid)
                 {
                     // 通信连接步骤<三> 获取有效会话标识 地址 端口 并发送验证数据
-                    hyperSocket.InitializeUdpClient(msg.data);
+                    hyperSocket.InitializeUdpClient(msg.Data);
                     return;
                 }
 
-                if (msg.data.Compare(BaseHyperSocket.HeartPongBytes))
+                if (msg.Data.Compare(BaseHyperSocket.HeartPongBytes))
                 {
                     Interlocked.Exchange(ref heartCheckTimeOut, Utils.SystemInfo.TotalRunTime);
                     if (!hasFirstRecvPong)
@@ -81,10 +81,11 @@ namespace ECSharp.Network.Sockets.HyperSocket
                     }
                     return;
                 }
+                byte[] bytes = msg.Data.ToArray();
                 if (hyperSocket.rsa != null && hyperSocket.aes != null && !hyperSocket.isSecurityConnected)
                 {
                     // 通信连接步骤<七> 检测加密签名是否正确 并且发送 连接成功 包
-                    var signOk = hyperSocket.rsa.VerifyData(hyperSocket.aes.Encrypt(BaseHyperSocket.SignSecurityBytes), msg.data);
+                    var signOk = hyperSocket.rsa.VerifyData(hyperSocket.aes.Encrypt(BaseHyperSocket.SignSecurityBytes), bytes);
                     if (!signOk)
                         return;
 
@@ -97,13 +98,13 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 if (hyperSocket.aes != null
                     && (hyperSocket.config.SSLMode == 0 || hyperSocket.config.SSLMode == 1))
                 {
-                    var dataSSL = hyperSocket.aes.Decrypt(msg.data);
+                    var dataSSL = hyperSocket.aes.Decrypt(bytes);
                     if (dataSSL != null)
                         listener.OnTcpReceive(dataSSL, hyperSocket);
                 }
                 else
                 {
-                    listener.OnTcpReceive(msg.data, hyperSocket);
+                    listener.OnTcpReceive(bytes, hyperSocket);
                 }
             }
             else if (clientSocket.ProtocolType == ProtocolType.Udp)
@@ -111,7 +112,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                 // 验证通过
                 if (hyperSocket.SessionId == msg.sessionId)
                 {
-                    kcpHelper?.Recv(msg.data);
+                    kcpHelper?.Recv(msg.Data);
                 }
             }
         }

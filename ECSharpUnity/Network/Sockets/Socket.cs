@@ -310,9 +310,27 @@ namespace ECSharp.Network.Sockets
         internal int EndReceive(IAsyncResult asyncResult)
         {
             if (!IsConnected || IsClosed || socket == null)
+            {
                 return 0;
+            }    
 
             return socket.EndReceive(asyncResult);
+        }
+
+        /// <summary>
+        /// UDP结束接受数据
+        /// </summary>
+        /// <param name="asyncResult"></param>
+        /// <param name="endPoint"></param>
+        /// <returns></returns>
+        internal int EndReceiveFrom(IAsyncResult asyncResult, ref EndPoint endPoint)
+        {
+            if (!IsConnected || IsClosed || socket == null)
+            {
+                return 0;
+            }
+
+            return socket.EndReceiveFrom(asyncResult, ref endPoint);
         }
 
         /// <summary>

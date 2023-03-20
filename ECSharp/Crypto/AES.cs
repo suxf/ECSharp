@@ -21,19 +21,42 @@ namespace ECSharp.Crypto
         /// <summary>
         /// AES加密密钥
         /// </summary>
-        private string Key = "";
+        private byte[] Key = ByteConverter.Empty;
 
         /// <summary>
         /// 新建一个Aes加密
         /// </summary>
-        public AES()
+        /// <param name="single">只创建一个单线程的加密器</param>
+        public AES(bool single = true)
         {
-            CreateAes();
+            CreateAes(single);
         }
 
-        private void CreateAes()
+        /// <summary>
+        /// 新建一个Aes加密
+        /// </summary>
+        /// <param name="key">密钥</param>
+        /// <param name="single">只创建一个单线程的加密器</param>
+        public AES(byte[] key, bool single = true)
         {
-            for (int i = 0; i < SystemInfo.ProcessorCount; i++)
+            Key = key;
+            CreateAes(single);
+        }
+
+        /// <summary>
+        /// 新建一个Aes加密
+        /// </summary>
+        /// <param name="key">密钥</param>
+        /// <param name="single">只创建一个单线程的加密器</param>
+        public AES(string key, bool single = true)
+        {
+            Key = Encoding.UTF8.GetBytes(key);
+            CreateAes(single);
+        }
+
+        private void CreateAes(bool single)
+        {
+            for (int i = 0, len = single ? 1 : SystemInfo.ProcessorCount; i < len; i++)
             {
                 Aes aes = Aes.Create();
                 aes.Mode = CipherMode.ECB;
@@ -41,8 +64,8 @@ namespace ECSharp.Crypto
                 aes.KeySize = 128;
                 aes.BlockSize = 128;
 
-                if (Key != "")
-                    aes.Key = Encoding.UTF8.GetBytes(Key);
+                if (Key.Length > 0)
+                    aes.Key = Key;
 
                 bag.Add(aes);
             }
@@ -52,7 +75,7 @@ namespace ECSharp.Crypto
         {
             if (!bag.TryTake(out var aes))
             {
-                CreateAes();
+                CreateAes(false);
                 return Pop();
             }
             return aes;
@@ -69,9 +92,36 @@ namespace ECSharp.Crypto
         /// <param name="key"></param>
         public void SetKey(string key)
         {
+            Key = Encoding.UTF8.GetBytes(key);
+            foreach (Aes aes in bag) aes.Key = Key;
+        }
+
+        /// <summary>
+        /// 设置密钥
+        /// </summary>
+        /// <param name="key"></param>
+        public void SetKey(byte[] key)
+        {
             Key = key;
-            byte[] keyBytes = Encoding.UTF8.GetBytes(Key);
-            foreach (Aes aes in bag) aes.Key = keyBytes;
+            foreach (Aes aes in bag) aes.Key = Key;
+        }
+
+        /// <summary>
+        /// 获取密钥
+        /// <para>如果没有则自动创建一个密钥返回</para>
+        /// <para>使用byte[]数组密钥来获取此函数可能会报错</para>
+        /// </summary>
+        /// <returns></returns>
+        public string GetKey()
+        {
+            if (Key.Length <= 0)
+            {
+                string key = Randomizer.Generate(16, Randomizer.RandomCodeType.HighLetterAndNumber).ToLower();
+                Key = Encoding.UTF8.GetBytes(key);
+
+                foreach (Aes aes in bag) aes.Key = Key;
+            }
+            return Encoding.UTF8.GetString(Key);
         }
 
         /// <summary>
@@ -79,14 +129,13 @@ namespace ECSharp.Crypto
         /// <para>如果没有则自动创建一个密钥返回</para>
         /// </summary>
         /// <returns></returns>
-        public string GetKey()
+        public byte[] GetKeyBytes()
         {
-            if (Key == "")
+            if (Key.Length <= 0)
             {
-                Key = Randomizer.Generate(16, Randomizer.RandomCodeType.HighLetterAndNumber).ToLower();
-                byte[] keyBytes = Encoding.UTF8.GetBytes(Key);
+                Key = Randomizer.GenerateBytes(16);
 
-                foreach (Aes aes in bag) aes.Key = keyBytes;
+                foreach (Aes aes in bag) aes.Key = Key;
             }
             return Key;
         }
@@ -115,15 +164,27 @@ namespace ECSharp.Crypto
         /// </summary>
         /// <param name="decryptArray">密文（待解密）</param>
         /// <returns></returns>
-        public byte[] Decrypt(byte[] decryptArray)
+        public byte[]? Decrypt(byte[] decryptArray)
         {
             Aes aes = Pop();
             lock (aes)
             {
                 using (ICryptoTransform cTransform = aes.CreateDecryptor())
                 {
-                    byte[] resultArray = cTransform.TransformFinalBlock(decryptArray, 0, decryptArray.Length);
-                    Push(aes);
+                    byte[] resultArray;
+                    try
+                    {
+                        resultArray = cTransform.TransformFinalBlock(decryptArray, 0, decryptArray.Length);
+                    }
+                    catch
+                    {
+                        aes.Clear();
+                        return null;
+                    }
+                    finally
+                    {
+                        Push(aes);
+                    }
                     return resultArray;
                 }
             }

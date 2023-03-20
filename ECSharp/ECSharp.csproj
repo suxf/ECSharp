@@ -7,7 +7,7 @@
     <Authors>suxf</Authors>
     <Description>Simple Development!</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.18.7</Version>
+    <Version>1.18.8</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
@@ -47,10 +47,10 @@
 
   <ItemGroup>
     <PackageReference Include="Fleck" Version="1.2.0" />
-    <PackageReference Include="Kcp" Version="2.6.0" />
-    <PackageReference Include="MySqlConnector" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="StackExchange.Redis" Version="2.6.70" />
+    <PackageReference Include="Kcp" Version="2.6.1" />
+    <PackageReference Include="MySqlConnector" Version="2.2.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.96" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 

@@ -105,7 +105,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                         return;
                     }
                     remote.isSecurityConnected = true;
-                    remote.aes.SetKey(key.AsString());
+                    remote.aes.SetKey(key);
                     remote.SendSignData(server.rsa.SignData(remote.aes.Encrypt(BaseHyperSocket.SignSecurityBytes)));
                     return;
                 }

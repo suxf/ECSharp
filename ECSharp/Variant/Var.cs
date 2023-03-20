@@ -441,16 +441,16 @@ namespace ECSharp.Variant
                 case VarType.BOOL:
                     return boolValue.ToString();
                 case VarType.STRING:
-                    return stringValue ?? "";
+                    return stringValue ?? "null";
                 case VarType.STRUCT:
                 case VarType.OBJECT:
-                    return Object?.ToString() ?? "";
+                    return Object?.ToString() ?? "null";
                 case VarType.VARLIST:
-                    return List?.ToString() ?? "";
+                    return List?.ToString() ?? "null";
                 case VarType.VARMAP:
-                    return Map?.ToString() ?? "";
+                    return Map?.ToString() ?? "null";
                 default:
-                    return "";
+                    return "null";
             }
         }
 

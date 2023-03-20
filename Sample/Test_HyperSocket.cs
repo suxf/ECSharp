@@ -53,7 +53,7 @@ namespace Sample
                 for (int i = 1; i <= 300; i++)
                 {
                     Log.Debug($"Start Client:", i.ToString());
-                    sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
+                    sockets[i] = new HyperSocket("127.0.0.1", 18888, new ClientListener()).Connect();
                     ((HyperSocket)sockets[i]).Tag = i;
                     Thread.Sleep(100);
                 }
@@ -77,7 +77,7 @@ namespace Sample
 
         public void StartServer(int i)
         {
-            sockets[i] = new HyperSocketServer("127.0.0.1", 8888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
+            sockets[i] = new HyperSocketServer("127.0.0.1", 18888, 500, new ServerListener(), new HyperSocketConfig() { UseSSL = true }).StartServer();
             TimeCaller.Create(delegate ()
             {
                 Log.Info($"【RealTime】 ServerId:{i} Connect Num:{ssss.Count}, Num2:{((HyperSocketServer)sockets[0]).ConnectedCount}");
@@ -92,7 +92,7 @@ namespace Sample
             TimeCaller.Create(delegate ()
             {
                 Log.Debug($"Start Client:{i}");
-                sockets[i] = new HyperSocket("127.0.0.1", 8888, new ClientListener()).Connect();
+                sockets[i] = new HyperSocket("127.0.0.1", 18888, new ClientListener()).Connect();
                 ((HyperSocket)sockets[i]).Tag = i;
             }, Randomizer.Random.Next(1000, 5000), 0).Start(true);
             //});
@@ -216,7 +216,7 @@ namespace Sample
                 {
                     // socket.SendUdp(count.ToString());
                     socket.SendUdp(Randomizer.Generate(Randomizer.Random.Next(0, 2048)));
-                }, 1000, 100, TimeCaller.Infinite).Start();
+                }, 1000, 1000, TimeCaller.Infinite).Start();
             }
 
             // int lastNum = 1;

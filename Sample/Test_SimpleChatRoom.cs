@@ -131,6 +131,7 @@ namespace Sample
             public void SocketError(RemoteHyperSocket socket, Exception ex)
             {
                 Log.Info($"客户端错误:{ex.Message}");
+                if (client == null) return;
                 sockets.TryRemove(client.SessionId, out _);
             }
         }
