@@ -1,6 +1,6 @@
 # ECSharp (原:EasySharpFrame)
-[![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/ECSharp)
-[![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/ECSharp?groupby=Version)
+[![Nuget](https://img.shields.io/nuget/v/EasySharpFrame?style=float)](https://www.nuget.org/packages/EasySharpFrame)
+[![Nuget](https://img.shields.io/nuget/dt/EasySharpFrame?style=float)](https://www.nuget.org/stats/packages/EasySharpFrame?groupby=Version)
 [![Platform](https://img.shields.io/badge/framework-.net-blueviolet?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![Platform](https://img.shields.io/badge/platform-win|linux|osx-lightgrey?style=float)](https://dotnet.microsoft.com/download/dotnet)
 [![GitHub](https://img.shields.io/github/license/suxf/EasySharpFrame?style=float)](https://github.com/suxf/ECSharp/blob/master/LICENSE)
@@ -10,7 +10,7 @@ Easy .NET Develop Frame.
 这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！
 
 # 快速使用
-可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/ECSharp)。
+可以直接从NuGet库中搜索安装[最新版本](https://www.nuget.org/packages/EasySharpFrame)。
 
 # 版本支持
 | 版本 | .Net6.0 | .Net5.0 | .NetCore3.1 | .NetFramework4.6.2 | .NetStandard2.0 |
