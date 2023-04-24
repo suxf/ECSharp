@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.6</span>
+   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.12</span>
    </div>
    <div id="projectbrief">这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！</div>
   </td>
@@ -124,6 +124,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a708ba7a7dff7f6cfb407271e7517a1db"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_e_c_sharp_1_1_time_1_1_time_flow.html">TimeFlow</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_time_1_1_time_flow.html#a708ba7a7dff7f6cfb407271e7517a1db">CreateSync</a> (<a class="el" href="interface_e_c_sharp_1_1_time_1_1_i_time_update.html">ITimeUpdate</a> timeUpdate, int period=0)</td></tr>
 <tr class="memdesc:a708ba7a7dff7f6cfb407271e7517a1db"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个同步时间流  <a href="class_e_c_sharp_1_1_time_1_1_time_flow.html#a708ba7a7dff7f6cfb407271e7517a1db">更多...</a><br /></td></tr>
 <tr class="separator:a708ba7a7dff7f6cfb407271e7517a1db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a371032b350cc957f022a5ecac99f0f72"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_time_1_1_time_flow.html#a371032b350cc957f022a5ecac99f0f72">SetExceptionListener</a> (Action&lt; Exception &gt; listener)</td></tr>
+<tr class="memdesc:a371032b350cc957f022a5ecac99f0f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置一个异常监听  <a href="class_e_c_sharp_1_1_time_1_1_time_flow.html#a371032b350cc957f022a5ecac99f0f72">更多...</a><br /></td></tr>
+<tr class="separator:a371032b350cc957f022a5ecac99f0f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 属性</h2></td></tr>
@@ -278,6 +281,41 @@ Public 成员函数</h2></td></tr>
 </div><div class="memdoc">
 
 <p>时间流暂停 </p>
+
+</div>
+</div>
+<a id="a371032b350cc957f022a5ecac99f0f72" name="a371032b350cc957f022a5ecac99f0f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a371032b350cc957f022a5ecac99f0f72">&#9670;&nbsp;</a></span>SetExceptionListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ECSharp.Time.TimeFlow.SetExceptionListener </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; Exception &gt;&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置一个异常监听 </p>
+<p >如果出现在update异常将不会再使程序崩溃，而在此回调中被监听</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listener</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

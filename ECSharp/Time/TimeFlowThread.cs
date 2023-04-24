@@ -1,7 +1,9 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 #if !UNITY_WEBGL
 using System.Threading;
 #endif
@@ -30,6 +32,11 @@ namespace ECSharp.Time
         /// 时间间隔
         /// </summary>
         private static readonly int interval = (int)(UnityEngine.Time.fixedDeltaTime * 1000);
+#endif
+
+#if !UNITY_WEBGL
+        internal static Action<Exception>? exceptionListener = null;
+        internal static Func<Exception, bool>? hotfixExceptionListener = null;
 #endif
 
         /// <summary>
@@ -93,7 +100,31 @@ namespace ECSharp.Time
             if (t == null)
                 return;
 
+#if !UNITY_WEBGL
+            for(int i = 0; i < t.timeFlows.Count; i++)
+            {
+                t.timeFlows[i].ResetIdle();
+            }
+
+            try
+            {
+                OnUpdate(t);
+            }
+            catch(Exception e)
+            {
+                if ((hotfixExceptionListener == null || !hotfixExceptionListener.Invoke(e))
+                    && exceptionListener == null)
+                {
+                    throw;
+                }
+                
+                exceptionListener?.Invoke(e);
+
+                UpdateHandle(obj);
+            }
+#else
             OnUpdate(t);
+#endif
         }
 
         private static void OnUpdate(TimeFlowThread t)
@@ -119,6 +150,7 @@ namespace ECSharp.Time
                     t.timeFlows.Add(tfArray[i]);
                 }
             }
+
             for (int i = 0, len = t.timeFlows.Count; i < len; i++)
             {
                 var tf = t.timeFlows[i];
@@ -138,6 +170,7 @@ namespace ECSharp.Time
                 else
                     tf.UpdateES();
             }
+
             for (int i = 0, len = waitRmv.Count; i < len; i++)
             {
                 t.timeFlows.Remove(waitRmv[i]);
@@ -168,6 +201,14 @@ namespace ECSharp.Time
                     continue;
             }
             return false;
+        }
+
+        internal void DoWithAssembly(int action, Assembly assembly)
+        {
+            for (int i = 0, len = timeFlows.Count; i < len; i++)
+            {
+                timeFlows[i].DoWithAssembly(action, assembly);
+            }
         }
     }
 }

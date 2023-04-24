@@ -1,6 +1,9 @@
 var class_e_c_sharp_1_1_variant_1_1_var_map =
 [
+    [ "VarMap", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a0b8533cfe839ad19211ce254cdb9cb12", null ],
+    [ "VarMap", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a83ce3dfe45ede0c75e4ef833dd18b006", null ],
     [ "Add", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a9f1311683779a1952408b0618c5840d5", null ],
+    [ "AddOrUpdate", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a1885266709c18a3a0d9c090f190262c6", null ],
     [ "GetBytes", "class_e_c_sharp_1_1_variant_1_1_var_map.html#ae6c1d822f9aff8b34e0a282b966fee1a", null ],
     [ "Merge", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a3aa13cd2cd16d92393f17724ca69aa9a", null ],
     [ "Parse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a32aff612de31bc0bd82ad6e9055f5e81", null ],
@@ -9,13 +12,15 @@ var class_e_c_sharp_1_1_variant_1_1_var_map =
     [ "Parse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a06316a5f1d1e12b6aab1c6232b3b0a41", null ],
     [ "Parse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#ac283f02023a480fa6bfa2a4e977f300a", null ],
     [ "Parse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a04122132c782e7bbfaa744af0547a67b", null ],
-    [ "ToJson", "class_e_c_sharp_1_1_variant_1_1_var_map.html#abe3808c674817227677b73b73345e61c", null ],
-    [ "ToString", "class_e_c_sharp_1_1_variant_1_1_var_map.html#af47dfebc86a18c8ec7dbfa0e7cd73fbd", null ],
+    [ "SetChangeListener", "class_e_c_sharp_1_1_variant_1_1_var_map.html#aaa1edd594b753c70bda4c2962edfa2c3", null ],
+    [ "ToJObject", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a4798f6bd9bc76050d4c09cb3b1f6f97b", null ],
+    [ "ToString", "class_e_c_sharp_1_1_variant_1_1_var_map.html#ac72ed2d438080e2afa037ef8a121dd5b", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#accbfd2edba31b95c2520a75f175632dc", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#aa102e1800ca6f108d276bd4a26bf2924", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a1fae70682a53a2543a91973924ae9364", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a3e572fc33d284321195eda924536011d", null ],
     [ "TryParse", "class_e_c_sharp_1_1_variant_1_1_var_map.html#abe3c29a95cc8e908b5abf016781eda0d", null ],
+    [ "IsEmpty", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a0d0c74f97bfc7b644b370250a8e17f2d", null ],
     [ "New", "class_e_c_sharp_1_1_variant_1_1_var_map.html#ac2a5870eef0eeccf8e1d11f3c7ea1d4a", null ],
     [ "this[Var key]", "class_e_c_sharp_1_1_variant_1_1_var_map.html#a4065ed91496455d71b6ee62fd4b96a38", null ]
 ];

@@ -26,6 +26,31 @@ namespace ECSharp.Utils
         public static Random Random => _rand;
 
         /// <summary>
+        /// 随机返回一个大于等于0.0到小于1.0之间的浮点数
+        /// </summary>
+        public static double Seed => _rand.NextDouble();
+        /// <summary>
+        /// 随机返回一个大于等于0的非负整数
+        /// </summary>
+        public static int Number => _rand.Next();
+        /// <summary>
+        /// 随机返回一个大于等于0到小于10之间的整数
+        /// </summary>
+        public static int Number10 => _rand.Next(10);
+        /// <summary>
+        /// 随机返回一个大于等于0到小于100之间的整数
+        /// </summary>
+        public static int Number100 => _rand.Next(100);
+        /// <summary>
+        /// 随机返回一个大于等于0到小于1000之间的整数
+        /// </summary>
+        public static int Number1000 => _rand.Next(1000);
+        /// <summary>
+        /// 随机返回一个大于等于0到小于10000之间的整数
+        /// </summary>
+        public static int Number10000 => _rand.Next(10000);
+
+        /// <summary>
         /// 重置随机器
         /// </summary>
         /// <param name="seed">随机种子</param>
@@ -34,6 +59,26 @@ namespace ECSharp.Utils
             _rand = new Random(seed);
         }
 
+        /// <summary>
+        /// 随机一个大于等于0到小于指定值的整数
+        /// </summary>
+        /// <param name="maxValue"></param>
+        /// <returns></returns>
+        public static int Next(int maxValue)
+        {
+            return _rand.Next(maxValue);
+        }
+
+        /// <summary>
+        /// 随机一个大于等于指定值到小于指定值的整数
+        /// </summary>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <returns></returns>
+        public static int Next(int minValue, int maxValue)
+        {
+            return _rand.Next(minValue, maxValue);
+        }
 
         /// <summary>
         /// 随机字母类型

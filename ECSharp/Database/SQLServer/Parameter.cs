@@ -1,5 +1,6 @@
 ﻿#if !UNITY_2020_1_OR_NEWER
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ECSharp.Database.SQLServer
@@ -15,7 +16,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="parameterName">参数名</param>
         /// <param name="value">值</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value)
+        public static DbParameter Create(string parameterName, object value)
         {
             return new SqlParameter
             {
@@ -31,7 +32,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="value">值</param>
         /// <param name="sqlDbType">值类型</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SqlDbType sqlDbType)
+        public static DbParameter Create(string parameterName, object value, SqlDbType sqlDbType)
         {
             return new SqlParameter
             {
@@ -49,7 +50,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="sqlDbType">值类型</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SqlDbType sqlDbType, ParameterDirection direction)
+        public static DbParameter Create(string parameterName, object value, SqlDbType sqlDbType, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -67,7 +68,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="sqlDbType">值类型</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, SqlDbType sqlDbType, ParameterDirection direction)
+        public static DbParameter Create(string parameterName, SqlDbType sqlDbType, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -85,7 +86,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="size">值预设大小</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, SqlDbType sqlDbType, int size, ParameterDirection direction)
+        public static DbParameter Create(string parameterName, SqlDbType sqlDbType, int size, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -105,7 +106,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="size">值预设大小</param>
         /// <param name="direction">方向</param>
         /// <returns>返回一个参数对象</returns>
-        public static SqlParameter Create(string parameterName, object value, SqlDbType sqlDbType, int size, ParameterDirection direction)
+        public static DbParameter Create(string parameterName, object value, SqlDbType sqlDbType, int size, ParameterDirection direction)
         {
             return new SqlParameter
             {
@@ -123,7 +124,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="parameterName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value)
+        public static DbParameter ToParameter(this string parameterName, object value)
         {
             return Create(parameterName, value);
         }
@@ -135,7 +136,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="value"></param>
         /// <param name="sqlDbType"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType)
+        public static DbParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType)
         {
             return Create(parameterName, value, sqlDbType);
         }
@@ -148,7 +149,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="sqlDbType"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType, ParameterDirection direction)
+        public static DbParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType, ParameterDirection direction)
         {
             return Create(parameterName, value, sqlDbType, direction);
         }
@@ -161,7 +162,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="size"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, SqlDbType sqlDbType, int size, ParameterDirection direction)
+        public static DbParameter ToParameter(this string parameterName, SqlDbType sqlDbType, int size, ParameterDirection direction)
         {
             return Create(parameterName, sqlDbType, size, direction);
         }
@@ -175,7 +176,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="size"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static SqlParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType, int size, ParameterDirection direction)
+        public static DbParameter ToParameter(this string parameterName, object value, SqlDbType sqlDbType, int size, ParameterDirection direction)
         {
             return Create(parameterName, value, sqlDbType, size, direction);
         }

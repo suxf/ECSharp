@@ -219,7 +219,7 @@ namespace ECSharp.Network.Sockets.HyperSocket
                     hashlist.Add(remote.hashCode);
                     remote.isVaildHyperSocket = false;
                 }
-                if (remote.Tag.IsNull()) remote.Tag = dt;
+                if (remote.Tag.IsNull) remote.Tag = dt;
                 else remote.Tag += dt;
             }
             for (int i = 0, len = hashlist.Count; i < len; i++)

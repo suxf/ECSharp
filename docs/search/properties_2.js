@@ -6,6 +6,6 @@ var searchData=
   ['connectednum_3',['ConnectedNum',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_server_socket.html#a47c87ff4e65790b2bfdcbea99e820213',1,'ECSharp::Network::Sockets::Server::ServerSocket']]],
   ['content_4',['Content',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_response.html#a60f2b2b0c7b53bd9f3f117b1bafbba6e',1,'ECSharp::Network::Http::HttpResponse']]],
   ['contentlength_5',['ContentLength',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#a558c3bd44c25bf00dc8f21c945e7ba45',1,'ECSharp::Network::Http::HttpHeader']]],
-  ['count_6',['Count',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_row.html#ae3d1196f146ba096e4d703fc420ad02a',1,'ECSharp::Database::Linq::DataEntityRow']]],
+  ['count_6',['Count',['../class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_row.html#ae3d1196f146ba096e4d703fc420ad02a',1,'ECSharp.Database.Linq.DataEntityRow.Count()'],['../struct_e_c_sharp_1_1_variant_1_1_var.html#a24b8c5be9ff26b5d44fa9f5cd799d26d',1,'ECSharp.Variant.Var.Count()']]],
   ['current_7',['Current',['../class_e_c_sharp_1_1_utils_1_1_ini.html#ab2ca19537b7b41265e06979e25ddeef6',1,'ECSharp::Utils::Ini']]]
 ];

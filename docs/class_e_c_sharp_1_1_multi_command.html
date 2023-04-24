@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.6</span>
+   <div id="projectname">EasySharpFrame<span id="projectnumber">&#160;1.18.12</span>
    </div>
    <div id="projectbrief">这是一个基于.Net语言框架而设计的开发框架。集成了许多常规用到的开发功能，主要目的是利于基于此框架的服务器快捷开发！</div>
   </td>
@@ -97,12 +97,12 @@ $(document).ready(function(){initNavTree('class_e_c_sharp_1_1_multi_command.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a090a91a0cbc1f86efe29bf0b2e43eac2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a090a91a0cbc1f86efe29bf0b2e43eac2">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult &gt; func, int repeat=-1)</td></tr>
-<tr class="memdesc:a090a91a0cbc1f86efe29bf0b2e43eac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a090a91a0cbc1f86efe29bf0b2e43eac2">更多...</a><br /></td></tr>
-<tr class="separator:a090a91a0cbc1f86efe29bf0b2e43eac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af84237a18a548bf928d338153dbe1306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#af84237a18a548bf928d338153dbe1306">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult &gt; func, object? parameter, int repeat=-1)</td></tr>
-<tr class="memdesc:af84237a18a548bf928d338153dbe1306"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#af84237a18a548bf928d338153dbe1306">更多...</a><br /></td></tr>
-<tr class="separator:af84237a18a548bf928d338153dbe1306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c560c6f834d4edc451bf19fa408ccaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a8c560c6f834d4edc451bf19fa408ccaa">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?&gt; func, int repeat=-1)</td></tr>
+<tr class="memdesc:a8c560c6f834d4edc451bf19fa408ccaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a8c560c6f834d4edc451bf19fa408ccaa">更多...</a><br /></td></tr>
+<tr class="separator:a8c560c6f834d4edc451bf19fa408ccaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad820a3b358186d3eceb4f5cb7272d57d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ad820a3b358186d3eceb4f5cb7272d57d">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt; func, object? parameter, int repeat=-1)</td></tr>
+<tr class="memdesc:ad820a3b358186d3eceb4f5cb7272d57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#ad820a3b358186d3eceb4f5cb7272d57d">更多...</a><br /></td></tr>
+<tr class="separator:ad820a3b358186d3eceb4f5cb7272d57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">WaitCall</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">更多...</a><br /></td></tr>
 <tr class="separator:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,81 +115,129 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a4e52e1ee0e301843d1889c916f9921d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a4e52e1ee0e301843d1889c916f9921d8">Call</a> (TKey1 key1, TKey2 key2, int waitId)</td></tr>
 <tr class="memdesc:a4e52e1ee0e301843d1889c916f9921d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a4e52e1ee0e301843d1889c916f9921d8">更多...</a><br /></td></tr>
 <tr class="separator:a4e52e1ee0e301843d1889c916f9921d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58adf2382d17e01e5a2df6c7f274d998"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">Remove</a> (TKey1 key1, TKey2 key2)</td></tr>
-<tr class="memdesc:a58adf2382d17e01e5a2df6c7f274d998"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">更多...</a><br /></td></tr>
-<tr class="separator:a58adf2382d17e01e5a2df6c7f274d998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55efafbb6dcc8a4a4ac14e714a3118e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a55efafbb6dcc8a4a4ac14e714a3118e1">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?&gt; func)</td></tr>
+<tr class="memdesc:a55efafbb6dcc8a4a4ac14e714a3118e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a55efafbb6dcc8a4a4ac14e714a3118e1">更多...</a><br /></td></tr>
+<tr class="separator:a55efafbb6dcc8a4a4ac14e714a3118e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab232129b2b4154d17f96e32fae93ea62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ab232129b2b4154d17f96e32fae93ea62">Remove</a> (COMMAND_FUNC&lt; TResult?&gt; func)</td></tr>
+<tr class="memdesc:ab232129b2b4154d17f96e32fae93ea62"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#ab232129b2b4154d17f96e32fae93ea62">更多...</a><br /></td></tr>
+<tr class="separator:ab232129b2b4154d17f96e32fae93ea62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63019be56cfb17d451f8b32491d5e4ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a63019be56cfb17d451f8b32491d5e4ab">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt; func)</td></tr>
+<tr class="memdesc:a63019be56cfb17d451f8b32491d5e4ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a63019be56cfb17d451f8b32491d5e4ab">更多...</a><br /></td></tr>
+<tr class="separator:a63019be56cfb17d451f8b32491d5e4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7f9d78947094b6d34446075b66530b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a0d7f9d78947094b6d34446075b66530b">Remove</a> (COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt; func)</td></tr>
+<tr class="memdesc:a0d7f9d78947094b6d34446075b66530b"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a0d7f9d78947094b6d34446075b66530b">更多...</a><br /></td></tr>
+<tr class="separator:a0d7f9d78947094b6d34446075b66530b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">Clear</a> (TKey1 key1, TKey2 key2)</td></tr>
+<tr class="memdesc:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">更多...</a><br /></td></tr>
+<tr class="separator:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">Clear</a> ()</td></tr>
 <tr class="memdesc:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空  <a href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">更多...</a><br /></td></tr>
 <tr class="separator:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af60cf3f07489b8040fe1eeaf0996c1e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#af60cf3f07489b8040fe1eeaf0996c1e2">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult, TValue1 &gt; func, int repeat=-1)</td></tr>
-<tr class="memdesc:af60cf3f07489b8040fe1eeaf0996c1e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#af60cf3f07489b8040fe1eeaf0996c1e2">更多...</a><br /></td></tr>
-<tr class="separator:af60cf3f07489b8040fe1eeaf0996c1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5eb42242ef96b597e20dd8f43c4c93b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ad5eb42242ef96b597e20dd8f43c4c93b">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1 &gt; func, object? parameter, int repeat=-1)</td></tr>
-<tr class="memdesc:ad5eb42242ef96b597e20dd8f43c4c93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#ad5eb42242ef96b597e20dd8f43c4c93b">更多...</a><br /></td></tr>
-<tr class="separator:ad5eb42242ef96b597e20dd8f43c4c93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c0da5c79c8548e2941f481c2549a3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a92c0da5c79c8548e2941f481c2549a3d">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1?&gt; func, int repeat=-1)</td></tr>
+<tr class="memdesc:a92c0da5c79c8548e2941f481c2549a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a92c0da5c79c8548e2941f481c2549a3d">更多...</a><br /></td></tr>
+<tr class="separator:a92c0da5c79c8548e2941f481c2549a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4accfe612cc33402d217947a5f9b637d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a4accfe612cc33402d217947a5f9b637d">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt; func, object? parameter, int repeat=-1)</td></tr>
+<tr class="memdesc:a4accfe612cc33402d217947a5f9b637d"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a4accfe612cc33402d217947a5f9b637d">更多...</a><br /></td></tr>
+<tr class="separator:a4accfe612cc33402d217947a5f9b637d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">WaitCall</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">更多...</a><br /></td></tr>
 <tr class="separator:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memItemLeft" align="right" valign="top">Task&lt; TResult?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">WaitCallAsync</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a66523ce716bcf60ba351ce66e09e9e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">更多...</a><br /></td></tr>
 <tr class="separator:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e8fa612f23b4ef3e46146341b666a27"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a2e8fa612f23b4ef3e46146341b666a27">Call</a> (TKey1 key1, TKey2 key2, TValue1 value1)</td></tr>
-<tr class="memdesc:a2e8fa612f23b4ef3e46146341b666a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a2e8fa612f23b4ef3e46146341b666a27">更多...</a><br /></td></tr>
-<tr class="separator:a2e8fa612f23b4ef3e46146341b666a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5a6e3352762b137df79f32a8549ff82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ab5a6e3352762b137df79f32a8549ff82">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1 value1)</td></tr>
-<tr class="memdesc:ab5a6e3352762b137df79f32a8549ff82"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#ab5a6e3352762b137df79f32a8549ff82">更多...</a><br /></td></tr>
-<tr class="separator:ab5a6e3352762b137df79f32a8549ff82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58adf2382d17e01e5a2df6c7f274d998"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">Remove</a> (TKey1 key1, TKey2 key2)</td></tr>
-<tr class="memdesc:a58adf2382d17e01e5a2df6c7f274d998"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">更多...</a><br /></td></tr>
-<tr class="separator:a58adf2382d17e01e5a2df6c7f274d998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3e0e0f61b82c635df1fd345deca1fd"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a1f3e0e0f61b82c635df1fd345deca1fd">Call</a> (TKey1 key1, TKey2 key2, TValue1? value1=default)</td></tr>
+<tr class="memdesc:a1f3e0e0f61b82c635df1fd345deca1fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a1f3e0e0f61b82c635df1fd345deca1fd">更多...</a><br /></td></tr>
+<tr class="separator:a1f3e0e0f61b82c635df1fd345deca1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2169d2f8e509b7a4d901b20e027837bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a2169d2f8e509b7a4d901b20e027837bd">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1? value1=default)</td></tr>
+<tr class="memdesc:a2169d2f8e509b7a4d901b20e027837bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a2169d2f8e509b7a4d901b20e027837bd">更多...</a><br /></td></tr>
+<tr class="separator:a2169d2f8e509b7a4d901b20e027837bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec956574746c5854da46644787105e10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aec956574746c5854da46644787105e10">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1?&gt; func)</td></tr>
+<tr class="memdesc:aec956574746c5854da46644787105e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#aec956574746c5854da46644787105e10">更多...</a><br /></td></tr>
+<tr class="separator:aec956574746c5854da46644787105e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a635aa984eb83160de9274f3a4019992c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a635aa984eb83160de9274f3a4019992c">Remove</a> (COMMAND_FUNC&lt; TResult?, TValue1?&gt; func)</td></tr>
+<tr class="memdesc:a635aa984eb83160de9274f3a4019992c"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a635aa984eb83160de9274f3a4019992c">更多...</a><br /></td></tr>
+<tr class="separator:a635aa984eb83160de9274f3a4019992c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ac4b0e9ec96655b9e3baeb113783e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a51ac4b0e9ec96655b9e3baeb113783e7">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt; func)</td></tr>
+<tr class="memdesc:a51ac4b0e9ec96655b9e3baeb113783e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a51ac4b0e9ec96655b9e3baeb113783e7">更多...</a><br /></td></tr>
+<tr class="separator:a51ac4b0e9ec96655b9e3baeb113783e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea6cb928f112c43334ad880f7c19124"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aeea6cb928f112c43334ad880f7c19124">Remove</a> (COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt; func)</td></tr>
+<tr class="memdesc:aeea6cb928f112c43334ad880f7c19124"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#aeea6cb928f112c43334ad880f7c19124">更多...</a><br /></td></tr>
+<tr class="separator:aeea6cb928f112c43334ad880f7c19124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">Clear</a> (TKey1 key1, TKey2 key2)</td></tr>
+<tr class="memdesc:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">更多...</a><br /></td></tr>
+<tr class="separator:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">Clear</a> ()</td></tr>
 <tr class="memdesc:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空  <a href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">更多...</a><br /></td></tr>
 <tr class="separator:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a846647cd6f4179debe8c4b0870a96d8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a846647cd6f4179debe8c4b0870a96d8f">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult, TValue1, TValue2 &gt; func, int repeat=-1)</td></tr>
-<tr class="memdesc:a846647cd6f4179debe8c4b0870a96d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a846647cd6f4179debe8c4b0870a96d8f">更多...</a><br /></td></tr>
-<tr class="separator:a846647cd6f4179debe8c4b0870a96d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35ac4469a7cb78ffaf4bd83904b8ada5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a35ac4469a7cb78ffaf4bd83904b8ada5">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1, TValue2 &gt; func, object? parameter, int repeat=-1)</td></tr>
-<tr class="memdesc:a35ac4469a7cb78ffaf4bd83904b8ada5"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a35ac4469a7cb78ffaf4bd83904b8ada5">更多...</a><br /></td></tr>
-<tr class="separator:a35ac4469a7cb78ffaf4bd83904b8ada5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a865fce5f8a2d63c2776e4c1a0f3d3de1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a865fce5f8a2d63c2776e4c1a0f3d3de1">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?&gt; func, int repeat=-1)</td></tr>
+<tr class="memdesc:a865fce5f8a2d63c2776e4c1a0f3d3de1"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a865fce5f8a2d63c2776e4c1a0f3d3de1">更多...</a><br /></td></tr>
+<tr class="separator:a865fce5f8a2d63c2776e4c1a0f3d3de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec99fdc4ba08bbaa815cb91beea45006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aec99fdc4ba08bbaa815cb91beea45006">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?&gt; func, object? parameter, int repeat=-1)</td></tr>
+<tr class="memdesc:aec99fdc4ba08bbaa815cb91beea45006"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#aec99fdc4ba08bbaa815cb91beea45006">更多...</a><br /></td></tr>
+<tr class="separator:aec99fdc4ba08bbaa815cb91beea45006"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">WaitCall</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">更多...</a><br /></td></tr>
 <tr class="separator:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memItemLeft" align="right" valign="top">Task&lt; TResult?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">WaitCallAsync</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a66523ce716bcf60ba351ce66e09e9e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">更多...</a><br /></td></tr>
 <tr class="separator:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ff4c22ac05875322f93c9e9e4e4af04"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a8ff4c22ac05875322f93c9e9e4e4af04">Call</a> (TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2)</td></tr>
-<tr class="memdesc:a8ff4c22ac05875322f93c9e9e4e4af04"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a8ff4c22ac05875322f93c9e9e4e4af04">更多...</a><br /></td></tr>
-<tr class="separator:a8ff4c22ac05875322f93c9e9e4e4af04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af317f0b20c94f89cb844c102ac78f50b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#af317f0b20c94f89cb844c102ac78f50b">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1 value1, TValue2 value2)</td></tr>
-<tr class="memdesc:af317f0b20c94f89cb844c102ac78f50b"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#af317f0b20c94f89cb844c102ac78f50b">更多...</a><br /></td></tr>
-<tr class="separator:af317f0b20c94f89cb844c102ac78f50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58adf2382d17e01e5a2df6c7f274d998"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">Remove</a> (TKey1 key1, TKey2 key2)</td></tr>
-<tr class="memdesc:a58adf2382d17e01e5a2df6c7f274d998"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">更多...</a><br /></td></tr>
-<tr class="separator:a58adf2382d17e01e5a2df6c7f274d998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19cf364760e8f9c28c2b8348f42958cf"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a19cf364760e8f9c28c2b8348f42958cf">Call</a> (TKey1 key1, TKey2 key2, TValue1? value1=default, TValue2? value2=default)</td></tr>
+<tr class="memdesc:a19cf364760e8f9c28c2b8348f42958cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a19cf364760e8f9c28c2b8348f42958cf">更多...</a><br /></td></tr>
+<tr class="separator:a19cf364760e8f9c28c2b8348f42958cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7285a70e2af7d4ab51462ddea8f1a30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ae7285a70e2af7d4ab51462ddea8f1a30">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1? value1=default, TValue2? value2=default)</td></tr>
+<tr class="memdesc:ae7285a70e2af7d4ab51462ddea8f1a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#ae7285a70e2af7d4ab51462ddea8f1a30">更多...</a><br /></td></tr>
+<tr class="separator:ae7285a70e2af7d4ab51462ddea8f1a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fbc2665b434d5ceca8bde3077e24d6d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a9fbc2665b434d5ceca8bde3077e24d6d">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1, TValue2 &gt; func)</td></tr>
+<tr class="memdesc:a9fbc2665b434d5ceca8bde3077e24d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a9fbc2665b434d5ceca8bde3077e24d6d">更多...</a><br /></td></tr>
+<tr class="separator:a9fbc2665b434d5ceca8bde3077e24d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ce85fc53993a06a4d943b6d6e553ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a88ce85fc53993a06a4d943b6d6e553ab">Remove</a> (COMMAND_FUNC&lt; TResult?, TValue1, TValue2 &gt; func)</td></tr>
+<tr class="memdesc:a88ce85fc53993a06a4d943b6d6e553ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a88ce85fc53993a06a4d943b6d6e553ab">更多...</a><br /></td></tr>
+<tr class="separator:a88ce85fc53993a06a4d943b6d6e553ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6457fb48a703dcee68e02588012e36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#afd6457fb48a703dcee68e02588012e36">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1, TValue2 &gt; func)</td></tr>
+<tr class="memdesc:afd6457fb48a703dcee68e02588012e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#afd6457fb48a703dcee68e02588012e36">更多...</a><br /></td></tr>
+<tr class="separator:afd6457fb48a703dcee68e02588012e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad07034eea75182d9b9dddb921d4a379e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#ad07034eea75182d9b9dddb921d4a379e">Remove</a> (COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1, TValue2 &gt; func)</td></tr>
+<tr class="memdesc:ad07034eea75182d9b9dddb921d4a379e"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#ad07034eea75182d9b9dddb921d4a379e">更多...</a><br /></td></tr>
+<tr class="separator:ad07034eea75182d9b9dddb921d4a379e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">Clear</a> (TKey1 key1, TKey2 key2)</td></tr>
+<tr class="memdesc:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">更多...</a><br /></td></tr>
+<tr class="separator:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">Clear</a> ()</td></tr>
 <tr class="memdesc:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空  <a href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">更多...</a><br /></td></tr>
 <tr class="separator:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32265e20c86ce8ccefa60273becf28da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a32265e20c86ce8ccefa60273becf28da">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult, TValue1, TValue2, TValue3 &gt; func, int repeat=-1)</td></tr>
-<tr class="memdesc:a32265e20c86ce8ccefa60273becf28da"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a32265e20c86ce8ccefa60273becf28da">更多...</a><br /></td></tr>
-<tr class="separator:a32265e20c86ce8ccefa60273becf28da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23c8309b9592c0390f48e9b2608a02e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a23c8309b9592c0390f48e9b2608a02e3">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1, TValue2, TValue3 &gt; func, object? parameter, int repeat=-1)</td></tr>
-<tr class="memdesc:a23c8309b9592c0390f48e9b2608a02e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a23c8309b9592c0390f48e9b2608a02e3">更多...</a><br /></td></tr>
-<tr class="separator:a23c8309b9592c0390f48e9b2608a02e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3696c1c15d5b215e116df51052a32962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a3696c1c15d5b215e116df51052a32962">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func, int repeat=-1)</td></tr>
+<tr class="memdesc:a3696c1c15d5b215e116df51052a32962"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a3696c1c15d5b215e116df51052a32962">更多...</a><br /></td></tr>
+<tr class="separator:a3696c1c15d5b215e116df51052a32962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d307dc8e0d874497f2f692325f893f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a54d307dc8e0d874497f2f692325f893f">Add</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func, object? parameter, int repeat=-1)</td></tr>
+<tr class="memdesc:a54d307dc8e0d874497f2f692325f893f"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加指令  <a href="class_e_c_sharp_1_1_multi_command.html#a54d307dc8e0d874497f2f692325f893f">更多...</a><br /></td></tr>
+<tr class="separator:a54d307dc8e0d874497f2f692325f893f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">WaitCall</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a6fbb7571ec95bd621dbf2be9bc8a9bb6">更多...</a><br /></td></tr>
 <tr class="separator:a6fbb7571ec95bd621dbf2be9bc8a9bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memItemLeft" align="right" valign="top">Task&lt; TResult?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">WaitCallAsync</a> (TKey1 key1, TKey2 key2, int waitId, object? parameter=null, int waitTimeout=-1)</td></tr>
 <tr class="memdesc:a66523ce716bcf60ba351ce66e09e9e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">异步等待执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a66523ce716bcf60ba351ce66e09e9e7d">更多...</a><br /></td></tr>
 <tr class="separator:a66523ce716bcf60ba351ce66e09e9e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ce9ac173c4c673a6ce9e464d2cd3c1"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a05ce9ac173c4c673a6ce9e464d2cd3c1">Call</a> (TKey1 key1, TKey2 key2, TValue1 value1, TValue2 value2, TValue3 value3)</td></tr>
-<tr class="memdesc:a05ce9ac173c4c673a6ce9e464d2cd3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a05ce9ac173c4c673a6ce9e464d2cd3c1">更多...</a><br /></td></tr>
-<tr class="separator:a05ce9ac173c4c673a6ce9e464d2cd3c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92598c379059fe302a841279ae3455a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a92598c379059fe302a841279ae3455a8">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1 value1, TValue2 value2, TValue3 value3)</td></tr>
-<tr class="memdesc:a92598c379059fe302a841279ae3455a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a92598c379059fe302a841279ae3455a8">更多...</a><br /></td></tr>
-<tr class="separator:a92598c379059fe302a841279ae3455a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58adf2382d17e01e5a2df6c7f274d998"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">Remove</a> (TKey1 key1, TKey2 key2)</td></tr>
-<tr class="memdesc:a58adf2382d17e01e5a2df6c7f274d998"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a58adf2382d17e01e5a2df6c7f274d998">更多...</a><br /></td></tr>
-<tr class="separator:a58adf2382d17e01e5a2df6c7f274d998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b6a2641ca64365806bf5c146398e67"><td class="memItemLeft" align="right" valign="top">TResult?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a97b6a2641ca64365806bf5c146398e67">Call</a> (TKey1 key1, TKey2 key2, TValue1? value1=default, TValue2? value2=default, TValue3? value3=default)</td></tr>
+<tr class="memdesc:a97b6a2641ca64365806bf5c146398e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a97b6a2641ca64365806bf5c146398e67">更多...</a><br /></td></tr>
+<tr class="separator:a97b6a2641ca64365806bf5c146398e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8937813ac0cab42b28debd1dac31885c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a8937813ac0cab42b28debd1dac31885c">Call</a> (TKey1 key1, TKey2 key2, int waitId, TValue1? value1=default, TValue2? value2=default, TValue3? value3=default)</td></tr>
+<tr class="memdesc:a8937813ac0cab42b28debd1dac31885c"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行指令  <a href="class_e_c_sharp_1_1_multi_command.html#a8937813ac0cab42b28debd1dac31885c">更多...</a><br /></td></tr>
+<tr class="separator:a8937813ac0cab42b28debd1dac31885c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9545cf4fe4f3136158280c16c33671"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a0e9545cf4fe4f3136158280c16c33671">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func)</td></tr>
+<tr class="memdesc:a0e9545cf4fe4f3136158280c16c33671"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a0e9545cf4fe4f3136158280c16c33671">更多...</a><br /></td></tr>
+<tr class="separator:a0e9545cf4fe4f3136158280c16c33671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05797f2d20fd4fef8ae9aac00b4ddb0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a05797f2d20fd4fef8ae9aac00b4ddb0b">Remove</a> (COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func)</td></tr>
+<tr class="memdesc:a05797f2d20fd4fef8ae9aac00b4ddb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#a05797f2d20fd4fef8ae9aac00b4ddb0b">更多...</a><br /></td></tr>
+<tr class="separator:a05797f2d20fd4fef8ae9aac00b4ddb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63bb5bd4c18269c56b211682f6eafbc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a63bb5bd4c18269c56b211682f6eafbc9">Remove</a> (TKey1 key1, TKey2 key2, COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func)</td></tr>
+<tr class="memdesc:a63bb5bd4c18269c56b211682f6eafbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a63bb5bd4c18269c56b211682f6eafbc9">更多...</a><br /></td></tr>
+<tr class="separator:a63bb5bd4c18269c56b211682f6eafbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0fec8bd7d09b2f0dae4d22e39929096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aa0fec8bd7d09b2f0dae4d22e39929096">Remove</a> (COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt; func)</td></tr>
+<tr class="memdesc:aa0fec8bd7d09b2f0dae4d22e39929096"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除指令  <a href="class_e_c_sharp_1_1_multi_command.html#aa0fec8bd7d09b2f0dae4d22e39929096">更多...</a><br /></td></tr>
+<tr class="separator:aa0fec8bd7d09b2f0dae4d22e39929096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">Clear</a> (TKey1 key1, TKey2 key2)</td></tr>
+<tr class="memdesc:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空指定指令  <a href="class_e_c_sharp_1_1_multi_command.html#a884e674bd9eabc77c0f05004fdcfa9d2">更多...</a><br /></td></tr>
+<tr class="separator:a884e674bd9eabc77c0f05004fdcfa9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">Clear</a> ()</td></tr>
 <tr class="memdesc:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空  <a href="class_e_c_sharp_1_1_multi_command.html#aa14d6c9a20be25de65e0c4e79d7de0c5">更多...</a><br /></td></tr>
 <tr class="separator:aa14d6c9a20be25de65e0c4e79d7de0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,8 +260,8 @@ Public 成员函数</h2></td></tr>
 </dl>
 </div>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a090a91a0cbc1f86efe29bf0b2e43eac2" name="a090a91a0cbc1f86efe29bf0b2e43eac2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a090a91a0cbc1f86efe29bf0b2e43eac2">&#9670;&nbsp;</a></span>Add() <span class="overload">[1/8]</span></h2>
+<a id="a3696c1c15d5b215e116df51052a32962" name="a3696c1c15d5b215e116df51052a32962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3696c1c15d5b215e116df51052a32962">&#9670;&nbsp;</a></span>Add() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -233,7 +281,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC&lt; TResult &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -263,8 +311,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="af60cf3f07489b8040fe1eeaf0996c1e2" name="af60cf3f07489b8040fe1eeaf0996c1e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af60cf3f07489b8040fe1eeaf0996c1e2">&#9670;&nbsp;</a></span>Add() <span class="overload">[2/8]</span></h2>
+<a id="a865fce5f8a2d63c2776e4c1a0f3d3de1" name="a865fce5f8a2d63c2776e4c1a0f3d3de1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a865fce5f8a2d63c2776e4c1a0f3d3de1">&#9670;&nbsp;</a></span>Add() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +332,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC&lt; TResult, TValue1 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -314,8 +362,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a846647cd6f4179debe8c4b0870a96d8f" name="a846647cd6f4179debe8c4b0870a96d8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a846647cd6f4179debe8c4b0870a96d8f">&#9670;&nbsp;</a></span>Add() <span class="overload">[3/8]</span></h2>
+<a id="a92c0da5c79c8548e2941f481c2549a3d" name="a92c0da5c79c8548e2941f481c2549a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92c0da5c79c8548e2941f481c2549a3d">&#9670;&nbsp;</a></span>Add() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +383,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC&lt; TResult, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -365,8 +413,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a32265e20c86ce8ccefa60273becf28da" name="a32265e20c86ce8ccefa60273becf28da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32265e20c86ce8ccefa60273becf28da">&#9670;&nbsp;</a></span>Add() <span class="overload">[4/8]</span></h2>
+<a id="a8c560c6f834d4edc451bf19fa408ccaa" name="a8c560c6f834d4edc451bf19fa408ccaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c560c6f834d4edc451bf19fa408ccaa">&#9670;&nbsp;</a></span>Add() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +434,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC&lt; TResult, TValue1, TValue2, TValue3 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -416,8 +464,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="af84237a18a548bf928d338153dbe1306" name="af84237a18a548bf928d338153dbe1306"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af84237a18a548bf928d338153dbe1306">&#9670;&nbsp;</a></span>Add() <span class="overload">[5/8]</span></h2>
+<a id="a54d307dc8e0d874497f2f692325f893f" name="a54d307dc8e0d874497f2f692325f893f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d307dc8e0d874497f2f692325f893f">&#9670;&nbsp;</a></span>Add() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -437,65 +485,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult &gt;&#160;</td>
-          <td class="paramname"><em>func</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object?&#160;</td>
-          <td class="paramname"><em>parameter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>repeat</em> = <code>-1</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>增加指令 </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
-    <tr><td class="paramname">key2</td><td>二级指令名</td></tr>
-    <tr><td class="paramname">func</td><td>委托函数</td></tr>
-    <tr><td class="paramname">parameter</td><td>传入参数</td></tr>
-    <tr><td class="paramname">repeat</td><td>重复次数 默认 -1 无限重复</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad5eb42242ef96b597e20dd8f43c4c93b" name="ad5eb42242ef96b597e20dd8f43c4c93b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5eb42242ef96b597e20dd8f43c4c93b">&#9670;&nbsp;</a></span>Add() <span class="overload">[6/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Add </td>
-          <td>(</td>
-          <td class="paramtype">TKey1&#160;</td>
-          <td class="paramname"><em>key1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TKey2&#160;</td>
-          <td class="paramname"><em>key2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -532,8 +522,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a35ac4469a7cb78ffaf4bd83904b8ada5" name="a35ac4469a7cb78ffaf4bd83904b8ada5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35ac4469a7cb78ffaf4bd83904b8ada5">&#9670;&nbsp;</a></span>Add() <span class="overload">[7/8]</span></h2>
+<a id="aec99fdc4ba08bbaa815cb91beea45006" name="aec99fdc4ba08bbaa815cb91beea45006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec99fdc4ba08bbaa815cb91beea45006">&#9670;&nbsp;</a></span>Add() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,7 +543,7 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -590,8 +580,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a23c8309b9592c0390f48e9b2608a02e3" name="a23c8309b9592c0390f48e9b2608a02e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23c8309b9592c0390f48e9b2608a02e3">&#9670;&nbsp;</a></span>Add() <span class="overload">[8/8]</span></h2>
+<a id="a4accfe612cc33402d217947a5f9b637d" name="a4accfe612cc33402d217947a5f9b637d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4accfe612cc33402d217947a5f9b637d">&#9670;&nbsp;</a></span>Add() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -611,7 +601,65 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult, TValue1, TValue2, TValue3 &gt;&#160;</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object?&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>repeat</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>增加指令 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
+    <tr><td class="paramname">key2</td><td>二级指令名</td></tr>
+    <tr><td class="paramname">func</td><td>委托函数</td></tr>
+    <tr><td class="paramname">parameter</td><td>传入参数</td></tr>
+    <tr><td class="paramname">repeat</td><td>重复次数 默认 -1 无限重复</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad820a3b358186d3eceb4f5cb7272d57d" name="ad820a3b358186d3eceb4f5cb7272d57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad820a3b358186d3eceb4f5cb7272d57d">&#9670;&nbsp;</a></span>Add() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Add </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt;&#160;</td>
           <td class="paramname"><em>func</em>, </td>
         </tr>
         <tr>
@@ -729,8 +777,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="ab5a6e3352762b137df79f32a8549ff82" name="ab5a6e3352762b137df79f32a8549ff82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5a6e3352762b137df79f32a8549ff82">&#9670;&nbsp;</a></span>Call() <span class="overload">[3/8]</span></h2>
+<a id="a2169d2f8e509b7a4d901b20e027837bd" name="a2169d2f8e509b7a4d901b20e027837bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2169d2f8e509b7a4d901b20e027837bd">&#9670;&nbsp;</a></span>Call() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -756,8 +804,8 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>&#160;</td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -780,8 +828,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="af317f0b20c94f89cb844c102ac78f50b" name="af317f0b20c94f89cb844c102ac78f50b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af317f0b20c94f89cb844c102ac78f50b">&#9670;&nbsp;</a></span>Call() <span class="overload">[4/8]</span></h2>
+<a id="ae7285a70e2af7d4ab51462ddea8f1a30" name="ae7285a70e2af7d4ab51462ddea8f1a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7285a70e2af7d4ab51462ddea8f1a30">&#9670;&nbsp;</a></span>Call() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -807,14 +855,14 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>, </td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue2&#160;</td>
-          <td class="paramname"><em>value2</em>&#160;</td>
+          <td class="paramtype">TValue2?&#160;</td>
+          <td class="paramname"><em>value2</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -838,8 +886,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a92598c379059fe302a841279ae3455a8" name="a92598c379059fe302a841279ae3455a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92598c379059fe302a841279ae3455a8">&#9670;&nbsp;</a></span>Call() <span class="overload">[5/8]</span></h2>
+<a id="a8937813ac0cab42b28debd1dac31885c" name="a8937813ac0cab42b28debd1dac31885c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8937813ac0cab42b28debd1dac31885c">&#9670;&nbsp;</a></span>Call() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -865,20 +913,20 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>, </td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue2&#160;</td>
-          <td class="paramname"><em>value2</em>, </td>
+          <td class="paramtype">TValue2?&#160;</td>
+          <td class="paramname"><em>value2</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue3&#160;</td>
-          <td class="paramname"><em>value3</em>&#160;</td>
+          <td class="paramtype">TValue3?&#160;</td>
+          <td class="paramname"><em>value3</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -903,8 +951,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e8fa612f23b4ef3e46146341b666a27" name="a2e8fa612f23b4ef3e46146341b666a27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e8fa612f23b4ef3e46146341b666a27">&#9670;&nbsp;</a></span>Call() <span class="overload">[6/8]</span></h2>
+<a id="a1f3e0e0f61b82c635df1fd345deca1fd" name="a1f3e0e0f61b82c635df1fd345deca1fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3e0e0f61b82c635df1fd345deca1fd">&#9670;&nbsp;</a></span>Call() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -924,8 +972,8 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>&#160;</td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -947,8 +995,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a8ff4c22ac05875322f93c9e9e4e4af04" name="a8ff4c22ac05875322f93c9e9e4e4af04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ff4c22ac05875322f93c9e9e4e4af04">&#9670;&nbsp;</a></span>Call() <span class="overload">[7/8]</span></h2>
+<a id="a19cf364760e8f9c28c2b8348f42958cf" name="a19cf364760e8f9c28c2b8348f42958cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19cf364760e8f9c28c2b8348f42958cf">&#9670;&nbsp;</a></span>Call() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -968,14 +1016,14 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>, </td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue2&#160;</td>
-          <td class="paramname"><em>value2</em>&#160;</td>
+          <td class="paramtype">TValue2?&#160;</td>
+          <td class="paramname"><em>value2</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -998,8 +1046,8 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a05ce9ac173c4c673a6ce9e464d2cd3c1" name="a05ce9ac173c4c673a6ce9e464d2cd3c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05ce9ac173c4c673a6ce9e464d2cd3c1">&#9670;&nbsp;</a></span>Call() <span class="overload">[8/8]</span></h2>
+<a id="a97b6a2641ca64365806bf5c146398e67" name="a97b6a2641ca64365806bf5c146398e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b6a2641ca64365806bf5c146398e67">&#9670;&nbsp;</a></span>Call() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1019,20 +1067,20 @@ Public 成员函数</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue1&#160;</td>
-          <td class="paramname"><em>value1</em>, </td>
+          <td class="paramtype">TValue1?&#160;</td>
+          <td class="paramname"><em>value1</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue2&#160;</td>
-          <td class="paramname"><em>value2</em>, </td>
+          <td class="paramtype">TValue2?&#160;</td>
+          <td class="paramname"><em>value2</em> = <code>default</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TValue3&#160;</td>
-          <td class="paramname"><em>value3</em>&#160;</td>
+          <td class="paramtype">TValue3?&#160;</td>
+          <td class="paramname"><em>value3</em> = <code>default</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1057,7 +1105,7 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <a id="aa14d6c9a20be25de65e0c4e79d7de0c5" name="aa14d6c9a20be25de65e0c4e79d7de0c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[1/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1076,7 +1124,7 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <a id="aa14d6c9a20be25de65e0c4e79d7de0c5" name="aa14d6c9a20be25de65e0c4e79d7de0c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[2/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1095,7 +1143,7 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <a id="aa14d6c9a20be25de65e0c4e79d7de0c5" name="aa14d6c9a20be25de65e0c4e79d7de0c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[3/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1114,7 +1162,7 @@ Public 成员函数</h2></td></tr>
 </div>
 </div>
 <a id="aa14d6c9a20be25de65e0c4e79d7de0c5" name="aa14d6c9a20be25de65e0c4e79d7de0c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa14d6c9a20be25de65e0c4e79d7de0c5">&#9670;&nbsp;</a></span>Clear() <span class="overload">[4/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1132,14 +1180,14 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a58adf2382d17e01e5a2df6c7f274d998" name="a58adf2382d17e01e5a2df6c7f274d998"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58adf2382d17e01e5a2df6c7f274d998">&#9670;&nbsp;</a></span>Remove() <span class="overload">[1/4]</span></h2>
+<a id="a884e674bd9eabc77c0f05004fdcfa9d2" name="a884e674bd9eabc77c0f05004fdcfa9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884e674bd9eabc77c0f05004fdcfa9d2">&#9670;&nbsp;</a></span>Clear() <span class="overload">[5/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Clear </td>
           <td>(</td>
           <td class="paramtype">TKey1&#160;</td>
           <td class="paramname"><em>key1</em>, </td>
@@ -1158,7 +1206,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>移除指令 </p>
+<p>清空指定指令 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
@@ -1169,14 +1217,14 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a58adf2382d17e01e5a2df6c7f274d998" name="a58adf2382d17e01e5a2df6c7f274d998"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58adf2382d17e01e5a2df6c7f274d998">&#9670;&nbsp;</a></span>Remove() <span class="overload">[2/4]</span></h2>
+<a id="a884e674bd9eabc77c0f05004fdcfa9d2" name="a884e674bd9eabc77c0f05004fdcfa9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884e674bd9eabc77c0f05004fdcfa9d2">&#9670;&nbsp;</a></span>Clear() <span class="overload">[6/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Clear </td>
           <td>(</td>
           <td class="paramtype">TKey1&#160;</td>
           <td class="paramname"><em>key1</em>, </td>
@@ -1195,7 +1243,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>移除指令 </p>
+<p>清空指定指令 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
@@ -1206,14 +1254,14 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a58adf2382d17e01e5a2df6c7f274d998" name="a58adf2382d17e01e5a2df6c7f274d998"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58adf2382d17e01e5a2df6c7f274d998">&#9670;&nbsp;</a></span>Remove() <span class="overload">[3/4]</span></h2>
+<a id="a884e674bd9eabc77c0f05004fdcfa9d2" name="a884e674bd9eabc77c0f05004fdcfa9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884e674bd9eabc77c0f05004fdcfa9d2">&#9670;&nbsp;</a></span>Clear() <span class="overload">[7/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Clear </td>
           <td>(</td>
           <td class="paramtype">TKey1&#160;</td>
           <td class="paramname"><em>key1</em>, </td>
@@ -1232,7 +1280,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>移除指令 </p>
+<p>清空指定指令 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
@@ -1243,14 +1291,14 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a58adf2382d17e01e5a2df6c7f274d998" name="a58adf2382d17e01e5a2df6c7f274d998"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58adf2382d17e01e5a2df6c7f274d998">&#9670;&nbsp;</a></span>Remove() <span class="overload">[4/4]</span></h2>
+<a id="a884e674bd9eabc77c0f05004fdcfa9d2" name="a884e674bd9eabc77c0f05004fdcfa9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884e674bd9eabc77c0f05004fdcfa9d2">&#9670;&nbsp;</a></span>Clear() <span class="overload">[8/8]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Clear </td>
           <td>(</td>
           <td class="paramtype">TKey1&#160;</td>
           <td class="paramname"><em>key1</em>, </td>
@@ -1269,7 +1317,7 @@ Public 成员函数</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>移除指令 </p>
+<p>清空指定指令 </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">key1</td><td>一级指令名</td></tr>
@@ -1277,6 +1325,454 @@ Public 成员函数</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a88ce85fc53993a06a4d943b6d6e553ab" name="a88ce85fc53993a06a4d943b6d6e553ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ce85fc53993a06a4d943b6d6e553ab">&#9670;&nbsp;</a></span>Remove() <span class="overload">[1/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="a05797f2d20fd4fef8ae9aac00b4ddb0b" name="a05797f2d20fd4fef8ae9aac00b4ddb0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05797f2d20fd4fef8ae9aac00b4ddb0b">&#9670;&nbsp;</a></span>Remove() <span class="overload">[2/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="a635aa984eb83160de9274f3a4019992c" name="a635aa984eb83160de9274f3a4019992c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a635aa984eb83160de9274f3a4019992c">&#9670;&nbsp;</a></span>Remove() <span class="overload">[3/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="ab232129b2b4154d17f96e32fae93ea62" name="ab232129b2b4154d17f96e32fae93ea62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab232129b2b4154d17f96e32fae93ea62">&#9670;&nbsp;</a></span>Remove() <span class="overload">[4/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="ad07034eea75182d9b9dddb921d4a379e" name="ad07034eea75182d9b9dddb921d4a379e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07034eea75182d9b9dddb921d4a379e">&#9670;&nbsp;</a></span>Remove() <span class="overload">[5/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="aa0fec8bd7d09b2f0dae4d22e39929096" name="aa0fec8bd7d09b2f0dae4d22e39929096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0fec8bd7d09b2f0dae4d22e39929096">&#9670;&nbsp;</a></span>Remove() <span class="overload">[6/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="aeea6cb928f112c43334ad880f7c19124" name="aeea6cb928f112c43334ad880f7c19124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeea6cb928f112c43334ad880f7c19124">&#9670;&nbsp;</a></span>Remove() <span class="overload">[7/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="a0d7f9d78947094b6d34446075b66530b" name="a0d7f9d78947094b6d34446075b66530b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7f9d78947094b6d34446075b66530b">&#9670;&nbsp;</a></span>Remove() <span class="overload">[8/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指令 </p>
+
+</div>
+</div>
+<a id="a9fbc2665b434d5ceca8bde3077e24d6d" name="a9fbc2665b434d5ceca8bde3077e24d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fbc2665b434d5ceca8bde3077e24d6d">&#9670;&nbsp;</a></span>Remove() <span class="overload">[9/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="a0e9545cf4fe4f3136158280c16c33671" name="a0e9545cf4fe4f3136158280c16c33671"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9545cf4fe4f3136158280c16c33671">&#9670;&nbsp;</a></span>Remove() <span class="overload">[10/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="aec956574746c5854da46644787105e10" name="aec956574746c5854da46644787105e10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec956574746c5854da46644787105e10">&#9670;&nbsp;</a></span>Remove() <span class="overload">[11/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?, TValue1?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="a55efafbb6dcc8a4a4ac14e714a3118e1" name="a55efafbb6dcc8a4a4ac14e714a3118e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55efafbb6dcc8a4a4ac14e714a3118e1">&#9670;&nbsp;</a></span>Remove() <span class="overload">[12/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC&lt; TResult?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="afd6457fb48a703dcee68e02588012e36" name="afd6457fb48a703dcee68e02588012e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd6457fb48a703dcee68e02588012e36">&#9670;&nbsp;</a></span>Remove() <span class="overload">[13/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1, TValue2 &gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="a63bb5bd4c18269c56b211682f6eafbc9" name="a63bb5bd4c18269c56b211682f6eafbc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63bb5bd4c18269c56b211682f6eafbc9">&#9670;&nbsp;</a></span>Remove() <span class="overload">[14/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?, TValue2?, TValue3?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="a51ac4b0e9ec96655b9e3baeb113783e7" name="a51ac4b0e9ec96655b9e3baeb113783e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ac4b0e9ec96655b9e3baeb113783e7">&#9670;&nbsp;</a></span>Remove() <span class="overload">[15/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?, TValue1?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
+
+</div>
+</div>
+<a id="a63019be56cfb17d451f8b32491d5e4ab" name="a63019be56cfb17d451f8b32491d5e4ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63019be56cfb17d451f8b32491d5e4ab">&#9670;&nbsp;</a></span>Remove() <span class="overload">[16/16]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_e_c_sharp_1_1_multi_command.html">ECSharp.MultiCommand</a>&lt; TKey1, TKey2, TResult, TValue1, TValue2, TValue3 &gt;.Remove </td>
+          <td>(</td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COMMAND_FUNC_WITH_PARAMETER&lt; TResult?&gt;&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除指定指令 </p>
 
 </div>
 </div>

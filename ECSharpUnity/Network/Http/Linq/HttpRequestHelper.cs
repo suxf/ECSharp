@@ -1,10 +1,10 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
-using System;
-using System.IO;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ECSharp.Network.Http.Linq
 {
@@ -19,118 +19,166 @@ namespace ECSharp.Network.Http.Linq
         /// </summary>
         /// <param name="url">请求地址</param>
         /// <param name="postDataStr">请求数据</param>
+        /// <param name="retryNum">重试次数</param>
         /// <returns>返回数据</returns>
-        public static string Post(string url, string postDataStr)
+        public static async Task<string?> Post(string url, string postDataStr, int retryNum = 0)
         {
-            return HttpPost(url, postDataStr, 0);
-        }
-
-        /// <summary>
-        /// Get请求
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <returns>返回数据</returns>
-        public static string Get(string url)
-        {
-            return HttpGet(url, 0);
+            return await Post(url, Encoding.UTF8.GetBytes(postDataStr), ContentType.KeyValue, retryNum);
         }
 
         /// <summary>
         /// Post请求
-        /// <para>可以在请求失败后重新尝试</para>
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postDataStr">请求数据</param>
+        /// <param name="contentType">内容类型</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<string?> Post(string url, string postDataStr, string contentType, int retryNum = 0)
+        {
+            return await Post(url, Encoding.UTF8.GetBytes(postDataStr), contentType, retryNum);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">请求数据</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<string?> Post(string url, byte[] postData, int retryNum = 0)
+        {
+            return await Post(url, postData, ContentType.Binary, retryNum);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">请求数据</param>
+        /// <param name="contentType">内容类型</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<string?> Post(string url, byte[] postData, string contentType, int retryNum = 0)
+        {
+            var content = new ByteArrayContent(postData);
+            content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            content.Headers.ContentType.CharSet = "utf-8";
+            content.Headers.ContentLength = postData.Length;
+            var result = await HttpPost(url, content, retryNum);
+            if (result == null) return null;
+            return await result.ReadAsStringAsync();
+        }
+
+        /// <summary>
+        /// Post请求
         /// </summary>
         /// <param name="url">请求地址</param>
         /// <param name="postDataStr">请求数据</param>
         /// <param name="retryNum">重试次数</param>
         /// <returns>返回数据</returns>
-        public static string Post(string url, string postDataStr, int retryNum)
+        public static async Task<byte[]?> PostBytes(string url, string postDataStr, int retryNum = 0)
         {
-            return HttpPost(url, postDataStr, retryNum);
+            return await PostBytes(url, postDataStr, ContentType.KeyValue, retryNum);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postDataStr">请求数据</param>
+        /// <param name="contentType">内容类型</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<byte[]?> PostBytes(string url, string postDataStr, string contentType, int retryNum = 0)
+        {
+            return await PostBytes(url, Encoding.UTF8.GetBytes(postDataStr), contentType, retryNum);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">请求数据</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<byte[]?> PostBytes(string url, byte[] postData, int retryNum = 0)
+        {
+            return await PostBytes(url, postData, ContentType.Binary, retryNum);
+        }
+
+        /// <summary>
+        /// Post请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="postData">请求数据</param>
+        /// <param name="contentType">内容类型</param>
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<byte[]?> PostBytes(string url, byte[] postData, string contentType, int retryNum = 0)
+        {
+            var content = new ByteArrayContent(postData);
+            content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            content.Headers.ContentType.CharSet = "utf-8";
+            content.Headers.ContentLength = postData.Length;
+            var result = await HttpPost(url, content, retryNum);
+            if (result == null) return null;
+            return await result.ReadAsByteArrayAsync();
+        }
+
+        private static async Task<HttpContent?> HttpPost(string url, HttpContent content, int depthNum)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpResponseMessage response = await httpClient.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (depthNum <= 0) return null;
+                    else return await HttpPost(url, content, depthNum - 1);
+                }
+
+                return response.Content;
+            }
         }
 
         /// <summary>
         /// Get请求
-        /// <para>可以在请求失败后重新尝试</para>
         /// </summary>
         /// <param name="url">请求地址</param>
         /// <param name="retryNum">重试次数</param>
         /// <returns>返回数据</returns>
-        public static string Get(string url, int retryNum)
+        public static async Task<string?> Get(string url, int retryNum = 0)
         {
-            return HttpGet(url, retryNum);
+            var result = await HttpGet(url, retryNum);
+            if (result == null) return null;
+            return await result.ReadAsStringAsync();
         }
 
         /// <summary>
-        /// POST方法
+        /// Get请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="postDataStr">post数据</param>
-        /// <param name="depthNum">重试深度</param>
-        /// <returns></returns>
-        private static string HttpPost(string url, string postDataStr, int depthNum)
+        /// <param name="retryNum">重试次数</param>
+        /// <returns>返回数据</returns>
+        public static async Task<byte[]?> GetBytes(string url, int retryNum = 0)
         {
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ServerCertificateValidationCallback = delegate { return true; };
-                Encoding encoding = Encoding.UTF8;
-#if !UNITY_2020_1_OR_NEWER && !NET462 && !NETSTANDARD2_0
-                ReadOnlySpan<byte> postData = encoding.GetBytes(postDataStr);
-                request.ContentLength = postData.Length;
-                Stream myRequestStream = request.GetRequestStream();
-                myRequestStream.Write(postData);
-#else
-                byte[] postData = encoding.GetBytes(postDataStr);
-                request.ContentLength = postData.Length;
-                Stream myRequestStream = request.GetRequestStream();
-                myRequestStream.Write(postData, 0, postData.Length);
-#endif
-                myRequestStream.Close();
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream myResponseStream = response.GetResponseStream();
-                StreamReader myStreamReader = new StreamReader(myResponseStream, encoding);
-                string retString = myStreamReader.ReadToEnd();
-                myStreamReader.Close();
-                myResponseStream.Close();
-
-                return retString;
-            }
-            catch
-            {
-                if (depthNum <= 0) throw;
-                else return HttpPost(url, postDataStr, depthNum - 1);
-            }
+            var result = await HttpGet(url, retryNum);
+            if (result == null) return null;
+            return await result.ReadAsByteArrayAsync();
         }
 
-
-        /// <summary>
-        /// GET方法
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="depthNum">重试深度</param>
-        /// <returns></returns>
-        private static string HttpGet(string url, int depthNum)
+        private static async Task<HttpContent?> HttpGet(string url, int depthNum)
         {
-            try
+            using (HttpClient httpClient = new HttpClient())
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "GET";
-                request.ContentType = "text/html;charset=UTF-8";
-                request.ServerCertificateValidationCallback = delegate { return true; };
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream myResponseStream = response.GetResponseStream();
-                StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
-                string retString = myStreamReader.ReadToEnd();
-                myStreamReader.Close();
-                myResponseStream.Close();
-                return retString;
-            }
-            catch
-            {
-                if (depthNum <= 0) throw;
-                else return HttpGet(url, depthNum - 1);
+                HttpResponseMessage response = await httpClient.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (depthNum <= 0) return null;
+                    else return await HttpGet(url, depthNum - 1);
+                }
+
+                return response.Content;
             }
         }
     }

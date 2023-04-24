@@ -1,8 +1,10 @@
 ﻿using ECSharp;
+using ECSharp.Database;
 using ECSharp.Database.Linq;
 using ECSharp.Database.SQLServer;
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace Sample
@@ -12,7 +14,7 @@ namespace Sample
     /// 此类包含数据库对象中所有内容
     /// 帮助使用框架的朋友进一步了解数据库创建和使用
     /// </summary>
-    class Test_DBSqlServer : ISqlServerDbHelper
+    class Test_DBSqlServer : IDbException
     {
         // 数据库助手对象
         SqlServerDbHelper dbHelper;
@@ -155,17 +157,17 @@ namespace Sample
             db.Clear();
         }
 
-        public void CheckConnectedException(SqlServerDbHelper helper, Exception exception)
+        public void CheckConnectedException(IDbHelper helper, Exception exception)
         {
             Log.Exception(exception, "CheckConnectedException");
         }
 
-        public void CommandSQLException(SqlServerDbHelper helper, string sql, Exception exception)
+        public void CommandSQLException(IDbHelper helper, string sql, Exception exception)
         {
             Log.Exception(exception, "CommandSQLException");
         }
 
-        public void ProcedureException(SqlServerDbHelper helper, string procedure, SqlParameter[] sqlParameters, Exception exception)
+        public void ProcedureException(IDbHelper helper, string procedure, DbParameter[] sqlParameters, Exception exception)
         {
             Log.Exception(exception, "ProcedureException");
         }

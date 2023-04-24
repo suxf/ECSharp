@@ -2,6 +2,7 @@
 #nullable enable
 #endif
 using System;
+using System.Reflection;
 using System.Threading;
 
 namespace ECSharp.Time
@@ -114,6 +115,38 @@ namespace ECSharp.Time
                 return true;
             }
             return false;
+        }
+
+        internal void DoWithAssembly(int action, Assembly assembly)
+        {
+            if (!reference.TryGetTarget(out var target))
+            {
+                return;
+            }
+
+            if (target.GetType().Assembly != assembly)
+            {
+                if(target is not TimeCaller caller || caller.handle?.Target?.GetType().Assembly != assembly)
+                {
+                    if (target is not TimeClock clock || clock.handle.Target?.GetType().Assembly != assembly)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            if(action == 0)
+            {
+                SetTimeFlowPauseES(true);
+            }
+            else if(action == 1)
+            { 
+                StartTimeFlowES();
+            }
+            else
+            {
+                CloseTimeFlowES();
+            }
         }
 
         /// <summary>
@@ -242,6 +275,11 @@ namespace ECSharp.Time
 #endif
             if (flow.reference.TryGetTarget(out var iTimeUpdate))
                 iTimeUpdate.UpdateEnd();
+        }
+
+        internal void ResetIdle()
+        {
+            IsIdle = true;
         }
     }
 }

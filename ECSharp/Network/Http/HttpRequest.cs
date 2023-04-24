@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -50,38 +49,27 @@ namespace ECSharp.Network.Http
         /// </summary>
         public string ProtocolVersion { get; private set; } = "";
         /// <summary>
-        /// 定义缓冲区
-        /// </summary>
-        private readonly byte[] bytes;
-        /// <summary>
         /// 连接客户端
         /// </summary>
         private readonly TcpClient tcpClient;
 
-        private static readonly string newLine = Environment.NewLine;
-        private static readonly string newLineTwo = Environment.NewLine + Environment.NewLine;
+        /// <summary>
+        /// 用户标记
+        /// </summary>
+        public object? Tag;
 
         /// <summary>
         /// 构建http请求对象
         /// </summary>
-        /// <param name="networkStream"></param>
-        /// <param name="sslStream"></param>
+        /// <param name="stream"></param>
         /// <param name="tcpClient"></param>
-        internal HttpRequest(NetworkStream networkStream, SslStream? sslStream, TcpClient tcpClient)
+        internal HttpRequest(Stream stream, TcpClient tcpClient)
         {
             this.tcpClient = tcpClient;
-            bytes = new byte[tcpClient.ReceiveBufferSize];
-            string data = "";
-
-            if (sslStream != null)
-                data = GetRequestData(sslStream);
-            else
-                data = GetRequestData(networkStream);
-
-            string[] rows = Regex.Split(data, newLine);
+            string row = GetRequestData(stream, tcpClient.ReceiveBufferSize);
 
             //Request URL & Method & Version
-            var first = Regex.Split(rows[0], @"(\s+)")
+            var first = Regex.Split(row, @"(\s+)")
                 .Where(e => e.Trim() != "")
                 .ToArray();
 
@@ -109,24 +97,7 @@ namespace ECSharp.Network.Http
 
             // 判定是不是安全连接
             IsSSL = ProtocolVersion.ToLower().IndexOf("https") != -1;
-            //Request Headers
-            headers = GetRequestHeaders(rows);
-            //Request Body
-            Body = GetRequestBody(rows);
-            string? contentLength = GetHeader(RequestHeaders.ContentLength);
-            if (int.TryParse(contentLength, out var length) && Body.Length != length)
-            {
-                do
-                {
-                    if (sslStream != null)
-                        length = sslStream.Read(bytes, 0, bytes.Length);
-                    else
-                        length = networkStream.Read(bytes, 0, bytes.Length);
 
-                    Body += Encoding.UTF8.GetString(bytes, 0, length);
-                }
-                while (length > 0 && tcpClient.Available > 0 && Body.Length != length);
-            }
             // 获取get数据
             if (RawUrl.Contains('?'))
             {
@@ -179,33 +150,47 @@ namespace ECSharp.Network.Http
         /// 获取请求数据
         /// </summary>
         /// <returns></returns>
-        private string GetRequestData(Stream stream)
+        private string GetRequestData(Stream stream, int size)
         {
-            int length;
-            var data = "";
-            do
+            List<string> rows = new List<string>();
+            using (MemoryStream ms = new MemoryStream())
             {
-                length = stream.Read(bytes, 0, bytes.Length);
-                data += Encoding.UTF8.GetString(bytes, 0, length);
+                byte[] buffer = new byte[size];
+                int bytesRead = 0;
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, bytesRead);
+                    // 如果长度获取没有超过缓存大小则直接返回
+                    if (bytesRead < size) break;
+                }
+
+                ms.Position = 0;
+
+                using (StreamReader reader = new StreamReader(ms, Encoding.UTF8, true, -1, true))
+                {
+                    string? line;
+                    while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+                    {
+                        rows.Add(line);
+                    }
+                }
+
+                //Request Headers
+                headers = GetRequestHeaders(rows);
+                if (int.TryParse(GetHeader(RequestHeaders.ContentLength), out int contentLength))
+                {
+                    ms.Position = ms.Length - contentLength;
+                    BodyBytes = new byte[contentLength];
+                    ms.Read(BodyBytes, 0, contentLength);
+
+                    if (GetHeader(RequestHeaders.ContentType) != ContentType.Binary)
+                    {
+                        Body = Encoding.UTF8.GetString(BodyBytes);
+                    }
+                }
+
             }
-            while (length > 0 && tcpClient.Available > 0 && !data.Contains(newLineTwo));
-            return data;
-        }
-
-        /// <summary>
-        /// 获取请求体
-        /// </summary>
-        /// <param name="rows"></param>
-        /// <returns></returns>
-        private static string GetRequestBody(IEnumerable<string> rows)
-        {
-            var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
-
-            if (target == null)
-                return "";
-
-            var range = Enumerable.Range(target.Index + 1, rows.Count() - target.Index - 1);
-            return string.Join(Environment.NewLine, range.Select(e => rows.ElementAt(e)).ToArray());
+            return rows[0] ?? "";
         }
 
         /// <summary>
@@ -219,13 +204,13 @@ namespace ECSharp.Network.Http
                 return new Dictionary<string, string>();
 
             var target = rows.Select((v, i) => new { Value = v, Index = i }).FirstOrDefault(e => e.Value.Trim() == "");
-            var length = target == null ? rows.Count() - 1 : target.Index;
+            var length = target == null ? rows.Count() : target.Index;
 
             if (length <= 1)
                 return new Dictionary<string, string>();
 
             var range = Enumerable.Range(1, length - 1);
-            return range.Select(e => rows.ElementAt(e)).ToDictionary(e => e.Split(':')[0], e => e.Split(':')[1].Trim());
+            return range.Select(e => rows.ElementAt(e)).ToDictionary(e => e.Substring(0, e.IndexOf(':')).Trim(), e => e.Substring(e.IndexOf(':') + 1).Trim());
         }
 
         /// <summary>

@@ -53,7 +53,7 @@ namespace ECSharp
         /// <param name="timeStamp">时间戳，单位：秒</param>
         public static void Sync(long timeStamp)
         {
-            time = timeStamp * 10000 + 621355968000000000 - sw.ElapsedTicks;
+            time = timeStamp * 10000000 + 621355968000000000 - sw.ElapsedTicks;
         }
 
         /// <summary>

@@ -56,7 +56,9 @@ namespace Sample
             VarList varlist22 = VarList.Parse(tst, out var len2223);
 
             TestVarMap();
+            TestVarMapVar();
             TestVarList();
+            TestVarListVar();
 
             uint hhh = 1;
             Var hhhh = hhh;
@@ -96,7 +98,7 @@ namespace Sample
             VarList varlist = new VarList();
             varlist += 2;
             varlist += 2;
-            varlist.Merge(varlist).Add(2, 6, 7, 8).Merge(varlist);
+            varlist.Merge(varlist).MultiAdd(2, 6, 7, 8).Merge(varlist);
 
             var varlist3 = new VarList() + 2 + false + 30.0;
             varlist3.Add(false);
@@ -187,6 +189,49 @@ namespace Sample
             byte[] data2 = map200.GetBytes();
             VarMap map300 = VarMap.Parse(data2, out int length2);
         }
+        
+        /// <summary>
+        /// 测试复合字典
+        /// </summary>
+        public void TestVarMapVar()
+        {
+            Var map = new VarMap();
+            map.Add(10, "safas");
+            map.Add("sdsd", 222);
+            Var map1 = new VarMap();
+            map1.Add("sss", "asdadasd");
+            map1.Add("qwe", 1111);
+            map1.Add("qwe2", 1111);
+            Var list1 = new VarList();
+            list1.Add(10);
+            list1.Add("asd");
+            map1.Add("cee", list1);
+            Var list2 = new VarList();
+            list2.Add(222);
+            list2.Add("2222");
+            map.Add(100, list2);
+            map.Add(11, map1);
+            Var list3 = new VarList();
+            Var map11 = new VarMap();
+            map11.Add("name", "ss");
+            map11.Add("sex", 1);
+            Var map22 = new VarMap();
+            map22.Add("name", "233");
+            map22.Add("sex", 2);
+            list3.Add(map11);
+            list3.Add(map22);
+            map.Add("player", list3);
+
+            byte[] data = map.GetBytes();
+            Var map100 = VarMap.Parse(data, out int length);
+
+            Var map200 = new VarMap();
+            map200.Add(10, 0);
+            map200.Add(20, 20);
+            map200.Add(30, 20);
+            byte[] data2 = map200.GetBytes();
+            Var map300 = VarMap.Parse(data2, out int length2);
+        }
 
         /// <summary>
         /// 测试复合列表
@@ -194,8 +239,8 @@ namespace Sample
         public void TestVarList()
         {
             VarList list = new VarList();
-            list.Add(10, "safas");
-            list.Add("sdsd", 222);
+            list.MultiAdd(10, "safas");
+            list.MultiAdd("sdsd", 222);
             VarMap map1 = new VarMap();
             map1.Add("sss", "asdadasd");
             map1.Add("qwe", 1111);
@@ -227,8 +272,8 @@ namespace Sample
             VarMap map100 = VarMap.Parse(map22.GetBytes());
             bool ss = VarMap.TryParse(map22.GetBytes(), out var map200);
 
-            JArray json1 = list100.ToJson();
-            JObject json2 = map100.ToJson();
+            JArray json1 = list100.ToJArray();
+            JObject json2 = map100.ToJObject();
             string str1 = list100.ToString();
             string str2 = map100.ToString();
 
@@ -240,6 +285,60 @@ namespace Sample
 
             VarList list50 = VarList.Parse(json1);
             VarMap map50 = VarMap.Parse(json2);
+        }
+        
+        /// <summary>
+        /// 测试复合列表
+        /// </summary>
+        public void TestVarListVar()
+        {
+            Var list = new VarList();
+            list.MultiAdd(10, "safas");
+            list.MultiAdd("sdsd", 222);
+            Var map1 = new VarMap();
+            map1.Add("sss", "asdadasd");
+            map1.Add("qwe", 1111);
+            map1.Add("qwe2", 1111);
+            Var list1 = new VarList();
+            list1.Add(10);
+            list1 += "asd";
+            map1.Add("cee", list1);
+            map1.Add(123, "asf");
+            Var list2 = new VarList();
+            list2 += 222;
+            list2.Add("2222");
+            list.Add(list2);
+            list.Add(map1);
+            Var list3 = new VarList();
+            Var map11 = new VarMap();
+            map11.Add("name", "ss");
+            map11.Add("sex", 1);
+            Var map22 = new VarMap();
+            map22.Add("name", "233");
+            map22.Add("sex", 2);
+            list3.Add(map11);
+            list3 += map22;
+            list.Add(list3);
+
+            byte[] data = list.GetBytes();
+            Var list100 = VarList.Parse(data);
+            bool s = VarList.TryParse(data, out var list200);
+            Var map100 = VarMap.Parse(map22.GetBytes());
+            bool ss = VarMap.TryParse(map22.GetBytes(), out var map200);
+
+            JArray json1 = list100.ToJArray();
+            JObject json2 = map100.ToJObject();
+            string str1 = list100.ToString();
+            string str2 = map100.ToString();
+
+            Var varList = list100;
+            string str3 = varList.ToString();
+
+            VarList list40 = VarList.Parse(str1);
+            VarMap map40 = VarMap.Parse(str2);
+
+            Var list50 = VarList.Parse(json1);
+            Var map50 = VarMap.Parse(json2);
         }
 
         private void TestNum()

@@ -6,5 +6,8 @@ var searchData=
   ['background_5finfo_5fcolor_3',['BACKGROUND_INFO_COLOR',['../class_e_c_sharp_1_1_log_config.html#a5a8142ad8e7b86498b5b011c7f66be2b',1,'ECSharp::LogConfig']]],
   ['background_5finput_5fcolor_4',['BACKGROUND_INPUT_COLOR',['../class_e_c_sharp_1_1_log_config.html#aab8c8c66e2213ac04c4b3f0ef0c39f08',1,'ECSharp::LogConfig']]],
   ['background_5fwarn_5fcolor_5',['BACKGROUND_WARN_COLOR',['../class_e_c_sharp_1_1_log_config.html#aa2205b0ae2c2be693dcedde5eb03e678',1,'ECSharp::LogConfig']]],
-  ['buffer_6',['buffer',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a23a214ed67391dce2b67104235247399',1,'ECSharp::Network::Sockets::Client::ClientSocket']]]
+  ['binary_6',['Binary',['../class_e_c_sharp_1_1_network_1_1_http_1_1_content_type.html#a37dcb8bd3a1b79765408a3909a47ac5c',1,'ECSharp::Network::Http::ContentType']]],
+  ['body_7',['Body',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#a9d90f3619e5551460a753d3cbf4266f3',1,'ECSharp::Network::Http::HttpHeader']]],
+  ['bodybytes_8',['BodyBytes',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#afeafbd2a0bec9b95573be9c66dddeb14',1,'ECSharp::Network::Http::HttpHeader']]],
+  ['buffer_9',['buffer',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a23a214ed67391dce2b67104235247399',1,'ECSharp::Network::Sockets::Client::ClientSocket']]]
 ];

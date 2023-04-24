@@ -190,7 +190,7 @@ namespace Sample
                 if (fff) Interlocked.Decrement(ref num);
                 Log.Info($"【SocketError】 Connect Num:{num}");
                 Log.Exception(ex);
-                if (socket.Tag.IsNumber())
+                if (socket.Tag.IsNumber)
                 {
                     timeCaller2[socket.Tag]?.Cancel();
                     sockets[socket.Tag] = null;

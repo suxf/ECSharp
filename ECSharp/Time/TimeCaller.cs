@@ -21,7 +21,7 @@ namespace ECSharp.Time
         /// <summary>
         /// 回调执行的函数
         /// </summary>
-        private readonly Action? handle = null;
+        internal readonly Action? handle = null;
         /// <summary>
         /// 带参数执行的函数
         /// </summary>

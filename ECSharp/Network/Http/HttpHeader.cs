@@ -1,6 +1,7 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+using ECSharp.Utils;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,9 +15,13 @@ namespace ECSharp.Network.Http
         /// <summary>
         /// 消息体
         /// </summary>
-        public string? Body { get; set; }
+        public string Body = string.Empty;
         /// <summary>
-        /// 编码
+        /// 消息体
+        /// </summary>
+        public byte[] BodyBytes = ByteConverter.Empty;
+        /// <summary>
+        /// 消息体
         /// </summary>
         public Encoding? Encoding { get; set; }
         /// <summary>
@@ -33,7 +38,7 @@ namespace ECSharp.Network.Http
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
-        public string? GetHeader(string fieldName)
+        internal string? GetHeader(string fieldName)
         {
             if (string.IsNullOrEmpty(fieldName))
                 return null;
@@ -51,7 +56,7 @@ namespace ECSharp.Network.Http
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="value"></param>
-        public void SetHeader(string fieldName, string value)
+        internal void SetHeader(string fieldName, string value)
         {
             if (string.IsNullOrEmpty(fieldName))
                 return;

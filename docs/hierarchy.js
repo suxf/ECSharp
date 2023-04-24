@@ -27,8 +27,10 @@ var hierarchy =
     [ "ECSharp.Network.Sockets.Client.ClientSocket", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html", null ],
     [ "ECSharp.Command< TKey, TResult, TValue1, TValue2, TValue3 >", "class_e_c_sharp_1_1_command.html", null ],
     [ "ECSharp.Database.CommandResult", "class_e_c_sharp_1_1_database_1_1_command_result.html", null ],
+    [ "ECSharp.Utils.Compression", "class_e_c_sharp_1_1_utils_1_1_compression.html", null ],
     [ "ECSharp.Linq.ConcurrentLinq", "class_e_c_sharp_1_1_linq_1_1_concurrent_linq.html", null ],
     [ "ECSharp.Database.Linq.ConfigLoader< T >", "class_e_c_sharp_1_1_database_1_1_linq_1_1_config_loader.html", null ],
+    [ "ECSharp.Network.Http.ContentType", "class_e_c_sharp_1_1_network_1_1_http_1_1_content_type.html", null ],
     [ "ECSharp.Database.Linq.DataEntity< T >", "class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity.html", null ],
     [ "ECSharp.Linq.DateTimeLinq", "class_e_c_sharp_1_1_linq_1_1_date_time_linq.html", null ],
     [ "Dictionary", null, [
@@ -49,6 +51,7 @@ var hierarchy =
     [ "ECSharp.Hotfix.IAgent< T >", "interface_e_c_sharp_1_1_hotfix_1_1_i_agent.html", [
       [ "ECSharp.Hotfix.Agent< T >", "class_e_c_sharp_1_1_hotfix_1_1_agent.html", null ]
     ] ],
+    [ "ECSharp.Database.IDbException", "interface_e_c_sharp_1_1_database_1_1_i_db_exception.html", null ],
     [ "IEnumerable", null, [
       [ "ECSharp.Database.Linq.DataEntityRow", "class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_row.html", null ],
       [ "ECSharp.Database.Linq.DataEntityRows", "class_e_c_sharp_1_1_database_1_1_linq_1_1_data_entity_rows.html", null ]
@@ -59,14 +62,12 @@ var hierarchy =
     [ "ECSharp.Network.Http.Linq.IHttpVisitor", "interface_e_c_sharp_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor.html", null ],
     [ "ECSharp.Network.Sockets.HyperSocket.IHyperSocketClient", "interface_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_i_hyper_socket_client.html", null ],
     [ "ECSharp.Network.Sockets.HyperSocket.IHyperSocketServer", "interface_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_i_hyper_socket_server.html", null ],
-    [ "ECSharp.Database.MySQL.IMySqlDbHelper", "interface_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html", null ],
     [ "ECSharp.Utils.Ini", "class_e_c_sharp_1_1_utils_1_1_ini.html", null ],
     [ "ECSharp.Utils.Ini.IniParser", "class_e_c_sharp_1_1_utils_1_1_ini_1_1_ini_parser.html", null ],
     [ "ECSharp.Database.Redis.IRedisEvent", "interface_e_c_sharp_1_1_database_1_1_redis_1_1_i_redis_event.html", null ],
     [ "ECSharp.Network.Sockets.Server.IRemoteSocket", "interface_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_i_remote_socket.html", null ],
     [ "ECSharp.Network.Sockets.Server.IServerSocket", "interface_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_i_server_socket.html", null ],
     [ "ECSharp.Network.Sockets.Client.ISocket", "interface_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_i_socket.html", null ],
-    [ "ECSharp.Database.SQLServer.ISqlServerDbHelper", "interface_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html", null ],
     [ "ECSharp.Time.ISysTime", "interface_e_c_sharp_1_1_time_1_1_i_sys_time.html", [
       [ "ECSharp.Database.IDbHelper", "interface_e_c_sharp_1_1_database_1_1_i_db_helper.html", [
         [ "ECSharp.Database.MySQL.MySqlDbHelper", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html", null ],
@@ -99,8 +100,9 @@ var hierarchy =
     [ "ECSharp.Crypto.MD5", "class_e_c_sharp_1_1_crypto_1_1_m_d5.html", null ],
     [ "ECSharp.MultiCommand< TKey1, TKey2, TResult, TValue1, TValue2, TValue3 >", "class_e_c_sharp_1_1_multi_command.html", null ],
     [ "ECSharp.MultiEvent< TKey1, TKey2, TValue1, TValue2, TValue3 >", "class_e_c_sharp_1_1_multi_event.html", null ],
+    [ "ECSharp.Database.MySQL.Parameter", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_parameter.html", null ],
     [ "ECSharp.Database.SQLServer.Parameter", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_parameter.html", null ],
-    [ "ECSharp.Database.SQLServer.ProcedureResult", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", null ],
+    [ "ECSharp.Database.ProcedureResult", "class_e_c_sharp_1_1_database_1_1_procedure_result.html", null ],
     [ "ECSharp.Utils.Randomizer", "class_e_c_sharp_1_1_utils_1_1_randomizer.html", null ],
     [ "ECSharp.Network.Sockets.Server.RemoteConnection", "class_e_c_sharp_1_1_network_1_1_sockets_1_1_server_1_1_remote_connection.html", null ],
     [ "ECSharp.Network.Websocket.RemoteConnection", "class_e_c_sharp_1_1_network_1_1_websocket_1_1_remote_connection.html", null ],

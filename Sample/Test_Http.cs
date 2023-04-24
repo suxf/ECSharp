@@ -27,6 +27,7 @@ namespace Sample
             // 给访问器增加函数
             visitor.Add("", handle.Index);
             visitor.Add("Hello", handle.Hello);
+            visitor.Add(handle.Hello2);
             // 启动服务
             service.StartServer();
             // 然后就可以通过浏览器或其他请求工具来访问了
@@ -50,6 +51,12 @@ namespace Sample
             {
                 Log.Debug("Hello Visit");
                 response.Write("Hello World:" + request.PostValue);
+            }
+
+            public void Hello2(HttpRequest request, HttpResponse response)
+            {
+                Log.Debug("Hello Visit2");
+                response.Write("Hello World2:" + request.PostValue);
             }
 
             public void HttpVisitorException(HttpRequest request, Exception ex)

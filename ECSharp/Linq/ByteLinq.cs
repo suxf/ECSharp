@@ -20,27 +20,22 @@ namespace ECSharp.Linq
         /// <returns>相同返回true 不同返回false</returns>
         public static bool Compare(this ReadOnlySpan<byte> sb1, ReadOnlySpan<byte> sb2)
         {
-            int result = 0;
-
             if (sb1.Length != sb2.Length)
-                result = sb1.Length - sb2.Length;
-            else
             {
-                int len = sb1.Length;
-                if (len > 0)
+                return false;
+            }
+            else if (sb1.Length > 0)
+            {
+                for (int i = 0; i < sb1.Length; i++)
                 {
-                    for (int i = 0; i < len; i++)
+                    if (sb1[i] != sb2[i])
                     {
-                        if (sb1[i] != sb1[i])
-                        {
-                            result = sb1[i] - sb1[i];
-                            break;
-                        }
+                        return false;
                     }
                 }
             }
 
-            return result == 0;
+            return true;
         }
 
         /// <summary>

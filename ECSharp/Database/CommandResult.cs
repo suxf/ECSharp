@@ -17,7 +17,6 @@ namespace ECSharp.Database
         public int EffectNum { internal set; get; }
         /// <summary>
         /// 执行数据合集
-        /// <para>同名，简化名称，后期弃用 Collection 命名</para>
         /// </summary>
         public DataRowCollection? Rows { internal set; get; }
         /// <summary>

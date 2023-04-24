@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0;netcoreapp3.1;netframework462;netstandard2.0</TargetFrameworks>
     <AssemblyName>ECSharp</AssemblyName>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Authors>suxf</Authors>
     <Description>Simple Development!</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.18.8</Version>
+    <Version>1.18.12</Version>
     <Company>Fyenet Inc.</Company>
     <Copyright>Fyenet Inc.</Copyright>
     <PackageId>EasySharpFrame</PackageId>
@@ -28,12 +27,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TargetFramework>net7.0</TargetFramework>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DocumentationFile>bin\debug\ECSharp.xml</DocumentationFile>
     <OutputPath>bin\debug\</OutputPath>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TargetFrameworks>net7.0;net6.0;netcoreapp3.1;netframework462;</TargetFrameworks>
     <DocumentationFile>bin\release\ECSharp.xml</DocumentationFile>
     <OutputPath>bin\release\</OutputPath>
   </PropertyGroup>

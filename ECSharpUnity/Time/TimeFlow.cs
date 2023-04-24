@@ -1,6 +1,8 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+using System;
+
 namespace ECSharp.Time
 {
     /// <summary>
@@ -106,6 +108,18 @@ namespace ECSharp.Time
         {
             SetTimeFlowPauseES(true);
         }
+
+#if !UNITY_WEBGL
+        /// <summary>
+        /// 设置一个异常监听
+        /// <para>如果出现在update异常将不会再使程序崩溃，而在此回调中被监听</para>
+        /// </summary>
+        /// <param name="listener"></param>
+        public static void SetExceptionListener(Action<Exception> listener)
+        {
+            TimeFlowThread.exceptionListener = listener;
+        }
+#endif
 
         /// <summary>
         /// 关闭时间流

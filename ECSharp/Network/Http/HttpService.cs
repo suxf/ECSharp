@@ -8,6 +8,7 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace ECSharp.Network.Http
 {
@@ -23,7 +24,7 @@ namespace ECSharp.Network.Http
         /// <summary>
         /// HTTP访问回调委托
         /// </summary>
-        private IHttp httpInvoke;
+        private IHttp? httpInvoke;
 
         /// <summary>
         /// 安全证书
@@ -36,35 +37,9 @@ namespace ECSharp.Network.Http
         /// </summary>
         /// <param name="ipAddress">监听ip地址</param>
         /// <param name="port">监听端口</param>
-        /// <param name="visitor">访问器</param>
+        /// <param name="invoke">访问接口</param>
         /// <param name="certificate">安全证书</param>
-        public HttpService(string ipAddress, int port, HttpVisitor visitor, X509Certificate2? certificate = null)
-        {
-            if (!HttpListener.IsSupported)
-            {
-                throw new Exception("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
-            }
-
-            // 赋值证书
-            this.certificate = certificate;
-            // 绑定访问回调委托
-            httpInvoke = visitor;
-
-            // Create a listener.
-            listener = new TcpListener(IPAddress.Parse(ipAddress), port);
-
-            // Log.Info("HttpService Listening...");
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// <para>创建一个HTTP服务</para>
-        /// </summary>
-        /// <param name="ipAddress">监听ip地址</param>
-        /// <param name="port">监听端口</param>
-        /// <param name="invoke">回调接口[不适用访问器添加]</param>
-        /// <param name="certificate">安全证书</param>
-        public HttpService(string ipAddress, int port, IHttp invoke, X509Certificate2? certificate = null)
+        public HttpService(string ipAddress, int port, IHttp? invoke = null, X509Certificate2? certificate = null)
         {
             if (!HttpListener.IsSupported)
             {
@@ -94,7 +69,7 @@ namespace ECSharp.Network.Http
             }
             catch (Exception ex)
             {
-                httpInvoke.HttpException(null, ex);
+                httpInvoke?.HttpException(null, ex);
             }
         }
 
@@ -104,7 +79,7 @@ namespace ECSharp.Network.Http
         /// <param name="invoke">委托接口</param>
         public void SetHttpInvoke(IHttp invoke)
         {
-            httpInvoke = invoke;
+            Interlocked.Exchange(ref httpInvoke, invoke);
         }
 
         /// <summary>
@@ -154,7 +129,7 @@ namespace ECSharp.Network.Http
                         // 处理回调
                         if (httpInvoke != null)
                         {
-                            HttpRequest request = new HttpRequest(networkStream, sslStream, tcpClient);
+                            HttpRequest request = new HttpRequest(sslStream == null ? networkStream : sslStream, tcpClient);
                             try
                             {
                                 HttpResponse response = new HttpResponse(networkStream);
@@ -171,7 +146,7 @@ namespace ECSharp.Network.Http
                     }
                     catch (Exception ex)
                     {
-                        httpInvoke.HttpException(null, ex);
+                        httpInvoke?.HttpException(null, ex);
                     }
                     finally
                     {
@@ -182,12 +157,12 @@ namespace ECSharp.Network.Http
                 }
                 catch (Exception ex)
                 {
-                    httpInvoke.HttpException(null, ex);
+                    httpInvoke?.HttpException(null, ex);
                 }
             }
             catch (Exception ex)
             {
-                httpInvoke.HttpException(null, ex);
+                httpInvoke?.HttpException(null, ex);
             }
         }
 
@@ -202,7 +177,7 @@ namespace ECSharp.Network.Http
             }
             catch (Exception ex)
             {
-                httpInvoke.HttpException(null, ex);
+                httpInvoke?.HttpException(null, ex);
             }
         }
     }

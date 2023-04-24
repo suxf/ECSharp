@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ECSharp.Variant
 {
@@ -19,6 +20,39 @@ namespace ECSharp.Variant
         public static VarList New => new VarList();
 
         /// <summary>
+        /// 变化监听
+        /// </summary>
+        private Action<int, Var>? changeListener;
+
+        /// <summary>
+        /// 构建可变变量列表
+        /// </summary>
+        public VarList() { }
+
+        /// <summary>
+        /// 构建可变变量列表
+        /// </summary>
+        /// <param name="value"></param>
+        public VarList(Var value) => Add(value);
+
+        /// <summary>
+        /// 构建可变变量列表
+        /// </summary>
+        /// <param name="values"></param>
+        public VarList(params Var[] values) => AddRange(values);
+
+        /// <summary>
+        /// 构建可变变量列表
+        /// </summary>
+        /// <param name="value"></param>
+        public VarList(IEnumerable<Var> value) => AddRange(value);
+
+        /// <summary>
+        /// 是否为空
+        /// </summary>
+        public bool IsEmpty => Count == 0;
+
+        /// <summary>
         /// 根据索引安全获取值
         /// </summary>
         /// <param name="index"></param>
@@ -31,7 +65,11 @@ namespace ECSharp.Variant
                     return base[index];
                 return Var.Null;
             }
-            set { base[index] = value; }
+            set 
+            { 
+                base[index] = value;
+                changeListener?.Invoke(index, value);
+            }
         }
 
         /// <summary>
@@ -45,7 +83,19 @@ namespace ECSharp.Variant
             {
                 return this[Convert.ToInt32(index)];
             }
-            set { base[Convert.ToInt32(index)] = value; }
+            set 
+            {
+                this[Convert.ToInt32(index)] = value;
+            }
+        }
+
+        /// <summary>
+        /// 设置一个值变化监听，当列表被修改就会触发监听
+        /// </summary>
+        /// <param name="changeListener"></param>
+        public void SetChangeListener(Action<int, Var> changeListener)
+        {
+            this.changeListener = changeListener;
         }
 
         /// <summary>
@@ -55,7 +105,32 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public VarList Merge(VarList varlist)
         {
-            AddRange(varlist);
+            return AddRange(varlist);
+        }
+
+        /// <summary>
+        /// 插入一个值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public new VarList Insert(int index, Var value)
+        {
+            base.Insert(index, value);
+            changeListener?.Invoke(index, value);
+            return this;
+        }
+
+        /// <summary>
+        /// 插入一组值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public new VarList InsertRange(int index, IEnumerable<Var> value)
+        {
+            base.InsertRange(index, value);
+            changeListener?.Invoke(index, Var.Null);
             return this;
         }
 
@@ -67,6 +142,7 @@ namespace ECSharp.Variant
         public new VarList Add(Var value)
         {
             base.Add(value);
+            changeListener?.Invoke(Count - 1, value);
             return this;
         }
 
@@ -75,9 +151,20 @@ namespace ECSharp.Variant
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public VarList Add(params Var[] value)
+        public VarList MultiAdd(params Var[] value)
         {
-            AddRange(value);
+            return AddRange(value);
+        }
+
+        /// <summary>
+        /// 增加多个可变变量
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public new VarList AddRange(IEnumerable<Var> value)
+        {
+            base.AddRange(value);
+            changeListener?.Invoke(Count - 1, Var.Null);
             return this;
         }
 
@@ -89,8 +176,7 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarList operator +(VarList varlist, VarList value)
         {
-            varlist.Add(value);
-            return varlist;
+            return varlist.Add(value);
         }
 
         /// <summary>
@@ -101,8 +187,7 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarList operator +(VarList varlist, VarMap value)
         {
-            varlist.Add(value);
-            return varlist;
+            return varlist.Add(value);
         }
 
         /// <summary>
@@ -113,15 +198,14 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarList operator +(VarList varlist, Var value)
         {
-            varlist.Add(value);
-            return varlist;
+            return varlist.Add(value);
         }
 
         /// <summary>
         /// 转json对象
         /// </summary>
         /// <returns></returns>
-        public JArray ToJson()
+        public JArray ToJArray()
         {
             JArray json = new JArray();
             for (int i = 0, len = Count; i < len; i++)
@@ -134,8 +218,8 @@ namespace ECSharp.Variant
                     case VarType.FLOAT: json.Add((float)value); break;
                     case VarType.BOOL: json.Add((bool)value); break;
                     case VarType.STRING: json.Add((string)value); break;
-                    case VarType.VARLIST: json.Add(value.List!.ToJson()); break;
-                    case VarType.VARMAP: json.Add(value.Map!.ToJson()); break;
+                    case VarType.VARLIST: json.Add(value.ToJArray()); break;
+                    case VarType.VARMAP: json.Add(value.ToJObject()); break;
                 }
             }
             return json;
@@ -145,9 +229,9 @@ namespace ECSharp.Variant
         /// 转字符串
         /// </summary>
         /// <returns></returns>
-        public new string ToString()
+        public override string ToString()
         {
-            return JsonConvert.SerializeObject(ToJson());
+            return JsonConvert.SerializeObject(ToJArray());
         }
 
         /// <summary>
@@ -194,12 +278,16 @@ namespace ECSharp.Variant
         /// <param name="json"></param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static bool TryParse(string json, out VarList list)
+        public static bool TryParse(string json,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarList list)
         {
             VarList? value = Parse(json);
             if (value == null)
             {
-                list = new VarList();
+                list = null;
                 return false;
             }
             else
@@ -214,6 +302,11 @@ namespace ECSharp.Variant
         /// </summary>
         /// <returns></returns>
         public byte[] GetBytes()
+        {
+            return new Var(this).GetBytes();
+        }
+
+        internal byte[] GetBytesInternal()
         {
             byte[][] bs = new byte[Count + 1][];
             int size = 0;
@@ -241,7 +334,7 @@ namespace ECSharp.Variant
             }
 
             if (Count > byte.MaxValue)
-                throw new VarException($"Var List Max Count 255, Now Count Is {Count}!");
+                throw VarException.CreateLengthError(Count);
             bytes[index++] = (byte)Count;
             bytes[index] = (byte)VarType.VARLIST_END;
             return bytes;
@@ -254,7 +347,7 @@ namespace ECSharp.Variant
         /// <param name="startIndex"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static VarList? Parse(byte[] data, int startIndex, out int length)
+        internal static VarList? ParseInternal(byte[] data, int startIndex, out int length)
         {
             if (data.Length == 0 || data[startIndex] != (byte)VarType.VARLIST_HEAD)
             {
@@ -296,11 +389,27 @@ namespace ECSharp.Variant
         /// 转列表
         /// </summary>
         /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static VarList? Parse(byte[] data, int startIndex, out int length)
+        {
+            Var result = Var.Parse(data, startIndex, out length);
+            if (result.IsList) return result.List;
+            return null;
+        }
+
+        /// <summary>
+        /// 转列表
+        /// </summary>
+        /// <param name="data"></param>
         /// <param name="length"></param>
         /// <returns></returns>
         public static VarList? Parse(byte[] data, out int length)
         {
-            return Parse(data, 0, out length);
+            Var result = Var.Parse(data, 0, out length);
+            if (result.IsList) return result.List;
+            return null;
         }
 
         /// <summary>
@@ -311,7 +420,9 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarList? Parse(byte[] data, int startIndex)
         {
-            return Parse(data, startIndex, out _);
+            Var result = Var.Parse(data, startIndex, out _);
+            if (result.IsList) return result.List;
+            return null;
         }
 
         /// <summary>
@@ -321,7 +432,9 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarList? Parse(byte[] data)
         {
-            return Parse(data, 0, out _);
+            Var result = Var.Parse(data, 0, out _);
+            if (result.IsList) return result.List;
+            return null;
         }
 
         /// <summary>
@@ -332,17 +445,21 @@ namespace ECSharp.Variant
         /// <param name="list"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, int startIndex, out VarList list, out int length)
+        public static bool TryParse(byte[] data, int startIndex,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarList list, out int length)
         {
-            VarList? tempList = Parse(data, startIndex, out length);
-            if (tempList == null)
+            Var result = Var.Parse(data, startIndex, out length);
+            if (!result.IsList)
             {
-                list = new VarList();
+                list = null;
                 return false;
             }
             else
             {
-                list = tempList;
+                list = result;
                 return true;
             }
         }
@@ -354,7 +471,7 @@ namespace ECSharp.Variant
         /// <param name="list"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, out VarList list, out int length)
+        public static bool TryParse(byte[] data, out VarList? list, out int length)
         {
             return TryParse(data, 0, out list, out length);
         }
@@ -366,7 +483,11 @@ namespace ECSharp.Variant
         /// <param name="startIndex"></param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, int startIndex, out VarList list)
+        public static bool TryParse(byte[] data, int startIndex,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarList list)
         {
             return TryParse(data, startIndex, out list, out _);
         }
@@ -377,7 +498,11 @@ namespace ECSharp.Variant
         /// <param name="data"></param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, out VarList list)
+        public static bool TryParse(byte[] data,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarList list)
         {
             return TryParse(data, 0, out list, out _);
         }

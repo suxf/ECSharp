@@ -1,7 +1,7 @@
 ﻿#if !UNITY_2020_1_OR_NEWER
-using System.Data.SqlClient;
+using System.Data.Common;
 
-namespace ECSharp.Database.SQLServer
+namespace ECSharp.Database
 {
     /// <summary>
     /// 存储过程指令
@@ -15,12 +15,12 @@ namespace ECSharp.Database.SQLServer
         /// <summary>
         /// 参数
         /// </summary>
-        public SqlParameter[] sqlParameters;
+        public DbParameter[] parameters;
 
-        internal ProcedureCmd(string procedure, SqlParameter[] sqlParameters)
+        internal ProcedureCmd(string procedure, DbParameter[] parameters)
         {
             this.procedure = procedure;
-            this.sqlParameters = sqlParameters;
+            this.parameters = parameters;
         }
     }
 }

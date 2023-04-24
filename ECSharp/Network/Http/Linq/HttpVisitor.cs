@@ -7,14 +7,19 @@ using System.Collections.Concurrent;
 namespace ECSharp.Network.Http.Linq
 {
     /// <summary>
+    /// 回调委托
+    /// </summary>
+    public delegate void Request(HttpRequest request, HttpResponse response);
+    /// <summary>
+    /// 回调委托
+    /// </summary>
+    public delegate bool RequestPassOn(HttpRequest request, HttpResponse response);
+
+    /// <summary>
     /// http访问器
     /// </summary>
     public class HttpVisitor : IHttp
     {
-        /// <summary>
-        /// 回调委托
-        /// </summary>
-        public delegate void Request(HttpRequest request, HttpResponse response);
         /// <summary>
         /// 回调委托列表
         /// </summary>
@@ -22,7 +27,7 @@ namespace ECSharp.Network.Http.Linq
         /// <summary>
         /// 全局Http监听者
         /// </summary>
-        private Request? allHttpListener = null;
+        private RequestPassOn? allHttpListener = null;
         /// <summary>
         /// 异常回调函数地址
         /// </summary>
@@ -49,13 +54,24 @@ namespace ECSharp.Network.Http.Linq
         }
 
         /// <summary>
+        /// 添加访问函数
+        /// 相同访问后缀可以被覆盖 可重复注册相同后缀访问已更新内容
+        /// </summary>
+        /// <param name="callback">访问函数并且根据函数名设置后缀</param>
+        public void Add(Request callback)
+        {
+            if (!commandList.TryAdd(callback.Method.Name, callback)) commandList[callback.Method.Name] = callback;
+        }
+
+        /// <summary>
         /// 设置全局监听者
         /// <para>虽然访问器可以监听各个想要监听的地址</para>
         /// <para>但是无法有一个共同回调来处理一些特殊的需求</para>
         /// <para>这个监听是返回所有可以接收到的请求,以此来实现添加Add无法实现的全部监听</para>
+        /// <para>并且如果返回值为false那么就不会传递给访问器下面的链接,以统一规则拦截非法请求</para>
         /// </summary>
         /// <param name="callback"></param>
-        public void SetAllListener(Request callback)
+        public void SetAllListener(RequestPassOn callback)
         {
             allHttpListener = callback;
         }
@@ -83,8 +99,12 @@ namespace ECSharp.Network.Http.Linq
             {
                 try
                 {
-                    if (allHttpListener != null) allHttpListener.Invoke(request, response);
-                    or.Invoke(request, response);
+                    bool isPassOn = true;
+                    if (allHttpListener != null)
+                    {
+                        isPassOn = allHttpListener.Invoke(request, response);
+                    }
+                    if(isPassOn) or.Invoke(request, response);
                 }
                 catch (Exception ex)
                 {

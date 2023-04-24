@@ -19,21 +19,21 @@ var annotated_dup =
           [ "SqlBuilder", "class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder.html", "class_e_c_sharp_1_1_database_1_1_linq_1_1_sql_builder" ]
         ] ],
         [ "MySQL", "namespace_e_c_sharp_1_1_database_1_1_my_s_q_l.html", [
-          [ "IMySqlDbHelper", "interface_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper.html", "interface_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_i_my_sql_db_helper" ],
-          [ "MySqlDbHelper", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper" ]
+          [ "MySqlDbHelper", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper.html", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_my_sql_db_helper" ],
+          [ "Parameter", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_parameter.html", "class_e_c_sharp_1_1_database_1_1_my_s_q_l_1_1_parameter" ]
         ] ],
         [ "Redis", "namespace_e_c_sharp_1_1_database_1_1_redis.html", [
           [ "IRedisEvent", "interface_e_c_sharp_1_1_database_1_1_redis_1_1_i_redis_event.html", "interface_e_c_sharp_1_1_database_1_1_redis_1_1_i_redis_event" ],
           [ "RedisHelper", "class_e_c_sharp_1_1_database_1_1_redis_1_1_redis_helper.html", "class_e_c_sharp_1_1_database_1_1_redis_1_1_redis_helper" ]
         ] ],
         [ "SQLServer", "namespace_e_c_sharp_1_1_database_1_1_s_q_l_server.html", [
-          [ "ISqlServerDbHelper", "interface_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper.html", "interface_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_i_sql_server_db_helper" ],
           [ "Parameter", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_parameter.html", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_parameter" ],
-          [ "ProcedureResult", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_procedure_result.html", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_procedure_result" ],
           [ "SqlServerDbHelper", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper.html", "class_e_c_sharp_1_1_database_1_1_s_q_l_server_1_1_sql_server_db_helper" ]
         ] ],
         [ "CommandResult", "class_e_c_sharp_1_1_database_1_1_command_result.html", "class_e_c_sharp_1_1_database_1_1_command_result" ],
-        [ "IDbHelper", "interface_e_c_sharp_1_1_database_1_1_i_db_helper.html", "interface_e_c_sharp_1_1_database_1_1_i_db_helper" ]
+        [ "IDbException", "interface_e_c_sharp_1_1_database_1_1_i_db_exception.html", "interface_e_c_sharp_1_1_database_1_1_i_db_exception" ],
+        [ "IDbHelper", "interface_e_c_sharp_1_1_database_1_1_i_db_helper.html", "interface_e_c_sharp_1_1_database_1_1_i_db_helper" ],
+        [ "ProcedureResult", "class_e_c_sharp_1_1_database_1_1_procedure_result.html", "class_e_c_sharp_1_1_database_1_1_procedure_result" ]
       ] ],
       [ "Hotfix", "namespace_e_c_sharp_1_1_hotfix.html", [
         [ "AbstractAgent", "class_e_c_sharp_1_1_hotfix_1_1_abstract_agent.html", "class_e_c_sharp_1_1_hotfix_1_1_abstract_agent" ],
@@ -62,6 +62,7 @@ var annotated_dup =
             [ "HttpVisitor", "class_e_c_sharp_1_1_network_1_1_http_1_1_linq_1_1_http_visitor.html", "class_e_c_sharp_1_1_network_1_1_http_1_1_linq_1_1_http_visitor" ],
             [ "IHttpVisitor", "interface_e_c_sharp_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor.html", "interface_e_c_sharp_1_1_network_1_1_http_1_1_linq_1_1_i_http_visitor" ]
           ] ],
+          [ "ContentType", "class_e_c_sharp_1_1_network_1_1_http_1_1_content_type.html", "class_e_c_sharp_1_1_network_1_1_http_1_1_content_type" ],
           [ "HttpHeader", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_header" ],
           [ "HttpRequest", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_request.html", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_request" ],
           [ "HttpResponse", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_response.html", "class_e_c_sharp_1_1_network_1_1_http_1_1_http_response" ],
@@ -111,6 +112,7 @@ var annotated_dup =
       [ "Utils", "namespace_e_c_sharp_1_1_utils.html", [
         [ "AppConfig", "class_e_c_sharp_1_1_utils_1_1_app_config.html", "class_e_c_sharp_1_1_utils_1_1_app_config" ],
         [ "ByteConverter", "class_e_c_sharp_1_1_utils_1_1_byte_converter.html", "class_e_c_sharp_1_1_utils_1_1_byte_converter" ],
+        [ "Compression", "class_e_c_sharp_1_1_utils_1_1_compression.html", "class_e_c_sharp_1_1_utils_1_1_compression" ],
         [ "Ini", "class_e_c_sharp_1_1_utils_1_1_ini.html", "class_e_c_sharp_1_1_utils_1_1_ini" ],
         [ "LocalStorage", "class_e_c_sharp_1_1_utils_1_1_local_storage.html", "class_e_c_sharp_1_1_utils_1_1_local_storage" ],
         [ "Randomizer", "class_e_c_sharp_1_1_utils_1_1_randomizer.html", "class_e_c_sharp_1_1_utils_1_1_randomizer" ],
@@ -118,7 +120,7 @@ var annotated_dup =
       ] ],
       [ "Variant", "namespace_e_c_sharp_1_1_variant.html", [
         [ "Var", "struct_e_c_sharp_1_1_variant_1_1_var.html", "struct_e_c_sharp_1_1_variant_1_1_var" ],
-        [ "VarException", "class_e_c_sharp_1_1_variant_1_1_var_exception.html", "class_e_c_sharp_1_1_variant_1_1_var_exception" ],
+        [ "VarException", "class_e_c_sharp_1_1_variant_1_1_var_exception.html", null ],
         [ "VarList", "class_e_c_sharp_1_1_variant_1_1_var_list.html", "class_e_c_sharp_1_1_variant_1_1_var_list" ],
         [ "VarMap", "class_e_c_sharp_1_1_variant_1_1_var_map.html", "class_e_c_sharp_1_1_variant_1_1_var_map" ],
         [ "VarObjectMgr", "class_e_c_sharp_1_1_variant_1_1_var_object_mgr.html", "class_e_c_sharp_1_1_variant_1_1_var_object_mgr" ]

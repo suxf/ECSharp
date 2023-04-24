@@ -1,8 +1,8 @@
 ﻿#if !UNITY_2020_1_OR_NEWER
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.Common;
 
-namespace ECSharp.Database.SQLServer
+namespace ECSharp.Database
 {
     /// <summary>
     /// 存储过程结果集
@@ -22,7 +22,7 @@ namespace ECSharp.Database.SQLServer
         /// <summary>
         /// 执行数据输出参数
         /// </summary>
-        public SqlParameterCollection? SqlParameters { internal set; get; }
+        public DbParameterCollection? Parameters { internal set; get; }
 
         /// <summary>
         /// 执行数据合集

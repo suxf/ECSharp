@@ -16,7 +16,7 @@ namespace ECSharp.Time
         /// <summary>
         /// 回调执行的函数
         /// </summary>
-        private readonly Action<DateTime> handle;
+        internal readonly Action<DateTime> handle;
 
         /// <summary>
         /// 是否重复

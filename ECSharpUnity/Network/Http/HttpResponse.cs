@@ -1,6 +1,7 @@
 ﻿#if UNITY_2020_1_OR_NEWER
 #nullable enable
 #endif
+using ECSharp.Variant;
 using System;
 using System.IO;
 using System.Text;
@@ -36,6 +37,28 @@ namespace ECSharp.Network.Http
         internal HttpResponse(Stream stream)
         {
             handler = stream;
+        }
+
+        /// <summary>
+        /// 设置内容
+        /// </summary>
+        /// <param name="content">内容</param>
+        /// <param name="encoding">编码，默认UTF8</param>
+        /// <returns></returns>
+        public HttpResponse Write(VarList content, Encoding? encoding = null)
+        {
+            return Write(content.GetBytes(), encoding);
+        }
+
+        /// <summary>
+        /// 设置内容
+        /// </summary>
+        /// <param name="content">内容</param>
+        /// <param name="encoding">编码，默认UTF8</param>
+        /// <returns></returns>
+        public HttpResponse Write(VarMap content, Encoding? encoding = null)
+        {
+            return Write(content.GetBytes(), encoding);
         }
 
         /// <summary>

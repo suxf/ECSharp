@@ -25,7 +25,7 @@ namespace ECSharp.Hotfix
         /// <summary>
         /// 动态数据对象
         /// </summary>
-        public AgentData self => _self!;
+        public virtual AgentData self => _self!;
 
         /// <summary>
         /// 初始化函数

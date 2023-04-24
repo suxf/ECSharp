@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['year_0',['year',['../class_e_c_sharp_1_1_time_1_1_time_clock.html#a66d7cae56e375771def7afe5d0984e4f',1,'ECSharp::Time::TimeClock']]]
+  ['xml_0',['XML',['../class_e_c_sharp_1_1_network_1_1_http_1_1_content_type.html#a8db22c2113bc862841f738edd6a4ad7b',1,'ECSharp::Network::Http::ContentType']]]
 ];

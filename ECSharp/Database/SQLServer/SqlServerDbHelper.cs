@@ -1,9 +1,11 @@
 ﻿#if !UNITY_2020_1_OR_NEWER
 using ECSharp.Database.Linq;
 using ECSharp.Time;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ECSharp.Database.SQLServer
@@ -27,7 +29,7 @@ namespace ECSharp.Database.SQLServer
         /// <summary>
         /// 数据库异常监听
         /// </summary>
-        private ISqlServerDbHelper? listener = null;
+        private IDbException? listener = null;
 
         private readonly BaseTimeFlow timeFlow;
 
@@ -112,7 +114,7 @@ namespace ECSharp.Database.SQLServer
         /// 设置异常监听
         /// </summary>
         /// <param name="listener">异常监听器</param>
-        public void SetExceptionListener(ISqlServerDbHelper listener)
+        public void SetExceptionListener(IDbException listener)
         {
             this.listener = listener;
         }
@@ -155,7 +157,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>返回 ProcedureResult 失败为null</returns>
-        public ProcedureResult Procedure(string procedure, params SqlParameter[] sqlParameters)
+        public ProcedureResult Procedure(string procedure, params DbParameter[] sqlParameters)
         {
             return Procedure(procedure, SqlDbType.Int, 4, sqlParameters);
         }
@@ -168,7 +170,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="retvalueSize">返回值大小</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>返回 ProcedureResult 失败为null</returns>
-        public ProcedureResult Procedure(string procedure, SqlDbType retvalueDbType, int retvalueSize, params SqlParameter[] sqlParameters)
+        public ProcedureResult Procedure(string procedure, SqlDbType retvalueDbType, int retvalueSize, params DbParameter[] sqlParameters)
         {
             ProcedureResult result = new ProcedureResult();
             result.Procedure = procedure;
@@ -193,7 +195,7 @@ namespace ECSharp.Database.SQLServer
                             dataAdapter.Fill(myDataSet);
 
                             result.ReturnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
-                            result.SqlParameters = sqlCommand.Parameters;
+                            result.Parameters = sqlCommand.Parameters;
                             result.Tables = myDataSet.Tables;
 
                             if (result.Tables.Count > 0) result.FirstRows = result.Tables[0].Rows;
@@ -220,7 +222,7 @@ namespace ECSharp.Database.SQLServer
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>影响数量 -1表示异常</returns>
-        public int ProcedureNonQuery(string procedure, params SqlParameter[] sqlParameters)
+        public int ProcedureNonQuery(string procedure, params DbParameter[] sqlParameters)
         {
             // 执行SQL语句过程
             try
@@ -360,9 +362,9 @@ namespace ECSharp.Database.SQLServer
         /// <param name="procedure">存储过程名称</param>
         /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
         /// <returns>返回成功与否</returns>
-        public void PushProcedure(string procedure, params SqlParameter[] sqlParameters)
+        public void PushProcedure(string procedure, params DbParameter[] sqlParameters)
         {
-            lock (SQLQueue) ProcedureQueue.Enqueue(new ProcedureCmd(procedure, sqlParameters));
+            lock (ProcedureQueue) ProcedureQueue.Enqueue(new ProcedureCmd(procedure, sqlParameters));
         }
 
         /// <summary>
@@ -439,7 +441,10 @@ namespace ECSharp.Database.SQLServer
                         {
                             --runCount;
                             string sql = SQLQueue.Dequeue();
-                            ExecuteSQL(sql);
+                            if(sql != null)
+                            {
+                                ExecuteSQL(sql);
+                            }
                         }
                     }
                 }
@@ -452,7 +457,7 @@ namespace ECSharp.Database.SQLServer
                         {
                             --runCount;
                             ProcedureCmd pr = ProcedureQueue.Dequeue();
-                            Procedure(pr.procedure, pr.sqlParameters);
+                            Procedure(pr.procedure, pr.parameters);
                         }
                     }
                 }
@@ -464,6 +469,20 @@ namespace ECSharp.Database.SQLServer
         /// </summary>
         public void UpdateEnd()
         {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="procedure"></param>
+        /// <param name="retvalueDbType"></param>
+        /// <param name="retvalueSize"></param>
+        /// <param name="sqlParameters"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ProcedureResult Procedure(string procedure, MySqlDbType retvalueDbType, int retvalueSize, params DbParameter[] sqlParameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }

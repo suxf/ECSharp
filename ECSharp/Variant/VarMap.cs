@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ECSharp.Variant
 {
@@ -17,6 +18,28 @@ namespace ECSharp.Variant
         /// 新建一个可变变量字典
         /// </summary>
         public static VarMap New => new VarMap();
+
+        /// <summary>
+        /// 变化监听
+        /// </summary>
+        private Action<Var, Var>? changeListener;
+
+        /// <summary>
+        /// 构建可变变量字典
+        /// </summary>
+        public VarMap() { }
+
+        /// <summary>
+        /// 构建可变变量字典
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public VarMap(Var key, Var value) => Add(key, value);
+
+        /// <summary>
+        /// 是否为空
+        /// </summary>
+        public bool IsEmpty => Count == 0;
 
         /// <summary>
         /// 根据键名安全获取键值
@@ -32,17 +55,37 @@ namespace ECSharp.Variant
 
                 return Var.Null;
             }
-            set { base[key] = value; }
+            set 
+            {
+                base[key] = value;
+                changeListener?.Invoke(key, value);
+            }
+        }
+
+        /// <summary>
+        /// 设置一个值变化监听，当列表被修改就会触发监听
+        /// </summary>
+        /// <param name="changeListener"></param>
+        public void SetChangeListener(Action<Var, Var> changeListener)
+        {
+            this.changeListener = changeListener;
         }
 
         /// <summary>
         /// 合并可变变量字典
+        /// <para>合并字典中已存在的则覆盖最新值</para>
         /// </summary>
         /// <param name="varmap"></param>
         /// <returns></returns>
         public VarMap Merge(VarMap varmap)
         {
-            Merge(varmap);
+            foreach (var key in varmap.Keys)
+            {
+                if (ContainsKey(key))
+                    this[key] = varmap[key];
+                else
+                    Add(key, varmap[key]);
+            }
             return this;
         }
 
@@ -55,14 +98,48 @@ namespace ECSharp.Variant
         public new VarMap Add(Var key, Var value)
         {
             base.Add(key, value);
+            changeListener?.Invoke(key, value);
             return this;
         }
+
+        /// <summary>
+        /// 添加或者更新
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public VarMap AddOrUpdate(Var key, Var value)
+        {
+            if (ContainsKey(key))
+                this[key] = value;
+            else
+                Add(key, value);
+            return this;
+        }
+
+#if NETCOREAPP3_1_OR_GREATER
+        /// <summary>
+        /// 尝试添加
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public new bool TryAdd(Var key, Var value)
+        {
+            if (base.TryAdd(key, value))
+            {
+                changeListener?.Invoke(key, value);
+                return true;
+            }
+            return false;
+        }
+#endif
 
         /// <summary>
         /// 转Json对象
         /// </summary>
         /// <returns></returns>
-        public JObject ToJson()
+        public JObject ToJObject()
         {
             JObject json = new JObject();
             foreach (var item in this)
@@ -80,8 +157,8 @@ namespace ECSharp.Variant
                     case VarType.FLOAT: json.Add(key.ToString(), (float)value); break;
                     case VarType.BOOL: json.Add(key.ToString(), (bool)value); break;
                     case VarType.STRING: json.Add(key.ToString(), (string)value); break;
-                    case VarType.VARLIST: json.Add(key.ToString(), value.List!.ToJson()); break;
-                    case VarType.VARMAP: json.Add(key.ToString(), value.Map!.ToJson()); break;
+                    case VarType.VARLIST: json.Add(key.ToString(), value.ToJArray()); break;
+                    case VarType.VARMAP: json.Add(key.ToString(), value.ToJObject()); break;
                 }
             }
             return json;
@@ -91,9 +168,9 @@ namespace ECSharp.Variant
         /// 转字符串
         /// </summary>
         /// <returns></returns>
-        public new string ToString()
+        public override string ToString()
         {
-            return JsonConvert.SerializeObject(ToJson());
+            return JsonConvert.SerializeObject(ToJObject());
         }
 
         /// <summary>
@@ -147,12 +224,16 @@ namespace ECSharp.Variant
         /// <param name="json"></param>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static bool TryParse(string json, out VarMap map)
+        public static bool TryParse(string json,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarMap map)
         {
             VarMap? value = Parse(json);
             if (value == null)
             {
-                map = new VarMap();
+                map = null;
                 return false;
             }
             else
@@ -167,6 +248,11 @@ namespace ECSharp.Variant
         /// </summary>
         /// <returns></returns>
         public byte[] GetBytes()
+        {
+            return new Var(this).GetBytes();
+        }
+
+        internal byte[] GetBytesInternal()
         {
             byte[][][] bs = new byte[Count + 1][][];
             int size = 0;
@@ -201,21 +287,14 @@ namespace ECSharp.Variant
             }
 
             if (Count > byte.MaxValue)
-                throw new VarException($"Var Map Max Count 255, Now Count Is {Count}!");
+                throw VarException.CreateLengthError(Count);
 
             bytes[index++] = (byte)Count;
             bytes[index] = (byte)VarType.VARMAP_END;
             return bytes;
         }
 
-        /// <summary>
-        /// 转字典
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static VarMap? Parse(byte[] data, int startIndex, out int length)
+        internal static VarMap? ParseInternal(byte[] data, int startIndex, out int length)
         {
             if (data.Length == 0 || data[startIndex] != (byte)VarType.VARMAP_HEAD)
             {
@@ -260,11 +339,27 @@ namespace ECSharp.Variant
         /// 转字典
         /// </summary>
         /// <param name="data"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static VarMap? Parse(byte[] data, int startIndex, out int length)
+        {
+            Var result = Var.Parse(data, startIndex, out length);
+            if(result.IsMap) return result;
+            return null;
+        }
+
+        /// <summary>
+        /// 转字典
+        /// </summary>
+        /// <param name="data"></param>
         /// <param name="length"></param>
         /// <returns></returns>
         public static VarMap? Parse(byte[] data, out int length)
         {
-            return Parse(data, 0, out length);
+            Var result = Var.Parse(data, 0, out length);
+            if(result.IsMap) return result;
+            return null;
         }
 
         /// <summary>
@@ -275,7 +370,9 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarMap? Parse(byte[] data, int startIndex)
         {
-            return Parse(data, startIndex, out _);
+            Var result = Var.Parse(data, startIndex, out _);
+            if(result.IsMap) return result;
+            return null;
         }
 
         /// <summary>
@@ -285,7 +382,10 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static VarMap? Parse(byte[] data)
         {
-            return Parse(data, 0, out _);
+            Var result = Var.Parse(data, 0, out _);
+            if(result.IsMap) return result;
+
+            return null;
         }
 
         /// <summary>
@@ -296,17 +396,21 @@ namespace ECSharp.Variant
         /// <param name="map"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, int startIndex, out VarMap map, out int length)
+        public static bool TryParse(byte[] data, int startIndex,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarMap map, out int length)
         {
-            VarMap? tempMap = Parse(data, startIndex, out length);
-            if (tempMap == null)
+            Var result = Var.Parse(data, startIndex, out length);
+            if (!result.IsMap)
             {
-                map = new VarMap();
+                map = null;
                 return false;
             }
             else
             {
-                map = tempMap;
+                map = result;
                 return true;
             }
         }
@@ -318,7 +422,11 @@ namespace ECSharp.Variant
         /// <param name="map"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, out VarMap map, out int length)
+        public static bool TryParse(byte[] data,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif 
+        out VarMap map, out int length)
         {
             return TryParse(data, 0, out map, out length);
         }
@@ -330,7 +438,11 @@ namespace ECSharp.Variant
         /// <param name="startIndex"></param>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, int startIndex, out VarMap map)
+        public static bool TryParse(byte[] data, int startIndex,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarMap map)
         {
             return TryParse(data, startIndex, out map, out _);
         }
@@ -341,7 +453,11 @@ namespace ECSharp.Variant
         /// <param name="data"></param>
         /// <param name="map"></param>
         /// <returns></returns>
-        public static bool TryParse(byte[] data, out VarMap map)
+        public static bool TryParse(byte[] data,
+#if NETCOREAPP3_1_OR_GREATER
+            [MaybeNullWhen(false)]
+#endif
+        out VarMap map)
         {
             return TryParse(data, 0, out map, out _);
         }

@@ -53,6 +53,10 @@ namespace ECSharp.Hotfix
         private static string[]? _args = null;
         private static string _entryMethodName = "";
 
+        private static TimeCaller? destroyCaller;
+
+        private static Action<Exception>? exceptionListener = null;
+
         /// <summary>
         /// 创建一个热更管理器
         /// </summary>
@@ -90,10 +94,40 @@ namespace ECSharp.Hotfix
         /// </summary>
         /// <param name="assemblyFileName">程序集文件名(后缀小写或不写且程序集需要在运行根目录下)</param>
         /// <param name="classFullName">含有 public static void Main(string[] args){} 程序集下热更模块主入口类全称(即命名空间和类名)</param>
+        /// <param name="listener">设置一个异常监听器 无论是重载还是重载后代码中时间流异常都不会引起程序崩溃，异常都会集中到此处处理</param>
+        /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
+        public static void Load(string assemblyFileName, string classFullName, Action<Exception>? listener = null)
+        {
+            Load(assemblyFileName, classFullName, null, "Main", listener);
+        }
+
+        /// <summary>
+        /// 载入热更新模块
+        /// <para>读取不能保证所有情况都是正常的，建议用try-catch捕获异常，以确保未正确替换，还能保持旧环境继续运行</para>
+        /// <para>默认主入口包含一个静态Main函数 public static void Main(string[] args){}</para>
+        /// </summary>
+        /// <param name="assemblyFileName">程序集文件名(后缀小写或不写且程序集需要在运行根目录下)</param>
+        /// <param name="classFullName">含有 public static void Main(string[] args){} 程序集下热更模块主入口类全称(即命名空间和类名)</param>
+        /// <param name="args">传入热更层字符串数组</param>
+        /// <param name="listener">设置一个异常监听器 无论是重载还是重载后代码中时间流异常都不会引起程序崩溃，异常都会集中到此处处理</param>
+        /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
+        public static void Load(string assemblyFileName, string classFullName, string[]? args, Action<Exception>? listener = null)
+        {
+            Load(assemblyFileName, classFullName, args, "Main", listener);
+        }
+
+        /// <summary>
+        /// 载入热更新模块
+        /// <para>读取不能保证所有情况都是正常的，建议用try-catch捕获异常，以确保未正确替换，还能保持旧环境继续运行</para>
+        /// <para>默认主入口包含一个静态Main函数 public static void Main(string[] args){}</para>
+        /// </summary>
+        /// <param name="assemblyFileName">程序集文件名(后缀小写或不写且程序集需要在运行根目录下)</param>
+        /// <param name="classFullName">含有 public static void Main(string[] args){} 程序集下热更模块主入口类全称(即命名空间和类名)</param>
         /// <param name="args">传入热更层字符串数组</param>
         /// <param name="entryMethodName">入口函数名称，默认不指定为 Main</param>
+        /// <param name="listener">设置一个异常监听器 无论是重载还是重载后代码中时间流异常都不会引起程序崩溃，异常都会集中到此处处理</param>
         /// <returns>本次加载是否执行，进入执行且完成为true，未执行为false</returns>
-        public static void Load(string assemblyFileName, string classFullName, /*bool keepMainValue = false,*/ string[]? args = null, string entryMethodName = "Main")
+        public static void Load(string assemblyFileName, string classFullName, string[]? args, string entryMethodName, Action<Exception>? listener = null)
         {
             if (isLoading)
             {
@@ -104,6 +138,21 @@ namespace ECSharp.Hotfix
             if (++loadCount >= 2)
             {
                 IsFirstLoad = false;
+            }
+
+            if (listener != null)
+            {
+                exceptionListener = listener;
+                TimeFlowThread.hotfixExceptionListener = (e) =>
+                {
+                    if(e.TargetSite?.DeclaringType?.Assembly != assemblyLoader?.GetAssembly())
+                    {
+                        return false;
+                    }
+
+                    exceptionListener.Invoke(e);
+                    return true;
+                };
             }
 
             if (args == null)
@@ -119,11 +168,14 @@ namespace ECSharp.Hotfix
             FileStream? fsRead = null;
             FileStream? pdbRead = null;
 
+            var oldAgentTypeMap = agentTypeMap;
+            var oldAssemblyLoader = assemblyLoader;
+
             try
             {
                 if (!File.Exists(dllName))
                 {
-                    throw new NullReferenceException($"[{assemblyFileName}] file is not found!");
+                    throw new Exception($"[{assemblyFileName}] file is not found!");
                 }
 
                 fsRead = new FileStream(dllName, FileMode.Open);
@@ -137,7 +189,7 @@ namespace ECSharp.Hotfix
 
                 if (fsLen <= 0)
                 {
-                    throw new NullReferenceException($"Assembly file is empty!");
+                    throw new Exception($"Assembly file is empty!");
                 }
 
                 // 取得临时数据
@@ -145,7 +197,7 @@ namespace ECSharp.Hotfix
 
                 if (!tempDllAssemblyLoader.IsAlive)
                 {
-                    throw new NullReferenceException($"Assembly is not alive!");
+                    throw new Exception($"Assembly is not alive!");
                 }
 
                 // 最终绑定对象
@@ -153,20 +205,22 @@ namespace ECSharp.Hotfix
                 var typeInfo = assembly.GetType(classFullName);
                 if (typeInfo == null)
                 {
-                    throw new NullReferenceException($"[{classFullName}] class is not found!");
+                    throw new Exception($"[{classFullName}] class is not found!");
                 }
 
                 var methodInfo = typeInfo.GetMethod(entryMethodName, BindingFlags.Public | BindingFlags.Static);
 
                 if (methodInfo == null)
                 {
-                    throw new NullReferenceException($"[{entryMethodName}] public static method is not found!");
+                    throw new Exception($"[{entryMethodName}] public static method is not found!");
                 }
 
                 if (methodInfo.GetParameters().Length != 1)
                 {
-                    throw new NullReferenceException($"[{entryMethodName}] method has not one args!");
+                    throw new Exception($"[{entryMethodName}] method has not one args!");
                 }
+
+                TimeFlowManager.DoWithAssembly(0, assemblyLoader?.GetAssembly());
 
                 // 处理代理类字典
                 var agentTypeMapTemp = new ConcurrentDictionary<Type, Type>();
@@ -194,44 +248,16 @@ namespace ECSharp.Hotfix
                     }
                 }
                 Interlocked.Exchange(ref agentTypeMap, agentTypeMapTemp);
+                ResetAgent();
 
-                if (agentRefs.Count > 0)
-                {
-                    // 处理代理索引
-                    lock (agentRefs)
-                    {
-                        // 先暂停时间流
-                        for (int i = 0, len = agentRefs.Count; i < len; i++)
-                        {
-                            if (agentRefs[i].TryGetTarget(out var agentRef))
-                            {
-                                var agent = agentRef.GetAgent();
-                                if (agent != null && agent is ITimeUpdate tu)
-                                {
-                                    // 处理时间流代理停止
-                                    TimeFlowManager.CloseByObj(tu);
-                                }
-                            }
-                        }
+                // 程序域转换
+                Interlocked.Exchange(ref assemblyLoader, tempDllAssemblyLoader);
+                methodInfo.Invoke(assemblyLoader, new object[] { args });
 
-                        // 后重置所有代理
-                        for (int i = agentRefs.Count - 1; i >= 0; i--)
-                        {
-                            if (agentRefs[i].TryGetTarget(out var agentRef))
-                            {
-                                agentRef.ResetAgent();
-                                if (agentRef.isAutoCreate)
-                                {
-                                    agentRef.CreateAsyncAgent();
-                                }
-                            }
-                            else agentRefs.RemoveAt(i);
-                        }
-                    }
-                }
+                TimeFlowManager.DoWithAssembly(-1, oldAssemblyLoader?.GetAssembly());
 
                 // 十秒后销毁旧的程序集
-                TimeCaller.Create(static (object? obj) =>
+                destroyCaller = TimeCaller.Create(static (object? obj) =>
                 {
                     var loader = obj as AssemblyLoader;
                     if (loader != null)
@@ -239,27 +265,57 @@ namespace ECSharp.Hotfix
                         loader.Unload();
                         loader = null;
                     }
-                }, 10000).Start(assemblyLoader, true);
-
-                // 程序域转换
-                methodInfo.Invoke(Interlocked.Exchange(ref assemblyLoader, tempDllAssemblyLoader), new object[] { args });
+                }, 10000).Start(assemblyLoader);
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                destroyCaller?.Cancel();
+                Interlocked.Exchange(ref agentTypeMap, oldAgentTypeMap);
+                ResetAgent();
+                Interlocked.Exchange(ref assemblyLoader, oldAssemblyLoader);
+                TimeFlowManager.DoWithAssembly(1, assemblyLoader?.GetAssembly());
+
+                if(exceptionListener == null)
+                    throw;
+
+                exceptionListener(ex);
             }
             finally
             {
                 isLoading = false;
                 // 没有执行成功需要关闭写入锁
-                if (fsRead != null) fsRead.Close();
-                if (pdbRead != null) pdbRead.Close();
+                fsRead?.Close();
+                pdbRead?.Close();
             }
 
             _assemblyFileName = assemblyFileName;
             _classFullName = classFullName;
             _entryMethodName = entryMethodName;
             _args = args;
+        }
+
+        private static void ResetAgent()
+        {
+            if (agentRefs.Count > 0)
+            {
+                // 处理代理索引
+                lock (agentRefs)
+                {
+                    // 后重置所有代理
+                    for (int i = agentRefs.Count - 1; i >= 0; i--)
+                    {
+                        if (agentRefs[i].TryGetTarget(out var agentRef))
+                        {
+                            agentRef.ResetAgent();
+                            if (agentRef.isAutoCreate)
+                            {
+                                agentRef.CreateAsyncAgent();
+                            }
+                        }
+                        else agentRefs.RemoveAt(i);
+                    }
+                }
+            }
         }
 
         /// <summary>

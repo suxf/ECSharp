@@ -4,6 +4,7 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 
 namespace ECSharp.Database.MySQL
 {
@@ -22,10 +23,11 @@ namespace ECSharp.Database.MySQL
         /// sql队列用于缓存通过压入队列执行的sql对象
         /// </summary>
         private readonly Queue<string> SQLQueue = new Queue<string>();
+        private readonly Queue<ProcedureCmd> ProcedureQueue = new Queue<ProcedureCmd>();
         /// <summary>
         /// 数据库异常监听
         /// </summary>
-        private IMySqlDbHelper? listener = null;
+        private IDbException? listener = null;
 
         private readonly BaseTimeFlow timeFlow;
 
@@ -114,7 +116,7 @@ namespace ECSharp.Database.MySQL
         /// 设置异常监听
         /// </summary>
         /// <param name="listener">异常监听器</param>
-        public void SetExceptionListener(IMySqlDbHelper listener)
+        public void SetExceptionListener(IDbException listener)
         {
             this.listener = listener;
         }
@@ -222,16 +224,16 @@ namespace ECSharp.Database.MySQL
                     conn.Open();
                     if (conn.State == ConnectionState.Open)
                     {
-                        return -1;
+                        if (obj.Length > 0) sql = string.Format(sql, obj);
+                        // 执行SQL
+                        using (MySqlCommand sqlCommand = new MySqlCommand(sql, conn))
+                        {
+                            sqlCommand.CommandType = CommandType.Text;
+                            return sqlCommand.ExecuteNonQuery();
+                        }
+                        
                     }
-
-                    if (obj.Length > 0) sql = string.Format(sql, obj);
-                    // 执行SQL
-                    using (MySqlCommand sqlCommand = new MySqlCommand(sql, conn))
-                    {
-                        sqlCommand.CommandType = CommandType.Text;
-                        return sqlCommand.ExecuteNonQuery();
-                    }
+                    return -1;
                 }
             }
             catch (Exception ex)
@@ -240,6 +242,107 @@ namespace ECSharp.Database.MySQL
                 else throw;
                 return -1;
             }
+        }
+
+
+        /// <summary>
+        /// 存储过程 1
+        /// <para>返回值默认为整型，长度为4</para>
+        /// </summary>
+        /// <param name="procedure">存储过程名称</param>
+        /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
+        /// <returns>返回 ProcedureResult 失败为null</returns>
+        public ProcedureResult Procedure(string procedure, params DbParameter[] sqlParameters)
+        {
+            return Procedure(procedure, MySqlDbType.Int32, 4, sqlParameters);
+        }
+
+        /// <summary>
+        /// 存储过程 2
+        /// </summary>
+        /// <param name="procedure">存储过程名称</param>
+        /// <param name="retvalueDbType">返回值类型</param>
+        /// <param name="retvalueSize">返回值大小</param>
+        /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
+        /// <returns>返回 ProcedureResult 失败为null</returns>
+        public ProcedureResult Procedure(string procedure, MySqlDbType retvalueDbType, int retvalueSize, params DbParameter[] sqlParameters)
+        {
+            ProcedureResult result = new ProcedureResult();
+            result.Procedure = procedure;
+            result.IsCompleted = true;
+            // 执行SQL语句过程
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(builder.ConnectionString))
+                {
+                    conn.Open();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        // 执行SQL
+                        using (MySqlCommand sqlCommand = new MySqlCommand(procedure, conn))
+                        {
+                            sqlCommand.CommandType = CommandType.StoredProcedure;
+                            sqlCommand.Parameters.AddRange(sqlParameters);
+                            // sqlCommand.Parameters.Add("@RETURN_VALUE", retvalueDbType, retvalueSize).Direction = ParameterDirection.ReturnValue;
+                            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                            dataAdapter.SelectCommand = sqlCommand;
+                            DataSet myDataSet = new DataSet();
+                            dataAdapter.Fill(myDataSet);
+
+                            // result.ReturnValue = sqlCommand.Parameters["@RETURN_VALUE"].Value;
+                            result.Parameters = sqlCommand.Parameters;
+                            result.Tables = myDataSet.Tables;
+
+                            if (result.Tables.Count > 0) result.FirstRows = result.Tables[0].Rows;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ReturnValue = -1;
+                result.IsCompleted = false;
+
+                if (listener != null)
+                    listener.ProcedureException(this, procedure, sqlParameters, ex);
+                else throw;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 存储过程 3
+        /// <para>不需要返回任何数据</para>
+        /// </summary>
+        /// <param name="procedure">存储过程名称</param>
+        /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
+        /// <returns>影响数量 -1表示异常</returns>
+        public int ProcedureNonQuery(string procedure, params DbParameter[] sqlParameters)
+        {
+            // 执行SQL语句过程
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(builder.ConnectionString))
+                {
+                    conn.Open();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        // 执行SQL
+                        using (MySqlCommand sqlCommand = new MySqlCommand(procedure, conn))
+                        {
+                            sqlCommand.CommandType = CommandType.StoredProcedure;
+                            sqlCommand.Parameters.AddRange(sqlParameters);
+                            return sqlCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (listener != null) listener.ProcedureException(this, procedure, sqlParameters, ex);
+                else throw;
+            }
+            return -1;
         }
 
         /// <summary>
@@ -253,6 +356,19 @@ namespace ECSharp.Database.MySQL
         {
             if (obj != null && obj.Length > 0) sql = string.Format(sql, obj);
             lock (SQLQueue) SQLQueue.Enqueue(sql);
+        }
+
+        /// <summary>
+        /// 压入SQL队列，等待统一顺序执行【异步】
+        /// <para>此操作适合非查询操作SQL,且对数据实时更新无要求的情况下方可使用</para>
+        /// <para>脱离主线程由其他线程处理数据</para>
+        /// </summary>
+        /// <param name="procedure">存储过程名称</param>
+        /// <param name="sqlParameters">存储过程参数 建议使用Parameter生成</param>
+        /// <returns>返回成功与否</returns>
+        public void PushProcedure(string procedure, params DbParameter[] sqlParameters)
+        {
+            lock (ProcedureQueue) ProcedureQueue.Enqueue(new ProcedureCmd(procedure, sqlParameters));
         }
 
         /// <summary>
@@ -281,7 +397,23 @@ namespace ECSharp.Database.MySQL
                         {
                             --runCount;
                             string sql = SQLQueue.Dequeue();
-                            ExecuteSQL(sql);
+                            if(sql != null)
+                            {
+                                ExecuteSQL(sql);
+                            }
+                        }
+                    }
+                }
+
+                if (runCount > 0 && ProcedureQueue.Count > 0)
+                {
+                    lock (ProcedureQueue)
+                    {
+                        while (runCount > 0 && ProcedureQueue.Count > 0)
+                        {
+                            --runCount;
+                            ProcedureCmd pr = ProcedureQueue.Dequeue();
+                            Procedure(pr.procedure, pr.parameters);
                         }
                     }
                 }
@@ -293,6 +425,20 @@ namespace ECSharp.Database.MySQL
         /// </summary>
         public void UpdateEnd()
         {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="procedure"></param>
+        /// <param name="retvalueDbType"></param>
+        /// <param name="retvalueSize"></param>
+        /// <param name="sqlParameters"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ProcedureResult Procedure(string procedure, SqlDbType retvalueDbType, int retvalueSize, params DbParameter[] sqlParameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }

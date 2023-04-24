@@ -2,8 +2,10 @@
 #nullable enable
 #endif
 using ECSharp.Utils;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace ECSharp.Variant
@@ -13,7 +15,7 @@ namespace ECSharp.Variant
     /// <para>支持Object、VarList、VarMap和所有基础类型</para>
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly partial struct Var
+    public readonly struct Var
     {
         /**
          * 托管区
@@ -21,20 +23,20 @@ namespace ECSharp.Variant
         [FieldOffset(0)]
         private readonly string? stringValue;
         /// <summary>
-        /// 对象
-        /// </summary>
-        [FieldOffset(0)]
-        public readonly object? Object;
-        /// <summary>
         /// 列表
         /// </summary>
         [FieldOffset(0)]
-        public readonly VarList? List;
+        private readonly VarList? listValue;
         /// <summary>
         /// 字典
         /// </summary>
         [FieldOffset(0)]
-        public readonly VarMap? Map;
+        private readonly VarMap? mapValue;
+        /// <summary>
+        /// 对象
+        /// </summary>
+        [FieldOffset(0)]
+        private readonly object? objectValue;
 
         /**
          * 非托管区
@@ -57,8 +59,7 @@ namespace ECSharp.Variant
         /// 变量类型
         /// </summary>
         [FieldOffset(16)]
-        public readonly VarType Type;
-
+        private readonly VarType type;
 
         /// <summary>
         /// 空值
@@ -76,11 +77,11 @@ namespace ECSharp.Variant
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            List = null;
-            Map = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.STRUCT;
-            Object = value;
+            type = VarType.STRUCT;
+            objectValue = value;
         }
 
         /// <summary>
@@ -88,17 +89,33 @@ namespace ECSharp.Variant
         /// </summary>
         public Var(object value)
         {
+            if (value == null)
+            {
+                type = VarType.NULL;
+
+                boolValue = false;
+                intValue = 0;
+                longValue = 0L;
+                floatValue = 0.0F;
+                doubleValue = 0.0D;
+                objectValue = null;
+                listValue = null;
+                mapValue = null;
+                stringValue = null;
+                return;
+            }
+
             boolValue = false;
             intValue = 0;
             longValue = 0L;
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            List = null;
-            Map = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.OBJECT;
-            Object = value;
+            type = VarType.OBJECT;
+            objectValue = value;
         }
 
         /// <summary>
@@ -111,11 +128,11 @@ namespace ECSharp.Variant
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.INT32;
+            type = VarType.INT32;
             intValue = Convert.ToInt32(value);
         }
 
@@ -129,11 +146,11 @@ namespace ECSharp.Variant
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.INT32;
+            type = VarType.INT32;
             intValue = value;
         }
 
@@ -147,11 +164,11 @@ namespace ECSharp.Variant
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.INT64;
+            type = VarType.INT64;
             longValue = value;
         }
 
@@ -165,11 +182,11 @@ namespace ECSharp.Variant
             longValue = 0L;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.FLOAT;
+            type = VarType.FLOAT;
             floatValue = value;
         }
 
@@ -183,11 +200,11 @@ namespace ECSharp.Variant
             longValue = 0L;
             floatValue = 0.0F;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.DOUBLE;
+            type = VarType.DOUBLE;
             doubleValue = value;
         }
 
@@ -201,11 +218,11 @@ namespace ECSharp.Variant
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.BOOL;
+            type = VarType.BOOL;
             boolValue = value;
         }
 
@@ -214,16 +231,32 @@ namespace ECSharp.Variant
         /// </summary>
         public Var(string value)
         {
+            if (value == null)
+            {
+                type = VarType.NULL;
+
+                boolValue = false;
+                intValue = 0;
+                longValue = 0L;
+                floatValue = 0.0F;
+                doubleValue = 0.0D;
+                objectValue = null;
+                listValue = null;
+                mapValue = null;
+                stringValue = null;
+                return;
+            }
+
             boolValue = false;
             intValue = 0;
             longValue = 0L;
             floatValue = 0.0F;
             doubleValue = 0.0D;
-            Object = null;
-            List = null;
-            Map = null;
+            objectValue = null;
+            listValue = null;
+            mapValue = null;
 
-            Type = VarType.STRING;
+            type = VarType.STRING;
             stringValue = value;
         }
 
@@ -232,17 +265,33 @@ namespace ECSharp.Variant
         /// </summary>
         public Var(VarList value)
         {
+            if (value == null)
+            {
+                type = VarType.NULL;
+
+                boolValue = false;
+                intValue = 0;
+                longValue = 0L;
+                floatValue = 0.0F;
+                doubleValue = 0.0D;
+                objectValue = null;
+                listValue = null;
+                mapValue = null;
+                stringValue = null;
+                return;
+            }
+
             boolValue = false;
             intValue = 0;
             longValue = 0L;
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            Map = null;
+            objectValue = null;
+            mapValue = null;
 
-            Type = VarType.VARLIST;
-            List = value;
+            type = VarType.VARLIST;
+            listValue = value;
         }
 
         /// <summary>
@@ -250,17 +299,33 @@ namespace ECSharp.Variant
         /// </summary>
         public Var(VarMap value)
         {
+            if (value == null)
+            {
+                type = VarType.NULL;
+
+                boolValue = false;
+                intValue = 0;
+                longValue = 0L;
+                floatValue = 0.0F;
+                doubleValue = 0.0D;
+                objectValue = null;
+                listValue = null;
+                mapValue = null;
+                stringValue = null;
+                return;
+            }
+
             boolValue = false;
             intValue = 0;
             longValue = 0L;
             floatValue = 0.0F;
             doubleValue = 0.0D;
             stringValue = null;
-            Object = null;
-            List = null;
+            objectValue = null;
+            listValue = null;
 
-            Type = VarType.VARMAP;
-            Map = value;
+            type = VarType.VARMAP;
+            mapValue = value;
         }
 
         /// <summary>
@@ -324,20 +389,18 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator int(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
-                    // case VarType.UINT32:
                     return value.intValue;
                 case VarType.INT64:
-                    // case VarType.UINT64:
                     return (int)value.longValue;
                 case VarType.FLOAT:
                     return (int)value.floatValue;
                 case VarType.DOUBLE:
                     return (int)value.doubleValue;
                 default:
-                    throw new VarException($"Var Use [{value.Type}] Error Type!");
+                    throw VarException.CreateTypeError(value.type);
             }
         }
 
@@ -347,7 +410,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator long(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                     return value.intValue;
@@ -358,7 +421,7 @@ namespace ECSharp.Variant
                 case VarType.DOUBLE:
                     return (long)value.doubleValue;
                 default:
-                    throw new VarException($"Var Use [{value.Type}] Error Type!");
+                    throw VarException.CreateTypeError(value.type);
             }
         }
 
@@ -368,7 +431,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator float(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                     return value.intValue;
@@ -379,7 +442,7 @@ namespace ECSharp.Variant
                 case VarType.DOUBLE:
                     return (float)value.doubleValue;
                 default:
-                    throw new VarException($"Var Use [{value.Type}] Error Type!");
+                    throw VarException.CreateTypeError(value.type);
             }
         }
 
@@ -389,7 +452,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator double(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                     return value.intValue;
@@ -400,7 +463,7 @@ namespace ECSharp.Variant
                 case VarType.DOUBLE:
                     return value.doubleValue;
                 default:
-                    throw new VarException($"Var Use [{value.Type}] Error Type!");
+                    throw VarException.CreateTypeError(value.type);
             }
         }
 
@@ -410,7 +473,10 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static implicit operator bool(Var value)
         {
-            return value.boolValue;
+            if (value.type == VarType.BOOL)
+                return value.boolValue;
+            else
+                return !value.IsNull;
         }
 
         /// <summary>
@@ -423,13 +489,122 @@ namespace ECSharp.Variant
         }
 
         /// <summary>
+        /// 列表变量
+        /// </summary>
+        /// <param name="value">可变变量</param>
+        public static implicit operator VarList(Var value)
+        {
+            if(value.type == VarType.VARLIST)
+                return value.listValue!;
+            else
+                throw VarException.CreateTypeError(value.type);
+        }
+
+        /// <summary>
+        /// 字典变量
+        /// </summary>
+        /// <param name="value">可变变量</param>
+        public static implicit operator VarMap(Var value)
+        {
+            if (value.type == VarType.VARMAP)
+                return value.mapValue!;
+            else
+                throw VarException.CreateTypeError(value.type);
+        }
+
+        /// <summary>
+        /// 整型变量
+        /// </summary>
+        public int Int32 => this;
+
+        /// <summary>
+        /// 长整型变量
+        /// </summary>
+        public long Int64 => this;
+
+        /// <summary>
+        /// 单精度浮点型变量
+        /// </summary>
+        public float Float => this;
+
+        /// <summary>
+        /// 双精度浮点型变量
+        /// </summary>
+        public double Double => this;
+
+        /// <summary>
+        /// 布尔型变量
+        /// </summary>
+        public bool Bool => this;
+
+        /// <summary>
+        /// 字符串
+        /// </summary>
+        public string String
+        {
+            get
+            {
+                if (type == VarType.STRING)
+                    return stringValue!;
+
+                throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
+        /// 对象
+        /// </summary>
+        public object Object
+        {
+            get
+            {
+                if (type == VarType.OBJECT)
+                    return objectValue!;
+
+                throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
+        /// 列表
+        /// </summary>
+        public VarList List
+        {
+            get
+            {
+                if (type == VarType.VARLIST)
+                    return listValue!;
+
+                throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
+        /// 字典
+        /// </summary>
+        public VarMap Map
+        {
+            get
+            {
+                if (type == VarType.VARMAP)
+                    return mapValue!;
+
+                throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
         /// 转字符串
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            switch (Type)
+            switch (type)
             {
+                case VarType.STRING:
+                    return stringValue!;
+                case VarType.NULL:
+                    return "null";
                 case VarType.INT32:
                     return intValue.ToString();
                 case VarType.INT64:
@@ -440,15 +615,13 @@ namespace ECSharp.Variant
                     return doubleValue.ToString();
                 case VarType.BOOL:
                     return boolValue.ToString();
-                case VarType.STRING:
-                    return stringValue ?? "null";
                 case VarType.STRUCT:
                 case VarType.OBJECT:
-                    return Object?.ToString() ?? "null";
+                    return objectValue?.ToString() ?? "null";
                 case VarType.VARLIST:
-                    return List?.ToString() ?? "null";
+                    return listValue!.ToString();
                 case VarType.VARMAP:
-                    return Map?.ToString() ?? "null";
+                    return mapValue!.ToString();
                 default:
                     return "null";
             }
@@ -467,9 +640,25 @@ namespace ECSharp.Variant
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public int CompareTo(Var value)
+        {
+            if (this < value) return -1;
+            if (this > value) return 1;
+            return 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public override bool Equals(object? obj)
+        public override bool Equals(
+#if NETCOREAPP3_1_OR_GREATER
+            [NotNullWhen(true)]
+#endif
+        object? obj)
         {
             return obj is Var var && var == this;
         }
@@ -481,35 +670,46 @@ namespace ECSharp.Variant
         public override int GetHashCode()
         {
 #if !UNITY_2020_1_OR_NEWER && !NET462 && !NETSTANDARD2_0
-            return HashCode.Combine(Type, intValue, longValue, floatValue, stringValue, Object, List, Map);
+            return HashCode.Combine(type, intValue, longValue, floatValue, stringValue, objectValue, listValue, mapValue);
 #else
-			return Type.GetHashCode() ^ intValue.GetHashCode() ^ longValue.GetHashCode() ^ floatValue.GetHashCode() ^ doubleValue.GetHashCode() ^ stringValue?.GetHashCode() ?? 0 ^ Object?.GetHashCode() ?? 0 ^ List?.GetHashCode() ?? 0 ^ Map?.GetHashCode() ?? 0;
+            return type.GetHashCode() ^ intValue.GetHashCode() ^ longValue.GetHashCode() ^ floatValue.GetHashCode() ^ doubleValue.GetHashCode() ^ stringValue?.GetHashCode() ?? 0 ^ objectValue?.GetHashCode() ?? 0 ^ listValue?.GetHashCode() ?? 0 ^ mapValue?.GetHashCode() ?? 0;
 #endif
         }
 
         /// <summary>
+        /// 变量类型
+        /// </summary>
+        public VarType Type => type;
+
+        /// <summary>
         /// 是否为空类型
         /// </summary>
-        public bool IsNull()
-        {
-            return Type == VarType.NULL;
-        }
+        public bool IsNull => type == VarType.NULL;
 
         /// <summary>
         /// 是否为数字类型
         /// </summary>
-        public bool IsNumber()
-        {
-            return Type == VarType.INT32 || Type == VarType.INT64 || Type == VarType.FLOAT || Type == VarType.DOUBLE;
-        }
+        public bool IsNumber => type == VarType.INT32 || type == VarType.INT64 || type == VarType.FLOAT || type == VarType.DOUBLE;
 
         /// <summary>
         /// 是否为字符串类型
         /// </summary>
-        public bool IsString()
-        {
-            return Type == VarType.STRING;
-        }
+        public bool IsString => type == VarType.STRING;
+
+        /// <summary>
+        /// 是否为空的字符串类型
+        /// </summary>
+        public bool IsEmptyString => type == VarType.STRING && string.IsNullOrEmpty(stringValue);
+
+        /// <summary>
+        /// 是否为列表
+        /// </summary>
+        public bool IsList => type == VarType.VARLIST;
+
+        /// <summary>
+        /// 是否为字典
+        /// </summary>
+        public bool IsMap => type == VarType.VARMAP;
 
         /// <summary>
         /// 转字节数组
@@ -518,7 +718,7 @@ namespace ECSharp.Variant
         public byte[] GetBytes()
         {
             byte[] bytes;
-            switch (Type)
+            switch (type)
             {
                 case VarType.INT32:
                     if (sbyte.MinValue <= intValue && intValue <= sbyte.MaxValue)
@@ -704,30 +904,30 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.VARLIST:
-                    byte[] listBytes = (List ?? new VarList()).GetBytes();
+                    byte[] listBytes = listValue!.GetBytesInternal();
                     int listlen = listBytes.Length;
                     bytes = new byte[1 + listlen];
                     bytes[0] = (byte)VarType.VARLIST;
                     Buffer.BlockCopy(listBytes, 0, bytes, 1, listlen);
                     break;
                 case VarType.VARMAP:
-                    byte[] mapBytes = (Map ?? new VarMap()).GetBytes();
+                    byte[] mapBytes = mapValue!.GetBytesInternal();
                     int maplen = mapBytes.Length;
                     bytes = new byte[1 + maplen];
                     bytes[0] = (byte)VarType.VARMAP;
                     Buffer.BlockCopy(mapBytes, 0, bytes, 1, maplen);
                     break;
                 case VarType.STRUCT:
-                    if (Object == null) bytes = new byte[1] { (byte)VarType.NULL | 0xF0 };
+                    if (objectValue == null) bytes = new byte[1] { (byte)VarType.NULL | 0xF0 };
                     else
                     {
-                        string typeName = VarObjectMgr.RegisterObjectType(Object);
+                        string typeName = VarObjectMgr.RegisterObjectType(objectValue);
                         int typeNameSize = typeName.Length;
-                        int size = Marshal.SizeOf(Object);
+                        int size = Marshal.SizeOf(objectValue);
                         IntPtr bufferIntPtr = Marshal.AllocHGlobal(size);
                         try
                         {
-                            Marshal.StructureToPtr(Object, bufferIntPtr, false);
+                            Marshal.StructureToPtr(objectValue, bufferIntPtr, false);
                             if (size <= byte.MaxValue)
                             {
                                 bytes = new byte[3 + size + typeNameSize];
@@ -833,11 +1033,11 @@ namespace ECSharp.Variant
                     else { strLen = bytesSpan[startIndex + 1] << 24 | bytesSpan[startIndex + 2] << 16 | bytesSpan[startIndex + 3] << 8 | bytesSpan[startIndex + 4]; length = strLen + 5; index = 5; }
                     return System.Text.Encoding.UTF8.GetString(value, startIndex + index, strLen);
                 case VarType.VARLIST:
-                    VarList list = VarList.Parse(value, startIndex + 1, out int listLen) ?? new VarList();
+                    VarList list = VarList.ParseInternal(value, startIndex + 1, out int listLen) ?? new VarList();
                     length = listLen + 1;
                     return list;
                 case VarType.VARMAP:
-                    VarMap map = VarMap.Parse(value, startIndex + 1, out int mapLen) ?? new VarMap();
+                    VarMap map = VarMap.ParseInternal(value, startIndex + 1, out int mapLen) ?? new VarMap();
                     length = mapLen + 1;
                     return map;
                 case VarType.STRUCT:
@@ -917,11 +1117,11 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator +(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.NULL: return Null;
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.NULL: return Null;
                         case VarType.INT32: return left.intValue + right.intValue;
@@ -931,7 +1131,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.NULL: return Null;
                         case VarType.INT32: return left.longValue + right.intValue;
@@ -941,7 +1141,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.NULL: return Null;
                         case VarType.INT32: return left.floatValue + right.intValue;
@@ -951,7 +1151,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.NULL: return Null;
                         case VarType.INT32: return left.doubleValue + right.intValue;
@@ -960,6 +1160,8 @@ namespace ECSharp.Variant
                         case VarType.DOUBLE: return left.doubleValue + right.doubleValue;
                     }
                     break;
+                case VarType.VARLIST:
+                    return left.listValue!.Add(right);
             }
             return left.ToString() + right.ToString();
         }
@@ -971,10 +1173,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator -(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue - right.intValue;
                         case VarType.INT64: return left.intValue - right.longValue;
@@ -983,7 +1185,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue - right.intValue;
                         case VarType.INT64: return left.longValue - right.longValue;
@@ -992,7 +1194,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue - right.intValue;
                         case VarType.INT64: return left.floatValue - right.longValue;
@@ -1001,7 +1203,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue - right.intValue;
                         case VarType.INT64: return left.doubleValue - right.longValue;
@@ -1020,10 +1222,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator *(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue * right.intValue;
                         case VarType.INT64: return left.intValue * right.longValue;
@@ -1032,7 +1234,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue * right.intValue;
                         case VarType.INT64: return left.longValue * right.longValue;
@@ -1041,7 +1243,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue * right.intValue;
                         case VarType.INT64: return left.floatValue * right.longValue;
@@ -1050,7 +1252,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue * right.intValue;
                         case VarType.INT64: return left.doubleValue * right.longValue;
@@ -1069,10 +1271,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator /(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue / right.intValue;
                         case VarType.INT64: return left.intValue / right.longValue;
@@ -1081,7 +1283,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue / right.intValue;
                         case VarType.INT64: return left.longValue / right.longValue;
@@ -1090,7 +1292,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue / right.intValue;
                         case VarType.INT64: return left.floatValue / right.longValue;
@@ -1099,7 +1301,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue / right.intValue;
                         case VarType.INT64: return left.doubleValue / right.longValue;
@@ -1118,10 +1320,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator %(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue % right.intValue;
                         case VarType.INT64: return left.intValue % right.longValue;
@@ -1130,7 +1332,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue % right.intValue;
                         case VarType.INT64: return left.longValue % right.longValue;
@@ -1139,7 +1341,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue % right.intValue;
                         case VarType.INT64: return left.floatValue % right.longValue;
@@ -1148,7 +1350,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue % right.intValue;
                         case VarType.INT64: return left.doubleValue % right.longValue;
@@ -1166,7 +1368,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static Var operator ++(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                     return value.intValue + 1;
@@ -1187,7 +1389,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static Var operator --(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32:
                     return value.intValue - 1;
@@ -1208,7 +1410,7 @@ namespace ECSharp.Variant
         /// <param name="value">可变变量</param>
         public static Var operator ~(Var value)
         {
-            switch (value.Type)
+            switch (value.type)
             {
                 case VarType.INT32: return ~value.intValue;
                 case VarType.INT64: return ~value.longValue;
@@ -1223,24 +1425,38 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator &(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue & right.intValue;
                         case VarType.INT64: return left.intValue & right.longValue;
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue & right.intValue;
                         case VarType.INT64: return left.longValue & right.longValue;
                     }
                     break;
             }
-            return Null;
+
+            if (left.type == VarType.BOOL && right.type == VarType.BOOL)
+            {
+                return left.boolValue && right.boolValue;
+            }
+            else if (left.type == VarType.BOOL)
+            {
+                return left.boolValue && !right.IsNull;
+            }
+            else if(right.type == VarType.BOOL)
+            {
+                return right.boolValue && !left.IsNull;
+            }
+
+            return !(left.IsNull && right.IsNull);
         }
 
         /// <summary>
@@ -1250,24 +1466,38 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator |(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue | right.intValue;
                         case VarType.INT64: return (long)left.intValue | right.longValue;
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue | (long)right.intValue;
                         case VarType.INT64: return left.longValue | right.longValue;
                     }
                     break;
             }
-            return Null;
+
+            if (left.type == VarType.BOOL && right.type == VarType.BOOL)
+            {
+                return left.boolValue || right.boolValue;
+            }
+            else if (left.type == VarType.BOOL)
+            {
+                return left.boolValue || !right.IsNull;
+            }
+            else if (right.type == VarType.BOOL)
+            {
+                return right.boolValue || !left.IsNull;
+            }
+
+            return !(left.IsNull || right.IsNull);
         }
 
         /// <summary>
@@ -1277,24 +1507,38 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static Var operator ^(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue ^ right.intValue;
                         case VarType.INT64: return left.intValue ^ right.longValue;
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue ^ right.intValue;
                         case VarType.INT64: return left.longValue ^ right.longValue;
                     }
                     break;
             }
-            return Null;
+
+            if (left.type == VarType.BOOL && right.type == VarType.BOOL)
+            {
+                return left.boolValue ^ right.boolValue;
+            }
+            else if (left.type == VarType.BOOL)
+            {
+                return left.boolValue ^ !right.IsNull;
+            }
+            else if (right.type == VarType.BOOL)
+            {
+                return right.boolValue ^ !left.IsNull;
+            }
+
+            return !(left.IsNull ^ right.IsNull);
         }
 
         /// <summary>
@@ -1304,7 +1548,7 @@ namespace ECSharp.Variant
         /// <param name="right">位移量</param>
         public static Var operator <<(Var left, int right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32: return left.intValue << right;
                 case VarType.INT64: return left.longValue << right;
@@ -1319,7 +1563,7 @@ namespace ECSharp.Variant
         /// <param name="right">位移量</param>
         public static Var operator >>(Var left, int right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32: return left.intValue >> right;
                 case VarType.INT64: return left.longValue >> right;
@@ -1334,10 +1578,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static bool operator <(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue < right.intValue;
                         case VarType.INT64: return left.intValue < right.longValue;
@@ -1346,7 +1590,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue < right.intValue;
                         // case VarType.UINT32: return left.longValue < (uint)right.intValue;
@@ -1358,7 +1602,7 @@ namespace ECSharp.Variant
                     break;
                 case VarType.FLOAT:
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue < right.intValue;
                         case VarType.INT64: return left.doubleValue < right.longValue;
@@ -1377,10 +1621,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static bool operator >(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue > right.intValue;
                         case VarType.INT64: return left.intValue > right.longValue;
@@ -1389,7 +1633,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue > right.intValue;
                         case VarType.INT64: return left.longValue > right.longValue;
@@ -1398,7 +1642,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue > right.intValue;
                         case VarType.INT64: return left.floatValue > right.longValue;
@@ -1407,7 +1651,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue > right.intValue;
                         case VarType.INT64: return left.doubleValue > right.longValue;
@@ -1426,10 +1670,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static bool operator <=(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue <= right.intValue;
                         case VarType.INT64: return left.intValue <= right.longValue;
@@ -1438,7 +1682,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue <= right.intValue;
                         case VarType.INT64: return left.longValue <= right.longValue;
@@ -1447,7 +1691,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue <= right.intValue;
                         case VarType.INT64: return left.floatValue <= right.longValue;
@@ -1456,7 +1700,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue <= right.intValue;
                         case VarType.INT64: return left.doubleValue <= right.longValue;
@@ -1475,10 +1719,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static bool operator >=(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue >= right.intValue;
                         case VarType.INT64: return left.intValue >= right.longValue;
@@ -1487,7 +1731,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue >= right.intValue;
                         case VarType.INT64: return left.longValue >= right.longValue;
@@ -1496,7 +1740,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue >= right.intValue;
                         case VarType.INT64: return left.floatValue >= right.longValue;
@@ -1505,7 +1749,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue >= right.intValue;
                         case VarType.INT64: return left.doubleValue >= right.longValue;
@@ -1524,10 +1768,10 @@ namespace ECSharp.Variant
         /// <param name="right"></param>
         public static bool operator ==(Var left, Var right)
         {
-            switch (left.Type)
+            switch (left.type)
             {
                 case VarType.INT32:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.intValue == right.intValue;
                         case VarType.INT64: return left.intValue == right.longValue;
@@ -1536,7 +1780,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.INT64:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.longValue == right.intValue;
                         case VarType.INT64: return left.longValue == right.longValue;
@@ -1545,7 +1789,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.FLOAT:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.floatValue == right.intValue;
                         case VarType.INT64: return left.floatValue == right.longValue;
@@ -1554,7 +1798,7 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.DOUBLE:
-                    switch (right.Type)
+                    switch (right.type)
                     {
                         case VarType.INT32: return left.doubleValue == right.intValue;
                         case VarType.INT64: return left.doubleValue == right.longValue;
@@ -1563,37 +1807,37 @@ namespace ECSharp.Variant
                     }
                     break;
                 case VarType.BOOL:
-                    if (right.Type == VarType.BOOL)
+                    if (right.type == VarType.BOOL)
                         return left.boolValue == right.boolValue;
                     else
                         return false;
                 case VarType.STRING:
-                    if (right.Type == VarType.STRING)
+                    if (right.type == VarType.STRING)
                         return left.stringValue == right.stringValue;
                     else
                         return false;
                 case VarType.STRUCT:
-                    if (right.Type == VarType.STRUCT)
-                        return left.Object == right.Object;
+                    if (right.type == VarType.STRUCT)
+                        return left.objectValue == right.objectValue;
                     else
                         return false;
                 case VarType.OBJECT:
-                    if (right.Type == VarType.OBJECT)
-                        return left.Object == right.Object;
+                    if (right.type == VarType.OBJECT)
+                        return left.objectValue == right.objectValue;
                     else
                         return false;
                 case VarType.VARLIST:
-                    if (right.Type == VarType.VARLIST)
-                        return left.List == right.List;
+                    if (right.type == VarType.VARLIST)
+                        return left.listValue == right.listValue;
                     else
                         return false;
                 case VarType.VARMAP:
-                    if (right.Type == VarType.VARMAP)
-                        return left.Map == right.Map;
+                    if (right.type == VarType.VARMAP)
+                        return left.mapValue == right.mapValue;
                     else
                         return false;
                 case VarType.NULL:
-                    if (right.Type == VarType.NULL)
+                    if (right.type == VarType.NULL)
                         return true;
                     else
                         return false;
@@ -1609,6 +1853,282 @@ namespace ECSharp.Variant
         public static bool operator !=(Var left, Var right)
         {
             return !(left == right);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool operator true(Var v)
+        {
+            return (bool)v;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool operator false(Var v)
+        {
+            return !(bool)v;
+        }
+
+        /// <summary>
+        /// 根据键名安全获取键值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Var this[Var key]
+        {
+            get
+            {
+                if (type == VarType.VARMAP)
+                    return mapValue![key];
+                else if (type == VarType.VARLIST)
+                    return listValue![key];
+                else
+                    return Null;
+            }
+            set
+            {
+                if (type == VarType.VARMAP)
+                    mapValue![key] = value;
+                else if (type == VarType.VARLIST)
+                    listValue![key] = value;
+                else
+                    throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
+        /// 设置一个值变化监听，当列表被修改就会触发监听
+        /// </summary>
+        /// <param name="changeListener"></param>
+        public void SetChangeListener(Action<int, Var> changeListener)
+        {
+            if (type == VarType.VARLIST)
+                listValue!.SetChangeListener(changeListener);
+            else
+                throw VarException.CreateTypeError(type);
+        }
+
+        /// <summary>
+        /// 设置一个值变化监听，当字典被修改就会触发监听
+        /// </summary>
+        /// <param name="changeListener"></param>
+        public void SetChangeListener(Action<Var, Var> changeListener)
+        {
+            if (type == VarType.VARMAP)
+                mapValue!.SetChangeListener(changeListener);
+            else
+                throw VarException.CreateTypeError(type);
+        }
+
+        /// <summary>
+        /// 合并可变变量字典
+        /// <para>合并字典中已存在的则覆盖最新值</para>
+        /// </summary>
+        /// <param name="varmap"></param>
+        /// <returns></returns>
+        public Var Merge(VarMap varmap)
+        {
+            return mapValue!.Merge(varmap);
+        }
+
+        /// <summary>
+        /// 列表插入一个值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var Insert(int index, Var value)
+        {
+            return listValue!.Insert(index, value);
+        }
+
+        /// <summary>
+        /// 列表插入一组值
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var InsertRange(int index, IEnumerable<Var> value)
+        {
+            return listValue!.InsertRange(index, value);
+        }
+
+        /// <summary>
+        /// 增加一个可变变量对
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var Add(Var key, Var value)
+        {
+            return mapValue!.Add(key, value);
+        }
+
+        /// <summary>
+        /// 添加或者更新
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var AddOrUpdate(Var key, Var value)
+        {
+            return mapValue!.AddOrUpdate(key, value);
+        }
+
+#if NETCOREAPP3_1_OR_GREATER
+        /// <summary>
+        /// 尝试添加
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool TryAdd(Var key, Var value)
+        {
+            return mapValue!.TryAdd(key, value);
+        }
+#endif
+
+        /// <summary>
+        /// 转Json对象
+        /// </summary>
+        /// <returns></returns>
+        public JObject ToJObject()
+        {
+            return mapValue!.ToJObject();
+        }
+
+        /// <summary>
+        /// 合并可变变量列表
+        /// </summary>
+        /// <param name="varlist"></param>
+        /// <returns></returns>
+        public Var Merge(VarList varlist)
+        {
+            return listValue!.Merge(varlist);
+        }
+
+        /// <summary>
+        /// 增加一个可变变量
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var Add(Var value)
+        {
+            return listValue!.Add(value);
+        }
+
+        /// <summary>
+        /// 增加多个可变变量
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var MultiAdd(params Var[] value)
+        {
+            return listValue!.AddRange(value);
+        }
+
+        /// <summary>
+        /// 增加多个可变变量
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Var AddRange(IEnumerable<Var> value)
+        {
+            return listValue!.AddRange(value);
+        }
+
+        /// <summary>
+        /// 转json对象
+        /// </summary>
+        /// <returns></returns>
+        public JArray ToJArray()
+        {
+            return listValue!.ToJArray();
+        }
+
+        /// <summary>
+        /// 列表或者字典是否包含关键字
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool Contains(Var key)
+        {
+            if (type == VarType.VARMAP)
+                return mapValue!.ContainsKey(key);
+            else if (type == VarType.VARLIST)
+                return listValue!.Contains(key);
+            else
+                throw VarException.CreateTypeError(type);
+        }
+
+        /// <summary>
+        /// 尝试从字典获取值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool TryGetValue(Var key, out Var value)
+        {
+            return mapValue!.TryGetValue(key, out value);
+        }
+
+        /// <summary>
+        /// 字符串或列表或字典的长度
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                if (type == VarType.VARMAP)
+                    return mapValue!.Count;
+                else if (type == VarType.VARLIST)
+                    return listValue!.Count;
+                else if (type == VarType.STRING)
+                    return stringValue!.Length;
+                else
+                    throw VarException.CreateTypeError(type);
+            }
+        }
+
+        /// <summary>
+        /// 列表移除索引位节点
+        /// </summary>
+        /// <param name="index"></param>
+        public void RemoveAt(int index)
+        {
+            if (type == VarType.VARLIST)
+                listValue!.RemoveAt(index);
+            else
+                throw VarException.CreateTypeError(type);
+        }
+
+        /// <summary>
+        /// 从列表或者字典中移除对象或者关键字
+        /// </summary>
+        /// <param name="itemOrKey"></param>
+        public bool Remove(Var itemOrKey)
+        {
+            if (type == VarType.VARMAP)
+                return mapValue!.Remove(itemOrKey);
+            else if (type == VarType.VARLIST)
+                return listValue!.Remove(itemOrKey);
+            else
+                throw VarException.CreateTypeError(type);
+        }
+
+        /// <summary>
+        /// 清空列表或者字典
+        /// </summary>
+        public void Clear()
+        {
+            if (type == VarType.VARMAP)
+                mapValue!.Clear();
+            else if (type == VarType.VARLIST)
+                listValue!.Clear();
+            else
+                throw VarException.CreateTypeError(type);
         }
     }
 }

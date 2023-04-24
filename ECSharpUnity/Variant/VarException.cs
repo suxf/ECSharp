@@ -10,12 +10,18 @@ namespace ECSharp.Variant
     /// </summary>
     public class VarException : Exception
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="message"></param>
-        public VarException(string? message) : base(message)
+        private VarException(string? message) : base(message)
         {
+        }
+
+        internal static VarException CreateTypeError(VarType type)
+        {
+            return new VarException($"Var Use [{type}] Error Type!");
+        }
+
+        internal static VarException CreateLengthError(int length)
+        {
+            return new VarException($"Max Length 255, Now Length Is {length}!");
         }
     }
 }

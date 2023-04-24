@@ -24,7 +24,13 @@ namespace ECSharp.Hotfix
         /// 代理类对象
         /// <para>通过此对象可以获取代理数据的对象，相当于this的用法</para>
         /// </summary>
-        public new T self
+        public
+#if NETCOREAPP3_1
+            new
+#else
+            override 
+#endif
+            T self
         {
             get
             {

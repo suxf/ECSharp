@@ -11,11 +11,14 @@ var searchData=
   ['basehypersocket_8',['BaseHyperSocket',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_hyper_socket_1_1_base_hyper_socket.html',1,'ECSharp::Network::Sockets::HyperSocket']]],
   ['basestructvalue_9',['BaseStructValue',['../class_e_c_sharp_1_1_hotfix_1_1_base_struct_value.html',1,'ECSharp::Hotfix']]],
   ['basetimeflow_10',['BaseTimeFlow',['../class_e_c_sharp_1_1_time_1_1_base_time_flow.html#a4ddbc5891bc1c3b913627d9a5bcc9f63',1,'ECSharp.Time.BaseTimeFlow.BaseTimeFlow()'],['../class_e_c_sharp_1_1_time_1_1_base_time_flow.html',1,'ECSharp.Time.BaseTimeFlow']]],
-  ['body_11',['Body',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#a1181095a19aa516d45e8e17f16a13ef4',1,'ECSharp::Network::Http::HttpHeader']]],
-  ['bool_12',['BOOL',['../namespace_e_c_sharp_1_1_variant.html#ac3aa43c82349028b9e206908649db5f4aa97b2c144243b2b9d2c593ec268b62f5',1,'ECSharp::Variant']]],
-  ['buffer_13',['Buffer',['../class_e_c_sharp_1_1_network_1_1_websocket_1_1_remote_connection.html#a62a46df1c421ce9399fd8ee6ec8e0532',1,'ECSharp::Network::Websocket::RemoteConnection']]],
-  ['buffer_14',['buffer',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a23a214ed67391dce2b67104235247399',1,'ECSharp::Network::Sockets::Client::ClientSocket']]],
-  ['byte_15',['BYTE',['../namespace_e_c_sharp_1_1_variant.html#ac3aa43c82349028b9e206908649db5f4ae409eb2ba6eb6801f52763ae370c350e',1,'ECSharp::Variant']]],
-  ['byteconverter_16',['ByteConverter',['../class_e_c_sharp_1_1_utils_1_1_byte_converter.html',1,'ECSharp::Utils']]],
-  ['bytelinq_17',['ByteLinq',['../class_e_c_sharp_1_1_linq_1_1_byte_linq.html',1,'ECSharp::Linq']]]
+  ['binary_11',['Binary',['../class_e_c_sharp_1_1_network_1_1_http_1_1_content_type.html#a37dcb8bd3a1b79765408a3909a47ac5c',1,'ECSharp::Network::Http::ContentType']]],
+  ['body_12',['Body',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#a9d90f3619e5551460a753d3cbf4266f3',1,'ECSharp::Network::Http::HttpHeader']]],
+  ['bodybytes_13',['BodyBytes',['../class_e_c_sharp_1_1_network_1_1_http_1_1_http_header.html#afeafbd2a0bec9b95573be9c66dddeb14',1,'ECSharp::Network::Http::HttpHeader']]],
+  ['bool_14',['Bool',['../struct_e_c_sharp_1_1_variant_1_1_var.html#a4153c1765307c79fbec623b603132e5e',1,'ECSharp::Variant::Var']]],
+  ['bool_15',['BOOL',['../namespace_e_c_sharp_1_1_variant.html#ac3aa43c82349028b9e206908649db5f4aa97b2c144243b2b9d2c593ec268b62f5',1,'ECSharp::Variant']]],
+  ['buffer_16',['Buffer',['../class_e_c_sharp_1_1_network_1_1_websocket_1_1_remote_connection.html#a62a46df1c421ce9399fd8ee6ec8e0532',1,'ECSharp::Network::Websocket::RemoteConnection']]],
+  ['buffer_17',['buffer',['../class_e_c_sharp_1_1_network_1_1_sockets_1_1_client_1_1_client_socket.html#a23a214ed67391dce2b67104235247399',1,'ECSharp::Network::Sockets::Client::ClientSocket']]],
+  ['byte_18',['BYTE',['../namespace_e_c_sharp_1_1_variant.html#ac3aa43c82349028b9e206908649db5f4ae409eb2ba6eb6801f52763ae370c350e',1,'ECSharp::Variant']]],
+  ['byteconverter_19',['ByteConverter',['../class_e_c_sharp_1_1_utils_1_1_byte_converter.html',1,'ECSharp::Utils']]],
+  ['bytelinq_20',['ByteLinq',['../class_e_c_sharp_1_1_linq_1_1_byte_linq.html',1,'ECSharp::Linq']]]
 ];

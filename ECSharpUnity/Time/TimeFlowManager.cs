@@ -2,7 +2,7 @@
 #nullable enable
 #endif
 using ECSharp.Utils;
-using System.Diagnostics;
+using System.Reflection;
 
 namespace ECSharp.Time
 {
@@ -12,14 +12,9 @@ namespace ECSharp.Time
     internal static class TimeFlowManager
     {
         /// <summary>
-        /// 最大处理任务线程数量 为逻辑处理器数量
-        /// </summary>
-        private readonly static int MAX_HANDLE_TASK_THREAD = SystemInfo.ProcessorCount;
-
-        /// <summary>
         /// 时间流控制线程
         /// </summary>
-        private readonly static TimeFlowThread[] threads = new TimeFlowThread[MAX_HANDLE_TASK_THREAD + 1];
+        private readonly static TimeFlowThread[] threads = new TimeFlowThread[SystemInfo.ProcessorCount + 1];
 
         /// <summary>
         /// 压入一个时间流继承对象
@@ -49,7 +44,7 @@ namespace ECSharp.Time
             int minQueueTaskTfCount = int.MaxValue;
             TimeFlowThread? thread = null;
 
-            for (int i = 1; i <= MAX_HANDLE_TASK_THREAD; i++)
+            for (int i = 1; i <= SystemInfo.ProcessorCount; i++)
             {
                 if (threads[i] == null)
                 {
@@ -81,7 +76,7 @@ namespace ECSharp.Time
         /// <returns></returns>
         internal static bool CloseByObj(ITimeUpdate timeUpdate)
         {
-            for (int i = 0; i <= MAX_HANDLE_TASK_THREAD; i++)
+            for (int i = 0; i <= SystemInfo.ProcessorCount; i++)
             {
                 if (threads[i] != null && threads[i].CloseByObj(timeUpdate))
                     return true;
@@ -101,5 +96,18 @@ namespace ECSharp.Time
             }
         }
 #endif
+
+        internal static void DoWithAssembly(int action, Assembly? assembly)
+        {
+            if (assembly == null) return;
+
+            for (int i = 0; i <= SystemInfo.ProcessorCount; i++)
+            {
+                if (threads[i] == null)
+                    continue;
+
+                threads[i].DoWithAssembly(action, assembly);
+            }
+        }
     }
 }
