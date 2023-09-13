@@ -62,7 +62,7 @@ namespace ECSharp.Time
         /// <param name="period">刷新周期 单位：毫秒 [不能低于 TimeInterval]</param>
 #else
         /// <summary>
-        /// 创建一个时间流
+        /// 创建一个时间流 同 CreateSync
         /// </summary>
         /// <param name="timeUpdate">更新回调接口</param>
         /// <param name="period">刷新周期 单位：毫秒 [不能低于 Unity设置的更新间隔周期]</param>
@@ -109,7 +109,7 @@ namespace ECSharp.Time
             SetTimeFlowPauseES(true);
         }
 
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
         /// <summary>
         /// 设置一个异常监听
         /// <para>如果出现在update异常将不会再使程序崩溃，而在此回调中被监听</para>

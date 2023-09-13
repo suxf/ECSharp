@@ -61,7 +61,7 @@ namespace ECSharp
             {
                 Directory.CreateDirectory(LogConfig.LOG_PATH);
             }
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
             proccessName = Process.GetCurrentProcess().ProcessName.ToLower();
 #endif
             timeFlow = BaseTimeFlow.CreateTimeFlow(logWriteUpdate);
@@ -81,7 +81,11 @@ namespace ECSharp
         private static void SystemInfo()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-#if !UNITY_2020_1_OR_NEWER
+#if UNITY_2020_1_OR_NEWER
+            var obj = new UnityEngine.GameObject("ECSharpRuntime");
+            obj.AddComponent<ECSharpScript>();
+            UnityEngine.Object.DontDestroyOnLoad(obj);
+#else
             sb.Append("process:");
             sb.Append(Utils.SystemInfo.ProcessName);
             sb.Append("; version:");
@@ -89,11 +93,6 @@ namespace ECSharp
             sb.Append("; esf:");
             sb.Append(Utils.SystemInfo.FrameVersion);
             sb.Append("; ");
-#endif
-#if UNITY_WEBGL
-            var obj = new UnityEngine.GameObject("ECSharpRuntime");
-            obj.AddComponent<ECSharpScript>();
-            UnityEngine.Object.DontDestroyOnLoad(obj);
 #endif
             sb.Append(".net:");
             sb.Append(Utils.SystemInfo.DotNetVersion);

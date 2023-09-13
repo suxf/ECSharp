@@ -226,9 +226,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(string json,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarMap
+#else
+            out VarMap?
 #endif
-        out VarMap map)
+        map)
         {
             VarMap? value = Parse(json);
             if (value == null)
@@ -398,9 +400,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data, int startIndex,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarMap 
+#else 
+            out VarMap?
 #endif
-        out VarMap map, out int length)
+        map, out int length)
         {
             Var result = Var.Parse(data, startIndex, out length);
             if (!result.IsMap)
@@ -424,9 +428,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
-#endif 
-        out VarMap map, out int length)
+            [MaybeNullWhen(false)] out VarMap
+#else
+            out VarMap?
+#endif
+         map, out int length)
         {
             return TryParse(data, 0, out map, out length);
         }
@@ -440,9 +446,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data, int startIndex,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarMap 
+#else
+            out VarMap?
 #endif
-        out VarMap map)
+        map)
         {
             return TryParse(data, startIndex, out map, out _);
         }
@@ -455,9 +463,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarMap
+#else
+            out VarMap?
 #endif
-        out VarMap map)
+        map)
         {
             return TryParse(data, 0, out map, out _);
         }

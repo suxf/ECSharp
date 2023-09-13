@@ -32,12 +32,12 @@ namespace ECSharp
         /// <summary>
         /// 当前时间
         /// </summary>
-        public static DateTime Now => new DateTime(time + sw.ElapsedTicks);
+        public static DateTime Now => new DateTime(time + sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond);
 
         /// <summary>
         /// 当前时间戳 秒级
         /// </summary>
-        public static long TimeStamp => (time + sw.ElapsedTicks - 621355968000000000) / 10000000;
+        public static long TimeStamp => (time + sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond - 621355968000000000) / TimeSpan.TicksPerSecond;
 
         /// <summary>
         /// 本地时间同步当前本地时间一次
@@ -53,7 +53,7 @@ namespace ECSharp
         /// <param name="timeStamp">时间戳，单位：秒</param>
         public static void Sync(long timeStamp)
         {
-            time = timeStamp * 10000000 + 621355968000000000 - sw.ElapsedTicks;
+            time = timeStamp * TimeSpan.TicksPerSecond + 621355968000000000 - sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ECSharp
         /// <param name="dt"></param>
         public static void Sync(DateTime dt)
         {
-            time = dt.Ticks - sw.ElapsedTicks;
+            time = dt.Ticks - sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace ECSharp
         /// <param name="milliseconds">毫秒</param>
         public static void AddMilliseconds(int milliseconds)
         {
-            time += milliseconds * 10000;
+            time += milliseconds * TimeSpan.TicksPerMillisecond;
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace ECSharp
         /// <param name="seconds">秒</param>
         public static void AddSeconds(int seconds)
         {
-            time += seconds * 10000000;
+            time += seconds * TimeSpan.TicksPerSecond;
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace ECSharp
         /// <param name="minutes">分钟</param>
         public static void AddMinutes(int minutes)
         {
-            time += minutes * 600000000;
+            time += minutes * TimeSpan.FromMinutes(1).Ticks;
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace ECSharp
         /// <param name="hours">小时</param>
         public static void AddHours(int hours)
         {
-            time += hours * 36000000000;
+            time += hours * TimeSpan.FromHours(1).Ticks;
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace ECSharp
         /// <param name="days">天数</param>
         public static void AddDays(int days)
         {
-            time += days * 864000000000;
+            time += days * TimeSpan.FromDays(1).Ticks;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace ECSharp
         /// <param name="months">月数</param>
         public static void AddMonths(int months)
         {
-            time = Now.AddMonths(months).Ticks - sw.ElapsedTicks;
+            time = Now.AddMonths(months).Ticks - sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond;
         }
 
         /// <summary>
@@ -125,7 +125,27 @@ namespace ECSharp
         /// <param name="years">年数</param>
         public static void AddYears(int years)
         {
-            time = Now.AddYears(years).Ticks - sw.ElapsedTicks;
+            time = Now.AddYears(years).Ticks - sw.ElapsedMilliseconds * TimeSpan.TicksPerMillisecond;
+        }
+
+        /// <summary>
+        /// 日期时间转换为秒级时间戳
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static long ConvertToTimeStamp(DateTime dt)
+        {
+            return (dt.Ticks - 621355968000000000) / TimeSpan.TicksPerSecond;
+        }
+
+        /// <summary>
+        /// 秒级时间戳转换为日期时间
+        /// </summary>
+        /// <param name="ticks">秒时间戳</param>
+        /// <return></return>
+        public static DateTime ConvertFromTimeStamp(long ticks)
+        {
+            return new DateTime(ticks * TimeSpan.TicksPerSecond + 621355968000000000);
         }
     }
 }

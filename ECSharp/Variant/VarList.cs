@@ -280,9 +280,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(string json,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarList
+#else
+            out VarList?
 #endif
-        out VarList list)
+        list)
         {
             VarList? value = Parse(json);
             if (value == null)
@@ -447,9 +449,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data, int startIndex,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarList
+#else
+            out VarList?
 #endif
-        out VarList list, out int length)
+        list, out int length)
         {
             Var result = Var.Parse(data, startIndex, out length);
             if (!result.IsList)
@@ -485,9 +489,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data, int startIndex,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarList 
+#else
+            out VarList?
 #endif
-        out VarList list)
+        list)
         {
             return TryParse(data, startIndex, out list, out _);
         }
@@ -500,9 +506,11 @@ namespace ECSharp.Variant
         /// <returns></returns>
         public static bool TryParse(byte[] data,
 #if NETCOREAPP3_1_OR_GREATER
-            [MaybeNullWhen(false)]
+            [MaybeNullWhen(false)] out VarList 
+#else
+            out VarList?
 #endif
-        out VarList list)
+        list)
         {
             return TryParse(data, 0, out list, out _);
         }

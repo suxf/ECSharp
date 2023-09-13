@@ -210,7 +210,7 @@ namespace ECSharp.Hotfix
 
                 var methodInfo = typeInfo.GetMethod(entryMethodName, BindingFlags.Public | BindingFlags.Static);
 
-                if (methodInfo == null)
+                if (methodInfo == null || methodInfo.GetParameters().Length != 1)
                 {
                     throw new Exception($"[{entryMethodName}] public static method is not found!");
                 }

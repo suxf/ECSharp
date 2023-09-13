@@ -23,7 +23,7 @@ namespace ECSharp.Time
         /// <param name="isSync">同步标记</param>
         internal static void PushTimeFlow(BaseTimeFlow tf, bool isSync)
         {
-#if UNITY_WEBGL
+#if UNITY_2020_1_OR_NEWER
             isSync = true;
 #endif
 
@@ -87,13 +87,10 @@ namespace ECSharp.Time
             return false;
         }
 
-#if UNITY_WEBGL
-        internal static void OnUnityUpdate()
+#if UNITY_2020_1_OR_NEWER
+        internal static System.Collections.IEnumerator OnUnityUpdate()
         {
-            if (threads[0] != null)
-            {
-                threads[0].OnUnityUpdate(threads[0]);
-            }
+            yield return threads[0]?.OnUnityUpdate(threads[0]);
         }
 #endif
 

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
 using System.Threading;
 #endif
 
@@ -15,9 +15,9 @@ namespace ECSharp.Time
     /// </summary>
     internal class TimeFlowThread
     {
-#if !UNITY_WEBGL
-        private readonly Thread thread;
-        private readonly ManualResetEventSlim waitHandle;
+#if !UNITY_2020_1_OR_NEWER
+        private readonly Thread? thread;
+        private readonly ManualResetEventSlim? waitHandle;
 #endif
         private readonly List<BaseTimeFlow> timeFlows = new List<BaseTimeFlow>();
         private readonly List<BaseTimeFlow> waitAddTimeFlows = new List<BaseTimeFlow>();
@@ -34,7 +34,7 @@ namespace ECSharp.Time
         private static readonly int interval = (int)(UnityEngine.Time.fixedDeltaTime * 1000);
 #endif
 
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
         internal static Action<Exception>? exceptionListener = null;
         internal static Func<Exception, bool>? hotfixExceptionListener = null;
 #endif
@@ -63,7 +63,7 @@ namespace ECSharp.Time
         internal TimeFlowThread(bool isSync)
         {
             this.isSync = isSync;
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
             waitHandle = new ManualResetEventSlim(false);
             thread = new Thread(UpdateHandle);
             thread.IsBackground = true;
@@ -84,28 +84,39 @@ namespace ECSharp.Time
             }
         }
 
-#if UNITY_WEBGL
-        internal void OnUnityUpdate(TimeFlowThread thread)
+#if UNITY_2020_1_OR_NEWER
+        internal System.Collections.IEnumerator OnUnityUpdate(TimeFlowThread thread)
         {
-            UpdateHandle(thread);
+            yield return UpdateHandle(thread);
         }
 #endif
 
-        /// <summary>
-        /// 更新句柄
-        /// </summary>
+/// <summary>
+/// 更新句柄
+/// </summary>
+#if !UNITY_2020_1_OR_NEWER
         private static void UpdateHandle(object? obj)
+#else
+        private static System.Collections.IEnumerator UpdateHandle(object? obj)
+#endif
         {
-            TimeFlowThread? t = obj as TimeFlowThread;
-            if (t == null)
+            if (obj is not TimeFlowThread t)
+            { 
+#if !UNITY_2020_1_OR_NEWER
                 return;
+#else
+                yield break;
+#endif
+            }
 
-#if !UNITY_WEBGL
-            for(int i = 0; i < t.timeFlows.Count; i++)
+            for (int i = 0; i < t.timeFlows.Count; i++)
             {
                 t.timeFlows[i].ResetIdle();
             }
 
+#if UNITY_2020_1_OR_NEWER
+            yield return OnUpdate(t);
+#else
             try
             {
                 OnUpdate(t);
@@ -117,73 +128,74 @@ namespace ECSharp.Time
                 {
                     throw;
                 }
-                
                 exceptionListener?.Invoke(e);
-
                 UpdateHandle(obj);
             }
-#else
-            OnUpdate(t);
 #endif
         }
 
+        static readonly List<BaseTimeFlow> waitRmv = new List<BaseTimeFlow>();
+#if !UNITY_2020_1_OR_NEWER
         private static void OnUpdate(TimeFlowThread t)
+#else
+        private static System.Collections.IEnumerator OnUpdate(TimeFlowThread t)
+#endif
         {
-            List<BaseTimeFlow> waitRmv = new List<BaseTimeFlow>();
-#if !UNITY_WEBGL
+            waitRmv.Clear();
             while (true)
             {
-#endif
-            // 加入新的时间流
-            if (t.waitAddTimeFlows.Count > 0)
-            {
-                BaseTimeFlow[]? tfArray;
-                lock (t.waitAddTimeFlows)
+                // 加入新的时间流
+                if (t.waitAddTimeFlows.Count > 0)
                 {
-                    tfArray = t.waitAddTimeFlows.ToArray();
-                    t.waitAddTimeFlows.Clear();
+                    BaseTimeFlow[]? tfArray;
+                    lock (t.waitAddTimeFlows)
+                    {
+                        tfArray = t.waitAddTimeFlows.ToArray();
+                        t.waitAddTimeFlows.Clear();
+                    }
+
+                    for (int i = 0, len = tfArray.Length; i < len; i++)
+                    {
+                        tfArray[i].consumeTime = Utils.SystemInfo.TotalRunTime;
+                        t.timeFlows.Add(tfArray[i]);
+                    }
                 }
 
-                for (int i = 0, len = tfArray.Length; i < len; i++)
+                for (int i = 0, len = t.timeFlows.Count; i < len; i++)
                 {
-                    tfArray[i].consumeTime = Utils.SystemInfo.TotalRunTime;
-                    t.timeFlows.Add(tfArray[i]);
-                }
-            }
+                    var tf = t.timeFlows[i];
+                    if (tf.isTimeFlowStop)
+                    {
+                        waitRmv.Add(tf);
+                        if (t.isSync) tf.UpdateSyncEndES();
+                        else tf.UpdateEndES();
+                        continue;
+                    }
 
-            for (int i = 0, len = t.timeFlows.Count; i < len; i++)
-            {
-                var tf = t.timeFlows[i];
-                if (tf.isTimeFlowStop)
+                    if (tf.isTimeFlowPause)
+                        continue;
+
+                    if (t.isSync)
+                        tf.UpdateSyncES();
+                    else
+                        tf.UpdateES();
+                }
+
+                for (int i = 0, len = waitRmv.Count; i < len; i++)
                 {
-                    waitRmv.Add(tf);
-                    if (t.isSync) tf.UpdateSyncEndES();
-                    else tf.UpdateEndES();
-                    continue;
+                    t.timeFlows.Remove(waitRmv[i]);
+
+                    // 优化清空逻辑
+                    if (i == len - 1)
+                        waitRmv.Clear();
                 }
-
-                if (tf.isTimeFlowPause)
-                    continue;
-
-                if (t.isSync)
-                    tf.UpdateSyncES();
-                else
-                    tf.UpdateES();
-            }
-
-            for (int i = 0, len = waitRmv.Count; i < len; i++)
-            {
-                t.timeFlows.Remove(waitRmv[i]);
-
-                // 优化清空逻辑
-                if (i == len - 1)
-                    waitRmv.Clear();
-            }
-#if !UNITY_WEBGL
+#if !UNITY_2020_1_OR_NEWER
                 // 睡眠
                 t.waitHandle.Wait(interval);
-            }
+#else
+                yield return Awaiters.Seconds(UnityEngine.Time.fixedDeltaTime);
 #endif
+            }
         }
 
         /// <summary>

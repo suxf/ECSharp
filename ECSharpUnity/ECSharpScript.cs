@@ -1,13 +1,13 @@
 using ECSharp.Time;
 using UnityEngine;
 
+/// <summary>
+/// ECSharp¿ò¼ÜÖ§³Å½Å±¾
+/// </summary>
 public class ECSharpScript : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-#if UNITY_WEBGL
-        TimeFlowManager.OnUnityUpdate();
-#endif
+        StartCoroutine(TimeFlowManager.OnUnityUpdate());
     }
 }
