@@ -2,7 +2,6 @@
 #nullable enable
 #endif
 using ECSharp.Time;
-using ECSharp.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -80,12 +79,10 @@ namespace ECSharp
 #endif
         private static void SystemInfo()
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
 #if UNITY_2020_1_OR_NEWER
-            var obj = new UnityEngine.GameObject("ECSharpRuntime");
-            obj.AddComponent<ECSharpScript>();
-            UnityEngine.Object.DontDestroyOnLoad(obj);
+            ECSharpScript.InitECSharp();
 #else
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("process:");
             sb.Append(Utils.SystemInfo.ProcessName);
             sb.Append("; version:");
@@ -93,7 +90,6 @@ namespace ECSharp
             sb.Append("; esf:");
             sb.Append(Utils.SystemInfo.FrameVersion);
             sb.Append("; ");
-#endif
             sb.Append(".net:");
             sb.Append(Utils.SystemInfo.DotNetVersion);
             sb.Append("; path:");
@@ -112,6 +108,7 @@ namespace ECSharp
             Log.Info(sb);
             LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT = LOG_CONSOLE_STACK_TRACE_OUTPUT;
             LogConfig.LOG_FILE_STACK_TRACE_OUTPUT = LOG_FILE_STACK_TRACE_OUTPUT;
+#endif
         }
 
         /// <summary>
@@ -128,7 +125,11 @@ namespace ECSharp
 
             if (LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT || LogConfig.LOG_FILE_STACK_TRACE_OUTPUT)
             {
+#if !UNITY_2020_1_OR_NEWER
                 var frame = new StackTrace().GetFrame(2);
+#else
+                var frame = new StackTrace().GetFrame(4);
+#endif
                 var method = frame?.GetMethod();
 
                 if (method != null && method.DeclaringType != null)
@@ -137,43 +138,11 @@ namespace ECSharp
 
             if (!LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
             {
-                FormatLog(ref logInfo);
                 lock (m_lock) OutputLog(ref logInfo);
             }
 
             // 压入队列
             logWriteUpdate.Enqueue(logInfo);
-        }
-
-        /// <summary>
-        /// 格式化日志
-        /// </summary>
-        /// <param name="log"></param>
-        private static void FormatLog(ref LogInfo log)
-        {
-            string logType = "";
-            switch (log.type)
-            {
-                case LogType.DEBUG:
-                    logType = "DEBUG";
-                    break;
-                case LogType.INFO:
-                    logType = "INFO";
-                    break;
-                case LogType.WARN:
-                    logType = "WARN";
-                    break;
-                case LogType.ERROR:
-                    logType = "ERROR";
-                    break;
-                case LogType.FATAL:
-                    logType = "FATAL";
-                    break;
-                case LogType.INPUT:
-                    logType = "INPUT";
-                    break;
-            }
-            log.log = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} [{logType}] {(logType.Length == 4 ? " " : "")}{log.data}";
         }
 
         /// <summary>
@@ -185,6 +154,7 @@ namespace ECSharp
             if (log.type < LogConfig.CONSOLE_OUTPUT_LOG_TYPE)
                 return;
 
+            string logStack = $"{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}";
             switch (log.type)
             {
                 case LogType.DEBUG:
@@ -192,7 +162,9 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
                     if (LogConfig.BACKGROUND_DEBUG_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_DEBUG_COLOR;
 #else
-					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l1 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#08F629'>DEBUG</color>> {log.data}{logStack}";
+                    UnityEngine.Debug.Log(l1);
+                    LogConfig.OnLog?.Invoke(log.type, l1);
 #endif
                     break;
                 case LogType.INFO:
@@ -200,7 +172,9 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
                     if (LogConfig.BACKGROUND_INFO_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INFO_COLOR;
 #else
-					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l2 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#808080'>INFO</color>>  {log.data}{logStack}";
+                    UnityEngine.Debug.Log(l2);
+                    LogConfig.OnLog?.Invoke(log.type, l2);
 #endif
                     break;
                 case LogType.WARN:
@@ -208,7 +182,9 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
                     if (LogConfig.BACKGROUND_WARN_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_WARN_COLOR;
 #else
-					UnityEngine.Debug.LogWarning($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l3 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#FFEE28'>WARN</color>>  {log.data}{logStack}";
+                    UnityEngine.Debug.LogWarning(l3);
+                    LogConfig.OnLog?.Invoke(log.type, l3);
 #endif
                     break;
                 case LogType.ERROR:
@@ -216,7 +192,9 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
                     if (LogConfig.BACKGROUND_ERROR_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_ERROR_COLOR;
 #else
-					UnityEngine.Debug.LogError($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l4 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#FF2D2D'>ERROR</color>> {log.data}{logStack}";
+                    UnityEngine.Debug.LogError(l4);
+                    LogConfig.OnLog?.Invoke(log.type, l4);
 #endif
                     break;
                 case LogType.FATAL:
@@ -224,7 +202,9 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
                     if (LogConfig.BACKGROUND_EXCEPTION_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_EXCEPTION_COLOR;
 #else
-					UnityEngine.Debug.LogAssertion($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l5 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#C947FF'>FATAL</color>> {log.data}{logStack}";
+                    UnityEngine.Debug.LogError(l5);
+                    LogConfig.OnLog?.Invoke(log.type, l5);
 #endif
                     break;
                 case LogType.INPUT:
@@ -232,12 +212,15 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_INPUT_COLOR;
                     if (LogConfig.BACKGROUND_INPUT_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INPUT_COLOR;
 #else
-					UnityEngine.Debug.Log($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                    string l6 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#2B45FF'>INPUT</color>> {log.data}{logStack}";
+                    UnityEngine.Debug.Log(l6);
+                    LogConfig.OnLog?.Invoke(log.type, l6);
 #endif
                     break;
             }
 #if !UNITY_2020_1_OR_NEWER
-            Console.WriteLine($"{log.log}{(LogConfig.LOG_CONSOLE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+            string logType = log.type.ToString();
+            Console.WriteLine($"{log.time:yyyy/MM/dd HH:mm:ss.fff} <{logType}> {(logType.Length == 4 ? " " : "")}{log.data}{logStack}");
             Console.ResetColor();
 #endif
         }
@@ -331,13 +314,13 @@ namespace ECSharp
                             --runCount;
                             if (LogConfig.LOG_CONSOLE_ASYNC_OUTPUT)
                             {
-                                FormatLog(ref log);
                                 OutputLog(ref log);
                             }
 
                             if (log.type >= LogConfig.FILE_OUTPUT_LOG_TYPE)
                             {
-                                sw.WriteLine($"{log.log}{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
+                                string logType = log.type.ToString();
+                                sw.WriteLine($"{log.time:yyyy/MM/dd HH:mm:ss.fff} <{logType}> {(logType.Length == 4 ? " " : "")}{log.data}{(LogConfig.LOG_FILE_STACK_TRACE_OUTPUT && !string.IsNullOrEmpty(log.stack) ? $" <{log.stack}>" : " ")}");
                             }
                         }
                     }
@@ -373,10 +356,6 @@ namespace ECSharp
             /// 堆栈信息
             /// </summary>
             internal string stack;
-            /// <summary>
-            /// 日志字符串
-            /// </summary>
-            internal string log;
         }
     }
 }

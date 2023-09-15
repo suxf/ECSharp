@@ -192,5 +192,12 @@ namespace ECSharp
             string data = string.Format("{0}\r\n   Message:{1}\r\n   Method:{2}\r\n   StackTrace:\r\n{3}", sb, ex.Message, ex.TargetSite, ex.StackTrace);
             LogManager.WriteLine(LogType.FATAL, data);
         }
+
+        /// <summary>
+        /// 写入日志
+        /// </summary>
+        /// <param name="type">日志类型</param>
+        /// <param name="log">日志内容</param>
+        public static void WriteLog(LogType type, string log) => LogManager.WriteLine(type, log);
     }
 }

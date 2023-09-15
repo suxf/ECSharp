@@ -29,5 +29,10 @@
         /// 输入性日志
         /// </summary>
         INPUT = 5,
+
+        /// <summary>
+        /// 无日志输出
+        /// </summary>
+        NULL = 9999,
     }
 }

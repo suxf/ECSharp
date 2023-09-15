@@ -104,5 +104,9 @@ namespace ECSharp
         /// 输入 日志字体背景颜色
         /// </summary>
         public static System.ConsoleColor? BACKGROUND_INPUT_COLOR = null;
+
+#if UNITY_2020_1_OR_NEWER
+        public static System.Action<LogType, string>? OnLog;
+#endif
     }
 }
