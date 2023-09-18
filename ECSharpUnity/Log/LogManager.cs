@@ -162,7 +162,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_DEBUG_COLOR;
                     if (LogConfig.BACKGROUND_DEBUG_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_DEBUG_COLOR;
 #else
+#if UNITY_EDITOR
                     string l1 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#08F629'>DEBUG</color>> {log.data}{logStack}";
+#else
+                    string l1 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <DEBUG> {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.Log(l1);
                     LogConfig.OnLog?.Invoke(log.type, l1);
 #endif
@@ -172,7 +176,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_INFO_COLOR;
                     if (LogConfig.BACKGROUND_INFO_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INFO_COLOR;
 #else
+#if UNITY_EDITOR
                     string l2 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#808080'>INFO</color>>  {log.data}{logStack}";
+#else
+                    string l2 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <INFO>  {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.Log(l2);
                     LogConfig.OnLog?.Invoke(log.type, l2);
 #endif
@@ -182,7 +190,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_WARN_COLOR;
                     if (LogConfig.BACKGROUND_WARN_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_WARN_COLOR;
 #else
+#if UNITY_EDITOR
                     string l3 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#FFEE28'>WARN</color>>  {log.data}{logStack}";
+#else
+                    string l3 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <WARN>  {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.LogWarning(l3);
                     LogConfig.OnLog?.Invoke(log.type, l3);
 #endif
@@ -192,7 +204,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_ERROR_COLOR;
                     if (LogConfig.BACKGROUND_ERROR_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_ERROR_COLOR;
 #else
+#if UNITY_EDITOR
                     string l4 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#FF2D2D'>ERROR</color>> {log.data}{logStack}";
+#else
+                    string l4 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <ERROR> {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.LogError(l4);
                     LogConfig.OnLog?.Invoke(log.type, l4);
 #endif
@@ -202,7 +218,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_EXCEPTION_COLOR;
                     if (LogConfig.BACKGROUND_EXCEPTION_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_EXCEPTION_COLOR;
 #else
+#if UNITY_EDITOR
                     string l5 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#C947FF'>FATAL</color>> {log.data}{logStack}";
+#else
+                    string l5 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <FATAL> {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.LogError(l5);
                     LogConfig.OnLog?.Invoke(log.type, l5);
 #endif
@@ -212,7 +232,11 @@ namespace ECSharp
                     Console.ForegroundColor = LogConfig.FOREGROUND_INPUT_COLOR;
                     if (LogConfig.BACKGROUND_INPUT_COLOR != null) Console.BackgroundColor = (ConsoleColor)LogConfig.BACKGROUND_INPUT_COLOR;
 #else
+#if UNITY_EDITOR
                     string l6 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <<color='#2B45FF'>INPUT</color>> {log.data}{logStack}";
+#else
+                    string l6 = $"{log.time:yyyy/MM/dd HH:mm:ss.fff} <INPUT> {log.data}{logStack}";
+#endif
                     UnityEngine.Debug.Log(l6);
                     LogConfig.OnLog?.Invoke(log.type, l6);
 #endif
